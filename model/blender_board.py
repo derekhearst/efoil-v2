@@ -722,6 +722,30 @@ G10_L, G10_W = 250.0, 175.0
 DENSE_MARGIN_X = 90.0
 DENSE_MARGIN_Y = 90.0
 DENSE_MARGIN = DENSE_MARGIN_X      # kept for the report/legend
+# The block used to stop at the cavity floor - 29.5 mm tall in a 147 mm board,
+# only 9 mm of it above the mast plate, and then 118 mm of plain EPS between
+# the mast hardpoint and the deck skin.
+#
+# That matters because a sandwich carries a moment as a COUPLE BETWEEN ITS
+# SKINS, and the couple has to cross the core in shear. The foil's roll moment
+# (side load x the 850 mm mast) put ~0.10 MPa through that EPS against a shear
+# strength of ~0.15 - about 1.5 g of side load, which a hard carve reaches.
+# H80 in the same path is 6.3x stronger and spreads the load much further.
+#
+# So the block now runs FULL DEPTH to the deck wherever the board is solid,
+# i.e. aft of the cavity. Forward of that the cavity floor is at z=30 and
+# nothing can go higher, so it steps back down to the original slab.
+# RIBS, not a solid column. A solid full-depth block needs 7 bonded layers of
+# 3/4in H80 and 986 in2 per board, and buys a 23 g side-load limit nobody
+# needs. Four transverse ribs give 3.46 g for 259 in2 - a quarter of the
+# material, four simple parts instead of seven laminations, and the ribs land
+# in the offcut of stock already being bought.
+#
+# Transverse is the right orientation: the roll moment's couple runs across
+# the board, so a rib in the y-z plane is a shear web for exactly that load.
+DENSE_COL_GAP = 3.0                # stop the ribs short of the cavity void
+DENSE_RIB_N = 4
+DENSE_RIB_T = 19.05                # 3/4in H80, same stock as the block
 
 # BLIND THREADED INSERTS, not through-bolts. Through-bolting meant a nut and
 # washer sitting in a milled pocket in the CAVITY FLOOR, which (a) put four
@@ -2472,6 +2496,26 @@ def build():
     # hull to remove.
     raw = prism("V2_MastBlock_cut", pocket_poly,
                 -40.0, FLOOR_Z - FIT_FLOOR, coll)
+    # ...plus a full-depth column wherever the board is solid, i.e. AFT of the
+    # cavity. This is the part that ties the mast hardpoint to the top skin.
+    _col_x1 = CAV_X0 - DENSE_COL_GAP
+    _rib_x = []
+    if _col_x1 > rx0 + 40.0:
+        _span = _col_x1 - rx0 - DENSE_RIB_T
+        for _i in range(DENSE_RIB_N):
+            _cx = rx0 + DENSE_RIB_T / 2 + _span * _i / (DENSE_RIB_N - 1.0)
+            _rib_x.append(round(_cx, 1))
+            rib = prism(f"V2_MastRib{_i}_cut",
+                        [(_cx - DENSE_RIB_T / 2, ry0),
+                         (_cx + DENSE_RIB_T / 2, ry0),
+                         (_cx + DENSE_RIB_T / 2, ry1),
+                         (_cx - DENSE_RIB_T / 2, ry1)],
+                        FLOOR_Z - FIT_FLOOR - 1.0, THICK + 40.0, coll)
+            boolean(raw, rib, op='UNION')
+            rib.hide_set(True)
+            rib.hide_render = True
+    rep["dense_ribs_x_mm"] = _rib_x
+    rep["dense_rib_size_mm"] = (DENSE_RIB_T, round(ry1 - ry0))
     # The dense FOAM is the clipped version - it has to stop at the skin, and
     # it is a separate object, so the coincidence is harmless there.
     hull_solid = snapshot(hull, "V2_HullSolid_tmp", coll)
@@ -2513,6 +2557,23 @@ def build():
     rep["dense_footprint_mm"] = (round(rx1 - rx0), round(ry1 - ry0))
     rep["dense_pct_of_length"] = round(100.0 * (rx1 - rx0) / LENGTH, 1)
     rep["dense_nested_not_stacked"] = True
+    # --- core shear from the foil's roll moment ---------------------------
+    # The couple between the skins has to cross the core. Spread is taken at
+    # 45 deg through whatever dense foam sits above the plate, which is the
+    # honest middle of a range that swings 3.5x on that assumption alone.
+    _allup = (25.1 + 95.3 + 7.3) * 9.81
+    _sand = THICK - 2 * HULL_SKIN
+    _dense_above = THICK - (plate_z0 + G10_T)          # full-depth region
+    _f = _allup * 1.0 * 0.850 * 1000.0 / _sand         # couple at 1 g side
+    # was: EPS alone, 45 deg spread through the 9 mm of dense over the plate
+    _h0 = FLOOR_Z - FIT_FLOOR - (plate_z0 + G10_T)
+    rep["side_g_limit_eps_only"] = round(
+        0.15 / (_f / ((G10_L + 2 * _h0) * (G10_W + 2 * _h0))), 2)
+    # now: the ribs are the web, carrying the couple in their own plan area
+    _rib_a = len(_rib_x) * DENSE_RIB_T * (ry1 - ry0)
+    rep["dense_rib_shear_area_mm2"] = round(_rib_a)
+    rep["side_g_limit_with_ribs"] = round(0.95 / (_f / _rib_a), 2) if _rib_a         else 0.0
+    rep["dense_above_plate_mm"] = round(_dense_above, 1)
 
     # M8 into blind key-locking inserts in the 16 mm plate. The bolt comes up
     # from the mast base and stops inside the plate; nothing breaks the top
@@ -3620,6 +3681,10 @@ def build():
                      f"{rep['hatch_bolt_pitch_mm']} mm pitch")
     if not rep["bolts_clear_channel"]:
         fails.append("hatch bolts pass through the silicone channel")
+    if rep.get("side_g_limit_with_ribs", 0) < 2.0:
+        fails.append("mast hardpoint shear path is under 2 g of side load: "
+                     + format(rep.get("side_g_limit_with_ribs", 0), ".2f")
+                     + " g - the couple between the skins has nowhere to go")
     if rep.get("handle_plate_proud_mm", -99) > -0.2:
         fails.append("handle G10 strip breaks the hull surface by "
                      + format(rep["handle_plate_proud_mm"], ".2f") + " mm")
@@ -3734,7 +3799,10 @@ def build():
         "hull core": "EPS ~2 lb/ft3, CNC milled in two halves, seam at "
                      f"{SEAM_X:.0f} mm",
         "hull skin": "E-glass 2 x 6 oz + 1708 biax, vacuum bagged",
-        "mast hardpoint block": "Divinycell H100 dense PVC foam, full depth, G10 plate let into its underside",
+        "mast hardpoint block": f"Divinycell H80 dense PVC foam - full depth "
+                                f"to the deck aft of the cavity, "
+                                f"{FLOOR_Z - FIT_FLOOR:.0f} mm slab under it, "
+                                "G10 plate let into its underside",
         "mast plate": f"G10 laminate sheet, {G10_T:.0f} mm",
         "hatch rim ring": f"G10 sheet, {RIM_T:.1f} mm, FOUR pieces (01a/01b) scarfed and bonded, glassed in",
         "module shell": f"G10 laminate sheet, {ENC_WALL:.0f} mm walls / "
