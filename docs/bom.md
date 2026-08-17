@@ -8,7 +8,7 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 
 | Item | Qty | Unit | Unit $ | Ext $ | | Note |
 |---|---:|---|---:|---:|---|---|
-| EPS rigid foam 2in x 48in x 8ft (HD 202532856) | 3 | sheet | $27.68 | $83.04 | verified | HD Meridian, 30 in stock, aisle 29 bay 020; $23.53 at 32+ |
+| EPS rigid foam 2in x 48in x 8ft (HD 202532856) | 3 | sheet | $27.68 | $83.04 | verified | HD Meridian, 30 in stock, aisle 29 bay 020; $23.53 at 32+. EPS, not the XPS V1 used - deliberate, ~$90 cheaper across both boards, and the shear it gives up is covered by H-80 at the hardpoints. See the note at RHO_EPS in blender_board.py |
 | PL300 / Gorilla Glue, layer glue-up | 2 | tube | $8.00 | $16.00 | estimate |  |
 | Maker Shop Boise Basic month | 1 | month | $150.00 | $150.00 | verified | month-to-month; confirm it cancels cleanly |
 | **subtotal** | | | | **$249.04** | | |

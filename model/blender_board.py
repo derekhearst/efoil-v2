@@ -3421,6 +3421,26 @@ def build():
     # 17.7x). The hatch lid still needs H-100 and gets it by bonding two 1/4 in
     # sheets, because crush happens AT THE SURFACE and a mid-core bond line
     # does not touch it.
+    # CORE IS EPS, HARDPOINTS ARE H-80, AND BOTH ARE DELIBERATE.
+    #
+    # V1 was XPS ("2 sheets XPS foam from Lowe's", 3 x 2in layers). V2 is EPS
+    # at 32 kg/m3, $27.68 a sheet against ~$55-65 for XPS - about $90 saved
+    # across both boards. What that buys is a core ~35% weaker in shear and
+    # absorbing roughly TEN TIMES more water.
+    #
+    # Accepted on 17 Aug 2026, knowingly, because:
+    #   - V1's leak was water entering at UNSEALED GLASS EDGES on the cavity
+    #     ledge and then wicking through the foam. The fix is the glassed-in
+    #     rim ring - one continuous laminate, no glass edge terminating on the
+    #     sealing surface - not a better core.
+    #   - the one place EPS shear was actually marginal (the mast hardpoint,
+    #     1.04 g) is now H-80: four ribs and the block, 6-7x stronger, 0.51 kg
+    #     and 2% of the board's mass.
+    # H-80 everywhere would be ~$4,000 of foam and a 60 kg board. It earns its
+    # place at the hardpoints and nowhere else.
+    #
+    # If this is ever revisited: the swap is only worth ~$90, so the burden of
+    # proof is on keeping EPS, not on changing it.
     RHO_EPS, RHO_G10, RHO_H80, RHO_H200 = 32.0, 1850.0, 80.0, 80.0
     GLASS_KGM2 = 2.20            # 2 x 6 oz + 1708 biax, bagged, wet
     m = {}

@@ -60,7 +60,10 @@ def build():
     add("1  Core and shaping",
         "EPS rigid foam 2in x 48in x 8ft (HD 202532856)",
         math.ceil(1.5 * N), "sheet", 27.68, OK,
-        "HD Meridian, 30 in stock, aisle 29 bay 020; $23.53 at 32+")
+        "HD Meridian, 30 in stock, aisle 29 bay 020; $23.53 at 32+. EPS, not "
+        "the XPS V1 used - deliberate, ~$90 cheaper across both boards, and "
+        "the shear it gives up is covered by H-80 at the hardpoints. See the "
+        "note at RHO_EPS in blender_board.py")
     add("1  Core and shaping", "PL300 / Gorilla Glue, layer glue-up",
         N, "tube", 8.00, EST)
     # Maker Shop Boise, Overland & Cole: day pass $99, 5-day punch $250,
