@@ -1,0 +1,7 @@
+# DXF, SVG and the generated markdown are all text - normalise so a Windows
+# and a Linux checkout produce identical diffs.
+* text=auto eol=lf
+*.stl binary
+*.blend binary
+*.png binary
+*.zip binary

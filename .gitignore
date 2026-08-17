@@ -1,0 +1,24 @@
+# Everything here regenerates from model/*.py. Committing it means every run
+# shows up as a diff in binary files nobody can review.
+
+# Blender writes these on every run of blender_board.py
+model/efoil_v2.blend
+model/efoil_v2.blend1
+*.blend
+*.blend1
+
+# meshes, emitted by blender_board.py and print_miniature.py
+*.stl
+
+# viewport renders and diagrams - 173 MB of build output
+renders/
+
+__pycache__/
+*.pyc
+
+# ---------------------------------------------------------------------------
+# Third-party product imagery: Lift, Fliteboard and Waydoo marketing renders
+# and photos, collected as shape reference while drawing the hull. Fine to
+# keep on disk for our own reference, NOT ours to redistribute - and this repo
+# is one visibility flip away from being public. Kept out deliberately.
+reference/
