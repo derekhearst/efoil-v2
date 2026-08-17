@@ -359,6 +359,18 @@ WIRE_BAY_LEN = 60.0                # module aft wall to cavity aft wall
 # floor and buried in the GLASS_R=10 floor fillet, so the gland had no flat to
 # seat on. Nothing caught it until the channel was actually modelled.
 CONDUIT_RISE_Z = 62.0              # height it pierces the cavity aft wall at
+# The root and the run used to meet in a hard 39 deg corner, which is a nasty
+# place to drag two 8 AWG cables plus the sensor trio through a 28 mm bore.
+# Rounding it costs nothing in the foam and turns the pull into one continuous
+# curve. Clamped by bend_path() to whatever the short vertical leg allows.
+CONDUIT_BEND_R = 60.0              # centreline bend radius at the knee
+# What actually limits the pull is the CABLE's bend radius, not the bore's.
+# Checking bend-vs-bore was the wrong metric and failed a geometry that is
+# fine: at 26.8 mm the knee is 1.0x the bore but 4.1x the cable, and this is a
+# one-time pull that then gets potted and glassed, not a flexing joint.
+# No knee height buys a bigger radius - a circular fillet needs equal tangents
+# and the vertical root is only ~20 mm long, so the short leg sets it.
+CABLE_OD = 6.5                     # 8 AWG silicone, the fattest thing pulled
 
 # ------------------------------------------------------------ battery pack
 # BAK N21700CG-50, datasheet maxima: 21.4 dia x 70.75 long, 72 g, 18.0 Wh,
@@ -791,6 +803,11 @@ HANDLE_PAD = 20.0                  # dense-foam surround, spreads into the EPS
 # should stop short and leave plain EPS between itself and the ring, the same
 # way the mast block does.
 HANDLE_PAD_GAP = 15.0              # EPS between the rim ring and the pad
+# The chord seating touches the hull surface EXACTLY at the strip's two edges,
+# so the top corners sat right on the skin and poked through by a couple of
+# tenths. This is the epoxy line the strip actually beds into - it sinks the
+# strip just under the surface and makes the seating unambiguous.
+HANDLE_PLATE_BOND = 0.5            # glue line under the strip
 HANDLE_STRAP_SLACK = 25.0          # standoff at mid-span - this is what your
                                    # fingers go into now that there is no
                                    # recess. Set it when you make the strap up.
@@ -1349,6 +1366,25 @@ def rail_frame(ymid, zmid, tilt, sgn):
     return f
 
 
+def _frame_is_mirrored(frame):
+    """True if `frame` flips handedness - i.e. builds inside-out solids.
+
+    rail_frame mirrors for the starboard side, which reverses the sense of
+    every face loop built through it. Blender's boolean solver on inverted
+    normals is what produced the shredded pad edges and the plate appearing to
+    poke through: the cutter was, as far as the solver was concerned, the
+    infinite outside rather than the finite inside.
+    """
+    o = frame(0.0, 0.0, 0.0)
+    du = [frame(0.0, 1.0, 0.0)[i] - o[i] for i in range(3)]
+    dv = [frame(0.0, 0.0, 1.0)[i] - o[i] for i in range(3)]
+    dx = [frame(1.0, 0.0, 0.0)[i] - o[i] for i in range(3)]
+    cr = (du[1] * dv[2] - du[2] * dv[1],
+          du[2] * dv[0] - du[0] * dv[2],
+          du[0] * dv[1] - du[1] * dv[0])
+    return sum(cr[i] * dx[i] for i in range(3)) < 0.0
+
+
 def tilted_box(name, x0, x1, w, t, frame, coll, mat=None):
     """Box in a rail_frame: w across the rail, t down from the surface."""
     uv = [(-w / 2, 0.0), (w / 2, 0.0), (w / 2, -t), (-w / 2, -t)]
@@ -1356,6 +1392,8 @@ def tilted_box(name, x0, x1, w, t, frame, coll, mat=None):
              + [frame(x1, u, v) for u, v in uv])
     faces = [[0, 1, 2, 3], [7, 6, 5, 4],
              [0, 4, 5, 1], [1, 5, 6, 2], [2, 6, 7, 3], [3, 7, 4, 0]]
+    if _frame_is_mirrored(frame):
+        faces = [f[::-1] for f in faces]
     return new_object(name, verts, faces, coll, mat)
 
 
@@ -1370,7 +1408,73 @@ def tilted_cyl(name, xc, d, depth, frame, coll, mat=None, seg=20):
              for i in range(seg)]
     faces.append(list(range(seg - 1, -1, -1)))
     faces.append(list(range(seg, 2 * seg)))
+    if _frame_is_mirrored(frame):
+        faces = [f[::-1] for f in faces]
     return new_object(name, verts, faces, coll, mat)
+
+
+def path_tube(name, pts, d, coll, mat=None, seg=24):
+    """Sweep a circle of diameter d along a polyline that lies in the XZ plane.
+
+    Used for the mast conduit, which is a vertical root, a radiused bend and an
+    angled run. The whole path is at y=0, so the perpendicular basis is simply
+    (0,1,0) and (-dz, 0, dx) - no twist to track, no degenerate frames.
+    """
+    dirs = []
+    for i in range(len(pts)):
+        a = pts[max(0, i - 1)]
+        b = pts[min(len(pts) - 1, i + 1)]
+        vx, vz = b[0] - a[0], b[2] - a[2]
+        m = math.hypot(vx, vz) or 1.0
+        dirs.append((vx / m, vz / m))
+    r = d * 0.5
+    verts = []
+    for (px, py, pz), (dx, dz) in zip(pts, dirs):
+        for i in range(seg):
+            t = 2 * math.pi * i / seg
+            c_, s_ = r * math.cos(t), r * math.sin(t)
+            verts.append((px + s_ * -dz, py + c_, pz + s_ * dx))
+    faces = []
+    for k in range(len(pts) - 1):
+        o0, o1 = k * seg, (k + 1) * seg
+        faces += [[o0 + i, o0 + (i + 1) % seg, o1 + (i + 1) % seg, o1 + i]
+                  for i in range(seg)]
+    faces.append(list(range(seg - 1, -1, -1)))
+    n0 = (len(pts) - 1) * seg
+    faces.append(list(range(n0, n0 + seg)))
+    return new_object(name, verts, faces, coll, mat)
+
+
+def bend_path(a, k, b, rad, seg=14):
+    """Polyline a -> k -> b with the corner at k rounded to `rad`.
+
+    The radius is clamped so the tangents cannot run past either leg - the
+    conduit's vertical root is only ~20 mm long, and an unclamped fillet
+    silently ate past the hull skin.
+    """
+    d1 = (k[0] - a[0], k[2] - a[2])
+    d2 = (b[0] - k[0], b[2] - k[2])
+    l1 = math.hypot(*d1) or 1.0
+    l2 = math.hypot(*d2) or 1.0
+    u1 = (d1[0] / l1, d1[1] / l1)
+    u2 = (d2[0] / l2, d2[1] / l2)
+    cosang = max(-1.0, min(1.0, u1[0] * u2[0] + u1[1] * u2[1]))
+    turn = math.acos(cosang)
+    if turn < 1e-4:
+        return [a, b], 0.0
+    tmax = 0.45 * min(l1, l2)
+    rad = min(rad, tmax / math.tan(turn / 2.0))
+    t = rad * math.tan(turn / 2.0)
+    p0 = (k[0] - u1[0] * t, 0.0, k[2] - u1[1] * t)
+    p1 = (k[0] + u2[0] * t, 0.0, k[2] + u2[1] * t)
+    pts = [a, p0]
+    for i in range(1, seg):
+        s_ = i / float(seg)                     # quadratic Bezier p0,k,p1
+        m = 1.0 - s_
+        pts.append((m * m * p0[0] + 2 * m * s_ * k[0] + s_ * s_ * p1[0], 0.0,
+                    m * m * p0[2] + 2 * m * s_ * k[2] + s_ * s_ * p1[2]))
+    pts += [p1, b]
+    return pts, rad
 
 
 def swept_tube(name, a, b, d, coll, mat=None, seg=24):
@@ -2493,11 +2597,21 @@ def build():
     # and the laminate would bulge over it. On the chord the plate is flush at
     # its edges and sits _facet mm into the foam at its centre, which is
     # exactly the shallow facet that has to be milled.
-    _zsurf = (deck_z_at(HANDLE_X, HANDLE_Y - HANDLE_PLATE_W / 2)
-              + deck_z_at(HANDLE_X, HANDLE_Y + HANDLE_PLATE_W / 2)) / 2.0
+    # ...and take the chord at its LOWEST station along the board, not at the
+    # midpoint. The rail crowns 0.47 mm over the strip's 150 mm length, which
+    # is enough to eat the whole bond line and leave the ends poking out.
+    _zsurf = min((deck_z_at(_x, HANDLE_Y - HANDLE_PLATE_W / 2)
+                  + deck_z_at(_x, HANDLE_Y + HANDLE_PLATE_W / 2)) / 2.0
+                 for _x in (HANDLE_X - HANDLE_PLATE_L / 2, HANDLE_X,
+                            HANDLE_X + HANDLE_PLATE_L / 2))
     _facet = deck_z_at(HANDLE_X, HANDLE_Y) - _zsurf
     for sgn, nm in ((1.0, "P"), (-1.0, "S")):
-        fr = rail_frame(sgn * HANDLE_Y, _zsurf - CAV_LAM, _tilt, sgn)
+        # Top of the strip sits FLUSH with the hull surface, the same way the
+        # mast plate is "recessed flush in the hull bottom". Insetting it by
+        # CAV_LAM buried it under a 1.5 mm sliver of dense foam, which is why
+        # the G10 could not be seen in the pad at all.
+        fr = rail_frame(sgn * HANDLE_Y, _zsurf - HANDLE_PLATE_BOND,
+                        _tilt, sgn)
         # dense-foam pad. Inboard edge is CLAMPED clear of the rim ring so the
         # dense block never becomes part of the lid-recess curve.
         pad_y0 = max(HANDLE_Y - HANDLE_PLATE_W / 2 - HANDLE_PAD,
@@ -2535,6 +2649,17 @@ def build():
     rep["handle_untilted_error_mm"] = round(
         HANDLE_PLATE_W / 2 * math.tan(_tilt), 2)
     rep["handle_facet_depth_mm"] = round(_facet, 2)
+    # every corner of the strip must sit UNDER the hull surface
+    _pr = -1e9
+    _c, _s2 = math.cos(_tilt), math.sin(_tilt)
+    for _u in (-HANDLE_PLATE_W / 2, HANDLE_PLATE_W / 2):
+        for _v in (0.0, -HANDLE_PLATE_T):
+            _y = HANDLE_Y + (_u * _c + _v * _s2)
+            _z = (_zsurf - HANDLE_PLATE_BOND) + (-_u * _s2 + _v * _c)
+            for _x in (HANDLE_X - HANDLE_PLATE_L / 2,
+                       HANDLE_X + HANDLE_PLATE_L / 2):
+                _pr = max(_pr, _z - deck_z_at(_x, _y))
+    rep["handle_plate_proud_mm"] = round(_pr, 2)
     rep["handle_eps_gap_to_ring_mm"] = round(
         max(HANDLE_Y - HANDLE_PLATE_W / 2 - HANDLE_PAD, ring_y
             + HANDLE_PAD_GAP) - ring_y, 1)
@@ -2594,30 +2719,29 @@ def build():
 
     A = (cdx, 0.0, cd_z0 - 2.0)                # below the hull skin
     K = (cdx, 0.0, z_knee)                     # knee, just above the plate
-    B = (x_end + 18.0, 0.0, z_end + 18.0 * math.tan(
-        math.atan2(z_end - z_knee, max(1.0, x_end - cdx))))   # into the cavity
+    _ang = math.atan2(z_end - z_knee, max(1.0, x_end - cdx))
+    B = (x_end + 18.0, 0.0, z_end + 18.0 * math.tan(_ang))    # into the cavity
+    path, _r_used = bend_path(A, K, B, CONDUIT_BEND_R)
 
     # 1. the CHANNEL through hull, dense block and mast plate
     for tgt in (hull, dense, bpy.data.objects["V2_G10_MastPlate"]):
-        for n_, a_, b_ in (("root", A, K), ("run", K, B)):
-            c = swept_tube(f"V2_ConduitChan_{n_}_{tgt.name}", a_, b_,
-                           CONDUIT_D + 2 * CLR, coll)
-            boolean(tgt, c)
-            c.hide_set(True)
-            c.hide_render = True
+        c = path_tube(f"V2_ConduitChan_{tgt.name}", path,
+                      CONDUIT_D + 2 * CLR, coll)
+        boolean(tgt, c)
+        c.hide_set(True)
+        c.hide_render = True
 
-    # 2. the TUBE itself, bored through
-    cd = swept_tube("V2_Conduit", (cdx, 0.0, cd_z0), K, CONDUIT_D, coll,
-                    bom_mat("g10_mast"))
-    run = swept_tube("V2_Conduit_Run", K, (x_end, 0.0, z_end), CONDUIT_D,
-                     coll, bom_mat("g10_mast"))
-    for o, a_, b_ in ((cd, (cdx, 0.0, cd_z0 - 2.0), (cdx, 0.0, z_knee + 2.0)),
-                      (run, (K[0] - 4.0, 0.0, K[2] - 2.0),
-                       (x_end + 4.0, 0.0, z_end + 2.0))):
-        b = swept_tube(f"V2_ConduitBore_{o.name}", a_, b_, bore, coll)
-        boolean(o, b)
-        b.hide_set(True)
-        b.hide_render = True
+    # 2. the TUBE itself, bored through, on the same curve
+    cd = path_tube("V2_Conduit", path, CONDUIT_D, coll, bom_mat("g10_mast"))
+    _bore_path = [(x, y, z) for x, y, z in path]
+    _bore_path[0] = (path[0][0], 0.0, path[0][2] - 3.0)
+    _bore_path[-1] = (path[-1][0] + 4.0, 0.0,
+                      path[-1][2] + 4.0 * math.tan(_ang))
+    b = path_tube("V2_ConduitBore", _bore_path, bore, coll)
+    boolean(cd, b)
+    b.hide_set(True)
+    b.hide_render = True
+    rep["conduit_bend_radius_mm"] = round(_r_used, 1)
 
     # gland on the cavity's aft wall, not its floor
     box("V2_Conduit_Gland", x_end - 6.0, x_end + 14.0,
@@ -2636,6 +2760,12 @@ def build():
         BOLT_SPACING_X / 2 - INSERT_OD / 2 - CONDUIT_D / 2, 1)
     rep["conduit_channel_cut"] = True
     rep["conduit_run_is_bored"] = True
+    rep["conduit_knee_is_radiused"] = True
+    # a bend tighter than ~3x the bore is a fight with 8 AWG
+    rep["conduit_bend_over_bore"] = round(
+        rep.get("conduit_bend_radius_mm", 0.0) / bore, 1)
+    rep["conduit_bend_over_cable"] = round(
+        rep.get("conduit_bend_radius_mm", 0.0) / CABLE_OD, 1)
     # The angled run is entirely AFT of CAV_X0, so it never passes under the
     # cavity floor - the only thing that matters is where it breaks THROUGH
     # the aft wall. The tube's lower edge has to clear the floor fillet, or the
@@ -3490,6 +3620,13 @@ def build():
                      f"{rep['hatch_bolt_pitch_mm']} mm pitch")
     if not rep["bolts_clear_channel"]:
         fails.append("hatch bolts pass through the silicone channel")
+    if rep.get("handle_plate_proud_mm", -99) > -0.2:
+        fails.append("handle G10 strip breaks the hull surface by "
+                     + format(rep["handle_plate_proud_mm"], ".2f") + " mm")
+    if rep.get("conduit_bend_over_cable", 99) < 3.0:
+        fails.append("conduit knee bend is tighter than 3x the cable OD: "
+                     + format(rep.get("conduit_bend_over_cable", 0), ".1f")
+                     + "x - the 8 AWG will kink")
     if rep.get("conduit_clear_of_floor_fillet_mm", 99) < 3.0:
         fails.append("conduit pierces the cavity aft wall too low - its lower "
                      "edge is only "
