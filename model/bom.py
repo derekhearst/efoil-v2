@@ -238,8 +238,12 @@ def build():
         "sheet", 16.00, EST,
         "TORRAMI 18x24 or similar - you kept a part sheet from V1")
     # module cord is now bought with the hatch cord - same 3 mm stock
-    add("7  Module", "PG16 cable gland IP68, 10 pk", 1, "pk", 9.99, OK,
-        str(M["bay_glands"] * N) + " needed")
+    # PG11, not PG16 - and sized off the real chart: thread OD 18.03, thread
+    # length 9.14, cable range 6.35-10.16 against our 6.5 mm 8 AWG silicone.
+    # The model had an 16 mm hole, which is SMALLER THAN THE THREAD.
+    add("7  Module", "PG11 cable gland IP68, 10 pk", 1, "pk", 9.99, OK,
+        str(M["bay_glands"] * N) + " needed; one wire per gland - three in one "
+        "gland deforms the insert into a clover and leaks between them")
     # Was a 25 mm cable gland - nothing to mount one to. See the GLAND_D note
     # in blender_board.py. Undersized rubber is the seal; 4200 is the fillet.
     add("7  Module", "EPDM/neoprene sheet 1/2in, conduit bungs", 1, "sheet",
@@ -255,9 +259,20 @@ def build():
         "NOT optional on a sealed lithium box")
     # You have one on the shelf. CHECK IT IS A SPARE and not the one fitted
     # to V1 - V1 leaves with Kev, button included.
-    add("7  Module", "22 mm IP68 latching panel button", max(0, N - 1), "ea",
+    # APIELE M12: O12 hole, M12 x 0.75, head O17.5. NOT 22 mm - that was a
+    # placeholder. Its spec says PANEL 3.5 mm MAX and the wall is 4.0, so the
+    # print carries a O17.5 pocket on the inside face taking it to 3.0 local.
+    add("7  Module", "M12 IP68 momentary panel button", max(0, N - 1), "ea",
         12.49, OK, "1 on hand; this line buys the second board's")
-    add("7  Module", "Panel-mount charge port + cap", N, "ea", 12.00, EST)
+    # SP17 2-pin flange receptacle. Chosen over an XT60-in-a-box because this
+    # port is unplugged and replugged EVERY RIDE: IP68 mated, screw cap when
+    # not, gold-plated contacts, 500 mating cycles. 5 A of charge current is
+    # nothing to it. Flange-bolted rather than nut-on-thread, because the wall
+    # is 4 mm of printed ASA.
+    add("7  Module", "SP17 2-pin IP68 flange receptacle + cap", N, "ea",
+        11.00, EST, "67.2 V 5 A charge; O17 panel hole, 2 x M3 flange screws")
+    add("7  Module", "M3 heat-set insert + M3 x 8 A4, port flange", 2 * N,
+        "set", 0.60, EST)
 
     # -------------------------------------------------- 8 mast hardpoint
     # The 316 bar, the lathe work and the DP460 are all GONE - $133 of parts

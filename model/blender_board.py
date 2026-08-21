@@ -256,8 +256,13 @@ MOD_DT_NECK, MOD_DT_HEAD, MOD_DT_DEPTH = 5.0, 9.0, 10.0
 # a slot through it instead of a 10 mm nub.
 # TWO lugs, deliberately NOT one in the middle: the print seam runs down that
 # wall's centre and a handle straddling it hangs 14 kg off a glued joint.
-MOD_HANDLE_Y = 36.0                # lug centres, either side of the seam
-MOD_HANDLE_W, MOD_HANDLE_H = 34.0, 34.0
+# 28 wide at +/-35, not 34 at +/-36. Once the glands went to their real PG11
+# size the port-side band between the conduit (ends y=16) and the first gland
+# (starts y=54.5) is 38 mm, and a 34 mm lug left 1.5 mm to the gland nut. 28
+# leaves 5 mm each side, which is a spanner's worth. The through-slot still
+# passes 25 mm webbing because it spans the lug's FULL width.
+MOD_HANDLE_Y = 35.0                # lug centres, either side of the seam
+MOD_HANDLE_W, MOD_HANDLE_H = 28.0, 34.0
 MOD_HANDLE_PROUD = 20.0            # into the service bay, not the side gap
 MOD_HANDLE_SLOT_H = 14.0           # 25 mm webbing doubled, plus slack
 MOD_HANDLE_BAR = 6.0               # bar in front of the slot, and root behind
@@ -475,9 +480,37 @@ PACK_UNDER_FLANGE_CLR = 2.0        # pack top to the flange underside
 # --- aft service bay ------------------------------------------------------
 # Everything the rider touches lives in the bay the conduit already needs:
 # mast-wire gland, power button, charge port. Nothing else penetrates the hull.
-BTN_D, BTN_H = 22.0, 18.0          # latching power button
-CHG_W, CHG_L, CHG_H = 32.0, 40.0, 26.0
-BAY_GLAND_D = 16.0                 # module wall glands, PG11
+# --- real fittings, off the actual datasheets ------------------------------
+# POWER BUTTON, APIELE M12: hole 12.0, M12 x 0.75, body O11.8, head O17.5,
+# 18 mm long overall. BTN_D was 22.0, which is neither the hole nor the head -
+# it was a placeholder that happened to be bigger than both.
+# THE ONE THAT BITES: "Panel Thickness: 3.5 mm MAX", and the printed wall is
+# 4.0. The nut cannot reach its thread. Fixed by a printed pocket on the
+# INSIDE face taking the panel to BTN_PANEL locally - inside, not outside, so
+# the outer face stays flat and the pocket is invisible when it is together.
+BTN_HOLE_D = 12.0                  # M12 x 0.75 through the panel
+BTN_HEAD_D = 17.5                  # what the head covers - the pocket limit
+BTN_D = BTN_HEAD_D                 # footprint for every clearance check
+BTN_H = 18.0                       # how far it stands into the bay
+BTN_PANEL = 3.0                    # local panel thickness, 3.5 is the max
+# CHARGE PORT, SP17 2-pin flange receptacle: 17 mm shell, IP68 mated, screw
+# cap when it is not, 500 mating cycles. Bolted through a 2-hole flange into
+# heat-set inserts rather than relying on a thread in a 4 mm printed wall.
+CHG_HOLE_D = 17.0
+CHG_W, CHG_L, CHG_H = 30.0, 40.0, 24.0     # flange, depth with cap, flange
+CHG_BOLT_PITCH = 22.0              # flange screw centres, M3
+# CABLE GLANDS, PG11 off your chart: thread OD D1 = 18.03, thread length
+# L1 = 9.14, body L2 = 14.48, sealing nut L3 = 14.99, cable 6.35-10.16 (our
+# 8 AWG silicone is 6.5, comfortably inside).
+# BAY_GLAND_D was 16.0 - SMALLER THAN THE THREAD. The gland could not have
+# been fitted. 18.5 for 0.5 of clearance on the 18.03 thread.
+# The wall stays 4 mm here and does NOT get a boss: 9.14 of thread minus a
+# 4 mm wall leaves 5.14 for the lock nut, which is about what a PG11 nut is.
+# Any more wall and the nut runs out of thread.
+BAY_GLAND_THREAD_D = 18.03
+BAY_GLAND_THREAD_L = 9.14
+BAY_GLAND_NUT_AF = 24.0            # spanner flats - this sets the spacing
+BAY_GLAND_D = 18.5                 # module wall glands, PG11
 BAY_GLAND_N = 3                    # motor phases / charge / switch + sense
 # Button and port are panel-mount fittings through the module's aft wall,
 # same as the glands. CHG_L / BTN_H are how far the body sticks AFT into the
@@ -3791,7 +3824,7 @@ def build():
     # to turn and nowhere to get a spanner. Stack them tight in the strip,
     # where the ESC and the raceway already are.
     aft_wall = bpy.data.objects["V2_Mod_WallAft"]
-    g_pitch = BAY_GLAND_D + 10.0                 # PG11 nut A/F is ~24
+    g_pitch = BAY_GLAND_NUT_AF + 4.0             # spanner room between nuts
     g_span = (BAY_GLAND_N - 1) * g_pitch
     # Glands occupy the inboard part of the row; button and port follow.
     g_mid = (strip_y0 + iy1) / 2.0
@@ -3834,25 +3867,50 @@ def build():
     btn_z = gz + (BAY_GLAND_D + 7.0) / 2 + 6.0 + max(BTN_D, CHG_H) / 2 + 4.0
     btn_y = g_mid - 24.0
     chg_y = g_mid + 26.0
-    for nm, cy, cz, w, h, depth, m in (
-            ("PowerButton", btn_y, btn_z, BTN_D, BTN_D, BTN_H, bom_mat("fuse")),
-            ("ChargePort", chg_y, btn_z, CHG_W, CHG_H, CHG_L, bom_mat("esc"))):
-        cut = box(f"V2_{nm}Hole_cut", ex0 - 2.0, ex0 + ENC_WALL + 2.0,
-                  cy - w / 2, cy + w / 2, cz - h / 2, cz + h / 2, coll)
-        boolean(aft_wall, cut)
-        cut.hide_set(True)
-        cut.hide_render = True
-        box(f"V2_{nm}", ex0 - depth, ex0 + ENC_WALL + 6.0,
-            cy - w / 2 - 4.0, cy + w / 2 + 4.0,
-            cz - h / 2 - 4.0, cz + h / 2 + 4.0, coll, m)
+    # Both were square boxes sized to a placeholder. They are ROUND holes now,
+    # off the datasheets, cut along X like everything else in this wall.
+    #
+    # BUTTON: O12 through the panel, and a O17.5 pocket on the INSIDE face
+    # taking the local panel to BTN_PANEL. The APIELE spec says "Panel
+    # Thickness: 3.5 mm MAX" and this wall is 4.0 - without the pocket the nut
+    # never reaches its thread and the button simply cannot be fitted. Pocket
+    # on the inside so the outer face stays flat.
+    btn_cut = cyl_x("V2_PowerButtonHole_cut", btn_y, btn_z,
+                    ex0 - 2.0, ex0 + ENC_WALL + 2.0, BTN_HOLE_D, coll)
+    boolean(aft_wall, btn_cut)
+    btn_pkt = cyl_x("V2_PowerButtonPocket_cut", btn_y, btn_z,
+                    ex0 + BTN_PANEL, ex0 + ENC_WALL + 2.0, BTN_HEAD_D, coll)
+    boolean(aft_wall, btn_pkt)
+    cyl_x("V2_PowerButton", btn_y, btn_z, ex0 - BTN_H + ENC_WALL,
+          ex0 + ENC_WALL + 2.0, BTN_HEAD_D, coll, bom_mat("fuse"))
+    # PORT: SP17 flange receptacle - O17 shell hole plus two M3 flange screws
+    # into heat-set inserts, rather than trusting a thread in 4 mm of print.
+    chg_cut = cyl_x("V2_ChargePortHole_cut", chg_y, btn_z,
+                    ex0 - 2.0, ex0 + ENC_WALL + 2.0, CHG_HOLE_D, coll)
+    boolean(aft_wall, chg_cut)
+    for sz in (-1, 1):
+        fb = cyl_x(f"V2_ChargePortBolt_cut{sz}", chg_y,
+                   btn_z + sz * CHG_BOLT_PITCH / 2,
+                   ex0 - 2.0, ex0 + ENC_WALL + 2.0, 3.2, coll)
+        boolean(aft_wall, fb)
+        fb.hide_set(True); fb.hide_render = True
+    cyl_x("V2_ChargePort", chg_y, btn_z, ex0 - CHG_L + ENC_WALL,
+          ex0 + ENC_WALL + 2.0, CHG_HOLE_D + 6.0, coll, bom_mat("esc"))
+    for c in (btn_cut, btn_pkt, chg_cut):
+        c.hide_set(True); c.hide_render = True
+    rep["button_panel_mm"] = BTN_PANEL
+    rep["button_panel_within_spec"] = BTN_PANEL <= 3.5
+    rep["charge_port"] = ("SP17 2-pin flange receptacle, IP68 mated, screw cap "
+                          "when not - 500 mating cycles, and this one gets "
+                          "opened every ride")
 
     rep["aft_wall_is_connector_panel"] = (
         f"{BAY_GLAND_N} x PG11 glands, power button, charge port - all "
         f"panel-mount through the module aft wall, all inside the service strip")
-    rep["button_to_pack_mm"] = round(btn_y - BTN_D / 2 - 4.0 - pack_y1, 1)
-    rep["port_to_pack_mm"] = round(chg_y - CHG_W / 2 - 4.0 - pack_y1, 1)
+    rep["button_to_pack_mm"] = round(btn_y - BTN_HEAD_D / 2 - pack_y1, 1)
+    rep["port_to_pack_mm"] = round(chg_y - CHG_W / 2 - pack_y1, 1)
     rep["button_to_port_mm"] = round(
-        (chg_y - CHG_W / 2 - 4.0) - (btn_y + BTN_D / 2 + 4.0), 1)
+        (chg_y - CHG_W / 2) - (btn_y + BTN_HEAD_D / 2), 1)
     rep["fittings_above_glands_mm"] = round(
         (btn_z - max(BTN_D, CHG_H) / 2 - 4.0) - (gz + (BAY_GLAND_D + 7) / 2), 1)
     rep["fittings_beside_glands_mm"] = 99.0
@@ -3976,8 +4034,11 @@ def build():
     rep["handle_clear_of_cavity_mm"] = round(WIRE_BAY_LEN - MOD_HANDLE_PROUD, 1)
     rep["handle_to_conduit_y_mm"] = round(
         MOD_HANDLE_Y - MOD_HANDLE_W / 2 - CONDUIT_D / 2, 1)
-    rep["handle_to_button_y_mm"] = round(
-        56.0 - (MOD_HANDLE_Y + MOD_HANDLE_W / 2), 1)
+    # against the GLAND NUTS, which are what the lug actually races - the
+    # button sits above them in z. Was hardcoded to 56, which silently went
+    # stale the moment the glands were resized to their real PG11 thread.
+    rep["handle_to_gland_y_mm"] = round(
+        rep["gland_y_range_mm"][0] - (MOD_HANDLE_Y + MOD_HANDLE_W / 2), 1)
     rep["handle_clear_of_seam_mm"] = round(
         MOD_HANDLE_Y - MOD_HANDLE_W / 2, 1)
     rep["module_seam_band_mm"] = mod_band
@@ -4313,7 +4374,6 @@ def build():
                ("V2_ChargePort", "V2_BayGland_2"),
                ("V2_PowerButton", "V2_ChargePort"),
                ("V2_PowerButton", "V2_Pack_Cells"),
-               ("V2_ChargePort", "V2_Conduit_Bung"),
                ("V2_Pack_Cells", "V2_Mod_PostAS"),
                ("V2_ESC", "V2_Mod_PostAP"), ("V2_Conduit", "V2_Mod_Floor"),
                ("V2_Pack_Cells", "V2_Mod_WallS"), ("V2_ESC", "V2_Mod_WallP"),
@@ -4434,10 +4494,10 @@ def build():
     if rep["handle_clear_of_cavity_mm"] < 0:
         fails.append("the module lift handle fouls the cavity wall: "
                      f"{rep['handle_clear_of_cavity_mm']} mm")
-    if min(rep["handle_to_conduit_y_mm"], rep["handle_to_button_y_mm"]) < 2.0:
+    if min(rep["handle_to_conduit_y_mm"], rep["handle_to_gland_y_mm"]) < 4.0:
         fails.append("a lift-handle lug fouls the aft wall's fittings: "
                      f"{rep['handle_to_conduit_y_mm']} mm to the conduit, "
-                     f"{rep['handle_to_button_y_mm']} mm to the button")
+                     f"{rep['handle_to_gland_y_mm']} mm to the gland nuts")
     if rep["handle_clear_of_seam_mm"] < 5.0:
         fails.append("a lift-handle boss straddles the print seam - that "
                      "hangs the module's whole weight off a glued joint")
@@ -4445,6 +4505,9 @@ def build():
         fails.append(f"module pieces sum to {rep['module_piece_sum_pct']}% of "
                      "the shell - something is clipped off, interfering, or "
                      "standing outside the part")
+    if not rep["button_panel_within_spec"]:
+        fails.append(f"power button needs a panel of {BTN_PANEL} mm or less "
+                     "and the wall is thicker - the nut cannot reach")
     if not rep["module_dovetail_fits_rib"]:
         fails.append(f"seam dovetail is {MOD_DT_DEPTH:.0f} deep each side but "
                      f"the rib is only {ENC_RIB_W:.0f} wide - the tab runs "
