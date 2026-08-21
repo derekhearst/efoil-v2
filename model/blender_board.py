@@ -233,7 +233,16 @@ RIM_T = 12.7                       # printed ASA, thickness unchanged
 #   2 straight fillers close the 593 - 2 x 170 = 253 mm gap in each long side.
 # 6 pieces, 6 joints, every one of them on a straight run.
 RIM_SEG_CORNER_L = 170.0           # corner piece reach along the long side
-RIM_SEG_CORNER_W = 193.5           # ...and along the short side (= half of it)
+# ...and along the short side. This is HALF the short side, which puts the two
+# short-side joints exactly on y=0 - the board's own centreline. That is not a
+# choice, it is what the bed forces: the short side is 387, two corner pieces
+# have to cover it, and 387/2 = 193.5 is the only split where BOTH stay inside
+# 256. Stagger it and one piece grows: 240/147 still fits and moves the joint
+# 46 mm off centre, but you are then printing two different corner parts
+# instead of one four times, for a joint that is dovetailed, acetone-welded,
+# bedded on a machined ledge and glassed over. Not worth it - but it is the
+# lever if you ever want the joints off the symmetry plane.
+RIM_SEG_CORNER_W = 193.5
 RIM_SEG_N = 6
 # Every joint gets a DOVETAIL through the full thickness - it locates the
 # pieces in plane, pulls them together as it seats, and stops a joint being
@@ -4861,6 +4870,30 @@ def organise(root):
                 break
         root.objects.unlink(ob)
         target.objects.link(ob)
+    # EVERY object was sitting with its origin at world 0,0,0 - the tail-
+    # bottom corner of the board - because new_object() bakes position into
+    # the vertices. That is why selecting a rim segment put the transform
+    # gizmo a metre and a half away at the origin, and why the origin dot
+    # appeared to sit inside the dovetails: it was not near them, it was
+    # under everything. Put each origin on its own geometry.
+    # Hidden objects cannot be selected, and select_all skips them - which
+    # left 137 of 257 still at the world origin on the first attempt. Unhide,
+    # set, put the hiding back exactly as it was.
+    _was = {o.name: o.hide_get() for o in bpy.data.objects if o.type == 'MESH'}
+    for ob in bpy.data.objects:
+        if ob.type == 'MESH':
+            ob.hide_set(False)
+    bpy.ops.object.select_all(action='DESELECT')
+    for ob in bpy.data.objects:
+        if ob.type == 'MESH':
+            ob.select_set(True)
+    bpy.context.view_layer.objects.active = next(
+        o for o in bpy.data.objects if o.type == 'MESH')
+    bpy.ops.object.origin_set(type='ORIGIN_GEOMETRY', center='BOUNDS')
+    bpy.ops.object.select_all(action='DESELECT')
+    for n, h in _was.items():
+        bpy.data.objects[n].hide_set(h)
+
     # Off by default. Cutters are machinery, not parts; the other two are
     # alternative views of the hull and would z-fight with it.
     # "Core split" is ON. The two halves ARE the parts - they are what gets
