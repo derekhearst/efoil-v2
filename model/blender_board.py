@@ -255,7 +255,16 @@ ENC_GAP = GLASS_R + CAV_LAM + 2.0
 # between stock sizes, and ordering material for three boards off those numbers
 # would have meant either a custom mill run or quietly building to the wrong
 # thickness. Snapped to stock, with the inch size named.
-ENC_WALL = 3.175                   # G10, 1/8"
+# PRINTED PETG, 4 mm - not G10. The G10 walls were specced on "G10 saves
+# weight" and that is false wall-by-wall: 3.175 G10 walls + a bonded flange
+# ring + 4 corner posts came to 1323 g, against ~1033 g for V1's printed
+# architecture scaled to this footprint. So the G10 shell was HEAVIER, and it
+# was six CNC parts, a bond jig, a tolerance chain and a groove that had to be
+# routed after assembly. The module's weight win over V1 was never the walls -
+# it is one box instead of two (-833 g) and a sandwich lid instead of 4 mm alu
+# (-857 g), both of which survive intact here.
+# Printing also puts heat-set inserts back on their proper material.
+ENC_WALL = 4.0                     # printed PETG, V1's proven wall
 ENC_FLOOR = 3.175                  # G10, 1/8"
 
 # Faces that touch. Every one of these is a real bond line, gasket or pad in
@@ -263,7 +272,26 @@ ENC_FLOOR = 3.175                  # G10, 1/8"
 # z-fighting inside the cavity.
 FIT_FLOOR = 0.5                    # module floor to cavity floor (foam pad)
 FIT_RIM = 0.3                      # rim ring to ledge (thickened epoxy bond)
-FIT_LID = 0.4                      # module lid to wall/flange tops (gasket)
+# 2.0, not 0.4: the lid now stands off on a COMPRESSED FLAT GASKET, not on
+# the flange with a cord in a groove. 3 mm neoprene at 33% squeeze = 2.0.
+FIT_LID = 2.0                      # compressed gasket thickness
+MOD_GASKET_T = 3.0                 # uncompressed neoprene sheet
+# Inboard of the bolt circle, same rule as everywhere else on this board: the
+# lid bolts are through-holes onto a surface that gets wet, so whatever runs
+# down a bolt must land on the WET side of the seal.
+# 12, not 10. The clearance that governs is not to the bolt CENTRE, it is to
+# the edge of the O5.6 heat-set insert: at 6.5 mm inset the insert body runs
+# from 3.7 to 9.3, so a band starting at 10 left 0.7 mm of flange between the
+# gasket and an open insert bore - the model's own check refused it. Starting
+# at 12 gives 2.7 mm, and stopping at 19 keeps the gasket 1 mm back from the
+# inner lip so it cannot extrude into the box. 7 mm band, which is normal for
+# a flat gasket land.
+MOD_GASKET_OUT, MOD_GASKET_IN = 12.0, 19.0
+# A FLAT GASKET, not an O-ring cord. A printed flange holds +/-0.2 mm, which
+# is a third of an O3 cord's squeeze - the groove would be a lottery. A flat
+# gasket does not care about surface irregularity, which is exactly why V1
+# used one on both enclosures and why it is still sealing.
+MOD_SEAL_GASKET = True
 ENC_LID_SKIN, ENC_LID_CORE = 1.0, 6.0
 ENC_LID_T = ENC_LID_SKIN * 2 + ENC_LID_CORE
 ENC_TOP_GAP = CAV_LAM + 2.0        # +CAV_LAM: the cavity floor is laminated too                  # module top to the underside of the rim
@@ -287,7 +315,12 @@ ENC_TOP_GAP = CAV_LAM + 2.0        # +CAV_LAM: the cavity floor is laminated too
 #   - the flange rail is bonded inside the wall top and carries the lid inserts
 # Everything is thickened epoxy with a glass-tape fillet on the inside corners.
 JOINT_GROOVE_D = 1.5               # locating groove depth in the floor
-CORNER_POST = 12.7                 # 1/2" stock                 # square G10 post, full internal height
+# No corner posts. They existed to turn a butted 3.175 mm G10 corner into a
+# bonded joint; a printed shell has no butted corners to fix. The 4-piece
+# print split lands at WALL MIDPOINTS, not corners, so every corner is solid
+# printed plastic and the joints are in the flattest, least loaded place.
+ENC_RIB = 10.0                     # 10 x 10 external rib, V1's section
+ENC_RIB_N = 4                      # one per wall, at the print joint
 FILLET_R = 6.0                     # internal epoxy fillet radius (bond area)
 
 # --- wiring ---------------------------------------------------------------
@@ -296,7 +329,23 @@ FILLET_R = 6.0                     # internal epoxy fillet radius (bond area)
 # of the ESC. The wire-loop zone is no longer inside the module at all - it
 # moved out to the cavity's aft service bay, which the conduit already needed.
 WIRE_CH_W = 20.0                   # raceway beside the ESC, for 8 AWG + balance
-GLAND_D = 25.0                     # mast-wire gland at the cavity floor
+# NOT a cable gland, and NOT potted either. Both were wrong:
+#   - A gland needs a flat panel and a wrench on both faces. This is a bore in
+#     foam ending in free air. There is nothing to thread onto.
+#   - Potting seals it permanently, which BOLTS THE MAST TO THE BOARD. The
+#     motor's pigtails run up the mast and through this bore, so anything that
+#     grips them for keeps means the mast can never come off for transport.
+# It is a REMOVABLE BUNG: a neoprene/EPDM plug, interference fit in the bore,
+# with three undersized holes the 6.5 mm phase leads squeeze through, skimmed
+# with 3M 4200 on the cavity face. Undersized rubber is the seal; the 4200 is
+# a fillet over it and cuts away with a knife.
+# Mast off: disconnect the 3 barrels, cut the fillet, pull bung and wires out
+# together, unbolt. Mast on: reverse, re-skim. That is the whole point.
+# This is also V1's arrangement - an undersized hole packed with sealant -
+# which passed a submerged lid-off test with no ingress at the mast
+# penetration. It is the outer barrier anyway; the real seal is the 3 PG11
+# bay glands 40 mm downstream, one wire each, into the module.
+GLAND_D = 25.0                     # bung head + strain-relief tie envelope
 
 # The pack DATUMS to three walls instead of floating in the middle. Leftover
 # space split across both ends and both sides is awkward to use and awkward to
@@ -323,7 +372,7 @@ STRAP_W, STRAP_T = 25.0, 2.0       # webbing
 PAD_T = 4.0                        # EVA bedding pad under the module
 EQUIP_T = 4.0                      # G10 equipment plate on the module floor
 TAB_T, TAB_H = 5.0, 26.0           # G10 strap tab
-PACK_END_CLR = CORNER_POST + 2.0
+PACK_END_CLR = 14.7                # unchanged; was CORNER_POST + 2
 PACK_SIDE_CLR = 2.0
 
 # --- aft service bay ------------------------------------------------------
@@ -339,12 +388,16 @@ BAY_GLAND_N = 3                    # motor phases / charge / switch + sense
 
 # --- mast wire conduit ----------------------------------------------------
 # There was no route at all for the motor wires: they leave the mast head and
-# have to get into the cavity without ever touching wet foam. A bonded G10 tube
-# runs from the hull bottom, through the mast plate and the dense-foam ring, up
-# to the cavity floor, where it terminates in a gland. Everything above the
-# gland is dry; everything below is potted.
-CONDUIT_D = 32.0                   # OD - swallows 2 x 8 AWG plus the sensor trio
-CONDUIT_WALL = 2.0
+# have to get into the cavity without ever touching wet foam. This was specced
+# as a bonded G10 tube, 32 OD x 28 ID - a purchased part, cut on a 38.9 deg
+# bias, bonded into a bore that had to be cut for it anyway. The tube bought
+# nothing the bore did not already provide: it is a HOLE, run from the hull
+# bottom through the mast plate and the dense-foam ring, up to the cavity aft
+# wall. Bore it with the rest of the CNC work and seal the walls with
+# thickened epoxy - the same hard, waterproof liner the tube would have been,
+# minus the part number. EPS takes epoxy fine; it is polyester that eats it.
+CONDUIT_D = 32.0                   # bore - swallows 3 x 8 AWG with pull room
+CONDUIT_WALL = 2.0                 # epoxy liner thickness, not a tube wall
 CONDUIT_X_OFF = 0.0                # from MAST_X, on the mast's chord centreline
 # The conduit does NOT rise vertically into the cavity. It leaves the mast
 # plate, angles up and forward through solid foam, and pierces the cavity's
@@ -480,10 +533,16 @@ ESC_L, ESC_W, ESC_H = 130.0, 68.0, 41.0
 FUSE_L, FUSE_W, FUSE_H = 123.0, 37.0, 40.0
 
 # --- fasteners ------------------------------------------------------------
-# Module lid: M4 into brass inserts in a G10 flange rail bonded inside the top
-# edge of the walls (4 mm wall alone cannot hold an insert).
+# Module lid: M4 TAPPED STRAIGHT INTO the G10 flange rail bonded inside the top
+# edge of the walls (a 3.175 mm wall alone cannot hold a thread).
+# This said "brass heat-set inserts", which CANNOT WORK. A heat-set insert is
+# pushed in with a soldering iron and holds because the knurl melts a pocket
+# for itself. G10 is a THERMOSET - it chars at that temperature, it does not
+# flow, and there is nothing for the knurl to key into. Heat-set inserts are
+# for printed PETG (V1's enclosures were printed, which is where this came
+# from) and they are wrong here.
 MOD_BOLT_D = 4.0
-MOD_INSERT_D, MOD_INSERT_L = 6.0, 8.0   # M4 heat-set insert in the flange rail
+MOD_INSERT_L = 8.0                 # thread depth in the 9.525 rail
 MOD_BOLT_PITCH = 80.0              # target spacing; actual is evened out
 # The module is a SEALED box in its own right, so the flange rail has to carry
 # a seal groove as well as the lid inserts. 14 mm held the O5.6 insert and
@@ -516,7 +575,22 @@ MOD_BOLT_INSET = 6.5               # bolt circle, from the wall face
 # a flange rail each side - not the internal size. At a 14 mm rail the opening
 # was 397 mm against a 397 mm pack: exactly zero, i.e. not buildable.
 PACK_THRU_CLR = 6.0
-MOD_INSERT_D = 5.6                 # M4 x 8 brass heat-set pilot
+# HEAT-SET, and now correctly so. This was heat-set (wrong, the rail was G10),
+# then tapped (right for G10), and is heat-set again because the flange prints
+# as part of the wall. M4 x 8 brass into PETG at a 5.6 mm printed pilot is
+# exactly what V1 used on both its enclosures and it is the reason printing
+# the walls is easier: no tap, no STI kit, no thread to strip in a laminate.
+# The old tapped-G10 note is kept below because its load case still governs.
+# Tapped, not inserted. G10 taps cleanly and holds a machine thread - it is
+# standard practice in switchgear. The load is O-ring squeeze: an O3 cord at
+# 20% over a 1454 mm perimeter is ~11.6 kN, so 646 N a bolt across 18. M4 x 8
+# in G10 shears at ~3.3 kN on a 55 MPa ILSS, so the margin is 5.1x, and this
+# lid opens for service a couple of times a year - not every ride like the
+# hatch, which is why the hatch gets wire-thread inserts and this does not.
+# If a thread ever does strip, the repair IS a wire-thread insert: drill out,
+# STI tap, install. So nothing here forecloses that; it just is not needed on
+# day one, and it saves an M4 STI tap and install tool.
+MOD_INSERT_D = 5.6                 # M4 x 8 heat-set printed pilot
 # Hatch lid: M5 into STAINLESS WIRE-THREAD INSERTS (tangless Helicoil type) in
 # the bonded G10 rim ring.
 #
@@ -1128,7 +1202,7 @@ PALETTE = {
     "g10_rim":       ((0.72, 0.45, 0.14), 0.45, 0.0, 1.00),  # G10 rim ring, 12.7 mm
     "g10_mast":      ((0.55, 0.29, 0.08), 0.45, 0.0, 1.00),  # G10 mast plate, 8 mm
     "flange":        ((0.95, 0.78, 0.50), 0.50, 0.0, 1.00),  # G10 flange rails
-    "enclosure":     ((0.62, 0.66, 0.72), 0.50, 0.0, 1.00),  # module shell
+    "enclosure":     ((0.30, 0.62, 0.45), 0.55, 0.0, 1.00),  # printed PETG shell
     "lid":           ((0.35, 0.80, 0.88), 0.25, 0.0, 0.45),  # hatch lid sandwich
     "lid_mod":       ((0.62, 0.40, 0.78), 0.30, 0.0, 0.55),  # module lid sandwich
     "cell":          ((0.16, 0.62, 0.38), 0.40, 0.3, 1.00),  # 21700 cells
@@ -2863,7 +2937,7 @@ def build():
     rep["conduit_bend_radius_mm"] = round(_r_used, 1)
 
     # gland on the cavity's aft wall, not its floor
-    box("V2_Conduit_Gland", x_end - 6.0, x_end + 14.0,
+    box("V2_Conduit_Bung", x_end - 6.0, x_end + 14.0,
         -(GLAND_D + 8) / 2, (GLAND_D + 8) / 2,
         z_end - (GLAND_D + 8) / 2, z_end + (GLAND_D + 8) / 2, coll, m_metal)
 
@@ -2941,31 +3015,41 @@ def build():
     box("V2_Mod_WallAft", ex0, ex0 + ENC_WALL, iy0, iy1, wall_z0, wall_top, coll, m_enc)
     box("V2_Mod_WallFwd", ex1 - ENC_WALL, ex1, iy0, iy1, wall_z0, wall_top, coll, m_enc)
 
-    # A G10 corner post in each internal corner. This is what replaces the
-    # divider's stiffening job, and it turns a 3 mm butted corner into two
-    # CORNER_POST-long bonded faces.
-    m_post = bom_mat("g10")
-    for nm, sx, sy in (("AS", 0, 0), ("AP", 0, 1), ("FS", 1, 0), ("FP", 1, 1)):
-        px_ = ix0 if sx == 0 else ix1 - CORNER_POST
-        py_ = iy0 if sy == 0 else iy1 - CORNER_POST
-        # Stop UNDER the flange rail. Running them to wall_top made the posts
-        # and the flange rails occupy the same space at all four corners, and
-        # the interpenetrating solids read as bolt heads sitting in the
-        # corners of the box. The flange now lands on top of the posts.
-        box(f"V2_Mod_Post{nm}", px_, px_ + CORNER_POST, py_, py_ + CORNER_POST,
-            floor_top, wall_top - MOD_FLANGE_H, coll, m_post)
-    post_area = 4 * 2 * CORNER_POST * (wall_top - MOD_FLANGE_H - floor_top)
-    rep["joint"] = (f"{JOINT_GROOVE_D:.1f} mm locating groove in the floor, "
-                    f"end walls lapped inside the long walls, "
-                    f"{CORNER_POST:.0f} mm G10 corner posts, thickened epoxy "
+    # External ribs at the four print joints. The shell is 450 x 291 and the
+    # A1 bed is 256, so it prints in four L-shaped pieces exactly as V1 did.
+    # Putting the split at WALL MIDPOINTS rather than corners means every
+    # corner comes out of the printer solid, and the joints sit in the
+    # flattest, least-loaded part of each wall. The paired ribs are the joint:
+    # they self-align the pieces and double the bond area at the seam.
+    m_rib = bom_mat("enclosure")
+    for nm, a, b, c, d in (
+            ("P", (ex0 + ex1) / 2 - ENC_RIB / 2, (ex0 + ex1) / 2 + ENC_RIB / 2,
+             ey1, ey1 + ENC_RIB),
+            ("S", (ex0 + ex1) / 2 - ENC_RIB / 2, (ex0 + ex1) / 2 + ENC_RIB / 2,
+             ey0 - ENC_RIB, ey0),
+            ("A", ex0 - ENC_RIB, ex0, (ey0 + ey1) / 2 - ENC_RIB / 2,
+             (ey0 + ey1) / 2 + ENC_RIB / 2),
+            ("F", ex1, ex1 + ENC_RIB, (ey0 + ey1) / 2 - ENC_RIB / 2,
+             (ey0 + ey1) / 2 + ENC_RIB / 2)):
+        box(f"V2_Mod_Rib{nm}", a, b, c, d, wall_z0, wall_top, coll, m_rib)
+    rib_area = ENC_RIB_N * 2 * ENC_RIB * (wall_top - wall_z0)
+    rep["joint"] = (f"{JOINT_GROOVE_D:.1f} mm locating groove in the floor; "
+                    f"shell prints in {ENC_RIB_N} L-shaped pieces split at "
+                    f"wall midpoints, paired {ENC_RIB:.0f} x {ENC_RIB:.0f} mm "
+                    f"external ribs epoxied at each seam, "
                     f"+ {FILLET_R:.0f} mm glass-tape fillet inside every corner")
-    rep["corner_post_bond_area_mm2"] = round(post_area)
+    rep["print_joint_bond_area_mm2"] = round(rib_area)
+    rep["print_pieces"] = ENC_RIB_N
+    rep["rib_fits_side_clearance"] = ENC_RIB <= (ENC_GAP - CAV_LAM)
+    rep["rib_to_cavity_wall_mm"] = round(ENC_GAP - CAV_LAM - ENC_RIB, 1)
     rep["floor_bond_area_mm2"] = round(
         2 * ((ex1 - ex0) + (ey1 - ey0)) * (ENC_WALL + JOINT_GROOVE_D))
 
-    # Flange rail inside the top edge - 4 mm wall cannot hold a heat-set insert
+    # Flange PRINTS AS PART OF THE WALL - it is not a bonded G10 rail any more.
+    # A 4 mm wall still cannot hold a heat-set insert, but a printed wall can
+    # simply be thicker where it needs to be, which is the whole advantage.
     fz0 = wall_top - MOD_FLANGE_H
-    m_fl = bom_mat("flange")
+    m_fl = bom_mat("enclosure")
     for nm, a, b, c, d in (
             ("P", ix0, ix1, iy1 - MOD_FLANGE_W, iy1),
             ("S", ix0, ix1, iy0, iy0 + MOD_FLANGE_W),
@@ -2973,40 +3057,33 @@ def build():
             ("F", ix1 - MOD_FLANGE_W, ix1, iy0 + MOD_FLANGE_W, iy1 - MOD_FLANGE_W)):
         box(f"V2_Mod_Flange{nm}", a, b, c, d, fz0, wall_top, coll, m_fl)
 
-    # Seal groove routed into the assembled ring, and the cord in it. The module is a sealed box
-    # on its own - if the hatch ever lets water into the cavity, this is what
-    # keeps it off the cells - so the lid gets the same treatment as the hatch:
-    # a groove, so the lid lands G10 on G10 and the squeeze is geometry rather
-    # than whatever each of the bolts was done up to.
-    si = MOD_SEAL_INSET
-    gx0, gx1 = ix0 + si, ix1 - si
-    gy0, gy1 = iy0 + si, iy1 - si
-    hw = MOD_SEAL_W / 2
-    gv_o = prism("V2_ModGroove_o_cut",
-                 rounded_rect(gx0 - hw, gx1 + hw, gy0 - hw, gy1 + hw,
-                              MOD_SEAL_R + hw),
-                 wall_top - MOD_SEAL_D, wall_top + 4.0, coll)
-    gv_i = prism("V2_ModGroove_i_cut",
-                 rounded_rect(gx0 + hw, gx1 - hw, gy0 + hw, gy1 - hw,
-                              MOD_SEAL_R - hw),
-                 wall_top - MOD_SEAL_D - 2.0, wall_top + 4.0, coll)
-    boolean(gv_o, gv_i, op='DIFFERENCE')
-    for nm in ("P", "S", "A", "F"):
-        boolean(bpy.data.objects[f"V2_Mod_Flange{nm}"], gv_o, op='DIFFERENCE')
-    cd = MOD_CORD_D / 2
-    sl_o = prism("V2_ModSeal_o",
-                 rounded_rect(gx0 - cd, gx1 + cd, gy0 - cd, gy1 + cd,
-                              MOD_SEAL_R + cd),
-                 wall_top - MOD_SEAL_D, wall_top, coll, bom_mat("seal"))
-    sl_i = prism("V2_ModSeal_i_cut",
-                 rounded_rect(gx0 + cd, gx1 - cd, gy0 + cd, gy1 - cd,
-                              MOD_SEAL_R - cd),
-                 wall_top - MOD_SEAL_D - 2.0, wall_top + 2.0, coll)
-    boolean(sl_o, sl_i)
-    sl_o.name = "V2_Mod_Seal"
-    for o in (gv_o, gv_i, sl_i):
-        o.hide_set(True)
-        o.hide_render = True
+    # FLAT NEOPRENE GASKET on the flange face - no groove, no cord.
+    # The hatch keeps its O-ring because the hatch lands G10 on G10 and the
+    # squeeze is set by geometry. This flange is PRINTED, and a printed groove
+    # holds about +/-0.2 mm - a third of an O3 cord's 0.6 mm squeeze. The
+    # squeeze would then be a lottery across 18 bolts. A flat gasket does not
+    # care what the surface did: it takes up the irregularity itself, which is
+    # exactly why V1 gasketed both its printed enclosures and why they seal.
+    # Cut it from the same 1/8" neoprene sheet as the mast gasket.
+    gk_o = prism("V2_ModGasket_o",
+                 rounded_rect(ix0 + MOD_GASKET_OUT, ix1 - MOD_GASKET_OUT,
+                              iy0 + MOD_GASKET_OUT, iy1 - MOD_GASKET_OUT, 6.0),
+                 wall_top, wall_top + FIT_LID, coll, bom_mat("seal"))
+    gk_i = prism("V2_ModGasket_i_cut",
+                 rounded_rect(ix0 + MOD_GASKET_IN, ix1 - MOD_GASKET_IN,
+                              iy0 + MOD_GASKET_IN, iy1 - MOD_GASKET_IN, 2.0),
+                 wall_top - 2.0, wall_top + FIT_LID + 2.0, coll)
+    boolean(gk_o, gk_i)
+    gk_o.name = "V2_Mod_Seal"
+    gk_i.hide_set(True)
+    gk_i.hide_render = True
+    rep["module_seal"] = (
+        f"flat neoprene gasket {MOD_GASKET_T:.0f} mm uncompressed -> "
+        f"{FIT_LID:.1f} at {100 * (1 - FIT_LID / MOD_GASKET_T):.0f}% squeeze, "
+        f"{MOD_GASKET_IN - MOD_GASKET_OUT:.0f} mm wide band on the printed "
+        f"flange, inboard of the bolt circle")
+    rep["module_gasket_to_bolt_mm"] = round(MOD_GASKET_OUT - MOD_BOLT_INSET, 1)
+    rep["module_gasket_squeeze_pct"] = round(100 * (1 - FIT_LID / MOD_GASKET_T))
 
     # A SEALED lithium box must be able to breathe, or it pumps its own seal
     # every time the sun comes out - and if a cell ever vents, a closed box is
@@ -3017,29 +3094,21 @@ def build():
     rep["module_vent"] = ("M12 Gore-type membrane vent in the aft wall - "
                           "IP68 to water, open to gas both ways")
     rep["module_is_sealed"] = True
-    rep["module_seal"] = (f"O{MOD_CORD_D:.0f} cord in a {MOD_SEAL_W:.0f} x "
-                          f"{MOD_SEAL_D:.1f} groove in the flange rail, "
-                          f"{100*(1-MOD_SEAL_D/MOD_CORD_D):.0f}% squeeze")
-    _ca = math.pi * MOD_CORD_D ** 2 / 4.0
-    rep["module_groove_fill_pct"] = round(100.0 * _ca / (MOD_SEAL_W * MOD_SEAL_D))
+    # module_seal / gasket clearances are set where the gasket is built.
     rep["module_seal_to_insert_mm"] = round(
-        (MOD_SEAL_INSET - hw) - (MOD_BOLT_INSET + MOD_INSERT_D / 2), 1)
+        MOD_GASKET_OUT - (MOD_BOLT_INSET + MOD_INSERT_D / 2), 1)
     rep["module_insert_to_wall_mm"] = round(
         MOD_BOLT_INSET - MOD_INSERT_D / 2, 1)
-    rep["module_seal_land_inboard_mm"] = round(
-        MOD_FLANGE_W - MOD_SEAL_INSET - hw, 1)
     # The one that matters: distance from the SEALED interior, outward. The
     # seal has to be the smaller of the two on both lids, or a bolt hole opens
     # straight into the sealed volume.
-    rep["module_seal_from_interior_mm"] = round(MOD_FLANGE_W - MOD_SEAL_INSET, 1)
+    rep["module_seal_from_interior_mm"] = round(MOD_FLANGE_W - MOD_GASKET_IN, 1)
     rep["module_bolt_from_interior_mm"] = round(MOD_FLANGE_W - MOD_BOLT_INSET, 1)
     rep["hatch_seal_from_interior_mm"] = round(CHAN_INSET, 1)
     rep["hatch_bolt_from_interior_mm"] = round(RIM_W - HATCH_BOLT_INSET, 1)
     rep["seal_inboard_of_bolts"] = (
         rep["module_seal_from_interior_mm"] < rep["module_bolt_from_interior_mm"]
         and rep["hatch_seal_from_interior_mm"] < rep["hatch_bolt_from_interior_mm"])
-    rep["module_groove_corner_R"] = MOD_SEAL_R
-    rep["module_cord_min_bend_R"] = round(CORD_BEND_F * MOD_CORD_D, 1)
     rep["hatch_groove_corner_R"] = round(CAV_CORNER_R + CHAN_INSET, 1)
     rep["hatch_cord_min_bend_R"] = round(CORD_BEND_F * CORD_D, 1)
     rep["mod_opening_mm"] = (round(ix1 - ix0 - 2 * MOD_FLANGE_W),
@@ -3525,14 +3594,23 @@ def build():
     m["glass skin"] = area * 1e-6 * GLASS_KGM2
     g10_cm3 = (
         (ex1 - ex0) * (ey1 - ey0) * ENC_FLOOR                       # module floor
-        + 2 * (ex1 - ex0) * (wall_top - wall_z0) * ENC_WALL          # long walls
-        + 2 * (iy1 - iy0) * (wall_top - wall_z0) * ENC_WALL          # end walls
-        + 4 * CORNER_POST * CORNER_POST * (wall_top - MOD_FLANGE_H - floor_top)
-        + 2 * ((ix1 - ix0) + (iy1 - iy0)) * MOD_FLANGE_W * MOD_FLANGE_H
         + G10_L * G10_W * G10_T                                      # mast plate
         + (((CAV_X1 - CAV_X0 + 2 * RIM_W) * (CAV_WIDTH + 2 * RIM_W))
            - (CAV_X1 - CAV_X0) * CAV_WIDTH) * RIM_T)                 # rim ring
     m["G10"] = g10_cm3 * 1e-9 * RHO_G10
+    # Printed module shell. CALIBRATED TO V1'S MEASUREMENT, not to a guessed
+    # infill fraction: V1 weighed 233 g a piece / 932 g for four wall pieces on
+    # a 415 x 247 box with 4 mm walls, 10 x 10 ribs and 15% gyroid. Over that
+    # box's ~1324 x 95 mm of wall that is 7.4 kg/m2 of finished print, ribs
+    # and all. Applying a solid volume x an invented infill gave 0.59 kg here,
+    # i.e. LIGHTER than V1's smaller box - which cannot be right, and is the
+    # kind of number that makes a decision look better than it is.
+    PETG_WALL_KGM2 = 7.4
+    RHO_PETG, FLANGE_INFILL = 1270.0, 0.85   # the flange prints near solid
+    wall_area = 2 * ((ex1 - ex0) + (ey1 - ey0)) * (wall_top - wall_z0)
+    flange_cm3 = 2 * ((ix1 - ix0) + (iy1 - iy0)) * MOD_FLANGE_W * MOD_FLANGE_H
+    m["printed shell"] = (wall_area * 1e-6 * PETG_WALL_KGM2
+                          + flange_cm3 * 1e-9 * RHO_PETG * FLANGE_INFILL)
     lid_a = (CAV_X1 - CAV_X0 + 2 * RIM_W) * (CAV_WIDTH + 2 * RIM_W) * 1e-6
     mod_a = (ex1 - ex0) * (ey1 - ey0) * 1e-6
     m["lids"] = ((lid_a * LID_CORE * 1e-3 * RHO_H80 + 2 * lid_a * GLASS_KGM2 * 0.5)
@@ -3546,7 +3624,7 @@ def build():
     m["ESC"] = 0.60                     # Flipsky 75200 Pro
     m["BMS"] = 0.32                     # LLT OD17S051-3, 150 x 75 x 16
     m["fuse + switch + port"] = 0.45
-    m["wiring + conduit"] = 1.30        # 8 AWG runs, balance loom, G10 tube
+    m["wiring + conduit"] = 1.30        # 8 AWG runs, balance loom, 3 barrels
     m["hardware + seal"] = 0.9           # A4 bolts, inserts, silicone, adhesive
     board_kg = sum(m.values())
     # The foil is not part of the board's sealed displacement, but it is part
@@ -3710,7 +3788,7 @@ def build():
                ("V2_ChargePort", "V2_BayGland_2"),
                ("V2_PowerButton", "V2_ChargePort"),
                ("V2_PowerButton", "V2_Pack_Cells"),
-               ("V2_ChargePort", "V2_Conduit_Gland"),
+               ("V2_ChargePort", "V2_Conduit_Bung"),
                ("V2_Pack_Cells", "V2_Mod_PostAS"),
                ("V2_ESC", "V2_Mod_PostAP"), ("V2_Conduit", "V2_Mod_Floor"),
                ("V2_Pack_Cells", "V2_Mod_WallS"), ("V2_ESC", "V2_Mod_WallP"),
@@ -3807,19 +3885,21 @@ def build():
         fails.append("a seal sits OUTBOARD of its bolt circle - bolt holes "
                      "open into the sealed volume")
     if rep["module_seal_to_insert_mm"] < 2.0:
-        fails.append("module seal groove runs into the lid inserts: "
+        fails.append("module gasket band runs into the lid inserts: "
                      f"{rep['module_seal_to_insert_mm']} mm")
-    if rep["module_groove_corner_R"] < rep["module_cord_min_bend_R"]:
-        fails.append(f"module groove corner R{rep['module_groove_corner_R']} is "
-                     f"tighter than the O{MOD_CORD_D:.0f} cord's "
-                     f"R{rep['module_cord_min_bend_R']} bend limit")
+    # No corner-radius or fill checks on this seal any more - a flat gasket
+    # has no groove to overfill and no cord to bend. What it does need is
+    # enough squeeze to seal and not so much that it extrudes.
+    if not 20 <= rep["module_gasket_squeeze_pct"] <= 50:
+        fails.append(f"module gasket squeeze {rep['module_gasket_squeeze_pct']}%"
+                     " outside 20-50%")
+    if not rep["rib_fits_side_clearance"]:
+        fails.append(f"print-joint ribs foul the cavity wall: only "
+                     f"{rep['rib_to_cavity_wall_mm']} mm clear")
     if rep["hatch_groove_corner_R"] < rep["hatch_cord_min_bend_R"]:
         fails.append(f"hatch groove corner R{rep['hatch_groove_corner_R']} is "
                      f"tighter than the O{CORD_D:.0f} cord's "
                      f"R{rep['hatch_cord_min_bend_R']} bend limit")
-    if not 60 <= rep["module_groove_fill_pct"] <= 90:
-        fails.append(f"module groove fill {rep['module_groove_fill_pct']}% "
-                     "outside 60-90%")
     if not 60 <= rep["hatch_groove_fill_pct"] <= 90:
         fails.append(f"hatch groove fill {rep['hatch_groove_fill_pct']}% "
                      "outside 60-90%")

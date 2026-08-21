@@ -19,7 +19,9 @@
 
 **Pack dimensions:** 211mm × 339mm × 82mm (9 cells wide × 14 rows deep in Heyiarbeit spacer brackets, single layer flat, cells standing upright. Cell spacing 22.3mm center-to-center within a row, 24.2mm row-to-row. Height includes nickel strips, 8AWG jumpers, Kapton, and shrink wrap on both faces. Confirmed via Onshape model.)
 
-**Layout:** Zigzag serpentine pattern. Cells alternate orientation row-by-row — Row 1 has positive terminals facing up, Row 2 is rotated 180° (negatives up), Row 3 matches Row 1, etc. Series connections between adjacent rows are made via 9 individual bridging nickel strips per row boundary, with the 2 edge bridging strips reinforced with 8AWG copper jumpers for current capacity.
+**Layout:** Zigzag serpentine pattern. Cells alternate orientation row-by-row — Row 1 has positive terminals facing up, Row 2 is rotated 180° (negatives up), Row 3 matches Row 1, etc. Series connections between adjacent rows are made via 9 individual bridging nickel strips per row boundary, with the 2 edge bridging strips reinforced for current capacity.
+
+> **AS BUILT — the copper jumpers were not used.** The design below specifies 26 8AWG copper jumpers soldered along the edge bridging strips. The pack that was actually built reinforced those strips with **a second welded layer of nickel** instead, which is why the summary above calls it an all-welded stacked-nickel architecture. No solder went near a cell. Measured result was 2 mV spread at rest and 6 mV under load, so the substitution worked. **V2 follows the as-built version, not the design.** The copper-jumper section that follows is kept because its current-distribution analysis is still the reason the edges need reinforcing at all — only the method changed.
 
 **Interconnect method — P-group strips + individual bridging strips:**
 

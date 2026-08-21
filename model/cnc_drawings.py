@@ -241,76 +241,64 @@ def build(p):
         f"Inner rectangles are a {gr:.1f} mm deep locating groove for the "
         f"walls, NOT a through cut. Profile the outline only.")
 
-    d = Dxf()
-    d.poly(rect(0, ext_l, 0, wall_h))
-    add("05_module_wall_long", "G10", ENC_WALL, 2, d, ext_l, wall_h,
-        "Port and starboard")
+    # ---------------------------------------------------------------------
+    # Parts 05-09 (long walls, both end walls, corner posts, both flange
+    # rails) ARE GONE. The module shell is 3D PRINTED, not cut from G10.
+    #
+    # Why: G10 walls were specced to save weight and did the opposite. The
+    # 3.175 mm G10 shell - walls, bonded flange ring, four corner posts - came
+    # to 1323 g against ~1130 g printed, and cost six CNC parts, a bond jig, a
+    # four-joint tolerance chain and a seal groove that had to be routed after
+    # assembly. The module's real weight win over V1 is one box instead of two
+    # and a sandwich lid instead of 4 mm aluminium; neither needs G10 walls.
+    #
+    # PRINTED SHELL, per board (Bambu A1, 256 mm bed):
+    #   4 L-shaped pieces, split at WALL MIDPOINTS not corners, so every
+    #     corner prints solid and each seam lands on the flattest part of a
+    #     wall. Largest piece is ~226 x 146 mm - fits the bed with room.
+    #   4 mm walls, 10 x 10 mm external rib each side of every seam: the
+    #     paired ribs self-align the pieces and double the bond area.
+    #   Flange prints integral with the wall, 20 mm wide x 9.525 deep, taking
+    #     18 x M4 heat-set inserts at a 5.6 mm printed pilot. No tapping, no
+    #     wire-thread inserts - heat-set is finally on its proper material.
+    #   Aft-wall piece carries the 3 x PG11 gland bores, the power button and
+    #     the charge port cutout - all printed in, none of them drilled.
+    #   Seam bond: thickened epoxy on the paired ribs + a 6 mm glass-tape
+    #     fillet inside every corner.
+    #   PETG or ASA. ASA if you can print it - better creep resistance under
+    #     sustained bolt load, which is exactly what a gasket flange sees.
+    # SEAL: a FLAT NEOPRENE GASKET on the flange face, 7 mm band, 3 mm stock
+    #   squeezed to 2.0 (33%). NOT an O-ring in a groove - a printed groove
+    #   holds about +/-0.2 mm, a third of an O3 cord's squeeze, so the seal
+    #   would vary bolt to bolt. A flat gasket absorbs the irregularity, which
+    #   is what V1 did on both printed enclosures and they still seal.
+    # ---------------------------------------------------------------------
 
-    # The two end walls are NOT the same part any more - the aft one carries
-    # the service-bay glands.
-    d = Dxf()
-    d.poly(rect(0, int_w, 0, wall_h))
-    add("06_module_wall_fwd", "G10", ENC_WALL, 1, d, int_w, wall_h,
-        "Fits between the long walls")
-
-    d = Dxf()
-    d.poly(rect(0, int_w, 0, wall_h))
-    gz = 24.0 + p["ENC_FLOOR"]
-    for g in range(p["BAY_GLAND_N"]):
-        d.circle(int_w / 2 + (-55.0 + g * 55.0), gz, p["BAY_GLAND_D"] / 2)
-    add("06b_module_wall_aft", "G10", ENC_WALL, 1, d, int_w, wall_h,
-        f"{p['BAY_GLAND_N']} x PG11 glands O{p['BAY_GLAND_D']:.0f} facing the "
-        f"aft service bay. Fits between the long walls.")
-
-    # Corner posts replace the divider's stiffening job and give the corners
-    # real glue area. Cut as one strip and parted off, or nested as 4 squares.
-    cp = p["CORNER_POST"]
-    d = Dxf()
-    d.poly(rect(0, cp, 0, wall_h - p["ENC_FLOOR"]))
-    add("07_module_corner_post", "G10", cp, 4, d, cp,
-        wall_h - p["ENC_FLOOR"],
-        f"{cp:.0f} mm square section, full internal height. Bonded into all "
-        f"four internal corners with thickened epoxy.")
-
-    # 4 - flange rails -----------------------------------------------------
-    fw, fh = p["MOD_FLANGE_W"], p["MOD_FLANGE_H"]
-    bi, si, sw = p["MOD_BOLT_INSET"], p["MOD_SEAL_INSET"], p["MOD_SEAL_W"]
+    # Bolt ring: still needed here even though the flange rails are printed,
+    # because the LID is the one module part still cut on the machine and its
+    # holes must match the printed flange's insert pattern.
+    fw = p["MOD_FLANGE_W"]
+    bi = p["MOD_BOLT_INSET"]
     mb = p["bolt_ring"](bi, int_l - bi, bi, int_w - bi, p["MOD_BOLT_PITCH"])
-    fnote = (f"Bonded inside the top edge of the {{}} walls. Cut FLAT - do NOT "
-             f"machine the seal groove into the loose rails. The ring is four "
-             f"bonded pieces, so a groove cut in the parts has to line up "
-             f"across four joints to seal; it is routed into the ASSEMBLED "
-             f"ring off template part 15, {sw:.0f} wide x "
-             f"{p['MOD_SEAL_D']:.1f} deep, centreline {si:.0f} mm from the "
-             f"wall face, for an O{p['MOD_CORD_D']:.0f} cord. Inserts sit at "
-             f"{bi:.1f} mm from the wall face, i.e. OUTBOARD of the groove. "
-             f"That order is not cosmetic: the lid bolt holes are through-"
-             f"holes opening onto a surface that is always wet, so whatever "
-             f"runs down a bolt has to land on the WET side of the seal. Put "
-             f"the groove outboard of the bolts and every bolt becomes a path "
-             f"straight into the box.")
-    d = Dxf()
-    d.poly(rect(0, int_l, 0, fw))
-    for (bx, by) in mb:
-        if by < fw:
-            d.circle(bx, bi, p["MOD_INSERT_D"] / 2)
-    add("08_flange_rail_long", "G10", fh, 2, d, int_l, fw, fnote.format("long"))
-
-    d = Dxf()
-    d.poly(rect(0, int_w - 2 * fw, 0, fw))
-    for (bx, by) in mb:
-        if bx < fw:
-            d.circle(by - fw, bi, p["MOD_INSERT_D"] / 2)
-    add("09_flange_rail_end", "G10", fh, 2, d, int_w - 2 * fw, fw,
-        fnote.format("end"))
 
     # 5 - module lid -------------------------------------------------------
     d = Dxf()
     d.poly(rect(0, ext_l, 0, ext_w))
     for (bx, by) in mb:
-        d.circle(bx + ENC_WALL, by + ENC_WALL, (p["MOD_BOLT_D"] + 0.5) / 2)
+        d.circle(bx + ENC_WALL, by + ENC_WALL, (p["MOD_BOLT_D"] + 1.0) / 2)
     add("10_module_lid", f"glass/H80/glass {p['ENC_LID_T']:.0f}mm",
-        p["ENC_LID_T"], 1, d, ext_l, ext_w, f"{len(mb)} x M4 clearance")
+        p["ENC_LID_T"], 1, d, ext_l, ext_w,
+        f"{len(mb)} x O5.0 M4 clearance. O5.0 not O4.5: the rails are drilled "
+        f"FLAT and then bonded up as a four-piece ring, so the ring's hole "
+        f"positions carry whatever the bond-up drifted. O4.5 leaves 0.25 mm "
+        f"radial and will bind. O5.0 leaves 0.5 mm, which the floor-as-master "
+        f"bond sequence holds. "
+        f"EVERY HOLE MUST BE POTTED. This is a cored panel: at 646 N a bolt "
+        f"an M4 washer puts ~15 MPa on the seat and H-80 crushes at 1.4, so "
+        f"bare holes lose seal squeeze the first time it is torqued. Drill "
+        f"O12 through the top skin and core ONLY, leave the bottom skin, "
+        f"fill with thickened epoxy, cure, then drill O5.0 through the lot. "
+        f"The washer then bears on solid epoxy - ~4.4x margin.")
 
     d = Dxf()
     d.poly(rect(2.0, ext_l - 2.0, 2.0, ext_w - 2.0))
@@ -367,22 +355,10 @@ def build(p):
         f"the GLASSED face. The CHANNEL outline is the rim ring's own outer "
         f"edge, for registering the template on the board.")
 
-    # 9 - router template for the module seal groove -----------------------
-    d = Dxf()
-    msr = p["MOD_SEAL_R"]
-    d.poly(rrect(si - GUIDE_OFF, int_l - si + GUIDE_OFF,
-                 si - GUIDE_OFF, int_w - si + GUIDE_OFF, msr + GUIDE_OFF))
-    d.poly(rect(0, int_l, 0, int_w), layer="CHANNEL")
-    add("15_module_groove_template", "MDF 12 mm", 12.0, 1, d,
-        int_l + 2 * GUIDE_OFF, int_w + 2 * GUIDE_OFF,
-        f"Router template for the module lid seal groove, cut AFTER the box is "
-        f"assembled and its corners filleted, so the groove is continuous "
-        f"across all four rail joints. Opening offset {GUIDE_OFF:.0f} mm for a "
-        f"guide bushing - RE-CHECK against your own bushing and cutter. Groove "
-        f"{sw:.0f} wide x {p['MOD_SEAL_D']:.1f} deep, with R{msr:.0f} corners "
-        f"on the centreline - a cord will not turn a sharp corner, it lifts "
-        f"out and bridges. The CHANNEL outline is the module's internal "
-        f"opening, for registering the template.")
+    # Template 15 (module seal groove) IS GONE. There is no module groove any
+    # more: the printed flange takes a FLAT NEOPRENE GASKET, so there is
+    # nothing to rout and nothing that has to stay continuous across joints.
+    # Cut the gasket from 1/8" neoprene sheet with the lid as the pattern.
 
     # 8 - EPS core station table ------------------------------------------
     rows = []

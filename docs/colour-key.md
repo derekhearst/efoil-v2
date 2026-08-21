@@ -72,11 +72,12 @@ with no location, which behaves as a hinge rather than a joint. Instead:
 2. The **long walls** run the full length; the **end walls** land between them.
    That is a lap, so each end wall bonds on its 3 mm edge *and* against the
    long wall's inner face.
-3. A **12 mm square G10 corner post** goes into each internal corner. This is
-   what replaces the divider's stiffening job, and it turns a butted corner
-   into two 98 mm-long bonded faces — 9,360 mm² of corner bond area.
-4. The **flange rail** is bonded inside the wall top and carries the heat-set
-   inserts for the lid bolts. A 3 mm wall cannot hold an insert.
+3. There are **no corner posts**. They existed to turn a butted 3 mm G10
+   corner into a bonded joint; a printed shell has no butted corners to fix.
+4. The **flange prints as part of the wall** — 20 mm wide × 9.525 deep — and
+   carries the M4 heat-set inserts for the lid bolts at a 5.6 mm printed
+   pilot. A 4 mm wall cannot hold an insert, but a printed wall can simply be
+   thicker where it needs to be, which is the whole advantage.
 5. Everything is thickened epoxy with a 6 mm glass-tape fillet on the inside
    of every corner.
 
@@ -84,9 +85,31 @@ Total floor-to-wall bond area is 6,952 mm².
 
 ## What the divider used to do, and what replaced it
 
+> **The module shell is 3D printed, not cut from G10.** G10 walls were specced
+> to save weight and did the opposite: the 3.175 mm G10 shell — walls, bonded
+> flange ring, four corner posts — came to 1,323 g against ~1,130 g printed,
+> and cost six CNC parts, a bond jig, a four-joint tolerance chain and a seal
+> groove that had to be routed after assembly. The module's real weight win
+> over V1 is **one box instead of two** (−833 g) and a **sandwich lid instead
+> of 4 mm aluminium** (−857 g). Neither needs G10 walls.
+>
+> The shell prints in **4 L-shaped pieces split at wall midpoints**, not at
+> corners, so every corner comes out of the printer solid and each seam lands
+> on the flattest, least-loaded part of a wall. Paired 10 × 10 mm external
+> ribs at each seam self-align the pieces and double the bond area. Largest
+> piece is 236 × 156 mm, inside the Bambu A1's 256 mm bed. **ASA, not PETG** —
+> ASA creeps far less under sustained bolt load, which is the whole job of a
+> gasket flange, and V1 already printed its battery enclosure in it.
+>
+> The lid seals on a **flat neoprene gasket**, 7 mm band, 3 mm stock squeezed
+> to 2.0 (33%) — not an O-ring in a groove. A printed groove holds about
+> ±0.2 mm, a third of an O3 cord's squeeze, so the seal would vary bolt to
+> bolt. A flat gasket absorbs the irregularity. The hatch keeps its O-ring,
+> because the hatch lands G10 on G10 and its squeeze is set by geometry.
+
 | Divider's job | Now done by |
 |---|---|
-| Stiffening rib | the four corner posts |
+| Stiffening rib | the printed flange and the four seam ribs |
 | Keeping ESC heat off the cells | the 28 mm wire raceway as an air gap, plus the ESC's own standoff |
 | Tidy wiring | the raceway and the aft wire-loop zone, which are actual space rather than leftover gaps |
 | Power crossing between bays | nothing — the bays are one volume, so no glands are needed at all |

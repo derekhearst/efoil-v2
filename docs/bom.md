@@ -17,19 +17,19 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 
 | Item | Qty | Unit | Unit $ | Ext $ | | Note |
 |---|---:|---|---:|---:|---|---|
-| G10 natural 1/8" 24x36 - module floor, walls, flange-rail plies | 2 | sheet | $133.86 | $267.72 | verified |  |
+| G10 natural 1/8" 24x36 - module floor, walls, flange-rail plies | 1 | sheet | $133.86 | $133.86 | verified |  |
 | G10 natural 1/2" 18x24 - rim ring (4 pieces, 01a/01b) + module corner posts | 1 | sheet | $267.62 | $267.62 | verified |  |
 | G10 natural 3/4" 12x18 - mast plate | 1 | sheet | $200.75 | $200.75 | verified |  |
-| **subtotal** | | | | **$736.09** | | |
+| **subtotal** | | | | **$602.23** | | |
 
 ## 3  Structural foam
 
 | Item | Qty | Unit | Unit $ | Ext $ | | Note |
 |---|---:|---|---:|---:|---|---|
 | Divinycell H-100 1/4in quarter 21x42, hatch lid cores - 2 sheets bonded to 1/2in | 2 | sheet | $49.59 | $99.18 | verified | fiberglasssupply.com; no 1/2in H-100 is made |
-| Divinycell H-80 1/4in quarter, module lid cores | 1 | sheet | $60.00 | $60.00 | estimate | nobody stands on this one |
-| Divinycell H-80 3/4in quarter sheet 21x42, mast block + 2 shear ribs + leash/handle pads | 2 | sheet | $100.26 | $200.52 | verified | L18-1112; this line carried ONE sheet and was short by one even before the ribs. The 2 ribs nest in the offcut |
-| **subtotal** | | | | **$359.70** | | |
+| Divinycell H-80 1/4in quarter 24x48, module lid cores | 1 | sheet | $53.94 | $53.94 | verified | L18-1070; nobody stands on this one |
+| Divinycell H-80 3/4in quarter sheet 24x48, mast block + 2 shear ribs + leash/handle pads | 2 | sheet | $100.26 | $200.52 | verified | L18-1112, 24x48; this line carried ONE sheet and was short by one even before the ribs. The 2 ribs nest in the offcut |
+| **subtotal** | | | | **$353.64** | | |
 
 ## 4  Laminate
 
@@ -58,26 +58,30 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 
 | Item | Qty | Unit | Unit $ | Ext $ | | Note |
 |---|---:|---|---:|---:|---|---|
-| Solid silicone cord, 3 mm round - BOTH seals | 11 | m | $2.00 | $22.00 | estimate | buy long - splice on a straight run, never a corner |
+| Solid silicone cord, 3 mm round - BOTH seals | 8 | m | $2.00 | $16.00 | estimate | buy long - splice on a straight run, never a corner |
 | Silicone adhesive, bonding the cord into groove | 1 | tube | $12.00 | $12.00 | estimate | a thin continuous bead under the cord. It cannot then migrate, lift out, or be pinched under the lid in a dark car park |
 | M5 x 16 A4 stainless socket cap | 24 | ea | $0.55 | $13.20 | estimate |  |
 | M5 tangless wire-thread insert (2D), 50 pc | 1 | pack | $24.00 | $24.00 | estimate | 24 needed |
 | M5 STI tap + tangless install/extract tool | 1 | set | $38.00 | $38.00 | estimate | one-time; the STI tap is oversize and a normal M5 tap will NOT do |
 | MDF 12 mm, full template set (14 templates) | 2 | sheet | $35.00 | $70.00 | estimate | one-time; cut once, used on both boards and any future one |
-| **subtotal** | | | | **$179.20** | | |
+| **subtotal** | | | | **$173.20** | | |
 
 ## 7  Module
 
 | Item | Qty | Unit | Unit $ | Ext $ | | Note |
 |---|---:|---|---:|---:|---|---|
 | M4 x 12 A4 stainless socket cap | 36 | ea | $0.35 | $12.60 | estimate |  |
-| M4 brass heat-set insert, 100 pc | 1 | pack | $12.00 | $12.00 | estimate |  |
+| M4 A4 washer O9, 100 pk | 1 | pk | $8.00 | $8.00 | estimate | 36 needed, under every lid bolt |
+| M4 x 8 brass heat-set insert, 100 pc | 1 | pack | $12.00 | $12.00 | estimate | 36 needed; 5.6 mm printed pilot |
+| ASA filament, printed module shell | 3 | kg | $24.00 | $72.00 | estimate | 4 L-pieces/board, ~1.13 kg of part + supports and brim; largest piece 226 x 146 fits the A1 bed |
+| Neoprene sheet 1/8in, module + mast gaskets | 1 | sheet | $16.00 | $16.00 | estimate | TORRAMI 18x24 or similar - you kept a part sheet from V1 |
 | PG16 cable gland IP68, 10 pk | 1 | pk | $9.99 | $9.99 | verified | 6 needed |
-| 25 mm cable gland, conduit wet-to-dry crossing | 2 | ea | $6.00 | $12.00 | estimate |  |
+| EPDM/neoprene sheet 1/2in, conduit bungs | 1 | sheet | $14.00 | $14.00 | estimate | cut O33 plugs for a O32 bore, punch 3 x O5 for 6.5 mm lead - interference fit, soap them through |
+| 3M 4200 FC, fillet over the bung | 1 | tube | $18.00 | $18.00 | estimate | does both boards; 4200 NOT 5200 - 5200 never comes out |
 | M12 IP68 membrane vent plug | 2 | ea | $9.95 | $19.90 | verified | NOT optional on a sealed lithium box |
-| 22 mm IP68 latching panel button | 2 | ea | $12.49 | $24.98 | verified |  |
+| 22 mm IP68 latching panel button | 1 | ea | $12.49 | $12.49 | verified | 1 on hand; this line buys the second board's |
 | Panel-mount charge port + cap | 2 | ea | $12.00 | $24.00 | estimate |  |
-| **subtotal** | | | | **$115.47** | | |
+| **subtotal** | | | | **$218.98** | | |
 
 ## 8  Mast hardpoint
 
@@ -86,8 +90,7 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | 316 stainless bar 20 mm x 300 mm, bushing stock | 1 | ea | $28.00 | $28.00 | estimate | 8 bushings, 16 mm long |
 | Bushing machining - drill, tap M8, part off | 1 | job | $60.00 | $60.00 | estimate | free with lathe access |
 | 3M DP460 structural epoxy 50 ml + gun | 1 | ea | $45.00 | $45.00 | estimate | bonds the bushings; gun is one-time |
-| G10 tube 32 OD x 28 ID, wire conduit | 2 | off | $18.00 | $36.00 | estimate | 78 mm each |
-| **subtotal** | | | | **$169.00** | | |
+| **subtotal** | | | | **$133.00** | | |
 
 ## 9  Electrical
 
@@ -101,12 +104,12 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | BAK N21700CG-50, 130-cell case (BatteryHookup) | 1 | case | $260.00 | $260.00 | verified | new overstock |
 | BAK N21700CG-50 singles, spares | 15 | ea | $2.50 | $37.50 | verified | 7% margin on a spot-welded pack |
 | 21700 cells already on hand | 128 | ea | $0.00 | $0.00 | on hand |  |
-| Pure nickel 0.2 x 10 mm, 5 m roll | 3 | roll | $14.83 | $44.49 | verified |  |
+| Pure nickel 0.2 x 10 mm, 5 m roll | 4 | roll | $14.83 | $59.32 | verified |  |
 | 21700 spacer brackets | 0 | set | $0.00 | $0.00 | on hand |  |
 | ANL 150 A fuse + holder | 2 | ea | $10.59 | $21.18 | verified |  |
 | 8 AWG silicone wire, 5 m red + 5 m black | 2 | set | $22.00 | $44.00 | estimate | motor supplies its own phase leads + bullets |
 | Heat shrink, Kapton, pack wrap | 2 | set | $18.00 | $36.00 | estimate |  |
-| **subtotal** | | | | **$1,891.15** | | |
+| **subtotal** | | | | **$1,905.98** | | |
 
 ## 9b Small but essential
 
@@ -127,13 +130,14 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 
 | Item | Qty | Unit | Unit $ | Ext $ | | Note |
 |---|---:|---|---:|---:|---|---|
-| 8 AWG bare copper for edge bridging jumpers | 2 | set | $16.00 | $32.00 | estimate | V1 used 26 per pack on the outer bridge strips |
-| Solder + flux, bus bars and jumpers | 1 | set | $22.00 | $22.00 | estimate | pre-solder jumpers OFF the cells - never heat near a cell |
+| Solder + flux, bus bars and jumpers | 0 | set | $0.00 | $0.00 | on hand | on hand from V1; only the ring lugs and balance leads need it now - the bridges are welded, not soldered |
 | Balance harness, 17-wire | 2 | ea | $0.00 | $0.00 | on hand | DALY ships one - CONFIRM before you need it |
 | 16 AWG wire, charge port and power button runs | 2 | set | $9.00 | $18.00 | estimate |  |
 | Dielectric grease, terminals | 1 | tube | $8.00 | $8.00 | estimate |  |
 | Cable ties, lacing, adhesive mounts | 2 | set | $11.00 | $22.00 | estimate |  |
 | Silicone sealant, BMS anti-vibration dabs | 1 | tube | $7.00 | $7.00 | estimate | V1 did this; stops the BMS walking |
+| CESFONJER IP68 M25 inline housing, 3 pk | 2 | pk | $15.00 | $30.00 | estimate | 3 per board, one per phase; SIZE UNVERIFIED - Amazon blocks scraping. Check they fit the 60 x 318 bay before ordering wire |
+| 5.5 mm bullets + adhesive shrink, ESC side | 2 | set | $12.00 | $24.00 | estimate | motor pigtails arrive with their own |
 | Fish tape / pull cord for the mast conduit | 1 | ea | $12.00 | $12.00 | estimate |  |
 | **subtotal** | | | | **$121.00** | | |
 
@@ -154,15 +158,14 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | M5 nyloc nut + M6 x 20 fender washer | 8 | set | $0.60 | $4.80 | estimate |  |
 | M3 x 6 button head + M3 brass heat-set, nose cone | 8 | set | $0.50 | $4.00 | estimate |  |
 | Loctite 242 | 1 | ea | $9.00 | $9.00 | estimate | rod ends into the motor only - nyloc end does not need it |
-| Flite propeller | 2 | ea | $45.00 | $90.00 | estimate | community pick over the Flipsky alu prop |
-| Ream to 12 mm + drive-pin adapter | 2 | job | $25.00 | $50.00 | estimate | printables.com/model/583026 drill guide |
+| PETG for props, 4-5 spares per board | 2 | kg | $9.99 | $19.98 | verified | 0.4 nozzle, 100% infill; balance-check on a bolt, then epoxy-coat - V1 skipped the coat and layer lines cost drag |
 | Stainless roll pin, drive pin | 4 | ea | $1.50 | $6.00 | estimate | MEASURE the shaft cross-hole - do not trust the 4 mm figure |
 | M8 nyloc + washer, prop nut | 2 | set | $1.50 | $3.00 | estimate |  |
 | 8 AWG marine ring lugs, 20 pk | 2 | pk | $16.99 | $33.98 | verified | 28 needed; on M6 studs - nothing to solder |
 | M6 stainless stud/busbar hardware | 2 | set | $14.00 | $28.00 | estimate |  |
 | Hydraulic lug crimper, 6-70 mm2 | 1 | ea | $38.00 | $38.00 | estimate | one-time; this is what replaces soldering XT150s |
 | Adhesive-lined heat shrink, assorted | 1 | kit | $16.00 | $16.00 | estimate |  |
-| **subtotal** | | | | **$320.36** | | |
+| **subtotal** | | | | **$200.34** | | |
 
 ## 10c Restraint & fitout
 
@@ -183,7 +186,9 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | EPS offcut for a CNC test piece | 1 | ea | $15.00 | $15.00 | estimate | prove CAM, workholding and the flip before a real core |
 | Dowel pins + drill, two-sided registration | 1 | set | $12.00 | $12.00 | estimate |  |
 | 1/2 in single-flute + 1/2 in ball nose | 1 | set | $70.00 | $70.00 | estimate | if the shop does not have foam-suitable tooling |
-| **subtotal** | | | | **$192.00** | | |
+| Compact router kit, fixed + plunge bases | 1 | ea | $169.00 | $169.00 | estimate | DWP611PK class; PRICE UNVERIFIED - retailers bot-block scraping, check before ordering |
+| 1/4in carbide bits + guide bushings | 1 | set | $60.00 | $60.00 | estimate | flush trim, straight, roundover; CARBIDE - G10 destroys HSS. NOT the same bits as the 1/2in CNC line above |
+| **subtotal** | | | | **$421.00** | | |
 
 ## 10e Layup kit
 
@@ -215,27 +220,27 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | Item | Qty | Unit | Unit $ | Ext $ | | Note |
 |---|---:|---|---:|---:|---|---|
 | Shipping - G10, Divinycell, epoxy hazmat | 1 | allow | $220.00 | $220.00 | estimate | heavy and hazmat lines |
-| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $476.12 | $476.12 | verified |  |
-| **subtotal** | | | | **$696.12** | | |
+| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $478.85 | $478.85 | verified |  |
+| **subtotal** | | | | **$698.85** | | |
 
 ## Totals
 
 | | |
 |---|---:|
-| **Grand total, 2 boards** | **$8,411.52** |
-| Per board | $4,205.76 |
-| Of which verified | $6,731.92  (80%) |
-| Of which estimated | $1,679.60 |
+| **Grand total, 2 boards** | **$8,459.65** |
+| Per board | $4,229.82 |
+| Of which verified | $6,677.05  (79%) |
+| Of which estimated | $1,782.60 |
 
 ## What is a board, and what is a shop
 
-Some of the total above is not the cost of a board at all - it is tools, jigs and templates that exist afterwards and do not repeat. Splitting them out is the difference between "a board costs $4,206" and "a board costs $3,812 and I now own a vacuum rig, a crimper and a full template set".
+Some of the total above is not the cost of a board at all - it is tools, jigs and templates that exist afterwards and do not repeat. Splitting them out is the difference between "a board costs $4,230" and "a board costs $3,715 and I now own a vacuum rig, a crimper and a full template set".
 
 | | |
 |---|---:|
-| One-time tooling (incl. its share of tax) | $786.93 |
-| **Marginal cost of a board** | **$3,812.29** |
-| Cost of the NEXT board after these 2 | $3,812.29 |
+| One-time tooling (incl. its share of tax) | $1,029.67 |
+| **Marginal cost of a board** | **$3,714.99** |
+| Cost of the NEXT board after these 2 | $3,714.99 |
 
 | One-time item | $ |
 |---|---:|
@@ -249,4 +254,6 @@ Some of the total above is not the cost of a board at all - it is tools, jigs an
 | EPS offcut for a CNC test piece | $15.00 |
 | Dowel pins + drill, two-sided registration | $12.00 |
 | 1/2 in single-flute + 1/2 in ball nose | $70.00 |
+| Compact router kit, fixed + plunge bases | $169.00 |
+| 1/4in carbide bits + guide bushings | $60.00 |
 | Sanding blocks + longboard for fairing | $30.00 |

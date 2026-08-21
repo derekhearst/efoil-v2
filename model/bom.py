@@ -20,8 +20,12 @@ FREE_PACKS = 1                       # packs' worth of cells already on hand
 
 # Counts read straight out of blender_board.py's report.
 M = dict(hatch_bolts=12, mod_inserts=18, mast_bushings=4,
-         hatch_cord_mm=1820, mod_cord_mm=1455, bay_glands=3,
-         cells=128, nickel_m=7.0, conduit_mm=78)
+         hatch_cord_mm=1820, mod_cord_mm=0, bay_glands=3,   # mod_cord 0:
+         # the module lid seals on a FLAT GASKET, not a cord in a groove
+
+         cells=128, nickel_m=8.0, conduit_mm=78)   # 8.0 not 7.0: the edge
+         # strips get a second welded layer, which V1 did and the 7.0 figure
+         # (copied from V1's COPPER-jumper design) never paid for.
 
 OK, EST, OWNED = "verified", "estimate", "on hand"
 ROWS = []
@@ -105,8 +109,9 @@ def build():
     add("3  Structural foam", "Divinycell H-100 1/4in quarter 21x42, hatch "
         "lid cores - 2 sheets bonded to 1/2in", 2, "sheet", 49.59, OK,
         "fiberglasssupply.com; no 1/2in H-100 is made")
-    add("3  Structural foam", "Divinycell H-80 1/4in quarter, module lid "
-        "cores", 1, "sheet", 60.00, EST, "nobody stands on this one")
+    add("3  Structural foam", "Divinycell H-80 1/4in quarter 24x48, module "
+        "lid cores", 1, "sheet", 53.94, OK,
+        "L18-1070; nobody stands on this one")
     # 3/4in is H-80 only, and H-80 carries the block fine - 17.7x on plate
     # bearing. Leash and handle pads come out of the same offcut.
     # 2 sheets, not 1. Worked from the actual parts at 80% nesting:
@@ -114,14 +119,15 @@ def build():
     #   2 shear ribs     355 x 118 each    = 1 ply    130 in2/board
     #   handle pads      190 x 46, 2 sides = 3 plies   81 in2/board
     #   leash pad        70 x 70                        8 in2/board
-    # 692 in2 a board, 1384 for two, 1730 with nesting, against 882 in2 a
-    # quarter sheet. TWO were needed before the ribs existed - so at 2 ribs
-    # the ribs are FREE. A third and fourth rib would each buy real margin
-    # but tip it to 3 sheets, which is why there are two.
-    add("3  Structural foam", "Divinycell H-80 3/4in quarter sheet 21x42, "
+    # 692 in2 a board, 1384 for two, 1730 with nesting. An H-80 quarter sheet
+    # is 24 x 48 = 1152 in2, NOT the 21 x 42 = 882 that H-100 quarters are -
+    # the two grades ship in different sizes and this line had H-100's. Two
+    # sheets is 2304 in2, so 574 in2 spare: the ribs were already free and a
+    # third and fourth would be too. Two is what the load case asked for.
+    add("3  Structural foam", "Divinycell H-80 3/4in quarter sheet 24x48, "
         "mast block + 2 shear ribs + leash/handle pads", 2, "sheet", 100.26,
-        OK, "L18-1112; this line carried ONE sheet and was short by one even "
-        "before the ribs. The 2 ribs nest in the offcut")
+        OK, "L18-1112, 24x48; this line carried ONE sheet and was short by "
+        "one even before the ribs. The 2 ribs nest in the offcut")
 
     # ---------------------------------------------------------- 4 laminate
     add("4  Laminate", "E-glass 6 oz, 50in x 12ft, 2-pack",
@@ -186,15 +192,42 @@ def build():
     # ---------------------------------------------------------- 7 module
     add("7  Module", "M4 x 12 A4 stainless socket cap",
         M["mod_inserts"] * N, "ea", 0.35, EST)
-    add("7  Module", "M4 brass heat-set insert, 100 pc", 1, "pack", 12.00, EST)
+    # Not optional. The lid is cored; the washer is what spreads bolt load off
+    # a O5 hole onto the potted plug. Without it the head sits on the plug edge.
+    add("7  Module", "M4 A4 washer O9, 100 pk", 1, "pk", 8.00, EST,
+        str(M["mod_inserts"] * N) + " needed, under every lid bolt")
+    # Heat-set inserts are RIGHT again: the flange prints as part of the wall,
+    # so the insert melts into ASA the way it is meant to. This line went
+    # heat-set (wrong - G10) -> tap set (right for G10) -> heat-set (right for
+    # a printed flange). No tap, no STI kit, nothing to strip in a laminate.
+    add("7  Module", "M4 x 8 brass heat-set insert, 100 pc", 1, "pack", 12.00,
+        EST, str(M["mod_inserts"] * N) + " needed; 5.6 mm printed pilot")
+    # The shell. V1 printed its battery enclosure in ASA for exactly this
+    # reason - ASA creeps far less than PETG under sustained bolt load, which
+    # is the whole job of a gasket flange. Derek has run it on the A1 already
+    # (250-260C, bed 105, draft shield + brim for warp on an open frame).
+    add("7  Module", "ASA filament, printed module shell", 3, "kg", 24.00,
+        EST, "4 L-pieces/board, ~1.13 kg of part + supports and brim; "
+        "largest piece 226 x 146 fits the A1 bed")
+    add("7  Module", "Neoprene sheet 1/8in, module + mast gaskets", 1,
+        "sheet", 16.00, EST,
+        "TORRAMI 18x24 or similar - you kept a part sheet from V1")
     # module cord is now bought with the hatch cord - same 3 mm stock
     add("7  Module", "PG16 cable gland IP68, 10 pk", 1, "pk", 9.99, OK,
         str(M["bay_glands"] * N) + " needed")
-    add("7  Module", "25 mm cable gland, conduit wet-to-dry crossing",
-        N, "ea", 6.00, EST)
+    # Was a 25 mm cable gland - nothing to mount one to. See the GLAND_D note
+    # in blender_board.py. Undersized rubber is the seal; 4200 is the fillet.
+    add("7  Module", "EPDM/neoprene sheet 1/2in, conduit bungs", 1, "sheet",
+        14.00, EST, "cut O33 plugs for a O32 bore, punch 3 x O5 for 6.5 mm "
+        "lead - interference fit, soap them through")
+    add("7  Module", "3M 4200 FC, fillet over the bung", 1, "tube", 18.00,
+        EST, "does both boards; 4200 NOT 5200 - 5200 never comes out")
     add("7  Module", "M12 IP68 membrane vent plug", N, "ea", 9.95, OK,
         "NOT optional on a sealed lithium box")
-    add("7  Module", "22 mm IP68 latching panel button", N, "ea", 12.49, OK)
+    # You have one on the shelf. CHECK IT IS A SPARE and not the one fitted
+    # to V1 - V1 leaves with Kev, button included.
+    add("7  Module", "22 mm IP68 latching panel button", max(0, N - 1), "ea",
+        12.49, OK, "1 on hand; this line buys the second board's")
     add("7  Module", "Panel-mount charge port + cap", N, "ea", 12.00, EST)
 
     # -------------------------------------------------- 8 mast hardpoint
@@ -205,8 +238,10 @@ def build():
         1, "job", 60.00, EST, "free with lathe access")
     add("8  Mast hardpoint", "3M DP460 structural epoxy 50 ml + gun",
         1, "ea", 45.00, EST, "bonds the bushings; gun is one-time")
-    add("8  Mast hardpoint", "G10 tube 32 OD x 28 ID, wire conduit",
-        N, "off", 18.00, EST, str(M["conduit_mm"]) + " mm each")
+    # No G10 tube. The conduit is a BORE, cut with the rest of the CNC work
+    # and sealed with thickened epoxy off the laminating kit. A bought tube
+    # would have been bonded into that same bore and added a part number, a
+    # bias cut and $36 for nothing.
 
     # ------------------------------------------------------- 9 electrical
     add("9  Electrical", "Flipsky 65161 120KV motor", N, "ea", 298.00, OK)
@@ -264,10 +299,21 @@ def build():
     # Walked the whole current path: cells -> nickel -> bus -> BMS -> fuse ->
     # ESC -> motor, plus the balance taps and the two panel fittings. These
     # are what was missing.
-    add("9c Pack wiring", "8 AWG bare copper for edge bridging jumpers",
-        N, "set", 16.00, EST, "V1 used 26 per pack on the outer bridge strips")
-    add("9c Pack wiring", "Solder + flux, bus bars and jumpers", 1, "set",
-        22.00, EST, "pre-solder jumpers OFF the cells - never heat near a cell")
+    # NO copper bridging jumpers. The V1 design called for 8 AWG soldered
+    # along the two edge strips at each row boundary; the pack that got BUILT
+    # used stacked nickel instead - extra layers welded on at the edges - and
+    # measured 2 mV spread at rest, 6 mV under load. That is a better answer
+    # than the design: no solder goes anywhere near a cell, and the joint is
+    # the same weld process as everything else on the pack.
+    # Why the edges need anything at all: series current crowds at the outside
+    # of a serpentine, so the 2 edge strips at each boundary see roughly twice
+    # what the 6 middle ones do. At 100 A across 8 parallel strips that is
+    # ~12 A nominal but ~25 A at the edges - right at the limit for a single
+    # 0.2 x 10 strip. Doubling the nickel there halves it. The 6 middle strips
+    # stay single-layer.
+    add("9c Pack wiring", "Solder + flux, bus bars and jumpers", 0, "set",
+        0.00, OWNED, "on hand from V1; only the ring lugs and balance leads "
+        "need it now - the bridges are welded, not soldered")
     add("9c Pack wiring", "Balance harness, 17-wire", N, "ea", 0.00, OWNED,
         "DALY ships one - CONFIRM before you need it")
     add("9c Pack wiring", "16 AWG wire, charge port and power button runs",
@@ -277,6 +323,16 @@ def build():
         11.00, EST)
     add("9c Pack wiring", "Silicone sealant, BMS anti-vibration dabs",
         1, "tube", 7.00, EST, "V1 did this; stops the BMS walking")
+    # The phase disconnect, in the cavity, exactly as V1. Without it the
+    # potting/bung is decorative: the motor's pigtails run up the mast and
+    # through the bore, so if they cannot be parted in the cavity the mast is
+    # bolted on for life. M25 size takes 6-11 mm cable; 8 AWG silicone is 6.5.
+    add("9c Pack wiring", "CESFONJER IP68 M25 inline housing, 3 pk",
+        N, "pk", 15.00, EST,
+        "3 per board, one per phase; SIZE UNVERIFIED - Amazon blocks "
+        "scraping. Check they fit the 60 x 318 bay before ordering wire")
+    add("9c Pack wiring", "5.5 mm bullets + adhesive shrink, ESC side",
+        N, "set", 12.00, EST, "motor pigtails arrive with their own")
     add("9c Pack wiring", "Fish tape / pull cord for the mast conduit",
         1, "ea", 12.00, EST)
 
@@ -316,11 +372,15 @@ def build():
         4 * N, "set", 0.50, EST)
     add("10b Drivetrain", "Loctite 242", 1, "ea", 9.00, EST,
         "rod ends into the motor only - nyloc end does not need it")
-    # Prop: reamed Flite rather than printed, per your call.
-    add("10b Drivetrain", "Flite propeller", N, "ea", 45.00, EST,
-        "community pick over the Flipsky alu prop")
-    add("10b Drivetrain", "Ream to 12 mm + drive-pin adapter", N, "job",
-        25.00, EST, "printables.com/model/583026 drill guide")
+    # Prop: PRINTED, as V1 ran. The MakerWorld prop is bored for our 12 mm
+    # shaft with a slot for the drive pin, so it needs no reaming and no
+    # adapter - which is the whole $140 the Flite route cost across two
+    # boards. V1 ran it raw and uncoated as a test article and it held.
+    # Flite stays the upgrade if the printed one disappoints under a heavier
+    # rider; nothing here forecloses it.
+    add("10b Drivetrain", "PETG for props, 4-5 spares per board", N, "kg",
+        9.99, OK, "0.4 nozzle, 100% infill; balance-check on a bolt, then "
+        "epoxy-coat - V1 skipped the coat and layer lines cost drag")
     add("10b Drivetrain", "Stainless roll pin, drive pin", 2 * N, "ea", 1.50,
         EST, "MEASURE the shaft cross-hole - do not trust the 4 mm figure")
     add("10b Drivetrain", "M8 nyloc + washer, prop nut", N, "set", 1.50, EST)
@@ -357,6 +417,23 @@ def build():
         1, "set", 12.00, EST, tool=True)
     add("10d Shop consumables", "1/2 in single-flute + 1/2 in ball nose",
         1, "set", 70.00, EST, "if the shop does not have foam-suitable tooling", tool=True)
+    # Router. Not strictly required if the CNC bureau does every G10 part -
+    # but every template in templates.py exists so that the parts CAN be cut
+    # by hand, and that fallback is worth nothing without the machine to use
+    # it. It also flush-trims the laminate overhang, which nothing else here
+    # does. Compact 1/4in shank, both bases: the plunge base is what lets it
+    # start a groove in the middle of a panel rather than at an edge.
+    # Full-size 2-1/4 HP is the wrong buy - it is unwieldy on 22 mm strips.
+    add("10d Shop consumables", "Compact router kit, fixed + plunge bases",
+        1, "ea", 169.00, EST,
+        "DWP611PK class; PRICE UNVERIFIED - retailers bot-block scraping, "
+        "check before ordering", tool=True)
+    # G10 eats steel. These must be carbide, and the dust is a respirator
+    # job - glass dust, not wood dust.
+    add("10d Shop consumables", "1/4in carbide bits + guide bushings",
+        1, "set", 60.00, EST,
+        "flush trim, straight, roundover; CARBIDE - G10 destroys HSS. NOT "
+        "the same bits as the 1/2in CNC line above", tool=True)
 
 
     # ------------------------------------------- 10e layup, the actual doing
