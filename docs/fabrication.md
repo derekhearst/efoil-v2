@@ -198,6 +198,92 @@ the deck surfacing is not a given.
 
 ---
 
+## Vacuum bagging — the actual session
+
+### The number that shapes everything: 20 minutes
+
+TotalBoat 5:1 with **slow** hardener has a **20-minute pot life at 75 °F**. That
+is not much time to wet out 2.51 m² of laminate, and it is the single thing
+most likely to go wrong.
+
+Three things buy you time, and you want all of them:
+
+| | |
+|---|---|
+| **Work cool** | 62–68 °F. Slow hardener's minimum is 60 °F. Cooler is longer, right down to the limit |
+| **Mix small** | 300–400 g batches. Pot life is measured **in the pot**, where the exotherm feeds itself — spread thin on the cloth it lasts much longer |
+| **Get a second pair of hands** | one person wets out, one person keeps mixing |
+
+Pot life is not working time. A batch that is going off in the cup is still
+fine on the cloth. What kills you is mixing a big pot and then finding it
+warm.
+
+### Dry-run the bag before you mix anything
+
+**This is the step people skip and it is the one that saves a hull.**
+
+Put the part in the bag with the breather, seal it, pull it down, set the
+regulator, and **watch the gauge for ten minutes**. Find the leaks now — with
+the pump off, a good bag should lose only a couple of inHg over several
+minutes. Chase leaks with a wetted finger along the tape line, listening.
+
+You will not find leaks with epoxy going off.
+
+### Target: 5–10 inHg, and never more
+
+The core is **EPS, and it crushes at 130–200 kPa. Full vacuum is 101.** So
+"as much as it will pull" would collapse the blank.
+
+Set the regulator to **7 inHg** and confirm it on the gauge **at the bag**, not
+at the pump. This is the whole reason there is a gauge on the list.
+
+### Sequence
+
+**Cut everything first.** Glass plies, peel ply, breather, film, tape — all to
+size, laid out in the order they go on, before any resin is mixed.
+
+1. Dry-run the bag (above). Un-bag.
+2. Mix batch one. Wet out the core, lay glass, wet through. Work in batches.
+3. **Peel ply** over the whole laminate, smoothed down. No release film — the
+   peel ply bleeds into the breather on its own.
+4. **Breather** over that, lapping past the part everywhere.
+5. Film over, sealant tape round, **through-bag connector** in — its base sits
+   on the breather inside, the threaded top clamps down through the film.
+6. Pull down **slowly**, watching the gauge. Stop at 7 inHg.
+7. **Work the bridges out.** Rail transitions and the nose are where the film
+   spans a concave corner instead of pressing into it, and a bridge is a void.
+   Pleat the film into the corners with your fingers and re-seat the tape.
+
+### How long the pump runs
+
+**Until the resin has gelled hard — not until it looks set.**
+
+Practically: **run it overnight, 8–12 hours.** De-bag in the morning. The rule
+underneath that is *hold vacuum past gel*, because a laminate released while
+the resin can still move will spring back and reopen the voids you just spent
+the session closing.
+
+Once the bag is sealed the pump is barely working — with a sound bag it will
+idle, and on a small pump it would cycle a couple of seconds every 10–20
+minutes. Leaving a 4.5 CFM pump running overnight is well within its duty.
+
+**Do not sand or recoat for 24 hours** minimum, longer if it is cool. Full cure
+is 1–4 days at 75 °F.
+
+### What "good" looks like at de-bag
+
+- Peel ply comes off dry-ish and takes a fuzzy print with it — that is the
+  surface you want for the next bond, and **do not sand it smooth**
+- Breather is stiff with resin in places. Normal, and more so without release
+  film
+- No shiny patches. A shiny area is a place the bag bridged and never pressed
+
+### If it goes wrong mid-cure
+
+A bag that fails at hour one is recoverable — re-tape and pull back down. A bag
+that fails at hour four is not; the resin has moved. **Which is exactly why the
+pump was worth $58 rather than doing this by hand.**
+
 ## What to learn, in order
 
 1. **Ask Maker Shop which CAM they use.** Axiom machines commonly ship with

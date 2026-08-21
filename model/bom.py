@@ -267,7 +267,14 @@ def build():
         "was only in the starter kit, and one kit's worth does not cover "
         "6.12 m2 of part")
     add("5  Vacuum bagging", "Breather / bleeder cloth", 3 * N, "yd", 13.95, OK)
-    add("5  Vacuum bagging", "Low-temp release film", 3 * N, "yd", 11.28, OK)
+    # NO RELEASE FILM. Perforated release film exists to CONTROL how much
+    # resin bleeds through into the breather. On a wet layup, where the resin
+    # content is already set by how much you put on, the peel ply bleeds into
+    # the breather perfectly well on its own - and the bleed that does happen
+    # takes the laminate DOWN in resin content, which is the direction you
+    # want for strength. Saves $68 and one layer to fight with at de-bag.
+    # The cost is that more resin ends up in the breather, so do not skimp
+    # there - which is why breather is at 3 yd a board, not 2.
     # 5.2 m of bag perimeter a session, 6 sessions = 31 m, and a roll is 7.6.
     add("5  Vacuum bagging", "Sealant tape, 25 ft roll", 4, "roll", 12.00,
         EST, "31 m of bag perimeter across the project; the kit has one roll")

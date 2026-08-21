@@ -52,9 +52,8 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | Vac bag film, 5 yd | 3 | roll | $24.95 | $74.85 | verified | 3.06 m2 a hull session; 2 hulls + 4 lids + a practice piece + one re-do. Single-use on the hull, reusable on flat parts |
 | Peel ply | 6 | yd | $12.50 | $75.00 | verified | was only in the starter kit, and one kit's worth does not cover 6.12 m2 of part |
 | Breather / bleeder cloth | 6 | yd | $13.95 | $83.70 | verified |  |
-| Low-temp release film | 6 | yd | $11.28 | $67.68 | verified |  |
 | Sealant tape, 25 ft roll | 4 | roll | $12.00 | $48.00 | estimate | 31 m of bag perimeter across the project; the kit has one roll |
-| **subtotal** | | | | **$604.62** | | |
+| **subtotal** | | | | **$536.94** | | |
 
 ## 6  Hatch and seal
 
@@ -227,27 +226,27 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | Item | Qty | Unit | Unit $ | Ext $ | | Note |
 |---|---:|---|---:|---:|---|---|
 | Shipping - G10, Divinycell, epoxy hazmat | 1 | allow | $220.00 | $220.00 | estimate | heavy and hazmat lines |
-| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $454.59 | $454.59 | verified |  |
-| **subtotal** | | | | **$674.59** | | |
+| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $450.53 | $450.53 | verified |  |
+| **subtotal** | | | | **$670.53** | | |
 
 ## Totals
 
 | | |
 |---|---:|
-| **Grand total, 2 boards** | **$8,031.05** |
-| Per board | $4,015.52 |
-| Of which verified | $6,194.57  (77%) |
+| **Grand total, 2 boards** | **$7,959.31** |
+| Per board | $3,979.65 |
+| Of which verified | $6,122.83  (77%) |
 | Of which estimated | $1,836.48 |
 
 ## What is a board, and what is a shop
 
-Some of the total above is not the cost of a board at all - it is tools, jigs and templates that exist afterwards and do not repeat. Splitting them out is the difference between "a board costs $4,016" and "a board costs $3,533 and I now own a vacuum rig, a crimper and a full template set".
+Some of the total above is not the cost of a board at all - it is tools, jigs and templates that exist afterwards and do not repeat. Splitting them out is the difference between "a board costs $3,980" and "a board costs $3,497 and I now own a vacuum rig, a crimper and a full template set".
 
 | | |
 |---|---:|
 | One-time tooling (incl. its share of tax) | $965.01 |
-| **Marginal cost of a board** | **$3,533.02** |
-| Cost of the NEXT board after these 2 | $3,533.02 |
+| **Marginal cost of a board** | **$3,497.15** |
+| Cost of the NEXT board after these 2 | $3,497.15 |
 
 | One-time item | $ |
 |---|---:|
