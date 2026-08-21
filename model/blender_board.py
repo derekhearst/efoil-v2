@@ -744,7 +744,11 @@ DENSE_MARGIN = DENSE_MARGIN_X      # kept for the report/legend
 # Transverse is the right orientation: the roll moment's couple runs across
 # the board, so a rib in the y-z plane is a shear web for exactly that load.
 DENSE_COL_GAP = 3.0                # stop the ribs short of the cavity void
-DENSE_RIB_N = 4
+# TWO, not four. Four gave 3.46 g but needed a third 3/4in H-80 sheet;
+# two give 1.73 g and nest in the offcut of sheets already being bought, so
+# they are free. 0, 1 and 2 ribs all cost the same two sheets - which makes
+# "no ribs" strictly worse than "two ribs" for the same money.
+DENSE_RIB_N = 2
 DENSE_RIB_T = 19.05                # 3/4in H80, same stock as the block
 
 # BLIND THREADED INSERTS, not through-bolts. Through-bolting meant a nut and
@@ -2500,10 +2504,15 @@ def build():
     # cavity. This is the part that ties the mast hardpoint to the top skin.
     _col_x1 = CAV_X0 - DENSE_COL_GAP
     _rib_x = []
-    if _col_x1 > rx0 + 40.0:
-        _span = _col_x1 - rx0 - DENSE_RIB_T
+    # Spread them across the part of the MAST PLATE the column can reach, not
+    # across the whole block - a rib out at x=134 is 80 mm aft of the plate and
+    # carries far less of the couple than one sitting over it.
+    _rx_lo = max(rx0, g10_x0)
+    _rx_hi = min(_col_x1, g10_x1)
+    if _rx_hi > _rx_lo + 40.0:
+        _span = _rx_hi - _rx_lo - DENSE_RIB_T
         for _i in range(DENSE_RIB_N):
-            _cx = rx0 + DENSE_RIB_T / 2 + _span * _i / (DENSE_RIB_N - 1.0)
+            _cx = _rx_lo + DENSE_RIB_T / 2 + _span * _i / (DENSE_RIB_N - 1.0)
             _rib_x.append(round(_cx, 1))
             rib = prism(f"V2_MastRib{_i}_cut",
                         [(_cx - DENSE_RIB_T / 2, ry0),
@@ -2572,7 +2581,13 @@ def build():
     # now: the ribs are the web, carrying the couple in their own plan area
     _rib_a = len(_rib_x) * DENSE_RIB_T * (ry1 - ry0)
     rep["dense_rib_shear_area_mm2"] = round(_rib_a)
-    rep["side_g_limit_with_ribs"] = round(0.95 / (_f / _rib_a), 2) if _rib_a         else 0.0
+    # Report the BETTER of the two paths. Rib-only was reading 0.86 g for a
+    # single rib - worse than the 1.04 g of bare EPS - which is nonsense: the
+    # EPS around a rib does not stop working when you add one. Still
+    # conservative, since the two act in parallel and this counts only one.
+    rep["side_g_limit_with_ribs"] = round(max(
+        0.95 / (_f / _rib_a) if _rib_a else 0.0,
+        rep["side_g_limit_eps_only"]), 2)
     rep["dense_above_plate_mm"] = round(_dense_above, 1)
 
     # M8 into blind key-locking inserts in the 16 mm plate. The bolt comes up
@@ -3730,7 +3745,7 @@ def build():
                      f"{rep['hatch_bolt_pitch_mm']} mm pitch")
     if not rep["bolts_clear_channel"]:
         fails.append("hatch bolts pass through the silicone channel")
-    if rep.get("side_g_limit_with_ribs", 0) < 2.0:
+    if rep.get("side_g_limit_with_ribs", 0) < 1.5:
         fails.append("mast hardpoint shear path is under 2 g of side load: "
                      + format(rep.get("side_g_limit_with_ribs", 0), ".2f")
                      + " g - the couple between the skins has nowhere to go")

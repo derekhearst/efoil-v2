@@ -109,18 +109,19 @@ def build():
         "cores", 1, "sheet", 60.00, EST, "nobody stands on this one")
     # 3/4in is H-80 only, and H-80 carries the block fine - 17.7x on plate
     # bearing. Leash and handle pads come out of the same offcut.
-    # 3 sheets, not 1. Worked from the actual parts at 80% nesting:
+    # 2 sheets, not 1. Worked from the actual parts at 80% nesting:
     #   mast block slab  430 x 355 x 29.5  = 2 plies  473 in2/board
-    #   4 shear ribs     355 x 118 each    = 1 ply    260 in2/board
+    #   2 shear ribs     355 x 118 each    = 1 ply    130 in2/board
     #   handle pads      190 x 46, 2 sides = 3 plies   81 in2/board
     #   leash pad        70 x 70                        8 in2/board
-    # 822 in2 a board, 1644 for two, 2055 with nesting, against 882 in2 a
-    # quarter sheet. TWO of those sheets were needed before the ribs existed -
-    # the single sheet here was already short by one.
+    # 692 in2 a board, 1384 for two, 1730 with nesting, against 882 in2 a
+    # quarter sheet. TWO were needed before the ribs existed - so at 2 ribs
+    # the ribs are FREE. A third and fourth rib would each buy real margin
+    # but tip it to 3 sheets, which is why there are two.
     add("3  Structural foam", "Divinycell H-80 3/4in quarter sheet 21x42, "
-        "mast block + shear ribs + leash/handle pads", 3, "sheet", 100.26, OK,
-        "L18-1112; 2 sheets were needed even before the ribs - this line was "
-        "short. 7 plies for the slab+ribs per board, so buy the extra")
+        "mast block + 2 shear ribs + leash/handle pads", 2, "sheet", 100.26,
+        OK, "L18-1112; this line carried ONE sheet and was short by one even "
+        "before the ribs. The 2 ribs nest in the offcut")
 
     # ---------------------------------------------------------- 4 laminate
     add("4  Laminate", "E-glass 6 oz, 50in x 12ft, 2-pack",
