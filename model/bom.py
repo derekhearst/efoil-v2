@@ -194,6 +194,10 @@ def build():
     # both is buying the same job twice.
 
     # ---------------------------------------------------- 5 vacuum bagging
+    # A 2-stage rotary vane pump runs in OIL, and it was not on the list.
+    add("5  Vacuum bagging", "Vacuum pump oil, 1 qt", 1, "ea", 15.00, EST,
+        "the HF 61176 is a rotary vane - it does not run dry, and a bag "
+        "session is exactly when you do not want to discover that")
     add("5  Vacuum bagging", "Pittsburgh 3 CFM 2-stage pump (HF 61176)",
         1, "ea", 139.99, OK, "one-time", tool=True)
     add("5  Vacuum bagging", "VR20 vacuum regulator", 1, "ea", 52.00, OK,
@@ -230,16 +234,13 @@ def build():
     # why the mast plate uses bonded bushings. A wire-thread insert is tapped
     # in once and leaves a STAINLESS working thread - the hatch is opened
     # ~50+ times a season, so the thread has to survive cycling and not gall.
-    add("6  Hatch and seal", "REMOVED - M5 wire-thread insert, 50 pc",
-        1, "pack", 24.00, EST, str(M["hatch_bolts"] * N) + " needed")
+    # M5 wire-thread inserts and the M5 STI tap + tangless tool are GONE with
+    # the captive nuts - $62 of them. Renaming a line to "REMOVED" and leaving
+    # its quantity at 1 is not removing it; both were still being billed.
     add("6  Hatch and seal", "M5 A4 hex nut, CAPTIVE - printed into the ring",
         M["hatch_bolts"] * N + 10, "ea", 0.22, EST,
         "dropped in at a print pause at Z=6.0; steel thread, so a hatch that "
         "comes off every ride never wears anything out")
-    add("6  Hatch and seal", "REMOVED - M5 STI tap + tangless tool",
-        1, "set", 38.00, EST,
-        "one-time; the STI tap is oversize and a normal M5 tap will NOT do",
-        tool=True)
     add("6  Hatch and seal", "MDF 12 mm, full template set (14 templates)",
         2, "sheet", 35.00, EST,
         "one-time; cut once, used on both boards and any future one", tool=True)
@@ -313,6 +314,16 @@ def build():
     # APIELE M12: O12 hole, M12 x 0.75, head O17.5. NOT 22 mm - that was a
     # placeholder. Its spec says PANEL 3.5 mm MAX and the wall is 4.0, so the
     # print carries a O17.5 pocket on the inside face taking it to 3.0 local.
+    # OPEN QUESTION, flagged rather than guessed: WHAT DOES THIS SWITCH?
+    # It is a MOMENTARY 3 A button - it cannot carry pack current, so it is a
+    # signal, and nothing in this BOM currently says what it signals to.
+    # The two candidates are the DALY's switch input (most smart DALYs have a
+    # two-wire switch pair that toggles the output - momentary suits that) or
+    # an anti-spark/precharge switch module (which would ALSO fix the inrush
+    # spark V1 just lives with, and is not in this BOM either).
+    # Until that is decided this line is a hole with a button in it. Resolve
+    # it before wiring: it changes whether a ~$35 anti-spark module is needed
+    # and whether momentary is even the right action.
     add("7  Module", "M12 IP68 momentary panel button", max(0, N - 1), "ea",
         12.49, OK, "1 on hand; this line buys the second board's")
     # SP17 2-pin flange receptacle. Chosen over an XT60-in-a-box because this
@@ -346,6 +357,13 @@ def build():
     # ------------------------------------------------------- 9 electrical
     add("9  Electrical", "Flipsky 65161 120KV motor", N, "ea", 298.00, OK)
     add("9  Electrical", "Flipsky 75200 Pro V2 ESC", N, "ea", 150.00, OK)
+    # The whole reason the module floor is aluminium is to give this thing
+    # somewhere to dump heat - and there was nothing specified between its
+    # baseplate and that floor, which makes the path AIR. I argued the thermal
+    # case for the alu floor and then left out the part that makes it work.
+    add("9  Electrical", "Thermal pad 1 mm, ESC baseplate to alu floor",
+        N, "ea", 9.00, EST, "or paste; the ESC PCB face goes DOWN onto the "
+        "floor, same as V1 did onto its alu bottom plate")
     add("9  Electrical", "Flipsky VX3 remote", N, "ea", 71.00, OK)
     # 150 A, not 200 A. The pack peaks at 92 A, and V1 has run a 150 A BMS all
     # season with the VESC limited to 100 A. CHECK THE DIMENSIONS before
@@ -385,6 +403,14 @@ def build():
         1, "ea", 6.00, EST)
     add("9b Small but essential", "Water-ingress alarm", N, "ea", 12.00, EST,
         "V1 carried one - finds a leak before the cells do")
+    add("9b Small but essential", "Remote float / lanyard", N, "ea", 9.00,
+        EST, "the VX3 does not float; this is a $9 part against a $142 one "
+        "at the bottom of the lake")
+    add("9b Small but essential", "1/4 in torque wrench, 1-10 Nm", 1, "ea",
+        38.00, EST, "the hatch is captive nuts in ASA at 3 Nm - past the "
+        "hard stop more torque adds nothing to the seal and goes into the "
+        "nut pockets. Guessing that 12 times a session is how they strip",
+        tool=True)
     add("9b Small but essential", "Coiled ankle leash", N, "ea", 14.99, OK,
         "you trust the remote failsafe; this is so the board stays with you")
     add("9b Small but essential", "FCS-pattern leash plug", N, "ea", 9.00, EST)

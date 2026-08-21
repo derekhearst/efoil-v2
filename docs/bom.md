@@ -45,13 +45,14 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 
 | Item | Qty | Unit | Unit $ | Ext $ | | Note |
 |---|---:|---|---:|---:|---|---|
+| Vacuum pump oil, 1 qt | 1 | ea | $15.00 | $15.00 | estimate | the HF 61176 is a rotary vane - it does not run dry, and a bag session is exactly when you do not want to discover that |
 | Pittsburgh 3 CFM 2-stage pump (HF 61176) | 1 | ea | $139.99 | $139.99 | verified | one-time |
 | VR20 vacuum regulator | 1 | ea | $52.00 | $52.00 | verified | one-time |
 | Bagging starter kit - film, peel ply, tape, breather, connector | 1 | kit | $127.40 | $127.40 | verified | one-time + first board |
 | Vac bag film, 5 yd | 1 | roll | $24.95 | $24.95 | verified |  |
 | Breather / bleeder cloth | 4 | yd | $13.95 | $55.80 | verified |  |
 | Low-temp release film | 4 | yd | $11.28 | $45.12 | verified |  |
-| **subtotal** | | | | **$445.26** | | |
+| **subtotal** | | | | **$460.26** | | |
 
 ## 6  Hatch and seal
 
@@ -60,11 +61,9 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | Solid silicone cord, 3 mm round - BOTH seals | 8 | m | $2.00 | $16.00 | estimate | buy long - splice on a straight run, never a corner |
 | Silicone adhesive, bonding the cord into groove | 1 | tube | $12.00 | $12.00 | estimate | a thin continuous bead under the cord. It cannot then migrate, lift out, or be pinched under the lid in a dark car park |
 | M5 x 16 A4 stainless socket cap | 24 | ea | $0.55 | $13.20 | estimate |  |
-| REMOVED - M5 wire-thread insert, 50 pc | 1 | pack | $24.00 | $24.00 | estimate | 24 needed |
 | M5 A4 hex nut, CAPTIVE - printed into the ring | 34 | ea | $0.22 | $7.48 | estimate | dropped in at a print pause at Z=6.0; steel thread, so a hatch that comes off every ride never wears anything out |
-| REMOVED - M5 STI tap + tangless tool | 1 | set | $38.00 | $38.00 | estimate | one-time; the STI tap is oversize and a normal M5 tap will NOT do |
 | MDF 12 mm, full template set (14 templates) | 2 | sheet | $35.00 | $70.00 | estimate | one-time; cut once, used on both boards and any future one |
-| **subtotal** | | | | **$180.68** | | |
+| **subtotal** | | | | **$118.68** | | |
 
 ## 7  Module
 
@@ -104,6 +103,7 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 |---|---:|---|---:|---:|---|---|
 | Flipsky 65161 120KV motor | 2 | ea | $298.00 | $596.00 | verified |  |
 | Flipsky 75200 Pro V2 ESC | 2 | ea | $150.00 | $300.00 | verified |  |
+| Thermal pad 1 mm, ESC baseplate to alu floor | 2 | ea | $9.00 | $18.00 | estimate | or paste; the ESC PCB face goes DOWN onto the floor, same as V1 did onto its alu bottom plate |
 | Flipsky VX3 remote | 2 | ea | $71.00 | $142.00 | verified |  |
 | DALY Smart BMS Li-ion 16S 60V 150A | 2 | ea | $159.00 | $318.00 | verified | batteryint.com; confirm it is <= 164 x 66 x 21 mm |
 | Charger 67.2 V 5 A, 16S  (NOT 58.8 V) | 2 | ea | $45.99 | $91.98 | verified | Amazon B0DK6FTB1P, aluminium case + fan |
@@ -115,7 +115,7 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | ANL 150 A fuse + holder | 2 | ea | $10.59 | $21.18 | verified |  |
 | 8 AWG silicone wire, 5 m red + 5 m black | 2 | set | $22.00 | $44.00 | estimate | motor supplies its own phase leads + bullets |
 | Heat shrink, Kapton, pack wrap | 2 | set | $18.00 | $36.00 | estimate |  |
-| **subtotal** | | | | **$1,905.98** | | |
+| **subtotal** | | | | **$1,923.98** | | |
 
 ## 9b Small but essential
 
@@ -126,11 +126,13 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | Silicone grease for the seal cord | 1 | tube | $9.00 | $9.00 | estimate | stops the cord bonding to the lid in storage |
 | Cyanoacrylate for the cord splice | 1 | ea | $6.00 | $6.00 | estimate |  |
 | Water-ingress alarm | 2 | ea | $12.00 | $24.00 | estimate | V1 carried one - finds a leak before the cells do |
+| Remote float / lanyard | 2 | ea | $9.00 | $18.00 | estimate | the VX3 does not float; this is a $9 part against a $142 one at the bottom of the lake |
+| 1/4 in torque wrench, 1-10 Nm | 1 | ea | $38.00 | $38.00 | estimate | the hatch is captive nuts in ASA at 3 Nm - past the hard stop more torque adds nothing to the seal and goes into the nut pockets. Guessing that 12 times a session is how they strip |
 | Coiled ankle leash | 2 | ea | $14.99 | $29.98 | verified | you trust the remote failsafe; this is so the board stays with you |
 | FCS-pattern leash plug | 2 | ea | $9.00 | $18.00 | estimate |  |
 | Kayak-style webbing carry handle, 4 pk | 1 | pk | $13.89 | $13.89 | verified | 4 needed; 2 x M6 into the 6061 strip in the rail pocket |
 | M6 x 16 A4 + M6 insert, strap mounts | 8 | set | $1.40 | $11.20 | estimate |  |
-| **subtotal** | | | | **$119.27** | | |
+| **subtotal** | | | | **$175.27** | | |
 
 ## 9c Pack wiring
 
@@ -226,27 +228,27 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | Item | Qty | Unit | Unit $ | Ext $ | | Note |
 |---|---:|---|---:|---:|---|---|
 | Shipping - G10, Divinycell, epoxy hazmat | 1 | allow | $220.00 | $220.00 | estimate | heavy and hazmat lines |
-| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $448.69 | $448.69 | verified |  |
-| **subtotal** | | | | **$668.69** | | |
+| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $450.31 | $450.31 | verified |  |
+| **subtotal** | | | | **$670.31** | | |
 
 ## Totals
 
 | | |
 |---|---:|
-| **Grand total, 2 boards** | **$7,926.79** |
-| Per board | $3,963.39 |
-| Of which verified | $6,095.31  (77%) |
-| Of which estimated | $1,831.48 |
+| **Grand total, 2 boards** | **$7,955.41** |
+| Per board | $3,977.70 |
+| Of which verified | $6,096.93  (77%) |
+| Of which estimated | $1,858.48 |
 
 ## What is a board, and what is a shop
 
-Some of the total above is not the cost of a board at all - it is tools, jigs and templates that exist afterwards and do not repeat. Splitting them out is the difference between "a board costs $3,963" and "a board costs $3,439 and I now own a vacuum rig, a crimper and a full template set".
+Some of the total above is not the cost of a board at all - it is tools, jigs and templates that exist afterwards and do not repeat. Splitting them out is the difference between "a board costs $3,978" and "a board costs $3,453 and I now own a vacuum rig, a crimper and a full template set".
 
 | | |
 |---|---:|
 | One-time tooling (incl. its share of tax) | $1,048.75 |
-| **Marginal cost of a board** | **$3,439.02** |
-| Cost of the NEXT board after these 2 | $3,439.02 |
+| **Marginal cost of a board** | **$3,453.33** |
+| Cost of the NEXT board after these 2 | $3,453.33 |
 
 | One-time item | $ |
 |---|---:|
@@ -254,9 +256,9 @@ Some of the total above is not the cost of a board at all - it is tools, jigs an
 | Pittsburgh 3 CFM 2-stage pump (HF 61176) | $139.99 |
 | VR20 vacuum regulator | $52.00 |
 | Bagging starter kit - film, peel ply, tape, breather, connector | $127.40 |
-| REMOVED - M5 STI tap + tangless tool | $38.00 |
 | MDF 12 mm, full template set (14 templates) | $70.00 |
 | M8 x 1.25 tap set + 6.8 mm drill | $18.00 |
+| 1/4 in torque wrench, 1-10 Nm | $38.00 |
 | Hydraulic lug crimper, 6-70 mm2 | $38.00 |
 | EPS offcut for a CNC test piece | $15.00 |
 | Dowel pins + drill, two-sided registration | $12.00 |
