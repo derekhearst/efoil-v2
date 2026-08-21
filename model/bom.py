@@ -99,7 +99,15 @@ def build():
     # ------------------------------------------------------------ 1 core
     add("1  Core and shaping",
         "EPS rigid foam 2in x 48in x 8ft (HD 202532856)",
-        math.ceil(1.5 * N), "sheet", 27.68, OK,
+        # 2 * N, not 1.5 * N. FOUR layers a board, not three: three is 152.4
+        # mm of stack and the blank envelope is 163.8 - the board is 153.8
+        # thick and the ROCKER adds another 10 that the old figure never
+        # accounted for. Three sheets physically cannot make this board, and
+        # it got worse when the module grew to clear the pack past the lid
+        # flange. 39.4 mm machines away, which is foam and roughing time, not
+        # money. If CNC hours matter more than a sheet, 3 x 2in + 1 x 1in is
+        # 177.8 and skims only 14 - but 1 in EPS is a special trip.
+        2 * N, "sheet", 27.68, OK,
         "HD Meridian, 30 in stock, aisle 29 bay 020; $23.53 at 32+. EPS, not "
         "the XPS V1 used - deliberate, ~$90 cheaper across both boards, and "
         "the shear it gives up is covered by H-80 at the hardpoints. See the "

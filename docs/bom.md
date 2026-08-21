@@ -8,10 +8,10 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 
 | Item | Qty | Unit | Unit $ | Ext $ | | Note |
 |---|---:|---|---:|---:|---|---|
-| EPS rigid foam 2in x 48in x 8ft (HD 202532856) | 3 | sheet | $27.68 | $83.04 | verified | HD Meridian, 30 in stock, aisle 29 bay 020; $23.53 at 32+. EPS, not the XPS V1 used - deliberate, ~$90 cheaper across both boards, and the shear it gives up is covered by H-80 at the hardpoints. See the note at RHO_EPS in blender_board.py |
+| EPS rigid foam 2in x 48in x 8ft (HD 202532856) | 4 | sheet | $27.68 | $110.72 | verified | HD Meridian, 30 in stock, aisle 29 bay 020; $23.53 at 32+. EPS, not the XPS V1 used - deliberate, ~$90 cheaper across both boards, and the shear it gives up is covered by H-80 at the hardpoints. See the note at RHO_EPS in blender_board.py |
 | PL300 / Gorilla Glue, layer glue-up | 2 | tube | $8.00 | $16.00 | estimate |  |
 | Maker Shop Boise Basic month | 1 | month | $150.00 | $150.00 | verified | month-to-month; confirm it cancels cleanly |
-| **subtotal** | | | | **$249.04** | | |
+| **subtotal** | | | | **$276.72** | | |
 
 ## 2b Aluminium
 
@@ -229,27 +229,27 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | Item | Qty | Unit | Unit $ | Ext $ | | Note |
 |---|---:|---|---:|---:|---|---|
 | Shipping - G10, Divinycell, epoxy hazmat | 1 | allow | $220.00 | $220.00 | estimate | heavy and hazmat lines |
-| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $458.87 | $458.87 | verified |  |
-| **subtotal** | | | | **$678.87** | | |
+| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $460.53 | $460.53 | verified |  |
+| **subtotal** | | | | **$680.53** | | |
 
 ## Totals
 
 | | |
 |---|---:|
-| **Grand total, 2 boards** | **$8,106.64** |
-| Per board | $4,053.32 |
-| Of which verified | $6,131.17  (76%) |
+| **Grand total, 2 boards** | **$8,135.98** |
+| Per board | $4,067.99 |
+| Of which verified | $6,160.51  (76%) |
 | Of which estimated | $1,975.47 |
 
 ## What is a board, and what is a shop
 
-Some of the total above is not the cost of a board at all - it is tools, jigs and templates that exist afterwards and do not repeat. Splitting them out is the difference between "a board costs $4,053" and "a board costs $3,526 and I now own a vacuum rig, a crimper and a full template set".
+Some of the total above is not the cost of a board at all - it is tools, jigs and templates that exist afterwards and do not repeat. Splitting them out is the difference between "a board costs $4,068" and "a board costs $3,540 and I now own a vacuum rig, a crimper and a full template set".
 
 | | |
 |---|---:|
 | One-time tooling (incl. its share of tax) | $1,055.11 |
-| **Marginal cost of a board** | **$3,525.76** |
-| Cost of the NEXT board after these 2 | $3,525.76 |
+| **Marginal cost of a board** | **$3,540.43** |
+| Cost of the NEXT board after these 2 | $3,540.43 |
 
 | One-time item | $ |
 |---|---:|

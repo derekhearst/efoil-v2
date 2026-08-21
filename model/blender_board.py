@@ -1175,6 +1175,13 @@ HANDLE_STRAP_SLACK = 25.0          # standoff at mid-span - this is what your
                                    # fingers go into now that there is no
                                    # recess. Set it when you make the strap up.
 SEAM_X = 1030.0                    # halves of 1030 + 370, both under a 1219 bed
+CNC_BED_X = 1219.0                 # 48 in - the number SEAM_X exists because of
+# The blank is stacked from 2 in construction EPS, not carved from a billet.
+# FOUR layers, not three. Three is 152.4 mm and the blank envelope is 163.8 -
+# the board is 153.8 thick and the rocker adds 10 on top of that, which the
+# 3-sheet figure never accounted for. Three sheets cannot make this board.
+EPS_SHEET_T = 50.8                 # 2 in
+EPS_LAYERS = 4
 COLL_NAME = "eFoil_V2"
 
 
@@ -3302,6 +3309,42 @@ def build():
         _buried = max(_buried, volume_litres(_t) * 1e6)
         bpy.data.objects.remove(_t, do_unlink=True)
     rep["handle_strip_buried_mm3"] = round(_buried, 1)
+
+    # --- how the blank is actually cut, made visible -----------------------
+    # The board is 1400 long and a 48 in bed is 1219, so the core cannot be
+    # machined in one piece. It splits at SEAM_X into 1030 + 370, and the
+    # split is NOT in the middle - it is placed 89 mm forward of the cavity's
+    # forward end, so the joint never runs through the cavity, the rim rebate
+    # or the mast block. Both halves get machined 3D on both faces, then
+    # butt-glued. The skin is continuous over the joint, which is what carries
+    # it - the same way a stringerless surfboard blank is glued up.
+    # Drawn here because "where does it get cut" is not answerable from a
+    # number in a report.
+    for nm, x0, x1 in (("Aft", -20.0, SEAM_X), ("Fwd", SEAM_X, LENGTH + 20.0)):
+        half = box(f"V2_CoreHalf_{nm}", x0, x1, -WIDTH, WIDTH,
+                   -20.0, THICK + 40.0, coll, bom_mat("eps"))
+        boolean(half, hull, op='INTERSECT')
+        half.hide_set(True)
+        half.hide_render = True
+    # ...and the EPS sheet layers it is glued up from, which is the other
+    # question: the blank is not a solid billet, it is 2 in sheets stacked.
+    _blank_z = [v.z * 1000.0 for v in
+                (hull.matrix_world @ vv.co for vv in hull.data.vertices)]
+    _need = max(_blank_z) - min(_blank_z)
+    for i in range(EPS_LAYERS):
+        z0 = min(_blank_z) + i * EPS_SHEET_T
+        gl = box(f"V2_BlankLayer_{i}", -20.0, LENGTH + 20.0, -WIDTH, WIDTH,
+                 z0, z0 + EPS_SHEET_T, coll, bom_mat("eps"))
+        boolean(gl, hull, op='INTERSECT')
+        gl.hide_set(True)
+        gl.hide_render = True
+    rep["blank_envelope_mm"] = round(_need, 1)
+    rep["blank_stack_mm"] = round(EPS_LAYERS * EPS_SHEET_T, 1)
+    rep["blank_stack_covers"] = EPS_LAYERS * EPS_SHEET_T >= _need
+    rep["blank_machined_away_mm"] = round(EPS_LAYERS * EPS_SHEET_T - _need, 1)
+    rep["core_seam_x_mm"] = SEAM_X
+    rep["core_halves_mm"] = (round(SEAM_X), round(LENGTH - SEAM_X))
+    rep["core_halves_fit_bed"] = max(SEAM_X, LENGTH - SEAM_X) <= CNC_BED_X
     # With the pad gone the only thing that has to clear the rim ring is the
     # strip itself, which it does by handle_to_ring_mm below.
     rep["handle_to_ring_mm"] = round(
@@ -4593,6 +4636,13 @@ def build():
     if not 20 <= rep["module_gasket_squeeze_pct"] <= 50:
         fails.append(f"module gasket squeeze {rep['module_gasket_squeeze_pct']}%"
                      " outside 20-50%")
+    if not rep["blank_stack_covers"]:
+        fails.append(f"the EPS stack is {rep['blank_stack_mm']} mm and the "
+                     f"blank envelope is {rep['blank_envelope_mm']} - the "
+                     "board does not fit in the block")
+    if not rep["core_halves_fit_bed"]:
+        fails.append(f"a core half is longer than the bed: "
+                     f"{rep['core_halves_mm']} vs {CNC_BED_X:.0f}")
     if not rep["pack_clears_flange"]:
         fails.append("the pack fouls the lid flange - it cannot be installed: "
                      f"{rep['pack_under_flange_clr_mm']} mm under the flange")
