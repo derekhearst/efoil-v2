@@ -80,10 +80,11 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | PG16 cable gland IP68, 10 pk | 1 | pk | $9.99 | $9.99 | verified | 6 needed |
 | EPDM/neoprene sheet 1/2in, conduit bungs | 1 | sheet | $14.00 | $14.00 | estimate | cut O33 plugs for a O32 bore, punch 3 x O5 for 6.5 mm lead - interference fit, soap them through |
 | 3M 4200 FC, fillet over the bung | 1 | tube | $18.00 | $18.00 | estimate | does both boards; 4200 NOT 5200 - 5200 never comes out |
+| 25 mm webbing loop, module lift handle | 2 | ea | $6.00 | $12.00 | estimate | through the two printed bosses on the forward wall - the module is ~14 kg in a cavity with 12 mm of side clearance, so there is no way to get a hand beside it |
 | M12 IP68 membrane vent plug | 2 | ea | $9.95 | $19.90 | verified | NOT optional on a sealed lithium box |
 | 22 mm IP68 latching panel button | 1 | ea | $12.49 | $12.49 | verified | 1 on hand; this line buys the second board's |
 | Panel-mount charge port + cap | 2 | ea | $12.00 | $24.00 | estimate |  |
-| **subtotal** | | | | **$280.98** | | |
+| **subtotal** | | | | **$292.98** | | |
 
 ## 8  Mast hardpoint
 
@@ -221,27 +222,27 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | Item | Qty | Unit | Unit $ | Ext $ | | Note |
 |---|---:|---|---:|---:|---|---|
 | Shipping - G10, Divinycell, epoxy hazmat | 1 | allow | $220.00 | $220.00 | estimate | heavy and hazmat lines |
-| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $450.36 | $450.36 | verified |  |
-| **subtotal** | | | | **$670.36** | | |
+| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $451.08 | $451.08 | verified |  |
+| **subtotal** | | | | **$671.08** | | |
 
 ## Totals
 
 | | |
 |---|---:|
-| **Grand total, 2 boards** | **$7,956.32** |
-| Per board | $3,978.16 |
-| Of which verified | $6,197.24  (78%) |
-| Of which estimated | $1,759.08 |
+| **Grand total, 2 boards** | **$7,969.04** |
+| Per board | $3,984.52 |
+| Of which verified | $6,197.96  (78%) |
+| Of which estimated | $1,771.08 |
 
 ## What is a board, and what is a shop
 
-Some of the total above is not the cost of a board at all - it is tools, jigs and templates that exist afterwards and do not repeat. Splitting them out is the difference between "a board costs $3,978" and "a board costs $3,454 and I now own a vacuum rig, a crimper and a full template set".
+Some of the total above is not the cost of a board at all - it is tools, jigs and templates that exist afterwards and do not repeat. Splitting them out is the difference between "a board costs $3,985" and "a board costs $3,460 and I now own a vacuum rig, a crimper and a full template set".
 
 | | |
 |---|---:|
 | One-time tooling (incl. its share of tax) | $1,048.75 |
-| **Marginal cost of a board** | **$3,453.78** |
-| Cost of the NEXT board after these 2 | $3,453.78 |
+| **Marginal cost of a board** | **$3,460.14** |
+| Cost of the NEXT board after these 2 | $3,460.14 |
 
 | One-time item | $ |
 |---|---:|

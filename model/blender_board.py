@@ -234,6 +234,26 @@ RIM_DT_CLR = 0.15                  # per face; ASA prints tight, do not go 0
 # plastic rather than two parts held by an adhesive that grips neither well.
 # This is strictly stronger than the epoxy joint the G10 ring would have had.
 RIM_JOINT = "acetone weld"
+# Module seam dovetail. Smaller than the rim's, because the band it crosses is
+# the 4 mm wall PLUS its 10 mm rib = 14 mm, not the rim's 34. Keyed across
+# that thickness and run the FULL wall height, so it locates in y, cannot pull
+# apart in x, and has ~75 mm of weld length per joint. Vertical location is
+# the floor's own locating groove, which the walls already drop into.
+MOD_DT_NECK, MOD_DT_HEAD, MOD_DT_DEPTH = 5.0, 9.0, 10.0
+# --- lift handle on the module's FORWARD face ------------------------------
+# The module is ~14 kg with the pack in it and it sits in a cavity with about
+# 12 mm of side clearance - you cannot get a hand down beside it, and the top
+# is the lid. So it lifts by a WEBBING LOOP through two printed bosses on the
+# forward wall: pull the loop up with a fingertip, then lift straight out.
+# Forward, not aft: the aft wall is the connector panel and has no room left.
+# TWO bosses, at +/-MOD_HANDLE_Y, deliberately NOT one in the middle - the
+# print seam runs down the centre of that wall, and a handle straddling the
+# seam would hang 14 kg off a glued joint. One boss per piece instead, and the
+# single loop through both spreads the load across the pair.
+MOD_HANDLE_Y = 70.0                # boss centres, either side of the seam
+MOD_HANDLE_W, MOD_HANDLE_H = 60.0, 34.0
+MOD_HANDLE_PROUD = 10.0            # must stay inside the side clearance
+MOD_HANDLE_SLOT_W, MOD_HANDLE_SLOT_H = 40.0, 12.0   # 25 mm webbing + slack
 PRINT_BED = 256.0                  # Bambu A1
 # A real GROOVE, because a squashed strip has no hard stop and the seal load
 # then depends on how hard each of 13 bolts was done up. With a groove the lid
@@ -373,7 +393,15 @@ JOINT_GROOVE_D = 1.5               # locating groove depth in the floor
 # bonded joint; a printed shell has no butted corners to fix. The 4-piece
 # print split lands at WALL MIDPOINTS, not corners, so every corner is solid
 # printed plastic and the joints are in the flattest, least loaded place.
-ENC_RIB = 10.0                     # 10 x 10 external rib, V1's section
+ENC_RIB = 10.0                     # how far the seam rib stands PROUD
+# 24 wide, not 10. V1's ribs were 10 x 10 because they were only stiffeners
+# and print-split alignment. These also have to HOUSE A DOVETAIL, and a 10 mm
+# deep tab in a 10 mm wide rib runs 5 mm out past it into free air on each
+# side - which showed up as the four pieces summing to 101.36% of the shell
+# while interfering with each other at 0.0 mm3. Material outside the part,
+# not material shared between parts.
+# 2 x MOD_DT_DEPTH + 2 mm of margin each side.
+ENC_RIB_W = 24.0                   # rib width ALONG the wall, at the seam
 ENC_RIB_N = 4                      # one per wall, at the print joint
 FILLET_R = 6.0                     # internal epoxy fillet radius (bond area)
 
@@ -428,6 +456,14 @@ EQUIP_T = 4.0                      # G10 equipment plate on the module floor
 TAB_T, TAB_H = 5.0, 26.0           # G10 strap tab
 PACK_END_CLR = 14.7                # unchanged; was CORNER_POST + 2
 PACK_SIDE_CLR = 2.0
+# The pack CANNOT datum to the side wall, and this cost a real collision:
+# the flange overhangs MOD_FLANGE_W inboard at the top of the wall, and the
+# pack is 71 mm in a 76 mm interior, so there is only 66.5 mm of clear height
+# UNDER the flange - less than the pack. It therefore has to drop straight
+# through the lid opening, which means it has to live inside the OPENING
+# footprint, not the interior footprint. Datumed to the wall it ran 12.3 mm
+# into the starboard flange and simply could not be installed.
+PACK_UNDER_FLANGE_CLR = 2.0        # pack top to the flange underside
 
 # --- aft service bay ------------------------------------------------------
 # Everything the rider touches lives in the bay the conduit already needs:
@@ -725,7 +761,19 @@ def derive_layout():
     # The connector panel needs wall height: a gland row, then a row for the
     # button and the charge port, both clear of the flange rail.
     panel_h = ((BAY_GLAND_D + 7.0) + 6.0 + max(BTN_D, CHG_H) + 8.0 + 8.0)
+    # The pack has to CLEAR THE FLANGE. It datums to the side wall, but the
+    # flange overhangs MOD_FLANGE_W inboard at the top of that wall, so the
+    # pack goes in through the opening and then slides sideways underneath -
+    # and that only works if there is pack_h + flange + a little of height.
+    # Without this term the interior was 76 mm, the clear height under the
+    # flange was 66.5, the pack was 71, and it ran 12.3 mm into the starboard
+    # flange: an assembly that simply cannot be performed.
+    # Bought in HEIGHT deliberately. Doing it in width instead needs +21 mm of
+    # module, which pushed the rim ledge off the flat deck and onto the rail.
+    # Same trade the panel rows already made: width is the scarce axis.
+    under_flange = stack + MOD_FLANGE_H + PACK_UNDER_FLANGE_CLR
     int_h = max(stack + TOP_CLEAR,
+                under_flange,
                 (BMS_E_H + 6.0) if BMS_HOME == "on_edge" else 0.0,
                 (BMS_E_T + 6.0) if BMS_HOME == "flat_beside" else 0.0,
                 panel_h)
@@ -1314,6 +1362,7 @@ PALETTE = {
     "g10_rim":       ((0.72, 0.45, 0.14), 0.45, 0.0, 1.00),  # G10 rim ring, 12.7 mm
     "g10_mast":      ((0.55, 0.29, 0.08), 0.45, 0.0, 1.00),  # (unused - alu now)
     "alu":           ((0.75, 0.77, 0.80), 0.28, 1.0, 1.00),  # 5052/6061 plate
+    "void":          ((0.90, 0.30, 0.30), 0.60, 0.0, 0.22),  # bores, not parts
     "asa":           ((0.24, 0.52, 0.38), 0.55, 0.0, 1.00),  # printed ASA ring
     "flange":        ((0.95, 0.78, 0.50), 0.50, 0.0, 1.00),  # G10 flange rails
     "enclosure":     ((0.30, 0.62, 0.45), 0.55, 0.0, 1.00),  # printed PETG shell
@@ -1737,6 +1786,18 @@ def cyl(name, cx, cy, z0, z1, d, coll, mat=None, seg=20):
                         for i in range(seg)], z0, z1, coll, mat)
 
 
+def cyl_x(name, cy, cz, x0, x1, d, coll, mat=None, seg=20):
+    """Cylinder with its axis along X - for anything through an END wall."""
+    r = d * 0.5
+    ring = [(cy + r * math.cos(2 * math.pi * i / seg),
+             cz + r * math.sin(2 * math.pi * i / seg)) for i in range(seg)]
+    verts = [(x0, p[0], p[1]) for p in ring] + [(x1, p[0], p[1]) for p in ring]
+    faces = [[i, (i + 1) % seg, seg + (i + 1) % seg, seg + i] for i in range(seg)]
+    faces.append(list(range(seg - 1, -1, -1)))
+    faces.append(list(range(seg, 2 * seg)))
+    return new_object(name, verts, faces, coll, mat)
+
+
 def cyl_y(name, cx, cz, y0, y1, d, coll, mat=None, seg=20):
     """Cylinder with its axis along Y - for anything passing through a wall."""
     r = d * 0.5
@@ -1830,6 +1891,35 @@ def chamfer_loft(name, x0, x1, y0, y1, corner_r, z_top, c, sign,
     faces.append(list(range(n - 1, -1, -1)))
     faces.append(list(range(len(verts) - n, len(verts))))
     return new_object(name, verts, faces, coll)
+
+
+def dovetail_prism(name, px, py, along, out, grow, z0, z1, coll,
+                   neck, head, depth, band, back=0.0, over=0.0):
+    """Trapezoid dovetail across a band, extruded in Z.
+
+    `along` is the unit vector from the outer edge inward across `band`;
+    `out` is the protrusion normal. `back` extends the neck BEHIND the joint
+    plane - only the socket needs it, and it is not cosmetic: without it the
+    socket's base face is exactly coplanar with the clip that made the joint,
+    and an EXACT boolean on coincident faces silently does nothing.
+    `over` is for the SOCKET only. A tab must span EXACTLY the part's
+    thickness - built proud it unions into a lug standing above the sealing
+    face, which is a leak.
+    """
+    n, h = neck + 2 * grow, head + 2 * grow
+    m = band / 2.0
+    pts = []
+    for t, o in ((m - n / 2, -back), (m - n / 2, 0.0), (m - h / 2, depth),
+                 (m + h / 2, depth), (m + n / 2, 0.0), (m + n / 2, -back)):
+        pts.append((px + along[0] * t + out[0] * o,
+                    py + along[1] * t + out[1] * o))
+    # HANDEDNESS. Joint families with opposite along x out sign build in
+    # opposite winding, and half the prisms come out inside-out - an inverted
+    # cutter unions and differences as its own complement. Same bug class as
+    # the mirrored handle pads: never trust a frame's winding, test it.
+    if along[0] * out[1] - along[1] * out[0] > 0:
+        pts.reverse()
+    return prism(name, pts, z0 - over, z1 + over, coll)
 
 
 def hex_poly(cx, cy, r_af, seg=6):
@@ -2633,37 +2723,9 @@ def build():
     z0, z1 = ledge_z, ledge_z + RIM_T
 
     def dovetail(name, px, py, along, out, grow, back=0.0, over=0.0):
-        """Trapezoid tab across the band. `along` is the unit vector from the
-        outer edge inward across the 34 mm; `out` is the protrusion normal.
-        `back` extends the neck BEHIND the joint plane - only the socket needs
-        it, and it is not cosmetic: without it the socket's base face is
-        exactly coplanar with the clip box that made the joint, and an EXACT
-        boolean on coincident faces silently does nothing. That is what left
-        the segments summing to 100.9% of the ring instead of just under."""
-        n, h, d = RIM_DT_NECK + 2 * grow, RIM_DT_HEAD + 2 * grow, RIM_DT_DEPTH
-        m = RIM_W / 2.0
-        pts = []
-        for t, o in ((m - n / 2, -back), (m - n / 2, 0.0), (m - h / 2, d),
-                     (m + h / 2, d), (m + n / 2, 0.0), (m + n / 2, -back)):
-            pts.append((px + along[0] * t + out[0] * o,
-                        py + along[1] * t + out[1] * o))
-        # HANDEDNESS. The long-side joints have along x out = -1 and the
-        # short-side joints +1, so building the points in the same order gives
-        # the two families OPPOSITE winding - and half the prisms come out
-        # inside-out. An inverted cutter unions and differences as its own
-        # complement, which is why the long-side joints mated at 0.0 mm3 while
-        # the short-side ones sat on 1657 mm3 of interference. Same bug class
-        # as the mirrored handle pads: never trust a frame's winding, test it.
-        if along[0] * out[1] - along[1] * out[0] > 0:
-            pts.reverse()
-        # `over` is for the SOCKET only. A tab must span EXACTLY the ring's
-        # thickness: built 1 mm proud at both faces it unions into a lug
-        # standing above the seal land, and 1 mm of proud plastic under an
-        # O3 cord at 0.6 mm squeeze does not seal at all. That is what the
-        # segments summing to 100.2% with zero pairwise overlap was telling
-        # us - the excess was not interference between pieces, it was six
-        # tabs sticking out of the ring in Z.
-        return prism(name, pts, z0 - over, z1 + over, coll)
+        return dovetail_prism(name, px, py, along, out, grow, z0, z1, coll,
+                              RIM_DT_NECK, RIM_DT_HEAD, RIM_DT_DEPTH,
+                              RIM_W, back, over)
 
     # (name, clip box, [(joint x, joint y, along, male-direction)])
     segs = [
@@ -3187,7 +3249,14 @@ def build():
         c.hide_render = True
 
     # 2. the TUBE itself, bored through, on the same curve
-    cd = path_tube("V2_Conduit", path, CONDUIT_D, coll, bom_mat("g10_mast"))
+    # This is a HOLE, not a part. It was drawn as a solid G10 tube back when
+    # the conduit WAS a bought G10 tube; it is a bored, epoxy-sealed passage
+    # now and the bore is already cut into the hull, the dense block and the
+    # mast plate by the ConduitChan booleans. Kept as a hidden reference for
+    # where the bore runs - visible, it reads as a G10 tube that we deleted.
+    cd = path_tube("V2_Conduit", path, CONDUIT_D, coll, bom_mat("void"))
+    cd.hide_set(True)
+    cd.hide_render = True
     _bore_path = [(x, y, z) for x, y, z in path]
     _bore_path[0] = (path[0][0], 0.0, path[0][2] - 3.0)
     _bore_path[-1] = (path[-1][0] + 4.0, 0.0,
@@ -3286,20 +3355,35 @@ def build():
     # they self-align the pieces and double the bond area at the seam.
     m_rib = bom_mat("enclosure")
     for nm, a, b, c, d in (
-            ("P", (ex0 + ex1) / 2 - ENC_RIB / 2, (ex0 + ex1) / 2 + ENC_RIB / 2,
+            ("P", (ex0 + ex1) / 2 - ENC_RIB_W / 2, (ex0 + ex1) / 2 + ENC_RIB_W / 2,
              ey1, ey1 + ENC_RIB),
-            ("S", (ex0 + ex1) / 2 - ENC_RIB / 2, (ex0 + ex1) / 2 + ENC_RIB / 2,
+            ("S", (ex0 + ex1) / 2 - ENC_RIB_W / 2, (ex0 + ex1) / 2 + ENC_RIB_W / 2,
              ey0 - ENC_RIB, ey0),
-            ("A", ex0 - ENC_RIB, ex0, (ey0 + ey1) / 2 - ENC_RIB / 2,
-             (ey0 + ey1) / 2 + ENC_RIB / 2),
-            ("F", ex1, ex1 + ENC_RIB, (ey0 + ey1) / 2 - ENC_RIB / 2,
-             (ey0 + ey1) / 2 + ENC_RIB / 2)):
+            ("A", ex0 - ENC_RIB, ex0, (ey0 + ey1) / 2 - ENC_RIB_W / 2,
+             (ey0 + ey1) / 2 + ENC_RIB_W / 2),
+            ("F", ex1, ex1 + ENC_RIB, (ey0 + ey1) / 2 - ENC_RIB_W / 2,
+             (ey0 + ey1) / 2 + ENC_RIB_W / 2)):
         box(f"V2_Mod_Rib{nm}", a, b, c, d, wall_z0, wall_top, coll, m_rib)
-    rib_area = ENC_RIB_N * 2 * ENC_RIB * (wall_top - wall_z0)
+    # Lift-handle bosses on the forward wall, one either side of the seam.
+    hz = (wall_z0 + wall_top) / 2.0
+    for sy in (-1, 1):
+        hy = sy * MOD_HANDLE_Y
+        bs = box(f"V2_Mod_HandleBoss{'P' if sy > 0 else 'S'}",
+                 ex1, ex1 + MOD_HANDLE_PROUD, hy - MOD_HANDLE_W / 2,
+                 hy + MOD_HANDLE_W / 2, hz - MOD_HANDLE_H / 2,
+                 hz + MOD_HANDLE_H / 2, coll, m_rib)
+        sl = box(f"V2_Mod_HandleSlot_cut{'P' if sy > 0 else 'S'}",
+                 ex1 - 2.0, ex1 + MOD_HANDLE_PROUD - 3.0,
+                 hy - MOD_HANDLE_SLOT_W / 2, hy + MOD_HANDLE_SLOT_W / 2,
+                 hz - MOD_HANDLE_SLOT_H / 2, hz + MOD_HANDLE_SLOT_H / 2, coll)
+        boolean(bs, sl)
+        sl.hide_set(True); sl.hide_render = True
+    rib_area = ENC_RIB_N * 2 * ENC_RIB_W * (wall_top - wall_z0)
     rep["joint"] = (f"{JOINT_GROOVE_D:.1f} mm locating groove in the floor; "
                     f"shell prints in {ENC_RIB_N} L-shaped pieces split at "
-                    f"wall midpoints, paired {ENC_RIB:.0f} x {ENC_RIB:.0f} mm "
-                    f"external ribs epoxied at each seam, "
+                    f"wall midpoints, paired {ENC_RIB:.0f} mm proud "
+                    f"x {ENC_RIB_W:.0f} external ribs, dovetailed and "
+                    f"acetone-welded at each seam, "
                     f"+ {FILLET_R:.0f} mm glass-tape fillet inside every corner")
     rep["print_joint_bond_area_mm2"] = round(rib_area)
     rep["print_pieces"] = ENC_RIB_N
@@ -3352,10 +3436,32 @@ def build():
     # every time the sun comes out - and if a cell ever vents, a closed box is
     # a pressure vessel. A Gore-type membrane vent passes gas both ways and
     # holds out water, and it is the one fitting that must NOT be omitted.
-    cyl("V2_Mod_Vent", ex1 - ENC_WALL / 2, iy1 - 26.0,
-        wall_top - 34.0, wall_top - 22.0, 12.0, coll, m_metal)
-    rep["module_vent"] = ("M12 Gore-type membrane vent in the aft wall - "
-                          "IP68 to water, open to gas both ways")
+    # Two bugs here, both visible in the viewport once you look.
+    #  1. WRONG WALL. The note said "aft wall" and the geometry put it at ex1,
+    #     which is FORWARD. The aft wall is the one you can actually reach -
+    #     it faces the service bay, which is the space you open the hatch on.
+    #  2. WRONG AXIS. It was a Z-axis cylinder, i.e. a disc lying flat in the
+    #     wall. A vent plug threads THROUGH a wall, so its axis is X here.
+    # It goes on the STARBOARD half of the aft wall, opposite the connector
+    # strip: the 3 glands, button and port all live at y +57..+141, so the
+    # negative-y half is empty and the vent is not fighting them for room.
+    vent_y = iy0 + 30.0
+    vent_z = wall_top - 22.0
+    cyl_x("V2_Mod_Vent", vent_y, vent_z,
+          ex0 - 6.0, ex0 + ENC_WALL + 2.0, 12.0, coll, m_metal)
+    boolean(bpy.data.objects["V2_Mod_WallAft"],
+            cyl_x("V2_Mod_VentHole_cut", vent_y, vent_z,
+                  ex0 - 2.0, ex0 + ENC_WALL + 2.0, 12.0, coll))
+    bpy.data.objects["V2_Mod_VentHole_cut"].hide_set(True)
+    bpy.data.objects["V2_Mod_VentHole_cut"].hide_render = True
+    rep["module_vent"] = ("M12 Gore-type membrane vent THROUGH the AFT wall, "
+                          "starboard half - IP68 to water, open to gas both "
+                          "ways. Axis along X, like every other fitting in "
+                          "that wall")
+    # (the glands are built further down; the check that they miss each other
+    # is that the vent is on the negative-y half and they are all positive)
+    rep["vent_y_mm"] = round(vent_y, 1)
+    rep["vent_clear_of_connectors"] = vent_y < 0.0
     rep["module_is_sealed"] = True
     # module_seal / gasket clearances are set where the gasket is built.
     rep["module_seal_to_insert_mm"] = round(
@@ -3664,15 +3770,16 @@ def build():
     gz = iz0 + (BAY_GLAND_D + 7.0) / 2 + 6.0
     for g in range(BAY_GLAND_N):
         gy = g_mid - g_span / 2.0 + g * g_pitch
-        hole = box(f"V2_BayGlandHole_cut_{g}", ex0 - 2.0, ex0 + ENC_WALL + 2.0,
-                   gy - BAY_GLAND_D / 2, gy + BAY_GLAND_D / 2,
-                   gz - BAY_GLAND_D / 2, gz + BAY_GLAND_D / 2, coll)
+        # ROUND, not a square box. A PG11 gland threads through a drilled
+        # (here: printed) circular hole - a square one does not seal and does
+        # not even locate the gland.
+        hole = cyl_x(f"V2_BayGlandHole_cut_{g}", gy, gz,
+                     ex0 - 2.0, ex0 + ENC_WALL + 2.0, BAY_GLAND_D, coll)
         boolean(aft_wall, hole)
         hole.hide_set(True)
         hole.hide_render = True
-        box(f"V2_BayGland_{g}", ex0 - 9.0, ex0 + ENC_WALL + 4.0,
-            gy - (BAY_GLAND_D + 7) / 2, gy + (BAY_GLAND_D + 7) / 2,
-            gz - (BAY_GLAND_D + 7) / 2, gz + (BAY_GLAND_D + 7) / 2,
+        cyl_x(f"V2_BayGland_{g}", gy, gz, ex0 - 9.0, ex0 + ENC_WALL + 4.0,
+              BAY_GLAND_D + 7,
             coll, m_metal)
     rep["gland_y_range_mm"] = (round(g_mid - g_span / 2 - (BAY_GLAND_D + 7) / 2, 1),
                                round(g_mid + g_span / 2 + (BAY_GLAND_D + 7) / 2, 1))
@@ -3742,6 +3849,13 @@ def build():
                                   and 62.0 + CHG_W < CAV_WIDTH / 2)
     rep["bay_items_fit_length"] = max(BTN_D, CHG_L) + 8.0 < bay_l
     rep["pack_offset_mm"] = round(iy_c, 1)
+    # It goes in through the opening and slides under the flange, so what has
+    # to be true is HEIGHT under the flange - not that it fits the opening in Y.
+    rep["pack_under_flange_clr_mm"] = round(
+        (int_h - MOD_FLANGE_H) - L["stack"], 1)
+    rep["pack_clears_flange"] = rep["pack_under_flange_clr_mm"] >= 0.0
+    rep["pack_slides_under_flange_by_mm"] = round(
+        max(0.0, (iy0 + MOD_FLANGE_W) - pack_y0), 1)
     rep["end_zone_mm"] = round(end_zone, 1)
 
     # --- split the shell into the 4 L-pieces it actually prints as --------
@@ -3754,12 +3868,15 @@ def build():
     shell = None
     for nm in ("WallP", "WallS", "WallAft", "WallFwd",
                "FlangeP", "FlangeS", "FlangeA", "FlangeF",
-               "RibP", "RibS", "RibA", "RibF"):
+               "RibP", "RibS", "RibA", "RibF",
+               "HandleBossP", "HandleBossS"):
         o = bpy.data.objects.get(f"V2_Mod_{nm}")
         if o is None:
             continue
         if shell is None:
-            shell = box("V2_Mod_Shell", ex0 - ENC_RIB - 5, ex1 + ENC_RIB + 5,
+            shell = box("V2_Mod_Shell",
+                        ex0 - ENC_RIB - 5,
+                        ex1 + max(ENC_RIB, MOD_HANDLE_PROUD) + 5,
                         ey0 - ENC_RIB - 5, ey1 + ENC_RIB + 5,
                         wall_z0 - 1, wall_top + 1, coll)
             boolean(shell, o, op='INTERSECT')
@@ -3770,6 +3887,7 @@ def build():
     shell.hide_set(True)
     shell.hide_render = True
     m_shell = bom_mat("enclosure")
+    pieces = {}
     for nm, bx0, bx1, by0, by1 in (
             ("AftS", ex0 - ENC_RIB - 2, mx, ey0 - ENC_RIB - 2, my),
             ("AftP", ex0 - ENC_RIB - 2, mx, my, ey1 + ENC_RIB + 2),
@@ -3778,6 +3896,7 @@ def build():
         pc = box(f"V2_ModPiece_{nm}", bx0, bx1, by0, by1,
                  wall_z0 - 2, wall_top + 2, coll, m_shell)
         boolean(pc, shell, op='INTERSECT')
+        pieces[nm] = pc
     _pl, _pw = (ex1 - ex0) / 2 + ENC_RIB, (ey1 - ey0) / 2 + ENC_RIB
     rep["module_print_pieces"] = 4
     rep["module_piece_bbox_mm"] = (round(_pl), round(_pw))
@@ -3788,7 +3907,43 @@ def build():
     # needs depth to key into and the wall is only 4 mm; the ribs are 10 x 10
     # and already sit either side of every seam, which is what V1 used and
     # what its 4-piece split was designed around.
-    rep["module_seam_alignment"] = f"paired {ENC_RIB:.0f} x {ENC_RIB:.0f} ribs"
+    rep["module_seam_alignment"] = (f"dovetail + paired {ENC_RIB:.0f} x "
+                                    f"{ENC_RIB:.0f} ribs")
+    # Dovetail every seam, like the rim. The paired ribs already self-align,
+    # but a dovetail does something the ribs cannot: it stops the joint being
+    # able to open at all, and it makes the pieces go together one way only.
+    # Band here is the wall + its rib = ENC_WALL + ENC_RIB.
+    mod_band = ENC_WALL + ENC_RIB
+    mod_seams = [
+        ("S", mx, ey0 - ENC_RIB, (0, 1), (1, 0), "FwdS", "AftS"),
+        ("P", mx, ey1 + ENC_RIB, (0, -1), (1, 0), "FwdP", "AftP"),
+        ("A", ex0 - ENC_RIB, my, (1, 0), (0, 1), "AftP", "AftS"),
+        ("F", ex1 + ENC_RIB, my, (-1, 0), (0, 1), "FwdP", "FwdS"),
+    ]
+    for tag, px, py, al, ou, owner_nm, other_nm in mod_seams:
+        tab = dovetail_prism(f"V2_ModDT_{tag}", px, py, al, ou, 0.0,
+                             wall_z0, wall_top, coll, MOD_DT_NECK,
+                             MOD_DT_HEAD, MOD_DT_DEPTH, mod_band)
+        boolean(pieces[owner_nm], tab, op='UNION')
+        tab.hide_set(True); tab.hide_render = True
+        sock = dovetail_prism(f"V2_ModDTSock_cut_{tag}", px, py, al, ou,
+                              RIM_DT_CLR, wall_z0, wall_top, coll,
+                              MOD_DT_NECK, MOD_DT_HEAD, MOD_DT_DEPTH,
+                              mod_band, back=0.6, over=1.0)
+        boolean(pieces[other_nm], sock, op='DIFFERENCE')
+        sock.hide_set(True); sock.hide_render = True
+    rep["module_seam_dovetail_mm"] = (MOD_DT_NECK, MOD_DT_HEAD, MOD_DT_DEPTH)
+    rep["module_dovetail_fits_rib"] = 2 * MOD_DT_DEPTH <= ENC_RIB_W
+    rep["module_lift_handle"] = (
+        f"2 printed bosses on the FORWARD wall at y +/-{MOD_HANDLE_Y:.0f}, "
+        f"{MOD_HANDLE_PROUD:.0f} mm proud, {MOD_HANDLE_SLOT_W:.0f} x "
+        f"{MOD_HANDLE_SLOT_H:.0f} slot each for a 25 mm webbing loop. One per "
+        f"print piece, clear of the seam")
+    rep["handle_clear_of_cavity_mm"] = round(
+        (ENC_GAP - CAV_LAM) - MOD_HANDLE_PROUD, 1)
+    rep["handle_clear_of_seam_mm"] = round(
+        MOD_HANDLE_Y - MOD_HANDLE_W / 2, 1)
+    rep["module_seam_band_mm"] = mod_band
     rep["module_seam_joint"] = RIM_JOINT
     rep["esc_fits_strip"] = ESC_W <= strip - 4.0
     rep["esc_strip_clear_mm"] = round(strip - 4.0 - ESC_W, 1)
@@ -4222,6 +4377,19 @@ def build():
     if not 20 <= rep["module_gasket_squeeze_pct"] <= 50:
         fails.append(f"module gasket squeeze {rep['module_gasket_squeeze_pct']}%"
                      " outside 20-50%")
+    if not rep["pack_clears_flange"]:
+        fails.append("the pack fouls the lid flange - it cannot be installed: "
+                     f"{rep['pack_under_flange_clr_mm']} mm under the flange")
+    if rep["handle_clear_of_cavity_mm"] < 0:
+        fails.append("the module lift handle fouls the cavity wall: "
+                     f"{rep['handle_clear_of_cavity_mm']} mm")
+    if rep["handle_clear_of_seam_mm"] < 5.0:
+        fails.append("a lift-handle boss straddles the print seam - that "
+                     "hangs the module's whole weight off a glued joint")
+    if not rep["module_dovetail_fits_rib"]:
+        fails.append(f"seam dovetail is {MOD_DT_DEPTH:.0f} deep each side but "
+                     f"the rib is only {ENC_RIB_W:.0f} wide - the tab runs "
+                     "outside the part")
     if not rep["module_piece_fits_bed"]:
         fails.append("a module print piece does not fit the bed: "
                      f"{rep['module_piece_bbox_mm']} vs {PRINT_BED:.0f}")

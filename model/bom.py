@@ -242,6 +242,10 @@ def build():
         "lead - interference fit, soap them through")
     add("7  Module", "3M 4200 FC, fillet over the bung", 1, "tube", 18.00,
         EST, "does both boards; 4200 NOT 5200 - 5200 never comes out")
+    add("7  Module", "25 mm webbing loop, module lift handle", N, "ea", 6.00,
+        EST, "through the two printed bosses on the forward wall - the module "
+        "is ~14 kg in a cavity with 12 mm of side clearance, so there is no "
+        "way to get a hand beside it")
     add("7  Module", "M12 IP68 membrane vent plug", N, "ea", 9.95, OK,
         "NOT optional on a sealed lithium box")
     # You have one on the shelf. CHECK IT IS A SPARE and not the one fitted
