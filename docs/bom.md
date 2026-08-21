@@ -76,6 +76,9 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | ASA filament, printed rim ring | 2 | kg | $24.00 | $48.00 | estimate | 6 dovetailed pieces/board at ~90% infill, 710 g of part each; PRINT SEAL FACE DOWN - the bed is flatter than any top surface |
 | Acetone, solvent-welding the printed joints | 1 | qt | $14.00 | $14.00 | estimate | ASA dissolves in it like ABS - a brushed acetone/scrap slurry makes the joint one piece of plastic, not an adhesive line |
 | ASA filament, printed module shell | 3 | kg | $24.00 | $72.00 | estimate | 4 L-pieces/board, ~1.13 kg of part + supports and brim; largest piece 226 x 146 fits the A1 bed |
+| Sikaflex-252 or 3M 550FC structural PU | 1 | tube | $24.00 | $24.00 | estimate | ~6-8 MPa vs 4200's ~2. Fillet BOTH sides of the joint - on a flexible bond the fillets are what stop it peeling |
+| Sika Primer-206 G+P, aluminium side | 1 | ea | $28.00 | $28.00 | estimate | abrade + solvent wipe + prime the 5052; scuff the ASA. The primer is not optional on aluminium and it is why this beats 4200 |
+| 2 mm glass beads or shim wire, bond-line control | 1 | ea | $8.00 | $8.00 | estimate | clamping a PU joint metal-to-plastic squeezes the line out and puts you back to a rigid joint that will fail |
 | Neoprene sheet 1/8in, module + mast gaskets | 1 | sheet | $16.00 | $16.00 | estimate | TORRAMI 18x24 or similar - you kept a part sheet from V1 |
 | PG11 cable gland IP68, 10 pk | 1 | pk | $9.99 | $9.99 | verified | 6 needed; one wire per gland - three in one gland deforms the insert into a clover and leaks between them |
 | EPDM/neoprene sheet 1/2in, conduit bungs | 1 | sheet | $14.00 | $14.00 | estimate | cut O33 plugs for a O32 bore, punch 3 x O5 for 6.5 mm lead - interference fit, soap them through |
@@ -85,7 +88,7 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | M12 IP68 momentary panel button | 1 | ea | $12.49 | $12.49 | verified | 1 on hand; this line buys the second board's |
 | SP17 2-pin IP68 flange receptacle + cap | 2 | ea | $11.00 | $22.00 | estimate | 67.2 V 5 A charge; O17 panel hole, 2 x M3 flange screws |
 | M3 heat-set insert + M3 x 8 A4, port flange | 4 | set | $0.60 | $2.40 | estimate |  |
-| **subtotal** | | | | **$293.38** | | |
+| **subtotal** | | | | **$353.38** | | |
 
 ## 8  Mast hardpoint
 
@@ -223,27 +226,27 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | Item | Qty | Unit | Unit $ | Ext $ | | Note |
 |---|---:|---|---:|---:|---|---|
 | Shipping - G10, Divinycell, epoxy hazmat | 1 | allow | $220.00 | $220.00 | estimate | heavy and hazmat lines |
-| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $445.09 | $445.09 | verified |  |
-| **subtotal** | | | | **$665.09** | | |
+| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $448.69 | $448.69 | verified |  |
+| **subtotal** | | | | **$668.69** | | |
 
 ## Totals
 
 | | |
 |---|---:|
-| **Grand total, 2 boards** | **$7,863.19** |
-| Per board | $3,931.59 |
-| Of which verified | $6,091.71  (77%) |
-| Of which estimated | $1,771.48 |
+| **Grand total, 2 boards** | **$7,926.79** |
+| Per board | $3,963.39 |
+| Of which verified | $6,095.31  (77%) |
+| Of which estimated | $1,831.48 |
 
 ## What is a board, and what is a shop
 
-Some of the total above is not the cost of a board at all - it is tools, jigs and templates that exist afterwards and do not repeat. Splitting them out is the difference between "a board costs $3,932" and "a board costs $3,407 and I now own a vacuum rig, a crimper and a full template set".
+Some of the total above is not the cost of a board at all - it is tools, jigs and templates that exist afterwards and do not repeat. Splitting them out is the difference between "a board costs $3,963" and "a board costs $3,439 and I now own a vacuum rig, a crimper and a full template set".
 
 | | |
 |---|---:|
 | One-time tooling (incl. its share of tax) | $1,048.75 |
-| **Marginal cost of a board** | **$3,407.22** |
-| Cost of the NEXT board after these 2 | $3,407.22 |
+| **Marginal cost of a board** | **$3,439.02** |
+| Cost of the NEXT board after these 2 | $3,439.02 |
 
 | One-time item | $ |
 |---|---:|

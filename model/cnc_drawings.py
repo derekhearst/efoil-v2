@@ -235,25 +235,36 @@ def build(p):
     add("03_hatch_lid_core", "Divinycell H80", p["LID_CORE"], 1, d,
         lw - 4, lh - 4, "Inset 2 mm so the skins wrap the edge - no exposed core.")
 
-    # 3 - module floor + walls + corner posts ------------------------------
-    # The floor carries a locating groove for the walls - it is a 2-depth part,
-    # profile all the way through and the groove only JOINT_GROOVE_D deep.
+    # 3 - module floor -----------------------------------------------------
+    # A PLAIN RECTANGLE now. It used to carry a JOINT_GROOVE_D locating groove
+    # for the walls, which made it a 2-depth milling job - fine when it was
+    # G10, wrong now it is 3.175 mm of 5052 (a 1.5 mm groove leaves 1.7) and
+    # unnecessary once the joint became a filleted bond rather than a socket.
+    # OVERSIZED by MOD_FLOOR_LEDGE all round: the walls land inboard of the
+    # edge, leaving a ledge to run an external fillet onto. On a flexible
+    # bond the fillets are most of the strength.
+    lg = p["MOD_FLOOR_LEDGE"]
+    fl_l, fl_w = ext_l + 2 * lg, ext_w + 2 * lg
     d = Dxf()
-    d.poly(rect(0, ext_l, 0, ext_w))
-    gr, wt = p["JOINT_GROOVE_D"], ENC_WALL
-    d.poly(rect(0.15, ext_l - 0.15, 0.15, wt - 0.15))
-    d.poly(rect(0.15, ext_l - 0.15, ext_w - wt + 0.15, ext_w - 0.15))
-    d.poly(rect(0.15, wt - 0.15, 0.15, ext_w - 0.15))
-    d.poly(rect(ext_l - wt + 0.15, ext_l - 0.15, 0.15, ext_w - 0.15))
-    add("04_module_floor", "5052 aluminium", p["ENC_FLOOR"], 1, d, ext_l, ext_w,
+    d.poly(rect(0, fl_l, 0, fl_w))
+    # scribe line only - where the wall foot lands. NOT a cut.
+    d.poly(rect(lg, fl_l - lg, lg, fl_w - lg), layer="CHANNEL")
+    add("04_module_floor", "5052 aluminium", p["ENC_FLOOR"], 1, d, fl_l, fl_w,
         f"1/8in 5052, NOT G10. One 12x24 sheet is one floor, so a 2-pack does "
         f"both boards. Chosen for the ESC as much as the price: the ESC sits "
         f"sealed in with 128 cells and no airflow, and G10 conducts 500x "
         f"worse than aluminium - this floor is its heat spreader and thermal "
         f"mass, the same job V1's alu bottom plate did. "
-        f"Inner rectangles are a {gr:.1f} mm deep locating groove for the "
-        f"printed walls, NOT a through cut. Profile the outline only. "
-        f"Costs +355 g a board, taken deliberately.")
+        f"Costs +355 g a board, taken deliberately. "
+        f"NO GROOVE and no through-holes: bandsaw or jigsaw the rectangle and "
+        f"deburr, that is the whole part. The CHANNEL rectangle is a SCRIBE "
+        f"LINE showing where the wall foot lands - do not cut it. "
+        f"BONDING: abrade, solvent wipe and PRIME the aluminium, scuff the "
+        f"ASA, and hold a {p['MOD_FLOOR_BOND']:.0f} mm bond line on beads or "
+        f"shim wire. Structural polyurethane, never epoxy - ASA and 5052 "
+        f"differ by 66 um/m/K, so a rigid line sees ~300% shear strain across "
+        f"a hot afternoon. Fillet inside AND outside onto the {lg:.0f} mm "
+        f"ledge.")
 
     # ---------------------------------------------------------------------
     # Parts 05-09 (long walls, both end walls, corner posts, both flange

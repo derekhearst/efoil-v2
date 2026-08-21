@@ -425,7 +425,28 @@ ENC_TOP_GAP = CAV_LAM + 2.0        # +CAV_LAM: the cavity floor is laminated too
 #   - a G10 corner post in each internal corner triples the corner glue area
 #   - the flange rail is bonded inside the wall top and carries the lid inserts
 # Everything is thickened epoxy with a glass-tape fillet on the inside corners.
-JOINT_GROOVE_D = 1.5               # locating groove depth in the floor
+# NO GROOVE, and no rigid adhesive. Both were decided when this floor was
+# G10; it is 3.175 mm of 5052 now and that changes the joint completely.
+#   - A 1.5 mm groove leaves 1.7 mm of floor, and turns a part that is
+#     otherwise a rectangle plus holes into a milling job.
+#   - More importantly the joint is now ASA-to-ALUMINIUM, and their expansion
+#     does not match: 90 um/m/K against 23.8, so 66 of differential. Over the
+#     451 mm floor and a 40 C swing that is 1.19 mm end to end, 0.60 from the
+#     centre. In a 0.2 mm rigid epoxy or acrylic bond line that is 299% shear
+#     strain - the joint tears itself apart over a season of hot afternoons,
+#     no matter how strong the adhesive is.
+# So: FLEXIBLE, and THICK ON PURPOSE. A 2 mm bond line takes the same movement
+# at 30% strain, which a structural polyurethane (200-400% elongation) does
+# not notice. Derek used 4200 last time and that instinct was right - the
+# upgrade is not to something stiffer, it is to a STRUCTURAL PU in the same
+# family (Sikaflex-252 / 3M 550FC, ~6-8 MPa against 4200's ~2) with the bond
+# line actually controlled instead of squeezed out.
+# The floor is oversized by MOD_FLOOR_LEDGE all round so there is a ledge to
+# fillet against on the OUTSIDE as well as the inside. On a flexible joint the
+# fillets are most of the strength - they are what stops it peeling.
+JOINT_GROOVE_D = 0.0               # no groove: the floor is aluminium now
+MOD_FLOOR_LEDGE = 5.0              # floor oversize, for an external fillet
+MOD_FLOOR_BOND = 2.0               # deliberate bond line, set by printed nubs
 # No corner posts. They existed to turn a butted 3.175 mm G10 corner into a
 # bonded joint; a printed shell has no butted corners to fix. The 4-piece
 # print split lands at WALL MIDPOINTS, not corners, so every corner is solid
@@ -3424,21 +3445,10 @@ def build():
     wall_top = lid_z0 - FIT_LID
     floor_top = ez0 + ENC_FLOOR
     wall_z0 = floor_top - JOINT_GROOVE_D
-    floor = box("V2_Mod_Floor", ex0, ex1, ey0, ey1, ez0, floor_top, coll,
-                bom_mat("alu"))   # 1/8" 5052, not G10
-    grv = []
-    for nm, a, b, c, d in (
-            ("P", ex0, ex1, ey1 - ENC_WALL, ey1),
-            ("S", ex0, ex1, ey0, ey0 + ENC_WALL),
-            ("A", ex0, ex0 + ENC_WALL, ey0, ey1),
-            ("F", ex1 - ENC_WALL, ex1, ey0, ey1)):
-        g = box(f"V2_FloorGroove_cut_{nm}", a + 0.15, b - 0.15, c + 0.15,
-                d - 0.15, wall_z0, floor_top + 1.0, coll)
-        boolean(floor, g)
-        g.hide_set(True)
-        g.hide_render = True
-        grv.append(nm)
-
+    floor = box("V2_Mod_Floor", ex0 - MOD_FLOOR_LEDGE, ex1 + MOD_FLOOR_LEDGE,
+                ey0 - MOD_FLOOR_LEDGE, ey1 + MOD_FLOOR_LEDGE, ez0, floor_top,
+                coll, bom_mat("alu"))   # 1/8" 5052, oversized for a fillet
+    # (the floor groove is gone - see JOINT_GROOVE_D)
     # Long walls run full length; end walls land BETWEEN them - a lap, so each
     # end wall's glue line is its 3 mm edge PLUS the long wall's inner face.
     box("V2_Mod_WallP", ex0, ex1, ey1 - ENC_WALL, ey1, wall_z0, wall_top, coll, m_enc)
@@ -3487,7 +3497,16 @@ def build():
             boolean(bs, ic)
             ic.hide_set(True); ic.hide_render = True
     rib_area = ENC_RIB_N * 2 * ENC_RIB_W * (wall_top - wall_z0)
-    rep["joint"] = (f"{JOINT_GROOVE_D:.1f} mm locating groove in the floor; "
+    rep["module_floor_joint"] = (
+        f"ASA wall bonded to the 5052 floor on a {MOD_FLOOR_BOND:.0f} mm "
+        f"controlled bond line, filleted BOTH sides - inside, and outside "
+        f"onto the {MOD_FLOOR_LEDGE:.0f} mm ledge the floor is oversized by. "
+        f"Structural POLYURETHANE, not epoxy: the two materials differ by 66 "
+        f"um/m/K, which is 0.60 mm from the centre over 40 C, and a rigid "
+        f"bond line would see 299% shear strain")
+    rep["module_floor_ledge_clear_mm"] = round(
+        (ENC_GAP - CAV_LAM) - MOD_FLOOR_LEDGE, 1)
+    rep["joint"] = (f"no floor groove - aluminium floor; "
                     f"shell prints in {ENC_RIB_N} L-shaped pieces split at "
                     f"wall midpoints, paired {ENC_RIB:.0f} mm proud "
                     f"x {ENC_RIB_W:.0f} external ribs, dovetailed and "
@@ -4023,6 +4042,19 @@ def build():
             boolean(shell, o, op='UNION')
         o.hide_set(True)
         o.hide_render = True
+    # BORE THE FLANGE FOR EVERY HEAT-SET INSERT. They were drawn as 18 studs
+    # standing in solid plastic with no hole under any of them - the same bug
+    # the mast bushings had, and it survives every clearance check because a
+    # stud that is INSIDE the part never collides with anything.
+    # Cut on the assembled shell, before it is split, so each bore lands in
+    # whichever piece happens to own that bolt.
+    for i, (bx_, by_) in enumerate(mb):
+        ib = cyl(f"V2_ModInsertBore_cut_{i}", bx_, by_,
+                 wall_top - MOD_INSERT_L, wall_top + 1.0, MOD_INSERT_D, coll)
+        boolean(shell, ib)
+        ib.hide_set(True)
+        ib.hide_render = True
+    rep["module_insert_bores"] = len(mb)
     shell.hide_set(True)
     shell.hide_render = True
     m_shell = bom_mat("enclosure")
@@ -4561,6 +4593,9 @@ def build():
         fails.append(f"module pieces sum to {rep['module_piece_sum_pct']}% of "
                      "the shell - something is clipped off, interfering, or "
                      "standing outside the part")
+    if rep["module_floor_ledge_clear_mm"] < 2.0:
+        fails.append("the oversized module floor fouls the cavity wall: "
+                     f"{rep['module_floor_ledge_clear_mm']} mm")
     if rep["module_handle_insert_backing_mm"] < 1.0:
         fails.append("the module handle inserts break through the wall: "
                      f"{rep['module_handle_insert_backing_mm']} mm left")

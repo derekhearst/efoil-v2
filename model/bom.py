@@ -234,6 +234,21 @@ def build():
     add("7  Module", "ASA filament, printed module shell", 3, "kg", 24.00,
         EST, "4 L-pieces/board, ~1.13 kg of part + supports and brim; "
         "largest piece 226 x 146 fits the A1 bed")
+    # The floor-to-wall bond. NOT epoxy and NOT a rigid acrylic: ASA and 5052
+    # differ by 66 um/m/K, so a 451 mm floor moves 0.60 mm relative to the
+    # walls from its centre over a 40 C swing. A 0.2 mm rigid bond line takes
+    # that as 299% shear strain and tears itself apart; a 2 mm structural PU
+    # line takes it as 30% and does not care. This is the upgrade over 4200 -
+    # same family, roughly 3x the strength, and the bond line controlled.
+    add("7  Module", "Sikaflex-252 or 3M 550FC structural PU", 1, "tube",
+        24.00, EST, "~6-8 MPa vs 4200's ~2. Fillet BOTH sides of the joint - "
+        "on a flexible bond the fillets are what stop it peeling")
+    add("7  Module", "Sika Primer-206 G+P, aluminium side", 1, "ea", 28.00,
+        EST, "abrade + solvent wipe + prime the 5052; scuff the ASA. The "
+        "primer is not optional on aluminium and it is why this beats 4200")
+    add("7  Module", "2 mm glass beads or shim wire, bond-line control", 1,
+        "ea", 8.00, EST, "clamping a PU joint metal-to-plastic squeezes the "
+        "line out and puts you back to a rigid joint that will fail")
     add("7  Module", "Neoprene sheet 1/8in, module + mast gaskets", 1,
         "sheet", 16.00, EST,
         "TORRAMI 18x24 or similar - you kept a part sheet from V1")
