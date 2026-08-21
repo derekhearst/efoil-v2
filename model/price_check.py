@@ -18,17 +18,18 @@ HDRS = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
 
 TARGETS = [
     # --- G10 / FR4, ePlastics ------------------------------------------
-    ("G10 0.125in 24x36  (module panels)",
-     "https://www.eplastics.com/G10NAT-125X24X36"),
-    ("G10 0.250in 12x24",
-     "https://www.eplastics.com/G10NAT-250X12X24"),
-    ("G10 0.312in 12x12  (mast plate)",
-     "https://www.eplastics.com/G10NAT-312X12X12"),
-    ("G10 0.375in 12x24  (flange rails)",
-     "https://www.eplastics.com/G10NAT-375X12X24"),
-    ("G10 0.500in 12x24  (rim ring)",
-     "https://www.eplastics.com/G10NAT-500X12X24"),
-    # --- Divinycell, Fiberglass Supply Depot ----------------------------
+    # NO G10. There is none left on the board - module walls and rim ring are
+    # printed ASA, floor and mast plate are aluminium. These five lines were
+    # watching the price of parts that no longer exist.
+    # Real product pages - this script scrapes a URL, it does not search.
+    ("6061-T651 1/2in 12x18  (mast plate + handle strips)",
+     "https://www.speedymetals.com/p-2411-12-6061-t651-aluminum-plate.aspx"),
+    ("Divinycell H80 3/4in quarter 24x48  (mast block)",
+     "https://fiberglasssupply.com/quarter-sheet-3-4-h-80-divinycell-plain-sheet/"),
+    ("Divinycell H80 1/4in quarter 24x48  (module lid core)",
+     "https://fiberglasssupply.com/quarter-sheet-1-4-h-80-divinycell-plain-sheet/"),
+    # 5052 sheet and ASA filament are Amazon, which blocks scraping - check
+    # those by hand. Derek's 5052 receipt was $61.99 for 2 x 12x24 1/8in.
     ("Divinycell H80 plain sheet 24x48",
      "https://fiberglasssupplydepot.com/product/"
      "divinycell-pvc-foam-core-h-80-5lb-density-plain-sheet.html"),
@@ -37,7 +38,8 @@ TARGETS = [
      "https://flipsky.net/products/flipsky-brushless-motor-65161-6000w-"
      "waterproof-underwater-thruster-electric-boat-thruster-for-rov-rc-boat-"
      "jet-boards-outboard-motor-drive-boat-jet"),
-    ("Flipsky VX3 Pro remote",
+    # URL 404s - Flipsky moved the page. Find the new one before trusting this.
+    ("Flipsky VX3 Pro remote (URL STALE)",
      "https://flipsky.net/products/waterproof-remote-vx3-pro-controller"),
 ]
 

@@ -23,8 +23,12 @@ SCALES = {"1-20": 50.0, "1-16": 62.5, "1-12": 1000.0 / 12.0}
 PLA_G_CM3 = 1.24
 INFILL_F = 0.35        # rough solid-fraction for 2 perimeters + ~15% infill
 
-INTERNALS = ("V2_Mod_", "V2_Pack_", "V2_BMS", "V2_ESC", "V2_Fuse",
-             "V2_MastPlate_Alu", "V2_DenseFoam_Block", "V2_RimRing_ASA",
+# V2_ModPiece_ and V2_RimSeg_ are the PARTS - the four printed shell pieces
+# and the six printed ring segments. "V2_Mod_" does not match "V2_ModPiece_",
+# so the miniature was silently missing the shell entirely and printing the
+# hidden one-piece V2_RimRing_ASA reference instead of the six real segments.
+INTERNALS = ("V2_Mod_", "V2_ModPiece_", "V2_RimSeg_", "V2_Pack_", "V2_BMS",
+             "V2_ESC", "V2_Fuse", "V2_MastPlate_Alu", "V2_DenseFoam_Block",
              "V2_Lid", "V2_Conduit")
 
 

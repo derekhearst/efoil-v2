@@ -111,7 +111,7 @@ tape-down but leaves no room for clamps beside the part.
 ### After
 
 8. Glue the halves, fair the seam.
-9. Bond in the G10 rim ring, mast plate, hardpoints.
+9. Bond in the **printed ASA rim ring** (six dovetailed segments, acetone-welded), the **6061 mast plate**, and the handle/leash hardpoints.
 10. Glass.
 11. Rout both seal grooves off templates 14 and 15 — **after** glassing.
 
@@ -130,7 +130,7 @@ with it.
 | `T02_cavity_opening` | the through-cut in layers 2 and 3, and the layer-1 floor pocket |
 | `T03_rim_rebate` | the ledge the rim ring beds into |
 | `T04_mast_block_pocket` | dense-foam block in the underside |
-| `T05_mast_plate_pocket` | plate pocket, doubles as the bushing drill guide |
+| `T05_mast_plate_pocket` | plate pocket. **No longer a bushing drill guide** — the 6061 plate is tapped M8 direct, so there are no bushings to bore |
 | `T06_handle_pocket` | one template, used both sides |
 | `T07_leash_pad` | pad pocket + the FCS bore |
 | `T08_station_*` (×6) | section gauges to check the machined shape |
@@ -219,7 +219,7 @@ the deck surfacing is not a given.
 
 | Part | Why |
 |---|---|
-| **G10 flat parts** | Abrasive and a respiratory hazard; many shops ban it outright. Your DXFs go straight to a waterjet or laser shop. |
+| ~~G10 flat parts~~ | **There are none.** The shell and rim ring print; the floor, mast plate and handle strips are aluminium — a bandsaw and a drill press cover all three. This used to be the biggest reason a shop might turn the job away. |
 | **The two MDF templates** | 2D profiles — trivial for anyone with a router table, and not worth machine time. |
 
 ---
@@ -230,7 +230,7 @@ the deck surfacing is not a given.
 |---|---|
 | Never having run a CNC | Test piece in scrap first; foam is unbreakable |
 | Flip registration wrong | Dowel pins; dry-run in air; check the mirror axis |
-| Shop bans EPS or G10 | Ask before buying a pass; G10 job-shops easily |
+| Shop bans EPS | Ask before buying a pass. G10 is no longer a question — there is none |
 | Bed too small | **Unverified.** The AR8 is 1219 × 610 on paper — confirm |
 | Tool reach | Solved by cutting layers before glue-up |
 | Seam misalignment | Both halves off the same fixture and datum |

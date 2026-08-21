@@ -13,7 +13,12 @@ import sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 import cnc_drawings as C                                    # noqa: E402
-import fleet_cost as F                                      # noqa: E402
+# fleet_cost is NOT imported any more. It was a second, parallel cost model
+# that duplicated this file and drifted: it still had an H-200 mast block, a
+# DALY 200 A, a $629 foil and three sheets of G10. Two scripts costing the
+# same board is one script too many. The only things this needed from it were
+# the cell-case constants, so they live here now.
+CELL_CASE_N, CELL_CASE_USD = 130, 260.00
 
 N = int(sys.argv[1]) if len(sys.argv) > 1 else 2
 FREE_PACKS = 1                       # packs' worth of cells already on hand
@@ -321,10 +326,10 @@ def build():
         N, "ea", 45.99, OK, "Amazon B0DK6FTB1P, aluminium case + fan")
     buy = max(0, N - FREE_PACKS) * M["cells"]
     if buy:
-        cases = math.ceil(buy / F.CELL_CASE_N)
+        cases = math.ceil(buy / CELL_CASE_N)
         add("9  Electrical",
             "BAK N21700CG-50, 130-cell case (BatteryHookup)",
-            cases, "case", F.CELL_CASE_USD, OK, "new overstock")
+            cases, "case", CELL_CASE_USD, OK, "new overstock")
         add("9  Electrical", "BAK N21700CG-50 singles, spares",
             15, "ea", 2.50, OK, "7% margin on a spot-welded pack")
     add("9  Electrical", "21700 cells already on hand",

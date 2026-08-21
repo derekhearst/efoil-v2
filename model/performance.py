@@ -93,11 +93,20 @@ def run(rider_kg=86.0):
     fuse_area = (p["FOIL_FUSE_L"] / 1000.0
                  * math.pi * p["FOIL_FUSE_D"] / 1000.0)
 
-    board_kg, foil_kg = 25.1, 7.3
+    # KEEP THIS IN STEP WITH blender_board.py's board_mass_kg. This script is
+    # standalone - it does not import the model - so nothing here fails when
+    # the board changes, it just quietly reports last month's numbers. It was
+    # 25.1 while the model said 23.9.
+    board_kg, foil_kg = 23.9, 7.3
     W = (board_kg + foil_kg + rider_kg) * G
     wh = p["PACK_S"] * p["PACK_P"] * 18.0
 
-    print("PERF  Gong X-Over V2 XL + Stab XL 48 + Pro Alu fuse + 85 cm alu mast")
+    # Derek's OWN foil is the X-Over V2 XL, and these numbers are its. It
+    # leaves with V1 when Kev buys it - the two new boards get X-Over V3 Atmo
+    # setups, whose wing areas are close but NOT identical. Re-measure before
+    # trusting takeoff speed on a V3.
+    print("PERF  Gong X-Over V2 XL (V1's foil) + Stab XL 48 + Pro Alu fuse")
+    print("      NOTE: V2/V3 boards get X-Over V3 Atmo - recheck these areas")
     print("      front wing " + format(S * 1e4, ".0f") + " cm2, AR "
           + format(AR, ".1f") + "   all-up "
           + format(W / G, ".0f") + " kg   pack " + format(wh, ".0f") + " Wh")
