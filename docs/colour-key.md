@@ -93,10 +93,18 @@ Total floor-to-wall bond area is 6,952 mm².
 > over V1 is **one box instead of two** (−833 g) and a **sandwich lid instead
 > of 4 mm aluminium** (−857 g). Neither needs G10 walls.
 >
+> In the model these are the `V2_ModPiece_*` objects — the four pieces as they
+> come off the printer. The old `V2_Mod_Wall*` / `V2_Mod_Flange*` boxes still
+> exist but are hidden: they are how the shell is *described*, not how it is
+> *made*, and leaving them visible hid the print split entirely.
+>
 > The shell prints in **4 L-shaped pieces split at wall midpoints**, not at
 > corners, so every corner comes out of the printer solid and each seam lands
 > on the flattest, least-loaded part of a wall. Paired 10 × 10 mm external
-> ribs at each seam self-align the pieces and double the bond area. Largest
+> ribs at each seam self-align the pieces and double the bond area — that is
+> the alignment feature here, not a dovetail: a dovetail needs depth to key
+> into and the wall is only 4 mm, while the ribs are 10 × 10 and already sit
+> either side of every seam. Largest
 > piece is 236 × 156 mm, inside the Bambu A1's 256 mm bed. **ASA, not PETG** —
 > ASA creeps far less under sustained bolt load, which is the whole job of a
 > gasket flange, and V1 already printed its battery enclosure in it.

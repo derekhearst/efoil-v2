@@ -2690,7 +2690,7 @@ def build():
         clip.hide_set(True); clip.hide_render = True
         for k, (px, py, al, ou) in enumerate(joints):
             males.append((f"{nm}_{k}", px, py, al, ou, seg))
-        seg.hide_set(True); seg.hide_render = True
+        # visible: these ARE the parts. The assembled ring is hidden below.
     # A tab on one piece is a socket on its neighbour: same trapezoid, grown by
     # RIM_DT_CLR per face so it actually goes together in ASA.
     for tag, px, py, al, ou, owner in males:
@@ -2730,6 +2730,11 @@ def build():
                   .evaluated_get(dg_).to_mesh().vertices)
               for n, _b, _j in segs) * 1000.0
     rep["rim_seg_proud_of_seal_mm"] = round(_zt - (ledge_z + RIM_T), 3)
+    # The one-piece ring is now a REFERENCE, not a part - it is what the six
+    # printed pieces add up to. Hide it or it reads as a solid ring and hides
+    # the joints, which is exactly how it looked wrong.
+    rim.hide_set(True)
+    rim.hide_render = True
     rep["hatch_nut_cover_mm"] = round(NUT_Z, 1)
     rep["hatch_nut_pullout_N"] = round(_plug * ASA_TAU)
     rep["hatch_nut_pullout_margin"] = round(_plug * ASA_TAU / (SEAL_N / len(hb)), 1)
@@ -3738,6 +3743,53 @@ def build():
     rep["bay_items_fit_length"] = max(BTN_D, CHG_L) + 8.0 < bay_l
     rep["pack_offset_mm"] = round(iy_c, 1)
     rep["end_zone_mm"] = round(end_zone, 1)
+
+    # --- split the shell into the 4 L-pieces it actually prints as --------
+    # The shell was modelled as four WALLS, which is not how it comes off the
+    # printer. It prints as four CORNER L-PIECES, split at the wall midpoints,
+    # so every corner is solid plastic and each seam lands on the flattest,
+    # least-loaded part of a wall. Modelling it as walls hid the joints
+    # entirely and made the print split look like it did not exist.
+    mx, my = (ex0 + ex1) / 2.0, (ey0 + ey1) / 2.0
+    shell = None
+    for nm in ("WallP", "WallS", "WallAft", "WallFwd",
+               "FlangeP", "FlangeS", "FlangeA", "FlangeF",
+               "RibP", "RibS", "RibA", "RibF"):
+        o = bpy.data.objects.get(f"V2_Mod_{nm}")
+        if o is None:
+            continue
+        if shell is None:
+            shell = box("V2_Mod_Shell", ex0 - ENC_RIB - 5, ex1 + ENC_RIB + 5,
+                        ey0 - ENC_RIB - 5, ey1 + ENC_RIB + 5,
+                        wall_z0 - 1, wall_top + 1, coll)
+            boolean(shell, o, op='INTERSECT')
+        else:
+            boolean(shell, o, op='UNION')
+        o.hide_set(True)
+        o.hide_render = True
+    shell.hide_set(True)
+    shell.hide_render = True
+    m_shell = bom_mat("enclosure")
+    for nm, bx0, bx1, by0, by1 in (
+            ("AftS", ex0 - ENC_RIB - 2, mx, ey0 - ENC_RIB - 2, my),
+            ("AftP", ex0 - ENC_RIB - 2, mx, my, ey1 + ENC_RIB + 2),
+            ("FwdS", mx, ex1 + ENC_RIB + 2, ey0 - ENC_RIB - 2, my),
+            ("FwdP", mx, ex1 + ENC_RIB + 2, my, ey1 + ENC_RIB + 2)):
+        pc = box(f"V2_ModPiece_{nm}", bx0, bx1, by0, by1,
+                 wall_z0 - 2, wall_top + 2, coll, m_shell)
+        boolean(pc, shell, op='INTERSECT')
+    _pl, _pw = (ex1 - ex0) / 2 + ENC_RIB, (ey1 - ey0) / 2 + ENC_RIB
+    rep["module_print_pieces"] = 4
+    rep["module_piece_bbox_mm"] = (round(_pl), round(_pw))
+    rep["module_piece_fits_bed"] = _pl <= PRINT_BED and _pw <= PRINT_BED
+    rep["module_seam_count"] = 4
+    rep["module_seam_on_corner"] = False
+    # Alignment at these seams is the PAIRED RIBS, not a dovetail. A dovetail
+    # needs depth to key into and the wall is only 4 mm; the ribs are 10 x 10
+    # and already sit either side of every seam, which is what V1 used and
+    # what its 4-piece split was designed around.
+    rep["module_seam_alignment"] = f"paired {ENC_RIB:.0f} x {ENC_RIB:.0f} ribs"
+    rep["module_seam_joint"] = RIM_JOINT
     rep["esc_fits_strip"] = ESC_W <= strip - 4.0
     rep["esc_strip_clear_mm"] = round(strip - 4.0 - ESC_W, 1)
     rep["fuse_fits_strip"] = FUSE_W <= strip - 4.0
@@ -4170,6 +4222,9 @@ def build():
     if not 20 <= rep["module_gasket_squeeze_pct"] <= 50:
         fails.append(f"module gasket squeeze {rep['module_gasket_squeeze_pct']}%"
                      " outside 20-50%")
+    if not rep["module_piece_fits_bed"]:
+        fails.append("a module print piece does not fit the bed: "
+                     f"{rep['module_piece_bbox_mm']} vs {PRINT_BED:.0f}")
     if not rep["rim_seg_fits_bed"]:
         fails.append("a rim segment does not fit the print bed: "
                      f"{rep['rim_seg_max_bbox_mm']} vs {PRINT_BED:.0f}")
