@@ -45,14 +45,13 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 
 | Item | Qty | Unit | Unit $ | Ext $ | | Note |
 |---|---:|---|---:|---:|---|---|
-| Vacuum pump oil, 1 qt | 1 | ea | $15.00 | $15.00 | estimate | the HF 61176 is a rotary vane - it does not run dry, and a bag session is exactly when you do not want to discover that |
-| Pittsburgh 3 CFM 2-stage pump (HF 61176) | 1 | ea | $139.99 | $139.99 | verified | one-time |
+| VECOTOOLS 4.5 CFM single-stage pump, oil incl. | 1 | ea | $57.99 | $57.99 | verified | your listing, ASIN B0GZVLP3PL. Was a $139.99 Pittsburgh 2-stage plus $15 of oil - $97 for ultimate vacuum we must not use |
 | VR20 vacuum regulator | 1 | ea | $52.00 | $52.00 | verified | one-time |
 | Bagging starter kit - film, peel ply, tape, breather, connector | 1 | kit | $127.40 | $127.40 | verified | one-time + first board |
 | Vac bag film, 5 yd | 1 | roll | $24.95 | $24.95 | verified |  |
 | Breather / bleeder cloth | 4 | yd | $13.95 | $55.80 | verified |  |
 | Low-temp release film | 4 | yd | $11.28 | $45.12 | verified |  |
-| **subtotal** | | | | **$460.26** | | |
+| **subtotal** | | | | **$363.26** | | |
 
 ## 6  Hatch and seal
 
@@ -79,7 +78,7 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | Sika Primer-206 G+P, aluminium side | 1 | ea | $28.00 | $28.00 | estimate | abrade + solvent wipe + prime the 5052; scuff the ASA. The primer is not optional on aluminium and it is why this beats 4200 |
 | 2 mm glass beads or shim wire, bond-line control | 1 | ea | $8.00 | $8.00 | estimate | clamping a PU joint metal-to-plastic squeezes the line out and puts you back to a rigid joint that will fail |
 | Neoprene sheet 1/8in, module + mast gaskets | 1 | sheet | $16.00 | $16.00 | estimate | TORRAMI 18x24 or similar - you kept a part sheet from V1 |
-| PG11 cable gland IP68, 10 pk | 1 | pk | $9.99 | $9.99 | verified | 6 needed; one wire per gland - three in one gland deforms the insert into a clover and leaks between them |
+| Gebildet PG11 gland, M18x1.5, 30 pk | 1 | pk | $9.99 | $9.99 | verified | your listing: M18x1.5 thread (matches the 18.5 hole) and 5-10 mm cable, against our 6.5 mm 8 AWG. 6 needed of 30 - one wire per gland; three in one gland deforms the insert into a clover and leaks between them |
 | EPDM/neoprene sheet 1/2in, conduit bungs | 1 | sheet | $14.00 | $14.00 | estimate | cut O33 plugs for a O32 bore, punch 3 x O5 for 6.5 mm lead - interference fit, soap them through |
 | 3M 4200 FC, fillet over the bung | 1 | tube | $18.00 | $18.00 | estimate | does both boards; 4200 NOT 5200 - 5200 never comes out |
 | 25 mm webbing loop, module lift handle | 2 | ea | $6.00 | $12.00 | estimate | through the two printed bosses on the forward wall - the module is ~14 kg in a cavity with 12 mm of side clearance, so there is no way to get a hand beside it |
@@ -126,13 +125,12 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | Silicone grease for the seal cord | 1 | tube | $9.00 | $9.00 | estimate | stops the cord bonding to the lid in storage |
 | Cyanoacrylate for the cord splice | 1 | ea | $6.00 | $6.00 | estimate |  |
 | Water-ingress alarm | 2 | ea | $12.00 | $24.00 | estimate | V1 carried one - finds a leak before the cells do |
-| Remote float / lanyard | 2 | ea | $9.00 | $18.00 | estimate | the VX3 does not float; this is a $9 part against a $142 one at the bottom of the lake |
-| 1/4 in torque wrench, 1-10 Nm | 1 | ea | $38.00 | $38.00 | estimate | the hatch is captive nuts in ASA at 3 Nm - past the hard stop more torque adds nothing to the seal and goes into the nut pockets. Guessing that 12 times a session is how they strip |
+| 1/4 in torque wrench, 1-10 Nm | 1 | ea | $38.00 | $38.00 | estimate | CALIBRATION TOOL - set the drill clutch with it, then use the clutch. The hatch is captive nuts in ASA against a hard stop; past the stop more torque only loads the nut pockets |
 | Coiled ankle leash | 2 | ea | $14.99 | $29.98 | verified | you trust the remote failsafe; this is so the board stays with you |
 | FCS-pattern leash plug | 2 | ea | $9.00 | $18.00 | estimate |  |
 | Kayak-style webbing carry handle, 4 pk | 1 | pk | $13.89 | $13.89 | verified | 4 needed; 2 x M6 into the 6061 strip in the rail pocket |
 | M6 x 16 A4 + M6 insert, strap mounts | 8 | set | $1.40 | $11.20 | estimate |  |
-| **subtotal** | | | | **$175.27** | | |
+| **subtotal** | | | | **$157.27** | | |
 
 ## 9c Pack wiring
 
@@ -228,32 +226,32 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | Item | Qty | Unit | Unit $ | Ext $ | | Note |
 |---|---:|---|---:|---:|---|---|
 | Shipping - G10, Divinycell, epoxy hazmat | 1 | allow | $220.00 | $220.00 | estimate | heavy and hazmat lines |
-| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $450.31 | $450.31 | verified |  |
-| **subtotal** | | | | **$670.31** | | |
+| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $443.41 | $443.41 | verified |  |
+| **subtotal** | | | | **$663.41** | | |
 
 ## Totals
 
 | | |
 |---|---:|
-| **Grand total, 2 boards** | **$7,955.41** |
-| Per board | $3,977.70 |
-| Of which verified | $6,096.93  (77%) |
-| Of which estimated | $1,858.48 |
+| **Grand total, 2 boards** | **$7,833.51** |
+| Per board | $3,916.75 |
+| Of which verified | $6,008.03  (77%) |
+| Of which estimated | $1,825.48 |
 
 ## What is a board, and what is a shop
 
-Some of the total above is not the cost of a board at all - it is tools, jigs and templates that exist afterwards and do not repeat. Splitting them out is the difference between "a board costs $3,978" and "a board costs $3,453 and I now own a vacuum rig, a crimper and a full template set".
+Some of the total above is not the cost of a board at all - it is tools, jigs and templates that exist afterwards and do not repeat. Splitting them out is the difference between "a board costs $3,917" and "a board costs $3,436 and I now own a vacuum rig, a crimper and a full template set".
 
 | | |
 |---|---:|
-| One-time tooling (incl. its share of tax) | $1,048.75 |
-| **Marginal cost of a board** | **$3,453.33** |
-| Cost of the NEXT board after these 2 | $3,453.33 |
+| One-time tooling (incl. its share of tax) | $961.83 |
+| **Marginal cost of a board** | **$3,435.84** |
+| Cost of the NEXT board after these 2 | $3,435.84 |
 
 | One-time item | $ |
 |---|---:|
 | Maker Shop Boise Basic month | $150.00 |
-| Pittsburgh 3 CFM 2-stage pump (HF 61176) | $139.99 |
+| VECOTOOLS 4.5 CFM single-stage pump, oil incl. | $57.99 |
 | VR20 vacuum regulator | $52.00 |
 | Bagging starter kit - film, peel ply, tape, breather, connector | $127.40 |
 | MDF 12 mm, full template set (14 templates) | $70.00 |

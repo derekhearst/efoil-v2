@@ -194,12 +194,19 @@ def build():
     # both is buying the same job twice.
 
     # ---------------------------------------------------- 5 vacuum bagging
-    # A 2-stage rotary vane pump runs in OIL, and it was not on the list.
-    add("5  Vacuum bagging", "Vacuum pump oil, 1 qt", 1, "ea", 15.00, EST,
-        "the HF 61176 is a rotary vane - it does not run dry, and a bag "
-        "session is exactly when you do not want to discover that")
-    add("5  Vacuum bagging", "Pittsburgh 3 CFM 2-stage pump (HF 61176)",
-        1, "ea", 139.99, OK, "one-time", tool=True)
+    # SINGLE-STAGE, and not as a saving - as the right spec. A 2-stage pump
+    # buys ULTIMATE vacuum, measured in microns, and this build must never go
+    # anywhere near full vacuum: EPS crushes around 130-200 kPa and full
+    # vacuum is 101, so the core is bedded at 5-10 inHg with the regulator
+    # doing the work. Depth was never the constraint. FLOW is - 4.5 CFM pulls
+    # a 1.5 m bag down faster than 3 CFM does, and that is the number that
+    # matters when the epoxy has already started.
+    # Oil is included with it, which deletes the separate oil line as well.
+    add("5  Vacuum bagging", "VECOTOOLS 4.5 CFM single-stage pump, oil incl.",
+        1, "ea", 57.99, OK,
+        "your listing, ASIN B0GZVLP3PL. Was a $139.99 Pittsburgh 2-stage "
+        "plus $15 of oil - $97 for ultimate vacuum we must not use",
+        tool=True)
     add("5  Vacuum bagging", "VR20 vacuum regulator", 1, "ea", 52.00, OK,
         "one-time", tool=True)
     add("5  Vacuum bagging",
@@ -293,9 +300,11 @@ def build():
     # PG11, not PG16 - and sized off the real chart: thread OD 18.03, thread
     # length 9.14, cable range 6.35-10.16 against our 6.5 mm 8 AWG silicone.
     # The model had an 16 mm hole, which is SMALLER THAN THE THREAD.
-    add("7  Module", "PG11 cable gland IP68, 10 pk", 1, "pk", 9.99, OK,
-        str(M["bay_glands"] * N) + " needed; one wire per gland - three in one "
-        "gland deforms the insert into a clover and leaks between them")
+    add("7  Module", "Gebildet PG11 gland, M18x1.5, 30 pk", 1, "pk", 9.99, OK,
+        "your listing: M18x1.5 thread (matches the 18.5 hole) and 5-10 mm "
+        "cable, against our 6.5 mm 8 AWG. " + str(M["bay_glands"] * N)
+        + " needed of 30 - one wire per gland; three in one gland deforms "
+        "the insert into a clover and leaks between them")
     # Was a 25 mm cable gland - nothing to mount one to. See the GLAND_D note
     # in blender_board.py. Undersized rubber is the seal; 4200 is the fillet.
     add("7  Module", "EPDM/neoprene sheet 1/2in, conduit bungs", 1, "sheet",
@@ -314,16 +323,20 @@ def build():
     # APIELE M12: O12 hole, M12 x 0.75, head O17.5. NOT 22 mm - that was a
     # placeholder. Its spec says PANEL 3.5 mm MAX and the wall is 4.0, so the
     # print carries a O17.5 pocket on the inside face taking it to 3.0 local.
-    # OPEN QUESTION, flagged rather than guessed: WHAT DOES THIS SWITCH?
-    # It is a MOMENTARY 3 A button - it cannot carry pack current, so it is a
-    # signal, and nothing in this BOM currently says what it signals to.
-    # The two candidates are the DALY's switch input (most smart DALYs have a
-    # two-wire switch pair that toggles the output - momentary suits that) or
-    # an anti-spark/precharge switch module (which would ALSO fix the inrush
-    # spark V1 just lives with, and is not in this BOM either).
-    # Until that is decided this line is a hole with a button in it. Resolve
-    # it before wiring: it changes whether a ~$35 anti-spark module is needed
-    # and whether momentary is even the right action.
+    # ANSWERED: it goes to the DALY's SWITCH INPUT. That is the two-wire pair
+    # that toggles the BMS output, and momentary is the right action for it.
+    #
+    # AND NO ANTI-SPARK MODULE. The reason there is nothing to protect:
+    # inrush arcing is what happens when a CONNECTOR is mated under load, and
+    # on this board no connector ever is. The pack and the ESC are hard-wired
+    # together inside the module - there is no XT150 in that path any more, as
+    # there was on V1. The 3 phase barrels are only ever parted with the pack
+    # off. The charge port mates an unpowered charger.
+    # The single remaining surge event is the BMS switching into the ESC's
+    # input capacitors, and that is a solid-state switch doing the exact job
+    # it is built for - every ebike on earth works this way.
+    # WORTH CHECKING once: some smart DALYs carry precharge on the switch
+    # input. If yours does, even that surge is soft-started for free.
     add("7  Module", "M12 IP68 momentary panel button", max(0, N - 1), "ea",
         12.49, OK, "1 on hand; this line buys the second board's")
     # SP17 2-pin flange receptacle. Chosen over an XT60-in-a-box because this
@@ -403,13 +416,16 @@ def build():
         1, "ea", 6.00, EST)
     add("9b Small but essential", "Water-ingress alarm", N, "ea", 12.00, EST,
         "V1 carried one - finds a leak before the cells do")
-    add("9b Small but essential", "Remote float / lanyard", N, "ea", 9.00,
-        EST, "the VX3 does not float; this is a $9 part against a $142 one "
-        "at the bottom of the lake")
+    # Remote float deleted - the VX3 ships with a floating band.
+    # Used ONCE, to find which clutch number on the drill gives 3 Nm. After
+    # that the drill does the 12 bolts at speed and the wrench goes in a
+    # drawer. That is the right way round: nobody torque-wrenches 12 bolts in
+    # a car park in the dark, and a clutch that has been calibrated is more
+    # repeatable than a wrench that gets skipped.
     add("9b Small but essential", "1/4 in torque wrench, 1-10 Nm", 1, "ea",
-        38.00, EST, "the hatch is captive nuts in ASA at 3 Nm - past the "
-        "hard stop more torque adds nothing to the seal and goes into the "
-        "nut pockets. Guessing that 12 times a session is how they strip",
+        38.00, EST, "CALIBRATION TOOL - set the drill clutch with it, then "
+        "use the clutch. The hatch is captive nuts in ASA against a hard "
+        "stop; past the stop more torque only loads the nut pockets",
         tool=True)
     add("9b Small but essential", "Coiled ankle leash", N, "ea", 14.99, OK,
         "you trust the remote failsafe; this is so the board stays with you")
