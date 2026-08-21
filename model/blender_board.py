@@ -1786,9 +1786,23 @@ def build_cell_holder(coll, cols, x_start, pack_y0, iz0, mat, rep):
     return z_l1, z_l2, top1
 
 
-def volume_litres(ob):
-    bm = bmesh.new()
-    bm.from_mesh(ob.data)
+def volume_litres(ob, evaluated=True):
+    """Volume in litres. EVALUATED by default - i.e. with modifiers applied.
+
+    This used to read ob.data unconditionally, which is the mesh BEFORE its
+    modifier stack. The hull carries every boolean as a live modifier - the
+    cavity, the lid recess, the mast pocket, the handle pads, the conduit -
+    so it was measuring the UNCUT blank and calling it foam: 80.96 L against
+    a true 53.5 L, over by 51%.
+    """
+    if evaluated:
+        dg = bpy.context.evaluated_depsgraph_get()
+        me = ob.evaluated_get(dg).to_mesh()
+        bm = bmesh.new()
+        bm.from_mesh(me)
+    else:
+        bm = bmesh.new()
+        bm.from_mesh(ob.data)
     v = bm.calc_volume(signed=True)
     bm.free()
     return abs(v) * 1000.0
@@ -3438,15 +3452,25 @@ def build():
     # The cavity is a sealed air volume, so it displaces water. V1's doc makes
     # the same split: foam 75.3 L, sealed displacement 96.6 L. Reporting only
     # the foam understated float by the whole cavity.
+    # Two DIFFERENT volumes, and conflating them was the bug.
+    #   foam    = the evaluated hull, i.e. what EPS you actually buy and weigh
+    #   envelope= the un-booleaned blank, i.e. the finished board's outer
+    #             shape, which is what displaces water
+    # Everything cut out of the envelope is filled by something that also
+    # displaces - lid, dense block, mast plate, handle plates, conduit - so
+    # the envelope IS the sealed displacement. It already contains the cavity.
     rep["foam_volume_L"] = round(volume_litres(hull), 2)
+    rep["hull_envelope_L"] = round(volume_litres(hull, evaluated=False), 2)
     # The void cutter now stops AT the ledge instead of running to THICK + 60,
     # so its volume IS the cavity air. The old line subtracted that overshoot
     # analytically; left in place against the new cutter it was subtracting
     # the cavity itself and reporting 0.48 L of air in a 499 x 306 x 89 box.
     cav_air = volume_litres(bpy.data.objects["V2_Cavity_Void_cut"])
     rep["cavity_air_L"] = round(max(0.0, cav_air), 2)
-    rep["sealed_displacement_L"] = round(rep["foam_volume_L"]
-                                         + rep["cavity_air_L"], 2)
+    # NOT foam + cavity_air. foam used to be the uncut blank, which already
+    # contained the cavity, so adding cavity_air counted it twice and the
+    # board read ~15 L more buoyant than it is.
+    rep["sealed_displacement_L"] = rep["hull_envelope_L"]
     rep["hull_volume_L"] = rep["sealed_displacement_L"]
     rep["bbox_fill_pct"] = round(rep["sealed_displacement_L"] * 1e6
                                  / (LENGTH * WIDTH * THICK) * 100, 1)
