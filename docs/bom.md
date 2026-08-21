@@ -48,10 +48,13 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | VECOTOOLS 4.5 CFM single-stage pump, oil incl. | 1 | ea | $57.99 | $57.99 | verified | your listing, ASIN B0GZVLP3PL. Was a $139.99 Pittsburgh 2-stage plus $15 of oil - $97 for ultimate vacuum we must not use |
 | VR20 vacuum regulator | 1 | ea | $52.00 | $52.00 | verified | one-time |
 | Bagging starter kit - film, peel ply, tape, breather, connector | 1 | kit | $127.40 | $127.40 | verified | one-time + first board |
-| Vac bag film, 5 yd | 1 | roll | $24.95 | $24.95 | verified |  |
-| Breather / bleeder cloth | 4 | yd | $13.95 | $55.80 | verified |  |
-| Low-temp release film | 4 | yd | $11.28 | $45.12 | verified |  |
-| **subtotal** | | | | **$363.26** | | |
+| Vacuum gauge, 0-30 inHg, 1/4 NPT | 1 | ea | $18.00 | $18.00 | estimate | reads the BAG, not the pump - tee it in at the bag end. The regulator sets the level; this is how you know it worked |
+| Vac bag film, 5 yd | 3 | roll | $24.95 | $74.85 | verified | 3.06 m2 a hull session; 2 hulls + 4 lids + a practice piece + one re-do. Single-use on the hull, reusable on flat parts |
+| Peel ply | 6 | yd | $12.50 | $75.00 | verified | was only in the starter kit, and one kit's worth does not cover 6.12 m2 of part |
+| Breather / bleeder cloth | 6 | yd | $13.95 | $83.70 | verified |  |
+| Low-temp release film | 6 | yd | $11.28 | $67.68 | verified |  |
+| Sealant tape, 25 ft roll | 4 | roll | $12.00 | $48.00 | estimate | 31 m of bag perimeter across the project; the kit has one roll |
+| **subtotal** | | | | **$604.62** | | |
 
 ## 6  Hatch and seal
 
@@ -188,13 +191,11 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 |---|---:|---|---:|---:|---|---|
 | Spray adhesive + sacrificial MDF, CNC hold-down | 1 | set | $35.00 | $35.00 | estimate | foam is taped down, not clamped |
 | Release wax / PVA for the cavity caul | 1 | set | $20.00 | $20.00 | estimate |  |
-| Spare vacuum bagging film | 1 | roll | $40.00 | $40.00 | estimate | a bag that leaks mid-cure ends the session |
-| EPS offcut for a CNC test piece | 1 | ea | $15.00 | $15.00 | estimate | prove CAM, workholding and the flip before a real core |
 | Dowel pins + drill, two-sided registration | 1 | set | $12.00 | $12.00 | estimate |  |
 | 1/2 in single-flute + 1/2 in ball nose | 1 | set | $70.00 | $70.00 | estimate | if the shop does not have foam-suitable tooling |
 | Compact router kit, fixed + plunge bases | 1 | ea | $169.00 | $169.00 | estimate | DWP611PK class; PRICE UNVERIFIED - retailers bot-block scraping, check before ordering |
 | 1/4in carbide bits + guide bushings | 1 | set | $60.00 | $60.00 | estimate | flush trim, straight, roundover; CARBIDE - G10 destroys HSS. NOT the same bits as the 1/2in CNC line above |
-| **subtotal** | | | | **$421.00** | | |
+| **subtotal** | | | | **$366.00** | | |
 
 ## 10e Layup kit
 
@@ -226,27 +227,27 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | Item | Qty | Unit | Unit $ | Ext $ | | Note |
 |---|---:|---|---:|---:|---|---|
 | Shipping - G10, Divinycell, epoxy hazmat | 1 | allow | $220.00 | $220.00 | estimate | heavy and hazmat lines |
-| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $443.41 | $443.41 | verified |  |
-| **subtotal** | | | | **$663.41** | | |
+| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $454.59 | $454.59 | verified |  |
+| **subtotal** | | | | **$674.59** | | |
 
 ## Totals
 
 | | |
 |---|---:|
-| **Grand total, 2 boards** | **$7,833.51** |
-| Per board | $3,916.75 |
-| Of which verified | $6,008.03  (77%) |
-| Of which estimated | $1,825.48 |
+| **Grand total, 2 boards** | **$8,031.05** |
+| Per board | $4,015.52 |
+| Of which verified | $6,194.57  (77%) |
+| Of which estimated | $1,836.48 |
 
 ## What is a board, and what is a shop
 
-Some of the total above is not the cost of a board at all - it is tools, jigs and templates that exist afterwards and do not repeat. Splitting them out is the difference between "a board costs $3,917" and "a board costs $3,436 and I now own a vacuum rig, a crimper and a full template set".
+Some of the total above is not the cost of a board at all - it is tools, jigs and templates that exist afterwards and do not repeat. Splitting them out is the difference between "a board costs $4,016" and "a board costs $3,533 and I now own a vacuum rig, a crimper and a full template set".
 
 | | |
 |---|---:|
-| One-time tooling (incl. its share of tax) | $961.83 |
-| **Marginal cost of a board** | **$3,435.84** |
-| Cost of the NEXT board after these 2 | $3,435.84 |
+| One-time tooling (incl. its share of tax) | $965.01 |
+| **Marginal cost of a board** | **$3,533.02** |
+| Cost of the NEXT board after these 2 | $3,533.02 |
 
 | One-time item | $ |
 |---|---:|
@@ -254,11 +255,11 @@ Some of the total above is not the cost of a board at all - it is tools, jigs an
 | VECOTOOLS 4.5 CFM single-stage pump, oil incl. | $57.99 |
 | VR20 vacuum regulator | $52.00 |
 | Bagging starter kit - film, peel ply, tape, breather, connector | $127.40 |
+| Vacuum gauge, 0-30 inHg, 1/4 NPT | $18.00 |
 | MDF 12 mm, full template set (14 templates) | $70.00 |
 | M8 x 1.25 tap set + 6.8 mm drill | $18.00 |
 | 1/4 in torque wrench, 1-10 Nm | $38.00 |
 | Hydraulic lug crimper, 6-70 mm2 | $38.00 |
-| EPS offcut for a CNC test piece | $15.00 |
 | Dowel pins + drill, two-sided registration | $12.00 |
 | 1/2 in single-flute + 1/2 in ball nose | $70.00 |
 | Compact router kit, fixed + plunge bases | $169.00 |

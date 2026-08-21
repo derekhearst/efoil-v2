@@ -239,9 +239,38 @@ def build():
         1, "kit", 127.40, OK, "one-time + first board", tool=True)
     # Fibre Glast, per-item rather than a kit: film 5 yd $24.95, breather
     # 1 yd $13.95, release film 1 yd $11.28.
-    add("5  Vacuum bagging", "Vac bag film, 5 yd", 1, "roll", 24.95, OK)
-    add("5  Vacuum bagging", "Breather / bleeder cloth", 2 * N, "yd", 13.95, OK)
-    add("5  Vacuum bagging", "Low-temp release film", 2 * N, "yd", 11.28, OK)
+    # A VACUUM GAUGE, which was missing, and on this build it is not an
+    # accessory - it is the thing that stops the bag crushing the core. EPS
+    # goes at 130-200 kPa and full vacuum is 101, so the target is 5-10 inHg
+    # and "as much as it will pull" is the wrong answer. Without a gauge you
+    # cannot tell 7 inHg from 25.
+    add("5  Vacuum bagging", "Vacuum gauge, 0-30 inHg, 1/4 NPT", 1, "ea",
+        18.00, EST, "reads the BAG, not the pump - tee it in at the bag end. "
+        "The regulator sets the level; this is how you know it worked",
+        tool=True)
+    # FILM IS THE CHEAP PART. 3.06 m2 an envelope-bagged hull, about $11 a
+    # session, ~$75 for the project. It is also the one thing you should NOT
+    # try to reuse on a shaped part: nylon film stretches permanently over a
+    # compound curve, so a second use starts with a bag that no longer fits
+    # and has work-hardened where it bridged. Reuse it for flat lids if you
+    # like. 3 rolls covers 6 sessions with a re-do in hand.
+    add("5  Vacuum bagging", "Vac bag film, 5 yd", 3, "roll", 24.95, OK,
+        "3.06 m2 a hull session; 2 hulls + 4 lids + a practice piece + one "
+        "re-do. Single-use on the hull, reusable on flat parts")
+    # These three are SACRIFICIAL, every one of them - they come out of the
+    # bag full of cured resin. Nothing in this group is reusable, which is
+    # the honest answer to "can we reuse it": the film sometimes, these never.
+    # Sized off real area: 6.12 m2 of part across two boards (2 x 2.51 hull
+    # + 2 x 0.55 of lids), against 1.39 m2 per yard of 60 in cloth. 4 yd was
+    # 5.57 - short before any mistakes.
+    add("5  Vacuum bagging", "Peel ply", 3 * N, "yd", 12.50, OK,
+        "was only in the starter kit, and one kit's worth does not cover "
+        "6.12 m2 of part")
+    add("5  Vacuum bagging", "Breather / bleeder cloth", 3 * N, "yd", 13.95, OK)
+    add("5  Vacuum bagging", "Low-temp release film", 3 * N, "yd", 11.28, OK)
+    # 5.2 m of bag perimeter a session, 6 sessions = 31 m, and a roll is 7.6.
+    add("5  Vacuum bagging", "Sealant tape, 25 ft roll", 4, "roll", 12.00,
+        EST, "31 m of bag perimeter across the project; the kit has one roll")
 
     # ----------------------------------------------------- 6 hatch and seal
     # O3 CORD, BONDED IN - kept after the aluminium ring was reverted, because
@@ -578,10 +607,8 @@ def build():
         1, "set", 35.00, EST, "foam is taped down, not clamped")
     add("10d Shop consumables", "Release wax / PVA for the cavity caul",
         1, "set", 20.00, EST)
-    add("10d Shop consumables", "Spare vacuum bagging film", 1, "roll", 40.00,
-        EST, "a bag that leaks mid-cure ends the session")
-    add("10d Shop consumables", "EPS offcut for a CNC test piece", 1, "ea",
-        15.00, EST, "prove CAM, workholding and the flip before a real core", tool=True)
+    # Spare bagging film folded into the 3 rolls in section 5 - it was a
+    # duplicate of the same consumable in a different section.
     add("10d Shop consumables", "Dowel pins + drill, two-sided registration",
         1, "set", 12.00, EST, tool=True)
     add("10d Shop consumables", "1/2 in single-flute + 1/2 in ball nose",
