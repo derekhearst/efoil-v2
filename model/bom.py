@@ -202,6 +202,31 @@ def build():
     # a 1.5 m bag down faster than 3 CFM does, and that is the number that
     # matters when the epoxy has already started.
     # Oil is included with it, which deletes the separate oil line as well.
+    #
+    # WHY NOT A HAND PUMP - asked, and checked against foil.zone rather than
+    # guessed. The "Very cheap vacuum pump for vacuum bagging" thread (Apr 25,
+    # /t/23468) laminated a whole board and a foil wing on a $10 DIAPHRAGM
+    # pump: 6 L/min, several minutes to pull a mattress-bag down, max -70 kPa.
+    # Two things fall out of that, and they point opposite ways.
+    #  1. PULL-DOWN IS NOT THE PROBLEM. 6 L/min did it, which is 1/21st of
+    #     this pump. A hand pump would do it too - a 1.4 m bag holds roughly
+    #     23 litres of loose air, so about 900 strokes at 25 cc. Tedious, not
+    #     impossible.
+    #  2. HOLDING IS THE PROBLEM, and it is what kills the hand pump. That
+    #     thread's pump still cycles "a couple of seconds every 10-20 minutes"
+    #     once sealed - a bag always leaks a little. Over a 6 hour epoxy cure
+    #     that is ~24 top-ups, and you have to be standing there for all of
+    #     them. Miss a few and the laminate cures at partial pressure.
+    # So: electric, but this is NOT bought for capacity. It is bought so that
+    # nobody has to babysit a cure, across the 8-10 bagging sessions two hulls
+    # plus four lids need. The thing being protected is the hull - the single
+    # most expensive and most labour-intensive part on the board - against a
+    # bag that sags at hour three.
+    # A $10 diaphragm pump plus a vacuum SWITCH would genuinely work and is
+    # what the forum does. Note it needs a switch, not the VR20 bleed
+    # regulator below: a bleed regulator holds level by admitting air, which
+    # means the pump runs continuously, and cheap diaphragm pumps are not
+    # continuous-duty. That swap saves ~$25 and adds a failure mode.
     add("5  Vacuum bagging", "VECOTOOLS 4.5 CFM single-stage pump, oil incl.",
         1, "ea", 57.99, OK,
         "your listing, ASIN B0GZVLP3PL. Was a $139.99 Pittsburgh 2-stage "
