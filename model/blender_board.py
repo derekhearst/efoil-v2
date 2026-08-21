@@ -249,6 +249,15 @@ RIM_SEG_N = 6
 # able to open under the laminate. Neck narrower than head, so it can only go
 # together one way and cannot pull apart in the ring's plane.
 RIM_DT_NECK, RIM_DT_HEAD, RIM_DT_DEPTH = 8.0, 14.0, 12.0
+# WHERE the dovetail sits across the 34 mm band, from the OUTER edge. NOT the
+# middle. The band is not empty: the O-ring groove occupies t = 22..26, and a
+# dovetail centred at 17 puts its head at 10..24 - two millimetres of it
+# inside the groove, with its clearance gaps under the cord.
+# The captive nuts (t = 7.4..16.6) turn out not to matter: the nearest nut to
+# any joint is 31 mm away along the ring, so at a joint the band is clear from
+# the outer edge to the groove. 22 mm to work in.
+# 11 puts the head at 4..18: 4 mm off the outer edge, 4 mm off the groove.
+RIM_DT_POS = 11.0
 RIM_DT_CLR = 0.15                  # per face; ASA prints tight, do not go 0
 # ACETONE WELD, not epoxy. ASA dissolves in acetone the way ABS does, so a
 # brushed acetone/ASA-scrap slurry on both faces makes the joint one piece of
@@ -2027,7 +2036,7 @@ def chamfer_loft(name, x0, x1, y0, y1, corner_r, z_top, c, sign,
 
 
 def dovetail_prism(name, px, py, along, out, grow, z0, z1, coll,
-                   neck, head, depth, band, back=0.0, over=0.0):
+                   neck, head, depth, band, back=0.0, over=0.0, pos=None):
     """Trapezoid dovetail across a band, extruded in Z.
 
     `along` is the unit vector from the outer edge inward across `band`;
@@ -2040,7 +2049,13 @@ def dovetail_prism(name, px, py, along, out, grow, z0, z1, coll,
     face, which is a leak.
     """
     n, h = neck + 2 * grow, head + 2 * grow
-    m = band / 2.0
+    # `pos` is where the dovetail sits ACROSS the band, measured from the
+    # outer edge. It defaults to the middle, which is wrong whenever there is
+    # something else living in the band - and on the rim ring there is: the
+    # O-RING GROOVE. Centred, the head ran to t=24 and the groove starts at
+    # t=22, so the dovetail's 0.15 mm clearance gaps sat INSIDE the seal
+    # groove, directly under the cord. A designed void under an O-ring.
+    m = band / 2.0 if pos is None else pos
     pts = []
     for t, o in ((m - n / 2, -back), (m - n / 2, 0.0), (m - h / 2, depth),
                  (m + h / 2, depth), (m + n / 2, 0.0), (m + n / 2, -back)):
@@ -2774,9 +2789,16 @@ def build():
                          f"{100*(1-CHAN_D/CORD_D):.0f}% squeeze, hard stop")
     rep["hatch_groove_fill_pct"] = round(100.0 * _cord_a / (CHAN_W * CHAN_D))
     rep["hatch_stop_is_hard"] = True    # lid lands G10 on G10, not on rubber
-    rep["ring_face_machining"] = ("groove routed AFTER glassing, off a "
-                                  "template - see CNC part 14")
-    rep["lid_top_z_mm"] = round(z0 + LID_T, 1)
+    # STALE and wrong since the ring became printed ASA: there is no routed
+    # groove and no template 14 any more. The groove is PRINTED, and the
+    # laminate is masked off the ring's top face rather than covering it.
+    rep["ring_face_machining"] = (
+        "NONE. Groove is printed into the ring - depth is layer count, "
+        "repeatable to ~0.05 mm, and there is no router pass on a finished "
+        "board at all. Mask the ring's top face during layup so the laminate "
+        "stops at its outer edge; the thickened-epoxy fillet in that corner "
+        "seals the joint, and that joint sits 24 mm OUTBOARD of the cord, on "
+        "the wet side of the seal")    rep["lid_top_z_mm"] = round(z0 + LID_T, 1)
     # Against the REAL deck, not THICK. THICK is only the deck height at the
     # thickest station; the deck line rises above it toward the nose, so a flat
     # lid sits slightly proud at the aft end of the hatch and slightly sunk at
@@ -2858,7 +2880,7 @@ def build():
     def dovetail(name, px, py, along, out, grow, back=0.0, over=0.0):
         return dovetail_prism(name, px, py, along, out, grow, z0, z1, coll,
                               RIM_DT_NECK, RIM_DT_HEAD, RIM_DT_DEPTH,
-                              RIM_W, back, over)
+                              RIM_W, back, over, pos=RIM_DT_POS)
 
     # (name, clip box, [(joint x, joint y, along, male-direction)])
     segs = [
@@ -2910,6 +2932,12 @@ def build():
     rep["rim_filler_len_mm"] = round(jx1 - jx0)
     rep["rim_joint_method"] = RIM_JOINT
     rep["rim_dovetail_mm"] = (RIM_DT_NECK, RIM_DT_HEAD, RIM_DT_DEPTH)
+    # The dovetail must not touch the seal groove. Both measured across the
+    # band from the OUTER edge.
+    _dt_in = RIM_DT_POS + RIM_DT_HEAD / 2 + RIM_DT_CLR
+    _gr_out = RIM_W - CHAN_INSET - CHAN_W / 2
+    rep["dovetail_to_groove_mm"] = round(_gr_out - _dt_in, 1)
+    rep["dovetail_to_rim_edge_mm"] = round(RIM_DT_POS - RIM_DT_HEAD / 2, 1)
     # Two checks worth having, because both caught real bugs while this was
     # written. The pieces must ADD BACK UP to the ring - over 100% means they
     # interfere or stand proud, well under means a gap - and nothing may sit
@@ -4707,6 +4735,13 @@ def build():
     if not rep["module_piece_fits_bed"]:
         fails.append("a module print piece does not fit the bed: "
                      f"{rep['module_piece_bbox_mm']} vs {PRINT_BED:.0f}")
+    if rep["dovetail_to_groove_mm"] < 2.0:
+        fails.append("the rim dovetail runs into the O-ring groove: "
+                     f"{rep['dovetail_to_groove_mm']} mm - its clearance gaps "
+                     "would sit under the cord")
+    if rep["dovetail_to_rim_edge_mm"] < 2.0:
+        fails.append("the rim dovetail breaks out of the ring's outer edge: "
+                     f"{rep['dovetail_to_rim_edge_mm']} mm")
     if not rep["rim_seg_fits_bed"]:
         fails.append("a rim segment does not fit the print bed: "
                      f"{rep['rim_seg_max_bbox_mm']} vs {PRINT_BED:.0f}")
