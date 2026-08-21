@@ -211,6 +211,17 @@ RIM_W = 34.0                       # bonded-on G10 ring, outboard of the opening
 #   heat     Follows creep. At 0.4% of yield a hot deck does not matter.
 # It saves $226 and 699 g a board, which is the best rate on the board because
 # it is the only change that takes out weight AND money.
+# WHY ASA AND NOT PETG, for both this and the module shell. It is not the UV
+# resistance ASA is sold on - the ring is glassed over and never sees light.
+# It is HEAT, and it is not close:
+#     PETG  HDT 70 C     ABS/ASA  HDT 95 C     PC  HDT 130 C
+# A dark deck on a trailer in a Boise August runs 70-80 C at the skin, and
+# this ring sits directly under it. PETG would be AT its heat-deflection
+# temperature while clamped by 12 bolts - the one condition where creep and
+# temperature multiply. ASA has 25 C of headroom on the same day.
+# ABS matches ASA on heat but is the one to avoid outdoors; PC beats both and
+# is miserable to print, hygroscopic, and unnecessary at 25 C of margin.
+# V1 already printed its battery enclosure in ASA on this printer.
 RIM_T = 12.7                       # printed ASA, thickness unchanged
 # Segmentation. The ring is 593 x 387 and the A1 bed is 256, so it prints in
 # pieces - but the pieces are chosen so no joint lands on a CORNER, which is
@@ -263,9 +274,13 @@ MOD_DT_NECK, MOD_DT_HEAD, MOD_DT_DEPTH = 5.0, 9.0, 10.0
 # passes 25 mm webbing because it spans the lug's FULL width.
 MOD_HANDLE_Y = 35.0                # lug centres, either side of the seam
 MOD_HANDLE_W, MOD_HANDLE_H = 28.0, 34.0
-MOD_HANDLE_PROUD = 20.0            # into the service bay, not the side gap
-MOD_HANDLE_SLOT_H = 14.0           # 25 mm webbing doubled, plus slack
-MOD_HANDLE_BAR = 6.0               # bar in front of the slot, and root behind
+# FLAT PADS, not lugs with slots through them. A lug with a hole is a fitting
+# you then have to thread something through and hope it does not saw on the
+# edge; a pad with two threaded holes is just somewhere to BOLT a cloth handle,
+# which is all this ever needed. Same answer as the board's rail handles.
+MOD_HANDLE_PROUD = 8.0             # pad + 4 mm wall = 12, enough for a M5 x 10
+MOD_HANDLE_INS_D, MOD_HANDLE_INS_L = 6.4, 10.0   # M5 heat-set, printed pilot
+MOD_HANDLE_BOLT_DZ = 18.0          # the two bolts, stacked up the pad
 PRINT_BED = 256.0                  # Bambu A1
 # A real GROOVE, because a squashed strip has no hard stop and the seal load
 # then depends on how hard each of 13 bolts was done up. With a groove the lid
@@ -337,7 +352,17 @@ ENC_GAP = GLASS_R + CAV_LAM + 2.0
 # it is one box instead of two (-833 g) and a sandwich lid instead of 4 mm alu
 # (-857 g), both of which survive intact here.
 # Printing also puts heat-set inserts back on their proper material.
-ENC_WALL = 4.0                     # printed PETG, V1's proven wall
+# WHY 4 mm, checked rather than inherited. The wall is a container, not
+# structure - the hull carries every riding load - so the case that sizes it
+# is a FLOODED CAVITY pressing on it from outside. At 1 m of head (10 kPa) the
+# panel spans its SHORT way, 75 mm of wall height (443 x 75 is aspect 5.9, so
+# it behaves as a strip across the short span, not the long one):
+#     sigma = 2.64 MPa against ASA's 45 -> 17x, deflection 0.39 mm
+# Printed parts are weak across layers, and these walls print with the layers
+# horizontal, so knock it to ~60%: still 10x. 5 mm would add ~170 g a board to
+# buy margin on a number that is already 10x, and V1 has been running 4 mm
+# printed walls all season. 4 mm.
+ENC_WALL = 4.0                     # printed ASA, V1's proven wall
 # 1/8" 5052 ALUMINIUM, not G10. Two reasons, and the weight is the price:
 #   thermal  The ESC sits sealed in a box with 128 cells and no airflow. G10
 #            conducts at ~0.3 W/mK, aluminium at ~150 - a factor of 500. The
@@ -3450,13 +3475,17 @@ def build():
                  ex0 - MOD_HANDLE_PROUD, ex0, hy - MOD_HANDLE_W / 2,
                  hy + MOD_HANDLE_W / 2, hz - MOD_HANDLE_H / 2,
                  hz + MOD_HANDLE_H / 2, coll, m_rib)
-        sl = box(f"V2_Mod_HandleSlot_cut{sfx}",
-                 ex0 - MOD_HANDLE_PROUD + MOD_HANDLE_BAR,
-                 ex0 - MOD_HANDLE_BAR,
-                 hy - MOD_HANDLE_W / 2 - 2.0, hy + MOD_HANDLE_W / 2 + 2.0,
-                 hz - MOD_HANDLE_SLOT_H / 2, hz + MOD_HANDLE_SLOT_H / 2, coll)
-        boolean(bs, sl)
-        sl.hide_set(True); sl.hide_render = True
+        # Two M5 heat-set inserts up the pad. The strap end goes on with a
+        # fender washer over the webbing; the loop spans between the two pads
+        # so the WEBBING crosses the print seam and no rigid part does.
+        for sz in (-1, 1):
+            iz = hz + sz * MOD_HANDLE_BOLT_DZ / 2
+            ic = cyl_x(f"V2_Mod_HandleInsCut{sfx}{sz}", hy, iz,
+                       ex0 - MOD_HANDLE_PROUD - 1.0,
+                       ex0 - MOD_HANDLE_PROUD + MOD_HANDLE_INS_L,
+                       MOD_HANDLE_INS_D, coll)
+            boolean(bs, ic)
+            ic.hide_set(True); ic.hide_render = True
     rib_area = ENC_RIB_N * 2 * ENC_RIB_W * (wall_top - wall_z0)
     rep["joint"] = (f"{JOINT_GROOVE_D:.1f} mm locating groove in the floor; "
                     f"shell prints in {ENC_RIB_N} L-shaped pieces split at "
@@ -4050,10 +4079,13 @@ def build():
     rep["module_dovetail_fits_rib"] = 2 * MOD_DT_DEPTH <= ENC_RIB_W
     rep["module_lift_handle"] = (
         f"2 printed lugs on the AFT wall at y +/-{MOD_HANDLE_Y:.0f}, "
-        f"{MOD_HANDLE_PROUD:.0f} mm into the service bay, with a "
-        f"{MOD_HANDLE_SLOT_H:.0f} mm through-slot for a 25 mm webbing loop. "
-        f"One per print piece, clear of the seam. Aft because the module "
-        f"butts the forward cavity wall - this is the only reachable face")
+        f"{MOD_HANDLE_PROUD:.0f} mm proud, 2 x M5 heat-set each, for a 25 mm "
+        f"webbing handle bolted on with fender washers. One pad per print "
+        f"piece, so the webbing crosses the seam and no rigid part does. Aft "
+        f"because the module butts the forward cavity wall - this is the only "
+        f"reachable face")
+    rep["module_handle_insert_backing_mm"] = round(
+        MOD_HANDLE_PROUD + ENC_WALL - MOD_HANDLE_INS_L, 1)
     # It projects into the BAY now, not the side gap, so that is what to check.
     rep["handle_clear_of_cavity_mm"] = round(WIRE_BAY_LEN - MOD_HANDLE_PROUD, 1)
     rep["handle_to_conduit_y_mm"] = round(
@@ -4529,6 +4561,9 @@ def build():
         fails.append(f"module pieces sum to {rep['module_piece_sum_pct']}% of "
                      "the shell - something is clipped off, interfering, or "
                      "standing outside the part")
+    if rep["module_handle_insert_backing_mm"] < 1.0:
+        fails.append("the module handle inserts break through the wall: "
+                     f"{rep['module_handle_insert_backing_mm']} mm left")
     if rep["handle_strip_buried_mm3"] > 1.0:
         fails.append("the handle strip has no pocket - "
                      f"{rep['handle_strip_buried_mm3']} mm3 of it is inside "
