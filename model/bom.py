@@ -331,7 +331,11 @@ def build():
         1, "tube", 12.00, EST,
         "a thin continuous bead under the cord. It cannot then migrate, lift "
         "out, or be pinched under the lid in a dark car park")
-    add("6  Hatch and seal", "M5 x 16 A4 stainless socket cap",
+    # M5 x 25, not x 16. The bolt has to cross the 14 mm lid, then 6 mm of
+    # ring above the nut, then 4 through the nut = 24. A 16 would have stood
+    # 8 mm short of the thread it is supposed to reach - it would not have
+    # picked up the nut at all.
+    add("6  Hatch and seal", "M5 x 25 A4 stainless socket cap",
         M["hatch_bolts"] * N, "ea", 0.55, EST)
     # NOT the $0.14 self-tapping brass insert that was here: driving a coarse
     # thread into a brittle laminate wedges it between plies, which is exactly
@@ -341,6 +345,13 @@ def build():
     # M5 wire-thread inserts and the M5 STI tap + tangless tool are GONE with
     # the captive nuts - $62 of them. Renaming a line to "REMOVED" and leaving
     # its quantity at 1 is not removing it; both were still being billed.
+    # The washer is what sets how hard you can do these up. The nut alone
+    # bears on its own 9.24 mm across-corners circle and tears out of 6 mm of
+    # ASA at 5.2 Nm - only 2.6x the 2 Nm spec, and a hand on a hex key hits 5
+    # without trying. On a O15 penny washer that becomes 8.5 Nm, 4.2x.
+    add("6  Hatch and seal", "M5 penny washer O15, under the captive nut",
+        M["hatch_bolts"] * N + 10, "ea", 0.18, EST,
+        "goes in at the SAME print pause as the nut, underneath it")
     add("6  Hatch and seal", "M5 A4 hex nut, CAPTIVE - printed into the ring",
         M["hatch_bolts"] * N + 10, "ea", 0.22, EST,
         "dropped in at a print pause at Z=6.0; steel thread, so a hatch that "
@@ -646,22 +657,19 @@ def build():
     add("10c Restraint & fitout", "EVA bedding pads", N, "set", 12.00, EST)
 
     # ------------------------------------------------- 10d shop consumables
-    # THE HOT BOX, and on an autumn-to-spring build it is not optional - it
-    # is what makes the whole schedule possible. A plastic tent over the
-    # bagged part with a thermostatic heater inside holds 70 F while the shop
-    # sits at 45, which fixes three things at once:
-    #   - the epoxy actually cures, and cures fully
-    #   - sealant tape tacks. Cold tape does not stick, and that is a leaking
-    #     bag found at hour three
-    #   - amine blush, which is far worse cold and damp, gets much milder
-    # EPS is happy to ~75 C so a 20 C box is nothing to it.
-    add("10d Shop consumables", "Hot box - poly sheet, frame, thermostat heater",
-        1, "set", 85.00, EST,
-        "a 45 F garage cannot cure epoxy; this is what lets the build run "
-        "through the winter instead of stopping in November", tool=True)
+    # The thermometer stays, and matters MORE without a hot box - it is the
+    # instrument the whole "time it to the weather" plan runs on. Which
+    # hardener goes in the pot is a reading, not a guess.
     add("10d Shop consumables", "Thermometer / hygrometer, 2 pk", 1, "pk",
-        14.00, EST, "one in the box, one in the shop - the hardener choice "
-        "is a thermometer decision")
+        14.00, EST, "one in the shop, one by the part. Slow needs 60 F, fast "
+        "needs 40-45, and below ~35 nothing cures at all")
+    # NO HOT BOX. Derek's call: time the wet layups to the weather instead of
+    # heating a tent. That works, and it is what the FAST hardener is for -
+    # 40-45 F against slow's 60 opens up most of the shoulder season. What it
+    # costs is SCHEDULE: deep winter is simply out, so the build pauses rather
+    # than slows. Plan the six bagging sessions around that, and keep an eye
+    # on blush - it is worse cold and damp, so wash every laminate before any
+    # secondary bond.
     add("10d Shop consumables", "Spray adhesive + sacrificial MDF, CNC hold-down",
         1, "set", 35.00, EST, "foam is taped down, not clamped")
     add("10d Shop consumables", "Release wax / PVA for the cavity caul",
@@ -672,23 +680,24 @@ def build():
         1, "set", 12.00, EST, tool=True)
     add("10d Shop consumables", "1/2 in single-flute + 1/2 in ball nose",
         1, "set", 70.00, EST, "if the shop does not have foam-suitable tooling", tool=True)
-    # Router. Not strictly required if the CNC bureau does every G10 part -
-    # but every template in templates.py exists so that the parts CAN be cut
-    # by hand, and that fallback is worth nothing without the machine to use
-    # it. It also flush-trims the laminate overhang, which nothing else here
-    # does. Compact 1/4in shank, both bases: the plunge base is what lets it
-    # start a groove in the middle of a panel rather than at an edge.
-    # Full-size 2-1/4 HP is the wrong buy - it is unwieldy on 22 mm strips.
-    add("10d Shop consumables", "Compact router kit, fixed + plunge bases",
-        1, "ea", 169.00, EST,
-        "DWP611PK class; PRICE UNVERIFIED - retailers bot-block scraping, "
-        "check before ordering", tool=True)
-    # G10 eats steel. These must be carbide, and the dust is a respirator
-    # job - glass dust, not wood dust.
-    add("10d Shop consumables", "1/4in carbide bits + guide bushings",
-        1, "set", 60.00, EST,
-        "flush trim, straight, roundover; CARBIDE - G10 destroys HSS. NOT "
-        "the same bits as the 1/2in CNC line above", tool=True)
+    # NO ROUTER. Derek already owns a rotary tool with a router/plunge base -
+    # a Dremel-class spinner - and for what is actually left to rout that is
+    # the RIGHT tool, not a compromise:
+    #   - opening the seal groove is a 2.5 mm cutter taking 0.6 mm of glass
+    #     off a filler strip. Light, shallow, and needing control rather than
+    #     power. A 1.25 HP router is the wrong end of the tool for it.
+    #   - everything else that used to want a router is gone. The rebate and
+    #     the strip pockets are CNC'd into the foam; the module shell and rim
+    #     ring print; the floor, mast plate and handle strips are aluminium
+    #     and are bandsaw-and-drill work.
+    #   - flush-trimming the laminate overhang is a sanding block job.
+    # That is $229 of router and 1/4in carbide that this build does not need.
+    # If the rotary tool's base cannot hold depth on a 590 mm run, THAT is
+    # when to buy a trim router - not before.
+    add("10d Shop consumables", "Rotary-tool router base + collets, if needed",
+        1, "set", 35.00, EST,
+        "you have the tool; this is only if the base you have will not hold "
+        "depth over the groove run", tool=True)
 
 
     # ------------------------------------------- 10e layup, the actual doing

@@ -64,10 +64,11 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | Paste wax, releasing the groove filler | 1 | ea | $12.00 | $12.00 | estimate | the filler must NOT bond - it comes back out after the glass goes over it |
 | 2.5 mm straight cutter, groove opening | 2 | ea | $14.00 | $28.00 | estimate | undersize in a 4 mm groove on purpose: 0.75 mm of lateral slop before it can touch the sealing land. Two, because breaking one mid-groove on a finished board is the bad day |
 | Silicone adhesive, bonding the cord into groove | 1 | tube | $12.00 | $12.00 | estimate | a thin continuous bead under the cord. It cannot then migrate, lift out, or be pinched under the lid in a dark car park |
-| M5 x 16 A4 stainless socket cap | 24 | ea | $0.55 | $13.20 | estimate |  |
+| M5 x 25 A4 stainless socket cap | 24 | ea | $0.55 | $13.20 | estimate |  |
+| M5 penny washer O15, under the captive nut | 34 | ea | $0.18 | $6.12 | estimate | goes in at the SAME print pause as the nut, underneath it |
 | M5 A4 hex nut, CAPTIVE - printed into the ring | 34 | ea | $0.22 | $7.48 | estimate | dropped in at a print pause at Z=6.0; steel thread, so a hatch that comes off every ride never wears anything out |
 | MDF 12 mm, full template set (14 templates) | 2 | sheet | $35.00 | $70.00 | estimate | one-time; cut once, used on both boards and any future one |
-| **subtotal** | | | | **$158.68** | | |
+| **subtotal** | | | | **$164.80** | | |
 
 ## 7  Module
 
@@ -191,15 +192,13 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 
 | Item | Qty | Unit | Unit $ | Ext $ | | Note |
 |---|---:|---|---:|---:|---|---|
-| Hot box - poly sheet, frame, thermostat heater | 1 | set | $85.00 | $85.00 | estimate | a 45 F garage cannot cure epoxy; this is what lets the build run through the winter instead of stopping in November |
-| Thermometer / hygrometer, 2 pk | 1 | pk | $14.00 | $14.00 | estimate | one in the box, one in the shop - the hardener choice is a thermometer decision |
+| Thermometer / hygrometer, 2 pk | 1 | pk | $14.00 | $14.00 | estimate | one in the shop, one by the part. Slow needs 60 F, fast needs 40-45, and below ~35 nothing cures at all |
 | Spray adhesive + sacrificial MDF, CNC hold-down | 1 | set | $35.00 | $35.00 | estimate | foam is taped down, not clamped |
 | Release wax / PVA for the cavity caul | 1 | set | $20.00 | $20.00 | estimate |  |
 | Dowel pins + drill, two-sided registration | 1 | set | $12.00 | $12.00 | estimate |  |
 | 1/2 in single-flute + 1/2 in ball nose | 1 | set | $70.00 | $70.00 | estimate | if the shop does not have foam-suitable tooling |
-| Compact router kit, fixed + plunge bases | 1 | ea | $169.00 | $169.00 | estimate | DWP611PK class; PRICE UNVERIFIED - retailers bot-block scraping, check before ordering |
-| 1/4in carbide bits + guide bushings | 1 | set | $60.00 | $60.00 | estimate | flush trim, straight, roundover; CARBIDE - G10 destroys HSS. NOT the same bits as the 1/2in CNC line above |
-| **subtotal** | | | | **$465.00** | | |
+| Rotary-tool router base + collets, if needed | 1 | set | $35.00 | $35.00 | estimate | you have the tool; this is only if the base you have will not hold depth over the groove run |
+| **subtotal** | | | | **$186.00** | | |
 
 ## 10e Layup kit
 
@@ -231,27 +230,27 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | Item | Qty | Unit | Unit $ | Ext $ | | Note |
 |---|---:|---|---:|---:|---|---|
 | Shipping - G10, Divinycell, epoxy hazmat | 1 | allow | $220.00 | $220.00 | estimate | heavy and hazmat lines |
-| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $462.93 | $462.93 | verified |  |
-| **subtotal** | | | | **$682.93** | | |
+| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $446.55 | $446.55 | verified |  |
+| **subtotal** | | | | **$666.55** | | |
 
 ## Totals
 
 | | |
 |---|---:|
-| **Grand total, 2 boards** | **$8,178.38** |
-| Per board | $4,089.19 |
-| Of which verified | $6,162.91  (75%) |
-| Of which estimated | $2,015.47 |
+| **Grand total, 2 boards** | **$7,889.12** |
+| Per board | $3,944.56 |
+| Of which verified | $6,146.53  (78%) |
+| Of which estimated | $1,742.59 |
 
 ## What is a board, and what is a shop
 
-Some of the total above is not the cost of a board at all - it is tools, jigs and templates that exist afterwards and do not repeat. Splitting them out is the difference between "a board costs $4,089" and "a board costs $3,562 and I now own a vacuum rig, a crimper and a full template set".
+Some of the total above is not the cost of a board at all - it is tools, jigs and templates that exist afterwards and do not repeat. Splitting them out is the difference between "a board costs $3,945" and "a board costs $3,565 and I now own a vacuum rig, a crimper and a full template set".
 
 | | |
 |---|---:|
-| One-time tooling (incl. its share of tax) | $1,055.11 |
-| **Marginal cost of a board** | **$3,561.63** |
-| Cost of the NEXT board after these 2 | $3,561.63 |
+| One-time tooling (incl. its share of tax) | $759.37 |
+| **Marginal cost of a board** | **$3,564.87** |
+| Cost of the NEXT board after these 2 | $3,564.87 |
 
 | One-time item | $ |
 |---|---:|
@@ -264,9 +263,7 @@ Some of the total above is not the cost of a board at all - it is tools, jigs an
 | M8 x 1.25 tap set + 6.8 mm drill | $18.00 |
 | 1/4 in torque wrench, 1-10 Nm | $38.00 |
 | Hydraulic lug crimper, 6-70 mm2 | $38.00 |
-| Hot box - poly sheet, frame, thermostat heater | $85.00 |
 | Dowel pins + drill, two-sided registration | $12.00 |
 | 1/2 in single-flute + 1/2 in ball nose | $70.00 |
-| Compact router kit, fixed + plunge bases | $169.00 |
-| 1/4in carbide bits + guide bushings | $60.00 |
+| Rotary-tool router base + collets, if needed | $35.00 |
 | Sanding blocks + longboard for fairing | $30.00 |

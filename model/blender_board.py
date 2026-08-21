@@ -864,6 +864,15 @@ HATCH_BOLT_PITCH = 152.0   # -> 12 bolts, 155 mm actual pitch
 # OFF EVERY RIDE. A steel thread does not care how many times.
 HATCH_INSERT_D, HATCH_INSERT_L = 6.4, 10.0   # kept: BOM/DXF still read these
 NUT_AF, NUT_T = 8.0, 4.0           # M5 A4 hex nut, across flats x thickness
+# ...ON A PENNY WASHER, dropped in at the same pause. This is what actually
+# sets how hard you can do the bolts up. The nut alone bears on its own
+# across-corners circle, 9.24 mm, and pulls out of 6 mm of ASA at 5.2 kN =
+# 5.2 Nm - only 2.6x a 2 Nm spec, and a hand on a hex key reaches 5 Nm
+# without trying. A O15 washer spreads it to 8.5 kN = 8.5 Nm, 4.2x.
+# O15 and not O18: at t=12 in the band a O18 leaves 1.0 mm to the groove,
+# a O15 leaves 2.5.
+NUT_WASHER_D, NUT_WASHER_T = 15.0, 1.2
+HATCH_TORQUE_NM = 2.0
 NUT_CLR = 0.25                     # per side; ASA prints tight
 NUT_Z = 6.0                        # cover between nut top face and seal face
 ASA_TAU = 30.0                     # MPa design shear
@@ -2870,11 +2879,17 @@ def build():
         boolean(rim, cyl(f"V2_HatchBoltHole_cut_{i}", bx_, by_,
                          ledge_z + RIM_T - NUT_Z - 0.1,
                          ledge_z + RIM_T + 1.0, HATCH_BOLT_D + 0.6, coll))
-        # ...and the hex pocket the nut drops into at the print pause.
+        # ...the hex pocket the nut drops into at the print pause...
         boolean(rim, prism(f"V2_NutPocket_cut_{i}",
                            hex_poly(bx_, by_, NUT_AF / 2 + NUT_CLR),
                            ledge_z + RIM_T - NUT_Z - NUT_T,
                            ledge_z + RIM_T - NUT_Z, coll))
+        # ...and the washer counterbore ABOVE it, which is what the pull-out
+        # actually bears on.
+        boolean(rim, cyl(f"V2_NutWasherPkt_cut_{i}", bx_, by_,
+                         ledge_z + RIM_T - NUT_Z - NUT_T - NUT_WASHER_T,
+                         ledge_z + RIM_T - NUT_Z - NUT_T,
+                         NUT_WASHER_D + 2 * NUT_CLR, coll))
         prism(f"V2_HatchNut_{i}", hex_poly(bx_, by_, NUT_AF / 2),
               ledge_z + RIM_T - NUT_Z - NUT_T,
               ledge_z + RIM_T - NUT_Z, coll, m_metal)
@@ -2883,7 +2898,7 @@ def build():
             HATCH_BOLT_D, coll, m_metal)
     # Pull-out is a plug of ASA punched through the NUT_Z of material between
     # the nut's top face and the seal face: pi x across-corners x NUT_Z.
-    _plug = math.pi * (NUT_AF / math.cos(math.radians(30))) * NUT_Z
+    _plug = math.pi * NUT_WASHER_D * NUT_Z
     rep["hatch_fastening"] = (
         f"M{HATCH_BOLT_D:.0f} through the lid into a CAPTIVE M"
         f"{HATCH_BOLT_D:.0f} NUT printed into the ASA ring. PRINT SEAL FACE "
@@ -2994,6 +3009,20 @@ def build():
     rep["hatch_nut_cover_mm"] = round(NUT_Z, 1)
     rep["hatch_nut_pullout_N"] = round(_plug * ASA_TAU)
     rep["hatch_nut_pullout_margin"] = round(_plug * ASA_TAU / (SEAL_N / len(hb)), 1)
+    # The number that matters is not margin over the SEAL LOAD - it is how
+    # much harder than spec you can do a bolt up before the nut tears out.
+    # M5 dry: F = T / (0.2 * 0.005), so Nm and kN are numerically equal.
+    rep["hatch_torque_nm"] = HATCH_TORQUE_NM
+    rep["hatch_torque_to_pullout_nm"] = round(_plug * ASA_TAU / 1000.0, 1)
+    rep["hatch_torque_headroom"] = round(
+        (_plug * ASA_TAU / 1000.0) / HATCH_TORQUE_NM, 1)
+    # ...and it must still beat what the cord pushes back with, or the lid
+    # lifts off its stop and the squeeze goes away.
+    rep["hatch_preload_N"] = round(HATCH_TORQUE_NM / (0.2 * 0.005))
+    rep["hatch_preload_over_seal"] = round(
+        (HATCH_TORQUE_NM / (0.2 * 0.005)) / (SEAL_N / len(hb)), 1)
+    rep["hatch_bolt_len_mm"] = math.ceil(
+        (LID_T + NUT_Z + NUT_T) / 5.0) * 5
     rep["hatch_bolts"] = len(hb)
     rep["bom_hatch_bolts"] = len(hb)
     # cord runs the groove centreline: a rounded rect inset CHAN_INSET from
@@ -4772,6 +4801,15 @@ def build():
     # because the land is the glass surface. +/-0.3 mm of layup variation is
     # 10-30% squeeze - inside an O-ring's working band, but 10 is the floor.
     # If it went thinner than 1.5 mm printed there would be nothing to plug.
+    if rep["hatch_torque_headroom"] < 3.0:
+        fails.append("only "
+                     + format(rep["hatch_torque_headroom"], ".1f")
+                     + "x between the hatch torque spec and tearing the nut "
+                       "out - a hand on a hex key will find that")
+    if rep["hatch_preload_over_seal"] < 1.5:
+        fails.append("hatch bolt preload barely beats the cord: "
+                     + format(rep["hatch_preload_over_seal"], ".1f")
+                     + "x - the lid will lift off its stop")
     if rep["squeeze_pct_range"][0] < 10:
         fails.append(f"seal squeeze can fall to {rep['squeeze_pct_range'][0]}% "
                      "with normal laminate variation over the ring")
