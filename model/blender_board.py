@@ -1474,8 +1474,12 @@ def fresh_collection():
 #   key                colour            rough  metal  a    what it is
 PALETTE = {
     "hull_glass":    ((0.88, 0.89, 0.90), 0.30, 0.0, 0.18),  # glass/H80/glass shell
-    "eps":           ((0.96, 0.96, 0.93), 0.95, 0.0, 1.00),  # EPS blank
-    "eps_fwd":       ((0.90, 0.92, 0.96), 0.95, 0.0, 1.00),  # ...forward half
+    # SEE-THROUGH, at the same 0.18 the old one-piece hull used. The whole
+    # point of the board being translucent is that you can see the pack, the
+    # module and the mast block sitting inside it - swapping the hull for two
+    # opaque halves threw that away. Two tints so the seam still reads.
+    "eps":           ((0.90, 0.90, 0.86), 0.35, 0.0, 0.18),  # EPS blank, aft
+    "eps_fwd":       ((0.83, 0.87, 0.94), 0.35, 0.0, 0.18),  # ...forward half
     "h80":           ((0.95, 0.86, 0.42), 0.85, 0.0, 1.00),  # H80 PVC foam core
     "dense":         ((0.20, 0.45, 0.80), 0.85, 0.0, 1.00),  # H200 mast block
     "g10":           ((0.85, 0.68, 0.28), 0.50, 0.0, 1.00),  # G10 laminate
