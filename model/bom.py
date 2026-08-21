@@ -85,8 +85,11 @@ def build():
 
     # ------------------------------------------------------------- 2 G10
     by, p = F.g10_area_per_board()
-    who = {3.175: "module floor, walls, flange-rail plies",
-           12.7: "rim ring (4 pieces, 01a/01b) + module corner posts",
+    # One thickness left. The 1/8" sheet went with the module floor (now 5052
+    # alu) and the printed walls; the 3/4" went with the mast plate (now 6061,
+    # tapped). G10 was $736 across three sheets and is now one.
+    who = {3.175: "module floor",
+           12.7: "rim ring 4-piece (01a/01b) + handle strips (01c)",
            19.05: "mast plate"}
     for th in sorted(by):
         lbl, area, price, bq, bprice, _ = F.SHEETS[th]
@@ -94,6 +97,18 @@ def build():
         unit = bprice if (bq and sheets >= bq) else price
         add("2  G10 (ePlastics)", "G10 natural " + lbl + " - " + who[th],
             sheets, "sheet", unit, OK)
+
+    # ------------------------------------------------------ 2b aluminium
+    # Both of these are VERIFIED prices, which is rare in this BOM: the 5052
+    # is off Derek's own April receipt and the 6061 is Speedy Metals' list.
+    add("2b Aluminium", "5052 1/8in x 12 x 24, 2-pack - module floors",
+        1, "pk", 61.99, OK,
+        "your Apr 2026 receipt (MorningRo/Huaiian). One sheet is one floor, "
+        "so this pack does both boards")
+    add("2b Aluminium", "6061-T651 1/2in x 12 x 18 - mast plates",
+        1, "sheet", 88.92, OK,
+        "speedymetals.com 61p.5; both plates nest, 2 x 6.89in of 18, 4.2 "
+        "spare. Saw-cut edge, +/-1/4in - profile it yourself")
 
     # -------------------------------------------------- 3 structural foam
     # H-200 is NOT STOCKED anywhere normal - Fiberglass Supply Depot carries
@@ -231,13 +246,18 @@ def build():
     add("7  Module", "Panel-mount charge port + cap", N, "ea", 12.00, EST)
 
     # -------------------------------------------------- 8 mast hardpoint
-    add("8  Mast hardpoint", "316 stainless bar 20 mm x 300 mm, bushing stock",
-        1, "ea", 28.00, EST,
-        str(M["mast_bushings"] * N) + " bushings, 16 mm long")
-    add("8  Mast hardpoint", "Bushing machining - drill, tap M8, part off",
-        1, "job", 60.00, EST, "free with lathe access")
-    add("8  Mast hardpoint", "3M DP460 structural epoxy 50 ml + gun",
-        1, "ea", 45.00, EST, "bonds the bushings; gun is one-time")
+    # The 316 bar, the lathe work and the DP460 are all GONE - $133 of parts
+    # and a lathe dependency, deleted by tapping the plate instead of bonding
+    # bushings into it. 6061 shears at ~207 MPa against G10's ~55, so less
+    # material holds more: 136 mm2 of thread carries 17.7 kN and the M8 bolt's
+    # own 16.5 kN proof load becomes the limit.
+    add("8  Mast hardpoint", "M8 x 1.25 tap set + 6.8 mm drill", 1, "set",
+        18.00, EST, str(M["mast_bushings"] * N) + " blind holes; a BOTTOMING "
+        "tap is the one that matters - blind at 10 mm in a 12.7 plate",
+        tool=True)
+    # Aluminium plate, A4 stainless bolts, wet cavity. Not optional.
+    add("8  Mast hardpoint", "Tef-Gel or Duralac, galvanic barrier", 1, "ea",
+        22.00, EST, "every mast bolt, every time it goes back in")
     # No G10 tube. The conduit is a BORE, cut with the rest of the CNC work
     # and sealed with thickened epoxy off the laminating kit. A bought tube
     # would have been bonded into that same bore and added a part number, a

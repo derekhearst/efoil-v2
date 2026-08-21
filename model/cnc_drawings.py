@@ -237,9 +237,15 @@ def build(p):
     d.poly(rect(0.15, ext_l - 0.15, ext_w - wt + 0.15, ext_w - 0.15))
     d.poly(rect(0.15, wt - 0.15, 0.15, ext_w - 0.15))
     d.poly(rect(ext_l - wt + 0.15, ext_l - 0.15, 0.15, ext_w - 0.15))
-    add("04_module_floor", "G10", p["ENC_FLOOR"], 1, d, ext_l, ext_w,
+    add("04_module_floor", "5052 aluminium", p["ENC_FLOOR"], 1, d, ext_l, ext_w,
+        f"1/8in 5052, NOT G10. One 12x24 sheet is one floor, so a 2-pack does "
+        f"both boards. Chosen for the ESC as much as the price: the ESC sits "
+        f"sealed in with 128 cells and no airflow, and G10 conducts 500x "
+        f"worse than aluminium - this floor is its heat spreader and thermal "
+        f"mass, the same job V1's alu bottom plate did. "
         f"Inner rectangles are a {gr:.1f} mm deep locating groove for the "
-        f"walls, NOT a through cut. Profile the outline only.")
+        f"printed walls, NOT a through cut. Profile the outline only. "
+        f"Costs +355 g a board, taken deliberately.")
 
     # ---------------------------------------------------------------------
     # Parts 05-09 (long walls, both end walls, corner posts, both flange
@@ -314,18 +320,22 @@ def build(p):
             d.circle(gl / 2 + sx * p["BOLT_SPACING_X"] / 2,
                      gw / 2 + sy * p["BOLT_SPACING_Y"] / 2,
                      p["INSERT_OD"] / 2)
-    add("12_mast_plate", "G10", p["G10_T"], 1, d, gl, gw,
-        f"4 x O{p['INSERT_OD']:.0f} BLIND bores {p['INSERT_L']:.0f} deep from "
-        f"the PAD face on the {p['BOLT_SPACING_X']:.0f} x "
-        f"{p['BOLT_SPACING_Y']:.0f} Gong pattern, for BONDED 316 bushings "
-        "tapped M8 - NOT key-locking inserts, whose keys wedge between plies "
-        "and split G10. The mast bolts UP into them, so they go in from the "
-        f"pad side and are blind: {p['INSERT_BLIND']:.0f} mm of solid G10 is "
-        "left above each one and must NOT be broken through - that is the "
-        "only thing between the mast bolts and the cavity floor. Bond the "
-        "bushings on the bench BEFORE the plate goes into the hull. Plate is "
-        "recessed flush into a milled pocket in the hull underside; the pad "
-        "face is the finished hull surface.")
+    add("12_mast_plate", "6061-T651 aluminium", p["G10_T"], 1, d, gl, gw,
+        f"1/2in 6061-T651, NOT 3/4in G10, and NOT bushed. "
+        f"4 x M8 TAPPED {p['INSERT_L']:.0f} mm BLIND from the PAD FACE "
+        f"(the wetted underside), leaving {p['INSERT_BLIND']:.1f} mm of solid "
+        f"aluminium above so the plate stays watertight. Tap drill 6.8 mm. "
+        f"Bolt pattern {p['BOLT_SPACING_X']:.0f} x {p['BOLT_SPACING_Y']:.0f} "
+        f"- UNVERIFIED, check against a real Gong plate before drilling. "
+        f"This is no longer a CNC part: a 250 x 175 rectangle and four "
+        f"tapped holes is bandsaw and drill-press work. "
+        f"6061 shears at ~207 MPa against G10's ~55, so the tapped thread "
+        f"(136 mm2, 17.7 kN) beats the O20 bonded bushing it replaced and the "
+        f"M8 bolt itself becomes the weak link - which is where you want it. "
+        f"TEF-GEL EVERY BOLT: aluminium plate, A4 stainless bolts, wet "
+        f"cavity. That is the whole galvanic mitigation and it is not "
+        f"optional. Nest both plates on one 12x18 sheet: 2 x 6.89in of the "
+        f"18in length, 4.2in spare.")
 
     # 7 - cavity caul ------------------------------------------------------
     d = Dxf()

@@ -17,10 +17,16 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 
 | Item | Qty | Unit | Unit $ | Ext $ | | Note |
 |---|---:|---|---:|---:|---|---|
-| G10 natural 1/8" 24x36 - module floor, walls, flange-rail plies | 1 | sheet | $133.86 | $133.86 | verified |  |
-| G10 natural 1/2" 18x24 - rim ring (4 pieces, 01a/01b) + module corner posts | 1 | sheet | $267.62 | $267.62 | verified |  |
-| G10 natural 3/4" 12x18 - mast plate | 1 | sheet | $200.75 | $200.75 | verified |  |
-| **subtotal** | | | | **$602.23** | | |
+| G10 natural 1/2" 18x24 - rim ring 4-piece (01a/01b) + handle strips (01c) | 1 | sheet | $267.62 | $267.62 | verified |  |
+| **subtotal** | | | | **$267.62** | | |
+
+## 2b Aluminium
+
+| Item | Qty | Unit | Unit $ | Ext $ | | Note |
+|---|---:|---|---:|---:|---|---|
+| 5052 1/8in x 12 x 24, 2-pack - module floors | 1 | pk | $61.99 | $61.99 | verified | your Apr 2026 receipt (MorningRo/Huaiian). One sheet is one floor, so this pack does both boards |
+| 6061-T651 1/2in x 12 x 18 - mast plates | 1 | sheet | $88.92 | $88.92 | verified | speedymetals.com 61p.5; both plates nest, 2 x 6.89in of 18, 4.2 spare. Saw-cut edge, +/-1/4in - profile it yourself |
+| **subtotal** | | | | **$150.91** | | |
 
 ## 3  Structural foam
 
@@ -87,10 +93,9 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 
 | Item | Qty | Unit | Unit $ | Ext $ | | Note |
 |---|---:|---|---:|---:|---|---|
-| 316 stainless bar 20 mm x 300 mm, bushing stock | 1 | ea | $28.00 | $28.00 | estimate | 8 bushings, 16 mm long |
-| Bushing machining - drill, tap M8, part off | 1 | job | $60.00 | $60.00 | estimate | free with lathe access |
-| 3M DP460 structural epoxy 50 ml + gun | 1 | ea | $45.00 | $45.00 | estimate | bonds the bushings; gun is one-time |
-| **subtotal** | | | | **$133.00** | | |
+| M8 x 1.25 tap set + 6.8 mm drill | 1 | set | $18.00 | $18.00 | estimate | 8 blind holes; a BOTTOMING tap is the one that matters - blind at 10 mm in a 12.7 plate |
+| Tef-Gel or Duralac, galvanic barrier | 1 | ea | $22.00 | $22.00 | estimate | every mast bolt, every time it goes back in |
+| **subtotal** | | | | **$40.00** | | |
 
 ## 9  Electrical
 
@@ -220,27 +225,27 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | Item | Qty | Unit | Unit $ | Ext $ | | Note |
 |---|---:|---|---:|---:|---|---|
 | Shipping - G10, Divinycell, epoxy hazmat | 1 | allow | $220.00 | $220.00 | estimate | heavy and hazmat lines |
-| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $478.85 | $478.85 | verified |  |
-| **subtotal** | | | | **$698.85** | | |
+| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $462.25 | $462.25 | verified |  |
+| **subtotal** | | | | **$682.25** | | |
 
 ## Totals
 
 | | |
 |---|---:|
-| **Grand total, 2 boards** | **$8,459.65** |
-| Per board | $4,229.82 |
-| Of which verified | $6,677.05  (79%) |
-| Of which estimated | $1,782.60 |
+| **Grand total, 2 boards** | **$8,166.35** |
+| Per board | $4,083.17 |
+| Of which verified | $6,476.75  (79%) |
+| Of which estimated | $1,689.60 |
 
 ## What is a board, and what is a shop
 
-Some of the total above is not the cost of a board at all - it is tools, jigs and templates that exist afterwards and do not repeat. Splitting them out is the difference between "a board costs $4,230" and "a board costs $3,715 and I now own a vacuum rig, a crimper and a full template set".
+Some of the total above is not the cost of a board at all - it is tools, jigs and templates that exist afterwards and do not repeat. Splitting them out is the difference between "a board costs $4,083" and "a board costs $3,559 and I now own a vacuum rig, a crimper and a full template set".
 
 | | |
 |---|---:|
-| One-time tooling (incl. its share of tax) | $1,029.67 |
-| **Marginal cost of a board** | **$3,714.99** |
-| Cost of the NEXT board after these 2 | $3,714.99 |
+| One-time tooling (incl. its share of tax) | $1,048.75 |
+| **Marginal cost of a board** | **$3,558.80** |
+| Cost of the NEXT board after these 2 | $3,558.80 |
 
 | One-time item | $ |
 |---|---:|
@@ -250,6 +255,7 @@ Some of the total above is not the cost of a board at all - it is tools, jigs an
 | Bagging starter kit - film, peel ply, tape, breather, connector | $127.40 |
 | M5 STI tap + tangless install/extract tool | $38.00 |
 | MDF 12 mm, full template set (14 templates) | $70.00 |
+| M8 x 1.25 tap set + 6.8 mm drill | $18.00 |
 | Hydraulic lug crimper, 6-70 mm2 | $38.00 |
 | EPS offcut for a CNC test piece | $15.00 |
 | Dowel pins + drill, two-sided registration | $12.00 |

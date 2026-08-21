@@ -265,7 +265,20 @@ ENC_GAP = GLASS_R + CAV_LAM + 2.0
 # (-857 g), both of which survive intact here.
 # Printing also puts heat-set inserts back on their proper material.
 ENC_WALL = 4.0                     # printed PETG, V1's proven wall
-ENC_FLOOR = 3.175                  # G10, 1/8"
+# 1/8" 5052 ALUMINIUM, not G10. Two reasons, and the weight is the price:
+#   thermal  The ESC sits sealed in a box with 128 cells and no airflow. G10
+#            conducts at ~0.3 W/mK, aluminium at ~150 - a factor of 500. The
+#            floor will not get heat OUT of the board (it still has to cross
+#            an EVA pad and glassed EPS to reach water) but it spreads it and
+#            gives the ESC real thermal mass for burst loads instead of a hot
+#            spot under a 100 A VESC. V1 ran the ESC's alu PCB face-down onto
+#            an aluminium plate for exactly this.
+#   cost     Derek's own receipt: 2 x 12x24 5052 = $61.99, and one sheet is
+#            one floor, so the 2-pack does both boards. The G10 sheet was
+#            $133.86. 5052 is the marine alloy - the right one for a flat
+#            plate that lives in a damp box.
+# COSTS +355 g a board. Taken deliberately, for the ESC.
+ENC_FLOOR = 3.175                  # 1/8" 5052 aluminium
 
 # Faces that touch. Every one of these is a real bond line, gasket or pad in
 # the built board, and modelling them as exactly coincident planes is what was
@@ -836,7 +849,25 @@ DENSE_RIB_T = 19.05                # 3/4in H80, same stock as the block
 # torqued to 20 Nm and unbolted every trailer trip will strip. Stainless
 # key-locking inserts (Recoil / E-Z LOK, M8 x 16) go in from the TOP face of a
 # 16 mm plate and bottom out 2 mm short of the underside, so nothing shows.
-G10_T = 19.05                      # 3/4" stock; 16 mm bushing + 3.05 blind
+# 1/2" 6061-T651 ALUMINIUM, not 3/4" G10. Aluminium can be TAPPED, which
+# deletes the bonded-bushing joint entirely - the 316 bar, the lathe work and
+# the DP460 all go with it, and so does the lathe dependency.
+# It is not a compromise on any axis that matters:
+#   thread   M8 x 12 blind in 6061-T6 shears at 37.5 kN, 2.3x the M8 bolt's
+#            own 16.5 kN proof load. 6061 shears at ~207 MPa against G10's
+#            ~55, so LESS material holds MORE than the bonded bush did.
+#   stiff    E x t^3: 69e3 x 12.7^3 vs 19e3 x 19.05^3 = 1.08. The thinner
+#            aluminium plate is fractionally STIFFER in bending than the G10.
+#   mass     1500 g vs 1542 g. A wash.
+#   cost     one 12x18 sheet at $88.92 does both boards, against a $200.75
+#            G10 sheet plus $133 of bushing work.
+#   shop     4 drilled and tapped holes on a drill press. It stops being a
+#            CNC part at all.
+# THE RISK, stated plainly: this plate is laminated into the hull and can
+# never be inspected or replaced. Aluminium in wet foam with stainless bolts
+# through it is a galvanic cell. Fresh water only, and every bolt gets
+# Tef-Gel or equivalent at assembly - that is the whole mitigation.
+G10_T = 12.7                       # 1/2" 6061-T651 mast plate
 # M8 in G10, BONDED stainless bushing - not a key-locking insert. Key-locking
 # inserts lock by driving four hardened keys down into the parent material,
 # which is a fine way to fasten aluminium and a good way to split a woven-glass
@@ -854,9 +885,15 @@ G10_T = 19.05                      # 3/4" stock; 16 mm bushing + 3.05 blind
 # pulling: 1005 mm2 gives 15.1 kN, which is level with the M8 bolt's own proof
 # load of 16.5 kN. Beyond that the joint is no longer the weak link and the
 # extra bond buys nothing, because the bolt is Gong's and cannot be changed.
-INSERT_L = 16.0                    # bushing length, 2 x D
-INSERT_OD = 20.0                   # bonded bore: O20 bush, 6.6 mm wall, M8 ID
-INSERT_BLIND = G10_T - INSERT_L    # G10 left ABOVE the insert - stays sealed
+# No bushings. M8 tapped straight into the plate, BLIND from the pad face.
+# 10, not 12. At 12 there is 0.7 mm of aluminium left above the hole: the tap
+# breaks through it, and 0.7 mm is not a water barrier anyway. 10 leaves 2.7.
+# A bottoming tap still loses a thread or two at the base, so count ~9 mm of
+# real engagement: 136 mm2 x 207 MPa = 28 kN, still 1.7x the bolt's own proof
+# load. The BOLT is the weak link either way, which is where you want it.
+INSERT_L = 10.0                    # tapped depth, blind from the pad face
+INSERT_OD = 8.0                    # M8 tapped hole, not a O20 bonded bore
+INSERT_BLIND = G10_T - INSERT_L    # 2.7 mm solid alu above - stays watertight
 
 # --- leash plug and carry handle hardpoints ----------------------------
 # The deck laminate over EPS will not hold either of these on its own. Both
@@ -2706,11 +2743,11 @@ def build():
                 BOLT_D, coll, m_metal)
             if abs(bx - MAST_X) + INSERT_OD / 2 > G10_L / 2:
                 bolt_ok = False
-    rep["mast_fastening"] = (f"M8 in O{INSERT_OD:.0f} x {INSERT_L:.0f} bonded "
-
-                             f"316 bushings, from the pad face of a "
-                             f"{G10_T:.0f} mm G10 plate, blind - "
-                             f"{INSERT_BLIND:.0f} mm of solid G10 above them")
+    rep["mast_fastening"] = (f"M8 TAPPED {INSERT_L:.0f} mm blind into a "
+                             f"{G10_T:.1f} mm 6061-T651 plate from the pad "
+                             f"face - {INSERT_BLIND:.1f} mm of solid alu "
+                             f"above. No bushings, no bonding, no lathe. "
+                             f"Tef-Gel every bolt: alu + A4 in a wet cavity")
     rep["mast_thread_in_foam_mm"] = 0.0
 
     # --- leash plug and rail carry handles --------------------------------
@@ -3593,11 +3630,14 @@ def build():
         area += 2.0 * per * (LENGTH / N)          # both halves
     m["glass skin"] = area * 1e-6 * GLASS_KGM2
     g10_cm3 = (
-        (ex1 - ex0) * (ey1 - ey0) * ENC_FLOOR                       # module floor
-        + G10_L * G10_W * G10_T                                      # mast plate
-        + (((CAV_X1 - CAV_X0 + 2 * RIM_W) * (CAV_WIDTH + 2 * RIM_W))
+        (((CAV_X1 - CAV_X0 + 2 * RIM_W) * (CAV_WIDTH + 2 * RIM_W))
            - (CAV_X1 - CAV_X0) * CAV_WIDTH) * RIM_T)                 # rim ring
     m["G10"] = g10_cm3 * 1e-9 * RHO_G10
+    # The rim ring is the ONLY G10 left in the board. The module floor is
+    # 1/8" 5052 and the mast plate is 1/2" 6061 - both tracked here instead.
+    RHO_ALU = 2700.0
+    m["aluminium"] = ((ex1 - ex0) * (ey1 - ey0) * ENC_FLOOR
+                      + G10_L * G10_W * G10_T) * 1e-9 * RHO_ALU
     # Printed module shell. CALIBRATED TO V1'S MEASUREMENT, not to a guessed
     # infill fraction: V1 weighed 233 g a piece / 932 g for four wall pieces on
     # a 415 x 247 box with 4 mm walls, 10 x 10 ribs and 15% gyroid. Over that
@@ -3656,18 +3696,31 @@ def build():
     t_direct = all_up_N * g_design / 4.0
     demand = max(t_pitch, t_roll) + t_direct
 
-    bond_area = math.pi * INSERT_OD * INSERT_L        # mm^2
-    EPOXY_TAU, G10_ILS = 15.0, 20.0    # MPa, design values (~2x knockdown)
-    cap_bond = bond_area * EPOXY_TAU
-    cap_shear = bond_area * G10_ILS
-    cap = min(cap_bond, cap_shear)
+    # TAPPED THREAD in 6061-T651, not a bonded bushing. The old formula was
+    # pi x OD x L x an epoxy/ILSS allowable, which is the right model for a
+    # O20 bush bonded into G10 and the WRONG one for a tapped hole - applied
+    # to a O8 tapped hole it read 3.8 kN and failed the check, because it was
+    # sizing a glue line that no longer exists.
+    # Thread shear pulls out on the cylinder through the thread roots, and
+    # only about 60% of that cylinder is actually engaged flank.
+    THREAD_ENGAGE = 0.60
+    ALU_TAU = 130.0                    # MPa design shear, 6061-T6 ~207 x 0.63
+    # Bottoming taps lose a thread or two at the base of a blind hole.
+    eff_L = INSERT_L - 1.0
+    thread_area = math.pi * INSERT_OD * eff_L * THREAD_ENGAGE
+    cap_thread = thread_area * ALU_TAU
+    BOLT_PROOF_N = 16500.0             # M8 A4-70, the bolt Gong supplies
+    cap = min(cap_thread, BOLT_PROOF_N)
     rep["mast_bolt_demand_N"] = round(demand)
     rep["mast_bolt_case"] = "roll" if t_roll > t_pitch else "pitch"
     rep["mast_bolt_cap_N"] = round(cap)
     rep["mast_bolt_margin"] = round(cap / demand, 2)
-    rep["mast_bolt_governed_by"] = ("epoxy bond" if cap_bond < cap_shear
-                                    else "G10 interlaminar shear")
-    rep["mast_bond_area_mm2"] = round(bond_area)
+    rep["mast_bolt_governed_by"] = ("M8 bolt proof load - the plate is no "
+                                    "longer the weak link"
+                                    if cap_thread > BOLT_PROOF_N
+                                    else "6061 thread shear")
+    rep["mast_thread_area_mm2"] = round(thread_area)
+    rep["mast_thread_cap_N"] = round(cap_thread)
     # Past the bolt's own proof load, more bond area is wasted - the bolt is
     # Gong's M8 and is not ours to change.
     BOLT_As, BOLT_PROOF = 36.6, 450.0        # M8 A4-70

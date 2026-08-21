@@ -618,7 +618,7 @@
 <line x1="375.95" y1="638.11" x2="377.77" y2="638.19" stroke="#1a1a1a" stroke-width="1.1"/>
 <line x1="377.77" y1="638.19" x2="569.82" y2="638.19" stroke="#1a1a1a" stroke-width="1.1"/>
 <text x="686" y="424" font-size="12.5" font-weight="600">7. module floor</text>
-<text x="686" y="440" font-size="10.5" fill="#666">G10 · 3 mm · x1 · 451 x 292</text>
+<text x="686" y="440" font-size="10.5" fill="#666">5052 aluminium · 3 mm · x1 · 451 x 292</text>
 <line x1="686.00" y1="638.82" x2="920.00" y2="638.82" stroke="#1a1a1a" stroke-width="1.1"/>
 <line x1="920.00" y1="638.82" x2="920.00" y2="487.18" stroke="#1a1a1a" stroke-width="1.1"/>
 <line x1="920.00" y1="487.18" x2="686.00" y2="487.18" stroke="#1a1a1a" stroke-width="1.1"/>
@@ -670,15 +670,15 @@
 <line x1="261.05" y1="816.50" x2="27.05" y2="816.50" stroke="#1a1a1a" stroke-width="1.1"/>
 <line x1="27.05" y1="816.50" x2="27.05" y2="967.41" stroke="#1a1a1a" stroke-width="1.1"/>
 <text x="356" y="754" font-size="12.5" font-weight="600">10. mast plate</text>
-<text x="356" y="770" font-size="10.5" fill="#666">G10 · 19 mm · x1 · 250 x 175</text>
+<text x="356" y="770" font-size="10.5" fill="#666">6061-T651 aluminium · 13 mm · x1 · 250 x 175</text>
 <line x1="356.00" y1="974.90" x2="590.00" y2="974.90" stroke="#1a1a1a" stroke-width="1.1"/>
 <line x1="590.00" y1="974.90" x2="590.00" y2="811.10" stroke="#1a1a1a" stroke-width="1.1"/>
 <line x1="590.00" y1="811.10" x2="356.00" y2="811.10" stroke="#1a1a1a" stroke-width="1.1"/>
 <line x1="356.00" y1="811.10" x2="356.00" y2="974.90" stroke="#1a1a1a" stroke-width="1.1"/>
-<circle cx="395.78" cy="935.12" r="9.36" fill="none" stroke="#c0392b" stroke-width="1.1"/>
-<circle cx="395.78" cy="850.88" r="9.36" fill="none" stroke="#c0392b" stroke-width="1.1"/>
-<circle cx="550.22" cy="935.12" r="9.36" fill="none" stroke="#c0392b" stroke-width="1.1"/>
-<circle cx="550.22" cy="850.88" r="9.36" fill="none" stroke="#c0392b" stroke-width="1.1"/>
+<circle cx="395.78" cy="935.12" r="3.74" fill="none" stroke="#c0392b" stroke-width="1.1"/>
+<circle cx="395.78" cy="850.88" r="3.74" fill="none" stroke="#c0392b" stroke-width="1.1"/>
+<circle cx="550.22" cy="935.12" r="3.74" fill="none" stroke="#c0392b" stroke-width="1.1"/>
+<circle cx="550.22" cy="850.88" r="3.74" fill="none" stroke="#c0392b" stroke-width="1.1"/>
 <text x="686" y="754" font-size="12.5" font-weight="600">11. cavity caul</text>
 <text x="686" y="770" font-size="10.5" fill="#666">MDF or foam · 87 mm · x1 · 524 x 318</text>
 <line x1="910.17" y1="964.13" x2="911.03" y2="964.10" stroke="#1a1a1a" stroke-width="1.1"/>
