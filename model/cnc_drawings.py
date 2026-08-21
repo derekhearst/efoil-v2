@@ -356,6 +356,29 @@ def build(p):
         f"optional. Nest both plates on one 12x18 sheet: 2 x 6.89in of the "
         f"18in length, 4.2in spare.")
 
+    # 7 - cavity caul ------------------------------------------------------
+    # RESTORED. This was deleted by accident when the G10 ring bars came out -
+    # it lived in the same block and went with them, silently, because nothing
+    # references it. It is the part that makes the cavity bag-able at all.
+    #
+    # THE PROBLEM IT SOLVES: the cavity is a CONCAVE box. Atmospheric pressure
+    # presses a bag onto convex shapes and BRIDGES it across concave ones, so
+    # a bag laid over the cavity opening spans it like a drum skin and touches
+    # nothing inside. Every corner and fillet would cure as a void.
+    # The caul is a male plug of the cavity. It drops in on top of the wet
+    # laminate, and the bag presses on the CAUL - which presses the laminate
+    # into the floor, the walls and the R10 fillets. Pressure gets where a bag
+    # cannot reach.
+    # 0.5 mm under size per side is the laminate-plus-peel-ply allowance.
+    # RELEASE IT PROPERLY - wax and PVA, or packing tape over the whole plug.
+    # A caul bonded into a cured cavity is not recoverable.
+    d = Dxf()
+    d.poly(rrect(0, cav_l - 1.0, 0, CAV_W - 1.0, R))
+    add("13_cavity_caul", "MDF or foam", L["ext_h"], 1, d, cav_l - 1, CAV_W - 1,
+        "Release-taped or waxed. Supports the deck skin during bagging, then "
+        "presses the cavity laminate into the corners. 0.5 mm under size per "
+        "side. Break its own edges to the cavity's R10 or it will not seat.")
+
     # Template 14 (hatch seal groove) IS GONE TOO. The groove is PRINTED
     # into the ASA ring - depth is layer count, repeatable to ~0.05 mm - so
     # there is nothing to rout and no template to rout it with. That removes

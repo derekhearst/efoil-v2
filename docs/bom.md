@@ -36,10 +36,11 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 |---|---:|---|---:|---:|---|---|
 | E-glass 6 oz, 50in x 12ft, 2-pack | 2 | pack | $19.07 | $38.14 | verified | your receipt |
 | 1708 biax, 50in wide | 6 | yd | $12.50 | $75.00 | verified |  |
+| TotalBoat 5:1 quart FAST hardener, cold days | 1 | ea | $39.99 | $39.99 | estimate | min 40-45 F against slow's 60. In a cold shop this is the one that cures, and the cold gives the pot life back |
 | TotalBoat 5:1 gallon kit, slow hardener | 2 | kit | $159.99 | $319.98 | verified | 2.51 m2 laminate = 4.8 kg mixed = 1 kit/board |
 | TotalBoat 5:1 quart kit, fillets and bonding | 1 | kit | $68.99 | $68.99 | verified |  |
 | TotalBoat silica thickener, large | 1 | ea | $27.99 | $27.99 | verified | fillets and structural bonding |
-| **subtotal** | | | | **$530.10** | | |
+| **subtotal** | | | | **$570.09** | | |
 
 ## 5  Vacuum bagging
 
@@ -188,13 +189,15 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 
 | Item | Qty | Unit | Unit $ | Ext $ | | Note |
 |---|---:|---|---:|---:|---|---|
+| Hot box - poly sheet, frame, thermostat heater | 1 | set | $85.00 | $85.00 | estimate | a 45 F garage cannot cure epoxy; this is what lets the build run through the winter instead of stopping in November |
+| Thermometer / hygrometer, 2 pk | 1 | pk | $14.00 | $14.00 | estimate | one in the box, one in the shop - the hardener choice is a thermometer decision |
 | Spray adhesive + sacrificial MDF, CNC hold-down | 1 | set | $35.00 | $35.00 | estimate | foam is taped down, not clamped |
 | Release wax / PVA for the cavity caul | 1 | set | $20.00 | $20.00 | estimate |  |
 | Dowel pins + drill, two-sided registration | 1 | set | $12.00 | $12.00 | estimate |  |
 | 1/2 in single-flute + 1/2 in ball nose | 1 | set | $70.00 | $70.00 | estimate | if the shop does not have foam-suitable tooling |
 | Compact router kit, fixed + plunge bases | 1 | ea | $169.00 | $169.00 | estimate | DWP611PK class; PRICE UNVERIFIED - retailers bot-block scraping, check before ordering |
 | 1/4in carbide bits + guide bushings | 1 | set | $60.00 | $60.00 | estimate | flush trim, straight, roundover; CARBIDE - G10 destroys HSS. NOT the same bits as the 1/2in CNC line above |
-| **subtotal** | | | | **$366.00** | | |
+| **subtotal** | | | | **$465.00** | | |
 
 ## 10e Layup kit
 
@@ -226,27 +229,27 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | Item | Qty | Unit | Unit $ | Ext $ | | Note |
 |---|---:|---|---:|---:|---|---|
 | Shipping - G10, Divinycell, epoxy hazmat | 1 | allow | $220.00 | $220.00 | estimate | heavy and hazmat lines |
-| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $450.53 | $450.53 | verified |  |
-| **subtotal** | | | | **$670.53** | | |
+| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $458.87 | $458.87 | verified |  |
+| **subtotal** | | | | **$678.87** | | |
 
 ## Totals
 
 | | |
 |---|---:|
-| **Grand total, 2 boards** | **$7,959.31** |
-| Per board | $3,979.65 |
-| Of which verified | $6,122.83  (77%) |
-| Of which estimated | $1,836.48 |
+| **Grand total, 2 boards** | **$8,106.64** |
+| Per board | $4,053.32 |
+| Of which verified | $6,131.17  (76%) |
+| Of which estimated | $1,975.47 |
 
 ## What is a board, and what is a shop
 
-Some of the total above is not the cost of a board at all - it is tools, jigs and templates that exist afterwards and do not repeat. Splitting them out is the difference between "a board costs $3,980" and "a board costs $3,497 and I now own a vacuum rig, a crimper and a full template set".
+Some of the total above is not the cost of a board at all - it is tools, jigs and templates that exist afterwards and do not repeat. Splitting them out is the difference between "a board costs $4,053" and "a board costs $3,526 and I now own a vacuum rig, a crimper and a full template set".
 
 | | |
 |---|---:|
-| One-time tooling (incl. its share of tax) | $965.01 |
-| **Marginal cost of a board** | **$3,497.15** |
-| Cost of the NEXT board after these 2 | $3,497.15 |
+| One-time tooling (incl. its share of tax) | $1,055.11 |
+| **Marginal cost of a board** | **$3,525.76** |
+| Cost of the NEXT board after these 2 | $3,525.76 |
 
 | One-time item | $ |
 |---|---:|
@@ -259,6 +262,7 @@ Some of the total above is not the cost of a board at all - it is tools, jigs an
 | M8 x 1.25 tap set + 6.8 mm drill | $18.00 |
 | 1/4 in torque wrench, 1-10 Nm | $38.00 |
 | Hydraulic lug crimper, 6-70 mm2 | $38.00 |
+| Hot box - poly sheet, frame, thermostat heater | $85.00 |
 | Dowel pins + drill, two-sided registration | $12.00 |
 | 1/2 in single-flute + 1/2 in ball nose | $70.00 |
 | Compact router kit, fixed + plunge bases | $169.00 |

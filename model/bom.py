@@ -184,6 +184,20 @@ def build():
     add("4  Laminate", "E-glass 6 oz, 50in x 12ft, 2-pack",
         N, "pack", 19.07, OK, "your receipt")
     add("4  Laminate", "1708 biax, 50in wide", 3 * N, "yd", 12.50, OK)
+    # HARDENER FOLLOWS THE SHOP TEMPERATURE, and this build runs autumn into
+    # spring in a Boise garage, so it is not one choice for the whole job:
+    #     SLOW  minimum 60 F.   pot life 20 min at 75 F
+    #     FAST  minimum 40 F (45 to be safe).  shorter at the same temp, but
+    #           in a 50 F shop the cold hands the working time back
+    # Below about 35-40 F epoxy cannot generate enough heat to cure AT ALL -
+    # it does not just go slowly, it stays soft for ever. A cold laminate is
+    # not a slow laminate, it is a ruined one.
+    # Buy BOTH hardeners. Which one goes in the pot is a thermometer decision
+    # on the morning, not a decision made now.
+    add("4  Laminate", "TotalBoat 5:1 quart FAST hardener, cold days",
+        1, "ea", 39.99, EST,
+        "min 40-45 F against slow's 60. In a cold shop this is the one that "
+        "cures, and the cold gives the pot life back")
     add("4  Laminate", "TotalBoat 5:1 gallon kit, slow hardener",
         N, "kit", 159.99, OK, "2.51 m2 laminate = 4.8 kg mixed = 1 kit/board")
     add("4  Laminate", "TotalBoat 5:1 quart kit, fillets and bonding",
@@ -610,6 +624,22 @@ def build():
     add("10c Restraint & fitout", "EVA bedding pads", N, "set", 12.00, EST)
 
     # ------------------------------------------------- 10d shop consumables
+    # THE HOT BOX, and on an autumn-to-spring build it is not optional - it
+    # is what makes the whole schedule possible. A plastic tent over the
+    # bagged part with a thermostatic heater inside holds 70 F while the shop
+    # sits at 45, which fixes three things at once:
+    #   - the epoxy actually cures, and cures fully
+    #   - sealant tape tacks. Cold tape does not stick, and that is a leaking
+    #     bag found at hour three
+    #   - amine blush, which is far worse cold and damp, gets much milder
+    # EPS is happy to ~75 C so a 20 C box is nothing to it.
+    add("10d Shop consumables", "Hot box - poly sheet, frame, thermostat heater",
+        1, "set", 85.00, EST,
+        "a 45 F garage cannot cure epoxy; this is what lets the build run "
+        "through the winter instead of stopping in November", tool=True)
+    add("10d Shop consumables", "Thermometer / hygrometer, 2 pk", 1, "pk",
+        14.00, EST, "one in the box, one in the shop - the hardener choice "
+        "is a thermometer decision")
     add("10d Shop consumables", "Spray adhesive + sacrificial MDF, CNC hold-down",
         1, "set", 35.00, EST, "foam is taped down, not clamped")
     add("10d Shop consumables", "Release wax / PVA for the cavity caul",

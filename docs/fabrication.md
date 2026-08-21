@@ -218,6 +218,51 @@ Pot life is not working time. A batch that is going off in the cup is still
 fine on the cloth. What kills you is mixing a big pot and then finding it
 warm.
 
+### Building through a Boise winter
+
+This build runs autumn into spring, and that changes the hardener from a
+decision to a **daily thermometer reading**:
+
+| | Minimum temp | Notes |
+|---|---|---|
+| **Slow** hardener | **60 °F** | 20-min pot life at 75 °F |
+| **Fast** hardener | **40 °F** (45 to be safe) | shorter at the same temp — but in a 50 °F shop the cold hands the working time back |
+
+**Below about 35–40 °F epoxy cannot generate enough heat to cure at all.** It
+does not go slowly — it stays soft permanently. **A cold laminate is not a slow
+laminate, it is a ruined one.** Buy both hardeners and pick on the morning.
+
+### The hot box
+
+On this schedule it is not optional. A poly-sheet tent over the bagged part
+with a thermostatic heater holds 70 °F while the garage sits at 45, and it
+fixes three separate problems:
+
+1. **The epoxy cures, and cures fully**
+2. **Sealant tape tacks.** Cold tape does not stick — that is a bag that leaks
+   at hour three, discovered too late
+3. **Amine blush**, which is much worse cold and damp, gets far milder
+
+EPS is happy to ~75 °C, so a 20 °C box is nothing to it. Leave the pump
+*outside* the tent.
+
+**Wash the blush off with water and a scotchbrite before any secondary bond.**
+Winter epoxy blushes more, and blush is the classic reason a second layer
+delaminates.
+
+### "Both bottom layers at once" — yes, and always
+
+All plies of one skin go on **wet-on-wet in a single bag cycle**: 2 × 6 oz plus
+the 1708 biax, laid straight onto each other while wet, bagged once. Never cure
+between plies of the same skin — you would be creating a secondary bond, with
+blush, where the design assumes a monolithic laminate.
+
+What you should **not** do is both *boards* in one session. That is 5 m² of
+wet-out inside a 20-minute pot life, and the second hull would be curing before
+you bagged it.
+
+**One skin, one board, one session.** Six sessions total.
+
 ### Dry-run the bag before you mix anything
 
 **This is the step people skip and it is the one that saves a hull.**
@@ -253,6 +298,37 @@ size, laid out in the order they go on, before any resin is mixed.
 7. **Work the bridges out.** Rail transitions and the nose are where the film
    spans a concave corner instead of pressing into it, and a bridge is a void.
    Pleat the film into the corners with your fingers and re-seat the tape.
+
+### Bagging the internal cavity — the caul does it, not the bag
+
+The cavity is a **concave box**, and this is the one shape vacuum bagging is
+bad at. Atmospheric pressure presses a bag *onto* convex surfaces and
+**bridges** it across concave ones — a bag laid over the cavity opening spans
+it like a drum skin and touches nothing inside. Every corner and fillet would
+cure as a void.
+
+**So the bag never goes into the cavity. A caul does.**
+
+`13_cavity_caul` is a male plug of the cavity, 0.5 mm under size per side
+(laminate plus peel ply). It drops in on top of the wet cavity laminate, and
+the bag presses on **the caul** — which presses the laminate into the floor,
+the walls and the R10 fillets. Pressure gets where a bag cannot reach.
+
+**Order for that session:**
+
+1. **Release the caul properly** — wax and PVA, or packing tape over the whole
+   plug. A caul bonded into a cured cavity is not recoverable, and you would be
+   digging MDF out of a finished board
+2. Break the caul's own edges to the cavity's R10, or it will not seat
+3. Wet out the cavity laminate, working the fillets with a brush — stipple,
+   don't drag
+4. Peel ply into the cavity, pressed into the corners
+5. Caul in, firmly
+6. Breather and film over the whole board as normal
+7. Pull down. The caul takes the load
+
+The caul also **supports the deck skin** across the opening during the same
+cycle, which is the other thing that would otherwise bridge.
 
 ### How long the pump runs
 
