@@ -22,6 +22,7 @@ makes it a planing hull with a crisp release edge, and it is what V1 and every
 production eFoil do. No corner anywhere is left sharp.
 """
 
+import json
 import math
 import os
 
@@ -2901,6 +2902,13 @@ def build():
     rep["hatch_nut_pullout_N"] = round(_plug * ASA_TAU)
     rep["hatch_nut_pullout_margin"] = round(_plug * ASA_TAU / (SEAL_N / len(hb)), 1)
     rep["hatch_bolts"] = len(hb)
+    rep["bom_hatch_bolts"] = len(hb)
+    # cord runs the groove centreline: a rounded rect inset CHAN_INSET from
+    # the opening, corners R = CAV_CORNER_R + CHAN_INSET.
+    _cr = CAV_CORNER_R + CHAN_INSET
+    rep["bom_hatch_cord_mm"] = round(
+        2 * ((CAV_X1 - CAV_X0 + 2 * CHAN_INSET - 2 * _cr)
+             + (CAV_WIDTH + 2 * CHAN_INSET - 2 * _cr)) + 2 * math.pi * _cr)
     # every bolt must actually land on the lid, with head clearance
     off = [p for p in hb
            if not point_in_poly(p, lid_poly)
@@ -3394,6 +3402,8 @@ def build():
 
     rep["conduit_od_mm"] = CONDUIT_D
     rep["conduit_bore_mm"] = bore
+    rep["bom_conduit_mm"] = round(sum(
+        math.dist(path[i], path[i + 1]) for i in range(len(path) - 1)))
     rep["conduit_route"] = (
         f"up through the mast plate, then {x_end - cdx:.0f} mm forward and "
         f"{z_end - z_knee:.0f} mm up through foam, piercing the cavity aft "
@@ -3632,6 +3642,13 @@ def build():
         cyl(f"V2_ModInsert_{i}", bx_, by_, wall_top - MOD_INSERT_L, wall_top,
             MOD_INSERT_D, coll, m_metal)
     rep["module_lid_bolts"] = len(mb)
+    # --- BOM COUNTS. bom.py used to hold its own hand-typed copies of these,
+    # which is the same failure as fleet_cost: nothing breaks when they drift,
+    # they just quietly bill for last month's board. Emitted here instead.
+    rep["bom_mod_inserts"] = len(mb)
+    rep["bom_bay_glands"] = BAY_GLAND_N
+    rep["bom_mast_bolts"] = 4
+    rep["bom_mod_cord_mm"] = 0        # flat gasket, no cord
     rep["module_lid_bolt_pitch_mm"] = round(
         2 * ((ix1 - ix0) + (iy1 - iy0)) / max(1, len(mb)), 1)
 
@@ -4725,6 +4742,30 @@ def build():
 
 
 result = build()
+# --- emit the report so the OTHER scripts can read it instead of holding
+# their own copies. This is the structural fix for the whole class of drift
+# that just cost an audit: performance.py had board_kg = 25.1 against 23.9,
+# bom.py had hand-typed part counts, and fleet_cost.py had a board from
+# two redesigns ago. Nothing failed, because nothing was connected.
+_REPORT = os.path.join(os.path.dirname(os.path.abspath(
+    r"C:/Users/derek/Development/eFoil/model/blender_board.py")),
+    "report.json")
+
+
+def _jsonable(v):
+    if isinstance(v, (str, int, float, bool)) or v is None:
+        return v
+    if isinstance(v, (list, tuple)):
+        return [_jsonable(x) for x in v]
+    if isinstance(v, dict):
+        return {str(k): _jsonable(x) for k, x in v.items()}
+    return str(v)
+
+
+with open(_REPORT, "w", encoding="utf-8") as _f:
+    json.dump({k: _jsonable(v) for k, v in result.items()}, _f,
+              indent=1, sort_keys=True)
+print("saved: " + _REPORT)
 print("=" * 66)
 for k, v in result.items():
     if k == "pack_options":

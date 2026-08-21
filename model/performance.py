@@ -18,6 +18,7 @@ lasts 25 minutes or 70. Those are the decisions it exists to inform.
 
 Usage:  python model/performance.py [rider_kg]
 """
+import json
 import math
 import os
 import sys
@@ -25,6 +26,29 @@ import sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 import cnc_drawings as C                                     # noqa: E402
+
+
+# --- the model's report, not a copy of it ---------------------------------
+# blender_board.py writes model/report.json on every run. Reading it is the
+# whole point: a hand-typed copy of a number cannot fail when the model
+# changes, it can only be wrong. That is how fleet_cost.py ended up costing a
+# board from two redesigns ago and this file ended up 1.2 kg heavy.
+def _report():
+    here = os.path.dirname(os.path.abspath(__file__))
+    path = os.path.join(here, "report.json")
+    src = os.path.join(here, "blender_board.py")
+    if not os.path.exists(path):
+        raise SystemExit(
+            "model/report.json is missing. Run blender_board.py in Blender "
+            "first - this script reads the model rather than duplicating it.")
+    if os.path.getmtime(src) > os.path.getmtime(path):
+        raise SystemExit(
+            "model/report.json is OLDER than blender_board.py. Re-run the "
+            "model. Refusing to report numbers from a stale build.")
+    with open(path, encoding="utf-8") as f:
+        return json.load(f)
+
+
 
 RHO = 1000.0          # fresh water, Lucky Peak
 G = 9.81
@@ -93,11 +117,8 @@ def run(rider_kg=86.0):
     fuse_area = (p["FOIL_FUSE_L"] / 1000.0
                  * math.pi * p["FOIL_FUSE_D"] / 1000.0)
 
-    # KEEP THIS IN STEP WITH blender_board.py's board_mass_kg. This script is
-    # standalone - it does not import the model - so nothing here fails when
-    # the board changes, it just quietly reports last month's numbers. It was
-    # 25.1 while the model said 23.9.
-    board_kg, foil_kg = 23.9, 7.3
+    R = _report()
+    board_kg, foil_kg = R["board_mass_kg"], R["foil_mass_kg"]
     W = (board_kg + foil_kg + rider_kg) * G
     wh = p["PACK_S"] * p["PACK_P"] * 18.0
 

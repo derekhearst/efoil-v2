@@ -6,9 +6,32 @@ from the design. Everything else carries a tag saying where the number is from.
 
 Usage:  python model/bom.py [n_boards]
 """
+import json
 import math
 import os
 import sys
+
+
+# --- the model's report, not a copy of it ---------------------------------
+# blender_board.py writes model/report.json on every run. Reading it is the
+# whole point: a hand-typed copy of a number cannot fail when the model
+# changes, it can only be wrong. That is how fleet_cost.py ended up costing a
+# board from two redesigns ago and performance.py ended up 1.2 kg heavy.
+def _report():
+    here = os.path.dirname(os.path.abspath(__file__))
+    path = os.path.join(here, "report.json")
+    src = os.path.join(here, "blender_board.py")
+    if not os.path.exists(path):
+        raise SystemExit(
+            "model/report.json is missing. Run blender_board.py in Blender "
+            "first - this script reads the model rather than duplicating it.")
+    if os.path.getmtime(src) > os.path.getmtime(path):
+        raise SystemExit(
+            "model/report.json is OLDER than blender_board.py. Re-run the "
+            "model. Refusing to report numbers from a stale build.")
+    with open(path, encoding="utf-8") as f:
+        return json.load(f)
+
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
@@ -24,11 +47,18 @@ N = int(sys.argv[1]) if len(sys.argv) > 1 else 2
 FREE_PACKS = 1                       # packs' worth of cells already on hand
 
 # Counts read straight out of blender_board.py's report.
-M = dict(hatch_bolts=12, mod_inserts=18, mast_bushings=4,
-         hatch_cord_mm=1820, mod_cord_mm=0, bay_glands=3,   # mod_cord 0:
-         # the module lid seals on a FLAT GASKET, not a cord in a groove
-
-         cells=128, nickel_m=8.0, conduit_mm=78)   # 8.0 not 7.0: the edge
+R = _report()
+M = dict(hatch_bolts=R["bom_hatch_bolts"],
+         mod_inserts=R["bom_mod_inserts"],
+         mast_bushings=R["bom_mast_bolts"],
+         hatch_cord_mm=R["bom_hatch_cord_mm"],
+         mod_cord_mm=R["bom_mod_cord_mm"],
+         bay_glands=R["bom_bay_glands"],
+         cells=R["pack"]["cells"],
+         conduit_mm=R["bom_conduit_mm"],
+         # nickel_m is not geometry - it is a build estimate, so it stays
+         # here. 8.0 not 7.0: the edge strips get a second welded layer.
+         nickel_m=8.0)
          # strips get a second welded layer, which V1 did and the 7.0 figure
          # (copied from V1's COPPER-jumper design) never paid for.
 
@@ -60,6 +90,7 @@ def add(sec, item, qty, unit, price, conf, note="", tool=False):
 SHOP_PROVIDES = ("table saw", "bandsaw", "planer", "router", "router table",
                  "drum sander", "spindle sander", "tracksaw", "drill press",
                  "Shaper Origin")
+
 
 
 def build():
