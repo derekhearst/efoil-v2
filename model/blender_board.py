@@ -497,7 +497,9 @@ BTN_PANEL = 3.0                    # local panel thickness, 3.5 is the max
 # cap when it is not, 500 mating cycles. Bolted through a 2-hole flange into
 # heat-set inserts rather than relying on a thread in a 4 mm printed wall.
 CHG_HOLE_D = 17.0
-CHG_W, CHG_L, CHG_H = 30.0, 40.0, 24.0     # flange, depth with cap, flange
+CHG_W, CHG_L, CHG_H = 26.0, 40.0, 26.0     # flange across, overall, flange
+CHG_BODY_L = 20.0                  # behind the panel, INSIDE the module
+CHG_CAP_L = 16.0                   # mating face + screw cap, into the bay
 CHG_BOLT_PITCH = 22.0              # flange screw centres, M3
 # CABLE GLANDS, PG11 off your chart: thread OD D1 = 18.03, thread length
 # L1 = 9.14, body L2 = 14.48, sealing nut L3 = 14.99, cable 6.35-10.16 (our
@@ -1110,13 +1112,13 @@ HANDLE_BOLT_DX = 110.0             # strap mount centres, along the board
 # and these four strips nest in its offcut. At 8 mm an M6 x 8 insert bottomed
 # out with 0.0 mm of G10 under it; 12.7 leaves 4.7 mm.
 HANDLE_PLATE_L, HANDLE_PLATE_W, HANDLE_PLATE_T = 150.0, 22.0, 12.7
-HANDLE_PAD = 20.0                  # dense-foam surround, spreads into the EPS
+HANDLE_POCKET_CLR = 0.5            # bond gap round the strip, per face
 # Keep the dense block OUT of the cavity wall. Without this the pad ran inboard
 # to y=192 and butted straight into the rim ring at 192.9 - so the dense foam
 # became part of the lid-recess curve instead of being a local hardpoint. It
 # should stop short and leave plain EPS between itself and the ring, the same
 # way the mast block does.
-HANDLE_PAD_GAP = 15.0              # EPS between the rim ring and the pad
+# HANDLE_PAD / HANDLE_PAD_GAP are gone with the dense-foam surround.
 # The chord seating touches the hull surface EXACTLY at the strip's two edges,
 # so the top corners sat right on the skin and poked through by a couple of
 # tenths. This is the epoxy line the strip actually beds into - it sinks the
@@ -3152,46 +3154,52 @@ def build():
         # the G10 could not be seen in the pad at all.
         fr = rail_frame(sgn * HANDLE_Y, _zsurf - HANDLE_PLATE_BOND,
                         _tilt, sgn)
-        # dense-foam pad. Inboard edge is CLAMPED clear of the rim ring so the
-        # dense block never becomes part of the lid-recess curve.
-        pad_y0 = max(HANDLE_Y - HANDLE_PLATE_W / 2 - HANDLE_PAD,
-                     ring_y + HANDLE_PAD_GAP)
-        pad_y1 = HANDLE_Y + HANDLE_PLATE_W / 2 + HANDLE_PAD
-        y0, y1 = sorted((sgn * pad_y0, sgn * pad_y1))
-        _px0 = HANDLE_X - HANDLE_PLATE_L / 2 - HANDLE_PAD
-        _px1 = HANDLE_X + HANDLE_PLATE_L / 2 + HANDLE_PAD
-        _pz0 = _zsurf - HANDLE_PLATE_T - HANDLE_PAD
-        # Cut the HULL with a RAW box, never with the hull-clipped pad. Two
-        # separate reasons, both of which were biting:
-        #
-        #  1. the clipped pad's outer face IS the hull's own surface, and
-        #     coincident faces are exactly what the EXACT solver cannot
-        #     resolve - that is the ragged border round the pad. The mast
-        #     block already carries this lesson; the handles did not.
-        #  2. boolean() only ADDS a modifier, and Blender evaluates a cutter
-        #     WITH its own modifier stack applied. Cutting with `pad` after
-        #     `pad` had the plate subtracted from it meant the hull was cut
-        #     by (pad MINUS plate) - so solid hull material was left exactly
-        #     where the G10 strip goes, and there was no pocket for it.
-        raw = box(f"V2_Handle{nm}_PadCut", _px0, _px1, y0, y1,
-                  _pz0, THICK + 10.0, coll)
+        # NO DENSE-FOAM PAD. There was a 20 mm H-80 surround wrapping the
+        # strip on every side, which is how the strip ended up buried: the pad
+        # ran 21.5 mm further outboard than the strip did, so in the viewport
+        # the strip was simply inside a block of foam.
+        # It was never carrying the load anyway. Pulling on a carry handle
+        # pulls the strip OUTWARD, and what resists that is the laminate
+        # glassed over it, not the foam behind it: a strip this size has ~2.8
+        # kN of skin shear round its edge against the ~180 N a bolt sees
+        # carrying a 24 kg board with a shock factor of 3. The pad was
+        # spreading a load that had somewhere better to go.
+        # So: one part, not two. Rout a tilted pocket, drop the strip in on
+        # thickened epoxy, glass over it. The pocket is cut with a box that
+        # overshoots the surface by 30 mm - never one whose outer face IS the
+        # hull surface, because coincident faces are what the EXACT solver
+        # cannot resolve, and that was the ragged border round the old pad.
+        # The overshoot has to be converted: rail_frame takes a Z, but
+        # tilted_box measures its thickness along the tilted NORMAL. Offsetting
+        # the frame 30 mm in Z moves it 30/cos(tilt) = 34.8 mm along the
+        # normal, so a 43.2 mm-thick cutter reached only 8.4 mm past the
+        # strip's face instead of 13.2 - it left the inner third of the strip
+        # buried in solid hull. Offset by OVER*cos so the two agree.
+        # ...and the offset moves in BOTH axes. rail_frame maps
+        #     y = ymid + sgn*(u*cos + v*sin),  z = zmid + (-u*sin + v*cos)
+        # so stepping `over` along the normal is Dy = sgn*over*sin AND
+        # Dz = over*cos. Doing only the Z half left the cutter 5 mm off to one
+        # side, which is the last 17% of the strip that stayed buried.
+        _over = 10.0                              # along the normal
+        fr_cutbox = rail_frame(
+            sgn * HANDLE_Y + sgn * _over * math.sin(_tilt),
+            _zsurf - HANDLE_PLATE_BOND + _over * math.cos(_tilt), _tilt, sgn)
+        raw = tilted_box(f"V2_Handle{nm}_PadCut",
+                         HANDLE_X - HANDLE_PLATE_L / 2 - HANDLE_POCKET_CLR,
+                         HANDLE_X + HANDLE_PLATE_L / 2 + HANDLE_POCKET_CLR,
+                         HANDLE_PLATE_W + 2 * HANDLE_POCKET_CLR,
+                         _over + HANDLE_PLATE_T + HANDLE_POCKET_CLR,
+                         fr_cutbox, coll)
         boolean(hull, raw)
         raw.hide_set(True)
         raw.hide_render = True
 
-        pad = box(f"V2_Handle{nm}_PadRaw", _px0, _px1, y0, y1,
-                  _pz0, THICK + 10.0, coll)
-        boolean(pad, hull_snap, op='INTERSECT')
-        pad = snapshot(pad, f"V2_Handle{nm}_Pad", coll)
-        bpy.data.objects.remove(bpy.data.objects[f"V2_Handle{nm}_PadRaw"],
-                                do_unlink=True)
-        set_single_material(pad, bom_mat("dense"))
-        # G10 strip, tangent, sitting in a pocket cut out of the dense pad
+        # 6061 strip, tangent, bonded straight into the routed pocket
         plate = tilted_box(f"V2_Handle{nm}_Plate",
                            HANDLE_X - HANDLE_PLATE_L / 2,
                            HANDLE_X + HANDLE_PLATE_L / 2,
-                           HANDLE_PLATE_W, HANDLE_PLATE_T, fr, coll, m_g10)
-        boolean(pad, plate, op='DIFFERENCE')
+                           HANDLE_PLATE_W, HANDLE_PLATE_T, fr, coll,
+                           bom_mat("alu"))
         # ...and BORE THE PLATE for the two strap inserts. They were drawn as
         # solid studs standing on the G10 with no hole under them at all.
         # The cutter is 0.4 mm over the insert and starts 2 mm proud so it
@@ -3229,14 +3237,24 @@ def build():
                        HANDLE_X + HANDLE_PLATE_L / 2):
                 _pr = max(_pr, _z - deck_z_at(_x, _y))
     rep["handle_plate_proud_mm"] = round(_pr, 2)
-    rep["handle_eps_gap_to_ring_mm"] = round(
-        max(HANDLE_Y - HANDLE_PLATE_W / 2 - HANDLE_PAD, ring_y
-            + HANDLE_PAD_GAP) - ring_y, 1)
+    # The strip must sit in a POCKET, not inside solid hull. Two separate bugs
+    # buried it (a Z-only normal offset, then a Y-only one), and both looked
+    # fine in every report until this was actually measured.
+    _buried = 0.0
+    for _nm in ("P", "S"):
+        _pl = bpy.data.objects[f"V2_Handle{_nm}_Plate"]
+        _t = snapshot(_pl, f"V2_HandleChk_{_nm}", coll)
+        boolean(_t, hull, op='INTERSECT')
+        _buried = max(_buried, volume_litres(_t) * 1e6)
+        bpy.data.objects.remove(_t, do_unlink=True)
+    rep["handle_strip_buried_mm3"] = round(_buried, 1)
+    # With the pad gone the only thing that has to clear the rim ring is the
+    # strip itself, which it does by handle_to_ring_mm below.
     rep["handle_to_ring_mm"] = round(
         HANDLE_Y - HANDLE_PLATE_W / 2 - ring_y, 1)
     rep["handle_mount"] = (f"webbing strap on 2 x M{HANDLE_BOLT_D:.0f} at "
                            f"{HANDLE_BOLT_DX:.0f} mm centres into a "
-                           f"{HANDLE_PLATE_T:.1f} mm G10 strip set TANGENT to "
+                           f"{HANDLE_PLATE_T:.1f} mm 6061 strip set TANGENT to "
                            f"the rail under the skin - NO recess, "
                            f"{HANDLE_STRAP_SLACK:.0f} mm of strap slack is the "
                            "finger clearance")
@@ -3894,8 +3912,14 @@ def build():
                    ex0 - 2.0, ex0 + ENC_WALL + 2.0, 3.2, coll)
         boolean(aft_wall, fb)
         fb.hide_set(True); fb.hide_render = True
-    cyl_x("V2_ChargePort", chg_y, btn_z, ex0 - CHG_L + ENC_WALL,
-          ex0 + ENC_WALL + 2.0, CHG_HOLE_D + 6.0, coll, bom_mat("esc"))
+    # Drawn backwards, and that is why it looked enormous: the whole 40 mm
+    # was projecting AFT into the service bay. On a panel receptacle the body
+    # goes INSIDE the enclosure and only the mating face and its screw cap sit
+    # outside. So it is two pieces now, and the bay only ever sees the cap.
+    cyl_x("V2_ChargePort", chg_y, btn_z, ex0 + ENC_WALL,
+          ex0 + ENC_WALL + CHG_BODY_L, CHG_HOLE_D + 3.0, coll, bom_mat("esc"))
+    cyl_x("V2_ChargePortCap", chg_y, btn_z, ex0 - CHG_CAP_L, ex0 + ENC_WALL,
+          CHG_HOLE_D + 5.0, coll, bom_mat("seal"))
     for c in (btn_cut, btn_pkt, chg_cut):
         c.hide_set(True); c.hide_render = True
     rep["button_panel_mm"] = BTN_PANEL
@@ -4505,6 +4529,10 @@ def build():
         fails.append(f"module pieces sum to {rep['module_piece_sum_pct']}% of "
                      "the shell - something is clipped off, interfering, or "
                      "standing outside the part")
+    if rep["handle_strip_buried_mm3"] > 1.0:
+        fails.append("the handle strip has no pocket - "
+                     f"{rep['handle_strip_buried_mm3']} mm3 of it is inside "
+                     "solid hull")
     if not rep["button_panel_within_spec"]:
         fails.append(f"power button needs a panel of {BTN_PANEL} mm or less "
                      "and the wall is thicker - the nut cannot reach")

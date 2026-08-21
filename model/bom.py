@@ -141,7 +141,7 @@ def build():
     # more than foam: the aft rib landed under the rim board and the mast
     # conduit ran straight through it.
     add("3  Structural foam", "Divinycell H-80 3/4in quarter sheet 24x48, "
-        "mast block + leash/handle pads", 1, "sheet", 100.26, OK,
+        "mast block + leash pad", 1, "sheet", 100.26, OK,
         "L18-1112, 24x48. Was 2 sheets when it carried 2 shear ribs")
 
     # ---------------------------------------------------------- 4 laminate
@@ -337,9 +337,11 @@ def build():
     add("9b Small but essential", "Coiled ankle leash", N, "ea", 14.99, OK,
         "you trust the remote failsafe; this is so the board stays with you")
     add("9b Small but essential", "FCS-pattern leash plug", N, "ea", 9.00, EST)
-    add("9b Small but essential", "Kayak-style carry handle, 4 pk",
+    # A cloth handle, bolted on. That is all this ever needed to be - the
+    # dense-foam surround that used to wrap the strip is gone.
+    add("9b Small but essential", "Kayak-style webbing carry handle, 4 pk",
         1, "pk", 13.89, OK,
-        str(2 * N) + " needed; bolts to the G10 strip in the rail pocket")
+        str(2 * N) + " needed; 2 x M6 into the 6061 strip in the rail pocket")
     add("9b Small but essential", "M6 x 16 A4 + M6 insert, strap mounts",
         4 * N, "set", 1.40, EST)
 

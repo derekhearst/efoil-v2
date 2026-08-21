@@ -27,7 +27,7 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 |---|---:|---|---:|---:|---|---|
 | Divinycell H-100 1/4in quarter 21x42, hatch lid cores - 2 sheets bonded to 1/2in | 2 | sheet | $49.59 | $99.18 | verified | fiberglasssupply.com; no 1/2in H-100 is made |
 | Divinycell H-80 1/4in quarter 24x48, module lid cores | 1 | sheet | $53.94 | $53.94 | verified | L18-1070; nobody stands on this one |
-| Divinycell H-80 3/4in quarter sheet 24x48, mast block + leash/handle pads | 1 | sheet | $100.26 | $100.26 | verified | L18-1112, 24x48. Was 2 sheets when it carried 2 shear ribs |
+| Divinycell H-80 3/4in quarter sheet 24x48, mast block + leash pad | 1 | sheet | $100.26 | $100.26 | verified | L18-1112, 24x48. Was 2 sheets when it carried 2 shear ribs |
 | **subtotal** | | | | **$253.38** | | |
 
 ## 4  Laminate
@@ -125,7 +125,7 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | Water-ingress alarm | 2 | ea | $12.00 | $24.00 | estimate | V1 carried one - finds a leak before the cells do |
 | Coiled ankle leash | 2 | ea | $14.99 | $29.98 | verified | you trust the remote failsafe; this is so the board stays with you |
 | FCS-pattern leash plug | 2 | ea | $9.00 | $18.00 | estimate |  |
-| Kayak-style carry handle, 4 pk | 1 | pk | $13.89 | $13.89 | verified | 4 needed; bolts to the G10 strip in the rail pocket |
+| Kayak-style webbing carry handle, 4 pk | 1 | pk | $13.89 | $13.89 | verified | 4 needed; 2 x M6 into the 6061 strip in the rail pocket |
 | M6 x 16 A4 + M6 insert, strap mounts | 8 | set | $1.40 | $11.20 | estimate |  |
 | **subtotal** | | | | **$119.27** | | |
 

@@ -1,6 +1,6 @@
 <svg viewBox="0 0 1320 720" xmlns="http://www.w3.org/2000/svg" style="background:#fff;font-family:ui-sans-serif,system-ui,sans-serif">
 <text x="16" y="30" font-size="19" font-weight="700">eFoil V2 — CNC flat parts</text>
-<text x="16" y="50" font-size="12" fill="#666">Board 1400 x 560 x 147.3 · black = cut · red = holes · green = pocket (channel)</text>
+<text x="16" y="50" font-size="12" fill="#666">Board 1400 x 560 x 153.8 · black = cut · red = holes · green = pocket (channel)</text>
 <text x="26" y="94" font-size="12.5" font-weight="600">1. rim ring</text>
 <text x="26" y="110" font-size="10.5" fill="#666">printed ASA (reference only) · 13 mm · x1 · 593 x 387</text>
 <line x1="237.89" y1="309.47" x2="239.82" y2="309.39" stroke="#1a1a1a" stroke-width="1.1"/>
