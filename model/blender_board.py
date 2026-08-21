@@ -1086,6 +1086,17 @@ DENSE_RIB_T = 19.05                # 3/4in H80, same stock as the block
 # never be inspected or replaced. Aluminium in wet foam with stainless bolts
 # through it is a galvanic cell. Fresh water only, and every bolt gets
 # Tef-Gel or equivalent at assembly - that is the whole mitigation.
+# 1/2 in is not overbuilt - it is the exact optimum, and both neighbours are
+# worse. Tapped M8 blind, leaving 2.7 mm of solid alu:
+#     1/4   thread  5.2 kN   0.82x at 1 g   - fails outright
+#     3/8   thread 11.4 kN   1.81x at 1 g, 1.48x at the core's own 1.22 g limit
+#     1/2   thread 17.6 kN   2.61x          <- the BOLT starts governing here
+#     5/8   thread 23.9 kN   2.61x          - identical, and 375 g heavier
+# 1/2 is the THINNEST plate at which the M8 bolt's own 16.5 kN proof load
+# becomes the weak link instead of our thread. Below it the plate is the weak
+# part; above it nothing improves, because the failure has already moved onto
+# Gong's bolt - which is exactly where you want it, on the part that is
+# replaceable and specified by someone else.
 G10_T = 12.7                       # 1/2" 6061-T651 mast plate
 # M8 in G10, BONDED stainless bushing - not a key-locking insert. Key-locking
 # inserts lock by driving four hardened keys down into the parent material,
@@ -4791,6 +4802,74 @@ def build():
     return rep
 
 
+# --- names and folders ------------------------------------------------------
+# Every object was called V2_something and lived in one flat collection, which
+# is fine for a script and miserable to actually look at. Onshape gives you a
+# feature tree; the nearest thing Blender has is COLLECTIONS, so use them.
+# The "V2_" prefix carried no information - there is no V1 in this file - so
+# it is stripped. Cutters keep theirs hidden and out of the way; they are
+# machinery, not parts.
+GROUPS = [
+    ("Cutters",      lambda n: "_cut" in n or n.endswith("_tmp")
+                               or "Cut" in n or "Pocket" in n or "Bore" in n
+                               or "Hole" in n or "Sock" in n or "Clip" in n),
+    ("Foil",         lambda n: n.startswith("Foil_")),
+    # These two OCCUPY THE SAME SPACE as the hull, so they cannot all be on
+    # at once - which is why the core halves looked missing. Own collections,
+    # off by default: tick "Core split" to see where the blank is cut, tick
+    # "Blank layers" to see the 2 in sheets it is glued up from. Toggling a
+    # collection is one click; hunting a hidden object is not.
+    ("Core split",   lambda n: n.startswith("CoreHalf_")),
+    ("Blank layers", lambda n: n.startswith("BlankLayer_")),
+    ("Hull & core",  lambda n: n in ("Hull", "Mod_Shell")
+                               or n.startswith("DenseFoam")),
+    ("Hatch",        lambda n: n.startswith(("RimSeg_", "RimRing", "Rim",
+                                             "Hatch", "Lid", "Seal"))),
+    ("Module",       lambda n: n.startswith(("Mod_", "ModPiece_", "ModInsert",
+                                             "ModDT", "ModGasket"))),
+    ("Electrical",   lambda n: n.startswith(("Pack_", "BMS", "ESC", "Fuse",
+                                             "PowerButton", "ChargePort",
+                                             "BayGland", "Conduit", "Nickel"))),
+    ("Hardpoints",   lambda n: n.startswith(("MastPlate", "MastBolt",
+                                             "MastInsert", "Handle", "Leash",
+                                             "Cav_"))),
+]
+
+
+def organise(root):
+    subs = {}
+    for name, _ in GROUPS:
+        c = bpy.data.collections.new(name)
+        root.children.link(c)
+        subs[name] = c
+    misc = bpy.data.collections.new("Misc")
+    root.children.link(misc)
+    for ob in list(root.objects):
+        short = ob.name[3:] if ob.name.startswith("V2_") else ob.name
+        ob.name = short
+        target = misc
+        for name, test in GROUPS:
+            if test(short):
+                target = subs[name]
+                break
+        root.objects.unlink(ob)
+        target.objects.link(ob)
+    # Off by default. Cutters are machinery, not parts; the other two are
+    # alternative views of the hull and would z-fight with it.
+    OFF = ("Cutters", "Core split", "Blank layers")
+    for lc in bpy.context.view_layer.layer_collection.children:
+        for sub in lc.children:
+            if sub.name in OFF:
+                sub.exclude = True
+    # ...and inside those, the objects themselves are visible, so ticking the
+    # collection on is all it takes.
+    for g in OFF[1:]:
+        for ob in bpy.data.collections[g].objects:
+            ob.hide_set(False)
+            ob.hide_render = False
+    return {k: len(v.objects) for k, v in subs.items() if v.objects}
+
+
 result = build()
 # --- emit the report so the OTHER scripts can read it instead of holding
 # their own copies. This is the structural fix for the whole class of drift
@@ -4833,13 +4912,15 @@ print_legend()
 _BLEND = os.path.join(os.path.dirname(os.path.abspath(
     r"C:/Users/derek/Development/eFoil/model/blender_board.py")),
     "efoil_v2.blend")
+_counts = organise(bpy.data.collections[COLL_NAME])
+print("collections: " + ", ".join(f"{k} ({v})" for k, v in _counts.items()))
 bpy.ops.wm.save_as_mainfile(filepath=_BLEND)
 print("saved: " + _BLEND)
 
 # ...and the hull STL, which drifted the same way (it was a day older than the
 # .blend, which was itself a day older than the script).
 _STL = os.path.join(os.path.dirname(_BLEND), "efoil_v2_hull.stl")
-_hull = bpy.data.objects.get("V2_Hull")
+_hull = bpy.data.objects.get("Hull")
 if _hull:
     bpy.ops.object.select_all(action='DESELECT')
     _hull.hide_set(False)

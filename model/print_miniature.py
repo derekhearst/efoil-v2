@@ -27,9 +27,9 @@ INFILL_F = 0.35        # rough solid-fraction for 2 perimeters + ~15% infill
 # and the six printed ring segments. "V2_Mod_" does not match "V2_ModPiece_",
 # so the miniature was silently missing the shell entirely and printing the
 # hidden one-piece V2_RimRing_ASA reference instead of the six real segments.
-INTERNALS = ("V2_Mod_", "V2_ModPiece_", "V2_RimSeg_", "V2_Pack_", "V2_BMS",
-             "V2_ESC", "V2_Fuse", "V2_MastPlate_Alu", "V2_DenseFoam_Block",
-             "V2_Lid", "V2_Conduit")
+INTERNALS = ("Mod_", "ModPiece_", "RimSeg_", "Pack_", "BMS",
+             "ESC", "Fuse", "MastPlate_Alu", "DenseFoam_Block",
+             "Lid", "Conduit")
 
 
 def bake(names, out_name):
@@ -83,7 +83,7 @@ def half(ob, name):
 
 
 rows = []
-hull = bake(["V2_Hull"], "print_hull")
+hull = bake(["Hull"], "print_hull")
 inner = bake([o.name for o in bpy.data.objects
               if o.type == 'MESH' and not o.hide_get()
               and any(o.name.startswith(p) for p in INTERNALS)], "print_internals")
