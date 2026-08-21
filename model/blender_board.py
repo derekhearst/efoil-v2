@@ -2679,26 +2679,55 @@ def build():
                      ring_y + HANDLE_PAD_GAP)
         pad_y1 = HANDLE_Y + HANDLE_PLATE_W / 2 + HANDLE_PAD
         y0, y1 = sorted((sgn * pad_y0, sgn * pad_y1))
-        pad = box(f"V2_Handle{nm}_PadRaw",
-                  HANDLE_X - HANDLE_PLATE_L / 2 - HANDLE_PAD,
-                  HANDLE_X + HANDLE_PLATE_L / 2 + HANDLE_PAD,
-                  y0, y1,
-                  _zsurf - HANDLE_PLATE_T - HANDLE_PAD, THICK + 10.0, coll)
+        _px0 = HANDLE_X - HANDLE_PLATE_L / 2 - HANDLE_PAD
+        _px1 = HANDLE_X + HANDLE_PLATE_L / 2 + HANDLE_PAD
+        _pz0 = _zsurf - HANDLE_PLATE_T - HANDLE_PAD
+        # Cut the HULL with a RAW box, never with the hull-clipped pad. Two
+        # separate reasons, both of which were biting:
+        #
+        #  1. the clipped pad's outer face IS the hull's own surface, and
+        #     coincident faces are exactly what the EXACT solver cannot
+        #     resolve - that is the ragged border round the pad. The mast
+        #     block already carries this lesson; the handles did not.
+        #  2. boolean() only ADDS a modifier, and Blender evaluates a cutter
+        #     WITH its own modifier stack applied. Cutting with `pad` after
+        #     `pad` had the plate subtracted from it meant the hull was cut
+        #     by (pad MINUS plate) - so solid hull material was left exactly
+        #     where the G10 strip goes, and there was no pocket for it.
+        raw = box(f"V2_Handle{nm}_PadCut", _px0, _px1, y0, y1,
+                  _pz0, THICK + 10.0, coll)
+        boolean(hull, raw)
+        raw.hide_set(True)
+        raw.hide_render = True
+
+        pad = box(f"V2_Handle{nm}_PadRaw", _px0, _px1, y0, y1,
+                  _pz0, THICK + 10.0, coll)
         boolean(pad, hull_snap, op='INTERSECT')
         pad = snapshot(pad, f"V2_Handle{nm}_Pad", coll)
         bpy.data.objects.remove(bpy.data.objects[f"V2_Handle{nm}_PadRaw"],
                                 do_unlink=True)
         set_single_material(pad, bom_mat("dense"))
-        boolean(hull, pad)
-        # G10 strip, tangent, top face one laminate under the rail surface
+        # G10 strip, tangent, sitting in a pocket cut out of the dense pad
         plate = tilted_box(f"V2_Handle{nm}_Plate",
                            HANDLE_X - HANDLE_PLATE_L / 2,
                            HANDLE_X + HANDLE_PLATE_L / 2,
                            HANDLE_PLATE_W, HANDLE_PLATE_T, fr, coll, m_g10)
         boolean(pad, plate, op='DIFFERENCE')
+        # ...and BORE THE PLATE for the two strap inserts. They were drawn as
+        # solid studs standing on the G10 with no hole under them at all.
+        # The cutter is 0.4 mm over the insert and starts 2 mm proud so it
+        # breaks the top face cleanly - that 0.2 mm a side is the bond gap.
+        fr_cut = rail_frame(sgn * HANDLE_Y,
+                            _zsurf - HANDLE_PLATE_BOND + 2.0, _tilt, sgn)
         for sx in (-1, 1):
-            tilted_cyl(f"V2_HandleIns{nm}{sx}",
-                       HANDLE_X + sx * HANDLE_BOLT_DX / 2,
+            bx = HANDLE_X + sx * HANDLE_BOLT_DX / 2
+            cut = tilted_cyl(f"V2_HandleInsCut{nm}{sx}", bx,
+                             HANDLE_INS_D + 0.4, HANDLE_INS_L + 2.0,
+                             fr_cut, coll)
+            boolean(plate, cut)
+            cut.hide_set(True)
+            cut.hide_render = True
+            tilted_cyl(f"V2_HandleIns{nm}{sx}", bx,
                        HANDLE_INS_D, HANDLE_INS_L, fr, coll, m_metal)
         rep["handle_plate_g10_below_insert_mm"] = round(
             HANDLE_PLATE_T - HANDLE_INS_L, 1)
