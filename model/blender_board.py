@@ -1475,6 +1475,7 @@ def fresh_collection():
 PALETTE = {
     "hull_glass":    ((0.88, 0.89, 0.90), 0.30, 0.0, 0.18),  # glass/H80/glass shell
     "eps":           ((0.96, 0.96, 0.93), 0.95, 0.0, 1.00),  # EPS blank
+    "eps_fwd":       ((0.90, 0.92, 0.96), 0.95, 0.0, 1.00),  # ...forward half
     "h80":           ((0.95, 0.86, 0.42), 0.85, 0.0, 1.00),  # H80 PVC foam core
     "dense":         ((0.20, 0.45, 0.80), 0.85, 0.0, 1.00),  # H200 mast block
     "g10":           ((0.85, 0.68, 0.28), 0.50, 0.0, 1.00),  # G10 laminate
@@ -3331,12 +3332,14 @@ def build():
     # it - the same way a stringerless surfboard blank is glued up.
     # Drawn here because "where does it get cut" is not answerable from a
     # number in a report.
-    for nm, x0, x1 in (("Aft", -20.0, SEAM_X), ("Fwd", SEAM_X, LENGTH + 20.0)):
+    for nm, x0, x1, mat in (("Aft", -20.0, SEAM_X, "eps"),
+                            ("Fwd", SEAM_X, LENGTH + 20.0, "eps_fwd")):
         half = box(f"V2_CoreHalf_{nm}", x0, x1, -WIDTH, WIDTH,
-                   -20.0, THICK + 40.0, coll, bom_mat("eps"))
+                   -20.0, THICK + 40.0, coll, bom_mat(mat))
         boolean(half, hull, op='INTERSECT')
-        half.hide_set(True)
-        half.hide_render = True
+    # Two shades on purpose. Butted, the halves are geometrically identical to
+    # the hull, so in one colour the seam is a hairline you have to hunt for -
+    # which is the whole thing being shown.
     # ...and the EPS sheet layers it is glued up from, which is the other
     # question: the blank is not a solid billet, it is 2 in sheets stacked.
     _blank_z = [v.z * 1000.0 for v in
@@ -4856,17 +4859,24 @@ def organise(root):
         target.objects.link(ob)
     # Off by default. Cutters are machinery, not parts; the other two are
     # alternative views of the hull and would z-fight with it.
-    OFF = ("Cutters", "Core split", "Blank layers")
+    # "Core split" is ON. The two halves ARE the parts - they are what gets
+    # machined and what you have to hold on a bed - and the one-piece Hull is
+    # the reference for what they add up to. Exactly the arrangement the rim
+    # ring already uses: segments visible, assembled ring hidden.
+    OFF = ("Cutters", "Blank layers")
     for lc in bpy.context.view_layer.layer_collection.children:
         for sub in lc.children:
             if sub.name in OFF:
                 sub.exclude = True
     # ...and inside those, the objects themselves are visible, so ticking the
     # collection on is all it takes.
-    for g in OFF[1:]:
-        for ob in bpy.data.collections[g].objects:
-            ob.hide_set(False)
-            ob.hide_render = False
+    for ob in bpy.data.collections["Blank layers"].objects:
+        ob.hide_set(False)          # visible the moment you tick it on
+        ob.hide_render = False
+    _h = bpy.data.objects.get("Hull")
+    if _h:
+        _h.hide_set(True)
+        _h.hide_render = True
     return {k: len(v.objects) for k, v in subs.items() if v.objects}
 
 
