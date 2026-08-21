@@ -87,8 +87,11 @@ Original estimates replaced with real logged data. See `efoil-7-vesc-config.md` 
 
 **Thermal:** peak FET 47.4 °C over a 66-minute session with repeated 4 kW pulls, settling to 37–38 °C. Cutoff starts at 80 °C. Passive cooling is performing better than expected.
 
-**Board weight: MEASURED 66 lb / 29.9 kg** (17 Aug 2026, board complete with battery and electronics, foil off; noted as a minimum, so treat 29.9 kg as a floor). This replaces the earlier ~25-30 kg estimate, which was a guess and sat at the bottom of the real figure.
+**Board weight: MEASURED 66 lb / 29.94 kg** (17 Aug 2026, complete rig - board, battery, electronics, foil AND motor all on; noted as a minimum, so treat it as a floor). Replaces the earlier ~25-30 kg estimate.
 
-Back-calculating from it: bare hull ~15.4 kg, which puts the hand layup at ~3.0 kg/m2 against V2's vacuum-bagged 1.82 kg/m2 - the hand layup carried about 1.7x the resin per unit area. That single number is where most of V2's weight saving comes from.
+**V2 does NOT come in lighter.** Like-for-like, V2's comparable figure is rig_mass_kg = 31.6 kg, because the model's foil_kg = 7.3 already bundles the Flipsky 65161 and the prop. So V2 is **+1.7 kg / +3.7 lb heavier**.
 
-V2 computes at 24.3 kg in the same configuration: **12.4 lb / 5.6 kg lighter, 19%**. Split: glass -3.8, plywood-to-G10 -1.2, foam -0.4.
+Reconciling V1's 29.94 kg against its parts - foil+motor+prop 6.0-7.3, battery assembly 9.5-11.0, electronics 2.0-2.5 - leaves 9.1-12.4 kg for the hull. It only closes at the favourable end of every assumption, i.e. hull ~12.4 kg. V2's structure computes at 12.41 kg. **They are the same hull weight.** The hand layup was not as resin-rich as first inferred, so the vacuum-bagging weight saving does not show up in the measurement.
+
+V2 is a SMALLER board (1400x560x147 vs 1600x600x153) carrying the same mass, so buoyancy is much worse: net float with rider -36.6 kg against V1's -19.3 kg. Nearly twice the sinker.
+
