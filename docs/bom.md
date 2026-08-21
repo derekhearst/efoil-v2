@@ -27,8 +27,8 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 |---|---:|---|---:|---:|---|---|
 | Divinycell H-100 1/4in quarter 21x42, hatch lid cores - 2 sheets bonded to 1/2in | 2 | sheet | $49.59 | $99.18 | verified | fiberglasssupply.com; no 1/2in H-100 is made |
 | Divinycell H-80 1/4in quarter 24x48, module lid cores | 1 | sheet | $53.94 | $53.94 | verified | L18-1070; nobody stands on this one |
-| Divinycell H-80 3/4in quarter sheet 24x48, mast block + 2 shear ribs + leash/handle pads | 2 | sheet | $100.26 | $200.52 | verified | L18-1112, 24x48; this line carried ONE sheet and was short by one even before the ribs. The 2 ribs nest in the offcut |
-| **subtotal** | | | | **$353.64** | | |
+| Divinycell H-80 3/4in quarter sheet 24x48, mast block + leash/handle pads | 1 | sheet | $100.26 | $100.26 | verified | L18-1112, 24x48. Was 2 sheets when it carried 2 shear ribs |
+| **subtotal** | | | | **$253.38** | | |
 
 ## 4  Laminate
 
@@ -222,27 +222,27 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | Item | Qty | Unit | Unit $ | Ext $ | | Note |
 |---|---:|---|---:|---:|---|---|
 | Shipping - G10, Divinycell, epoxy hazmat | 1 | allow | $220.00 | $220.00 | estimate | heavy and hazmat lines |
-| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $451.08 | $451.08 | verified |  |
-| **subtotal** | | | | **$671.08** | | |
+| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $445.06 | $445.06 | verified |  |
+| **subtotal** | | | | **$665.06** | | |
 
 ## Totals
 
 | | |
 |---|---:|
-| **Grand total, 2 boards** | **$7,969.04** |
-| Per board | $3,984.52 |
-| Of which verified | $6,197.96  (78%) |
+| **Grand total, 2 boards** | **$7,862.76** |
+| Per board | $3,931.38 |
+| Of which verified | $6,091.68  (77%) |
 | Of which estimated | $1,771.08 |
 
 ## What is a board, and what is a shop
 
-Some of the total above is not the cost of a board at all - it is tools, jigs and templates that exist afterwards and do not repeat. Splitting them out is the difference between "a board costs $3,985" and "a board costs $3,460 and I now own a vacuum rig, a crimper and a full template set".
+Some of the total above is not the cost of a board at all - it is tools, jigs and templates that exist afterwards and do not repeat. Splitting them out is the difference between "a board costs $3,931" and "a board costs $3,407 and I now own a vacuum rig, a crimper and a full template set".
 
 | | |
 |---|---:|
 | One-time tooling (incl. its share of tax) | $1,048.75 |
-| **Marginal cost of a board** | **$3,460.14** |
-| Cost of the NEXT board after these 2 | $3,460.14 |
+| **Marginal cost of a board** | **$3,407.00** |
+| Cost of the NEXT board after these 2 | $3,407.00 |
 
 | One-time item | $ |
 |---|---:|

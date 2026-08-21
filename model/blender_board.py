@@ -240,20 +240,27 @@ RIM_JOINT = "acetone weld"
 # apart in x, and has ~75 mm of weld length per joint. Vertical location is
 # the floor's own locating groove, which the walls already drop into.
 MOD_DT_NECK, MOD_DT_HEAD, MOD_DT_DEPTH = 5.0, 9.0, 10.0
-# --- lift handle on the module's FORWARD face ------------------------------
+# --- lift handle on the module's AFT face ----------------------------------
 # The module is ~14 kg with the pack in it and it sits in a cavity with about
-# 12 mm of side clearance - you cannot get a hand down beside it, and the top
-# is the lid. So it lifts by a WEBBING LOOP through two printed bosses on the
-# forward wall: pull the loop up with a fingertip, then lift straight out.
-# Forward, not aft: the aft wall is the connector panel and has no room left.
-# TWO bosses, at +/-MOD_HANDLE_Y, deliberately NOT one in the middle - the
-# print seam runs down the centre of that wall, and a handle straddling the
-# seam would hang 14 kg off a glued joint. One boss per piece instead, and the
-# single loop through both spreads the load across the pair.
-MOD_HANDLE_Y = 70.0                # boss centres, either side of the seam
-MOD_HANDLE_W, MOD_HANDLE_H = 60.0, 34.0
-MOD_HANDLE_PROUD = 10.0            # must stay inside the side clearance
-MOD_HANDLE_SLOT_W, MOD_HANDLE_SLOT_H = 40.0, 12.0   # 25 mm webbing + slack
+# 12 mm of side clearance, so there is no getting a hand beside it, and the
+# top is the lid. It lifts by a WEBBING LOOP through two printed lugs.
+# AFT, not forward. The module butts up against the forward cavity wall, so
+# the only face you can actually reach is the one carrying the cable glands -
+# which is also the face the service bay opens onto. Putting the handle
+# forward meant putting it against a wall you cannot reach past.
+# That costs room: the aft wall is a busy panel, and the free bands are
+# y -106..-16 and y +16..+56. A 34 mm lug at +/-36 sits in both with 3 mm to
+# the conduit and 3 mm to the power button.
+# It BUYS depth, though - the handle projects into the 60 mm service bay
+# rather than into 12 mm of side clearance, so the lug can be a real lug with
+# a slot through it instead of a 10 mm nub.
+# TWO lugs, deliberately NOT one in the middle: the print seam runs down that
+# wall's centre and a handle straddling it hangs 14 kg off a glued joint.
+MOD_HANDLE_Y = 36.0                # lug centres, either side of the seam
+MOD_HANDLE_W, MOD_HANDLE_H = 34.0, 34.0
+MOD_HANDLE_PROUD = 20.0            # into the service bay, not the side gap
+MOD_HANDLE_SLOT_H = 14.0           # 25 mm webbing doubled, plus slack
+MOD_HANDLE_BAR = 6.0               # bar in front of the slot, and root behind
 PRINT_BED = 256.0                  # Bambu A1
 # A real GROOVE, because a squashed strip has no hard stop and the seal load
 # then depends on how hard each of 13 bolts was done up. With a groove the lid
@@ -953,7 +960,19 @@ DENSE_COL_GAP = 3.0                # stop the ribs short of the cavity void
 # two give 1.73 g and nest in the offcut of sheets already being bought, so
 # they are free. 0, 1 and 2 ribs all cost the same two sheets - which makes
 # "no ribs" strictly worse than "two ribs" for the same money.
-DENSE_RIB_N = 2
+# ZERO. The ribs took the side-load limit from 1.22 g to 1.81 g, which sounded
+# like a bargain until it was measured against the board that is actually
+# being ridden: V1's own side-load capacity is 0.44 g. The dense BLOCK alone
+# is 1.22 g - already 2.8x V1 - and V1 has never complained. Buying 1.81 g on
+# top of that is margin nobody was asking for, and it was not free:
+#   - the aft rib landed at x=371.5, directly UNDER the rim board
+#   - the mast conduit runs x=324..413, straight THROUGH that same rib, so the
+#     wire route had to be bored through a structural web
+#   - 2 more H-80 parts to cut, fit and bond
+# The block stays. It is doing three jobs the ribs were not: bearing the mast
+# plate (EPS would crush under it), spreading the roll couple into the skins,
+# and hosting the leash plug and handle hardpoints.
+DENSE_RIB_N = 0
 DENSE_RIB_T = 19.05                # 3/4in H80, same stock as the block
 
 # BLIND THREADED INSERTS, not through-bolts. Through-bolting meant a nut and
@@ -3268,9 +3287,13 @@ def build():
     rep["conduit_bend_radius_mm"] = round(_r_used, 1)
 
     # gland on the cavity's aft wall, not its floor
-    box("V2_Conduit_Bung", x_end - 6.0, x_end + 14.0,
+    # NOT MODELLED any more. It is 3M 4200 worked into the bore around the
+    # three leads with a stick - there is no part here to draw, and drawing a
+    # tidy solid implied a machined component that does not exist.
+    _bung_placeholder = box("V2_Conduit_Bung", x_end - 6.0, x_end + 14.0,
         -(GLAND_D + 8) / 2, (GLAND_D + 8) / 2,
         z_end - (GLAND_D + 8) / 2, z_end + (GLAND_D + 8) / 2, coll, m_metal)
+    bpy.data.objects.remove(_bung_placeholder, do_unlink=True)
 
     rep["conduit_od_mm"] = CONDUIT_D
     rep["conduit_bore_mm"] = bore
@@ -3364,17 +3387,22 @@ def build():
             ("F", ex1, ex1 + ENC_RIB, (ey0 + ey1) / 2 - ENC_RIB_W / 2,
              (ey0 + ey1) / 2 + ENC_RIB_W / 2)):
         box(f"V2_Mod_Rib{nm}", a, b, c, d, wall_z0, wall_top, coll, m_rib)
-    # Lift-handle bosses on the forward wall, one either side of the seam.
+    # Lift-handle lugs on the AFT wall, one either side of the seam. The slot
+    # goes ALL THE WAY THROUGH in y, so it is a bar with a gap behind it that
+    # webbing threads through - not a blind pocket, which is what a slot inset
+    # from the lug's own ends would be.
     hz = (wall_z0 + wall_top) / 2.0
     for sy in (-1, 1):
         hy = sy * MOD_HANDLE_Y
-        bs = box(f"V2_Mod_HandleBoss{'P' if sy > 0 else 'S'}",
-                 ex1, ex1 + MOD_HANDLE_PROUD, hy - MOD_HANDLE_W / 2,
+        sfx = 'P' if sy > 0 else 'S'
+        bs = box(f"V2_Mod_HandleBoss{sfx}",
+                 ex0 - MOD_HANDLE_PROUD, ex0, hy - MOD_HANDLE_W / 2,
                  hy + MOD_HANDLE_W / 2, hz - MOD_HANDLE_H / 2,
                  hz + MOD_HANDLE_H / 2, coll, m_rib)
-        sl = box(f"V2_Mod_HandleSlot_cut{'P' if sy > 0 else 'S'}",
-                 ex1 - 2.0, ex1 + MOD_HANDLE_PROUD - 3.0,
-                 hy - MOD_HANDLE_SLOT_W / 2, hy + MOD_HANDLE_SLOT_W / 2,
+        sl = box(f"V2_Mod_HandleSlot_cut{sfx}",
+                 ex0 - MOD_HANDLE_PROUD + MOD_HANDLE_BAR,
+                 ex0 - MOD_HANDLE_BAR,
+                 hy - MOD_HANDLE_W / 2 - 2.0, hy + MOD_HANDLE_W / 2 + 2.0,
                  hz - MOD_HANDLE_SLOT_H / 2, hz + MOD_HANDLE_SLOT_H / 2, coll)
         boolean(bs, sl)
         sl.hide_set(True); sl.hide_render = True
@@ -3875,8 +3903,8 @@ def build():
             continue
         if shell is None:
             shell = box("V2_Mod_Shell",
-                        ex0 - ENC_RIB - 5,
-                        ex1 + max(ENC_RIB, MOD_HANDLE_PROUD) + 5,
+                        ex0 - max(ENC_RIB, MOD_HANDLE_PROUD) - 5,
+                        ex1 + ENC_RIB + 5,
                         ey0 - ENC_RIB - 5, ey1 + ENC_RIB + 5,
                         wall_z0 - 1, wall_top + 1, coll)
             boolean(shell, o, op='INTERSECT')
@@ -3888,9 +3916,13 @@ def build():
     shell.hide_render = True
     m_shell = bom_mat("enclosure")
     pieces = {}
+    # The AFT bound has to clear the handle lugs, which stand further proud
+    # than the ribs do. Sized off ENC_RIB alone it clipped both lugs away and
+    # the four pieces summed to 97.93% of the shell instead of ~100.
+    aft_out = max(ENC_RIB, MOD_HANDLE_PROUD) + 2
     for nm, bx0, bx1, by0, by1 in (
-            ("AftS", ex0 - ENC_RIB - 2, mx, ey0 - ENC_RIB - 2, my),
-            ("AftP", ex0 - ENC_RIB - 2, mx, my, ey1 + ENC_RIB + 2),
+            ("AftS", ex0 - aft_out, mx, ey0 - ENC_RIB - 2, my),
+            ("AftP", ex0 - aft_out, mx, my, ey1 + ENC_RIB + 2),
             ("FwdS", mx, ex1 + ENC_RIB + 2, ey0 - ENC_RIB - 2, my),
             ("FwdP", mx, ex1 + ENC_RIB + 2, my, ey1 + ENC_RIB + 2)):
         pc = box(f"V2_ModPiece_{nm}", bx0, bx1, by0, by1,
@@ -3935,15 +3967,24 @@ def build():
     rep["module_seam_dovetail_mm"] = (MOD_DT_NECK, MOD_DT_HEAD, MOD_DT_DEPTH)
     rep["module_dovetail_fits_rib"] = 2 * MOD_DT_DEPTH <= ENC_RIB_W
     rep["module_lift_handle"] = (
-        f"2 printed bosses on the FORWARD wall at y +/-{MOD_HANDLE_Y:.0f}, "
-        f"{MOD_HANDLE_PROUD:.0f} mm proud, {MOD_HANDLE_SLOT_W:.0f} x "
-        f"{MOD_HANDLE_SLOT_H:.0f} slot each for a 25 mm webbing loop. One per "
-        f"print piece, clear of the seam")
-    rep["handle_clear_of_cavity_mm"] = round(
-        (ENC_GAP - CAV_LAM) - MOD_HANDLE_PROUD, 1)
+        f"2 printed lugs on the AFT wall at y +/-{MOD_HANDLE_Y:.0f}, "
+        f"{MOD_HANDLE_PROUD:.0f} mm into the service bay, with a "
+        f"{MOD_HANDLE_SLOT_H:.0f} mm through-slot for a 25 mm webbing loop. "
+        f"One per print piece, clear of the seam. Aft because the module "
+        f"butts the forward cavity wall - this is the only reachable face")
+    # It projects into the BAY now, not the side gap, so that is what to check.
+    rep["handle_clear_of_cavity_mm"] = round(WIRE_BAY_LEN - MOD_HANDLE_PROUD, 1)
+    rep["handle_to_conduit_y_mm"] = round(
+        MOD_HANDLE_Y - MOD_HANDLE_W / 2 - CONDUIT_D / 2, 1)
+    rep["handle_to_button_y_mm"] = round(
+        56.0 - (MOD_HANDLE_Y + MOD_HANDLE_W / 2), 1)
     rep["handle_clear_of_seam_mm"] = round(
         MOD_HANDLE_Y - MOD_HANDLE_W / 2, 1)
     rep["module_seam_band_mm"] = mod_band
+    bpy.context.view_layer.update()
+    _ps = sum(volume_litres(pieces[n]) for n in pieces)
+    rep["module_piece_sum_pct"] = round(
+        100.0 * _ps / max(1e-9, volume_litres(shell)), 2)
     rep["module_seam_joint"] = RIM_JOINT
     rep["esc_fits_strip"] = ESC_W <= strip - 4.0
     rep["esc_strip_clear_mm"] = round(strip - 4.0 - ESC_W, 1)
@@ -4331,8 +4372,18 @@ def build():
                      f"{rep['hatch_bolt_pitch_mm']} mm pitch")
     if not rep["bolts_clear_channel"]:
         fails.append("hatch bolts pass through the silicone channel")
-    if rep.get("side_g_limit_with_ribs", 0) < 1.5:
-        fails.append("mast hardpoint shear path is under 2 g of side load: "
+    # 1.0 g, and the message said "2 g" while the test said 1.5 - neither had
+    # a stated basis, because I picked them. Grounding it in the one real
+    # datum instead: side load in g IS tan(bank angle), so
+    #     0.44 g = 24 deg  <- V1's measured capacity, in service, being ridden
+    #     1.00 g = 45 deg  <- this limit
+    #     1.22 g = 51 deg  <- V2 on the dense block alone, no ribs
+    #     1.81 g = 61 deg  <- V2 with the two ribs that were deleted
+    # 45 deg of bank is past anything this board will see from a rider who is
+    # not racing it, and the block alone still clears it by 22%. Do NOT read
+    # this as "ribs were pointless" - read it as 2.8x V1 being enough.
+    if rep.get("side_g_limit_with_ribs", 0) < 1.0:
+        fails.append("mast hardpoint shear path is under 1 g (45 deg of bank): "
                      + format(rep.get("side_g_limit_with_ribs", 0), ".2f")
                      + " g - the couple between the skins has nowhere to go")
     if rep.get("handle_plate_proud_mm", -99) > -0.2:
@@ -4383,9 +4434,17 @@ def build():
     if rep["handle_clear_of_cavity_mm"] < 0:
         fails.append("the module lift handle fouls the cavity wall: "
                      f"{rep['handle_clear_of_cavity_mm']} mm")
+    if min(rep["handle_to_conduit_y_mm"], rep["handle_to_button_y_mm"]) < 2.0:
+        fails.append("a lift-handle lug fouls the aft wall's fittings: "
+                     f"{rep['handle_to_conduit_y_mm']} mm to the conduit, "
+                     f"{rep['handle_to_button_y_mm']} mm to the button")
     if rep["handle_clear_of_seam_mm"] < 5.0:
         fails.append("a lift-handle boss straddles the print seam - that "
                      "hangs the module's whole weight off a glued joint")
+    if not 98.5 <= rep["module_piece_sum_pct"] <= 100.05:
+        fails.append(f"module pieces sum to {rep['module_piece_sum_pct']}% of "
+                     "the shell - something is clipped off, interfering, or "
+                     "standing outside the part")
     if not rep["module_dovetail_fits_rib"]:
         fails.append(f"seam dovetail is {MOD_DT_DEPTH:.0f} deep each side but "
                      f"the rib is only {ENC_RIB_W:.0f} wide - the tab runs "

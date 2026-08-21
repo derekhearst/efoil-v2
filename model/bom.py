@@ -134,10 +134,15 @@ def build():
     # the two grades ship in different sizes and this line had H-100's. Two
     # sheets is 2304 in2, so 574 in2 spare: the ribs were already free and a
     # third and fourth would be too. Two is what the load case asked for.
+    # ONE sheet, not two - the two shear ribs are gone. They took the side-load
+    # limit from 1.22 g to 1.81 g, i.e. 51 deg of bank to 61, and were measured
+    # against nothing. V1's own capacity is 0.44 g (24 deg) and it is in
+    # service, so the block alone at 2.8x V1 is the honest bar. They also cost
+    # more than foam: the aft rib landed under the rim board and the mast
+    # conduit ran straight through it.
     add("3  Structural foam", "Divinycell H-80 3/4in quarter sheet 24x48, "
-        "mast block + 2 shear ribs + leash/handle pads", 2, "sheet", 100.26,
-        OK, "L18-1112, 24x48; this line carried ONE sheet and was short by "
-        "one even before the ribs. The 2 ribs nest in the offcut")
+        "mast block + leash/handle pads", 1, "sheet", 100.26, OK,
+        "L18-1112, 24x48. Was 2 sheets when it carried 2 shear ribs")
 
     # ---------------------------------------------------------- 4 laminate
     add("4  Laminate", "E-glass 6 oz, 50in x 12ft, 2-pack",
