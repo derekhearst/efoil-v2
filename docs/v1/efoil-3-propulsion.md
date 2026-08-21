@@ -87,4 +87,8 @@ Original estimates replaced with real logged data. See `efoil-7-vesc-config.md` 
 
 **Thermal:** peak FET 47.4 °C over a 66-minute session with repeated 4 kW pulls, settling to 37–38 °C. Cutoff starts at 80 °C. Passive cooling is performing better than expected.
 
-**Board weight (estimated):** ~25–30 kg all-in — battery assembly 11–13 kg, board 11–14 kg, foil 4–5 kg, motor/mount/ESC 3–4 kg. Heavier than commercial boards (15–20 kg), driven by the 3/4" plywood and resin-rich hand layup. This is the main thing V2 targets.
+**Board weight: MEASURED 66 lb / 29.9 kg** (17 Aug 2026, board complete with battery and electronics, foil off; noted as a minimum, so treat 29.9 kg as a floor). This replaces the earlier ~25-30 kg estimate, which was a guess and sat at the bottom of the real figure.
+
+Back-calculating from it: bare hull ~15.4 kg, which puts the hand layup at ~3.0 kg/m2 against V2's vacuum-bagged 1.82 kg/m2 - the hand layup carried about 1.7x the resin per unit area. That single number is where most of V2's weight saving comes from.
+
+V2 computes at 24.3 kg in the same configuration: **12.4 lb / 5.6 kg lighter, 19%**. Split: glass -3.8, plywood-to-G10 -1.2, foam -0.4.
