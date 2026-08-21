@@ -313,6 +313,20 @@ def build():
         math.ceil((M["hatch_cord_mm"] + M["mod_cord_mm"]) * N / 1000) + 4,
         "m", 2.00, EST,
         "buy long - splice on a straight run, never a corner")
+    # The plug that keeps resin out of the groove while the deck is glassed
+    # over it. It has to hold shape under the bag, release from ASA, and come
+    # out in one piece afterwards.
+    # BEST OPTION IS FREE: print a 4 x 1.8 filler strip WITH the ring, in the
+    # same job. It is exactly the groove's section by definition, it is stiff
+    # enough not to extrude at 7 inHg, and waxed it will not bond. Cut it into
+    # the same 6 segments so it follows the corners.
+    add("6  Hatch and seal", "Paste wax, releasing the groove filler", 1, "ea",
+        12.00, EST, "the filler must NOT bond - it comes back out after the "
+        "glass goes over it")
+    add("6  Hatch and seal", "2.5 mm straight cutter, groove opening", 2, "ea",
+        14.00, EST, "undersize in a 4 mm groove on purpose: 0.75 mm of "
+        "lateral slop before it can touch the sealing land. Two, because "
+        "breaking one mid-groove on a finished board is the bad day")
     add("6  Hatch and seal", "Silicone adhesive, bonding the cord into groove",
         1, "tube", 12.00, EST,
         "a thin continuous bead under the cord. It cannot then migrate, lift "

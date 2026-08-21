@@ -379,11 +379,31 @@ def build(p):
         "presses the cavity laminate into the corners. 0.5 mm under size per "
         "side. Break its own edges to the cavity's R10 or it will not seat.")
 
-    # Template 14 (hatch seal groove) IS GONE TOO. The groove is PRINTED
-    # into the ASA ring - depth is layer count, repeatable to ~0.05 mm - so
-    # there is nothing to rout and no template to rout it with. That removes
-    # the single operation this whole design was most afraid of: hand-routing
-    # a 2.4 mm groove into a finished, painted board with no second chance.
+    # 8 - router guide for opening the seal groove -------------------------
+    # BACK, because the groove is glassed over and has to be opened again -
+    # but this is NOT the part that used to live here. The old one guided a
+    # full-depth cut into virgin G10 on a finished board, which is why it was
+    # deleted. This one guides a shallow window through ~0.6 mm of glass into
+    # a SACRIFICIAL FILLER sitting in an already-printed groove, with an
+    # UNDERSIZED cutter. Miss by half a millimetre and you are still inside
+    # the groove; the printed walls below define the finished geometry, not
+    # the cutter.
+    GUIDE_OFF = 5.0     # (guide bushing OD - cutter OD) / 2 - CHECK your router
+    d = Dxf()
+    gi = p["CHAN_INSET"]
+    d.poly(rrect(RIM_W - gi - GUIDE_OFF, ow - RIM_W + gi + GUIDE_OFF,
+                 RIM_W - gi - GUIDE_OFF, oh - RIM_W + gi + GUIDE_OFF,
+                 R + gi + GUIDE_OFF))
+    d.poly(rrect(0, ow, 0, oh, R + RIM_W), layer="CHANNEL")
+    add("14_groove_guide", "MDF 12 mm", 12.0, 1, d, ow, oh,
+        f"Opens the seal groove AFTER glassing. Use a "
+        f"{p['CHAN_CUTTER']:.1f} mm cutter in the {p['CHAN_W']:.0f} mm groove "
+        f"- {(p['CHAN_W']-p['CHAN_CUTTER'])/2:.2f} mm of lateral slop each "
+        f"side before it can touch the sealing land. Set depth to just break "
+        f"into the filler; you will feel it go soft. Then pick the filler out "
+        f"and the PRINTED walls are the finished groove. Opening offset "
+        f"{GUIDE_OFF:.0f} mm for a guide bushing - RE-CHECK against your own. "
+        f"The CHANNEL outline is the rim ring's outer edge, for registering.")
 
     # Template 15 (module seal groove) IS GONE. There is no module groove any
     # more: the printed flange takes a FLAT NEOPRENE GASKET, so there is

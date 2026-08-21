@@ -329,7 +329,33 @@ PRINT_BED = 256.0                  # Bambu A1
 # change; if the lid or the bolt pitch ever changes, re-read it before
 # assuming the seal still has margin.
 CORD_D = 3.0                       # O-ring cord, or pour-in-place silicone
-CHAN_W, CHAN_D = 4.0, 2.4          # groove: 74% fill at 20% squeeze
+# GLASSED OVER, then the groove is opened back up. Derek's sequence, and it
+# is better than masking the ring off - which is what this was doing:
+#   print the groove -> plug it with a sacrificial filler -> glass the WHOLE
+#   deck including the ring -> rout a window through the glass into the filler
+#   -> pull the filler out.
+# THREE things it buys:
+#   1. The laminate is CONTINUOUS. No edge stopping at the ring, nothing
+#      relying on a fillet to seal the ring-to-rebate joint.
+#   2. The sealing land becomes GLASS, not bare ASA. This face is opened
+#      every ride and gets grit on it; epoxy/glass takes that far better
+#      than a printed thermoplastic.
+#   3. No masking during layup. Masking a 590 x 384 perimeter accurately
+#      while a 20-minute pot life runs out is a bad place to be, and tape
+#      that lifts puts resin in the groove anyway.
+# AND IT IS NOT THE ROUTING OPERATION I WAS AVOIDING. That one cut a
+# full-depth 2.4 mm groove into virgin G10, following a template, on a
+# finished board, where a grab wrecks it. This cuts a shallow window through
+# ~0.6 mm of glass into SOFT FILLER, with an UNDERSIZED cutter so lateral
+# error cannot reach the land, and the printed walls below define the final
+# geometry. Different risk entirely.
+CHAN_W = 4.0
+CHAN_D = 2.4                       # FINISHED: glass land to groove floor
+RING_LAM = 0.6                     # glass lying over the ring, 2 ply of 6 oz
+CHAN_D_PRINT = CHAN_D - RING_LAM   # ...so this much is printed into the ASA
+# Use a 2.5 mm cutter in the 4 mm groove: 0.75 mm of lateral slop each side
+# before it can touch the land. Break through, then pick the filler out.
+CHAN_CUTTER = 2.5          # groove: 74% fill at 20% squeeze
 CHAN_INSET = 10.0                  # groove centreline outboard of the opening.
                                    # Seal inboard, bolts outboard - at 15 the
                                    # M5 heads landed on top of the channel.
@@ -2793,12 +2819,19 @@ def build():
     # groove and no template 14 any more. The groove is PRINTED, and the
     # laminate is masked off the ring's top face rather than covering it.
     rep["ring_face_machining"] = (
-        "NONE. Groove is printed into the ring - depth is layer count, "
-        "repeatable to ~0.05 mm, and there is no router pass on a finished "
-        "board at all. Mask the ring's top face during layup so the laminate "
-        "stops at its outer edge; the thickened-epoxy fillet in that corner "
-        "seals the joint, and that joint sits 24 mm OUTBOARD of the cord, on "
-        "the wet side of the seal")    rep["lid_top_z_mm"] = round(z0 + LID_T, 1)
+        f"groove PRINTED {CHAN_D_PRINT:.1f} deep, plugged with a sacrificial "
+        f"filler, glassed over with the rest of the deck, then opened with a "
+        f"{CHAN_CUTTER:.1f} mm cutter through ~{RING_LAM:.1f} of glass into "
+        f"the filler. Finished depth {CHAN_D:.1f} = glass land to printed "
+        f"floor. Laminate stays CONTINUOUS and the land is glass, not ASA")
+    rep["ring_groove_printed_mm"] = round(CHAN_D_PRINT, 2)
+    rep["ring_lam_over_mm"] = RING_LAM
+    rep["groove_cutter_slop_mm"] = round((CHAN_W - CHAN_CUTTER) / 2, 2)
+    # laminate thickness varies, and it lands straight on the squeeze
+    _sq = [(CHAN_D + d) for d in (-0.3, 0.3)]
+    rep["squeeze_pct_range"] = tuple(
+        round(100 * (1 - x / CORD_D)) for x in reversed(_sq))
+    rep["lid_top_z_mm"] = round(z0 + LID_T, 1)
     # Against the REAL deck, not THICK. THICK is only the deck height at the
     # thickest station; the deck line rises above it toward the nose, so a flat
     # lid sits slightly proud at the aft end of the hatch and slightly sunk at
@@ -4735,6 +4768,19 @@ def build():
     if not rep["module_piece_fits_bed"]:
         fails.append("a module print piece does not fit the bed: "
                      f"{rep['module_piece_bbox_mm']} vs {PRINT_BED:.0f}")
+    # Laminate thickness over the ring lands straight on the seal squeeze,
+    # because the land is the glass surface. +/-0.3 mm of layup variation is
+    # 10-30% squeeze - inside an O-ring's working band, but 10 is the floor.
+    # If it went thinner than 1.5 mm printed there would be nothing to plug.
+    if rep["squeeze_pct_range"][0] < 10:
+        fails.append(f"seal squeeze can fall to {rep['squeeze_pct_range'][0]}% "
+                     "with normal laminate variation over the ring")
+    if CHAN_D_PRINT < 1.2:
+        fails.append(f"printed groove is only {CHAN_D_PRINT:.1f} mm - too "
+                     "shallow to plug with a filler or print cleanly")
+    if rep["groove_cutter_slop_mm"] < 0.4:
+        fails.append("the groove cutter is too close to full width - lateral "
+                     "error will bite the sealing land")
     if rep["dovetail_to_groove_mm"] < 2.0:
         fails.append("the rim dovetail runs into the O-ring groove: "
                      f"{rep['dovetail_to_groove_mm']} mm - its clearance gaps "

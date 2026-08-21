@@ -61,11 +61,13 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | Item | Qty | Unit | Unit $ | Ext $ | | Note |
 |---|---:|---|---:|---:|---|---|
 | Solid silicone cord, 3 mm round - BOTH seals | 8 | m | $2.00 | $16.00 | estimate | buy long - splice on a straight run, never a corner |
+| Paste wax, releasing the groove filler | 1 | ea | $12.00 | $12.00 | estimate | the filler must NOT bond - it comes back out after the glass goes over it |
+| 2.5 mm straight cutter, groove opening | 2 | ea | $14.00 | $28.00 | estimate | undersize in a 4 mm groove on purpose: 0.75 mm of lateral slop before it can touch the sealing land. Two, because breaking one mid-groove on a finished board is the bad day |
 | Silicone adhesive, bonding the cord into groove | 1 | tube | $12.00 | $12.00 | estimate | a thin continuous bead under the cord. It cannot then migrate, lift out, or be pinched under the lid in a dark car park |
 | M5 x 16 A4 stainless socket cap | 24 | ea | $0.55 | $13.20 | estimate |  |
 | M5 A4 hex nut, CAPTIVE - printed into the ring | 34 | ea | $0.22 | $7.48 | estimate | dropped in at a print pause at Z=6.0; steel thread, so a hatch that comes off every ride never wears anything out |
 | MDF 12 mm, full template set (14 templates) | 2 | sheet | $35.00 | $70.00 | estimate | one-time; cut once, used on both boards and any future one |
-| **subtotal** | | | | **$118.68** | | |
+| **subtotal** | | | | **$158.68** | | |
 
 ## 7  Module
 
@@ -229,27 +231,27 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | Item | Qty | Unit | Unit $ | Ext $ | | Note |
 |---|---:|---|---:|---:|---|---|
 | Shipping - G10, Divinycell, epoxy hazmat | 1 | allow | $220.00 | $220.00 | estimate | heavy and hazmat lines |
-| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $460.53 | $460.53 | verified |  |
-| **subtotal** | | | | **$680.53** | | |
+| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $462.93 | $462.93 | verified |  |
+| **subtotal** | | | | **$682.93** | | |
 
 ## Totals
 
 | | |
 |---|---:|
-| **Grand total, 2 boards** | **$8,135.98** |
-| Per board | $4,067.99 |
-| Of which verified | $6,160.51  (76%) |
-| Of which estimated | $1,975.47 |
+| **Grand total, 2 boards** | **$8,178.38** |
+| Per board | $4,089.19 |
+| Of which verified | $6,162.91  (75%) |
+| Of which estimated | $2,015.47 |
 
 ## What is a board, and what is a shop
 
-Some of the total above is not the cost of a board at all - it is tools, jigs and templates that exist afterwards and do not repeat. Splitting them out is the difference between "a board costs $4,068" and "a board costs $3,540 and I now own a vacuum rig, a crimper and a full template set".
+Some of the total above is not the cost of a board at all - it is tools, jigs and templates that exist afterwards and do not repeat. Splitting them out is the difference between "a board costs $4,089" and "a board costs $3,562 and I now own a vacuum rig, a crimper and a full template set".
 
 | | |
 |---|---:|
 | One-time tooling (incl. its share of tax) | $1,055.11 |
-| **Marginal cost of a board** | **$3,540.43** |
-| Cost of the NEXT board after these 2 | $3,540.43 |
+| **Marginal cost of a board** | **$3,561.63** |
+| Cost of the NEXT board after these 2 | $3,561.63 |
 
 | One-time item | $ |
 |---|---:|
