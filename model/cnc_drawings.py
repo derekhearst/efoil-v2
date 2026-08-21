@@ -123,7 +123,7 @@ def build(p):
                         r=R + RIM_W - bi)
     for (bx, by) in hb:
         d.circle(bx, by, p["HATCH_INSERT_D"] / 2)
-    add("01_rim_ring", "G10", p["RIM_T"], 1, d, ow, oh,
+    add("01_rim_ring", "printed ASA (reference only)", p["RIM_T"], 1, d, ow, oh,
         f"{len(hb)} x M5 STI tapped for stainless wire-thread inserts. "
         "ASSEMBLED REFERENCE ONLY - DO NOT CUT THIS OUTLINE. A one-piece G10 "
         "ring needs a blank 3.7x its own material. Cut parts 01a and 01b and "
@@ -165,38 +165,46 @@ def build(p):
             + [(RIM_W + Ri, RIM_W)]
             + arc(RIM_W + Ri, RIM_W + Ri, Ri, 270, 180)
             + [(RIM_W, ycut)])
-    d2 = Dxf()
-    d2.poly(prof)
-    for (bx, by) in hb:
-        if by <= ycut:
-            d2.circle(bx, by, p["HATCH_INSERT_D"] / 2)
-    add("01a_ring_bar_long", "G10", p["RIM_T"], 2, d2, ow, ycut,
-        "TWO PER BOARD (the second is this one flipped - the profile is "
-        "symmetric). Carries both corner arcs. SCARF or half-lap the joint "
-        "faces rather than butting them square, and bond with the same "
-        "structural epoxy as the mast bushings - the seal groove is routed "
-        "across these joints later, so a joint that opens is a leak. "
-        "BOND THE FOUR PIECES IN PLACE, IN THE REBATE - do not pre-assemble a "
-        "ring and then try to drop it in. The rebate is the jig: its outer "
-        "wall is CNC-cut off template T03 and sets the ring's outer profile, "
-        "and its floor is machined flat, so with all four pieces off ONE sheet "
-        "their top faces come out coplanar on their own. "
-        "CUT THE BARS A HAIR SHORT, NEVER LONG. Four joints with 0.2 mm of "
-        "epoxy in each grows the assembly 0.8 mm, and the rebate will not "
-        "accept a ring that has grown - short bars just leave more glue line, "
-        "which is fine. Push every piece OUTWARD against the rebate wall as "
-        "you bond: the outer edge is the datum, the inner edge is free, and "
-        "there is 8 mm of ring inboard of the groove to absorb any step.")
-
-    d3 = Dxf()
-    d3.poly([(0.0, 0.0), (RIM_W, 0.0), (RIM_W, oh - 2 * ycut),
-             (0.0, oh - 2 * ycut)])
-    for (bx, by) in hb:
-        if ycut < by < oh - ycut and bx < ow / 2:
-            d3.circle(bx, by - ycut, p["HATCH_INSERT_D"] / 2)
-    add("01b_ring_bar_short", "G10", p["RIM_T"], 2, d3, RIM_W, oh - 2 * ycut,
-        "TWO PER BOARD. Plain straight bar - the short sides between the two "
-        "long pieces. Nest alongside the 01a bars.")
+    # ---------------------------------------------------------------------
+    # Parts 01a / 01b (the G10 ring bars) ARE GONE. The rim ring is PRINTED
+    # ASA, in 6 dovetailed pieces, and it is not a machined part at all.
+    #
+    # Geometry lives in blender_board.py as V2_RimSeg_* - export those to STL
+    # rather than working from a DXF, because the dovetails and the nut
+    # pockets are 3D and a flat profile will not carry them.
+    #
+    # 6 PIECES, per board:
+    #   4 corner L-pieces, 170 mm along each long side and half-way along each
+    #     short side, so the two corners of a short side MEET at its centre.
+    #     Largest bbox 182 x 206 with its tabs - inside the A1's 256.
+    #   2 straight fillers, 253 mm, closing each long side.
+    #   6 joints, and NOT ONE ON A CORNER. Corners are where a ring wants to
+    #     be continuous; straight runs are where a joint is cheapest.
+    #
+    # EVERY JOINT IS DOVETAILED, 8 mm neck -> 14 mm head x 12 mm deep, 0.15 mm
+    #   clearance a face. Neck narrower than head, so a joint locates itself,
+    #   pulls together as it seats and cannot pull apart in the ring's plane.
+    #   Verified in the model: adjacent pieces intersect at 0.0 mm3, the six
+    #   pieces sum to 99.98% of the ring (the 0.02 is the clearance), and
+    #   nothing stands proud of the seal face.
+    #
+    # JOIN WITH ACETONE, NOT EPOXY. ASA dissolves in acetone the way ABS does,
+    #   so a brushed acetone/ASA-scrap slurry on both faces makes the joint one
+    #   piece of plastic. Epoxy on ASA is a 2-5 MPa mechanical grip; a solvent
+    #   weld is the parent material.
+    #
+    # PRINT SEAL FACE DOWN. The bed gives a flatter, smoother seal land than
+    #   any top surface will, and the 4 x 2.4 groove then only has to bridge
+    #   4 mm, which ASA does without support.
+    #
+    # PAUSE AT Z = 6.0 mm and drop in 12 M5 nuts. That is the whole fastening:
+    #   a captive steel thread, ~5.2 kN pull-out against the 910 N a bolt the
+    #   seal actually needs, and nothing to wear out on a hatch that comes off
+    #   every single ride. No STI tap, no tangless tool, no heat-set insert.
+    #   DO NOT OVER-TORQUE - the lid lands on a hard stop, so past that point
+    #   more torque adds nothing to the seal and goes into the nut pockets.
+    #   3 Nm is plenty.
+    # ---------------------------------------------------------------------
 
     # 1c - handle strips (were missing from the cut list entirely) ---------
     d = Dxf()
@@ -205,7 +213,7 @@ def build(p):
     for sx in (-1, 1):
         d.circle(hl / 2 + sx * p["HANDLE_BOLT_DX"] / 2, hw_ / 2,
                  p["HANDLE_INS_D"] / 2)
-    add("01c_handle_strip", "G10", p["HANDLE_PLATE_T"], 2, d, hl, hw_,
+    add("01c_handle_strip", "6061-T651 aluminium", p["HANDLE_PLATE_T"], 2, d, hl, hw_,
         "TWO PER BOARD, port and starboard. Takes the two M6 strap inserts. "
         "Beds into a shallow (~1.6 mm) milled facet on the rail so the "
         "laminate lies over it - there is NO handle pocket. Nests in the "
@@ -337,33 +345,11 @@ def build(p):
         f"optional. Nest both plates on one 12x18 sheet: 2 x 6.89in of the "
         f"18in length, 4.2in spare.")
 
-    # 7 - cavity caul ------------------------------------------------------
-    d = Dxf()
-    d.poly(rrect(0, cav_l - 1.0, 0, CAV_W - 1.0, R))
-    add("13_cavity_caul", "MDF or foam", L["ext_h"], 1, d, cav_l - 1, CAV_W - 1,
-        "Release-taped. Supports the deck skin during bagging, then presses "
-        "the cavity laminate. 0.5 mm under size per side.")
-
-    # 8 - router template for the hatch seal groove ------------------------
-    # The ring is glassed in, so its groove is cut LAST, through the laminate.
-    # This is the guide: a guide-bushing template, oversized by the bushing
-    # offset so the cutter tracks the groove centreline.
-    GUIDE_OFF = 5.0     # (guide bushing OD - cutter OD) / 2 - CHECK your router
-    d = Dxf()
-    gi = p["CHAN_INSET"]
-    d.poly(rrect(RIM_W - gi - GUIDE_OFF, ow - RIM_W + gi + GUIDE_OFF,
-                 RIM_W - gi - GUIDE_OFF, oh - RIM_W + gi + GUIDE_OFF,
-                 R + gi + GUIDE_OFF))
-    d.poly(rrect(0, ow, 0, oh, R + RIM_W), layer="CHANNEL")
-    add("14_seal_groove_template", "MDF 12 mm", 12.0, 1, d,
-        ow, oh,
-        f"Router template for the hatch seal groove, cut AFTER the board is "
-        f"glassed. Inner opening is offset {GUIDE_OFF:.0f} mm outboard of the "
-        f"groove centreline for a guide bushing - RE-CHECK that offset against "
-        f"your own bushing and cutter before cutting the template. Cut the "
-        f"groove {p['CHAN_W']:.0f} wide x {p['CHAN_D']:.0f} deep, measured from "
-        f"the GLASSED face. The CHANNEL outline is the rim ring's own outer "
-        f"edge, for registering the template on the board.")
+    # Template 14 (hatch seal groove) IS GONE TOO. The groove is PRINTED
+    # into the ASA ring - depth is layer count, repeatable to ~0.05 mm - so
+    # there is nothing to rout and no template to rout it with. That removes
+    # the single operation this whole design was most afraid of: hand-routing
+    # a 2.4 mm groove into a finished, painted board with no second chance.
 
     # Template 15 (module seal groove) IS GONE. There is no module groove any
     # more: the printed flange takes a FLAT NEOPRENE GASKET, so there is

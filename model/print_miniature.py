@@ -24,7 +24,7 @@ PLA_G_CM3 = 1.24
 INFILL_F = 0.35        # rough solid-fraction for 2 perimeters + ~15% infill
 
 INTERNALS = ("V2_Mod_", "V2_Pack_", "V2_BMS", "V2_ESC", "V2_Fuse",
-             "V2_G10_MastPlate", "V2_DenseFoam_Block", "V2_G10_RimRing",
+             "V2_MastPlate_Alu", "V2_DenseFoam_Block", "V2_RimRing_ASA",
              "V2_Lid", "V2_Conduit")
 
 

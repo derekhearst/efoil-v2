@@ -13,13 +13,6 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | Maker Shop Boise Basic month | 1 | month | $150.00 | $150.00 | verified | month-to-month; confirm it cancels cleanly |
 | **subtotal** | | | | **$249.04** | | |
 
-## 2  G10 (ePlastics)
-
-| Item | Qty | Unit | Unit $ | Ext $ | | Note |
-|---|---:|---|---:|---:|---|---|
-| G10 natural 1/2" 18x24 - rim ring 4-piece (01a/01b) + handle strips (01c) | 1 | sheet | $267.62 | $267.62 | verified |  |
-| **subtotal** | | | | **$267.62** | | |
-
 ## 2b Aluminium
 
 | Item | Qty | Unit | Unit $ | Ext $ | | Note |
@@ -67,10 +60,11 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | Solid silicone cord, 3 mm round - BOTH seals | 8 | m | $2.00 | $16.00 | estimate | buy long - splice on a straight run, never a corner |
 | Silicone adhesive, bonding the cord into groove | 1 | tube | $12.00 | $12.00 | estimate | a thin continuous bead under the cord. It cannot then migrate, lift out, or be pinched under the lid in a dark car park |
 | M5 x 16 A4 stainless socket cap | 24 | ea | $0.55 | $13.20 | estimate |  |
-| M5 tangless wire-thread insert (2D), 50 pc | 1 | pack | $24.00 | $24.00 | estimate | 24 needed |
-| M5 STI tap + tangless install/extract tool | 1 | set | $38.00 | $38.00 | estimate | one-time; the STI tap is oversize and a normal M5 tap will NOT do |
+| REMOVED - M5 wire-thread insert, 50 pc | 1 | pack | $24.00 | $24.00 | estimate | 24 needed |
+| M5 A4 hex nut, CAPTIVE - printed into the ring | 34 | ea | $0.22 | $7.48 | estimate | dropped in at a print pause at Z=6.0; steel thread, so a hatch that comes off every ride never wears anything out |
+| REMOVED - M5 STI tap + tangless tool | 1 | set | $38.00 | $38.00 | estimate | one-time; the STI tap is oversize and a normal M5 tap will NOT do |
 | MDF 12 mm, full template set (14 templates) | 2 | sheet | $35.00 | $70.00 | estimate | one-time; cut once, used on both boards and any future one |
-| **subtotal** | | | | **$173.20** | | |
+| **subtotal** | | | | **$180.68** | | |
 
 ## 7  Module
 
@@ -79,6 +73,8 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | M4 x 12 A4 stainless socket cap | 36 | ea | $0.35 | $12.60 | estimate |  |
 | M4 A4 washer O9, 100 pk | 1 | pk | $8.00 | $8.00 | estimate | 36 needed, under every lid bolt |
 | M4 x 8 brass heat-set insert, 100 pc | 1 | pack | $12.00 | $12.00 | estimate | 36 needed; 5.6 mm printed pilot |
+| ASA filament, printed rim ring | 2 | kg | $24.00 | $48.00 | estimate | 6 dovetailed pieces/board at ~90% infill, 710 g of part each; PRINT SEAL FACE DOWN - the bed is flatter than any top surface |
+| Acetone, solvent-welding the printed joints | 1 | qt | $14.00 | $14.00 | estimate | ASA dissolves in it like ABS - a brushed acetone/scrap slurry makes the joint one piece of plastic, not an adhesive line |
 | ASA filament, printed module shell | 3 | kg | $24.00 | $72.00 | estimate | 4 L-pieces/board, ~1.13 kg of part + supports and brim; largest piece 226 x 146 fits the A1 bed |
 | Neoprene sheet 1/8in, module + mast gaskets | 1 | sheet | $16.00 | $16.00 | estimate | TORRAMI 18x24 or similar - you kept a part sheet from V1 |
 | PG16 cable gland IP68, 10 pk | 1 | pk | $9.99 | $9.99 | verified | 6 needed |
@@ -87,7 +83,7 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | M12 IP68 membrane vent plug | 2 | ea | $9.95 | $19.90 | verified | NOT optional on a sealed lithium box |
 | 22 mm IP68 latching panel button | 1 | ea | $12.49 | $12.49 | verified | 1 on hand; this line buys the second board's |
 | Panel-mount charge port + cap | 2 | ea | $12.00 | $24.00 | estimate |  |
-| **subtotal** | | | | **$218.98** | | |
+| **subtotal** | | | | **$280.98** | | |
 
 ## 8  Mast hardpoint
 
@@ -225,27 +221,27 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | Item | Qty | Unit | Unit $ | Ext $ | | Note |
 |---|---:|---|---:|---:|---|---|
 | Shipping - G10, Divinycell, epoxy hazmat | 1 | allow | $220.00 | $220.00 | estimate | heavy and hazmat lines |
-| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $462.25 | $462.25 | verified |  |
-| **subtotal** | | | | **$682.25** | | |
+| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $450.36 | $450.36 | verified |  |
+| **subtotal** | | | | **$670.36** | | |
 
 ## Totals
 
 | | |
 |---|---:|
-| **Grand total, 2 boards** | **$8,166.35** |
-| Per board | $4,083.17 |
-| Of which verified | $6,476.75  (79%) |
-| Of which estimated | $1,689.60 |
+| **Grand total, 2 boards** | **$7,956.32** |
+| Per board | $3,978.16 |
+| Of which verified | $6,197.24  (78%) |
+| Of which estimated | $1,759.08 |
 
 ## What is a board, and what is a shop
 
-Some of the total above is not the cost of a board at all - it is tools, jigs and templates that exist afterwards and do not repeat. Splitting them out is the difference between "a board costs $4,083" and "a board costs $3,559 and I now own a vacuum rig, a crimper and a full template set".
+Some of the total above is not the cost of a board at all - it is tools, jigs and templates that exist afterwards and do not repeat. Splitting them out is the difference between "a board costs $3,978" and "a board costs $3,454 and I now own a vacuum rig, a crimper and a full template set".
 
 | | |
 |---|---:|
 | One-time tooling (incl. its share of tax) | $1,048.75 |
-| **Marginal cost of a board** | **$3,558.80** |
-| Cost of the NEXT board after these 2 | $3,558.80 |
+| **Marginal cost of a board** | **$3,453.78** |
+| Cost of the NEXT board after these 2 | $3,453.78 |
 
 | One-time item | $ |
 |---|---:|
@@ -253,7 +249,7 @@ Some of the total above is not the cost of a board at all - it is tools, jigs an
 | Pittsburgh 3 CFM 2-stage pump (HF 61176) | $139.99 |
 | VR20 vacuum regulator | $52.00 |
 | Bagging starter kit - film, peel ply, tape, breather, connector | $127.40 |
-| M5 STI tap + tangless install/extract tool | $38.00 |
+| REMOVED - M5 STI tap + tangless tool | $38.00 |
 | MDF 12 mm, full template set (14 templates) | $70.00 |
 | M8 x 1.25 tap set + 6.8 mm drill | $18.00 |
 | Hydraulic lug crimper, 6-70 mm2 | $38.00 |

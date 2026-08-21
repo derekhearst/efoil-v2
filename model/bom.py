@@ -83,20 +83,15 @@ def build():
     add("1  Core and shaping", "Maker Shop Boise Basic month",
         1, "month", 150.00, OK, "month-to-month; confirm it cancels cleanly", tool=True)
 
-    # ------------------------------------------------------------- 2 G10
-    by, p = F.g10_area_per_board()
-    # One thickness left. The 1/8" sheet went with the module floor (now 5052
-    # alu) and the printed walls; the 3/4" went with the mast plate (now 6061,
-    # tapped). G10 was $736 across three sheets and is now one.
-    who = {3.175: "module floor",
-           12.7: "rim ring 4-piece (01a/01b) + handle strips (01c)",
-           19.05: "mast plate"}
-    for th in sorted(by):
-        lbl, area, price, bq, bprice, _ = F.SHEETS[th]
-        sheets = max(1, math.ceil(by[th] * N / area))
-        unit = bprice if (bq and sheets >= bq) else price
-        add("2  G10 (ePlastics)", "G10 natural " + lbl + " - " + who[th],
-            sheets, "sheet", unit, OK)
+    # ---------------------------------------------------- 2 G10: NONE
+    # There is no G10 on this board any more. It went in three steps:
+    #   module walls + flange -> printed ASA   (-1 sheet of 1/8", $133.86)
+    #   module floor -> 1/8" 5052 alu          (-the rest of the 1/8", $0)
+    #   mast plate -> 1/2" 6061, tapped        (-3/4" sheet, $200.75)
+    #   rim ring -> printed ASA                (-1/2" sheet, $267.62)
+    # $736.09 of G10 at the start of today, $0 now, and the board came out
+    # LIGHTER at every step except the module floor, which was taken on
+    # purpose to give the ESC something to dump heat into.
 
     # ------------------------------------------------------ 2b aluminium
     # Both of these are VERIFIED prices, which is rare in this BOM: the 5052
@@ -194,9 +189,13 @@ def build():
     # why the mast plate uses bonded bushings. A wire-thread insert is tapped
     # in once and leaves a STAINLESS working thread - the hatch is opened
     # ~50+ times a season, so the thread has to survive cycling and not gall.
-    add("6  Hatch and seal", "M5 tangless wire-thread insert (2D), 50 pc",
+    add("6  Hatch and seal", "REMOVED - M5 wire-thread insert, 50 pc",
         1, "pack", 24.00, EST, str(M["hatch_bolts"] * N) + " needed")
-    add("6  Hatch and seal", "M5 STI tap + tangless install/extract tool",
+    add("6  Hatch and seal", "M5 A4 hex nut, CAPTIVE - printed into the ring",
+        M["hatch_bolts"] * N + 10, "ea", 0.22, EST,
+        "dropped in at a print pause at Z=6.0; steel thread, so a hatch that "
+        "comes off every ride never wears anything out")
+    add("6  Hatch and seal", "REMOVED - M5 STI tap + tangless tool",
         1, "set", 38.00, EST,
         "one-time; the STI tap is oversize and a normal M5 tap will NOT do",
         tool=True)
@@ -221,6 +220,12 @@ def build():
     # reason - ASA creeps far less than PETG under sustained bolt load, which
     # is the whole job of a gasket flange. Derek has run it on the A1 already
     # (250-260C, bed 105, draft shield + brim for warp on an open frame).
+    add("7  Module", "ASA filament, printed rim ring", 2, "kg", 24.00, EST,
+        "6 dovetailed pieces/board at ~90% infill, 710 g of part each; "
+        "PRINT SEAL FACE DOWN - the bed is flatter than any top surface")
+    add("7  Module", "Acetone, solvent-welding the printed joints", 1, "qt",
+        14.00, EST, "ASA dissolves in it like ABS - a brushed acetone/scrap "
+        "slurry makes the joint one piece of plastic, not an adhesive line")
     add("7  Module", "ASA filament, printed module shell", 3, "kg", 24.00,
         EST, "4 L-pieces/board, ~1.13 kg of part + supports and brim; "
         "largest piece 226 x 146 fits the A1 bed")

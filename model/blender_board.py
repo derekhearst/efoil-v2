@@ -193,7 +193,48 @@ HULL_SKIN = 2.0
 
 RIM_CHAMFER = 3.0                  # on the G10 ring's own exposed corner
 RIM_W = 34.0                       # bonded-on G10 ring, outboard of the opening
-RIM_T = 12.7                       # 1/2" stock
+# PRINTED ASA, not 1/2" G10 - the last G10 part on the board goes with it.
+# The four objections I raised, checked properly:
+#   groove   I said a printed groove holds +/-0.2 mm. That is true of a groove
+#            on a VERTICALLY printed wall. This ring prints FLAT: groove depth
+#            is layer count, 2.4 = 12 layers at 0.2, repeatable to ~0.05. That
+#            is TIGHTER than hand-routing G10 on a finished board, which is
+#            the operation this design was most worried about all along.
+#   bond     I said epoxy will not grip ASA. True, and it does not matter: the
+#            ring is bedded in 4200 (polyurethane, which does grip plastics -
+#            V1 proved it on printed parts) and then GLASSED OVER with the
+#            whole cavity. It is captured under continuous laminate. The bond
+#            is fit-up, not the load path.
+#   creep    Overstated, badly. The land is (34-4) x 1902 = 57,000 mm2 and the
+#            seal wants 10.9 kN, so the land sits at 0.19 MPa - 0.4% of ASA's
+#            compressive yield. Creep at 0.4% of yield is nothing.
+#   heat     Follows creep. At 0.4% of yield a hot deck does not matter.
+# It saves $226 and 699 g a board, which is the best rate on the board because
+# it is the only change that takes out weight AND money.
+RIM_T = 12.7                       # printed ASA, thickness unchanged
+# Segmentation. The ring is 593 x 387 and the A1 bed is 256, so it prints in
+# pieces - but the pieces are chosen so no joint lands on a CORNER, which is
+# the mistake the 8-piece G10 version made before it went to 4.
+#   4 corner L-pieces, 170 along the long side x 193.5 along the short: the
+#     two corners of each short side MEET at its centre, so the short sides
+#     need no filler at all.
+#   2 straight fillers close the 593 - 2 x 170 = 253 mm gap in each long side.
+# 6 pieces, 6 joints, every one of them on a straight run.
+RIM_SEG_CORNER_L = 170.0           # corner piece reach along the long side
+RIM_SEG_CORNER_W = 193.5           # ...and along the short side (= half of it)
+RIM_SEG_N = 6
+# Every joint gets a DOVETAIL through the full thickness - it locates the
+# pieces in plane, pulls them together as it seats, and stops a joint being
+# able to open under the laminate. Neck narrower than head, so it can only go
+# together one way and cannot pull apart in the ring's plane.
+RIM_DT_NECK, RIM_DT_HEAD, RIM_DT_DEPTH = 8.0, 14.0, 12.0
+RIM_DT_CLR = 0.15                  # per face; ASA prints tight, do not go 0
+# ACETONE WELD, not epoxy. ASA dissolves in acetone the way ABS does, so a
+# brushed acetone/ASA-scrap slurry on both faces makes the joint one piece of
+# plastic rather than two parts held by an adhesive that grips neither well.
+# This is strictly stronger than the epoxy joint the G10 ring would have had.
+RIM_JOINT = "acetone weld"
+PRINT_BED = 256.0                  # Bambu A1
 # A real GROOVE, because a squashed strip has no hard stop and the seal load
 # then depends on how hard each of 13 bolts was done up. With a groove the lid
 # lands G10-on-G10 around the whole perimeter and the squeeze is set by the
@@ -629,7 +670,36 @@ HATCH_BOLT_D = 5.0
 # wants the margin spent on it rather than on fastener count.
 HATCH_BOLT_PITCH = 152.0   # -> 12 bolts, 155 mm actual pitch
 # Drill/tap size for an M5 wire-thread insert (STI M5 x 0.8), not an insert OD.
-HATCH_INSERT_D, HATCH_INSERT_L = 5.4, 10.0   # M5 x 2D insert in the rim
+# HEAT-SET, not wire-thread. Wire-thread inserts were specced because the rim
+# was G10 and a tapped laminate wears out; a printed ring takes a brass
+# heat-set insert on its proper material, and that deletes the M5 STI tap and
+# the tangless install/extract tool with it.
+# The load: O3 silicone at 20% squeeze over 1820 mm of cord is ~10.9 kN, so
+# 910 N a bolt. A M5 x 10 heat-set catalogues at ~2.5 kN free-standing - 2.7x
+# - and here the plug around it is bonded down and glassed over, so the real
+# path is shear on pi x 7 x 10 = 220 mm2, about 6.6 kN.
+# DO NOT OVER-TORQUE. The stop is a hard stop: past the point where the lid
+# lands, more torque adds nothing to the seal and goes straight into the
+# inserts. 3 Nm is plenty.
+# CAPTIVE NUT, not a heat-set insert and not a wire-thread insert. The ring is
+# printed, so the nut can simply be printed AROUND: pause the job, drop 12 M5
+# nuts into their hex pockets, resume, and the plastic closes over them.
+# It is free strength and it is the strongest of the three options:
+#   wire-thread in G10   ~ needs an STI tap + tangless tool, and G10 stock
+#   heat-set in ASA      ~2.5 kN catalogue, and the knurl is the weak link
+#   CAPTIVE NUT          the thread is STEEL and never wears. Pull-out is a
+#                        plug of ASA punched through NUT_Z of cover: at 6 mm
+#                        that is pi x 9.24 x 6 = 174 mm2 x 30 MPa = 5.2 kN,
+#                        against the 910 N a bolt the seal actually needs.
+# It also matters more here than anywhere else on the board: THIS HATCH COMES
+# OFF EVERY RIDE. A steel thread does not care how many times.
+HATCH_INSERT_D, HATCH_INSERT_L = 6.4, 10.0   # kept: BOM/DXF still read these
+NUT_AF, NUT_T = 8.0, 4.0           # M5 A4 hex nut, across flats x thickness
+NUT_CLR = 0.25                     # per side; ASA prints tight
+NUT_Z = 6.0                        # cover between nut top face and seal face
+ASA_TAU = 30.0                     # MPa design shear
+# O3 silicone at 20% squeeze is ~6 N/mm; the hatch cord is 1820 mm.
+SEAL_N = 6.0 * 1820.0
 HATCH_BOLT_INSET = 12.0            # from the rim's outer edge, outboard of the seal
 
 
@@ -925,7 +995,12 @@ LEASH_PAD, LEASH_T = 70.0, 18.0                # G10 block, milled flat
 HANDLE_X = 645.0                   # hatch station, both sides
 HANDLE_Y = 223.0                   # strap centreline: 30 mm outboard of the
                                    # rim ring, local slope ~25 deg
-HANDLE_BOLT_D, HANDLE_INS_D, HANDLE_INS_L = 6.0, 8.0, 8.0   # M6
+# Strip is 6061 now, cut from the mast plate sheet's offcut - two plates use
+# 135.6 of 216 in2 and leave a contiguous 12 x 4.22 in strip, which holds all
+# four handle strips in two rows. So they cost nothing and need no G10.
+# TAPPED M6 straight in: 90 mm2 x 207 MPa = 18.7 kN, on a carry handle. The
+# O8 inserts go with the G10.
+HANDLE_BOLT_D, HANDLE_INS_D, HANDLE_INS_L = 6.0, 6.0, 8.0   # M6
 HANDLE_BOLT_DX = 110.0             # strap mount centres, along the board
 # The G10 strip runs ALONG the board, which is the flat direction. Keep it
 # NARROW in y: the surface sags ~1.5 mm across 22 mm here, so the strip beds
@@ -1237,7 +1312,9 @@ PALETTE = {
     "dense":         ((0.20, 0.45, 0.80), 0.85, 0.0, 1.00),  # H200 mast block
     "g10":           ((0.85, 0.68, 0.28), 0.50, 0.0, 1.00),  # G10 laminate
     "g10_rim":       ((0.72, 0.45, 0.14), 0.45, 0.0, 1.00),  # G10 rim ring, 12.7 mm
-    "g10_mast":      ((0.55, 0.29, 0.08), 0.45, 0.0, 1.00),  # G10 mast plate, 8 mm
+    "g10_mast":      ((0.55, 0.29, 0.08), 0.45, 0.0, 1.00),  # (unused - alu now)
+    "alu":           ((0.75, 0.77, 0.80), 0.28, 1.0, 1.00),  # 5052/6061 plate
+    "asa":           ((0.24, 0.52, 0.38), 0.55, 0.0, 1.00),  # printed ASA ring
     "flange":        ((0.95, 0.78, 0.50), 0.50, 0.0, 1.00),  # G10 flange rails
     "enclosure":     ((0.30, 0.62, 0.45), 0.55, 0.0, 1.00),  # printed PETG shell
     "lid":           ((0.35, 0.80, 0.88), 0.25, 0.0, 0.45),  # hatch lid sandwich
@@ -1753,6 +1830,14 @@ def chamfer_loft(name, x0, x1, y0, y1, corner_r, z_top, c, sign,
     faces.append(list(range(n - 1, -1, -1)))
     faces.append(list(range(len(verts) - n, len(verts))))
     return new_object(name, verts, faces, coll)
+
+
+def hex_poly(cx, cy, r_af, seg=6):
+    """Hex polygon by ACROSS-FLATS radius - a nut pocket, flat-to-flat."""
+    r = r_af / math.cos(math.radians(30.0))      # -> across-corners
+    return [(cx + r * math.cos(math.radians(30.0 + 60.0 * i)),
+             cy + r * math.sin(math.radians(30.0 + 60.0 * i)))
+            for i in range(seg)]
 
 
 def rounded_rect(x0, x1, y0, y1, r, seg=10):
@@ -2366,7 +2451,8 @@ def build():
     # was rejected earlier: they run PERPENDICULAR to the groove, they are
     # scarfed, they sit under continuous laminate, and the leak path is the
     # full 34 mm width of the ring.
-    rim = prism("V2_G10_RimRing", outer, ledge_z, ledge_z + RIM_T, coll, m_g10)
+    rim = prism("V2_RimRing_ASA", outer, ledge_z, ledge_z + RIM_T, coll,
+                bom_mat("asa"))
     hole = prism("V2_RimHole_cut", cav_poly, ledge_z - 8.0, ledge_z + RIM_T + 8.0,
                  coll)
     boolean(rim, hole)
@@ -2502,17 +2588,151 @@ def build():
         boolean(bpy.data.objects["V2_Lid"], h)
         h.hide_set(True)
         h.hide_render = True
-        boolean(rim, cyl(f"V2_HatchInsertBore_cut_{i}", bx_, by_,
-                         ledge_z + RIM_T - HATCH_INSERT_L,
-                         ledge_z + RIM_T + 1.0, HATCH_INSERT_D, coll))
-        cyl(f"V2_HatchInsert_{i}", bx_, by_,
-            ledge_z + RIM_T - HATCH_INSERT_L, ledge_z + RIM_T,
-            HATCH_INSERT_D, coll, m_metal)
+        # Clearance hole from the seal face down to the nut pocket...
+        boolean(rim, cyl(f"V2_HatchBoltHole_cut_{i}", bx_, by_,
+                         ledge_z + RIM_T - NUT_Z - 0.1,
+                         ledge_z + RIM_T + 1.0, HATCH_BOLT_D + 0.6, coll))
+        # ...and the hex pocket the nut drops into at the print pause.
+        boolean(rim, prism(f"V2_NutPocket_cut_{i}",
+                           hex_poly(bx_, by_, NUT_AF / 2 + NUT_CLR),
+                           ledge_z + RIM_T - NUT_Z - NUT_T,
+                           ledge_z + RIM_T - NUT_Z, coll))
+        prism(f"V2_HatchNut_{i}", hex_poly(bx_, by_, NUT_AF / 2),
+              ledge_z + RIM_T - NUT_Z - NUT_T,
+              ledge_z + RIM_T - NUT_Z, coll, m_metal)
+        cyl(f"V2_HatchBolt_{i}", bx_, by_,
+            ledge_z + RIM_T - NUT_Z - NUT_T, ledge_z + RIM_T,
+            HATCH_BOLT_D, coll, m_metal)
+    # Pull-out is a plug of ASA punched through the NUT_Z of material between
+    # the nut's top face and the seal face: pi x across-corners x NUT_Z.
+    _plug = math.pi * (NUT_AF / math.cos(math.radians(30))) * NUT_Z
     rep["hatch_fastening"] = (
-        f"M{HATCH_BOLT_D:.0f} through the lid into "
-        f"O{HATCH_INSERT_D:.0f} x {HATCH_INSERT_L:.0f} threaded inserts "
-        f"in the {RIM_T:.0f} mm G10 rim")
-    rep["hatch_insert_g10_below_mm"] = round(RIM_T - HATCH_INSERT_L, 1)
+        f"M{HATCH_BOLT_D:.0f} through the lid into a CAPTIVE M"
+        f"{HATCH_BOLT_D:.0f} NUT printed into the ASA ring. PRINT SEAL FACE "
+        f"DOWN - the bed gives a flatter, smoother seal land than any top "
+        f"surface will, and the {CHAN_W:.0f} x {CHAN_D:.1f} groove then only "
+        f"has to bridge {CHAN_W:.0f} mm, which ASA does without support. "
+        f"Pause at print Z = {NUT_Z:.1f} mm, drop {len(hb)} M"
+        f"{HATCH_BOLT_D:.0f} nuts into their pockets, resume. Steel thread, "
+        f"so the hatch can come off every ride for ever without wearing "
+        f"anything")
+    rep["hatch_print_pause_z_mm"] = NUT_Z
+    rep["hatch_print_face_down"] = "seal face"
+
+    # --- split the ring into printable segments, dovetailed ---------------
+    # Ring is 593 x 387 and the A1 bed is 256, so it prints in pieces. Where
+    # the joints go is the whole design: 4 corner L-pieces reach RIM_SEG_CORNER_L
+    # along each long side and half-way along each short side, so the two
+    # corners of a short side MEET at its centre and the short sides need no
+    # filler. Two straight fillers close the long sides. Six pieces, six
+    # joints, and NOT ONE OF THEM ON A CORNER - which is what the 8-piece G10
+    # version got wrong before it went to 4.
+    ox0, ox1 = CAV_X0 - RIM_W, CAV_X1 + RIM_W
+    oy0, oy1 = -CAV_WIDTH / 2 - RIM_W, CAV_WIDTH / 2 + RIM_W
+    jx0, jx1 = ox0 + RIM_SEG_CORNER_L, ox1 - RIM_SEG_CORNER_L
+    z0, z1 = ledge_z, ledge_z + RIM_T
+
+    def dovetail(name, px, py, along, out, grow, back=0.0, over=0.0):
+        """Trapezoid tab across the band. `along` is the unit vector from the
+        outer edge inward across the 34 mm; `out` is the protrusion normal.
+        `back` extends the neck BEHIND the joint plane - only the socket needs
+        it, and it is not cosmetic: without it the socket's base face is
+        exactly coplanar with the clip box that made the joint, and an EXACT
+        boolean on coincident faces silently does nothing. That is what left
+        the segments summing to 100.9% of the ring instead of just under."""
+        n, h, d = RIM_DT_NECK + 2 * grow, RIM_DT_HEAD + 2 * grow, RIM_DT_DEPTH
+        m = RIM_W / 2.0
+        pts = []
+        for t, o in ((m - n / 2, -back), (m - n / 2, 0.0), (m - h / 2, d),
+                     (m + h / 2, d), (m + n / 2, 0.0), (m + n / 2, -back)):
+            pts.append((px + along[0] * t + out[0] * o,
+                        py + along[1] * t + out[1] * o))
+        # HANDEDNESS. The long-side joints have along x out = -1 and the
+        # short-side joints +1, so building the points in the same order gives
+        # the two families OPPOSITE winding - and half the prisms come out
+        # inside-out. An inverted cutter unions and differences as its own
+        # complement, which is why the long-side joints mated at 0.0 mm3 while
+        # the short-side ones sat on 1657 mm3 of interference. Same bug class
+        # as the mirrored handle pads: never trust a frame's winding, test it.
+        if along[0] * out[1] - along[1] * out[0] > 0:
+            pts.reverse()
+        # `over` is for the SOCKET only. A tab must span EXACTLY the ring's
+        # thickness: built 1 mm proud at both faces it unions into a lug
+        # standing above the seal land, and 1 mm of proud plastic under an
+        # O3 cord at 0.6 mm squeeze does not seal at all. That is what the
+        # segments summing to 100.2% with zero pairwise overlap was telling
+        # us - the excess was not interference between pieces, it was six
+        # tabs sticking out of the ring in Z.
+        return prism(name, pts, z0 - over, z1 + over, coll)
+
+    # (name, clip box, [(joint x, joint y, along, male-direction)])
+    segs = [
+        ("C_AftS", (ox0, jx0, oy0, 0.0),
+         [(jx0, oy0, (0, 1), (1, 0)), (ox0, 0.0, (1, 0), (0, 1))]),
+        ("C_AftP", (ox0, jx0, 0.0, oy1),
+         [(jx0, oy1, (0, -1), (1, 0))]),
+        ("C_FwdS", (jx1, ox1, oy0, 0.0),
+         [(jx1, oy0, (0, 1), (-1, 0)), (ox1, 0.0, (-1, 0), (0, 1))]),
+        ("C_FwdP", (jx1, ox1, 0.0, oy1),
+         [(jx1, oy1, (0, -1), (-1, 0))]),
+        ("F_MidS", (jx0, jx1, oy0, oy0 + RIM_W), []),
+        ("F_MidP", (jx0, jx1, oy1 - RIM_W, oy1), []),
+    ]
+    males = []
+    for nm, bx, joints in segs:
+        seg = prism(f"V2_RimSeg_{nm}",
+                    rounded_rect(ox0 - 5, ox1 + 5, oy0 - 5, oy1 + 5, 0.1),
+                    z0, z1, coll, bom_mat("asa"))
+        boolean(seg, rim, op='INTERSECT')
+        clip = box(f"V2_RimSegClip_cut_{nm}", bx[0], bx[1], bx[2], bx[3],
+                   z0 - 2.0, z1 + 2.0, coll)
+        boolean(seg, clip, op='INTERSECT')
+        clip.hide_set(True); clip.hide_render = True
+        for k, (px, py, al, ou) in enumerate(joints):
+            males.append((f"{nm}_{k}", px, py, al, ou, seg))
+        seg.hide_set(True); seg.hide_render = True
+    # A tab on one piece is a socket on its neighbour: same trapezoid, grown by
+    # RIM_DT_CLR per face so it actually goes together in ASA.
+    for tag, px, py, al, ou, owner in males:
+        tab = dovetail(f"V2_RimDT_{tag}", px, py, al, ou, 0.0, over=0.0)
+        boolean(owner, tab, op='UNION')
+        tab.hide_set(True); tab.hide_render = True
+        sock = dovetail(f"V2_RimDTSock_cut_{tag}", px, py, al, ou,
+                        RIM_DT_CLR, back=0.6, over=1.0)
+        for nm2, _b, _j in segs:
+            o2 = bpy.data.objects[f"V2_RimSeg_{nm2}"]
+            if o2 is not owner:
+                boolean(o2, sock, op='DIFFERENCE')
+        sock.hide_set(True); sock.hide_render = True
+    rep["rim_segments"] = RIM_SEG_N
+    rep["rim_joints"] = len(males)
+    rep["rim_joint_on_corner"] = False
+    rep["rim_seg_max_bbox_mm"] = (round(RIM_SEG_CORNER_L),
+                                  round(RIM_SEG_CORNER_W))
+    rep["rim_seg_fits_bed"] = (RIM_SEG_CORNER_L <= PRINT_BED
+                               and RIM_SEG_CORNER_W <= PRINT_BED
+                               and (jx1 - jx0) <= PRINT_BED)
+    rep["rim_filler_len_mm"] = round(jx1 - jx0)
+    rep["rim_joint_method"] = RIM_JOINT
+    rep["rim_dovetail_mm"] = (RIM_DT_NECK, RIM_DT_HEAD, RIM_DT_DEPTH)
+    # Two checks worth having, because both caught real bugs while this was
+    # written. The pieces must ADD BACK UP to the ring - over 100% means they
+    # interfere or stand proud, well under means a gap - and nothing may sit
+    # above the seal face, because a lug there is a leak.
+    bpy.context.view_layer.update()
+    _sv = sum(volume_litres(bpy.data.objects[f"V2_RimSeg_{n}"])
+              for n, _b, _j in segs) * 1e6            # litres -> mm3
+    _rv = volume_litres(rim) * 1e6
+    rep["rim_seg_sum_pct"] = round(100.0 * _sv / _rv, 2)
+    dg_ = bpy.context.evaluated_depsgraph_get()
+    _zt = max(max((bpy.data.objects[f"V2_RimSeg_{n}"].matrix_world @ v.co).z
+                  for v in bpy.data.objects[f"V2_RimSeg_{n}"]
+                  .evaluated_get(dg_).to_mesh().vertices)
+              for n, _b, _j in segs) * 1000.0
+    rep["rim_seg_proud_of_seal_mm"] = round(_zt - (ledge_z + RIM_T), 3)
+    rep["hatch_nut_cover_mm"] = round(NUT_Z, 1)
+    rep["hatch_nut_pullout_N"] = round(_plug * ASA_TAU)
+    rep["hatch_nut_pullout_margin"] = round(_plug * ASA_TAU / (SEAL_N / len(hb)), 1)
     rep["hatch_bolts"] = len(hb)
     # every bolt must actually land on the lid, with head clearance
     off = [p for p in hb
@@ -2678,8 +2898,8 @@ def build():
     plate_pocket.hide_set(True)
     plate_pocket.hide_render = True
 
-    plate = box("V2_G10_MastPlate", g10_x0, g10_x1, -G10_W / 2, G10_W / 2,
-                plate_z0, plate_z0 + G10_T, coll, m_g10)
+    plate = box("V2_MastPlate_Alu", g10_x0, g10_x1, -G10_W / 2, G10_W / 2,
+                plate_z0, plate_z0 + G10_T, coll, bom_mat("alu"))
     rep["mast_pad_z_mm"] = round(pad_z, 1)
     rep["mast_pocket_depth_mm"] = round(FLOOR_Z - FIT_FLOOR - pad_z, 1)
     rep["plate_flush_with_hull"] = True
@@ -2927,7 +3147,7 @@ def build():
     d = envelope.modifiers.new("inset", 'DISPLACE')
     d.strength = -0.0005
     d.mid_level = 0.0
-    for o in (dense, bpy.data.objects["V2_G10_MastPlate"]):
+    for o in (dense, bpy.data.objects["V2_MastPlate_Alu"]):
         boolean(o, envelope, op='INTERSECT')
 
     # --- mast wire conduit ------------------------------------------------
@@ -2954,7 +3174,7 @@ def build():
     path, _r_used = bend_path(A, K, B, CONDUIT_BEND_R)
 
     # 1. the CHANNEL through hull, dense block and mast plate
-    for tgt in (hull, dense, bpy.data.objects["V2_G10_MastPlate"]):
+    for tgt in (hull, dense, bpy.data.objects["V2_MastPlate_Alu"]):
         c = path_tube(f"V2_ConduitChan_{tgt.name}", path,
                       CONDUIT_D + 2 * CLR, coll)
         boolean(tgt, c)
@@ -3031,7 +3251,8 @@ def build():
     wall_top = lid_z0 - FIT_LID
     floor_top = ez0 + ENC_FLOOR
     wall_z0 = floor_top - JOINT_GROOVE_D
-    floor = box("V2_Mod_Floor", ex0, ex1, ey0, ey1, ez0, floor_top, coll, m_enc)
+    floor = box("V2_Mod_Floor", ex0, ex1, ey0, ey1, ez0, floor_top, coll,
+                bom_mat("alu"))   # 1/8" 5052, not G10
     grv = []
     for nm, a, b, c, d in (
             ("P", ex0, ex1, ey1 - ENC_WALL, ey1),
@@ -3629,10 +3850,8 @@ def build():
                   for j in range(len(sec) - 1))
         area += 2.0 * per * (LENGTH / N)          # both halves
     m["glass skin"] = area * 1e-6 * GLASS_KGM2
-    g10_cm3 = (
-        (((CAV_X1 - CAV_X0 + 2 * RIM_W) * (CAV_WIDTH + 2 * RIM_W))
-           - (CAV_X1 - CAV_X0) * CAV_WIDTH) * RIM_T)                 # rim ring
-    m["G10"] = g10_cm3 * 1e-9 * RHO_G10
+    # No G10 term at all any more. The rim ring was the last G10 part on the
+    # board and it is printed ASA now; floor and mast plate went aluminium.
     # The rim ring is the ONLY G10 left in the board. The module floor is
     # 1/8" 5052 and the mast plate is 1/2" 6061 - both tracked here instead.
     RHO_ALU = 2700.0
@@ -3651,6 +3870,11 @@ def build():
     flange_cm3 = 2 * ((ix1 - ix0) + (iy1 - iy0)) * MOD_FLANGE_W * MOD_FLANGE_H
     m["printed shell"] = (wall_area * 1e-6 * PETG_WALL_KGM2
                           + flange_cm3 * 1e-9 * RHO_PETG * FLANGE_INFILL)
+    # Rim ring, printed ASA at 90% - a seal land wants to be near solid.
+    RHO_ASA = 1070.0
+    rim_cm3 = (((CAV_X1 - CAV_X0 + 2 * RIM_W) * (CAV_WIDTH + 2 * RIM_W))
+               - (CAV_X1 - CAV_X0) * CAV_WIDTH) * RIM_T
+    m["printed rim ring"] = rim_cm3 * 1e-9 * RHO_ASA * 0.90
     lid_a = (CAV_X1 - CAV_X0 + 2 * RIM_W) * (CAV_WIDTH + 2 * RIM_W) * 1e-6
     mod_a = (ex1 - ex0) * (ey1 - ey0) * 1e-6
     m["lids"] = ((lid_a * LID_CORE * 1e-3 * RHO_H80 + 2 * lid_a * GLASS_KGM2 * 0.5)
@@ -3846,15 +4070,15 @@ def build():
                ("V2_ESC", "V2_Mod_PostAP"), ("V2_Conduit", "V2_Mod_Floor"),
                ("V2_Pack_Cells", "V2_Mod_WallS"), ("V2_ESC", "V2_Mod_WallP"),
                ("V2_DenseFoam_Block", "V2_Cavity_Void_cut"),
-               ("V2_G10_MastPlate", "V2_Cavity_Void_cut"),
+               ("V2_MastPlate_Alu", "V2_Cavity_Void_cut"),
                ("V2_Mod_Floor", "V2_MastBolt_11"),
                ("V2_Mod_Floor", "V2_MastBolt_-11"),
-               ("V2_Mod_Lid", "V2_G10_RimRing"),
+               ("V2_Mod_Lid", "V2_RimRing_ASA"),
                # restraint hardware - only when SHOW_RESTRAINT is on
                *([("V2_Cav_ChockA", "V2_Mod_Floor"),
                   ("V2_Cav_ChockF", "V2_Mod_Floor"),
                   ("V2_Cav_ChockF", "V2_Mod_WallFwd"),
-                  ("V2_Cav_Strap_0", "V2_G10_RimRing"),
+                  ("V2_Cav_Strap_0", "V2_RimRing_ASA"),
                   ("V2_Mod_EquipPlate", "V2_Pack_Cells"),
                   ("V2_Mod_EquipPlate", "V2_Mod_WallP"),
                   ("V2_Mod_PackTab_00", "V2_Pack_Cells"),
@@ -3946,6 +4170,15 @@ def build():
     if not 20 <= rep["module_gasket_squeeze_pct"] <= 50:
         fails.append(f"module gasket squeeze {rep['module_gasket_squeeze_pct']}%"
                      " outside 20-50%")
+    if not rep["rim_seg_fits_bed"]:
+        fails.append("a rim segment does not fit the print bed: "
+                     f"{rep['rim_seg_max_bbox_mm']} vs {PRINT_BED:.0f}")
+    if rep["rim_seg_proud_of_seal_mm"] > 0.01:
+        fails.append("a rim segment stands proud of the seal face by "
+                     f"{rep['rim_seg_proud_of_seal_mm']} mm - that is a leak")
+    if not 99.0 <= rep["rim_seg_sum_pct"] <= 100.05:
+        fails.append(f"rim segments sum to {rep['rim_seg_sum_pct']}% of the "
+                     "ring - they interfere, stand proud, or leave a gap")
     if not rep["rib_fits_side_clearance"]:
         fails.append(f"print-joint ribs foul the cavity wall: only "
                      f"{rep['rib_to_cavity_wall_mm']} mm clear")
@@ -4023,20 +4256,25 @@ def build():
         "mast hardpoint block": f"Divinycell H80 dense PVC foam - full depth "
                                 f"to the deck aft of the cavity, "
                                 f"{FLOOR_Z - FIT_FLOOR:.0f} mm slab under it, "
-                                "G10 plate let into its underside",
-        "mast plate": f"G10 laminate sheet, {G10_T:.0f} mm",
-        "hatch rim ring": f"G10 sheet, {RIM_T:.1f} mm, FOUR pieces (01a/01b) scarfed and bonded, glassed in",
-        "module shell": f"G10 laminate sheet, {ENC_WALL:.0f} mm walls / "
-                        f"{ENC_FLOOR:.0f} mm floor, no divider",
-        "module flange rail": f"G10, {MOD_FLANGE_W:.0f} x {MOD_FLANGE_H:.0f} mm",
+                                "6061 plate let into its underside",
+        "mast plate": f"6061-T651 aluminium, {G10_T:.1f} mm, M8 tapped "
+                      f"{INSERT_L:.0f} blind - no bushings",
+        "hatch rim ring": f"PRINTED ASA, {RIM_T:.1f} mm, {RIM_SEG_N} pieces "
+                          f"({RIM_JOINT}, dovetailed), no joint on a corner, "
+                          "bedded in 4200 and glassed in",
+        "module shell": f"PRINTED ASA, {ENC_WALL:.0f} mm walls, 4 L-pieces "
+                        f"split at wall midpoints / {ENC_FLOOR:.1f} mm 5052 "
+                        "aluminium floor, no divider",
+        "module flange rail": f"printed integral with the wall, "
+                              f"{MOD_FLANGE_W:.0f} x {MOD_FLANGE_H:.1f} mm",
         "hatch lid": f"glass {LID_SKIN:.1f} / {LID_CORE_GRADE} PVC foam {LID_CORE:.0f} / "
                      f"glass {LID_SKIN:.1f} = {LID_T:.1f} mm",
         "module lid": f"glass {ENC_LID_SKIN:.1f} / H80 PVC foam "
                       f"{ENC_LID_CORE:.0f} / glass {ENC_LID_SKIN:.1f} = "
                       f"{ENC_LID_T:.1f} mm",
         "hatch seal": f"O{CORD_D:.0f} silicone cord BONDED into a "
-                      f"{CHAN_W:.0f} x {CHAN_D:.1f} groove routed through the "
-                      "laminate into the ring after glassing",
+                      f"{CHAN_W:.0f} x {CHAN_D:.1f} groove PRINTED INTO the "
+                      "ring - depth is layer count, not a router pass",
         "cell holder": "off-the-shelf 21700 spacer brackets (already owned)",
     }
     rep["FAILS"] = fails or ["none"]
