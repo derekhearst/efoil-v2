@@ -97,8 +97,8 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | [M12 IP68 momentary panel button](https://www.amazon.com/dp/B0FPQP7CP9) | 1 | ea | $32.65 | $32.65 | verified | 1 on hand; this line buys the second board's |
 | [SP17 2-pin IP68 flange receptacle](https://www.amazon.com/dp/B0CDH5R8P4) | 2 | ea | $13.20 | $26.40 | verified | 67.2 V 5 A charge; O17 panel hole, 2 x M3 flange screws. $2.49, not the $11 this carried. CHECK THE CAP IS INCLUDED before ordering - on a board that gets submerged the cap is the part that does the sealing when nothing is plugged in |
 | [M3 heat-set insert kit, 361 pc](https://www.amazon.com/dp/B0G8JLX1HR) | 1 | kit | $13.98 | $13.98 | verified | covers the port flange (4 sets) and the nose cone. The kit's screws are PLAIN STEEL - buy M3 x 8 A4 separately for the flange, which lives in the wet cavity |
-| M3 x 8 A4 stainless, 20 pk | 1 | pk | $8.99 | $8.99 | estimate | the kit's screws are not stainless and this joint is submerged |
-| **subtotal** | | | | **$415.08** | | |
+| [M3 x 8 A4 stainless, 10 pk](https://www.amazon.com/dp/B07DVMFMJZ) | 1 | pk | $6.76 | $6.76 | verified | the kit's screws are not stainless and this joint is submerged |
+| **subtotal** | | | | **$412.85** | | |
 
 ## 9  Electrical
 
@@ -145,7 +145,7 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | [FCS-pattern leash plug](https://www.amazon.com/dp/B0F1F97R4D) | 2 | ea | $8.59 | $17.18 | estimate |  |
 | [Kayak-style webbing carry handle, 4 pk](https://www.amazon.com/dp/B08BC6Q7ZW) | 1 | pk | $13.89 | $13.89 | verified | 4 needed; 2 x M6 into the 6061 strip in the rail pocket |
 | [M6 x 16 A4 button head, 10 pk](https://www.amazon.com/dp/B07DVRLQTK) | 1 | pk | $8.06 | $8.06 | verified | 8 needed, strap mounts. The M6 THREADED INSERT IS NOT INCLUDED - separate line below |
-| M6 heat-set insert, strap mounts | 1 | pk | $9.99 | $9.99 | estimate | not supplied with the screws above |
+| [M6 heat-set insert, strap mounts](https://www.amazon.com/dp/B0DNJNLP95) | 1 | pk | $9.99 | $9.99 | verified | not supplied with the screws above |
 | **subtotal** | | | | **$144.26** | | |
 
 ## 9c Pack wiring
@@ -178,18 +178,18 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | [PETG filament 1 kg, mast clamp set](https://www.amazon.com/dp/B0D41Y3WWZ) | 2 | kg | $12.99 | $25.98 | verified | 4 STEP files; 0.6 nozzle, 5 perims, 40% infill |
 | [M5 x 250 threaded rod, 4 pk (cut to ~171 mm)](https://www.amazon.com/dp/B0CMZR9L1Y) | 2 | pk | $9.99 | $19.98 | verified | a 4-pack is exactly one board's worth. Dry-assemble and mark before cutting |
 | [M6 x 20 fender washer, 100 pk](https://www.amazon.com/dp/B0DPMPJW4H) | 1 | pk | $9.49 | $9.49 | verified | 8 needed |
-| M5 nyloc nut, stainless pk | 1 | pk | $8.99 | $8.99 | estimate | a separate pack from the washers above - they do not come together |
+| [M5 nyloc nut 316, 150 pk](https://www.amazon.com/dp/B0BP2T6Z4Q) | 1 | pk | $8.99 | $8.99 | verified | a separate pack from the washers above - they do not come together |
 | M3 x 6 button head + heat-set, nose cone | 0 | set | $0.00 | $0.00 | on hand | off the 361-pc M3 kit bought in section 7 - one kit does both |
 | [Loctite 242](https://www.amazon.com/dp/B000I1RSNS) | 1 | ea | $6.98 | $6.98 | estimate | rod ends into the motor only - nyloc end does not need it |
 | [PETG for props, 4-5 spares per board](https://www.amazon.com/dp/B0D41Y3WWZ) | 2 | kg | $12.99 | $25.98 | verified | 0.4 nozzle, 100% infill; balance-check on a bolt, then epoxy-coat - V1 skipped the coat and layer lines cost drag |
 | [Roll pin assortment M1.5-M6, 220 pc](https://www.amazon.com/dp/B09MPWY8L4) | 1 | kit | $12.99 | $12.99 | verified | 4 needed. An ASSORTMENT on purpose: the note says MEASURE the shaft cross-hole rather than trust the 4 mm figure, and a kit means the measurement does not cost another order |
 | [M8 nyloc nut 316, 30 pk - prop nut](https://www.amazon.com/dp/B0BP2R3YHY) | 1 | pk | $8.99 | $8.99 | verified | 2 needed. 316 not 304 - this one is permanently submerged. WASHER NOT INCLUDED, see below |
-| M8 316 washer, prop nut | 1 | pk | $6.99 | $6.99 | estimate |  |
+| [M8 316 washer, prop nut](https://www.amazon.com/dp/B0DDGRXHT7) | 1 | pk | $7.69 | $7.69 | verified | only 2 needed; sold in 10s |
 | [8 AWG marine ring lugs, 20 pk](https://www.amazon.com/dp/B0CWGXB4NB) | 2 | pk | $9.99 | $19.98 | verified | 28 needed; on M6 studs - nothing to solder |
 | [M6 stainless stud/busbar hardware](https://www.amazon.com/dp/B0DP79B987) | 2 | set | $11.99 | $23.98 | estimate |  |
 | [Hydraulic lug crimper, 10 ton, 12-2/0 AWG](https://www.amazon.com/dp/B0CFV249X3) | 1 | ea | $39.99 | $39.99 | verified | one-time; this is what replaces soldering XT150s |
 | [Adhesive-lined heat shrink 3:1, 400 pc kit](https://www.amazon.com/dp/B0BVVMCY86) | 1 | kit | $13.99 | $13.99 | verified | marine grade, glue-lined - plain heat shrink over a joint in a wet cavity is decoration |
-| **subtotal** | | | | **$224.31** | | |
+| **subtotal** | | | | **$225.01** | | |
 
 ## 10c Restraint & fitout
 
@@ -250,28 +250,28 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | Item | Qty | Unit | Unit $ | Ext $ | | Note |
 |---|---:|---|---:|---:|---|---|
 | Shipping - Divinycell, 6061 plate, VR20 | 1 | allow | $120.00 | $120.00 | estimate | STILL THE BIGGEST UNVERIFIED LINE - it wants three real carts to settle. Was $220 when it covered G10 sheet and hazmat epoxy, both of which are now out of the build entirely |
-| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $438.34 | $438.34 | verified |  |
-| **subtotal** | | | | **$558.34** | | |
+| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $438.25 | $438.25 | verified |  |
+| **subtotal** | | | | **$558.25** | | |
 
 ## Totals
 
 | | |
 |---|---:|
-| **Grand total, 2 boards** | **$7,744.02** |
-| Per board | $3,872.01 |
-| Of which verified | $7,112.51  (92%) |
-| Of which estimated | $631.51 |
-| Priced but NOT linked to a listing | 25 lines, $4,629.77 |
+| **Grand total, 2 boards** | **$7,742.40** |
+| Per board | $3,871.20 |
+| Of which verified | $7,145.85  (92%) |
+| Of which estimated | $596.55 |
+| Priced but NOT linked to a listing | 21 lines, $4,594.72 |
 
 ## What is a board, and what is a shop
 
-Some of the total above is not the cost of a board at all - it is tools, jigs and templates that exist afterwards and do not repeat. Splitting them out is the difference between "a board costs $3,872" and "a board costs $3,525 and I now own a vacuum rig, a crimper and a full template set".
+Some of the total above is not the cost of a board at all - it is tools, jigs and templates that exist afterwards and do not repeat. Splitting them out is the difference between "a board costs $3,871" and "a board costs $3,524 and I now own a vacuum rig, a crimper and a full template set".
 
 | | |
 |---|---:|
 | One-time tooling (incl. its share of tax) | $693.44 |
-| **Marginal cost of a board** | **$3,525.29** |
-| Cost of the NEXT board after these 2 | $3,525.29 |
+| **Marginal cost of a board** | **$3,524.48** |
+| Cost of the NEXT board after these 2 | $3,524.48 |
 
 | One-time item | $ |
 |---|---:|

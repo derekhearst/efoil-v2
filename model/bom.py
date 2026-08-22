@@ -714,7 +714,7 @@ def build():
         "covers the port flange (" + str(2 * N) + " sets) and the nose cone. "
         "The kit's screws are PLAIN STEEL - buy M3 x 8 A4 separately for the "
         "flange, which lives in the wet cavity")
-    add("7  Module", "M3 x 8 A4 stainless, 20 pk", 1, "pk", 8.99, EST,
+    add("7  Module", "M3 x 8 A4 stainless, 10 pk", 1, "pk", 6.76, OK,
         "the kit's screws are not stainless and this joint is submerged")
 
     # -------------------------------------------------- 8 mast hardpoint
@@ -845,7 +845,7 @@ def build():
         1, "pk", 8.06, OK, str(4 * N) + " needed, strap mounts. The M6 "
         "THREADED INSERT IS NOT INCLUDED - separate line below")
     add("9b Small but essential", "M6 heat-set insert, strap mounts",
-        1, "pk", 9.99, EST, "not supplied with the screws above")
+        1, "pk", 9.99, OK, "not supplied with the screws above")
 
 
     # ---------------------------------------------- 9c every joint in the pack
@@ -927,7 +927,7 @@ def build():
         "cutting")
     add("10b Drivetrain", "M6 x 20 fender washer, 100 pk", 1, "pk", 9.49,
         OK, str(4 * N) + " needed")
-    add("10b Drivetrain", "M5 nyloc nut, stainless pk", 1, "pk", 8.99, EST,
+    add("10b Drivetrain", "M5 nyloc nut 316, 150 pk", 1, "pk", 8.99, OK,
         "a separate pack from the washers above - they do not come together")
     add("10b Drivetrain", "M3 x 6 button head + heat-set, nose cone",
         0, "set", 0.00, OWNED,
@@ -950,7 +950,8 @@ def build():
     add("10b Drivetrain", "M8 nyloc nut 316, 30 pk - prop nut", 1, "pk",
         8.99, OK, str(N) + " needed. 316 not 304 - this one is permanently "
         "submerged. WASHER NOT INCLUDED, see below")
-    add("10b Drivetrain", "M8 316 washer, prop nut", 1, "pk", 6.99, EST)
+    add("10b Drivetrain", "M8 316 washer, prop nut", 1, "pk", 7.69, OK,
+        "only 2 needed; sold in 10s")
     # Crimped, not soldered. XT150 is out.
     add("10b Drivetrain", "8 AWG marine ring lugs, 20 pk", 2, "pk", 16.99,
         OK, str(14 * N) + " needed; on M6 studs - nothing to solder")

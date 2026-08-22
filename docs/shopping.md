@@ -9,7 +9,7 @@ Grouped by where you buy it rather than by what it does, because that is the ord
 | Amazon | 105 | $3,123.74 |
 | Gong | 1 | $1,388.00 |
 | Flipsky | 3 | $1,038.00 |
-| Not a purchase - tax and freight | 3 | $806.34 |
+| Not a purchase - tax and freight | 3 | $806.25 |
 | Battery International | 1 | $318.00 |
 | BatteryHookup | 2 | $297.50 |
 | Fiberglass Supply | 3 | $253.38 |
@@ -17,8 +17,8 @@ Grouped by where you buy it rather than by what it does, because that is the ord
 | Maker Shop Boise | 1 | $150.00 |
 | Speedy Metals | 1 | $88.92 |
 | Fibre Glast | 1 | $52.00 |
-| Fasteners / shop consumables | 3 | $25.47 |
-| **TOTAL** | | **$7,744.02** |
+| Fasteners / shop consumables | 3 | $23.94 |
+| **TOTAL** | | **$7,742.40** |
 
 ## Amazon
 
@@ -109,12 +109,12 @@ https://www.amazon.com
 | [Gebildet PG11 gland, M18x1.5, 30 pk](https://www.amazon.com/dp/B0B8NJR62L) | 1 | pk | $9.99 | **verified** | your listing: M18x1.5 thread (matches the 18.5 hole) and 5-10 mm cable, against our 6.5 mm 8 AWG. 6 needed of  |
 | [Thermal pad 1 mm non-conductive, 100 x 100](https://www.amazon.com/dp/B0GTLRJJGT) | 1 | ea | $9.99 | **verified** | 15.8 W/mK. One 100 x 100 sheet cuts both boards' baseplates. The ESC PCB face goes DOWN onto the floor, same a |
 | [Silicone grease for the seal cord](https://www.amazon.com/dp/B0BN82MJVK) | 1 | tube | $9.99 | estimate | stops the cord bonding to the lid in storage |
-| M6 heat-set insert, strap mounts | 1 | pk | $9.99 | estimate | not supplied with the screws above |
+| [M6 heat-set insert, strap mounts](https://www.amazon.com/dp/B0DNJNLP95) | 1 | pk | $9.99 | **verified** | not supplied with the screws above |
 | [Fish tape / pull cord for the mast conduit](https://www.amazon.com/dp/B0FGCY7XPS) | 1 | ea | $9.99 | estimate |  |
 | [Plastic sheeting + masking tape, bench protection](https://www.amazon.com/dp/B0GF2BWRC6) | 1 | set | $9.99 | estimate |  |
 | [M5 A4 hex nut DIN934, 50 pk - CAPTIVE in the ring](https://www.amazon.com/dp/B084HLMN7B) | 1 | pk | $9.19 | **verified** | 34 needed. Dropped in at a print pause at Z=6.0; steel thread, so a hatch that comes off every ride never wear |
 | [Dielectric grease, terminals](https://www.amazon.com/dp/B0D6R543V2) | 1 | tube | $8.99 | estimate |  |
-| M5 nyloc nut, stainless pk | 1 | pk | $8.99 | estimate | a separate pack from the washers above - they do not come together |
+| [M5 nyloc nut 316, 150 pk](https://www.amazon.com/dp/B0BP2T6Z4Q) | 1 | pk | $8.99 | **verified** | a separate pack from the washers above - they do not come together |
 | [M8 nyloc nut 316, 30 pk - prop nut](https://www.amazon.com/dp/B0BP2R3YHY) | 1 | pk | $8.99 | **verified** | 2 needed. 316 not 304 - this one is permanently submerged. WASHER NOT INCLUDED, see below |
 | [Pipe lagging or carpet, sawhorse padding](https://www.amazon.com/dp/B0CBYST37N) | 1 | set | $8.99 | estimate | bare sawhorse tops mark foam and wet laminate |
 | [Wet/dry sandpaper assortment, 45 pc](https://www.amazon.com/dp/B0GHND351C) | 1 | pk | $8.99 | **verified** | 80-400 for detail and between primer coats |
@@ -158,7 +158,7 @@ Some Flipsky appears on Amazon but the range is thin and usually dearer. Buy dir
 
 | Item | Qty | Unit | Ext | Price | Note |
 |---|---:|---|---:|---|---|
-| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $438.34 | **verified** |  |
+| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $438.25 | **verified** |  |
 | Gong shipping to Idaho, per foil | 2 | ea | $248.00 | **verified** | 115.50 EUR on order 252112; charged per ORDER, so putting both boards' foils in ONE order saves about $124 |
 | Shipping - Divinycell, 6061 plate, VR20 | 1 | allow | $120.00 | estimate | STILL THE BIGGEST UNVERIFIED LINE - it wants three real carts to settle. Was $220 when it covered G10 sheet an |
 
@@ -240,6 +240,6 @@ https://www.fibreglast.com
 | Item | Qty | Unit | Ext | Price | Note |
 |---|---:|---|---:|---|---|
 | [M6 x 20 fender washer, 100 pk](https://www.amazon.com/dp/B0DPMPJW4H) | 1 | pk | $9.49 | **verified** | 8 needed |
-| M3 x 8 A4 stainless, 20 pk | 1 | pk | $8.99 | estimate | the kit's screws are not stainless and this joint is submerged |
-| M8 316 washer, prop nut | 1 | pk | $6.99 | estimate |  |
+| [M8 316 washer, prop nut](https://www.amazon.com/dp/B0DDGRXHT7) | 1 | pk | $7.69 | **verified** | only 2 needed; sold in 10s |
+| [M3 x 8 A4 stainless, 10 pk](https://www.amazon.com/dp/B07DVMFMJZ) | 1 | pk | $6.76 | **verified** | the kit's screws are not stainless and this joint is submerged |
 

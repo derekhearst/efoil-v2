@@ -105,6 +105,8 @@ LINKS = {
         ("B0G8JLX1HR", 13.98, "361Pcs M3 Heat Set Insert with Screws Brass Threaded"),
     "M3 x 6 button head + M3 brass heat-set, nose cone":
         ("B0G8JLX1HR", 13.98, "361Pcs M3 Heat Set Insert Kit with Screws"),
+    "M3 x 8 A4 stainless, 10 pk":
+        ("B07DVMFMJZ", 6.76, "M3 x 8mm Socket Head Screws DIN 912 Marine Grade Stainless 10 Pack"),
     "M4 A4 washer, 316, 100 pk":
         ("B0DZ5BVLP5", 6.79, "uxcell 100Pcs M4 Flat Washer 316 Stainless 4.3 ID x 12 OD"),
     "M4 x 12 A4 socket cap DIN912, 10 pk":
@@ -113,18 +115,24 @@ LINKS = {
         ("B0D9QHBG6G", 9.99, "uxcell 100pcs M4 Brass Heat Set Inserts M4x8mm OD 6mm"),
     "M5 A4 hex nut DIN934, 50 pk - CAPTIVE in the ring":
         ("B084HLMN7B", 9.19, "M5 Hex Nuts DIN 934 Marine Grade Stainless 50 Pack"),
+    "M5 nyloc nut 316, 150 pk":
+        ("B0BP2T6Z4Q", 8.99, "M5 Stainless Lock Nuts 150pcs 316 Hex Nylon Insert"),
     "M5 penny washer O15 DIN9021, 150 pk":
         ("B0G58KQN6L", 7.99, "150 pcs M5 x 15mm Stainless Flat Washers DIN9021 304"),
     "M5 x 25 A4 socket cap, 20 pk":
         ("B0CJFMMF58", 15.99, "M5 x 25mm Full Thread Cap Head Screws DIN 912 A4 Pack of 20"),
     "M5 x 250 threaded rod, 4 pk (cut to ~171 mm)":
         ("B0CMZR9L1Y", 9.99, "4pcs M5 x 250mm Fully Threaded Rod 304 Stainless"),
+    "M6 heat-set insert, strap mounts":
+        ("B0DNJNLP95", 9.99, "Yaocom 100 Pcs M6 Threaded Inserts M6 x D8 x L8 Heat Set"),
     "M6 stainless stud/busbar hardware":
         ("B0DP79B987", 11.99, "RED WOLF 12V 100A Power Distribution Block Dual Stud M6 Bus Bar"),
     "M6 x 16 A4 button head, 10 pk":
         ("B07DVRLQTK", 8.06, "M6 x 16mm Button Head Screws ISO 7380 Marine Grade SS 10 Pack"),
     "M6 x 20 fender washer, 100 pk":
         ("B0DPMPJW4H", 9.49, "M6 x 20mm Fender Washers Stainless 100 Pcs"),
+    "M8 316 washer, prop nut":
+        ("B0DDGRXHT7", 7.69, "uxcell 10Pcs M8 Flat Washer 316 Stainless 8.4 ID x 24 OD x 2mm"),
     "M8 nyloc nut 316, 30 pk - prop nut":
         ("B0BP2R3YHY", 8.99, "M8 Stainless Lock Nuts 30pcs 316 Hex Nylon Insert"),
     "M8 x 1.25 BOTTOMING tap, 4-flute":
