@@ -156,9 +156,15 @@ Remaining seepage traced no further with pour testing.
 **Test 4 — the enclosures did NOT hold (Aug 2026, after this doc was written).**
 The cavity flooded again and **water got into both the ESC and battery enclosures.** No gasket, gland or fastener path was identified. Derek's read is that **water seeped through the printed PETG wall itself**, and then sat trapped inside.
 
-*Why that is the likely answer:* an FDM wall is extruded beads laid side by side, and the valleys between them form a connected path straight through the wall. More perimeters make the path longer, not closed — **these enclosures ran four wall loops and still wetted through.** Wall thickness is not the fix.
+*Two candidate mechanisms, and the second now looks more likely:*
 
-*Lesson, and it is the single most important one for V2:* **a printed enclosure is not a pressure boundary on its own.** It needs a continuous barrier applied to it — a brushed coat of neat epoxy on both faces, outside first, since stopping water entering the wall beats catching it once it is already travelling inside one. And it needs to be **proved before it is trusted**, not discovered by riding: seal it empty, pull a vacuum, watch the gauge, then repeat submerged so any path pulls water *in* where you can see it.
+**(a) Porosity.** An FDM wall is extruded beads laid side by side, and the valleys between them form a connected path through it. More perimeters make the path longer, not closed — these ran four wall loops.
+
+**(b) The enclosures were SUBMERGED.** This fits the record better. The August tests said "both enclosures held" when the cavity took shallow water; they failed once it flooded deeply. A gasket that shrugs off splash behaves very differently under 100 mm of standing head, and both enclosure lids used the same squashed-strip-with-no-hard-stop arrangement as the hatch. **On this reading the enclosures did not fail independently — they failed because the cavity did**, which makes the hatch the single thing worth fixing.
+
+*Lesson: fix the cavity first.* The hatch is the barrier everything else sits behind, and V1's was **6 bolts at 313 mm pitch on an EPDM sponge strip squashed against a flat ledge, with strap hinges** — no groove, no hard stop, so squeeze depended entirely on how hard each of six bolts was done up, and Test 1 records exactly that going wrong. V2 is 12 bolts at 141 mm (bow goes as pitch⁴, so **25× less**), an O3 cord in a machined groove, and **no hinge at all**.
+
+*Secondary lesson, still worth the twenty minutes:* **a printed enclosure is not a pressure boundary on its own.** It needs a continuous barrier applied to it — a brushed coat of neat epoxy on both faces, outside first, since stopping water entering the wall beats catching it once it is already travelling inside one. And it needs to be **proved before it is trusted**, not discovered by riding: seal it empty, pull a vacuum, watch the gauge, then repeat submerged so any path pulls water *in* where you can see it.
 
 *This supersedes the "layered defence worked as designed" conclusion above.* The layers were the same material with the same flaw — a printed box inside a glassed cavity is two barriers only if the printed one is actually a barrier.
 

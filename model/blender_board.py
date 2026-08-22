@@ -837,6 +837,22 @@ HATCH_BOLT_D = 5.0
 # badly. Do NOT push this further: at 10 bolts bow reaches 14% of squeeze, and
 # the realistic enemy on a seal opened this often is grit on the face, which
 # wants the margin spent on it rather than on fastener count.
+# 12, AND THIS IS THE ONE THAT MATTERS MOST ON THE BOARD. V1 flooded its
+# cavity repeatedly, and its hatch was:
+#     6 bolts on a 660 x 280 opening   = 313 mm pitch
+#     an EPDM sponge strip squashed on a FLAT LEDGE - no hard stop
+#     strap hinges on the nose edge
+# V2 is 12 bolts on 141 mm. Bow between fasteners goes as pitch^4, so V1
+# bowed TWENTY-FIVE TIMES more than this will, and with no groove the squeeze
+# depended entirely on how hard each of six bolts was done up. V1's own Test 1
+# is exactly that: oversized hinge spacers tilted the lid, the strip was
+# crushed at the hinge and light at the free edge, and over-torquing to pull
+# the proud edge down crushed the plywood and pulled an insert out.
+# Three separate fixes here, and the bolt count is only one of them:
+#     12 not 6      -> 25x less bow
+#     groove + stop -> squeeze is geometry, not torque
+#     no hinge      -> the lid cannot be tilted in the first place
+# DO NOT trade any of the three away for convenience.
 HATCH_BOLT_PITCH = 152.0   # -> 12 bolts, 155 mm actual pitch
 # Drill/tap size for an M5 wire-thread insert (STI M5 x 0.8), not an insert OD.
 # HEAT-SET, not wire-thread. Wire-thread inserts were specced because the rim
