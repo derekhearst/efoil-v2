@@ -9,14 +9,14 @@ Grouped by where you buy it rather than by what it does, because that is the ord
 | Amazon | 108 | $3,409.10 |
 | Gong | 1 | $1,404.00 |
 | Flipsky | 3 | $1,038.00 |
-| Not a purchase - tax and freight | 3 | $801.80 |
+| Not a purchase - tax and freight | 3 | $823.67 |
 | BatteryHookup | 2 | $297.50 |
 | Fiberglass Supply | 3 | $253.38 |
 | Home Depot / hardware | 4 | $169.16 |
 | Maker Shop Boise | 1 | $150.00 |
 | Speedy Metals | 1 | $88.92 |
 | Easy Composites | 1 | $52.00 |
-| **TOTAL** | | **$7,663.86** |
+| **TOTAL** | | **$7,685.73** |
 
 ## Amazon
 
@@ -159,8 +159,8 @@ Some Flipsky appears on Amazon but the range is thin and usually dearer. Buy dir
 
 | Item | Qty | Unit | Ext | Price | Note |
 |---|---:|---|---:|---|---|
-| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $433.80 | **verified** |  |
-| Gong shipping to Idaho, per foil | 2 | ea | $248.00 | **verified** | 115.50 EUR on order 252112; charged per ORDER, so putting both boards' foils in ONE order saves about $124 |
+| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $435.04 | **verified** |  |
+| Gong shipping to Idaho, ONE order, both foils | 1 | order | $268.63 | **verified** | quoted at checkout for 2 x XL Alu setups. PER ORDER, not per foil - ordering the two separately would roughly  |
 | Shipping - Divinycell, 6061 plate, VR20 | 1 | allow | $120.00 | estimate | STILL THE BIGGEST UNVERIFIED LINE - it wants three real carts to settle. Was $220 when it covered G10 sheet an |
 
 ## BatteryHookup

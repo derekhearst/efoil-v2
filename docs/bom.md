@@ -168,8 +168,9 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | Item | Qty | Unit | Unit $ | Ext $ | | Note |
 |---|---:|---|---:|---:|---|---|
 | [Gong Foil Setup X-Over V3 Atmo Perf Series - XL, Alu 85](https://www.gong-galaxy.com/en-us/products/gong-foil-setup-x-over-atmo?variant=57158084231543) | 2 | ea | $702.00 | $1,404.00 | verified | complete: FW + matched stab + V3 alu 85/17 mast + V3 MFC + fuselage + V3 top plate + all screws + foil bag. Current range, not end-of-line like the non-Atmo V3 |
-| Gong shipping to Idaho, per foil | 2 | ea | $124.00 | $248.00 | verified | 115.50 EUR on order 252112; charged per ORDER, so putting both boards' foils in ONE order saves about $124 |
-| **subtotal** | | | | **$1,652.00** | | |
+| Gong shipping to Idaho, ONE order, both foils | 1 | order | $268.63 | $268.63 | verified | quoted at checkout for 2 x XL Alu setups. PER ORDER, not per foil - ordering the two separately would roughly double it |
+| US customs / import duty on the Gong order | 0 | allow | $0.00 | $0.00 | estimate | UNQUANTIFIED - carried at zero on purpose so it is never mistaken for a verified figure. Budget ~$210 if a 15% rate holds, and expect it as a courier invoice AFTER delivery, not at checkout |
+| **subtotal** | | | | **$1,672.63** | | |
 
 ## 10b Drivetrain
 
@@ -250,30 +251,30 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | Item | Qty | Unit | Unit $ | Ext $ | | Note |
 |---|---:|---|---:|---:|---|---|
 | Shipping - Divinycell, 6061 plate, VR20 | 1 | allow | $120.00 | $120.00 | estimate | STILL THE BIGGEST UNVERIFIED LINE - it wants three real carts to settle. Was $220 when it covered G10 sheet and hazmat epoxy, both of which are now out of the build entirely |
-| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $433.80 | $433.80 | verified |  |
-| **subtotal** | | | | **$553.80** | | |
+| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $435.04 | $435.04 | verified |  |
+| **subtotal** | | | | **$555.04** | | |
 
 ## Totals
 
 | | |
 |---|---:|
-| **Grand total, 2 boards** | **$7,663.86** |
-| Per board | $3,831.93 |
-| Of which verified | $7,094.85  (93%) |
+| **Grand total, 2 boards** | **$7,685.73** |
+| Per board | $3,842.86 |
+| Of which verified | $7,116.72  (93%) |
 | Of which estimated | $569.01 |
 | Linked to a real listing | 126 lines |
 | Priced but NOT linked | 0 lines, $0.00 |
-| Allowances, not linkable (tax, freight) | 3 lines, $801.80 |
+| Allowances, not linkable (tax, freight) | 3 lines, $823.67 |
 
 ## What is a board, and what is a shop
 
-Some of the total above is not the cost of a board at all - it is tools, jigs and templates that exist afterwards and do not repeat. Splitting them out is the difference between "a board costs $3,832" and "a board costs $3,485 and I now own a vacuum rig, a crimper and a full template set".
+Some of the total above is not the cost of a board at all - it is tools, jigs and templates that exist afterwards and do not repeat. Splitting them out is the difference between "a board costs $3,843" and "a board costs $3,496 and I now own a vacuum rig, a crimper and a full template set".
 
 | | |
 |---|---:|
 | One-time tooling (incl. its share of tax) | $693.44 |
-| **Marginal cost of a board** | **$3,485.21** |
-| Cost of the NEXT board after these 2 | $3,485.21 |
+| **Marginal cost of a board** | **$3,496.14** |
+| Cost of the NEXT board after these 2 | $3,496.14 |
 
 | One-time item | $ |
 |---|---:|

@@ -924,9 +924,28 @@ def build():
         "complete: FW + matched stab + V3 alu 85/17 mast + V3 MFC + fuselage "
         "+ V3 top plate + all screws + foil bag. Current range, not "
         "end-of-line like the non-Atmo V3")
-    add("10 Foil", "Gong shipping to Idaho, per foil", N, "ea", 124.00, OK,
-        "115.50 EUR on order 252112; charged per ORDER, so putting both "
-        "boards' foils in ONE order saves about $124")
+    # MEASURED AT GONG'S OWN CHECKOUT, both foils in one cart:
+    #     subtotal $1,404.00   shipping $268.63   total $1,672.63
+    # The old line was internally inconsistent - it billed N x $124 = $248
+    # while its own note said shipping is charged per ORDER, which would
+    # have meant qty 1. It is per order, and the real figure is $268.63 for
+    # the pair, so the line was $20.63 light rather than $124 heavy.
+    add("10 Foil", "Gong shipping to Idaho, ONE order, both foils",
+        1, "order", 268.63, OK,
+        "quoted at checkout for 2 x XL Alu setups. PER ORDER, not per foil - "
+        "ordering the two separately would roughly double it")
+    # NOT IN THE TOTAL, AND IT SHOULD NOT BE FORGOTTEN. Gong ships from
+    # France and its own site warns that US orders carry customs and import
+    # duties separately. Those do not appear at checkout - they arrive later
+    # as a courier duty-plus-brokerage invoice, which is exactly how people
+    # get surprised. On $1,404 of goods a 15% rate would be about $210.
+    # That rate is an ASSUMPTION, not a quote: it is the one number in this
+    # BOM nobody has been able to verify, and it moves with trade policy.
+    add("10 Foil", "US customs / import duty on the Gong order",
+        0, "allow", 0.00, EST,
+        "UNQUANTIFIED - carried at zero on purpose so it is never mistaken "
+        "for a verified figure. Budget ~$210 if a 15% rate holds, and expect "
+        "it as a courier invoice AFTER delivery, not at checkout")
 
     # ------------------------------------------- 10b drivetrain interface
     # Motor mount is jkoljo's printed PETG clamp (Thingiverse 5996522) - the
