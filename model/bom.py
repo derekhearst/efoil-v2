@@ -454,9 +454,19 @@ def build():
         M["hatch_bolts"] * N + 10, "ea", 0.22, EST,
         "dropped in at a print pause at Z=6.0; steel thread, so a hatch that "
         "comes off every ride never wears anything out")
-    add("6  Hatch and seal", "MDF 12 mm, full template set (14 templates)",
-        2, "sheet", 35.00, EST,
-        "one-time; cut once, used on both boards and any future one", tool=True)
+    # 4 sheets, not a "full template set". With the makerspace pass booked, the
+    # seven ROUTER templates are dead weight - the CNC cuts every feature they
+    # would have guided: outline, cavity, rim rebate, both mast pockets, handle
+    # and leash pads. templates.py now gates them behind HAND_SHAPE=False and
+    # emits four GAUGES instead: three station sections and the rocker/deck
+    # profile, to check the machined core before it gets glassed.
+    # Flip HAND_SHAPE to True and it emits all 21 again - that is the fallback
+    # if the machine falls through, and it is why they still exist.
+    # The two MDF parts that are needed EITHER WAY are in the cut list, not
+    # here: the cavity caul and the groove guide.
+    add("6  Hatch and seal", "MDF 12 mm, 4 check gauges", 1, "sheet", 22.00,
+        EST, "3 station sections + the rocker/deck profile. Was a 14-template "
+        "set at $70 - the router templates go with the CNC pass")
 
     # ---------------------------------------------------------- 7 module
     add("7  Module", "M4 x 12 A4 stainless socket cap",

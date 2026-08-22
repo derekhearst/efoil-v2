@@ -71,8 +71,8 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | M5 x 25 A4 stainless socket cap | 24 | ea | $0.55 | $13.20 | estimate |  |
 | M5 penny washer O15, under the captive nut | 34 | ea | $0.18 | $6.12 | estimate | goes in at the SAME print pause as the nut, underneath it |
 | M5 A4 hex nut, CAPTIVE - printed into the ring | 34 | ea | $0.22 | $7.48 | estimate | dropped in at a print pause at Z=6.0; steel thread, so a hatch that comes off every ride never wears anything out |
-| MDF 12 mm, full template set (14 templates) | 2 | sheet | $35.00 | $70.00 | estimate | one-time; cut once, used on both boards and any future one |
-| **subtotal** | | | | **$180.80** | | |
+| MDF 12 mm, 4 check gauges | 1 | sheet | $22.00 | $22.00 | estimate | 3 station sections + the rocker/deck profile. Was a 14-template set at $70 - the router templates go with the CNC pass |
+| **subtotal** | | | | **$132.80** | | |
 
 ## 7  Module
 
@@ -236,27 +236,27 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | Item | Qty | Unit | Unit $ | Ext $ | | Note |
 |---|---:|---|---:|---:|---|---|
 | Shipping - G10, Divinycell, epoxy hazmat | 1 | allow | $220.00 | $220.00 | estimate | heavy and hazmat lines |
-| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $457.95 | $457.95 | verified |  |
-| **subtotal** | | | | **$677.95** | | |
+| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $455.07 | $455.07 | verified |  |
+| **subtotal** | | | | **$675.07** | | |
 
 ## Totals
 
 | | |
 |---|---:|
-| **Grand total, 2 boards** | **$8,090.52** |
-| Per board | $4,045.26 |
-| Of which verified | $6,307.93  (78%) |
-| Of which estimated | $1,782.59 |
+| **Grand total, 2 boards** | **$8,039.64** |
+| Per board | $4,019.82 |
+| Of which verified | $6,305.05  (78%) |
+| Of which estimated | $1,734.59 |
 
 ## What is a board, and what is a shop
 
-Some of the total above is not the cost of a board at all - it is tools, jigs and templates that exist afterwards and do not repeat. Splitting them out is the difference between "a board costs $4,045" and "a board costs $3,586 and I now own a vacuum rig, a crimper and a full template set".
+Some of the total above is not the cost of a board at all - it is tools, jigs and templates that exist afterwards and do not repeat. Splitting them out is the difference between "a board costs $4,020" and "a board costs $3,598 and I now own a vacuum rig, a crimper and a full template set".
 
 | | |
 |---|---:|
-| One-time tooling (incl. its share of tax) | $918.37 |
-| **Marginal cost of a board** | **$3,586.07** |
-| Cost of the NEXT board after these 2 | $3,586.07 |
+| One-time tooling (incl. its share of tax) | $844.17 |
+| **Marginal cost of a board** | **$3,597.73** |
+| Cost of the NEXT board after these 2 | $3,597.73 |
 
 | One-time item | $ |
 |---|---:|
@@ -266,7 +266,6 @@ Some of the total above is not the cost of a board at all - it is tools, jigs an
 | VR20 vacuum regulator | $52.00 |
 | Bagging starter kit - film, peel ply, tape, breather, connector | $127.40 |
 | Vacuum gauge, 0-30 inHg, 1/4 NPT | $18.00 |
-| MDF 12 mm, full template set (14 templates) | $70.00 |
 | M8 x 1.25 tap set + 6.8 mm drill | $18.00 |
 | 1/4 in torque wrench, 1-10 Nm | $38.00 |
 | Hydraulic lug crimper, 6-70 mm2 | $38.00 |

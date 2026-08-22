@@ -37,12 +37,34 @@ GUIDE_OFF = 5.0
 # shaping is now the realistic fallback - the makerspace is not answering, and
 # the EPS core is the only part left on this board that wants a CNC at all.
 # 13 stations at 100 mm centres is what a longboard sander can fair between.
+# --- WHO ACTUALLY NEEDS THESE ---------------------------------------------
+# T01-T07 are ROUTER templates, and every feature they guide is cut by the CNC
+# if there is a CNC: the outline, the cavity, the rim rebate, the mast pockets,
+# the handle and leash pads. With a month pass booked they are dead weight.
+# They exist as the HAND-SHAPING FALLBACK, and that is the only reason.
+#
+# What is needed EITHER WAY lives in cnc_drawings, not here:
+#   13_cavity_caul  - presses the cavity laminate during bagging
+#   14_groove_guide - opens the seal groove AFTER glassing, on a finished
+#                     board. That is a hand operation on both routes.
+#
+# T08/T09 are GAUGES, not templates. A handful is worth cutting even with a
+# CNC, to check the machined core before it gets glassed. Thirteen is
+# hand-shaping density.
+HAND_SHAPE = False                 # True -> full fallback set, 21 templates
+CHECK_STATIONS = (0.25, 0.50, 0.75)
 STATIONS = tuple(round(x / 1400.0, 4) for x in range(100, 1400, 100))
 
 PARTS = []
 
 
 def add(name, dxf, w, h, kind, note):
+    # Every BEARING template is a router guide for a feature the CNC cuts
+    # anyway. With machine access booked they are dead weight, so they are
+    # only emitted for the hand-shaping fallback. GAUGES always emit - a few
+    # sections are worth having to check a machined core before it is glassed.
+    if kind == "BEARING" and not HAND_SHAPE:
+        return
     dxf.save(os.path.join(OUT, name + ".dxf"))
     PARTS.append(dict(name=name, w=w, h=h, kind=kind, note=note))
 
@@ -163,7 +185,7 @@ def build(p):
     # ---- T08 station sections ---------------------------------------------
     # Not router templates - shape gauges. Cut them, notch the centreline,
     # and check the machined core against them before glassing.
-    for st in STATIONS:
+    for st in (STATIONS if HAND_SHAPE else CHECK_STATIONS):
         d = C.Dxf()
         hw, t = p["half_width"](st), p["thickness"](st)
         sec = p["section"](hw, t, st)
