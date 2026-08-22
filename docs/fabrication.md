@@ -492,13 +492,21 @@ give back.
 ### Step 22. Fit out
 
 **Blocks on:** steps 18, 21
-**Uses:** `Kayak-style webbing carry handle, 4 pk` · `M6 x 16 A4 button head, 10 pk` ·
-`M6 heat-set insert, strap mounts` · `1 in polyester webbing 6 yd + 6 buckles` ·
+**Uses:** `Kayak/board grab handle, 2 pk + screws` · `M6 x 16 A4 button head, 10 pk` ·
+`M6 heat-set insert, strap mounts` ·
 `FCS-pattern leash plug` · `Coiled ankle leash` ·
 `M4 x 12 A4 socket cap DIN912, 10 pk` · `M4 A4 washer, 316, 100 pk`
 
-Webbing is **polyester, not nylon** — nylon absorbs water and stretches, so
-what you tightened on the beach is loose on the water.
+**Three handles a board, all the same part:** two on the rails into the 6061
+strip, one on the electronics module. Drill the handle's reinforcing holes to
+suit M6 on the rail pair rather than using the supplied screws — the module
+handle can use them as supplied.
+
+> **Still open: what holds the module down in the cavity?** Its 18 bolts hold
+> its own lid on, not the module into the board. A 14 kg module loose in a
+> cavity is the heaviest thing aboard with nothing restraining it. **Decide
+> before the cavity is glassed** — anything bonded in has to go in before the
+> laminate does.
 
 ### Step 23. Mount the foil and drivetrain
 

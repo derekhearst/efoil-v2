@@ -898,7 +898,28 @@ def build():
         "0.2 x 27 mm uxcell from Apr 12: too wide for bridges, but it is the "
         "right stock for the two terminal collectors and for doubling the "
         "edges without stacking two thin layers")
-    add("9  Electrical", "21700 spacer brackets", 0, "set", 0.00, OWNED)
+    # THESE WERE NEVER ACTUALLY IN THE BUILD. The line said "0, OWNED" and
+    # the model's colour legend claimed "off-the-shelf 21700 spacer brackets
+    # (already owned)" - but the model ALSO carries a build_cell_holder()
+    # that designs a printed comb, and that function IS NEVER CALLED. It was
+    # written for the 2-layer LYING pack and orphaned when the pack went to
+    # 1-layer upright. So: a printed holder that never gets built, a bought
+    # holder nobody costed, and 256 cells with nothing locating them.
+    #
+    # UPRIGHT CELLS NEED HOLDING AT BOTH ENDS. 128 cells a board x 2 boards
+    # x 2 ends = 512 cell positions. 1x2 bricks because they tile ANY grid;
+    # the 4x5 trays are cheaper per cell but 16 x 8 does not divide by 5.
+    #
+    # PITCH: these are ~22-23 mm centres, against the model's PITCH_Y = 24.0
+    # which was chosen for the wall thickness of the PRINTED holder that no
+    # longer exists. That is CONSERVATIVE, not a clash - the real pack comes
+    # out ~16 mm narrower and ~8 mm shorter than the cavity is cut for. Do
+    # not "fix" PITCH_Y without re-checking every clearance it feeds.
+    add("9  Electrical", "21700 cell holder, 1x2 brick, 50 pk",
+        math.ceil(128 * N * 2 / 50), "pk", 9.99, OK,
+        str(128 * N * 2) + " cell positions - both ends of every cell. "
+        "~22-23 mm pitch; the model assumes 24, which leaves the pack "
+        "smaller than the cavity is cut for", vendor="Amazon")
     add("9  Electrical", "ANL 150 A fuse + holder", N, "ea", 9.99, OK,
         "in the NEGATIVE leg, between BMS P- and the ESC - that is where V1 "
         "ran it and it is the node the charge negative branches from too")
@@ -963,10 +984,17 @@ def build():
     add("9b Small but essential", "FCS-pattern leash plug", N, "ea", 9.00, EST)
     # A cloth handle, bolted on. That is all this ever needed to be - the
     # dense-foam surround that used to wrap the strip is gone.
-    add("9b Small but essential", "Kayak-style webbing carry handle, 4 pk",
-        1, "pk", 13.89, OK,
-        str(2 * N) + " needed; 2 x M6 into the 6061 strip in the rail pocket",
-        vendor="Amazon")
+    # ONE HANDLE PART FOR BOTH JOBS - Derek's call. Rubber/webbing kayak
+    # handles, 2 per pack with screws included: 2 on the board's rails and 1
+    # on the electronics module, per board. Six handles, three packs.
+    # This also retires the separate "module lift loop" made from webbing:
+    # one bought part with a moulded grip beats a loop of strap you have to
+    # sew or fold, and it is the same part in both places.
+    add("9b Small but essential", "Kayak/board grab handle, 2 pk + screws",
+        math.ceil(3 * N / 2), "pk", 9.99, OK,
+        "3 a board: 2 on the rails into the 6061 strip, 1 on the module. "
+        "Two reinforcing holes each end - drill to suit M6 rather than using "
+        "the supplied screws on the rail handles", vendor="Amazon")
     add("9b Small but essential", "M6 x 16 A4 button head, 10 pk",
         1, "pk", 8.06, OK, str(4 * N) + " needed, strap mounts. The M6 "
         "THREADED INSERT IS NOT INCLUDED - separate line below")
@@ -1124,16 +1152,29 @@ def build():
     # down and the ESC still has to bolt to something.
     add("10c Restraint & fitout", "G10 chocks, equipment plate, pack tabs",
         0, "off", 0.00, OWNED, "cut from 1/8 and 1/2 in offcuts")
-    # POLYESTER, NOT NYLON. Nylon webbing absorbs water and stretches when
-    # it is wet, which on a board strap means the thing you tightened on the
-    # beach is loose by the time you are on the water. Polyester barely
-    # moves. Same price, so there is no reason to get this wrong.
+    # BOTH OF THESE ARE OUT. Derek asked what they were for and the honest
+    # answer is that neither had a defined job - they are leftovers from this
+    # section back when SHOW_RESTRAINT was on, and they survived because
+    # nobody re-read them.
+    #   WEBBING + BUCKLES: its two stated purposes were "2 straps per board",
+    #     which was never defined anywhere, and the module lift loops - and
+    #     those are now a bought handle. Nothing left for it to do.
+    #   EVA BEDDING PADS: no stated purpose at all beyond where the material
+    #     came from. If the module ends up wanting a cushion under it, the
+    #     deck-pad offcut is still sitting there and is still free.
     add("10c Restraint & fitout", "1 in polyester webbing 6 yd + 6 buckles",
-        1, "kit", 5.99, OK, "2 straps per board, plus the module lift loops "
-        "in section 7, all out of the one 6 yd pack", vendor="Amazon")
+        0, "kit", 0.00, OWNED, "DELETED - no defined job. The module lift is "
+        "a bought handle now")
     add("10c Restraint & fitout", "EVA bedding pads", 0, "set", 0.00, OWNED,
-        "cut from the roll the deck and lid pieces do not use - same "
-        "material, already self-adhesive, already bought")
+        "DELETED - no defined job. Deck-pad offcut covers it if one is "
+        "wanted")
+    # STILL UNRESOLVED, and it is not these two parts: WHAT HOLDS THE MODULE
+    # DOWN IN THE CAVITY. SHOW_RESTRAINT is False so nothing models it, the
+    # chocks line below is 0/OWNED off-cuts, and the module's 18 bolts hold
+    # its own LID on, not the module into the board. A 14 kg module loose in
+    # a cavity is the heaviest thing on the board with nothing holding it.
+    # Decide before the cavity is glassed - anything bonded in has to go in
+    # before the laminate.
 
     # ------------------------------------------------- 10d shop consumables
     # The thermometer stays, and matters MORE without a hot box - it is the

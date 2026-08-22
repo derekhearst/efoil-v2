@@ -25,6 +25,8 @@ LINKS = {
         ("B0FVSHYP99", 7.19, "uxcell 2000Pcs 2mm Solid Round Clear Glass Beads"),
     "2.5 mm straight cutter - fallback":
         ("B0GWSZ2KV2", 7.99, "Straight Router Bit 1/8in Shank 2.5x22mm Carbide 2 Flute"),
+    "21700 cell holder, 1x2 brick, 50 pk":
+        ("B092PSRGZ6", 9.99, "Heyiarbeit 50Pcs 2 x Cell 21700 Battery Holder Bracket Cell Spacer"),
     "3M 4200 FC 3 oz tube, fillet over the bung":
         ("B00MJ9K78A", 17.99, "3M 05260 Marine Adhesive/Sealant Fast Cure 4200 3 Fl Oz"),
     "3M 60923 organic vapour / acid gas P100, pair":
@@ -125,6 +127,8 @@ LINKS = {
         ("B006ZFQNT6", 8.25, "1/2in x 36 Yds 1 Mil Polyimide High Temp Electrical Tape"),
     "Kayak-style webbing carry handle, 4 pk":
         ("B08BC6Q7ZW", 13.89, "4 Pack Kayak Carry Handles with Screws"),
+    "Kayak/board grab handle, 2 pk + screws":
+        ("B0FBW3XT5D", 9.99, "Yluvaok Kayak Handle, 2 handles + 8 screws + driver bit, rubber/webbing"),
     "Laminating bubble roller kit, 4 pc":
         ("B07FCLTHY6", 17.99, "Fiberglass Roller Tools Kit 4pcs Laminating Bubble Roller Set"),
     "Loctite 242":
@@ -286,6 +290,7 @@ LINK_VENDOR = {
     "1708 biax, 50in x 10 yd roll": "Amazon",
     "2 mm glass beads or shim wire, bond-line control": "Amazon",
     "2.5 mm straight cutter - fallback": "Amazon",
+    "21700 cell holder, 1x2 brick, 50 pk": "Amazon",
     "3M 4200 FC 3 oz tube, fillet over the bung": "Amazon",
     "3M 60923 organic vapour / acid gas P100, pair": "Amazon",
     "3M Fastbond 1077 water-based, CNC hold-down": "Amazon",
@@ -334,6 +339,7 @@ LINK_VENDOR = {
     "JST GH 1.25 mm pigtail pair, BMS switch": "Amazon",
     "Kapton tape, pack insulation": "Amazon",
     "Kayak-style webbing carry handle, 4 pk": "Amazon",
+    "Kayak/board grab handle, 2 pk + screws": "Amazon",
     "Laminating bubble roller kit, 4 pc": "Amazon",
     "Loctite 242": "Amazon",
     "Longboard PSA sandpaper 120-180 grit, 20 yd roll": "Amazon",

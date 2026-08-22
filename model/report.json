@@ -328,7 +328,7 @@
  "mast_true_position_budget_mm": 0.25,
  "mast_why_machined": "blind tapped, so no clearance absorbs error: true position must hold 0.25 mm, a 2 deg drill wander alone spends 0.35 mm of it, and only 2.7 mm of solid alu separates the tap from breaching the plate that keeps the cavity dry",
  "materials": {
-  "cell holder": "off-the-shelf 21700 spacer brackets (already owned)",
+  "cell holder": "bought 21700 1x2 spacer bricks, both ends of every cell - NOT the printed comb below, which is dead code",
   "hatch lid": "glass 1.0 / H100 (2 x 1/4in bonded - no 1/2in H100 exists) PVC foam 12 / glass 1.0 = 14.0 mm",
   "hatch rim ring": "PRINTED ASA, 12.7 mm, 6 pieces (acetone weld, dovetailed), no joint on a corner, bedded in 4200 and glassed in",
   "hatch seal": "O3 silicone cord BONDED into a 4 x 2.4 groove PRINTED INTO the ring - depth is layer count, not a router pass",

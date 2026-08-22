@@ -6,17 +6,17 @@ Grouped by where you buy it rather than by what it does, because that is the ord
 
 | Supplier | Lines | $ |
 |---|---:|---:|
-| Amazon | 110 | $3,478.94 |
+| Amazon | 110 | $3,598.92 |
 | Gong | 1 | $1,404.00 |
 | Flipsky | 3 | $1,038.00 |
-| Not a purchase - tax and freight | 3 | $827.86 |
+| Not a purchase - tax and freight | 3 | $835.06 |
 | BatteryHookup | 2 | $297.50 |
 | Fiberglass Supply | 3 | $253.38 |
 | Home Depot / hardware | 4 | $169.16 |
 | Maker Shop Boise | 1 | $150.00 |
 | Speedy Metals | 1 | $88.92 |
 | Easy Composites | 1 | $52.00 |
-| **TOTAL** | | **$7,759.76** |
+| **TOTAL** | | **$7,886.94** |
 
 ## Amazon
 
@@ -27,6 +27,7 @@ https://www.amazon.com
 | [TotalBoat 5:1 gallon kit, slow hardener](https://www.amazon.com/dp/B00HR8515C) | 2 | kit | $299.98 | **verified** | 2.51 m2 laminate = 4.8 kg mixed = 1 kit/board |
 | [DALY Smart BMS Li-ion 16S 60V 150A](https://www.amazon.com/dp/B0CXXFQT9S) | 2 | ea | $295.40 | **verified** | batteryint.com; confirm it is <= 164 x 66 x 21 mm |
 | [Peel ply, 60in](https://www.amazon.com/dp/B0H5JTMTZ3) | 6 | yd | $113.94 | **verified** | was only in the starter kit, and one kit's worth does not cover 6.12 m2 of part |
+| [21700 cell holder, 1x2 brick, 50 pk](https://www.amazon.com/dp/B092PSRGZ6) | 11 | pk | $109.89 | **verified** | 512 cell positions - both ends of every cell. ~22-23 mm pitch; the model assumes 24, which leaves the pack sma |
 | [TotalBoat Wet Edge topside paint, colour](https://www.amazon.com/dp/B00HQP5D9A) | 2 | kit | $107.98 | **verified** | one-part polyurethane, quart |
 | [Charger 67.2 V 5 A, 16S  (NOT 58.8 V)](https://www.amazon.com/dp/B0DK6FTB1P) | 2 | ea | $91.98 | **verified** | Amazon B0DK6FTB1P, aluminium case + fan |
 | [TotalBoat TotalFair epoxy fairing compound](https://www.amazon.com/dp/B00S9RBWIA) | 2 | kit | $91.98 | **verified** | smallest kit, one per board |
@@ -56,6 +57,7 @@ https://www.amazon.com
 | [M5 x 25 A4 socket cap, 20 pk](https://www.amazon.com/dp/B0CJFMMF58) | 2 | pk | $31.98 | **verified** | 24 needed. A4/316 - every cheaper listing is A2/304, which pits in salt water |
 | [IP68 M25 inline housing, 5 pk](https://www.amazon.com/dp/B0DPKM5HF7) | 2 | pk | $31.96 | **verified** | 3 per board, one per phase, 2 spare. M25 bodies take 4-14 mm cable against our 6.5 mm 8 AWG, so the size class |
 | [Coiled ankle leash](https://www.amazon.com/dp/B096VL3DHV) | 2 | ea | $29.98 | **verified** | you trust the remote failsafe; this is so the board stays with you |
+| [Kayak/board grab handle, 2 pk + screws](https://www.amazon.com/dp/B0FBW3XT5D) | 3 | pk | $29.97 | **verified** | 3 a board: 2 on the rails into the 6061 strip, 1 on the module. Two reinforcing holes each end - drill to suit |
 | [Sikaflex-292 marine structural PU](https://www.amazon.com/dp/B008F8VYMM) | 1 | tube | $28.99 | **verified** | ~6-8 MPa vs 4200's ~2. Fillet BOTH sides of the joint - on a flexible bond the fillets are what stop it peelin |
 | [Sika Aktivator-PRO 250 ml + daubers](https://www.amazon.com/dp/B0D9KTLC1M) | 1 | ea | $28.95 | **verified** | abrade + solvent wipe + activate the 5052; scuff the ASA. Aktivator-205 is DISCONTINUED - Aktivator-PRO replac |
 | [Nitrile gloves 6 mil, 100 pk](https://www.amazon.com/dp/B0C3SSXL4K) | 2 | box | $28.88 | **verified** |  |
@@ -94,7 +96,6 @@ https://www.amazon.com
 | [PVC pack wrap, 200 mm lay-flat](https://www.amazon.com/dp/B09SVFL33L) | 1 | roll | $13.99 | **verified** | wide enough to sleeve a 16S brick; one roll does both |
 | [Adhesive-lined heat shrink 3:1, 400 pc kit](https://www.amazon.com/dp/B0BVVMCY86) | 1 | kit | $13.99 | **verified** | marine grade, glue-lined - plain heat shrink over a joint in a wet cavity is decoration |
 | [M3 heat-set insert kit, 361 pc](https://www.amazon.com/dp/B0G8JLX1HR) | 1 | kit | $13.98 | **verified** | covers the port flange (4 sets) and the nose cone. The kit's screws are PLAIN STEEL - buy M3 x 8 A4 separately |
-| [Kayak-style webbing carry handle, 4 pk](https://www.amazon.com/dp/B08BC6Q7ZW) | 1 | pk | $13.89 | **verified** | 4 needed; 2 x M6 into the 6061 strip in the rail pocket |
 | [PL300 / Gorilla Glue, layer glue-up](https://www.amazon.com/dp/B0009XEGVC) | 2 | tube | $13.18 | estimate |  |
 | [Water-ingress alarm, 2 pk](https://www.amazon.com/dp/B09DCMCB8D) | 1 | pk | $12.99 | **verified** | Geevon 100 dB pucks - the 2-pack covers BOTH boards. Put the SENSOR on the module floor in the lowest corner,  |
 | [5.5 mm gold bullets, 20 pair](https://www.amazon.com/dp/B096DJKR5Y) | 1 | pk | $12.99 | **verified** | 3 pair a board, so one pack covers both with spares. Motor pigtails arrive with their own |
@@ -132,7 +133,6 @@ https://www.amazon.com
 | [M4 A4 washer, 316, 100 pk](https://www.amazon.com/dp/B0DZ5BVLP5) | 1 | pk | $6.79 | **verified** | 36 needed, under every lid bolt. NOTE the OD is 12 mm, not the 9 mm this line specced - the only 9 mm-OD listi |
 | [M3 x 8 A4 stainless, 10 pk](https://www.amazon.com/dp/B07DVMFMJZ) | 1 | pk | $6.76 | **verified** | the kit's screws are not stainless and this joint is submerged |
 | [JST GH 1.25 mm pigtail pair, BMS switch](https://www.amazon.com/dp/B07FP2FCYC) | 1 | pk | $5.99 | **verified** | connects the panel button to the BMS key-switch input. CHECK THE BOX FIRST - DALY ship a ready-made key switch |
-| [1 in polyester webbing 6 yd + 6 buckles](https://www.amazon.com/dp/B0FBRMSRLK) | 1 | kit | $5.99 | **verified** | 2 straps per board, plus the module lift loops in section 7, all out of the one 6 yd pack |
 | [Cyanoacrylate for the cord splice](https://www.amazon.com/dp/B0DKP4TVSF) | 1 | ea | $5.39 | estimate |  |
 
 ## Gong
@@ -161,7 +161,7 @@ Some Flipsky appears on Amazon but the range is thin and usually dearer. Buy dir
 
 | Item | Qty | Unit | Ext | Price | Note |
 |---|---:|---|---:|---|---|
-| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $439.23 | **verified** |  |
+| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $446.43 | **verified** |  |
 | Gong shipping to Idaho, ONE order, both foils | 1 | order | $268.63 | **verified** | quoted at checkout for 2 x XL Alu setups. PER ORDER, not per foil - ordering the two separately would roughly  |
 | Shipping - Divinycell, 6061 plate, VR20 | 1 | allow | $120.00 | estimate | STILL THE BIGGEST UNVERIFIED LINE - it wants three real carts to settle. Was $220 when it covered G10 sheet an |
 

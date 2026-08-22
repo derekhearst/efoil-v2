@@ -116,13 +116,13 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | [BAK N21700CG-50 singles, spares](https://batteryhookup.com/products/new-3-6v-5000mah-bak-n21700cg-50-2170-lithium-ion-cells?variant=46196788756642) | 15 | ea | $2.50 | $37.50 | verified | 7% margin on a spot-welded pack |
 | 21700 cells already on hand | 128 | ea | $0.00 | $0.00 | on hand |  |
 | [Pure nickel 0.2 x 10 mm, 5 m roll](https://www.amazon.com/dp/B0961Q1VVR) | 3 | roll | $14.99 | $44.97 | verified | 6.9 m a board derived from the pack, not guessed. YOU ALREADY OWN 3 ROLLS (SUIDI, ordered Apr 16 x2 and May 6) - check the drawer before buying more. There is also a 5 m roll of 0.2 x 27 mm uxcell from Apr 12: too wide for bridges, but it is the right stock for the two terminal collectors and for doubling the edges without stacking two thin layers |
-| 21700 spacer brackets | 0 | set | $0.00 | $0.00 | on hand |  |
+| [21700 cell holder, 1x2 brick, 50 pk](https://www.amazon.com/dp/B092PSRGZ6) | 11 | pk | $9.99 | $109.89 | verified | 512 cell positions - both ends of every cell. ~22-23 mm pitch; the model assumes 24, which leaves the pack smaller than the cavity is cut for |
 | [ANL 150 A fuse + holder](https://www.amazon.com/dp/B0B6ZHJR7D) | 2 | ea | $9.99 | $19.98 | verified | in the NEGATIVE leg, between BMS P- and the ESC - that is where V1 ran it and it is the node the charge negative branches from too |
 | [Inline 10 A fuse + holder, charge lead](https://www.amazon.com/dp/B0F2YXV41Q) | 1 | pk | $7.59 | $7.59 | verified | at SPLIT A on the charge positive. The ANL is sized for the motor and cannot protect 16 AWG |
 | [8 AWG silicone, 10 ft red + 10 ft black](https://www.amazon.com/dp/B0BYJRDT19) | 1 | pk | $21.99 | $21.99 | verified | one pack covers BOTH boards - the longest run in the module is the 278 mm ESC-to-fuse, so 10 ft a side is already 10x what the runs need. Motor supplies its own phase leads + bullets. Amazon 8 AWG 10+10 spans $18.88-$23.99; the 25 ft pack at $49.99 was buying 40 ft of wire to use about 3 |
 | [PVC pack wrap, 200 mm lay-flat](https://www.amazon.com/dp/B09SVFL33L) | 1 | roll | $13.99 | $13.99 | verified | wide enough to sleeve a 16S brick; one roll does both |
 | [Kapton tape, pack insulation](https://www.amazon.com/dp/B006ZFQNT6) | 1 | roll | $8.25 | $8.25 | estimate |  |
-| **subtotal** | | | | **$1,863.63** | | |
+| **subtotal** | | | | **$1,973.52** | | |
 
 ## 8  Mast hardpoint
 
@@ -146,10 +146,10 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | [1/4 in torque wrench, 10-50 in-lb](https://www.amazon.com/dp/B0D7PWP7YF) | 1 | ea | $25.97 | $25.97 | verified | 1.1-5.6 Nm. RANGE MATTERS: our hatch spec is 2 Nm = 17.7 in-lb, which is BELOW the 20 in-lb floor of the common 20-200 in-lb wrenches - they cannot read our number at all. CALIBRATION TOOL - set the drill clutch with it, then use the clutch. The hatch is captive nuts in ASA against a hard stop; past the stop more torque only loads the nut pockets |
 | [Coiled ankle leash](https://www.amazon.com/dp/B096VL3DHV) | 2 | ea | $14.99 | $29.98 | verified | you trust the remote failsafe; this is so the board stays with you |
 | [FCS-pattern leash plug](https://www.amazon.com/dp/B0F1F97R4D) | 2 | ea | $8.59 | $17.18 | estimate |  |
-| [Kayak-style webbing carry handle, 4 pk](https://www.amazon.com/dp/B08BC6Q7ZW) | 1 | pk | $13.89 | $13.89 | verified | 4 needed; 2 x M6 into the 6061 strip in the rail pocket |
+| [Kayak/board grab handle, 2 pk + screws](https://www.amazon.com/dp/B0FBW3XT5D) | 3 | pk | $9.99 | $29.97 | verified | 3 a board: 2 on the rails into the 6061 strip, 1 on the module. Two reinforcing holes each end - drill to suit M6 rather than using the supplied screws on the rail handles |
 | [M6 x 16 A4 button head, 10 pk](https://www.amazon.com/dp/B07DVRLQTK) | 1 | pk | $8.06 | $8.06 | verified | 8 needed, strap mounts. The M6 THREADED INSERT IS NOT INCLUDED - separate line below |
 | [M6 heat-set insert, strap mounts](https://www.amazon.com/dp/B0DNJNLP95) | 1 | pk | $9.99 | $9.99 | verified | not supplied with the screws above |
-| **subtotal** | | | | **$144.26** | | |
+| **subtotal** | | | | **$160.34** | | |
 
 ## 9c Pack wiring
 
@@ -200,9 +200,9 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | Item | Qty | Unit | Unit $ | Ext $ | | Note |
 |---|---:|---|---:|---:|---|---|
 | G10 chocks, equipment plate, pack tabs | 0 | off | $0.00 | $0.00 | on hand | cut from 1/8 and 1/2 in offcuts |
-| [1 in polyester webbing 6 yd + 6 buckles](https://www.amazon.com/dp/B0FBRMSRLK) | 1 | kit | $5.99 | $5.99 | verified | 2 straps per board, plus the module lift loops in section 7, all out of the one 6 yd pack |
-| [EVA bedding pads](https://www.amazon.com/dp/B0GG9H6VS2) | 0 | set | $16.99 | $0.00 | on hand | cut from the roll the deck and lid pieces do not use - same material, already self-adhesive, already bought |
-| **subtotal** | | | | **$5.99** | | |
+| [1 in polyester webbing 6 yd + 6 buckles](https://www.amazon.com/dp/B0FBRMSRLK) | 0 | kit | $5.99 | $0.00 | on hand | DELETED - no defined job. The module lift is a bought handle now |
+| [EVA bedding pads](https://www.amazon.com/dp/B0GG9H6VS2) | 0 | set | $16.99 | $0.00 | on hand | DELETED - no defined job. Deck-pad offcut covers it if one is wanted |
+| **subtotal** | | | | **$0.00** | | |
 
 ## 10d Shop consumables
 
@@ -255,31 +255,31 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | Item | Qty | Unit | Unit $ | Ext $ | | Note |
 |---|---:|---|---:|---:|---|---|
 | Shipping - Divinycell, 6061 plate, VR20 | 1 | allow | $120.00 | $120.00 | estimate | STILL THE BIGGEST UNVERIFIED LINE - it wants three real carts to settle. Was $220 when it covered G10 sheet and hazmat epoxy, both of which are now out of the build entirely |
-| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $439.23 | $439.23 | verified |  |
-| **subtotal** | | | | **$559.23** | | |
+| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $446.43 | $446.43 | verified |  |
+| **subtotal** | | | | **$566.43** | | |
 
 ## Totals
 
 | | |
 |---|---:|
-| **Grand total, 2 boards** | **$7,759.76** |
-| Per board | $3,879.88 |
-| Of which verified | $7,214.73  (93%) |
+| **Grand total, 2 boards** | **$7,886.94** |
+| Per board | $3,943.47 |
+| Of which verified | $7,341.91  (93%) |
 | Of which estimated | $545.03 |
-| Linked to a real listing | 130 lines |
+| Linked to a real listing | 131 lines |
 | Priced but NOT linked | 0 lines, $0.00 |
-| Not linkable, but MEASURED (freight quotes) | 2 lines, $707.86 |
+| Not linkable, but MEASURED (freight quotes) | 2 lines, $715.06 |
 | Not linkable and still estimated | 1 lines, $120.00 |
 
 ## What is a board, and what is a shop
 
-Some of the total above is not the cost of a board at all - it is tools, jigs and templates that exist afterwards and do not repeat. Splitting them out is the difference between "a board costs $3,880" and "a board costs $3,489 and I now own a vacuum rig, a crimper and a full template set".
+Some of the total above is not the cost of a board at all - it is tools, jigs and templates that exist afterwards and do not repeat. Splitting them out is the difference between "a board costs $3,943" and "a board costs $3,553 and I now own a vacuum rig, a crimper and a full template set".
 
 | | |
 |---|---:|
 | One-time tooling (incl. its share of tax) | $781.41 |
-| **Marginal cost of a board** | **$3,489.17** |
-| Cost of the NEXT board after these 2 | $3,489.17 |
+| **Marginal cost of a board** | **$3,552.76** |
+| Cost of the NEXT board after these 2 | $3,552.76 |
 
 | One-time item | $ |
 |---|---:|

@@ -2388,8 +2388,18 @@ def _fix_normals(ob):
 
 
 def build_cell_holder(coll, cols, x_start, pack_y0, iz0, mat, rep):
-    """Printed holder: rails + scalloped ribs, cradles cut by long cylinders.
+    """DEAD CODE - nothing calls this, and nothing should.
 
+    Written for the 2-LAYER LYING pack (note the two centrelines it returns)
+    and orphaned when the pack went to 1-layer upright. It sat here looking
+    like the answer to "what holds the cells" while the BOM said off-the-shelf
+    brackets and neither was actually costed - 256 cells with nothing
+    locating them.
+    The cells are held by BOUGHT 1x2 spacer bricks now, top and bottom. Kept
+    only because it is the reference if a printed holder is ever wanted
+    again; delete it the moment that stops being true.
+
+    Printed holder: rails + scalloped ribs, cradles cut by long cylinders.
     Returns the z of each layer's cell centreline so the pack sits in it.
     """
     n1, n2 = cols[0], cols[1]
@@ -5467,7 +5477,9 @@ def build():
         "hatch seal": f"O{CORD_D:.0f} silicone cord BONDED into a "
                       f"{CHAN_W:.0f} x {CHAN_D:.1f} groove PRINTED INTO the "
                       "ring - depth is layer count, not a router pass",
-        "cell holder": "off-the-shelf 21700 spacer brackets (already owned)",
+        "cell holder": ("bought 21700 1x2 spacer bricks, both ends of every "
+                        "cell - NOT the printed comb below, which is dead "
+                        "code"),
     }
     rep["FAILS"] = fails or ["none"]
     return rep
