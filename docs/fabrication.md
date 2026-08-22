@@ -148,15 +148,45 @@ vertical seam (1030 mm). Dowel pins keep the halves registered.
 **Blocks on:** step 6
 **Uses:** `Divinycell H-80 3/4in quarter sheet 24x48, mast block + leash pad` ·
 `6061-T651 1/2in x 12 x 18 - mast plates` · `M8 x 1.25 tap + 6.8 mm drill set` ·
-`M8 x 1.25 BOTTOMING tap, 4-flute`
+`M8 x 1.25 BOTTOMING tap, 4-flute` ·
+`M8 thread repair kit (Time-Sert / helicoil)`
 
 The CNC already cut the pockets. Bond the H-80 mast block and leash pad in,
 flush.
 
-**The mast plate needs no machine — the Gong plate is the jig.** Clamp the
-real foil plate to the 6061, spot through its holes, drill 6.8, tap M8. The
-bottoming tap is the one that matters: blind at 10 mm in a 12.7 plate, and
-the taper tap in the set cannot reach. Both plates nest on one 12 × 18 sheet.
+> **MACHINE THE MAST PLATE. Do not hand-drill it.** This guide used to say
+> the Gong plate was jig enough — clamp, spot through, drill, tap. That
+> reasoned from V1, where the holes were THROUGH holes with a nut on the far
+> side and clearance quietly absorbed every error of position, angle and
+> depth. **None of that is true here.** These are blind tapped holes: the
+> thread *is* the fastener, and all four bolts must start at once.
+>
+> | | |
+> |---|---|
+> | Radial slop in Gong's clearance hole | 0.50 mm |
+> | True position the pattern must hold | **0.25 mm** — errors at opposite corners add, they do not cancel |
+> | Wander from a hole just 2° off | **0.35 mm** — more than the entire budget, on its own |
+> | Solid alu left above the tap | **2.7 mm** before you breach the plate keeping the cavity dry |
+>
+> A hand-held drill is routinely 3–5° off. The arithmetic rules it out; this
+> is not a matter of care.
+
+**Route, in order of preference:**
+
+1. **Job-shop it.** A 250 × 175 rectangle with four tapped holes is a trivial
+   job, and cheap against the cost of getting it wrong.
+2. **The makerspace CNC — if they permit aluminium.** It is a woodworking
+   shop, so this is a question, not an assumption. Ask on the same call as
+   the EPS one.
+3. **Drill press**, with a bought drill bushing, a tapping guide and the
+   depth stop set. Acceptable as a fallback. It is not the plan.
+
+**Measure the real Gong plate first and machine to what you measured** — not
+to the 165 × 90 nominal in the drawing, which is unverified layout only. A
+perfectly machined plate on the wrong pattern is still scrap.
+
+The bottoming tap still matters: blind at 10 mm in a 12.7 plate, and the
+taper tap in the set cannot reach. Both plates nest on one 12 × 18 sheet.
 
 Temper matters — this must say **T651**. 6061-O has about a fifth the yield,
 and this plate carries 6.3 kN.
@@ -205,6 +235,25 @@ is 101 — the regulator is what stops the bag destroying the core.
 laminate is a secondary bond that needs sanding and washing first, and buys
 nothing.
 
+### Step 10a. Fit the rim ring — **before** you glass anything
+
+**Blocks on:** steps 3, 7
+**Uses:** `Acetone, solvent-welding the printed joints` ·
+`Paste wax, releasing the groove filler`
+
+**The ring is glassed IN, not bonded on afterwards.** Acetone-weld the six
+printed segments into one ring — a brushed acetone/ASA slurry makes it one
+piece of plastic, not an adhesive line — then seat it on its ledge with the
+printed filler strip **waxed** into the seal groove.
+
+It stays there through the cavity layup. The laminate runs up the cavity
+wall, across the ledge and over the ring in one continuous piece, which is
+the whole reason the groove is filled first: glass drapes over a 4 mm ridge
+you can see and feel, instead of into a channel you then have to dig out.
+
+**Dry-fit the caul now, with the ring in.** That is the only moment it is
+free to discover the caul fouls something.
+
 ### Step 11. Deck skin and cavity
 
 **Blocks on:** step 10 cured
@@ -217,6 +266,14 @@ touches nothing inside. The caul does the work, not the bag: it is a male
 plug (an EPS offcut, part 13) that drops onto the wet laminate so the bag
 presses on *it*. Wax and PVA it properly; a caul bonded into a cured cavity
 is not recoverable.
+
+**The ring is in place for this**, so the caul is cut to fit around it: it
+drops inside the ring's inner edge and stands the **full 100.1 mm** from
+cavity floor to ledge. That height matters — the caul used to be specified at
+the *module's* height, 93.6 mm, which is a different measurement and 6.5 mm
+short. It stopped below the ledge, so the wall-to-ledge corner — concave,
+exactly where a bag bridges — got pressure from neither caul nor bag. That
+corner is where the ring sits and where the seal ends up.
 
 ### Step 11a. Lay up the two lids
 
@@ -252,9 +309,9 @@ fibre ends at the cavity ledge.
 
 # Phase 3 — Hatch and module
 
-### Step 13. Bond the rim ring in and open the groove
+### Step 13. Open the groove and bond the cord in
 
-**Blocks on:** steps 3, 11
+**Blocks on:** steps 10a, 11
 **Uses:** `Acetone, solvent-welding the printed joints` ·
 `Paste wax, releasing the groove filler` ·
 `Solid silicone cord, 3 mm round - BOTH seals` ·
@@ -263,12 +320,14 @@ fibre ends at the cavity ledge.
 `M5 x 25 A4 socket cap, 20 pk` ·
 `Solid silicone cord, 1/8 in (3.175 mm) - the spare size`
 
-Acetone-weld the six ring segments into one ring — brushed acetone/ASA slurry
-makes it one piece of plastic, not an adhesive line. Glass over it with the
-printed filler strip in the groove, then sand the ring face flat; the filler
-shows as a line and lifts out. **Wet the opened groove with neat epoxy before
-the cord goes in** — routing leaves cut glass ends in the seal itself, the
-same wick that flooded V1.
+The ring went in at step 10a and has been glassed over since. Now sand the
+ring face flat — it is the sealing land, so it has to be flat anyway — and
+the filler strip shows through as a line along the whole groove. Pick it out
+and the printed walls are the finished groove.
+
+**Wet the opened groove with neat epoxy before the cord goes in.** Sanding or
+routing leaves cut glass ends in the seal itself, which is the same wick that
+flooded V1. Silicone adhesive does not stop a wick; epoxy does.
 
 Bond the cord in on a thin continuous bead. Splice on a straight run, never a
 corner.
@@ -301,10 +360,32 @@ plain steel — use the A4 ones for the port flange, which lives in the wet.
 ### Step 15. Leak-test the module empty
 
 **Blocks on:** step 14
-**Uses:** `Test cap + tubing, module leak test`
+**Uses:** `Test cap + tubing, module leak test` ·
+`M12 x 0.75 male to hose barb, test port` · `Bag connector w/ ball valve, 1/4 in QD`
+
+**The module has no test port — and does not need one. Use the vent boss.**
+In service that threaded hole carries the M12 membrane vent; for the test it
+carries an M12 × 0.75 male-to-barb adapter. Same hole, no extra penetration.
+
+**The vent must be OUT while you test.** An ePTFE membrane passes air by
+design — that is the entire point of it — so with the vent fitted the module
+cannot hold vacuum and there is nothing to measure. That is not the vent
+defeating the design, it is the vent defeating the *test*, which is why the
+test comes first and the vent goes in after. The two jobs are different:
+
+- the **seals** stop liquid water
+- the **vent** passes air, so the module breathes through a filtered path
+  instead of pumping through a marginal gasket every time it goes from cold
+  water to hot sun
+
+**Vacuum, not pressure.** Submerged, the module sees external pressure
+pushing the lid *onto* its gasket — vacuum inside reproduces that direction.
+Pressure inside tests the opposite and would fail a joint the board never
+loads that way. It is also unsafe: 0.2 bar across a 451 × 292 lid is about
+**2.6 kN**.
 
 **Prove it before the cells go in.** Seal it empty, pull 5 inHg, shut the
-pump off, watch the gauge 30 minutes — porosity reads as a slow bleed. Then
+ball valve, watch the gauge 30 minutes — porosity reads as a slow bleed. Then
 do it **submerged**: under vacuum any path pulls water *in* and shows you
 exactly where. V1 found its leaks by riding.
 

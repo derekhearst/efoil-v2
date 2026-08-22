@@ -348,15 +348,46 @@ def build(p):
             d.circle(gl / 2 + sx * p["BOLT_SPACING_X"] / 2,
                      gw / 2 + sy * p["BOLT_SPACING_Y"] / 2,
                      p["INSERT_OD"] / 2)
+    # Radial slop in Gong's own clearance hole - the entire positional budget
+    # these four tapped holes get. Derived from the model so it tracks
+    # MAST_CLEAR_D rather than being retyped here.
+    _slop = (p["MAST_CLEAR_D"] - 8.0) / 2.0
     add("12_mast_plate", "6061-T651 aluminium", p["G10_T"], 1, d, gl, gw,
         f"1/2in 6061-T651, NOT 3/4in G10, and NOT bushed. "
         f"4 x M8 TAPPED {p['INSERT_L']:.0f} mm BLIND from the PAD FACE "
         f"(the wetted underside), leaving {p['INSERT_BLIND']:.1f} mm of solid "
         f"aluminium above so the plate stays watertight. Tap drill 6.8 mm. "
-        f"Bolt pattern {p['BOLT_SPACING_X']:.0f} x {p['BOLT_SPACING_Y']:.0f} "
-        f"- UNVERIFIED, check against a real Gong plate before drilling. "
-        f"This is no longer a CNC part: a 250 x 175 rectangle and four "
-        f"tapped holes is bandsaw and drill-press work. "
+        f"*** MACHINE THIS ONE. DO NOT HAND-DRILL IT. *** An earlier version "
+        f"of this note called it bandsaw and drill-press work. That was "
+        f"wrong, and it was wrong because it reasoned from V1 - where the "
+        f"holes were THROUGH holes, a nut landed on the far side, and "
+        f"clearance quietly absorbed every error of position, angle and "
+        f"depth. None of that is true here. These are BLIND TAPPED holes: "
+        f"the thread IS the fastener, nothing absorbs anything, and all four "
+        f"bolts have to start at once. The budget, in numbers: Gong's "
+        f"clearance hole gives {_slop:.2f} mm of radial slop, so true "
+        f"position has to hold about {_slop / 2:.2f} mm across the pattern "
+        f"(errors at opposite corners do not cancel, they add). A hole "
+        f"drilled just 2 degrees off wanders {p['INSERT_L'] * 0.0349:.2f} mm "
+        f"over its {p['INSERT_L']:.0f} mm depth - MORE THAN THE WHOLE BUDGET, "
+        f"on its own, and a hand-held drill is routinely 3-5 degrees off. "
+        f"Depth is no kinder: {p['INSERT_BLIND']:.1f} mm of solid aluminium "
+        f"is all that stands between the tap and a hole through the plate "
+        f"that keeps the cavity dry. "
+        f"ORDER OF OPERATIONS THAT MATTERS: measure the REAL Gong plate "
+        f"first and machine to what you measured, not to the "
+        f"{p['BOLT_SPACING_X']:.0f} x {p['BOLT_SPACING_Y']:.0f} nominal in "
+        f"this drawing - that figure is UNVERIFIED layout only, and a "
+        f"perfectly machined plate on the wrong pattern is still scrap. "
+        f"Route, in order of preference: (1) job-shop it - a 250 x 175 "
+        f"rectangle with four tapped holes is a trivial job and cheap "
+        f"against the cost of getting it wrong; (2) the makerspace CNC, IF "
+        f"they permit aluminium - it is a woodworking shop, so ask; (3) drill "
+        f"press with a bought drill bushing and a tapping guide, depth stop "
+        f"set - acceptable, but it is the fallback, not the plan. "
+        f"KEEP A THREAD REPAIR KIT ON THE BENCH either way: an M8 Time-Sert "
+        f"or helicoil turns a stripped or wandering hole into a ten-minute "
+        f"fix instead of a scrapped plate and a lost weekend. "
         f"6061 shears at ~207 MPa against G10's ~55, so the tapped thread "
         f"(136 mm2, 17.7 kN) beats the O20 bonded bushing it replaced and the "
         f"M8 bolt itself becomes the weak link - which is where you want it. "
@@ -383,7 +414,24 @@ def build(p):
     # A caul bonded into a cured cavity is not recoverable.
     d = Dxf()
     d.poly(rrect(0, cav_l - 1.0, 0, CAV_W - 1.0, R))
-    add("13_cavity_caul", "EPS offcut", L["ext_h"], 1, d, cav_l - 1, CAV_W - 1,
+    # HEIGHT IS THE CAVITY'S DEPTH TO THE LEDGE, not the module's height.
+    # This used to be L["ext_h"] - the height of the thing that goes IN the
+    # cavity afterwards, which is a different measurement and 6.5 mm shorter.
+    # The consequence was not cosmetic: the caul stopped 6.5 mm below the
+    # ledge, so the wall-to-ledge corner - concave, exactly where a bag
+    # bridges and cures a void - got pressure from neither the caul nor the
+    # bag. And that corner is where the rim ring sits.
+    _caul_h = p["THICK"] - p["LID_T"] - p["RIM_T"] - p["FLOOR_Z"]
+    add("13_cavity_caul", "EPS offcut", _caul_h, 1, d, cav_l - 1, CAV_W - 1,
+        "CUT IT TO FIT WITH THE RIM RING ALREADY IN PLACE. The ring is not "
+        "bonded on after glassing - it is GLASSED IN during this same layup, "
+        "sitting on its ledge with the printed filler strip waxed into its "
+        "groove, and the laminate runs up the cavity wall, across the ledge "
+        "and over the ring in one piece. So the caul has to drop inside the "
+        "ring's inner edge and bear on the cavity, and it has to be the full "
+        "depth to the ledge or the corner it exists to consolidate is the one "
+        "corner it misses. Trial-fit it dry, with the ring in, before there "
+        "is resin anywhere. "
         "EPS, not MDF - it only has to transmit bag pressure, and at 7 inHg "
         "that is 24 kPa against EPS's 150 kPa crush, 6x, deflecting 0.2 mm "
         "over its 90 mm depth. MDF was over-specifying a pusher. "

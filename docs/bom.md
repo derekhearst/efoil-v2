@@ -50,13 +50,14 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | [VR20 vacuum regulator](https://www.easycomposites.us/vacuum-regulator-for-vacuum-bagging) | 1 | ea | $52.00 | $52.00 | verified | one-time. Holds the bag at 5-10 inHg, which is the whole ball game: EPS crushes around 150 kPa and full vacuum is 101. Hose tails are +$4.70 if you want them |
 | [Bag connector w/ ball valve, 1/4 in QD](https://www.amazon.com/dp/B0FSKGGL8H) | 2 | ea | $19.59 | $39.18 | verified | THE BALL VALVE IS THE POINT: shut it and the bag is isolated from the pump, so leak-down is a real measurement and not a guess about whether the pump is keeping up. Two of them - a 1400 mm hull bag pulls down far faster from both ends, and one is a spare |
 | [Vacuum hose + hose clamps](https://www.amazon.com/dp/B0FH52FT4G) | 1 | set | $11.61 | $11.61 | estimate | 1/2 in tubing pump-to-bag plus clamps; the other half of what the deleted kit was actually carrying |
-| [Test cap + tubing, module leak test](https://www.amazon.com/dp/B0DPWRP6FR) | 1 | set | $22.99 | $22.99 | estimate | PROVE THE MODULE BEFORE THE CELLS GO IN, and prove it the way the failure actually happens: seal it empty, pull 5 inHg, shut the pump off and watch the gauge for 30 min - porosity reads as a slow bleed. Then do it again SUBMERGED: under vacuum any path pulls water IN and you see exactly where. V1 found its leaks by riding |
+| M12 x 0.75 male to hose barb, test port | 1 | ea | $9.00 | $9.00 | estimate | screws into the VENT BOSS with the membrane vent removed - that is the test port, no extra hole needed. Fit the real vent afterwards |
+| [Test cap + tubing, module leak test](https://www.amazon.com/dp/B0DPWRP6FR) | 1 | set | $22.99 | $22.99 | estimate | PROVE THE MODULE BEFORE THE CELLS GO IN, and prove it the way the failure actually happens: blank the vent boss with the barb adapter, seal it empty, pull 5 inHg, shut the ball valve and watch the gauge for 30 min - porosity reads as a slow bleed. Then do it again SUBMERGED: under vacuum any path pulls water IN and you see exactly where. V1 found its leaks by riding |
 | [Vacuum gauge, -30 inHg, 1/4 NPT, glycerin](https://www.amazon.com/dp/B00VQSOZFQ) | 1 | ea | $10.50 | $10.50 | verified | reads the BAG, not the pump - tee it in at the bag end. The regulator sets the level; this is how you know it worked. GLYCERIN FILLED on purpose: a dry needle flutters with every pump stroke and you cannot read 7 inHg off it, which is the one number that matters |
 | [Vac bag film, 5 yd](https://www.amazon.com/dp/B079MBL5TX) | 3 | roll | $24.95 | $74.85 | verified | 3.06 m2 a hull session; 2 hulls + 4 lids + a practice piece + one re-do. Single-use on the hull, reusable on flat parts. Same Elite Lab product Fibre Glast sells, at the same price, with free delivery |
 | [Peel ply, 60in](https://www.amazon.com/dp/B0H5JTMTZ3) | 6 | yd | $18.99 | $113.94 | verified | was only in the starter kit, and one kit's worth does not cover 6.12 m2 of part |
 | [Breather / bleeder cloth](https://www.amazon.com/dp/B015NM0B8K) | 6 | yd | $13.95 | $83.70 | verified | $13.95/yd cut; a 5 yd roll at $59.99 is $12.00/yd if you would rather buy the roll |
 | [Sealant tape, 50 ft roll](https://www.amazon.com/dp/B0GF25BPN6) | 2 | roll | $19.99 | $39.98 | verified | 31 m of bag perimeter across the project. 2 x 50 ft at $19.99 replaced 4 x 25 ft at $12 - same tape, fewer joins |
-| **subtotal** | | | | **$506.74** | | |
+| **subtotal** | | | | **$515.74** | | |
 
 ## 6  Hatch and seal
 
@@ -128,8 +129,9 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 |---|---:|---|---:|---:|---|---|
 | [M8 x 1.25 tap + 6.8 mm drill set](https://www.amazon.com/dp/B0GD1YF5PL) | 1 | set | $8.63 | $8.63 | verified | 8 blind holes |
 | [M8 x 1.25 BOTTOMING tap, 4-flute](https://www.amazon.com/dp/B00DLCTUDM) | 1 | ea | $8.78 | $8.78 | verified | the one that actually matters - blind at 10 mm in a 12.7 plate, and the taper tap in the set above cannot reach the bottom |
+| M8 thread repair kit (Time-Sert / helicoil) | 1 | kit | $34.00 | $34.00 | estimate | for the mast plate. Not expected - kept because the failure it covers is unrecoverable without it |
 | [Ultra Tef-Gel, galvanic barrier](https://www.amazon.com/dp/B01606TCAG) | 1 | ea | $39.00 | $39.00 | verified | every mast bolt, every time it goes back in. DEARER than the $22 this was carried at - and do not reach for the small tube to save it: the 3cc syringe is $31.51, so it is 80% of the price for a fraction of the gel |
-| **subtotal** | | | | **$56.41** | | |
+| **subtotal** | | | | **$90.41** | | |
 
 ## 9b Small but essential
 
@@ -251,30 +253,30 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | Item | Qty | Unit | Unit $ | Ext $ | | Note |
 |---|---:|---|---:|---:|---|---|
 | Shipping - Divinycell, 6061 plate, VR20 | 1 | allow | $120.00 | $120.00 | estimate | STILL THE BIGGEST UNVERIFIED LINE - it wants three real carts to settle. Was $220 when it covered G10 sheet and hazmat epoxy, both of which are now out of the build entirely |
-| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $435.78 | $435.78 | verified |  |
-| **subtotal** | | | | **$555.78** | | |
+| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $438.36 | $438.36 | verified |  |
+| **subtotal** | | | | **$558.36** | | |
 
 ## Totals
 
 | | |
 |---|---:|
-| **Grand total, 2 boards** | **$7,698.71** |
-| Per board | $3,849.35 |
-| Of which verified | $7,129.70  (93%) |
-| Of which estimated | $569.01 |
+| **Grand total, 2 boards** | **$7,744.29** |
+| Per board | $3,872.14 |
+| Of which verified | $7,132.28  (92%) |
+| Of which estimated | $612.01 |
 | Linked to a real listing | 126 lines |
-| Priced but NOT linked | 0 lines, $0.00 |
-| Allowances, not linkable (tax, freight) | 3 lines, $824.41 |
+| Priced but NOT linked | 2 lines, $43.00 |
+| Allowances, not linkable (tax, freight) | 3 lines, $826.99 |
 
 ## What is a board, and what is a shop
 
-Some of the total above is not the cost of a board at all - it is tools, jigs and templates that exist afterwards and do not repeat. Splitting them out is the difference between "a board costs $3,849" and "a board costs $3,503 and I now own a vacuum rig, a crimper and a full template set".
+Some of the total above is not the cost of a board at all - it is tools, jigs and templates that exist afterwards and do not repeat. Splitting them out is the difference between "a board costs $3,872" and "a board costs $3,525 and I now own a vacuum rig, a crimper and a full template set".
 
 | | |
 |---|---:|
 | One-time tooling (incl. its share of tax) | $693.44 |
-| **Marginal cost of a board** | **$3,502.63** |
-| Cost of the NEXT board after these 2 | $3,502.63 |
+| **Marginal cost of a board** | **$3,525.42** |
+| Cost of the NEXT board after these 2 | $3,525.42 |
 
 | One-time item | $ |
 |---|---:|

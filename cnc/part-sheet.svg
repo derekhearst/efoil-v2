@@ -546,7 +546,7 @@
 <circle cx="1210.22" cy="605.12" r="3.74" fill="none" stroke="#c0392b" stroke-width="1.1"/>
 <circle cx="1210.22" cy="520.88" r="3.74" fill="none" stroke="#c0392b" stroke-width="1.1"/>
 <text x="26" y="754" font-size="12.5" font-weight="600">9. cavity caul</text>
-<text x="26" y="770" font-size="10.5" fill="#666">EPS offcut · 94 mm · x1 · 534 x 322</text>
+<text x="26" y="770" font-size="10.5" fill="#666">EPS offcut · 100 mm · x1 · 534 x 322</text>
 <line x1="250.35" y1="963.68" x2="251.19" y2="963.64" stroke="#1a1a1a" stroke-width="1.1"/>
 <line x1="251.19" y1="963.64" x2="252.03" y2="963.53" stroke="#1a1a1a" stroke-width="1.1"/>
 <line x1="252.03" y1="963.53" x2="252.85" y2="963.35" stroke="#1a1a1a" stroke-width="1.1"/>

@@ -449,13 +449,39 @@ def build():
     add("9  Electrical", "Silica gel, indicating, 50 g per module", 1, "pk",
         12.00, EST, "~40 g is a season at 50 breathing cycles; a token sachet "
         "is worth about six. Bake it dry when the indicator turns")
+    # THE MODULE HAS NO TEST PORT, and it does not need one - it has the VENT
+    # BOSS. In service that boss carries the M12 membrane vent; for the test
+    # it carries an M12 x 0.75 male-to-hose-barb adapter instead. Same
+    # threaded hole, no extra penetration, and the fitting that occupies it in
+    # service is the one thing that has to come out anyway.
+    #
+    # WHY THE VENT HAS TO BE OUT: a Gore-type ePTFE membrane passes AIR by
+    # design - that is the entire point of it - so with the vent fitted the
+    # module cannot hold vacuum or pressure and there is nothing to measure.
+    # That is not the vent defeating the design, it is the vent defeating the
+    # TEST, which is why the test happens first and the vent goes in after.
+    # The two jobs are different: the seals must stop LIQUID WATER, and the
+    # vent must pass AIR so the module breathes through a filtered path
+    # instead of pumping through a marginal gasket every time it goes from
+    # cold water to hot sun. Test the seals, then fit the breather.
+    #
+    # VACUUM, NOT PRESSURE, for two reasons. Submerged, the module sees
+    # EXTERNAL pressure pushing the lid ONTO its gasket - vacuum inside
+    # reproduces that direction, pressure inside tests the opposite and would
+    # fail a joint the board never loads that way. And pressure here is
+    # genuinely unsafe: 0.2 bar across a 451 x 292 lid is about 2.6 kN.
+    add("5  Vacuum bagging", "M12 x 0.75 male to hose barb, test port",
+        1, "ea", 9.00, EST,
+        "screws into the VENT BOSS with the membrane vent removed - that is "
+        "the test port, no extra hole needed. Fit the real vent afterwards")
     add("5  Vacuum bagging", "Test cap + tubing, module leak test", 1, "set",
         12.00, EST,
         "PROVE THE MODULE BEFORE THE CELLS GO IN, and prove it the way the "
-        "failure actually happens: seal it empty, pull 5 inHg, shut the pump "
-        "off and watch the gauge for 30 min - porosity reads as a slow "
-        "bleed. Then do it again SUBMERGED: under vacuum any path pulls water "
-        "IN and you see exactly where. V1 found its leaks by riding")
+        "failure actually happens: blank the vent boss with the barb adapter, "
+        "seal it empty, pull 5 inHg, shut the ball valve and watch the gauge "
+        "for 30 min - porosity reads as a slow bleed. Then do it again "
+        "SUBMERGED: under vacuum any path pulls water IN and you see exactly "
+        "where. V1 found its leaks by riding")
     add("5  Vacuum bagging", "Vacuum gauge, -30 inHg, 1/4 NPT, glycerin",
         1, "ea", 10.50, OK,
         "reads the BAG, not the pump - tee it in at the bag end. The "
@@ -750,6 +776,17 @@ def build():
         "plate, and the taper tap in the set above cannot reach the bottom",
         vendor="Amazon", tool=True)
     # Aluminium plate, A4 stainless bolts, wet cavity. Not optional.
+    # CHEAP INSURANCE ON THE LEAST FORGIVING PART IN THE BUILD. The mast
+    # plate's four holes are BLIND TAPPED, so nothing absorbs a mistake: true
+    # position has to hold ~0.25 mm and a 2 deg drill wander alone spends
+    # 0.35 mm of that. If one hole strips or wanders, this turns a scrapped
+    # $89 plate and a lost weekend into a ten-minute repair - and it also
+    # buys back a thread if one ever galls in service, which on alu + A4 in
+    # salt water is not a remote possibility.
+    add("8  Mast hardpoint", "M8 thread repair kit (Time-Sert / helicoil)",
+        1, "kit", 34.00, EST,
+        "for the mast plate. Not expected - kept because the failure it "
+        "covers is unrecoverable without it", vendor="Amazon")
     add("8  Mast hardpoint", "Ultra Tef-Gel, galvanic barrier", 1, "ea",
         39.00, OK, "every mast bolt, every time it goes back in. DEARER than "
         "the $22 this was carried at - and do not reach for the small tube "

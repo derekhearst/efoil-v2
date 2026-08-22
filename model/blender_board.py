@@ -1183,6 +1183,9 @@ MOD_X0_TARGET = 444.0
 # means the mast will not bolt on stops depending on a figure nobody measured.
 # This value is here so the model can place the pocket and check clearances;
 # it is not a manufacturing instruction.
+# THE GONG PLATE'S OWN CLEARANCE HOLE. This is the entire positional budget
+# for our four tapped holes, so it is a number to MEASURE, not assume.
+MAST_CLEAR_D = 9.0                 # UNVERIFIED - measure the real plate
 BOLT_SPACING_X = 165.0             # for layout only - SPOT THROUGH THE PLATE
 BOLT_SPACING_Y = 90.0              # US rails, 90 mm on centre
 BOLT_D = 8.0                       # M8, Gong's mast screws
@@ -4098,6 +4101,32 @@ def build():
 
     rep["bolts_inside_G10"] = bolt_ok
     rep["mast_bolts_intrude_into_cavity"] = False
+    # ---- WHY THIS PLATE IS A MACHINED PART, IN NUMBERS --------------------
+    # V1 used THROUGH holes: a bolt passes, a nut lands on the far side, and
+    # clearance absorbs any error in position, angle and depth. None of that
+    # is true here. These are BLIND TAPPED holes - the thread IS the fastener,
+    # so every error goes straight into whether four bolts start at once.
+    _slop = (MAST_CLEAR_D - 8.0) / 2.0          # radial slop, one hole
+    rep["mast_clear_hole_d_mm"] = MAST_CLEAR_D
+    rep["mast_radial_slop_mm"] = round(_slop, 2)
+    # Four holes must engage SIMULTANEOUSLY and their errors do not cancel -
+    # two holes at opposite extremes eat the whole budget between them. Half
+    # the single-hole slop is the workable true-position target.
+    rep["mast_true_position_budget_mm"] = round(_slop / 2.0, 2)
+    # A 10 mm deep hole drilled 2 degrees off wanders this far at the bottom,
+    # which comes straight out of the same budget. A hand-held drill is
+    # routinely 3-5 degrees off; a drill press is under 1.
+    rep["mast_drift_at_2deg_mm"] = round(INSERT_L * math.tan(math.radians(2)), 2)
+    rep["mast_depth_margin_mm"] = round(INSERT_BLIND, 1)
+    rep["mast_needs_machining"] = (
+        rep["mast_true_position_budget_mm"] < 0.5
+        or rep["mast_drift_at_2deg_mm"] > rep["mast_true_position_budget_mm"])
+    rep["mast_why_machined"] = (
+        f"blind tapped, so no clearance absorbs error: true position must "
+        f"hold {_slop / 2.0:.2f} mm, a 2 deg drill wander alone spends "
+        f"{INSERT_L * math.tan(math.radians(2)):.2f} mm of it, and only "
+        f"{INSERT_BLIND:.1f} mm of solid alu separates the tap from breaching "
+        f"the plate that keeps the cavity dry")
 
     # --- electronics module, as fabricable panels -------------------------
     # Six flat G10 parts plus a sandwich lid. Everything is a 2D profile that
