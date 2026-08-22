@@ -375,7 +375,7 @@ def build():
     # Sized off real area: 6.12 m2 of part across two boards (2 x 2.51 hull
     # + 2 x 0.55 of lids), against 1.39 m2 per yard of 60 in cloth. 4 yd was
     # 5.57 - short before any mistakes.
-    add("5  Vacuum bagging", "Peel ply", 3 * N, "yd", 12.50, OK,
+    add("5  Vacuum bagging", "Peel ply, 60in", 3 * N, "yd", 15.33, OK,
         "was only in the starter kit, and one kit's worth does not cover "
         "6.12 m2 of part")
     add("5  Vacuum bagging", "Breather / bleeder cloth", 3 * N, "yd", 13.95, OK)
@@ -388,8 +388,8 @@ def build():
     # The cost is that more resin ends up in the breather, so do not skimp
     # there - which is why breather is at 3 yd a board, not 2.
     # 5.2 m of bag perimeter a session, 6 sessions = 31 m, and a roll is 7.6.
-    add("5  Vacuum bagging", "Sealant tape, 25 ft roll", 4, "roll", 12.00,
-        EST, "31 m of bag perimeter across the project; the kit has one roll")
+    add("5  Vacuum bagging", "Sealant tape, 50 ft roll", 2, "roll", 19.99,
+        OK, "31 m of bag perimeter across the project; the kit has one roll")
 
     # ----------------------------------------------------- 6 hatch and seal
     # O3 CORD, BONDED IN - kept after the aluminium ring was reverted, because
@@ -495,14 +495,14 @@ def build():
     # reason - ASA creeps far less than PETG under sustained bolt load, which
     # is the whole job of a gasket flange. Derek has run it on the A1 already
     # (250-260C, bed 105, draft shield + brim for warp on an open frame).
-    add("7  Module", "ASA filament, printed rim ring", 2, "kg", 24.00, EST,
+    add("7  Module", "ASA filament, printed rim ring", 2, "kg", 24.49, OK,
         "6 dovetailed pieces/board at ~90% infill, 710 g of part each; "
         "PRINT SEAL FACE DOWN - the bed is flatter than any top surface")
     add("7  Module", "Acetone, solvent-welding the printed joints", 1, "qt",
         14.00, EST, "ASA dissolves in it like ABS - a brushed acetone/scrap "
         "slurry makes the joint one piece of plastic, not an adhesive line")
-    add("7  Module", "ASA filament, printed module shell", 3, "kg", 24.00,
-        EST, "4 L-pieces/board, ~1.13 kg of part + supports and brim; "
+    add("7  Module", "ASA filament, printed module shell", 3, "kg", 24.49,
+        OK, "4 L-pieces/board, ~1.13 kg of part + supports and brim; "
         "largest piece 226 x 146 fits the A1 bed")
     # The floor-to-wall bond. NOT epoxy and NOT a rigid acrylic: ASA and 5052
     # differ by 66 um/m/K, so a 451 mm floor moves 0.60 mm relative to the
@@ -510,8 +510,8 @@ def build():
     # that as 299% shear strain and tears itself apart; a 2 mm structural PU
     # line takes it as 30% and does not care. This is the upgrade over 4200 -
     # same family, roughly 3x the strength, and the bond line controlled.
-    add("7  Module", "Sikaflex-252 or 3M 550FC structural PU", 1, "tube",
-        24.00, EST, "~6-8 MPa vs 4200's ~2. Fillet BOTH sides of the joint - "
+    add("7  Module", "Sikaflex-292 marine structural PU", 1, "tube",
+        28.99, OK, "~6-8 MPa vs 4200's ~2. Fillet BOTH sides of the joint - "
         "on a flexible bond the fillets are what stop it peeling")
     add("7  Module", "Sika Primer-206 G+P, aluminium side", 1, "ea", 28.00,
         EST, "abrade + solvent wipe + prime the 5052; scuff the ASA. The "
@@ -626,8 +626,9 @@ def build():
         math.ceil(M["nickel_m"] * N / 5), "roll", 14.83, OK)
     add("9  Electrical", "21700 spacer brackets", 0, "set", 0.00, OWNED)
     add("9  Electrical", "ANL 150 A fuse + holder", N, "ea", 10.59, OK)
-    add("9  Electrical", "8 AWG silicone wire, 5 m red + 5 m black",
-        N, "set", 22.00, EST, "motor supplies its own phase leads + bullets")
+    add("9  Electrical", "8 AWG silicone, 25 ft red + 25 ft black",
+        1, "pk", 49.99, OK, "one pack covers BOTH boards - the longest run in the module is the "
+        "278 mm ESC-to-fuse. Motor supplies its own phase leads + bullets")
     add("9  Electrical", "Heat shrink, Kapton, pack wrap", N, "set", 18.00, EST)
 
     # --------------------------------------------------- 9b odds and ends
@@ -765,8 +766,8 @@ def build():
         OK, str(14 * N) + " needed; on M6 studs - nothing to solder")
     add("10b Drivetrain", "M6 stainless stud/busbar hardware", N, "set",
         14.00, EST)
-    add("10b Drivetrain", "Hydraulic lug crimper, 6-70 mm2", 1, "ea", 38.00,
-        EST, "one-time; this is what replaces soldering XT150s", tool=True)
+    add("10b Drivetrain", "Hydraulic lug crimper, 10 ton, 12-2/0 AWG", 1, "ea", 39.99,
+        OK, "one-time; this is what replaces soldering XT150s", tool=True)
     add("10b Drivetrain", "Adhesive-lined heat shrink, assorted", 1, "kit",
         16.00, EST)
 
@@ -854,7 +855,8 @@ def build():
     # against 36-40 - and that gap matters for PLANING A BLANK. This core
     # arrives machined, so there is no planing. For wet-out and bagging,
     # leaning over a bit is not the constraint.
-    add("10e Layup kit", "Folding sawhorses, pair", 1, "pair", 35.00, EST,
+    add("10e Layup kit", "Folding sawhorses, pair, 700 lb", 1, "pair", 39.99,
+        OK,
         "~30 in high. Racks buy height for planing, and this core comes "
         "machined - so they buy nothing here", tool=True)
     add("10e Layup kit", "Pipe lagging or carpet, sawhorse padding", 1, "set",

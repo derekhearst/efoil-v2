@@ -52,10 +52,10 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | Test cap + tubing, module leak test | 1 | set | $12.00 | $12.00 | estimate | PROVE THE MODULE BEFORE THE CELLS GO IN, and prove it the way the failure actually happens: seal it empty, pull 5 inHg, shut the pump off and watch the gauge for 30 min - porosity reads as a slow bleed. Then do it again SUBMERGED: under vacuum any path pulls water IN and you see exactly where. V1 found its leaks by riding |
 | Vacuum gauge, 0-30 inHg, 1/4 NPT | 1 | ea | $18.00 | $18.00 | estimate | reads the BAG, not the pump - tee it in at the bag end. The regulator sets the level; this is how you know it worked |
 | Vac bag film, 5 yd | 3 | roll | $24.95 | $74.85 | verified | 3.06 m2 a hull session; 2 hulls + 4 lids + a practice piece + one re-do. Single-use on the hull, reusable on flat parts |
-| Peel ply | 6 | yd | $12.50 | $75.00 | verified | was only in the starter kit, and one kit's worth does not cover 6.12 m2 of part |
+| Peel ply, 60in | 6 | yd | $15.33 | $91.98 | verified | was only in the starter kit, and one kit's worth does not cover 6.12 m2 of part |
 | Breather / bleeder cloth | 6 | yd | $13.95 | $83.70 | verified |  |
-| Sealant tape, 25 ft roll | 4 | roll | $12.00 | $48.00 | estimate | 31 m of bag perimeter across the project; the kit has one roll |
-| **subtotal** | | | | **$548.94** | | |
+| Sealant tape, 50 ft roll | 2 | roll | $19.99 | $39.98 | verified | 31 m of bag perimeter across the project; the kit has one roll |
+| **subtotal** | | | | **$557.90** | | |
 
 ## 6  Hatch and seal
 
@@ -81,10 +81,10 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | M4 x 12 A4 stainless socket cap | 36 | ea | $0.35 | $12.60 | estimate |  |
 | M4 A4 washer O9, 100 pk | 1 | pk | $8.00 | $8.00 | estimate | 36 needed, under every lid bolt |
 | M4 x 8 brass heat-set insert, 100 pc | 1 | pack | $12.00 | $12.00 | estimate | 36 needed; 5.6 mm printed pilot |
-| ASA filament, printed rim ring | 2 | kg | $24.00 | $48.00 | estimate | 6 dovetailed pieces/board at ~90% infill, 710 g of part each; PRINT SEAL FACE DOWN - the bed is flatter than any top surface |
+| ASA filament, printed rim ring | 2 | kg | $24.49 | $48.98 | verified | 6 dovetailed pieces/board at ~90% infill, 710 g of part each; PRINT SEAL FACE DOWN - the bed is flatter than any top surface |
 | Acetone, solvent-welding the printed joints | 1 | qt | $14.00 | $14.00 | estimate | ASA dissolves in it like ABS - a brushed acetone/scrap slurry makes the joint one piece of plastic, not an adhesive line |
-| ASA filament, printed module shell | 3 | kg | $24.00 | $72.00 | estimate | 4 L-pieces/board, ~1.13 kg of part + supports and brim; largest piece 226 x 146 fits the A1 bed |
-| Sikaflex-252 or 3M 550FC structural PU | 1 | tube | $24.00 | $24.00 | estimate | ~6-8 MPa vs 4200's ~2. Fillet BOTH sides of the joint - on a flexible bond the fillets are what stop it peeling |
+| ASA filament, printed module shell | 3 | kg | $24.49 | $73.47 | verified | 4 L-pieces/board, ~1.13 kg of part + supports and brim; largest piece 226 x 146 fits the A1 bed |
+| Sikaflex-292 marine structural PU | 1 | tube | $28.99 | $28.99 | verified | ~6-8 MPa vs 4200's ~2. Fillet BOTH sides of the joint - on a flexible bond the fillets are what stop it peeling |
 | Sika Primer-206 G+P, aluminium side | 1 | ea | $28.00 | $28.00 | estimate | abrade + solvent wipe + prime the 5052; scuff the ASA. The primer is not optional on aluminium and it is why this beats 4200 |
 | 2 mm glass beads or shim wire, bond-line control | 1 | ea | $8.00 | $8.00 | estimate | clamping a PU joint metal-to-plastic squeezes the line out and puts you back to a rigid joint that will fail |
 | Neoprene sheet 1/8in, module + mast gaskets | 1 | sheet | $16.00 | $16.00 | estimate | TORRAMI 18x24 or similar - you kept a part sheet from V1 |
@@ -96,7 +96,7 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | M12 IP68 momentary panel button | 1 | ea | $12.49 | $12.49 | verified | 1 on hand; this line buys the second board's |
 | SP17 2-pin IP68 flange receptacle + cap | 2 | ea | $11.00 | $22.00 | estimate | 67.2 V 5 A charge; O17 panel hole, 2 x M3 flange screws |
 | M3 heat-set insert + M3 x 8 A4, port flange | 4 | set | $0.60 | $2.40 | estimate |  |
-| **subtotal** | | | | **$353.38** | | |
+| **subtotal** | | | | **$360.82** | | |
 
 ## 9  Electrical
 
@@ -115,9 +115,9 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | Pure nickel 0.2 x 10 mm, 5 m roll | 4 | roll | $14.83 | $59.32 | verified |  |
 | 21700 spacer brackets | 0 | set | $0.00 | $0.00 | on hand |  |
 | ANL 150 A fuse + holder | 2 | ea | $10.59 | $21.18 | verified |  |
-| 8 AWG silicone wire, 5 m red + 5 m black | 2 | set | $22.00 | $44.00 | estimate | motor supplies its own phase leads + bullets |
+| 8 AWG silicone, 25 ft red + 25 ft black | 1 | pk | $49.99 | $49.99 | verified | one pack covers BOTH boards - the longest run in the module is the 278 mm ESC-to-fuse. Motor supplies its own phase leads + bullets |
 | Heat shrink, Kapton, pack wrap | 2 | set | $18.00 | $36.00 | estimate |  |
-| **subtotal** | | | | **$1,935.98** | | |
+| **subtotal** | | | | **$1,941.97** | | |
 
 ## 8  Mast hardpoint
 
@@ -180,9 +180,9 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | M8 nyloc + washer, prop nut | 2 | set | $1.50 | $3.00 | estimate |  |
 | 8 AWG marine ring lugs, 20 pk | 2 | pk | $16.99 | $33.98 | verified | 28 needed; on M6 studs - nothing to solder |
 | M6 stainless stud/busbar hardware | 2 | set | $14.00 | $28.00 | estimate |  |
-| Hydraulic lug crimper, 6-70 mm2 | 1 | ea | $38.00 | $38.00 | estimate | one-time; this is what replaces soldering XT150s |
+| Hydraulic lug crimper, 10 ton, 12-2/0 AWG | 1 | ea | $39.99 | $39.99 | verified | one-time; this is what replaces soldering XT150s |
 | Adhesive-lined heat shrink, assorted | 1 | kit | $16.00 | $16.00 | estimate |  |
-| **subtotal** | | | | **$200.34** | | |
+| **subtotal** | | | | **$202.33** | | |
 
 ## 10c Restraint & fitout
 
@@ -215,11 +215,11 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | 3M 60923 organic vapour / acid gas P100, pair | 2 | pr | $31.49 | $62.98 | verified | envirosafetyproducts.com; cartridges expire - buy near the layup |
 | Acetone, 1 gal, cleanup | 1 | gal | $39.95 | $39.95 | verified |  |
 | Rosin paper roll, floor and bench | 1 | roll | $24.00 | $24.00 | estimate | absorbs instead of pooling. This is the actual upgrade over a tarp, and it is $24 |
-| Folding sawhorses, pair | 1 | pair | $35.00 | $35.00 | estimate | ~30 in high. Racks buy height for planing, and this core comes machined - so they buy nothing here |
+| Folding sawhorses, pair, 700 lb | 1 | pair | $39.99 | $39.99 | verified | ~30 in high. Racks buy height for planing, and this core comes machined - so they buy nothing here |
 | Pipe lagging or carpet, sawhorse padding | 1 | set | $8.00 | $8.00 | estimate | bare sawhorse tops mark foam and wet laminate |
 | Plastic sheeting + masking tape, bench protection | 1 | set | $20.00 | $20.00 | estimate |  |
 | Sanding blocks + longboard for fairing | 1 | set | $30.00 | $30.00 | estimate |  |
-| **subtotal** | | | | **$265.93** | | |
+| **subtotal** | | | | **$270.92** | | |
 
 ## 11 Finishing
 
@@ -237,27 +237,27 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | Item | Qty | Unit | Unit $ | Ext $ | | Note |
 |---|---:|---|---:|---:|---|---|
 | Shipping - G10, Divinycell, epoxy hazmat | 1 | allow | $220.00 | $220.00 | estimate | heavy and hazmat lines |
-| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $445.54 | $445.54 | verified |  |
-| **subtotal** | | | | **$665.54** | | |
+| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $447.30 | $447.30 | verified |  |
+| **subtotal** | | | | **$667.30** | | |
 
 ## Totals
 
 | | |
 |---|---:|
-| **Grand total, 2 boards** | **$7,871.16** |
-| Per board | $3,935.58 |
-| Of which verified | $6,083.57  (77%) |
-| Of which estimated | $1,787.59 |
+| **Grand total, 2 boards** | **$7,902.29** |
+| Per board | $3,951.14 |
+| Of which verified | $6,423.70  (81%) |
+| Of which estimated | $1,478.59 |
 
 ## What is a board, and what is a shop
 
-Some of the total above is not the cost of a board at all - it is tools, jigs and templates that exist afterwards and do not repeat. Splitting them out is the difference between "a board costs $3,936" and "a board costs $3,562 and I now own a vacuum rig, a crimper and a full template set".
+Some of the total above is not the cost of a board at all - it is tools, jigs and templates that exist afterwards and do not repeat. Splitting them out is the difference between "a board costs $3,951" and "a board costs $3,574 and I now own a vacuum rig, a crimper and a full template set".
 
 | | |
 |---|---:|
-| One-time tooling (incl. its share of tax) | $747.71 |
-| **Marginal cost of a board** | **$3,561.72** |
-| Cost of the NEXT board after these 2 | $3,561.72 |
+| One-time tooling (incl. its share of tax) | $755.11 |
+| **Marginal cost of a board** | **$3,573.59** |
+| Cost of the NEXT board after these 2 | $3,573.59 |
 
 | One-time item | $ |
 |---|---:|
@@ -268,10 +268,10 @@ Some of the total above is not the cost of a board at all - it is tools, jigs an
 | Vacuum gauge, 0-30 inHg, 1/4 NPT | $18.00 |
 | M8 x 1.25 tap set + 6.8 mm drill | $18.00 |
 | 1/4 in torque wrench, 1-10 Nm | $38.00 |
-| Hydraulic lug crimper, 6-70 mm2 | $38.00 |
+| Hydraulic lug crimper, 10 ton, 12-2/0 AWG | $39.99 |
 | Dowel pins + drill, two-sided registration | $12.00 |
 | 1/2 in single-flute + 1/2 in ball nose | $70.00 |
 | Rotary-tool router base + collets, if needed | $35.00 |
 | Rosin paper roll, floor and bench | $24.00 |
-| Folding sawhorses, pair | $35.00 |
+| Folding sawhorses, pair, 700 lb | $39.99 |
 | Sanding blocks + longboard for fairing | $30.00 |
