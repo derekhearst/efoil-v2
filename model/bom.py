@@ -97,6 +97,18 @@ def build():
     ROWS.clear()
 
     # ------------------------------------------------------------ 1 core
+    # MACHINE ACCESS WAS NOT ON THIS LIST AT ALL. It lived in fleet_cost.py -
+    # "4 day passes @ $200 = $800" - and went out with that file when it was
+    # retired as a stale duplicate. Every total quoted since has been missing
+    # it, which also made the shaping-service comparison look worse than it is.
+    # UNRESOLVED: the makerspace has not answered two emails. Carried at $400
+    # as a placeholder for a month's membership or a few day passes. If this
+    # ends up being a shaping service or hand work, the line goes to zero.
+    add("1  Core and shaping", "CNC access - membership or day passes",
+        1, "job", 400.00, EST,
+        "PLACEHOLDER, unresolved. Only ONE part still wants a CNC: the EPS "
+        "core. Everything else is bandsaw, drill press, printer or template",
+        tool=True)
     add("1  Core and shaping",
         "EPS rigid foam 2in x 48in x 8ft (HD 202532856)",
         # 2 * N, not 1.5 * N. FOUR layers a board, not three: three is 152.4

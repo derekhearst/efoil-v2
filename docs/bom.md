@@ -8,10 +8,11 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 
 | Item | Qty | Unit | Unit $ | Ext $ | | Note |
 |---|---:|---|---:|---:|---|---|
+| CNC access - membership or day passes | 1 | job | $400.00 | $400.00 | estimate | PLACEHOLDER, unresolved. Only ONE part still wants a CNC: the EPS core. Everything else is bandsaw, drill press, printer or template |
 | EPS rigid foam 2in x 48in x 8ft (HD 202532856) | 4 | sheet | $27.68 | $110.72 | verified | HD Meridian, 30 in stock, aisle 29 bay 020; $23.53 at 32+. EPS, not the XPS V1 used - deliberate, ~$90 cheaper across both boards, and the shear it gives up is covered by H-80 at the hardpoints. See the note at RHO_EPS in blender_board.py |
 | PL300 / Gorilla Glue, layer glue-up | 2 | tube | $8.00 | $16.00 | estimate |  |
 | Maker Shop Boise Basic month | 1 | month | $150.00 | $150.00 | verified | month-to-month; confirm it cancels cleanly |
-| **subtotal** | | | | **$276.72** | | |
+| **subtotal** | | | | **$676.72** | | |
 
 ## 2b Aluminium
 
@@ -235,30 +236,31 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | Item | Qty | Unit | Unit $ | Ext $ | | Note |
 |---|---:|---|---:|---:|---|---|
 | Shipping - G10, Divinycell, epoxy hazmat | 1 | allow | $220.00 | $220.00 | estimate | heavy and hazmat lines |
-| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $448.95 | $448.95 | verified |  |
-| **subtotal** | | | | **$668.95** | | |
+| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $472.95 | $472.95 | verified |  |
+| **subtotal** | | | | **$692.95** | | |
 
 ## Totals
 
 | | |
 |---|---:|
-| **Grand total, 2 boards** | **$7,931.52** |
-| Per board | $3,965.76 |
-| Of which verified | $6,148.93  (78%) |
-| Of which estimated | $1,782.59 |
+| **Grand total, 2 boards** | **$8,355.52** |
+| Per board | $4,177.76 |
+| Of which verified | $6,172.93  (74%) |
+| Of which estimated | $2,182.59 |
 
 ## What is a board, and what is a shop
 
-Some of the total above is not the cost of a board at all - it is tools, jigs and templates that exist afterwards and do not repeat. Splitting them out is the difference between "a board costs $3,966" and "a board costs $3,586 and I now own a vacuum rig, a crimper and a full template set".
+Some of the total above is not the cost of a board at all - it is tools, jigs and templates that exist afterwards and do not repeat. Splitting them out is the difference between "a board costs $4,178" and "a board costs $3,586 and I now own a vacuum rig, a crimper and a full template set".
 
 | | |
 |---|---:|
-| One-time tooling (incl. its share of tax) | $759.37 |
+| One-time tooling (incl. its share of tax) | $1,183.37 |
 | **Marginal cost of a board** | **$3,586.07** |
 | Cost of the NEXT board after these 2 | $3,586.07 |
 
 | One-time item | $ |
 |---|---:|
+| CNC access - membership or day passes | $400.00 |
 | Maker Shop Boise Basic month | $150.00 |
 | VECOTOOLS 4.5 CFM single-stage pump, oil incl. | $57.99 |
 | VR20 vacuum regulator | $52.00 |
