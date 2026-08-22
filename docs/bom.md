@@ -130,9 +130,9 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 |---|---:|---|---:|---:|---|---|
 | [M8 x 1.25 tap + 6.8 mm drill set](https://www.amazon.com/dp/B0GD1YF5PL) | 1 | set | $8.63 | $8.63 | verified | 8 blind holes |
 | [M8 x 1.25 BOTTOMING tap, 4-flute](https://www.amazon.com/dp/B00DLCTUDM) | 1 | ea | $8.78 | $8.78 | verified | the one that actually matters - blind at 10 mm in a 12.7 plate, and the taper tap in the set above cannot reach the bottom |
-| [M8 thread repair kit (Time-Sert / helicoil)](https://www.amazon.com/dp/B09WN4QTNL) | 1 | kit | $14.59 | $14.59 | verified | for the mast plate. Not expected - kept because the failure it covers is unrecoverable without it |
+| [M8 thread repair kit (Time-Sert / helicoil)](https://www.amazon.com/dp/B09WN4QTNL) | 0 | kit | $14.59 | $0.00 | on hand | NOT NEEDED for the build - the plate is machined. Buy it only if a thread ever galls in service. B09WN4QTNL, $14.59 |
 | [Ultra Tef-Gel, galvanic barrier](https://www.amazon.com/dp/B01606TCAG) | 1 | ea | $39.00 | $39.00 | verified | every mast bolt, every time it goes back in. DEARER than the $22 this was carried at - and do not reach for the small tube to save it: the 3cc syringe is $31.51, so it is 80% of the price for a fraction of the gel |
-| **subtotal** | | | | **$71.00** | | |
+| **subtotal** | | | | **$56.41** | | |
 
 ## 9b Small but essential
 
@@ -255,30 +255,31 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | Item | Qty | Unit | Unit $ | Ext $ | | Note |
 |---|---:|---|---:|---:|---|---|
 | Shipping - Divinycell, 6061 plate, VR20 | 1 | allow | $120.00 | $120.00 | estimate | STILL THE BIGGEST UNVERIFIED LINE - it wants three real carts to settle. Was $220 when it covered G10 sheet and hazmat epoxy, both of which are now out of the build entirely |
-| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $440.11 | $440.11 | verified |  |
-| **subtotal** | | | | **$560.11** | | |
+| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $439.23 | $439.23 | verified |  |
+| **subtotal** | | | | **$559.23** | | |
 
 ## Totals
 
 | | |
 |---|---:|
-| **Grand total, 2 boards** | **$7,775.23** |
-| Per board | $3,887.61 |
-| Of which verified | $7,230.20  (93%) |
+| **Grand total, 2 boards** | **$7,759.76** |
+| Per board | $3,879.88 |
+| Of which verified | $7,214.73  (93%) |
 | Of which estimated | $545.03 |
 | Linked to a real listing | 130 lines |
 | Priced but NOT linked | 0 lines, $0.00 |
-| Allowances, not linkable (tax, freight) | 3 lines, $828.74 |
+| Not linkable, but MEASURED (freight quotes) | 2 lines, $707.86 |
+| Not linkable and still estimated | 1 lines, $120.00 |
 
 ## What is a board, and what is a shop
 
-Some of the total above is not the cost of a board at all - it is tools, jigs and templates that exist afterwards and do not repeat. Splitting them out is the difference between "a board costs $3,888" and "a board costs $3,497 and I now own a vacuum rig, a crimper and a full template set".
+Some of the total above is not the cost of a board at all - it is tools, jigs and templates that exist afterwards and do not repeat. Splitting them out is the difference between "a board costs $3,880" and "a board costs $3,489 and I now own a vacuum rig, a crimper and a full template set".
 
 | | |
 |---|---:|
 | One-time tooling (incl. its share of tax) | $781.41 |
-| **Marginal cost of a board** | **$3,496.91** |
-| Cost of the NEXT board after these 2 | $3,496.91 |
+| **Marginal cost of a board** | **$3,489.17** |
+| Cost of the NEXT board after these 2 | $3,489.17 |
 
 | One-time item | $ |
 |---|---:|

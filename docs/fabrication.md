@@ -148,8 +148,7 @@ vertical seam (1030 mm). Dowel pins keep the halves registered.
 **Blocks on:** step 6
 **Uses:** `Divinycell H-80 3/4in quarter sheet 24x48, mast block + leash pad` ·
 `6061-T651 1/2in x 12 x 18 - mast plates` · `M8 x 1.25 tap + 6.8 mm drill set` ·
-`M8 x 1.25 BOTTOMING tap, 4-flute` ·
-`M8 thread repair kit (Time-Sert / helicoil)`
+`M8 x 1.25 BOTTOMING tap, 4-flute`
 
 The CNC already cut the pockets. Bond the H-80 mast block and leash pad in,
 flush.

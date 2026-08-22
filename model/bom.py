@@ -805,17 +805,21 @@ def build():
         "plate, and the taper tap in the set above cannot reach the bottom",
         vendor="Amazon", tool=True)
     # Aluminium plate, A4 stainless bolts, wet cavity. Not optional.
-    # CHEAP INSURANCE ON THE LEAST FORGIVING PART IN THE BUILD. The mast
-    # plate's four holes are BLIND TAPPED, so nothing absorbs a mistake: true
-    # position has to hold ~0.25 mm and a 2 deg drill wander alone spends
-    # 0.35 mm of that. If one hole strips or wanders, this turns a scrapped
-    # $89 plate and a lost weekend into a ten-minute repair - and it also
-    # buys back a thread if one ever galls in service, which on alu + A4 in
-    # salt water is not a remote possibility.
+    # NOT IN THE BUILD. I added this when the plan was still "hand-drill the
+    # mast plate", where a wandering or stripped hole was a live risk. That
+    # plan is gone - the plate is machined now, to a measured pattern - and
+    # with it most of the reason for a repair kit.
+    # What is left is SERVICE galling, not a machining error: A4 stainless
+    # into aluminium, in salt water, on a bolt that comes out every time the
+    # mast does. Tef-Gel is the actual mitigation for that and it is on the
+    # list. A helicoil is only what you reach for years later if the Tef-Gel
+    # was skipped once and a thread came out with the bolt.
+    # So: a someday tool, not a build item. B09WN4QTNL, $14.59, if the day
+    # comes. Left at zero rather than deleted so the reasoning survives.
     add("8  Mast hardpoint", "M8 thread repair kit (Time-Sert / helicoil)",
-        1, "kit", 14.59, OK,
-        "for the mast plate. Not expected - kept because the failure it "
-        "covers is unrecoverable without it", vendor="Amazon")
+        0, "kit", 0.00, OWNED,
+        "NOT NEEDED for the build - the plate is machined. Buy it only if a "
+        "thread ever galls in service. B09WN4QTNL, $14.59")
     add("8  Mast hardpoint", "Ultra Tef-Gel, galvanic barrier", 1, "ea",
         39.00, OK, "every mast bolt, every time it goes back in. DEARER than "
         "the $22 this was carried at - and do not reach for the small tube "
@@ -1443,8 +1447,17 @@ def render(rows):
     out.append("| Priced but NOT linked | " + str(len(_nl))
                + " lines, $" + format(sum(r["ext"] for r in _nl), ",.2f")
                + " |")
-    out.append("| Allowances, not linkable (tax, freight) | " + str(len(_al))
-               + " lines, $" + format(sum(r["ext"] for r in _al), ",.2f")
+    # SPLIT BY CONFIDENCE. Calling all three of these "allowances" was
+    # sloppy reporting: the Gong freight is a MEASURED figure off their own
+    # checkout, and lumping it with an estimate and a computed tax made a
+    # known number read as an unknown one.
+    _al_ok = [r for r in _al if r["conf"] == OK]
+    _al_est = [r for r in _al if r["conf"] != OK]
+    out.append("| Not linkable, but MEASURED (freight quotes) | "
+               + str(len(_al_ok)) + " lines, $"
+               + format(sum(r["ext"] for r in _al_ok), ",.2f") + " |")
+    out.append("| Not linkable and still estimated | " + str(len(_al_est))
+               + " lines, $" + format(sum(r["ext"] for r in _al_est), ",.2f")
                + " |")
     out.append("")
     tl, marg = tooling(rows, tot)
