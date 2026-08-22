@@ -423,6 +423,11 @@ PCB face goes down onto an aluminium floor and a metal-loaded pad is a dead
 short. Put the leak alarm's sensor on the module floor in the lowest corner,
 not up on the pack.
 
+**The full topology, every joint and every crimp, is
+[Appendix D](#appendix-d--wiring).** Read it before you cut a single lead —
+it answers where P+ splits, what the fuse protects, and the two mistakes
+that kill a BMS.
+
 ### Step 18. Run the mast conduit
 
 **Blocks on:** steps 7, 17
@@ -610,3 +615,127 @@ offer the shape up to. **Uses:** `MDF 12 mm, 4 check gauges`
 | Crushing the core in the bag | Regulator at 5–10 inHg. Never "as much as it pulls" |
 | Cavity cures with voids | The caul, not the bag. Wax and PVA it |
 | Seam misalignment | Both halves off the same fixture and datum |
+
+---
+
+# Appendix D — Wiring
+
+## The one thing to understand first
+
+**A common-port BMS switches the NEGATIVE side only.** Pack positive is never
+interrupted — it runs straight from the cells to a busbar and stays live at
+pack voltage forever. Everything below follows from that, including the
+hazard at the charge port.
+
+**CONFIRM YOUR DALY IS COMMON PORT** before wiring. DALY sell both. A
+separate-port unit has distinct charge and discharge negatives and the
+charge port wires somewhere else entirely. Common port is the usual for
+e-boards and is what this assumes.
+
+## The current path
+
+```
+        CELLS 16S8P                                          ┌─ ESC  V+
+             │                                               │
+   B+ ───────┴──────────► P+ BUSBAR ──► ANL 150 A fuse ──────┤
+   (pack positive,        (one stud,        │                └─ (nothing else)
+    never switched)        three taps)      │
+                               │            └─ 16 AWG ──────► CHARGE PORT  +
+                               │
+                               └─ thin lead ──────────────► BMS  B+   (sense)
+
+   B- ───────► BMS  B-                     ┌─ ESC  V-
+                     │                     │
+                     └── P- ──► P- BUSBAR ─┤
+                         (switched)        └─ 16 AWG ──────► CHARGE PORT  −
+
+   BALANCE: 17-wire harness, B0 … B16, one tap per series junction
+   BUTTON:  2-wire momentary to the BMS switch input — NOT in the main path
+```
+
+**So: P+ does not "split into" a BMS lead and a charge lead — it is one
+node.** The busbar is that node. Three things land on it: the BMS's thin B+
+sense lead, the fuse feeding the ESC, and the charge port positive. That is
+what the M6 distribution stud in the BOM is for.
+
+Charging returns through the BMS: charger − → port − → P− → BMS → cells. That
+is why a common-port pack can still be charged after the BMS has cut for
+over-discharge — the charge FET is separate from the discharge FET.
+
+## Joint by joint
+
+| # | From | To | Wire | Termination |
+|---|---|---|---|---|
+| 1 | Pack B+ collector | P+ busbar | 8 AWG | ring lug both ends, hydraulic crimp |
+| 2 | P+ busbar | ANL fuse in | 8 AWG | ring lug |
+| 3 | ANL fuse out | ESC V+ | 8 AWG | ring lug |
+| 4 | P+ busbar | Charge port + | 16 AWG | ring lug at bus, solder at port |
+| 5 | P+ busbar | BMS B+ | per BMS | as supplied |
+| 6 | Pack B− collector | BMS B− | 8 AWG | ring lug, hydraulic crimp |
+| 7 | BMS P− | P− busbar | 8 AWG | ring lug |
+| 8 | P− busbar | ESC V− | 8 AWG | ring lug |
+| 9 | P− busbar | Charge port − | 16 AWG | ring lug at bus, solder at port |
+| 10 | BMS balance | 17 series taps | 22 AWG harness | JST at BMS, welded tab at pack |
+| 11 | BMS switch | Panel button | 2 × 22 AWG | as the BMS specifies |
+| 12 | ESC phases | Motor, in the cavity | motor's own | 5.5 mm bullets + IP68 housing |
+
+Every 8 AWG lug: **hydraulic crimp, then adhesive-lined heat shrink over the
+barrel and onto the insulation.** Not soldered — a soldered lug goes stiff
+where the solder wicks, and that stiff point is where vibration breaks it.
+
+## The fuse goes at the source
+
+The ANL protects the **wire**, not the ESC. It belongs as close to pack
+positive as it can physically go — joint 2, immediately off the busbar. A
+fuse at the ESC end leaves the whole run between pack and ESC unprotected,
+which is the run buried in a sealed module you cannot reach.
+
+## Two mistakes that kill a BMS
+
+1. **Never connect the balance harness before the main leads.** Main first
+   (B−, then B+), balance last. Disconnect in reverse: **balance off first.**
+   With the balance plugged in and B− floating, pack current finds its way
+   through the balance wires — 22 AWG — and takes the BMS with it. This is
+   the single most common way these die.
+2. **Check the balance harness order before it goes on.** B0 is pack
+   most-negative, B16 most-positive, and every tap in between is a series
+   junction in order. Meter each pin against B0 before plugging in: you
+   should read a clean ladder, ~3.6 V per step. One transposed pair is a
+   dead BMS and possibly a dead group.
+
+## The charge port is live. Always.
+
+Because the positive side is never switched, **the charge port's + pin sits
+at up to 67.2 V whenever the cap is off** — with the board switched off, with
+the BMS cut, always. That is above the 60 V generally treated as the safe DC
+threshold.
+
+- Keep the screw cap on. It is not weather protection, it is the guard.
+- Never probe the port with the pack connected and the cap off.
+- If you ever build a third board, consider a separate-port BMS purely to
+  kill this.
+
+## Precharge — decide this before first power-up
+
+A 75200 ESC's input capacitors are effectively a short circuit at the instant
+of connection. On a 67 V pack that means a hard arc, pitted contacts, and
+occasionally a welded pair.
+
+**If the DALY's switch output is what energises the ESC**, the BMS FETs take
+that inrush and there is nothing more to do — the button *is* the anti-spark.
+**If the ESC is hard-wired across P−** and the BMS is simply always on, then
+every connection of the pack arcs, and you need either an anti-spark
+connector in the loop or a precharge resistor across the switch.
+
+**Confirm which one you have built before the first connection**, not after.
+This is the one item in this appendix that the model cannot tell you — it
+depends on the DALY variant in your hand.
+
+## Sanity checks before the lid goes on
+
+- Meter pack voltage at the busbars: ~57.6 V nominal, 67.2 V full.
+- Meter the charge port with the pack live — polarity, and that + really is +.
+- Confirm the fuse is on the **positive** side, at the busbar end.
+- Tug every crimp. A crimp that moves is a crimp that failed.
+- Dielectric grease on every terminal, then the leak test again with the
+  vent blanked before the cells go in for good.

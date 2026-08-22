@@ -6,10 +6,10 @@ Grouped by where you buy it rather than by what it does, because that is the ord
 
 | Supplier | Lines | $ |
 |---|---:|---:|
-| Amazon | 109 | $3,455.34 |
+| Amazon | 110 | $3,523.34 |
 | Gong | 1 | $1,404.00 |
 | Flipsky | 3 | $1,038.00 |
-| Not a purchase - tax and freight | 3 | $826.99 |
+| Not a purchase - tax and freight | 3 | $831.07 |
 | BatteryHookup | 2 | $297.50 |
 | Fiberglass Supply | 3 | $253.38 |
 | Home Depot / hardware | 4 | $169.16 |
@@ -17,7 +17,7 @@ Grouped by where you buy it rather than by what it does, because that is the ord
 | Speedy Metals | 1 | $88.92 |
 | Easy Composites | 1 | $52.00 |
 | NOT SOURCED YET | 1 | $9.00 |
-| **TOTAL** | | **$7,744.29** |
+| **TOTAL** | | **$7,816.37** |
 
 ## Amazon
 
@@ -32,17 +32,18 @@ https://www.amazon.com
 | [Charger 67.2 V 5 A, 16S  (NOT 58.8 V)](https://www.amazon.com/dp/B0DK6FTB1P) | 2 | ea | $91.98 | **verified** | Amazon B0DK6FTB1P, aluminium case + fan |
 | [TotalBoat TotalFair epoxy fairing compound](https://www.amazon.com/dp/B00S9RBWIA) | 2 | kit | $91.98 | **verified** | smallest kit, one per board |
 | [Breather / bleeder cloth](https://www.amazon.com/dp/B015NM0B8K) | 6 | yd | $83.70 | **verified** | $13.95/yd cut; a 5 yd roll at $59.99 is $12.00/yd if you would rather buy the roll |
+| [1/2 in spiral, 3 in cutting length - cavity wall](https://www.amazon.com/dp/B0BTY16K5P) | 1 | ea | $82.99 | **verified** | 76.2 mm of FLUTE - the only reach found that clears the 71.6 mm cavity wall in one pass. It is a COMPRESSION b |
 | [1708 biax, 50in x 10 yd roll](https://www.amazon.com/dp/B07RJWHPKG) | 1 | roll | $79.95 | **verified** | 6 yd needed across both boards; $8.00/yd against Fibre Glast's $12.50 and no freight |
 | [Vac bag film, 5 yd](https://www.amazon.com/dp/B079MBL5TX) | 3 | roll | $74.85 | **verified** | 3.06 m2 a hull session; 2 hulls + 4 lids + a practice piece + one re-do. Single-use on the hull, reusable on f |
 | [ASA filament, printed module shell](https://www.amazon.com/dp/B09DKPYYBP) | 3 | kg | $73.47 | **verified** | 4 L-pieces/board, ~1.13 kg of part + supports and brim; largest piece 226 x 146 fits the A1 bed |
 | [1/2 in O-flute up-spiral, foam roughing](https://www.amazon.com/dp/B001J9I6D4) | 1 | ea | $66.05 | **verified** | Freud 73-214, 1/2 in shank. SINGLE flute for chip clearance - EPS chips are bulky and a 2- or 3-flute packs th |
 | [5052 1/8in x 12 x 24, 2-pack - module floors](https://www.amazon.com/dp/B0D3TH4TTC) | 1 | pk | $61.99 | **verified** | your Apr 2026 receipt (MorningRo/Huaiian). One sheet is one floor, so this pack does both boards |
-| [Pure nickel 0.2 x 10 mm, 5 m roll](https://www.amazon.com/dp/B0961Q1VVR) | 4 | roll | $59.96 | **verified** |  |
 | [TotalBoat 5:1 quart kit, fillets and bonding](https://www.amazon.com/dp/B00HR8517A) | 1 | kit | $58.99 | **verified** |  |
 | [VECOTOOLS 4.5 CFM single-stage pump, oil incl.](https://www.amazon.com/dp/B0GZVLP3PL) | 1 | ea | $57.99 | **verified** | your listing, ASIN B0GZVLP3PL. Was a $139.99 Pittsburgh 2-stage plus $15 of oil - $97 for ultimate vacuum we m |
 | [FOCEAN EVA deck sheet 2400 x 600 x 5.8](https://www.amazon.com/dp/B0BTLW75FL) | 1 | sheet | $54.14 | **verified** | 3 pieces a board - aft of the hatch, forward of it, and one on the lid - using 818 mm of the 2400 roll each. S |
 | [ASA filament, printed rim ring](https://www.amazon.com/dp/B09DKPYYBP) | 2 | kg | $48.98 | **verified** | 6 dovetailed pieces/board at ~90% infill, 710 g of part each; PRINT SEAL FACE DOWN - the bed is flatter than a |
 | [TotalBoat Premium Marine Topside Primer](https://www.amazon.com/dp/B00HS4YY7G) | 1 | kit | $46.99 | **verified** | one covers both |
+| [Pure nickel 0.2 x 10 mm, 5 m roll](https://www.amazon.com/dp/B0961Q1VVR) | 3 | roll | $44.97 | **verified** | 6.9 m a board derived from the pack, not guessed. YOU ALREADY OWN 3 ROLLS (SUIDI, ordered Apr 16 x2 and May 6) |
 | [1/2 in ball nose, finishing pass](https://www.amazon.com/dp/B00KZM3GSG) | 1 | ea | $41.95 | **verified** | 1/2 in shank. ONLY if the makerspace does not supply tooling |
 | [Hydraulic lug crimper, 10 ton, 12-2/0 AWG](https://www.amazon.com/dp/B0CFV249X3) | 1 | ea | $39.99 | **verified** | one-time; this is what replaces soldering XT150s |
 | [Folding sawhorses, pair, 700 lb](https://www.amazon.com/dp/B0G4CH7SKB) | 1 | pair | $39.99 | **verified** | ~30 in high. Racks buy height for planing, and this core comes machined - so they buy nothing here |
@@ -161,7 +162,7 @@ Some Flipsky appears on Amazon but the range is thin and usually dearer. Buy dir
 
 | Item | Qty | Unit | Ext | Price | Note |
 |---|---:|---|---:|---|---|
-| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $438.36 | **verified** |  |
+| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $442.44 | **verified** |  |
 | Gong shipping to Idaho, ONE order, both foils | 1 | order | $268.63 | **verified** | quoted at checkout for 2 x XL Alu setups. PER ORDER, not per foil - ordering the two separately would roughly  |
 | Shipping - Divinycell, 6061 plate, VR20 | 1 | allow | $120.00 | estimate | STILL THE BIGGEST UNVERIFIED LINE - it wants three real carts to settle. Was $220 when it covered G10 sheet an |
 

@@ -58,6 +58,9 @@ M = dict(hatch_bolts=R["bom_hatch_bolts"],
          conduit_mm=R["bom_conduit_mm"],
          pad_pieces=R["deck_pad_pieces_per_board"],
          pad_roll_mm=R["deck_pad_roll_mm_per_board"],
+         pack_series=R["pack_series"],
+         pack_parallel=R["pack_parallel"],
+         pack_pitch=R["pack_pitch_mm"],
          # nickel_m is not geometry - it is a build estimate, so it stays
          # here. 8.0 not 7.0: the edge strips get a second welded layer.
          nickel_m=8.0)
@@ -832,8 +835,30 @@ def build():
             15, "ea", 2.50, OK, "7% margin on a spot-welded pack")
     add("9  Electrical", "21700 cells already on hand",
         M["cells"] * FREE_PACKS, "ea", 0.00, OWNED)
+    # DERIVED, not the flat 8 m/board this used to assume. The pack is
+    # 16S8P on a 24 mm pitch, so the geometry says exactly how much strip it
+    # takes:
+    #   15 series boundaries x 8 bridges each, one per parallel cell, each
+    #   spanning the 24 mm pitch plus weld pads either side  ~34 mm
+    #   + 2 terminal strips collecting 8 cells across             ~192 mm each
+    #   + the 2 EDGE bridges at every boundary doubled - series current
+    #     crowds at the outside of a serpentine, so those see roughly twice
+    #     what the 6 middle ones do (~25 A vs ~12 A at 100 A), which is right
+    #     at the limit for a single 0.2 x 10 strip
+    _ser, _par = M["pack_series"], M["pack_parallel"]
+    _bridge = (M["pack_pitch"] + 10.0) / 1000.0       # pitch + weld pads
+    _nickel = ((_ser - 1) * _par * _bridge            # every bridge
+               + 2 * _par * M["pack_pitch"] / 1000.0  # terminal collectors
+               + (_ser - 1) * 2 * _bridge)            # edge doubling
+    _nickel *= 1.25                                   # offcuts and redos
     add("9  Electrical", "Pure nickel 0.2 x 10 mm, 5 m roll",
-        math.ceil(M["nickel_m"] * N / 5), "roll", 14.83, OK)
+        math.ceil(_nickel * N / 5), "roll", 14.83, OK,
+        f"{_nickel:.1f} m a board derived from the pack, not guessed. "
+        "YOU ALREADY OWN 3 ROLLS (SUIDI, ordered Apr 16 x2 and May 6) - "
+        "check the drawer before buying more. There is also a 5 m roll of "
+        "0.2 x 27 mm uxcell from Apr 12: too wide for bridges, but it is the "
+        "right stock for the two terminal collectors and for doubling the "
+        "edges without stacking two thin layers")
     add("9  Electrical", "21700 spacer brackets", 0, "set", 0.00, OWNED)
     add("9  Electrical", "ANL 150 A fuse + holder", N, "ea", 10.59, OK)
     add("9  Electrical", "8 AWG silicone, 10 ft red + 10 ft black",
@@ -1094,6 +1119,26 @@ def build():
     add("10d Shop consumables", "1/2 in ball nose, finishing pass", 1, "ea",
         41.95, OK, "1/2 in shank. ONLY if the makerspace does not supply "
         "tooling", tool=True, vendor="Amazon")
+    # THE DEEP-POCKET BIT, and a separate line rather than a replacement for
+    # the O-flute above, because roughing and wall-finishing are not the same
+    # job and only one of them needs the reach:
+    #   ROUGHING DOES NOT. Z-level roughing clears the whole pocket at each
+    #   level, so by the time the tool reaches 71.6 mm its shank is
+    #   travelling through open air, not down a slot. The 31.8 mm Freud does
+    #   every roughing pass perfectly well - which is why it stays.
+    #   THE WALL FINISH DOES. On that last pass the tool runs down a finished
+    #   wall, and above the cutting edge a 12.7 mm shank rubs 12.7 mm of EPS
+    #   all the way up. Foam has no strength to resist it, but it does melt
+    #   and glaze - and a glazed wall is a bond surface you cannot wet out.
+    # 3 in of cutting length is 76.2 mm against the 71.6 mm needed.
+    add("10d Shop consumables",
+        "1/2 in spiral, 3 in cutting length - cavity wall", 1, "ea",
+        82.99, OK,
+        "76.2 mm of FLUTE - the only reach found that clears the 71.6 mm "
+        "cavity wall in one pass. It is a COMPRESSION bit, which is not the "
+        "ideal geometry for foam: if a plain upcut or a reduced-shank necked "
+        "bit turns up at this reach, prefer it. Needed ONLY for the wall "
+        "finish - rough with the Freud", tool=True, vendor="Amazon")
     # NO ROUTER. Derek already owns a rotary tool with a router/plunge base -
     # a Dremel-class spinner - and for what is actually left to rout that is
     # the RIGHT tool, not a compromise:

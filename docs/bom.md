@@ -115,13 +115,13 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | [BAK N21700CG-50, 130-cell case (BatteryHookup)](https://batteryhookup.com/products/new-3-6v-5000mah-bak-n21700cg-50-2170-lithium-ion-cells?variant=46196788789410) | 1 | case | $260.00 | $260.00 | verified | new overstock |
 | [BAK N21700CG-50 singles, spares](https://batteryhookup.com/products/new-3-6v-5000mah-bak-n21700cg-50-2170-lithium-ion-cells?variant=46196788756642) | 15 | ea | $2.50 | $37.50 | verified | 7% margin on a spot-welded pack |
 | 21700 cells already on hand | 128 | ea | $0.00 | $0.00 | on hand |  |
-| [Pure nickel 0.2 x 10 mm, 5 m roll](https://www.amazon.com/dp/B0961Q1VVR) | 4 | roll | $14.99 | $59.96 | verified |  |
+| [Pure nickel 0.2 x 10 mm, 5 m roll](https://www.amazon.com/dp/B0961Q1VVR) | 3 | roll | $14.99 | $44.97 | verified | 6.9 m a board derived from the pack, not guessed. YOU ALREADY OWN 3 ROLLS (SUIDI, ordered Apr 16 x2 and May 6) - check the drawer before buying more. There is also a 5 m roll of 0.2 x 27 mm uxcell from Apr 12: too wide for bridges, but it is the right stock for the two terminal collectors and for doubling the edges without stacking two thin layers |
 | 21700 spacer brackets | 0 | set | $0.00 | $0.00 | on hand |  |
 | [ANL 150 A fuse + holder](https://www.amazon.com/dp/B0B6ZHJR7D) | 2 | ea | $9.99 | $19.98 | verified |  |
 | [8 AWG silicone, 10 ft red + 10 ft black](https://www.amazon.com/dp/B0BYJRDT19) | 1 | pk | $21.99 | $21.99 | verified | one pack covers BOTH boards - the longest run in the module is the 278 mm ESC-to-fuse, so 10 ft a side is already 10x what the runs need. Motor supplies its own phase leads + bullets. Amazon 8 AWG 10+10 spans $18.88-$23.99; the 25 ft pack at $49.99 was buying 40 ft of wire to use about 3 |
 | [PVC pack wrap, 200 mm lay-flat](https://www.amazon.com/dp/B09SVFL33L) | 1 | roll | $13.99 | $13.99 | verified | wide enough to sleeve a 16S brick; one roll does both |
 | [Kapton tape, pack insulation](https://www.amazon.com/dp/B006ZFQNT6) | 1 | roll | $8.25 | $8.25 | estimate |  |
-| **subtotal** | | | | **$1,871.03** | | |
+| **subtotal** | | | | **$1,856.04** | | |
 
 ## 8  Mast hardpoint
 
@@ -214,8 +214,9 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | [Dowel pins + drill, two-sided registration](https://www.amazon.com/dp/B0GS2R3F5G) | 1 | set | $12.99 | $12.99 | estimate |  |
 | [1/2 in O-flute up-spiral, foam roughing](https://www.amazon.com/dp/B001J9I6D4) | 1 | ea | $66.05 | $66.05 | verified | Freud 73-214, 1/2 in shank. SINGLE flute for chip clearance - EPS chips are bulky and a 2- or 3-flute packs the gullets and starts melting the blank. ONLY if the makerspace does not supply tooling |
 | [1/2 in ball nose, finishing pass](https://www.amazon.com/dp/B00KZM3GSG) | 1 | ea | $41.95 | $41.95 | verified | 1/2 in shank. ONLY if the makerspace does not supply tooling |
+| [1/2 in spiral, 3 in cutting length - cavity wall](https://www.amazon.com/dp/B0BTY16K5P) | 1 | ea | $82.99 | $82.99 | verified | 76.2 mm of FLUTE - the only reach found that clears the 71.6 mm cavity wall in one pass. It is a COMPRESSION bit, which is not the ideal geometry for foam: if a plain upcut or a reduced-shank necked bit turns up at this reach, prefer it. Needed ONLY for the wall finish - rough with the Freud |
 | [Rotary-tool router base + collets, if needed](https://www.amazon.com/dp/B0000DEZK4) | 1 | set | $24.63 | $24.63 | estimate | you have the tool; this is only if the base you have will not hold depth over the groove run |
-| **subtotal** | | | | **$225.76** | | |
+| **subtotal** | | | | **$308.75** | | |
 
 ## 10e Layup kit
 
@@ -253,30 +254,30 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | Item | Qty | Unit | Unit $ | Ext $ | | Note |
 |---|---:|---|---:|---:|---|---|
 | Shipping - Divinycell, 6061 plate, VR20 | 1 | allow | $120.00 | $120.00 | estimate | STILL THE BIGGEST UNVERIFIED LINE - it wants three real carts to settle. Was $220 when it covered G10 sheet and hazmat epoxy, both of which are now out of the build entirely |
-| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $438.36 | $438.36 | verified |  |
-| **subtotal** | | | | **$558.36** | | |
+| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $442.44 | $442.44 | verified |  |
+| **subtotal** | | | | **$562.44** | | |
 
 ## Totals
 
 | | |
 |---|---:|
-| **Grand total, 2 boards** | **$7,744.29** |
-| Per board | $3,872.14 |
-| Of which verified | $7,132.28  (92%) |
+| **Grand total, 2 boards** | **$7,816.37** |
+| Per board | $3,908.18 |
+| Of which verified | $7,204.36  (92%) |
 | Of which estimated | $612.01 |
-| Linked to a real listing | 126 lines |
+| Linked to a real listing | 127 lines |
 | Priced but NOT linked | 2 lines, $43.00 |
-| Allowances, not linkable (tax, freight) | 3 lines, $826.99 |
+| Allowances, not linkable (tax, freight) | 3 lines, $831.07 |
 
 ## What is a board, and what is a shop
 
-Some of the total above is not the cost of a board at all - it is tools, jigs and templates that exist afterwards and do not repeat. Splitting them out is the difference between "a board costs $3,872" and "a board costs $3,525 and I now own a vacuum rig, a crimper and a full template set".
+Some of the total above is not the cost of a board at all - it is tools, jigs and templates that exist afterwards and do not repeat. Splitting them out is the difference between "a board costs $3,908" and "a board costs $3,517 and I now own a vacuum rig, a crimper and a full template set".
 
 | | |
 |---|---:|
-| One-time tooling (incl. its share of tax) | $693.44 |
-| **Marginal cost of a board** | **$3,525.42** |
-| Cost of the NEXT board after these 2 | $3,525.42 |
+| One-time tooling (incl. its share of tax) | $781.41 |
+| **Marginal cost of a board** | **$3,517.48** |
+| Cost of the NEXT board after these 2 | $3,517.48 |
 
 | One-time item | $ |
 |---|---:|
@@ -293,6 +294,7 @@ Some of the total above is not the cost of a board at all - it is tools, jigs an
 | Dowel pins + drill, two-sided registration | $12.99 |
 | 1/2 in O-flute up-spiral, foam roughing | $66.05 |
 | 1/2 in ball nose, finishing pass | $41.95 |
+| 1/2 in spiral, 3 in cutting length - cavity wall | $82.99 |
 | Rotary-tool router base + collets, if needed | $24.63 |
 | Rosin paper roll, floor and bench | $27.95 |
 | Folding sawhorses, pair, 700 lb | $39.99 |

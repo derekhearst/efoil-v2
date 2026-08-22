@@ -13,6 +13,8 @@ LINKS = {
         ("B001J9I6D4", 66.05, "Freud 73-214 1/2in Dia O-Flute Up Spiral Bit 1/2in Shank"),
     "1/2 in ball nose, finishing pass":
         ("B00KZM3GSG", 41.95, "YONICO Carbide Ball Nose End Mill 1/2in Dia 1/2in Shank"),
+    "1/2 in spiral, 3 in cutting length - cavity wall":
+        ("B0BTY16K5P", 82.99, "SpeTool Compression Spiral Router Bit 1/2in Shank 3in Cutting Length"),
     "1/4 in torque wrench, 10-50 in-lb":
         ("B0D7PWP7YF", 25.97, "1/4in Drive Click Torque Wrench 10-50 IN-LB Dual-Direction"),
     "16 AWG silicone, 6 colours x 5 ft":
@@ -272,6 +274,7 @@ LINK_VENDOR = {
     "1 in polyester webbing 6 yd + 6 buckles": "Amazon",
     "1/2 in O-flute up-spiral, foam roughing": "Amazon",
     "1/2 in ball nose, finishing pass": "Amazon",
+    "1/2 in spiral, 3 in cutting length - cavity wall": "Amazon",
     "1/4 in torque wrench, 10-50 in-lb": "Amazon",
     "16 AWG silicone, 6 colours x 5 ft": "Amazon",
     "1708 biax, 50in x 10 yd roll": "Amazon",

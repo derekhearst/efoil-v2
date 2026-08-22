@@ -4411,6 +4411,9 @@ def build():
     box("V2_Pack_Wrap", px0, pack_x1, pack_y0, pack_y1,
         iz0 + pack_h, iz0 + pack_h + WRAP_T, coll, bom_mat("wrap"))
     rep["pack_layers"] = PACK_LAYERS if CELLS_LYING else 1
+    rep["pack_pitch_mm"] = PITCH_Y
+    rep["pack_series"] = 16
+    rep["pack_parallel"] = 8
     rep["pack_layout"] = (
         f"{LAY_S}S{PACK_P}P per layer x {PACK_LAYERS} layers = "
         f"{PACK_S}S{PACK_P}P, cells lying along X"
