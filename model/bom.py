@@ -628,10 +628,11 @@ def build():
     add("7  Module", "3M 4200 FC 3 oz tube, fillet over the bung", 1, "tube",
         17.99, OK, "does both boards; 4200 NOT 5200 - 5200 never comes out",
         vendor="Amazon")
-    add("7  Module", "25 mm webbing loop, module lift handle", N, "ea", 6.00,
-        EST, "through the two printed bosses on the forward wall - the module "
-        "is ~14 kg in a cavity with 12 mm of side clearance, so there is no "
-        "way to get a hand beside it")
+    add("7  Module", "25 mm webbing loop, module lift handle", 0, "ea", 0.00,
+        OWNED, "cut from the 6 yd webbing pack in 10c - it is the same 1 in "
+        "strap. Through the two printed bosses on the forward wall; the "
+        "module is ~14 kg in a cavity with 12 mm of side clearance, so there "
+        "is no way to get a hand beside it")
     add("7  Module", "M12 IP68 membrane vent plug", N, "ea", 9.95, OK,
         "NOT optional on a sealed lithium box")
     # You have one on the shelf. CHECK IT IS A SPARE and not the one fitted
@@ -660,8 +661,11 @@ def build():
     # not, gold-plated contacts, 500 mating cycles. 5 A of charge current is
     # nothing to it. Flange-bolted rather than nut-on-thread, because the wall
     # is 4 mm of printed ASA.
-    add("7  Module", "SP17 2-pin IP68 flange receptacle + cap", N, "ea",
-        11.00, EST, "67.2 V 5 A charge; O17 panel hole, 2 x M3 flange screws")
+    add("7  Module", "SP17 2-pin IP68 flange receptacle", N, "ea",
+        2.49, OK, "67.2 V 5 A charge; O17 panel hole, 2 x M3 flange screws. "
+        "$2.49, not the $11 this carried. CHECK THE CAP IS INCLUDED before "
+        "ordering - on a board that gets submerged the cap is the part that "
+        "does the sealing when nothing is plugged in", vendor="Amazon")
     add("7  Module", "M3 heat-set insert + M3 x 8 A4, port flange", 2 * N,
         "set", 0.60, EST)
 
@@ -701,9 +705,15 @@ def build():
     # somewhere to dump heat - and there was nothing specified between its
     # baseplate and that floor, which makes the path AIR. I argued the thermal
     # case for the alu floor and then left out the part that makes it work.
-    add("9  Electrical", "Thermal pad 1 mm, ESC baseplate to alu floor",
-        N, "ea", 9.00, EST, "or paste; the ESC PCB face goes DOWN onto the "
-        "floor, same as V1 did onto its alu bottom plate")
+    # MUST BE NON-CONDUCTIVE. The ESC PCB face goes DOWN onto a 5052 floor.
+    # Plenty of cheap "thermal pads" are carbon- or metal-loaded and are
+    # electrically conductive; one of those between a populated PCB and an
+    # aluminium plate is a dead short across the board. Pay the extra dollar
+    # for a pad that says non-conductive on it.
+    add("9  Electrical", "Thermal pad 1 mm non-conductive, 100 x 100",
+        1, "ea", 9.99, OK, "15.8 W/mK. One 100 x 100 sheet cuts both boards' "
+        "baseplates. The ESC PCB face goes DOWN onto the floor, same as V1 "
+        "did onto its alu bottom plate", vendor="Amazon")
     add("9  Electrical", "Flipsky VX3 remote", N, "ea", 71.00, OK)
     # 150 A, not 200 A. The pack peaks at 92 A, and V1 has run a 150 A BMS all
     # season with the VESC limited to 100 A. CHECK THE DIMENSIONS before
@@ -733,7 +743,11 @@ def build():
         "what the runs need. Motor supplies its own phase leads + bullets. "
         "Amazon 8 AWG 10+10 spans $18.88-$23.99; the 25 ft pack at $49.99 was "
         "buying 40 ft of wire to use about 3")
-    add("9  Electrical", "Heat shrink, Kapton, pack wrap", N, "set", 18.00, EST)
+    add("9  Electrical", "PVC pack wrap, 200 mm lay-flat", 1, "roll", 13.99,
+        OK, "wide enough to sleeve a 16S brick; one roll does both",
+        vendor="Amazon")
+    add("9  Electrical", "Kapton tape, pack insulation", 1, "roll", 8.00, EST,
+        vendor="Amazon")
 
     # --------------------------------------------------- 9b odds and ends
     # Things that are easy to leave off a BOM and then stop a build dead.
@@ -767,7 +781,7 @@ def build():
         "CALIBRATION TOOL - set the drill clutch with it, then "
         "use the clutch. The hatch is captive nuts in ASA against a hard "
         "stop; past the stop more torque only loads the nut pockets",
-        tool=True)
+        tool=True, vendor="Amazon")
     add("9b Small but essential", "Coiled ankle leash", N, "ea", 14.99, OK,
         "you trust the remote failsafe; this is so the board stays with you")
     add("9b Small but essential", "FCS-pattern leash plug", N, "ea", 9.00, EST)
@@ -802,8 +816,10 @@ def build():
         "need it now - the bridges are welded, not soldered")
     add("9c Pack wiring", "Balance harness, 17-wire", N, "ea", 0.00, OWNED,
         "DALY ships one - CONFIRM before you need it")
-    add("9c Pack wiring", "16 AWG wire, charge port and power button runs",
-        N, "set", 9.00, EST)
+    add("9c Pack wiring", "16 AWG silicone, 6 colours x 5 ft", 1, "kit",
+        14.49, OK, "charge port and power button runs are short; one kit "
+        "does both boards and the colours keep them straight",
+        vendor="Amazon")
     add("9c Pack wiring", "Dielectric grease, terminals", 1, "tube", 8.00, EST)
     add("9c Pack wiring", "Cable ties, lacing, adhesive mounts", N, "set",
         11.00, EST)
@@ -818,8 +834,9 @@ def build():
         "cable against our 6.5 mm 8 AWG, so the size class is confirmed. "
         "Still CHECK THE BODY LENGTH against the 60 x 318 bay before "
         "ordering wire - diameter fits, length is the risk")
-    add("9c Pack wiring", "5.5 mm bullets + adhesive shrink, ESC side",
-        N, "set", 12.00, EST, "motor pigtails arrive with their own")
+    add("9c Pack wiring", "5.5 mm gold bullets, 20 pair", 1, "pk", 12.99,
+        OK, "3 pair a board, so one pack covers both with spares. Motor "
+        "pigtails arrive with their own", vendor="Amazon")
     add("9c Pack wiring", "Fish tape / pull cord for the mast conduit",
         1, "ea", 12.00, EST)
 
@@ -878,8 +895,9 @@ def build():
         14.00, EST)
     add("10b Drivetrain", "Hydraulic lug crimper, 10 ton, 12-2/0 AWG", 1, "ea", 39.99,
         OK, "one-time; this is what replaces soldering XT150s", tool=True)
-    add("10b Drivetrain", "Adhesive-lined heat shrink, assorted", 1, "kit",
-        16.00, EST)
+    add("10b Drivetrain", "Adhesive-lined heat shrink 3:1, 400 pc kit", 1,
+        "kit", 13.99, OK, "marine grade, glue-lined - plain heat shrink over "
+        "a joint in a wet cavity is decoration", vendor="Amazon")
 
     # ------------------------------------------------ 10c restraint & fitout
     # Currently switched OFF in the model (SHOW_RESTRAINT), so it does not
@@ -887,8 +905,13 @@ def build():
     # down and the ESC still has to bolt to something.
     add("10c Restraint & fitout", "G10 chocks, equipment plate, pack tabs",
         0, "off", 0.00, OWNED, "cut from 1/8 and 1/2 in offcuts")
-    add("10c Restraint & fitout", "25 mm webbing + ladder-lock buckles",
-        N, "set", 20.00, EST, "2 straps per board")
+    # POLYESTER, NOT NYLON. Nylon webbing absorbs water and stretches when
+    # it is wet, which on a board strap means the thing you tightened on the
+    # beach is loose by the time you are on the water. Polyester barely
+    # moves. Same price, so there is no reason to get this wrong.
+    add("10c Restraint & fitout", "1 in polyester webbing 6 yd + 6 buckles",
+        1, "kit", 5.99, OK, "2 straps per board, plus the module lift loops "
+        "in section 7, all out of the one 6 yd pack", vendor="Amazon")
     add("10c Restraint & fitout", "EVA bedding pads", N, "set", 12.00, EST)
 
     # ------------------------------------------------- 10d shop consumables
@@ -917,7 +940,7 @@ def build():
         "eat polystyrene. Foam is taped/tacked down, not clamped",
         vendor="Amazon")
     add("10d Shop consumables", "Sacrificial MDF, CNC spoilboard", 1, "sheet",
-        16.00, EST, "local - a 4x8 sheet is not worth shipping")
+        16.00, EST, "buy it local, a 4x8 sheet does not travel well")
     add("10d Shop consumables", "Release wax / PVA for the cavity caul",
         1, "set", 20.00, EST)
     # Spare bagging film folded into the 3 rolls in section 5 - it was a
@@ -975,8 +998,10 @@ def build():
         vendor="Amazon")
     add("10e Layup kit", "Respirator", 1, "ea", 0.00, OWNED)
     add("10e Layup kit", "3M 60923 organic vapour / acid gas P100, pair",
-        2, "pr", 31.49, OK,
-        "envirosafetyproducts.com; cartridges expire - buy near the layup")
+        2, "pr", 18.39, OK,
+        "$18.39/pr on Amazon against $31.49 at envirosafetyproducts. "
+        "Cartridges EXPIRE - buy these near the layup, not with the rest of "
+        "the order", vendor="Amazon")
     add("10e Layup kit", "Acetone, 1 gal, cleanup", 1, "gal", 39.95, OK)
     # --- somewhere to actually work, which V1 did not have ----------------
     # V1 was glassed on a blue tarp over a table, and tarps are the wrong
@@ -996,7 +1021,7 @@ def build():
     add("10e Layup kit", "Folding sawhorses, pair, 700 lb", 1, "pair", 39.99,
         OK,
         "~30 in high. Racks buy height for planing, and this core comes "
-        "machined - so they buy nothing here", tool=True)
+        "machined - so they buy nothing here", tool=True, vendor="Amazon")
     add("10e Layup kit", "Pipe lagging or carpet, sawhorse padding", 1, "set",
         8.00, EST, "bare sawhorse tops mark foam and wet laminate")
     # NO "CONFORMING BAGGING BED". I put one here on a calculation that was
@@ -1201,21 +1226,37 @@ FASTENER_HINTS = ("a4", "nyloc", "washer", "insert", "stud", "busbar",
 NOT_A_PURCHASE = ("sales tax", "shipping")
 
 
+# Lines that are plainly Amazon buys but which the keyword table below sends
+# somewhere else. Substring match on the item name.
+AMAZON_LINES = (
+    "m6 stainless stud", "test cap + tubing", "m6 x 16 a4",
+    "m4 a4 washer", "silicone sealant", "m5 nyloc", "m8 nyloc",
+    "release wax", "m8 x 30 a4", "rosin paper", "plastic sheeting",
+    "pl300", "2.5 mm straight cutter", "thermometer", "paste wax",
+    "dowel pins", "glass beads", "pipe lagging",
+)
+
+
 def vendor_of(r):
     # An explicit vendor= on the line always wins. The keyword table below is
     # a guess, and it guessed WRONG for every bagging consumable that got
     # re-sourced to Amazon: "peel ply" and "breather" still matched Fibre
     # Glast and sent the shopping list to the wrong vendor at the right
     # price. Where a line has been priced against a specific listing, say so.
+    if any(k in r["item"].lower() for k in AMAZON_LINES) and not r.get("vendor"):
+        return "Amazon", "https://www.amazon.com"
     if r.get("vendor"):
         name = r["vendor"]
         for n, url, _ in VENDORS:
             if n == name:
                 return n, url
         return name, ""
-    t = (r["item"] + " " + (r.get("note") or "")).lower()
-    if any(k in t for k in NOT_A_PURCHASE):
+    # NOT_A_PURCHASE matches the ITEM NAME ONLY. It used to search the note
+    # too, which filed a sheet of MDF under freight because its note happened
+    # to contain the word "shipping".
+    if any(k in r["item"].lower() for k in NOT_A_PURCHASE):
         return "Not a purchase - tax and freight", ""
+    t = (r["item"] + " " + (r.get("note") or "")).lower()
     for name, url, keys in VENDORS:
         if any(k in t for k in keys):
             return name, url

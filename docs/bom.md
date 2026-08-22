@@ -92,12 +92,12 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | Gebildet PG11 gland, M18x1.5, 30 pk | 1 | pk | $9.99 | $9.99 | verified | your listing: M18x1.5 thread (matches the 18.5 hole) and 5-10 mm cable, against our 6.5 mm 8 AWG. 6 needed of 30 - one wire per gland; three in one gland deforms the insert into a clover and leaks between them |
 | EPDM/neoprene sheet 1/2in, conduit bungs | 1 | sheet | $14.00 | $14.00 | estimate | cut O33 plugs for a O32 bore, punch 3 x O5 for 6.5 mm lead - interference fit, soap them through |
 | 3M 4200 FC 3 oz tube, fillet over the bung | 1 | tube | $17.99 | $17.99 | verified | does both boards; 4200 NOT 5200 - 5200 never comes out |
-| 25 mm webbing loop, module lift handle | 2 | ea | $6.00 | $12.00 | estimate | through the two printed bosses on the forward wall - the module is ~14 kg in a cavity with 12 mm of side clearance, so there is no way to get a hand beside it |
+| 25 mm webbing loop, module lift handle | 0 | ea | $0.00 | $0.00 | on hand | cut from the 6 yd webbing pack in 10c - it is the same 1 in strap. Through the two printed bosses on the forward wall; the module is ~14 kg in a cavity with 12 mm of side clearance, so there is no way to get a hand beside it |
 | M12 IP68 membrane vent plug | 2 | ea | $9.95 | $19.90 | verified | NOT optional on a sealed lithium box |
 | M12 IP68 momentary panel button | 1 | ea | $12.49 | $12.49 | verified | 1 on hand; this line buys the second board's |
-| SP17 2-pin IP68 flange receptacle + cap | 2 | ea | $11.00 | $22.00 | estimate | 67.2 V 5 A charge; O17 panel hole, 2 x M3 flange screws |
+| SP17 2-pin IP68 flange receptacle | 2 | ea | $2.49 | $4.98 | verified | 67.2 V 5 A charge; O17 panel hole, 2 x M3 flange screws. $2.49, not the $11 this carried. CHECK THE CAP IS INCLUDED before ordering - on a board that gets submerged the cap is the part that does the sealing when nothing is plugged in |
 | M3 heat-set insert + M3 x 8 A4, port flange | 4 | set | $0.60 | $2.40 | estimate |  |
-| **subtotal** | | | | **$361.76** | | |
+| **subtotal** | | | | **$332.74** | | |
 
 ## 9  Electrical
 
@@ -106,7 +106,7 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | Silica gel, indicating, 50 g per module | 1 | pk | $12.00 | $12.00 | estimate | ~40 g is a season at 50 breathing cycles; a token sachet is worth about six. Bake it dry when the indicator turns |
 | Flipsky 65161 120KV motor | 2 | ea | $298.00 | $596.00 | verified |  |
 | Flipsky 75200 Pro V2 ESC | 2 | ea | $150.00 | $300.00 | verified |  |
-| Thermal pad 1 mm, ESC baseplate to alu floor | 2 | ea | $9.00 | $18.00 | estimate | or paste; the ESC PCB face goes DOWN onto the floor, same as V1 did onto its alu bottom plate |
+| Thermal pad 1 mm non-conductive, 100 x 100 | 1 | ea | $9.99 | $9.99 | verified | 15.8 W/mK. One 100 x 100 sheet cuts both boards' baseplates. The ESC PCB face goes DOWN onto the floor, same as V1 did onto its alu bottom plate |
 | Flipsky VX3 remote | 2 | ea | $71.00 | $142.00 | verified |  |
 | DALY Smart BMS Li-ion 16S 60V 150A | 2 | ea | $159.00 | $318.00 | verified | batteryint.com; confirm it is <= 164 x 66 x 21 mm |
 | Charger 67.2 V 5 A, 16S  (NOT 58.8 V) | 2 | ea | $45.99 | $91.98 | verified | Amazon B0DK6FTB1P, aluminium case + fan |
@@ -117,8 +117,9 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | 21700 spacer brackets | 0 | set | $0.00 | $0.00 | on hand |  |
 | ANL 150 A fuse + holder | 2 | ea | $10.59 | $21.18 | verified |  |
 | 8 AWG silicone, 10 ft red + 10 ft black | 1 | pk | $21.99 | $21.99 | verified | one pack covers BOTH boards - the longest run in the module is the 278 mm ESC-to-fuse, so 10 ft a side is already 10x what the runs need. Motor supplies its own phase leads + bullets. Amazon 8 AWG 10+10 spans $18.88-$23.99; the 25 ft pack at $49.99 was buying 40 ft of wire to use about 3 |
-| Heat shrink, Kapton, pack wrap | 2 | set | $18.00 | $36.00 | estimate |  |
-| **subtotal** | | | | **$1,913.97** | | |
+| PVC pack wrap, 200 mm lay-flat | 1 | roll | $13.99 | $13.99 | verified | wide enough to sleeve a 16S brick; one roll does both |
+| Kapton tape, pack insulation | 1 | roll | $8.00 | $8.00 | estimate |  |
+| **subtotal** | | | | **$1,891.95** | | |
 
 ## 8  Mast hardpoint
 
@@ -151,14 +152,14 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 |---|---:|---|---:|---:|---|---|
 | Solder + flux, bus bars and jumpers | 0 | set | $0.00 | $0.00 | on hand | on hand from V1; only the ring lugs and balance leads need it now - the bridges are welded, not soldered |
 | Balance harness, 17-wire | 2 | ea | $0.00 | $0.00 | on hand | DALY ships one - CONFIRM before you need it |
-| 16 AWG wire, charge port and power button runs | 2 | set | $9.00 | $18.00 | estimate |  |
+| 16 AWG silicone, 6 colours x 5 ft | 1 | kit | $14.49 | $14.49 | verified | charge port and power button runs are short; one kit does both boards and the colours keep them straight |
 | Dielectric grease, terminals | 1 | tube | $8.00 | $8.00 | estimate |  |
 | Cable ties, lacing, adhesive mounts | 2 | set | $11.00 | $22.00 | estimate |  |
 | Silicone sealant, BMS anti-vibration dabs | 1 | tube | $7.00 | $7.00 | estimate | V1 did this; stops the BMS walking |
 | IP68 M25 inline housing, 5 pk | 2 | pk | $15.98 | $31.96 | verified | 3 per board, one per phase, 2 spare. M25 bodies take 4-14 mm cable against our 6.5 mm 8 AWG, so the size class is confirmed. Still CHECK THE BODY LENGTH against the 60 x 318 bay before ordering wire - diameter fits, length is the risk |
-| 5.5 mm bullets + adhesive shrink, ESC side | 2 | set | $12.00 | $24.00 | estimate | motor pigtails arrive with their own |
+| 5.5 mm gold bullets, 20 pair | 1 | pk | $12.99 | $12.99 | verified | 3 pair a board, so one pack covers both with spares. Motor pigtails arrive with their own |
 | Fish tape / pull cord for the mast conduit | 1 | ea | $12.00 | $12.00 | estimate |  |
-| **subtotal** | | | | **$122.96** | | |
+| **subtotal** | | | | **$108.44** | | |
 
 ## 10 Foil
 
@@ -183,17 +184,17 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | 8 AWG marine ring lugs, 20 pk | 2 | pk | $16.99 | $33.98 | verified | 28 needed; on M6 studs - nothing to solder |
 | M6 stainless stud/busbar hardware | 2 | set | $14.00 | $28.00 | estimate |  |
 | Hydraulic lug crimper, 10 ton, 12-2/0 AWG | 1 | ea | $39.99 | $39.99 | verified | one-time; this is what replaces soldering XT150s |
-| Adhesive-lined heat shrink, assorted | 1 | kit | $16.00 | $16.00 | estimate |  |
-| **subtotal** | | | | **$202.33** | | |
+| Adhesive-lined heat shrink 3:1, 400 pc kit | 1 | kit | $13.99 | $13.99 | verified | marine grade, glue-lined - plain heat shrink over a joint in a wet cavity is decoration |
+| **subtotal** | | | | **$200.32** | | |
 
 ## 10c Restraint & fitout
 
 | Item | Qty | Unit | Unit $ | Ext $ | | Note |
 |---|---:|---|---:|---:|---|---|
 | G10 chocks, equipment plate, pack tabs | 0 | off | $0.00 | $0.00 | on hand | cut from 1/8 and 1/2 in offcuts |
-| 25 mm webbing + ladder-lock buckles | 2 | set | $20.00 | $40.00 | estimate | 2 straps per board |
+| 1 in polyester webbing 6 yd + 6 buckles | 1 | kit | $5.99 | $5.99 | verified | 2 straps per board, plus the module lift loops in section 7, all out of the one 6 yd pack |
 | EVA bedding pads | 2 | set | $12.00 | $24.00 | estimate |  |
-| **subtotal** | | | | **$64.00** | | |
+| **subtotal** | | | | **$29.99** | | |
 
 ## 10d Shop consumables
 
@@ -201,7 +202,7 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 |---|---:|---|---:|---:|---|---|
 | Thermometer / hygrometer, 2 pk | 1 | pk | $14.00 | $14.00 | estimate | one in the shop, one by the part. Slow needs 60 F, fast needs 40-45, and below ~35 nothing cures at all |
 | 3M Fastbond 1077 water-based, CNC hold-down | 1 | ea | $26.02 | $26.02 | verified | WATER-BASED because the blank is EPS - solvent sprays like Super 77 eat polystyrene. Foam is taped/tacked down, not clamped |
-| Sacrificial MDF, CNC spoilboard | 1 | sheet | $16.00 | $16.00 | estimate | local - a 4x8 sheet is not worth shipping |
+| Sacrificial MDF, CNC spoilboard | 1 | sheet | $16.00 | $16.00 | estimate | buy it local, a 4x8 sheet does not travel well |
 | Release wax / PVA for the cavity caul | 1 | set | $20.00 | $20.00 | estimate |  |
 | Dowel pins + drill, two-sided registration | 1 | set | $12.00 | $12.00 | estimate |  |
 | 1/2 in O-flute up-spiral, foam roughing | 1 | ea | $66.05 | $66.05 | verified | Freud 73-214, 1/2 in shank. SINGLE flute for chip clearance - EPS chips are bulky and a 2- or 3-flute packs the gullets and starts melting the blank. ONLY if the makerspace does not supply tooling |
@@ -217,7 +218,7 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | Laminating bubble roller kit, 4 pc | 1 | kit | $17.99 | $17.99 | verified |  |
 | Nitrile gloves 6 mil, 100 pk | 2 | box | $14.44 | $28.88 | verified |  |
 | Respirator | 1 | ea | $0.00 | $0.00 | on hand |  |
-| 3M 60923 organic vapour / acid gas P100, pair | 2 | pr | $31.49 | $62.98 | verified | envirosafetyproducts.com; cartridges expire - buy near the layup |
+| 3M 60923 organic vapour / acid gas P100, pair | 2 | pr | $18.39 | $36.78 | verified | $18.39/pr on Amazon against $31.49 at envirosafetyproducts. Cartridges EXPIRE - buy these near the layup, not with the rest of the order |
 | Acetone, 1 gal, cleanup | 1 | gal | $39.95 | $39.95 | verified |  |
 | Rosin paper roll, floor and bench | 1 | roll | $24.00 | $24.00 | estimate | absorbs instead of pooling. This is the actual upgrade over a tarp, and it is $24 |
 | Folding sawhorses, pair, 700 lb | 1 | pair | $39.99 | $39.99 | verified | ~30 in high. Racks buy height for planing, and this core comes machined - so they buy nothing here |
@@ -225,7 +226,7 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | Plastic sheeting + masking tape, bench protection | 1 | set | $20.00 | $20.00 | estimate |  |
 | Flex longboard sander, 16-1/2 x 2-3/4 | 1 | ea | $19.99 | $19.99 | verified | adjustable radius, hook-and-loop + PSA |
 | Adjustable hand sanding block | 1 | ea | $15.99 | $15.99 | verified | rails, nose, tail and anywhere the longboard will not reach |
-| **subtotal** | | | | **$295.76** | | |
+| **subtotal** | | | | **$269.56** | | |
 
 ## 11 Finishing
 
@@ -245,27 +246,27 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | Item | Qty | Unit | Unit $ | Ext $ | | Note |
 |---|---:|---|---:|---:|---|---|
 | Shipping - Divinycell, 6061 plate, VR20 | 1 | allow | $120.00 | $120.00 | estimate | STILL THE BIGGEST UNVERIFIED LINE - it wants three real carts to settle. Was $220 when it covered G10 sheet and hazmat epoxy, both of which are now out of the build entirely |
-| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $436.83 | $436.83 | verified |  |
-| **subtotal** | | | | **$556.83** | | |
+| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $429.16 | $429.16 | verified |  |
+| **subtotal** | | | | **$549.16** | | |
 
 ## Totals
 
 | | |
 |---|---:|
-| **Grand total, 2 boards** | **$7,717.36** |
-| Per board | $3,858.68 |
-| Of which verified | $6,836.76  (89%) |
-| Of which estimated | $880.60 |
+| **Grand total, 2 boards** | **$7,581.91** |
+| Per board | $3,790.95 |
+| Of which verified | $6,879.31  (91%) |
+| Of which estimated | $702.60 |
 
 ## What is a board, and what is a shop
 
-Some of the total above is not the cost of a board at all - it is tools, jigs and templates that exist afterwards and do not repeat. Splitting them out is the difference between "a board costs $3,859" and "a board costs $3,507 and I now own a vacuum rig, a crimper and a full template set".
+Some of the total above is not the cost of a board at all - it is tools, jigs and templates that exist afterwards and do not repeat. Splitting them out is the difference between "a board costs $3,791" and "a board costs $3,440 and I now own a vacuum rig, a crimper and a full template set".
 
 | | |
 |---|---:|
 | One-time tooling (incl. its share of tax) | $702.79 |
-| **Marginal cost of a board** | **$3,507.28** |
-| Cost of the NEXT board after these 2 | $3,507.28 |
+| **Marginal cost of a board** | **$3,439.56** |
+| Cost of the NEXT board after these 2 | $3,439.56 |
 
 | One-time item | $ |
 |---|---:|
