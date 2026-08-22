@@ -37,10 +37,10 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | E-glass 6 oz, 50in x 12ft, 2-pack | 2 | pack | $19.07 | $38.14 | verified | your receipt |
 | 1708 biax, 50in wide | 6 | yd | $12.50 | $75.00 | verified |  |
 | TotalBoat 5:1 quart FAST hardener, cold days | 1 | ea | $39.99 | $39.99 | estimate | min 40-45 F against slow's 60. In a cold shop this is the one that cures, and the cold gives the pot life back |
-| TotalBoat 5:1 gallon kit, slow hardener | 2 | kit | $159.99 | $319.98 | verified | 2.51 m2 laminate = 4.8 kg mixed = 1 kit/board |
+| TotalBoat 5:1 gallon kit, slow hardener | 2 | kit | $149.00 | $298.00 | verified | 2.51 m2 laminate = 4.8 kg mixed = 1 kit/board |
 | TotalBoat 5:1 quart kit, fillets and bonding | 1 | kit | $68.99 | $68.99 | verified |  |
-| TotalBoat silica thickener, large | 1 | ea | $27.99 | $27.99 | verified | fillets and structural bonding |
-| **subtotal** | | | | **$570.09** | | |
+| Fumed silica thickener | 0 | off | $0.00 | $0.00 | on hand | plenty on hand from V1 |
+| **subtotal** | | | | **$520.12** | | |
 
 ## 5  Vacuum bagging
 
@@ -209,7 +209,6 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 
 | Item | Qty | Unit | Unit $ | Ext $ | | Note |
 |---|---:|---|---:|---:|---|---|
-| TotalBoat flexible spreader set | 2 | set | $5.99 | $11.98 | verified |  |
 | Chip brushes and laminating roller | 1 | set | $22.00 | $22.00 | estimate |  |
 | Nitrile gloves, 100 pk | 2 | box | $12.00 | $24.00 | estimate |  |
 | Respirator | 1 | ea | $0.00 | $0.00 | on hand |  |
@@ -220,7 +219,7 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | Pipe lagging or carpet, sawhorse padding | 1 | set | $8.00 | $8.00 | estimate | bare sawhorse tops mark foam and wet laminate |
 | Plastic sheeting + masking tape, bench protection | 1 | set | $20.00 | $20.00 | estimate |  |
 | Sanding blocks + longboard for fairing | 1 | set | $30.00 | $30.00 | estimate |  |
-| **subtotal** | | | | **$277.91** | | |
+| **subtotal** | | | | **$265.93** | | |
 
 ## 11 Finishing
 
@@ -238,27 +237,27 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | Item | Qty | Unit | Unit $ | Ext $ | | Note |
 |---|---:|---|---:|---:|---|---|
 | Shipping - G10, Divinycell, epoxy hazmat | 1 | allow | $220.00 | $220.00 | estimate | heavy and hazmat lines |
-| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $449.25 | $449.25 | verified |  |
-| **subtotal** | | | | **$669.25** | | |
+| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $445.54 | $445.54 | verified |  |
+| **subtotal** | | | | **$665.54** | | |
 
 ## Totals
 
 | | |
 |---|---:|
-| **Grand total, 2 boards** | **$7,936.82** |
-| Per board | $3,968.41 |
-| Of which verified | $6,149.23  (77%) |
+| **Grand total, 2 boards** | **$7,871.16** |
+| Per board | $3,935.58 |
+| Of which verified | $6,083.57  (77%) |
 | Of which estimated | $1,787.59 |
 
 ## What is a board, and what is a shop
 
-Some of the total above is not the cost of a board at all - it is tools, jigs and templates that exist afterwards and do not repeat. Splitting them out is the difference between "a board costs $3,968" and "a board costs $3,595 and I now own a vacuum rig, a crimper and a full template set".
+Some of the total above is not the cost of a board at all - it is tools, jigs and templates that exist afterwards and do not repeat. Splitting them out is the difference between "a board costs $3,936" and "a board costs $3,562 and I now own a vacuum rig, a crimper and a full template set".
 
 | | |
 |---|---:|
 | One-time tooling (incl. its share of tax) | $747.71 |
-| **Marginal cost of a board** | **$3,594.55** |
-| Cost of the NEXT board after these 2 | $3,594.55 |
+| **Marginal cost of a board** | **$3,561.72** |
+| Cost of the NEXT board after these 2 | $3,561.72 |
 
 | One-time item | $ |
 |---|---:|

@@ -6,11 +6,10 @@ Grouped by where you buy it rather than by what it does, because that is the ord
 
 | Supplier | Lines | $ |
 |---|---:|---:|
+| Amazon | 57 | $1,894.99 |
 | Gong | 2 | $1,395.20 |
-| Amazon | 51 | $1,241.06 |
 | Flipsky | 3 | $1,038.00 |
-| Not a purchase - tax and freight | 3 | $917.25 |
-| TotalBoat | 8 | $715.88 |
+| Not a purchase - tax and freight | 3 | $913.54 |
 | Fibre Glast | 11 | $634.09 |
 | Home Depot / hardware | 19 | $463.95 |
 | Fiberglass Supply | 4 | $364.10 |
@@ -21,16 +20,7 @@ Grouped by where you buy it rather than by what it does, because that is the ord
 | 3M / auto parts | 3 | $102.98 |
 | Speedy Metals | 2 | $102.81 |
 | Sika / marine supplier | 2 | $52.00 |
-| **TOTAL** | | **$7,936.82** |
-
-## Gong
-
-https://www.gong-galaxy.com
-
-| Item | Qty | Unit | Ext | Price | Note |
-|---|---:|---|---:|---|---|
-| Gong Foil Setup X-Over V3 Atmo Perf Series - XL, Alu 85 | 2 | ea | $1,388.00 | **verified** | complete: FW + matched stab + V3 alu 85/17 mast + V3 MFC + fuselage + V3 top plate + all screws + foil bag. Cu |
-| M8 x 30 A4 mast bolts, spares | 8 | ea | $7.20 | estimate | Gong supplies its own; these are spares |
+| **TOTAL** | | **$7,871.16** |
 
 ## Amazon
 
@@ -38,15 +28,21 @@ https://www.amazon.com
 
 | Item | Qty | Unit | Ext | Price | Note |
 |---|---:|---|---:|---|---|
+| TotalBoat 5:1 gallon kit, slow hardener | 2 | kit | $298.00 | **verified** | 2.51 m2 laminate = 4.8 kg mixed = 1 kit/board |
+| TotalBoat Wet Edge topside paint, colour | 2 | kit | $107.98 | **verified** | one-part polyurethane, quart |
 | Charger 67.2 V 5 A, 16S  (NOT 58.8 V) | 2 | ea | $91.98 | **verified** | Amazon B0DK6FTB1P, aluminium case + fan |
+| TotalBoat TotalFair epoxy fairing compound | 2 | kit | $91.98 | **verified** | smallest kit, one per board |
 | ASA filament, printed module shell | 3 | kg | $72.00 | estimate | 4 L-pieces/board, ~1.13 kg of part + supports and brim; largest piece 226 x 146 fits the A1 bed |
+| TotalBoat 5:1 quart kit, fillets and bonding | 1 | kit | $68.99 | **verified** |  |
 | 5052 1/8in x 12 x 24, 2-pack - module floors | 1 | pk | $61.99 | **verified** | your Apr 2026 receipt (MorningRo/Huaiian). One sheet is one floor, so this pack does both boards |
 | Pure nickel 0.2 x 10 mm, 5 m roll | 4 | roll | $59.32 | **verified** |  |
 | VECOTOOLS 4.5 CFM single-stage pump, oil incl. | 1 | ea | $57.99 | **verified** | your listing, ASIN B0GZVLP3PL. Was a $139.99 Pittsburgh 2-stage plus $15 of oil - $97 for ultimate vacuum we m |
 | Traction pad, 3-piece | 2 | set | $49.90 | **verified** |  |
 | ASA filament, printed rim ring | 2 | kg | $48.00 | estimate | 6 dovetailed pieces/board at ~90% infill, 710 g of part each; PRINT SEAL FACE DOWN - the bed is flatter than a |
+| TotalBoat Premium Marine Topside Primer | 1 | kit | $46.99 | **verified** | one covers both |
 | 8 AWG silicone wire, 5 m red + 5 m black | 2 | set | $44.00 | estimate | motor supplies its own phase leads + bullets |
 | 25 mm webbing + ladder-lock buckles | 2 | set | $40.00 | estimate | 2 straps per board |
+| TotalBoat 5:1 quart FAST hardener, cold days | 1 | ea | $39.99 | estimate | min 40-45 F against slow's 60. In a cold shop this is the one that cures, and the cold gives the pot life back |
 | Hydraulic lug crimper, 6-70 mm2 | 1 | ea | $38.00 | estimate | one-time; this is what replaces soldering XT150s |
 | Heat shrink, Kapton, pack wrap | 2 | set | $36.00 | estimate |  |
 | Rotary-tool router base + collets, if needed | 1 | set | $35.00 | estimate | you have the tool; this is only if the base you have will not hold depth over the groove run |
@@ -90,9 +86,22 @@ https://www.amazon.com
 | M3 x 6 button head + M3 brass heat-set, nose cone | 8 | set | $4.00 | estimate |  |
 | M3 heat-set insert + M3 x 8 A4, port flange | 4 | set | $2.40 | estimate |  |
 
+## Gong
+
+https://www.gong-galaxy.com
+
+Gong only. One order, and the Atmo-vs-standard decision is still open pending Dallin.
+
+| Item | Qty | Unit | Ext | Price | Note |
+|---|---:|---|---:|---|---|
+| Gong Foil Setup X-Over V3 Atmo Perf Series - XL, Alu 85 | 2 | ea | $1,388.00 | **verified** | complete: FW + matched stab + V3 alu 85/17 mast + V3 MFC + fuselage + V3 top plate + all screws + foil bag. Cu |
+| M8 x 30 A4 mast bolts, spares | 8 | ea | $7.20 | estimate | Gong supplies its own; these are spares |
+
 ## Flipsky
 
 https://flipsky.net
+
+Some Flipsky appears on Amazon but the range is thin and usually dearer. Buy direct.
 
 | Item | Qty | Unit | Ext | Price | Note |
 |---|---:|---|---:|---|---|
@@ -104,28 +113,15 @@ https://flipsky.net
 
 | Item | Qty | Unit | Ext | Price | Note |
 |---|---:|---|---:|---|---|
-| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $449.25 | **verified** |  |
+| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $445.54 | **verified** |  |
 | Gong shipping to Idaho, per foil | 2 | ea | $248.00 | **verified** | 115.50 EUR on order 252112; charged per ORDER, so putting both boards' foils in ONE order saves about $124 |
 | Shipping - G10, Divinycell, epoxy hazmat | 1 | allow | $220.00 | estimate | heavy and hazmat lines |
-
-## TotalBoat
-
-https://www.totalboat.com
-
-| Item | Qty | Unit | Ext | Price | Note |
-|---|---:|---|---:|---|---|
-| TotalBoat 5:1 gallon kit, slow hardener | 2 | kit | $319.98 | **verified** | 2.51 m2 laminate = 4.8 kg mixed = 1 kit/board |
-| TotalBoat Wet Edge topside paint, colour | 2 | kit | $107.98 | **verified** | one-part polyurethane, quart |
-| TotalBoat TotalFair epoxy fairing compound | 2 | kit | $91.98 | **verified** | smallest kit, one per board |
-| TotalBoat 5:1 quart kit, fillets and bonding | 1 | kit | $68.99 | **verified** |  |
-| TotalBoat Premium Marine Topside Primer | 1 | kit | $46.99 | **verified** | one covers both |
-| TotalBoat 5:1 quart FAST hardener, cold days | 1 | ea | $39.99 | estimate | min 40-45 F against slow's 60. In a cold shop this is the one that cures, and the cold gives the pot life back |
-| TotalBoat silica thickener, large | 1 | ea | $27.99 | **verified** | fillets and structural bonding |
-| TotalBoat flexible spreader set | 2 | set | $11.98 | **verified** |  |
 
 ## Fibre Glast
 
 https://www.fibreglast.com
+
+**Amazon carries all of this** - bagging film, peel ply, breather, sealant tape, gauges. Prices here are Fibre Glast list; check Amazon before ordering, it is usually close and ships faster.
 
 | Item | Qty | Unit | Ext | Price | Note |
 |---|---:|---|---:|---|---|
@@ -171,6 +167,8 @@ https://www.homedepot.com
 
 https://fiberglasssupply.com
 
+**NOT on Amazon.** Divinycell in sheet form is a composites-supplier item. These are verified part numbers - just order them.
+
 | Item | Qty | Unit | Ext | Price | Note |
 |---|---:|---|---:|---|---|
 | EPS rigid foam 2in x 48in x 8ft (HD 202532856) | 4 | sheet | $110.72 | **verified** | HD Meridian, 30 in stock, aisle 29 bay 020; $23.53 at 32+. EPS, not the XPS V1 used - deliberate, ~$90 cheaper |
@@ -182,6 +180,8 @@ https://fiberglasssupply.com
 
 https://batteryint.com
 
+**Amazon carries DALY.** Check the price, but confirm it is the 16S 150A and <= 164 x 66 x 21 - the module is laid out around that size.
+
 | Item | Qty | Unit | Ext | Price | Note |
 |---|---:|---|---:|---|---|
 | DALY Smart BMS Li-ion 16S 60V 150A | 2 | ea | $318.00 | **verified** | batteryint.com; confirm it is <= 164 x 66 x 21 mm |
@@ -190,12 +190,16 @@ https://batteryint.com
 
 https://batteryhookup.com
 
+**Do NOT substitute.** The $260 case is 130 surplus cells at $2 each; Amazon 21700s are ~$6. That single line is worth ~$500 of the build.
+
 | Item | Qty | Unit | Ext | Price | Note |
 |---|---:|---|---:|---|---|
 | BAK N21700CG-50, 130-cell case (BatteryHookup) | 1 | case | $260.00 | **verified** | new overstock |
 | BAK N21700CG-50 singles, spares | 15 | ea | $37.50 | **verified** | 7% margin on a spot-welded pack |
 
 ## Maker Shop Boise
+
+Unresolved - two emails unanswered. Phone (208) 254-6151, or the EPS core goes to a shaping service or gets hand-shaped.
 
 | Item | Qty | Unit | Ext | Price | Note |
 |---|---:|---|---:|---|---|
@@ -216,6 +220,8 @@ https://batteryhookup.com
 
 ## 3M / auto parts
 
+**On Amazon**, and usually cheaper than the auto parts counter.
+
 | Item | Qty | Unit | Ext | Price | Note |
 |---|---:|---|---:|---|---|
 | 3M 60923 organic vapour / acid gas P100, pair | 2 | pr | $62.98 | **verified** | envirosafetyproducts.com; cartridges expire - buy near the layup |
@@ -226,6 +232,8 @@ https://batteryhookup.com
 
 https://www.speedymetals.com/p-2411-12-6061-t651-aluminum-plate.aspx
 
+**Amazon carries 6061 plate** - you bought the 5052 there. Speedy is $88.92 for 12x18 and cuts to size; worth comparing.
+
 | Item | Qty | Unit | Ext | Price | Note |
 |---|---:|---|---:|---|---|
 | 6061-T651 1/2in x 12 x 18 - mast plates | 1 | sheet | $88.92 | **verified** | speedymetals.com 61p.5; both plates nest, 2 x 6.89in of 18, 4.2 spare. Saw-cut edge, +/-1/4in - profile it you |
@@ -234,6 +242,8 @@ https://www.speedymetals.com/p-2411-12-6061-t651-aluminum-plate.aspx
 ## Sika / marine supplier
 
 https://usa.sika.com
+
+**On Amazon.** Sikaflex-252 and Primer-206 both list there.
 
 | Item | Qty | Unit | Ext | Price | Note |
 |---|---:|---|---:|---|---|
