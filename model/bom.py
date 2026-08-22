@@ -908,7 +908,7 @@ def build():
         1, "ea", 12.00, EST)
 
     # ------------------------------------------------------------ 10 foil
-    # Derek's own foil is X-Over V2 (order 252112, 480.51 EUR delivered on
+    # Derek's own foil is X-Over V2 (480.51 EUR delivered on
     # sale). The V2 front wing and stab are now OUT OF STOCK IN EVERY SIZE -
     # Gong has moved to V3, then to V3 Atmo - so the two new boards cannot
     # repeat that order.

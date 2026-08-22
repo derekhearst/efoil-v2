@@ -38,7 +38,7 @@ a wrong swatch.
 
 ## Foil
 
-The foil is **the one Derek actually owns** — Gong order 252112, 11 Apr 2026.
+The foil is **the one Derek actually owns** — bought Apr 2026.
 It is modelled so ride height, prop clearance and the mast bolt pattern can be
 checked against the board rather than taken on trust. The *sections* are still
 NACA-symmetric stand-ins, not Gong's actual profiles, but every dimension below

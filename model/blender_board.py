@@ -1836,7 +1836,7 @@ def prism(name, poly, z0, z1, coll, mat=None):
 
 
 # ------------------------------------------------------------------- foil
-# THE FOIL DEREK ACTUALLY OWNS. Gong order 252112, 11 Apr 2026:
+# THE FOIL DEREK ACTUALLY OWNS, bought Apr 2026:
 #   Foil Front Wing X-Over V2 - XL      Foil Stab X-Over V2 - 48 cm
 #   Foil Pro Alu V2 fuselage - Regular  Foil Alu Mast V2 - 85 cm
 #   Allvator V2 mast/fuselage connector + Top Plate Alu V2 + M6 screw kit
