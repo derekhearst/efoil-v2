@@ -465,26 +465,37 @@ def build(p):
             py, pz = y, z
         return tot
 
-    STN = 90
+    STN = 110
     LIDIN = p["LID_PAD_INSET"]
     _lc = p["CAV_LAM"] + 1.5
+    GAP = p["DECK_PAD_GAP"]
+    CR = p["DECK_PAD_CORNER_R"]
+    SLOPE = p["DECK_PAD_MAX_SLOPE"]
+    aft_x1 = p["CAV_X0"] - RIM_W - GAP
+    fwd_x0 = p["CAV_X1"] + RIM_W + GAP
     lx0 = p["CAV_X0"] - RIM_W + _lc + LIDIN
     lx1 = p["CAV_X1"] + RIM_W - _lc - LIDIN
     lhy = p["CAV_WIDTH"] / 2 + RIM_W - 1.5 - LIDIN
     lr = max(0.0, p["CAV_CORNER_R"] + RIM_W - 1.5 - LIDIN)
-    SLOPE = p["DECK_PAD_MAX_SLOPE"]
 
-    def _edge(x):
-        hwv = hwf(x / LEN)
-        prev, y = 0.0, 0.0
-        while y < hwv - 1.0:
-            y2 = min(y + 2.0, hwv - 1.0)
-            if math.degrees(math.atan2(abs(dz(x, y2) - dz(x, y)),
-                                       y2 - y)) > SLOPE:
-                return prev
-            prev = y2
-            y = y2
-        return prev
+    def _edge(x, tol=0.25):
+        """Bisect to the slope limit - stepping quantises the cut line."""
+        hwv = hwf(x / LEN) - 1.0
+
+        def sl(y):
+            y0, y1 = max(0.0, y - 1.0), min(hwv, y + 1.0)
+            return math.degrees(math.atan2(abs(dz(x, y1) - dz(x, y0)),
+                                           max(1e-6, y1 - y0)))
+        if sl(hwv) <= SLOPE:
+            return hwv
+        lo, hi = 0.0, hwv
+        while hi - lo > tol:
+            mid = (lo + hi) / 2.0
+            if sl(mid) <= SLOPE:
+                lo = mid
+            else:
+                hi = mid
+        return lo
 
     def _tap(x):
         f = 1.0
@@ -498,37 +509,44 @@ def build(p):
             f = min(f, 1.0 - (1.0 - p["DECK_PAD_TAIL_F"]) * t * t)
         return f
 
-    def _lid_half(x):
-        d = min(x - lx0, lx1 - x)
-        if d >= lr:
-            return lhy
-        return lhy - lr + math.sqrt(max(0.0, lr * lr - (lr - d) ** 2))
+    def _rounded(fn, x0, x1, r0, r1):
+        def f(x):
+            h = fn(x)
+            for d, r in ((x - x0, r0), (x1 - x, r1)):
+                if r > 0.0 and d < r:
+                    d = max(0.0, d)
+                    h = min(h, h - r + math.sqrt(max(0.0, r * r - (r - d) ** 2)))
+            return h
+        return f
 
     def _flat(x_lo, x_hi, half_f):
-        """Symmetric flat pattern: developed half width either side of centre."""
+        """Symmetric flat pattern - developed half width either side of centre."""
         up, dn = [], []
         for i in range(STN + 1):
             x = x_lo + (x_hi - x_lo) * i / STN
             hy = half_f(x)
-            if hy <= 1.0:
+            if hy <= 0.5:
                 continue
             w = _arc(x, 0.0, hy)
             up.append((x - x_lo, w))
             dn.append((x - x_lo, -w))
         return (up + list(reversed(dn))) if up else None
 
-    deck_pat = _flat(PX0, PX1, lambda x: _edge(x) * _tap(x))
-    lid_pat = _flat(lx0, lx1, _lid_half)
+    def _base(x):
+        return _edge(x) * _tap(x)
+
+    pieces = [
+        ("lid", _flat(lx0, lx1, _rounded(lambda _x: lhy, lx0, lx1, lr, lr))),
+        ("fwd", _flat(fwd_x0, PX1, _rounded(_base, fwd_x0, PX1, CR, CR))),
+        ("aft", _flat(PX0, aft_x1, _rounded(_base, PX0, aft_x1, CR, CR))),
+    ]
 
     d = Dxf()
     d.poly([(0, 0), (SHT_L, 0), (SHT_L, SHT_W), (0, SHT_W), (0, 0)],
            layer="CHANNEL")
-    # SIDE BY SIDE, not stacked. The two pieces are 890 x 446 and 537 x 334;
-    # stacking them needs 786 mm of sheet width and there is 600, while laying
-    # them along the roll needs 1433 mm of the 2400 available.
-    KERF = 6.0
+    KERF = 8.0
     x_cur, placed, spill = 0.0, 0, 0
-    for pat in (deck_pat, lid_pat):
+    for _nm, pat in pieces:
         if not pat:
             continue
         w = max(q[0] for q in pat) - min(q[0] for q in pat)
@@ -541,29 +559,31 @@ def build(p):
                [(pat[0][0] + x_cur, pat[0][1] - lo)])
         x_cur += w + KERF
         placed += 1
-    sheet_use = 100.0 * x_cur / SHT_L
+    use = 100.0 * x_cur / SHT_L
     add("15_deck_pad_nest", "EVA sheet 2400 x 600", p["DECK_PAD_T"], 1, d,
         SHT_L, SHT_W,
         f"CUTTING PATTERN, not a machined part - knife and a straightedge. "
-        f"{placed} pieces for ONE BOARD, using {sheet_use:.0f}% of the roll"
+        f"{placed} pieces for ONE BOARD"
         + (f", {spill} SPILLED to a second sheet" if spill else "")
-        + ": the deck in one piece and the lid in one piece. "
-        f"NOT PANELLED - seams land in the middle of where you stand, and "
-        f"every seam is an edge that lifts and packs with grit. "
-        f"WIDTHS ARE DEVELOPED (arc across the crown), not projected. The "
-        f"deck arc runs ~8.6% longer than its flat shadow, so a projected "
-        f"outline finishes ~20 mm short of where it was drawn. With no seams "
-        f"to absorb the variation along the board, that slack goes into "
-        f"stretch and into trimming AT THE RAIL - so CUT LONG AND TRIM ON "
-        f"THE BOARD, and work from the centreline outward. "
-        f"The edge follows the {SLOPE:.0f} deg deck slope so the pad stays on "
-        f"TOP and never turns down the rail; on this board that leaves about "
-        f"55 mm of bare rail, which is where the top actually ends rather "
-        f"than a margin being timid. "
-        f"THE LID PIECE HAS RADIUSED CORNERS matching the lid - a square "
-        f"corner on a radiused lid is four spikes of pad overhanging nothing, "
-        f"and a corner is where lifting starts. It is inset {LIDIN:.0f} mm so "
-        f"the 12 M5 bolt heads stay exposed. "
+        + f", using {use:.0f}% of the roll: one aft of the hatch, one forward "
+        f"of it, one on the lid. "
+        f"NOT PANELLED - seams land where you stand and every seam is an edge "
+        f"that lifts and packs with grit. Three pieces only because the hatch "
+        f"occupies the middle 600 mm and there is no continuous path past it. "
+        f"NOTHING RUNS UP THE SIDES of the hatch: those 27 mm slivers were "
+        f"outboard of the lid pad and bought four more lifting edges for "
+        f"nothing. "
+        f"ALL CORNERS RADIUSED {CR:.0f} mm (lid {lr:.0f} mm, matching the lid "
+        f"itself). A square corner on 5.8 mm self-adhesive sheet is the first "
+        f"place it peels and a snag underfoot besides. "
+        f"WIDTHS ARE DEVELOPED - the arc across the crown, not the flat "
+        f"shadow, which runs ~8.6% short. The outline is bisected to the "
+        f"{SLOPE:.0f} deg slope limit rather than stepped to it; stepping "
+        f"quantises the cut line to a visible staircase. "
+        f"That slope limit is what keeps the pad ON TOP - about 55 mm of bare "
+        f"rail, which is where the top of this board ends, not a shy margin. "
+        f"Lid piece inset {LIDIN:.0f} mm so the 12 M5 bolt heads stay exposed. "
+        f"CUT LONG AND TRIM ON THE BOARD, working from the centreline out. "
         f"The CHANNEL outline is the sheet edge.")
 
     # Template 15 (module seal groove) IS GONE. There is no module groove any
@@ -681,9 +701,56 @@ def write_cut_list(parts, rows, L, p):
               "| `CUT` | through profile |",
               "| `HOLES` | drill / bore, diameter as drawn |",
               "| `CHANNEL` | placement line for the gasket lane — not a cut |",
-              "", "## EPS core — station table", "",
-              "Cut in two halves, seam at "
-              f"{p['SEAM_X']:.0f} mm. Width and thickness are the finished "
+              "", "## EPS core — FOUR pieces, two splits", "",
+              "The core is cut in **four** pieces, not two, because it is "
+              "bounded on two different axes:", "",
+              "| Split | Why | Number |",
+              "|---|---|---|",
+              f"| Vertical at x = {p['SEAM_X']:.0f} | bed is "
+              f"{p['CNC_BED_X']:.0f} mm long, board is {p['LENGTH']:.0f} | "
+              f"{p['SEAM_X']:.0f} + {p['LENGTH']-p['SEAM_X']:.0f} |",
+              f"| Horizontal at z = "
+              f"{p['CNC_SUBSTACK_LAYERS']*p['EPS_SHEET_T']:.1f} | gantry is "
+              f"{p['CNC_BED_Z']:.1f} mm, GLUED STACK is "
+              f"{p['EPS_LAYERS']*p['EPS_SHEET_T']:.1f} | 2 layers + 2 layers |",
+              "",
+              "**The horizontal split is the one that is easy to miss.** The "
+              "height that has to pass under the gantry is not the finished "
+              "envelope of the board - it is the GLUED STACK it is carved "
+              f"from, {p['EPS_LAYERS']*p['EPS_SHEET_T']:.1f} mm, before a "
+              f"chip is cut. Against {p['CNC_BED_Z']:.1f} mm of Z that is a "
+              f"{p['EPS_LAYERS']*p['EPS_SHEET_T']-p['CNC_BED_Z']:.0f} mm "
+              "overshoot, not a near miss.",
+              "",
+              "So **machine the halves and bond last**, rather than gluing the "
+              "stack and then carving it:", "",
+              "| Piece | Layers | What gets cut |",
+              "|---|---|---|",
+              "| `*_Lower` | 1 + 2 | rocker and mast pocket on the underside; "
+              "**lower** half of the cavity pocketed into the top face |",
+              "| `*_Upper` | 3 + 4 | deck crown on the top face; **upper** "
+              "half of the cavity cut straight through |",
+              "",
+              f"Nothing goes under the gantry taller than "
+              f"{p['CNC_SUBSTACK_LAYERS']*p['EPS_SHEET_T']:.1f} mm. Two things "
+              "fall out for free: the deepest single pocket drops from ~124 mm "
+              "(which would want a ~130 mm cutter that does not exist in "
+              "1/2 in for foam at sane money) to about 77 mm, and the 203 mm "
+              "stack stops being an awkward thing to square up on a bed with "
+              "24.8 mm of side clearance.",
+              "",
+              "Cost is one full-area glue line at mid-thickness, in EPS, where "
+              "the skins carry the load - and the board already has three such "
+              "lines between its four layers. This promotes one to the "
+              "assembly joint. Alignment is the dowel-pin fixture already on "
+              "the list for two-sided registration.",
+              "",
+              "Bond order: **mid-plane first** (Lower to Upper, each side of "
+              "the seam), which gives two full-thickness halves you can handle "
+              "on a bench; then butt those at the vertical seam.",
+              "",
+              "### Station table", "",
+              "Width and thickness are the finished "
               "hull; rocker is the bottom's rise above the datum plane.", "",
               "| Station (mm) | Width | Thickness | Rocker |",
               "|---|---|---|---|"]
@@ -692,24 +759,34 @@ def write_cut_list(parts, rows, L, p):
 
     lines += ["", "## Two-day plan", "",
               "**Day 1 — before layup**", "",
-              "1. EPS core, two halves (3D, both faces)",
-              "2. Cavity caul (13)",
-              "3. G10 flat parts (1, 4–9, 12) — nest 1 + 12 + 8 + 9 on one "
-              "3/8\" sheet",
-              "4. H80 lid cores (3, 11)", "",
+              "1. EPS core — **4 pieces, 8 setups**: Aft/Fwd x Lower/Upper, "
+              "each face. None taller than "
+              f"{p['CNC_SUBSTACK_LAYERS']*p['EPS_SHEET_T']:.1f} mm",
+              "2. Bond mid-plane (Lower+Upper), then butt at the vertical seam",
+              "3. Cavity caul (13)",
+              "4. Aluminium flat parts (4 module floor, 12 mast plate)",
+              "5. H80 lid cores (3, 11)", "",
               "**Day 2 — after layup**", "",
               "5. Trim the cured sandwich lids to net profile (2, 10)",
               "6. Face the hatch lid underside flat in the same setup",
               "7. Drill lid bolt clearance off the installed inserts", "",
               "## Before booking", "",
-              "- Will they allow **EPS** dust?",
-              "- Will they allow **G10** dust? It is abrasive and a "
-              "respiratory hazard; many shops ban it. If banned, part 1 "
-              "(rim ring) is the one that must be job-shopped — everything "
-              "else can be hand-cut from sheet.",
-              "- Bed must clear "
-              f"{max(p['SEAM_X'], p['LENGTH']-p['SEAM_X']):.0f} mm for the "
-              "longer core half."]
+              "- Will they allow **EPS** dust? Still unanswered, and it is "
+              "a woodworking shop with no published material policy. This is "
+              "the one that can stop the booking.",
+              "- **Gantry clearance?** Now a nice-to-know rather than a "
+              f"blocker: the split sequence needs only ~"
+              f"{p['CNC_SUBSTACK_LAYERS']*p['EPS_SHEET_T']+10:.0f} mm. If they "
+              "say 180+, the mid-plane bond can be skipped and the core goes "
+              "back to two pieces.",
+              "- G10 is **no longer a question** — there is none in the build.",
+              "- Bed clears the longer half already: "
+              f"{max(p['SEAM_X'], p['LENGTH']-p['SEAM_X']):.0f} mm of "
+              f"{p['CNC_BED_X']:.0f}, and "
+              f"{p['WIDTH']:.0f} mm of {p['CNC_BED_Y']:.0f} across — but that "
+              "leaves only "
+              f"{(p['CNC_BED_Y']-p['WIDTH'])/2:.1f} mm a side, so it has to be "
+              "taped or vac-held, not clamped from the edges."]
     with open(os.path.join(OUT, "cut-list.md"), "w", encoding="utf-8") as fh:
         fh.write("\n".join(lines) + "\n")
 

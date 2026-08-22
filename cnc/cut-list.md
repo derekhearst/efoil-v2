@@ -18,7 +18,7 @@ Board 1400 x 560 x 153.8 mm · cavity 525 x 319 x 97 mm
 | 8 | `12_mast_plate.dxf` | 6061-T651 aluminium | 12.7 | 1 | 250 x 175 | 1/2in 6061-T651, NOT 3/4in G10, and NOT bushed. 4 x M8 TAPPED 10 mm BLIND from the PAD FACE (the wetted underside), leaving 2.7 mm of solid aluminium above so the plate stays watertight. Tap drill 6.8 mm. Bolt pattern 165 x 90 - UNVERIFIED, check against a real Gong plate before drilling. This is no longer a CNC part: a 250 x 175 rectangle and four tapped holes is bandsaw and drill-press work. 6061 shears at ~207 MPa against G10's ~55, so the tapped thread (136 mm2, 17.7 kN) beats the O20 bonded bushing it replaced and the M8 bolt itself becomes the weak link - which is where you want it. TEF-GEL EVERY BOLT: aluminium plate, A4 stainless bolts, wet cavity. That is the whole galvanic mitigation and it is not optional. Nest both plates on one 12x18 sheet: 2 x 6.89in of the 18in length, 4.2in spare. |
 | 9 | `13_cavity_caul.dxf` | EPS offcut | 93.6 | 1 | 524 x 318 | EPS, not MDF - it only has to transmit bag pressure, and at 7 inHg that is 24 kPa against EPS's 150 kPa crush, 6x, deflecting 0.2 mm over its 90 mm depth. MDF was over-specifying a pusher. BEST CASE IT IS FREE: if the CNC PROFILES the cavity rather than pocketing it to chips, the plug that drops out IS this part, already the right shape - just skim it undersize. Release-taped or waxed. Supports the deck skin during bagging, then presses the cavity laminate into the corners. 0.5 mm under size per side. Break its own edges to the cavity's R10 or it will not seat. |
 | 10 | `14_groove_guide.dxf` | MDF 12 mm - FALLBACK ONLY | 12.0 | 1 | 593 x 387 | PROBABLY NOT NEEDED. Print the filler strip 0.5 mm PROUD of the ring face and the glass drapes over a 4 mm ridge you can see and feel. Then the job is just SANDING THE RING FACE FLAT - which that face needs anyway, since it is the seal land and the lid has to bottom evenly on it. The ridge sands through first, the filler shows as a line along the whole groove, and you pick it out. No cutter, no guide, no template on a finished board. Cut this only if you would rather route it. Opens the seal groove AFTER glassing. Use a 2.5 mm cutter in the 4 mm groove - 0.75 mm of lateral slop each side before it can touch the sealing land. Set depth to just break into the filler; you will feel it go soft. Then pick the filler out and the PRINTED walls are the finished groove. THEN WET THE GROOVE OUT WITH NEAT EPOXY and let it cure before the cord goes in. Routing through the laminate leaves cut glass fibre ends in the groove's top edge, in the seal itself - the same path that flooded V1's cavity. Silicone adhesive does not stop a wick; epoxy does. Opening offset 5 mm for a guide bushing - RE-CHECK against your own. The CHANNEL outline is the rim ring's outer edge, for registering. |
-| 11 | `15_deck_pad_nest.dxf` | EVA sheet 2400 x 600 | 5.8 | 1 | 2400 x 600 | CUTTING PATTERN, not a machined part - knife and a straightedge. 2 pieces for ONE BOARD, using 60% of the roll: the deck in one piece and the lid in one piece. NOT PANELLED - seams land in the middle of where you stand, and every seam is an edge that lifts and packs with grit. WIDTHS ARE DEVELOPED (arc across the crown), not projected. The deck arc runs ~8.6% longer than its flat shadow, so a projected outline finishes ~20 mm short of where it was drawn. With no seams to absorb the variation along the board, that slack goes into stretch and into trimming AT THE RAIL - so CUT LONG AND TRIM ON THE BOARD, and work from the centreline outward. The edge follows the 30 deg deck slope so the pad stays on TOP and never turns down the rail; on this board that leaves about 55 mm of bare rail, which is where the top actually ends rather than a margin being timid. THE LID PIECE HAS RADIUSED CORNERS matching the lid - a square corner on a radiused lid is four spikes of pad overhanging nothing, and a corner is where lifting starts. It is inset 25 mm so the 12 M5 bolt heads stay exposed. The CHANNEL outline is the sheet edge. |
+| 11 | `15_deck_pad_nest.dxf` | EVA sheet 2400 x 600 | 5.8 | 1 | 2400 x 600 | CUTTING PATTERN, not a machined part - knife and a straightedge. 3 pieces for ONE BOARD, using 35% of the roll: one aft of the hatch, one forward of it, one on the lid. NOT PANELLED - seams land where you stand and every seam is an edge that lifts and packs with grit. Three pieces only because the hatch occupies the middle 600 mm and there is no continuous path past it. NOTHING RUNS UP THE SIDES of the hatch: those 27 mm slivers were outboard of the lid pad and bought four more lifting edges for nothing. ALL CORNERS RADIUSED 45 mm (lid 30 mm, matching the lid itself). A square corner on 5.8 mm self-adhesive sheet is the first place it peels and a snag underfoot besides. WIDTHS ARE DEVELOPED - the arc across the crown, not the flat shadow, which runs ~8.6% short. The outline is bisected to the 30 deg slope limit rather than stepped to it; stepping quantises the cut line to a visible staircase. That slope limit is what keeps the pad ON TOP - about 55 mm of bare rail, which is where the top of this board ends, not a shy margin. Lid piece inset 25 mm so the 12 M5 bolt heads stay exposed. CUT LONG AND TRIM ON THE BOARD, working from the centreline out. The CHANNEL outline is the sheet edge. |
 
 ## Stock
 
@@ -37,9 +37,33 @@ Board 1400 x 560 x 153.8 mm · cavity 525 x 319 x 97 mm
 | `HOLES` | drill / bore, diameter as drawn |
 | `CHANNEL` | placement line for the gasket lane — not a cut |
 
-## EPS core — station table
+## EPS core — FOUR pieces, two splits
 
-Cut in two halves, seam at 1030 mm. Width and thickness are the finished hull; rocker is the bottom's rise above the datum plane.
+The core is cut in **four** pieces, not two, because it is bounded on two different axes:
+
+| Split | Why | Number |
+|---|---|---|
+| Vertical at x = 1030 | bed is 1210 mm long, board is 1400 | 1030 + 370 |
+| Horizontal at z = 101.6 | gantry is 149.9 mm, GLUED STACK is 203.2 | 2 layers + 2 layers |
+
+**The horizontal split is the one that is easy to miss.** The height that has to pass under the gantry is not the finished envelope of the board - it is the GLUED STACK it is carved from, 203.2 mm, before a chip is cut. Against 149.9 mm of Z that is a 53 mm overshoot, not a near miss.
+
+So **machine the halves and bond last**, rather than gluing the stack and then carving it:
+
+| Piece | Layers | What gets cut |
+|---|---|---|
+| `*_Lower` | 1 + 2 | rocker and mast pocket on the underside; **lower** half of the cavity pocketed into the top face |
+| `*_Upper` | 3 + 4 | deck crown on the top face; **upper** half of the cavity cut straight through |
+
+Nothing goes under the gantry taller than 101.6 mm. Two things fall out for free: the deepest single pocket drops from ~124 mm (which would want a ~130 mm cutter that does not exist in 1/2 in for foam at sane money) to about 77 mm, and the 203 mm stack stops being an awkward thing to square up on a bed with 24.8 mm of side clearance.
+
+Cost is one full-area glue line at mid-thickness, in EPS, where the skins carry the load - and the board already has three such lines between its four layers. This promotes one to the assembly joint. Alignment is the dowel-pin fixture already on the list for two-sided registration.
+
+Bond order: **mid-plane first** (Lower to Upper, each side of the seam), which gives two full-thickness halves you can handle on a bench; then butt those at the vertical seam.
+
+### Station table
+
+Width and thickness are the finished hull; rocker is the bottom's rise above the datum plane.
 
 | Station (mm) | Width | Thickness | Rocker |
 |---|---|---|---|
@@ -89,10 +113,11 @@ Cut in two halves, seam at 1030 mm. Width and thickness are the finished hull; r
 
 **Day 1 — before layup**
 
-1. EPS core, two halves (3D, both faces)
-2. Cavity caul (13)
-3. G10 flat parts (1, 4–9, 12) — nest 1 + 12 + 8 + 9 on one 3/8" sheet
-4. H80 lid cores (3, 11)
+1. EPS core — **4 pieces, 8 setups**: Aft/Fwd x Lower/Upper, each face. None taller than 101.6 mm
+2. Bond mid-plane (Lower+Upper), then butt at the vertical seam
+3. Cavity caul (13)
+4. Aluminium flat parts (4 module floor, 12 mast plate)
+5. H80 lid cores (3, 11)
 
 **Day 2 — after layup**
 
@@ -102,6 +127,7 @@ Cut in two halves, seam at 1030 mm. Width and thickness are the finished hull; r
 
 ## Before booking
 
-- Will they allow **EPS** dust?
-- Will they allow **G10** dust? It is abrasive and a respiratory hazard; many shops ban it. If banned, part 1 (rim ring) is the one that must be job-shopped — everything else can be hand-cut from sheet.
-- Bed must clear 1030 mm for the longer core half.
+- Will they allow **EPS** dust? Still unanswered, and it is a woodworking shop with no published material policy. This is the one that can stop the booking.
+- **Gantry clearance?** Now a nice-to-know rather than a blocker: the split sequence needs only ~112 mm. If they say 180+, the mid-plane bond can be skipped and the core goes back to two pieces.
+- G10 is **no longer a question** — there is none in the build.
+- Bed clears the longer half already: 1030 mm of 1210, and 560 mm of 610 across — but that leaves only 24.8 mm a side, so it has to be taped or vac-held, not clamped from the edges.

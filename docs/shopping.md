@@ -6,17 +6,17 @@ Grouped by where you buy it rather than by what it does, because that is the ord
 
 | Supplier | Lines | $ |
 |---|---:|---:|
-| Amazon | 108 | $3,475.48 |
+| Amazon | 108 | $3,421.34 |
 | Gong | 1 | $1,404.00 |
 | Flipsky | 3 | $1,038.00 |
-| Not a purchase - tax and freight | 3 | $827.65 |
+| Not a purchase - tax and freight | 3 | $824.41 |
 | BatteryHookup | 2 | $297.50 |
 | Fiberglass Supply | 3 | $253.38 |
 | Home Depot / hardware | 4 | $169.16 |
 | Maker Shop Boise | 1 | $150.00 |
 | Speedy Metals | 1 | $88.92 |
 | Easy Composites | 1 | $52.00 |
-| **TOTAL** | | **$7,756.09** |
+| **TOTAL** | | **$7,698.71** |
 
 ## Amazon
 
@@ -27,7 +27,6 @@ https://www.amazon.com
 | [TotalBoat 5:1 gallon kit, slow hardener](https://www.amazon.com/dp/B00HR8515C) | 2 | kit | $299.98 | **verified** | 2.51 m2 laminate = 4.8 kg mixed = 1 kit/board |
 | [DALY Smart BMS Li-ion 16S 60V 150A](https://www.amazon.com/dp/B0CXXFQT9S) | 2 | ea | $295.40 | **verified** | batteryint.com; confirm it is <= 164 x 66 x 21 mm |
 | [Peel ply, 60in](https://www.amazon.com/dp/B0H5JTMTZ3) | 6 | yd | $113.94 | **verified** | was only in the starter kit, and one kit's worth does not cover 6.12 m2 of part |
-| [FOCEAN EVA deck sheet 2400 x 600 x 5.8](https://www.amazon.com/dp/B0BTLW75FL) | 2 | sheet | $108.28 | **verified** | 2 pieces a board (deck + lid), nested side by side on 60% of one roll. Self-adhesive EVA, 55 shore. CUT LONG A |
 | [TotalBoat Wet Edge topside paint, colour](https://www.amazon.com/dp/B00HQP5D9A) | 2 | kit | $107.98 | **verified** | one-part polyurethane, quart |
 | [Charger 67.2 V 5 A, 16S  (NOT 58.8 V)](https://www.amazon.com/dp/B0DK6FTB1P) | 2 | ea | $91.98 | **verified** | Amazon B0DK6FTB1P, aluminium case + fan |
 | [TotalBoat TotalFair epoxy fairing compound](https://www.amazon.com/dp/B00S9RBWIA) | 2 | kit | $91.98 | **verified** | smallest kit, one per board |
@@ -40,6 +39,7 @@ https://www.amazon.com
 | [Pure nickel 0.2 x 10 mm, 5 m roll](https://www.amazon.com/dp/B0961Q1VVR) | 4 | roll | $59.96 | **verified** |  |
 | [TotalBoat 5:1 quart kit, fillets and bonding](https://www.amazon.com/dp/B00HR8517A) | 1 | kit | $58.99 | **verified** |  |
 | [VECOTOOLS 4.5 CFM single-stage pump, oil incl.](https://www.amazon.com/dp/B0GZVLP3PL) | 1 | ea | $57.99 | **verified** | your listing, ASIN B0GZVLP3PL. Was a $139.99 Pittsburgh 2-stage plus $15 of oil - $97 for ultimate vacuum we m |
+| [FOCEAN EVA deck sheet 2400 x 600 x 5.8](https://www.amazon.com/dp/B0BTLW75FL) | 1 | sheet | $54.14 | **verified** | 3 pieces a board - aft of the hatch, forward of it, and one on the lid - using 846 mm of the 2400 roll each. S |
 | [ASA filament, printed rim ring](https://www.amazon.com/dp/B09DKPYYBP) | 2 | kg | $48.98 | **verified** | 6 dovetailed pieces/board at ~90% infill, 710 g of part each; PRINT SEAL FACE DOWN - the bed is flatter than a |
 | [TotalBoat Premium Marine Topside Primer](https://www.amazon.com/dp/B00HS4YY7G) | 1 | kit | $46.99 | **verified** | one covers both |
 | [1/2 in ball nose, finishing pass](https://www.amazon.com/dp/B00KZM3GSG) | 1 | ea | $41.95 | **verified** | 1/2 in shank. ONLY if the makerspace does not supply tooling |
@@ -159,7 +159,7 @@ Some Flipsky appears on Amazon but the range is thin and usually dearer. Buy dir
 
 | Item | Qty | Unit | Ext | Price | Note |
 |---|---:|---|---:|---|---|
-| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $439.02 | **verified** |  |
+| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $435.78 | **verified** |  |
 | Gong shipping to Idaho, ONE order, both foils | 1 | order | $268.63 | **verified** | quoted at checkout for 2 x XL Alu setups. PER ORDER, not per foil - ordering the two separately would roughly  |
 | Shipping - Divinycell, 6061 plate, VR20 | 1 | allow | $120.00 | estimate | STILL THE BIGGEST UNVERIFIED LINE - it wants three real carts to settle. Was $220 when it covered G10 sheet an |
 

@@ -589,6 +589,10 @@ DECK_PAD_NOSE_TAPER = 340.0        # length over which the tip draws in
 DECK_PAD_TIP_F = 0.34              # half width left at the very tip
 DECK_PAD_TAIL_TAPER = 210.0        # softer than the nose but no longer square
 DECK_PAD_TAIL_F = 0.62
+DECK_PAD_CORNER_R = 45.0           # every corner radiused - a square
+                                   # corner on a 5.8 mm self-adhesive
+                                   # sheet is both the first place it
+                                   # lifts and a snag underfoot
 DECK_PAD_INSET = 20.0              # from the rail - the pad STOPS SHORT, it
                                    # does not wrap. A 5.8 mm sheet forced over
                                    # a rail radius peels from the edge inward,
@@ -2708,30 +2712,37 @@ def pack_fit(S, P, layers, int_l, int_w, int_h):
     return out
 
 
-def _deck_slope_edge(x, limit_deg):
+def _deck_slope_edge(x, limit_deg, tol=0.25):
     """How far out the deck is still TOP rather than rail.
 
-    Walks outboard from the centreline and stops where the surface tilts past
-    limit_deg. That is the honest definition of "only on the top": a fixed
-    inset from half_width does not know where the rail starts, and half_width
-    is measured at the widest point of the section, which on this board is
-    already well down the turn.
+    BISECTS to the angle rather than stepping to it. The stepping version
+    returned the last 2 mm sample that passed, which quantised the whole pad
+    edge to a 2 mm staircase - and on a 5.8 mm sheet that reads as a ragged
+    cut, because it is one.
     """
-    hw = half_width(x / LENGTH)
-    prev = 0.0
-    y = 0.0
-    while y < hw - 1.0:
-        y2 = min(y + 2.0, hw - 1.0)
-        dz = deck_z_at(x, y2) - deck_z_at(x, y)
-        if math.degrees(math.atan2(abs(dz), y2 - y)) > limit_deg:
-            return prev
-        prev = y2
-        y = y2
-    return prev
+    hw = half_width(x / LENGTH) - 1.0
+
+    def slope_at(y):
+        h = 1.0
+        y0 = max(0.0, y - h)
+        y1 = min(hw, y + h)
+        return math.degrees(math.atan2(abs(deck_z_at(x, y1) - deck_z_at(x, y0)),
+                                       max(1e-6, y1 - y0)))
+
+    if slope_at(hw) <= limit_deg:
+        return hw
+    lo, hi = 0.0, hw
+    while hi - lo > tol:
+        mid = (lo + hi) / 2.0
+        if slope_at(mid) <= limit_deg:
+            lo = mid
+        else:
+            hi = mid
+    return lo
 
 
 def _taper(x):
-    """Multiplier on the pad half width - tapers the tip and softens the tail."""
+    """Multiplier on the pad half width - tapers the tip, softens the tail."""
     f = 1.0
     nose0 = DECK_PAD_X1 - DECK_PAD_NOSE_TAPER
     if x > nose0:
@@ -2744,31 +2755,37 @@ def _taper(x):
     return f
 
 
-def build_deck_pad(coll, rep):
-    """Self-adhesive EVA deck pad - ONE piece on the deck, one on the lid.
+def _round_ends(half_f, x0, x1, r0, r1):
+    """Wrap a half-width function so a piece's ENDS are radiused.
 
-    Not panelled. Derek's call: seams in the middle of where you stand are
-    edges that peel and collect grit, and a 5.8 mm sheet is compliant enough
-    to be worked onto the crown from the centreline outward. The cost is that
-    the ~8.6% arc excess has to be absorbed by stretch and by trimming at the
-    rail rather than by seams, so CUT IT LONG and trim on the board.
+    Every corner is somewhere the pad can lift, and a square one on a 5.8 mm
+    sheet is a snag underfoot as well. Circular, so the edge leaves the
+    radius tangent to the side rather than kinked.
+    """
+    def f(x):
+        h = half_f(x)
+        for d, r in ((x - x0, r0), (x1 - x, r1)):
+            if r > 0.0 and d < r:
+                d = max(0.0, d)
+                h = min(h, h - r + math.sqrt(max(0.0, r * r - (r - d) ** 2)))
+        return h
+    return f
+
+
+def build_deck_pad(coll, rep):
+    """EVA pad: one piece aft of the hatch, one forward, one on the lid.
+
+    THREE pieces, and none is a "panel" - the hatch occupies the middle
+    600 mm of deck, so no continuous path past it exists. What is gone is the
+    pair of slivers that used to run up each side of the hatch: 27 mm wide,
+    outboard of the lid pad, adding four more edges to lift and nothing else.
     """
     mat = bom_mat("eva")
-    rim_x0 = CAV_X0 - RIM_W - DECK_PAD_GAP
-    rim_x1 = CAV_X1 + RIM_W + DECK_PAD_GAP
-    rim_y = CAV_WIDTH / 2 + RIM_W + DECK_PAD_GAP
-    h_x0 = HANDLE_X - HANDLE_PLATE_L / 2 - DECK_PAD_GAP
-    h_x1 = HANDLE_X + HANDLE_PLATE_L / 2 + DECK_PAD_GAP
-    h_y0 = HANDLE_Y - HANDLE_PLATE_W / 2 - DECK_PAD_GAP
-    h_y1 = HANDLE_Y + HANDLE_PLATE_W / 2 + DECK_PAD_GAP
+    gap = DECK_PAD_GAP
+    aft_x1 = CAV_X0 - RIM_W - gap
+    fwd_x0 = CAV_X1 + RIM_W + gap
 
-    def blocked(x, y):
-        ay = abs(y)
-        if rim_x0 <= x <= rim_x1 and ay <= rim_y:
-            return True
-        return h_x0 <= x <= h_x1 and h_y0 <= ay <= h_y1
-
-    NX, NY = 200, 30
+    NX, NY = 160, 26
     area = 0.0
     boxes = []
 
@@ -2781,26 +2798,29 @@ def build_deck_pad(coll, rep):
             py, pz = y, z
         return tot
 
-    def emit(name, x_lo, x_hi, half_f, skip):
-        """One pad piece: full width, -half_f(x) .. +half_f(x)."""
+    def emit(name, x_lo, x_hi, half_f):
+        """One piece, full width, -half_f(x) .. +half_f(x).
+
+        NO HOLES. Blocking grid cells against a keep-out is what made the old
+        outline a staircase: a cell is either in or out and nothing
+        interpolates the boundary, so every edge came out stepped at the cell
+        pitch. Each piece is now bounded only by a smooth half-width.
+        """
         nonlocal area
         verts, faces, grid = [], [], {}
-        bx0, bx1, dev = 1e9, -1e9, 0.0
+        dev = 0.0
         for i in range(NX + 1):
             x = x_lo + (x_hi - x_lo) * i / NX
             hy = half_f(x)
-            if hy <= 2.0:
+            if hy <= 1.0:
                 continue
             dev = max(dev, 2.0 * _arc_across(x, 0.0, hy))
             for j in range(NY + 1):
                 y = -hy + 2.0 * hy * j / NY
-                if skip and skip(x, y):
-                    continue
                 z = deck_z_at(x, y)
                 grid[(i, j)] = len(verts)
                 verts.append((x, y, z))
                 verts.append((x, y, z + DECK_PAD_T))
-                bx0, bx1 = min(bx0, x), max(bx1, x)
         for i in range(NX):
             for j in range(NY):
                 q = [(i, j), (i + 1, j), (i + 1, j + 1), (i, j + 1)]
@@ -2815,70 +2835,63 @@ def build_deck_pad(coll, rep):
                 area += abs((p1[0] - p0[0]) * (p2[1] - p1[1])) / 1e6
         if verts:
             new_object(name, verts, faces, coll, mat)
-            boxes.append((bx1 - bx0, dev))
+            boxes.append((x_hi - x_lo, dev))
 
-    # --- deck: one piece, slope-limited and tapered
-    def deck_half(x):
+    def base(x):
         return _deck_slope_edge(x, DECK_PAD_MAX_SLOPE) * _taper(x)
 
-    emit("V2_DeckPad", DECK_PAD_X0, DECK_PAD_X1, deck_half, blocked)
+    emit("V2_DeckPad_Aft", DECK_PAD_X0, aft_x1,
+         _round_ends(base, DECK_PAD_X0, aft_x1,
+                     DECK_PAD_CORNER_R, DECK_PAD_CORNER_R))
+    emit("V2_DeckPad_Fwd", fwd_x0, DECK_PAD_X1,
+         _round_ends(base, fwd_x0, DECK_PAD_X1,
+                     DECK_PAD_CORNER_R, DECK_PAD_CORNER_R))
 
-    # --- lid: one piece, ROUNDED CORNERS to match the lid it sits on. A
-    # square-cornered pad on a radiused lid leaves four spikes of pad
-    # overhanging nothing, and a corner is where a pad starts lifting.
     _lc = CAV_LAM + 1.5
     lx0 = CAV_X0 - RIM_W + _lc + LID_PAD_INSET
     lx1 = CAV_X1 + RIM_W - _lc - LID_PAD_INSET
     lhy = CAV_WIDTH / 2 + RIM_W - 1.5 - LID_PAD_INSET
     lr = max(0.0, CAV_CORNER_R + RIM_W - 1.5 - LID_PAD_INSET)
-
-    def lid_half(x):
-        d = min(x - lx0, lx1 - x)
-        if d >= lr:
-            return lhy
-        return lhy - lr + math.sqrt(max(0.0, lr * lr - (lr - d) ** 2))
-
-    emit("V2_DeckPad_Lid", lx0, lx1, lid_half, None)
+    emit("V2_DeckPad_Lid", lx0, lx1,
+         _round_ends(lambda _x: lhy, lx0, lx1, lr, lr))
 
     sheet_a = DECK_PAD_SHEET[0] * DECK_PAD_SHEET[1] / 1e6
-    KERF = 3.0
-    need = len(boxes)
-    shelf_y = shelf_h = cur_x = 0.0
-    sheets = 1
+    # Report ROLL LENGTH CONSUMED, not sheets. The model builds one board and
+    # has no idea how many are being made; if it rounds up to whole sheets
+    # here then two boards that would comfortably share a roll get billed two.
+    KERF = 8.0
+    x_cur = 0.0
     for w, h in sorted(boxes, key=lambda b: -b[0]):
-        if cur_x + w + KERF > DECK_PAD_SHEET[0]:
-            shelf_y += shelf_h + KERF
-            cur_x = shelf_h = 0.0
-        if shelf_y + h > DECK_PAD_SHEET[1]:
-            sheets += 1
-            shelf_y = shelf_h = cur_x = 0.0
-        cur_x += w + KERF
-        shelf_h = max(shelf_h, h)
-    rep["deck_pad"] = (f"ONE piece on the deck + ONE on the lid, {DECK_PAD_T} "
-                       f"mm EVA, no seams. Edge follows the "
-                       f"{DECK_PAD_MAX_SLOPE:.0f} deg deck slope so it stays "
-                       f"on top and never turns down the rail")
+        x_cur += w + KERF
+    sheets = 1
+    rep["deck_pad"] = ("THREE pieces - aft of the hatch, forward of it, and "
+                       "one on the lid. No seams within a piece, all corners "
+                       "radiused, edge held to the deck slope so it stays on "
+                       "top")
     rep["deck_pad_area_m2"] = round(area, 3)
     rep["deck_pad_sheet_m2"] = round(sheet_a, 3)
-    rep["deck_pad_pieces_per_board"] = need
-    rep["deck_pad_sheets_per_board"] = sheets
+    rep["deck_pad_pieces_per_board"] = len(boxes)
+    rep["deck_pad_roll_mm_per_board"] = round(x_cur, 1)
+    rep["deck_pad_roll_pct_per_board"] = round(100.0 * x_cur
+                                               / DECK_PAD_SHEET[0], 1)
+    rep["deck_pad_pieces_fit_one_row"] = (max(h for _w, h in boxes)
+                                          <= DECK_PAD_SHEET[1])
     rep["deck_pad_piece_bboxes_mm"] = [(round(w), round(h)) for w, h in
                                        sorted(boxes, key=lambda b: -b[0])]
     rep["deck_pad_max_developed_w_mm"] = round(max(h for _w, h in boxes), 1)
-    rep["deck_pad_fits_sheet_width"] = max(h for _w, h in boxes) <= DECK_PAD_SHEET[1]
+    rep["deck_pad_fits_sheet_width"] = (max(h for _w, h in boxes)
+                                        <= DECK_PAD_SHEET[1])
     rep["deck_pad_slope_limit_deg"] = DECK_PAD_MAX_SLOPE
+    rep["deck_pad_corner_r_mm"] = DECK_PAD_CORNER_R
+    rep["deck_pad_side_slivers"] = 0
     rep["deck_pad_bare_tail_mm"] = round(DECK_PAD_X0, 1)
     rep["deck_pad_bare_nose_mm"] = round(LENGTH - DECK_PAD_X1, 1)
     rep["deck_pad_clears_leash_mm"] = round(DECK_PAD_X0
                                             - (LEASH_X + LEASH_PAD / 2), 1)
-    rep["deck_pad_tip_half_w_mm"] = round(deck_half(DECK_PAD_X1 - 1.0), 1)
-    rep["deck_pad_tail_half_w_mm"] = round(deck_half(DECK_PAD_X0 + 1.0), 1)
-    rep["deck_pad_mid_half_w_mm"] = round(deck_half(HANDLE_X), 1)
     rep["deck_pad_rail_standoff_mm"] = round(
-        half_width(HANDLE_X / LENGTH) - deck_half(HANDLE_X), 1)
-    rep["deck_pad_covers_pct_of_length"] = round(
-        100.0 * (DECK_PAD_X1 - DECK_PAD_X0) / LENGTH, 1)
-    rep["deck_pad_clears_rim_mm"] = DECK_PAD_GAP
+        half_width(HANDLE_X / LENGTH)
+        - _deck_slope_edge(HANDLE_X, DECK_PAD_MAX_SLOPE), 1)
+    rep["deck_pad_clears_rim_mm"] = gap
     return rep
 
 
@@ -3748,11 +3761,46 @@ def build():
     # it - the same way a stringerless surfboard blank is glued up.
     # Drawn here because "where does it get cut" is not answerable from a
     # number in a report.
+    _blank_z0 = min(v.z * 1000.0 for v in
+                    (hull.matrix_world @ vv.co for vv in hull.data.vertices))
     for nm, x0, x1, mat in (("Aft", -20.0, SEAM_X, "eps"),
                             ("Fwd", SEAM_X, LENGTH + 20.0, "eps_fwd")):
         half = box(f"V2_CoreHalf_{nm}", x0, x1, -WIDTH, WIDTH,
                    -20.0, THICK + 40.0, coll, bom_mat(mat))
         boolean(half, hull, op='INTERSECT')
+
+    # ------------------------------------------------ the machining split
+    # THE CUT THAT ACTUALLY GETS MADE. The vertical seam above exists because
+    # the bed is 1209.8 long and the board is 1400. This horizontal one exists
+    # because the GANTRY is 149.9 and the glued stack is 203.2 - and until now
+    # that split was written up in the docs and in a comment but had never
+    # been cut in the model, so the drawings still described a board machined
+    # in one piece from a stack that does not fit the machine.
+    #
+    # Four pieces, two setups each side of the seam:
+    #     *_Lower  layers 1+2, 101.6 tall - rocker and mast pocket underneath,
+    #              lower half of the cavity pocketed into its top face
+    #     *_Upper  layers 3+4, 101.6 tall - deck crown on top, upper half of
+    #              the cavity cut straight through
+    # then Lower bonds to Upper on the flat mid-plane and no outer surface is
+    # touched again. Nothing over 101.6 ever goes under the gantry.
+    _split_z = min(_blank_z0, 0.0) + CNC_SUBSTACK_LAYERS * EPS_SHEET_T
+    for nm, x0, x1 in (("Aft", -20.0, SEAM_X),
+                       ("Fwd", SEAM_X, LENGTH + 20.0)):
+        for half_nm, z0, z1, mat in (
+                ("Lower", -20.0, _split_z, "eps"),
+                ("Upper", _split_z, THICK + 40.0, "eps_fwd")):
+            pc = box(f"V2_MachStack_{nm}_{half_nm}", x0, x1, -WIDTH, WIDTH,
+                     z0, z1, coll, bom_mat(mat))
+            boolean(pc, hull, op='INTERSECT')
+    rep["mach_split_z_mm"] = round(_split_z, 1)
+    rep["mach_substack_h_mm"] = round(CNC_SUBSTACK_LAYERS * EPS_SHEET_T, 1)
+    rep["mach_pieces"] = 4
+    rep["mach_setups"] = ("4 pieces x 2 faces = 8 setups, none taller than "
+                          f"{CNC_SUBSTACK_LAYERS * EPS_SHEET_T:.1f} mm")
+    rep["mach_fits_gantry"] = (CNC_SUBSTACK_LAYERS * EPS_SHEET_T) <= CNC_BED_Z
+    rep["mach_naive_h_mm"] = round(EPS_LAYERS * EPS_SHEET_T, 1)
+    rep["mach_naive_fits_gantry"] = (EPS_LAYERS * EPS_SHEET_T) <= CNC_BED_Z
     # Two shades on purpose. Butted, the halves are geometrically identical to
     # the hull, so in one colour the seam is a hairline you have to hunt for -
     # which is the whole thing being shown.
@@ -5278,6 +5326,8 @@ GROUPS = [
     # "Blank layers" to see the 2 in sheets it is glued up from. Toggling a
     # collection is one click; hunting a hidden object is not.
     ("Core split",   lambda n: n.startswith("CoreHalf_")),
+    # The pieces that actually go on the machine, one at a time.
+    ("Machining",    lambda n: n.startswith("MachStack_")),
     ("Blank layers", lambda n: n.startswith("BlankLayer_")),
     ("Hull & core",  lambda n: n in ("Hull", "Mod_Shell")
                                or n.startswith("DenseFoam")),
@@ -5343,7 +5393,11 @@ def organise(root):
     # machined and what you have to hold on a bed - and the one-piece Hull is
     # the reference for what they add up to. Exactly the arrangement the rim
     # ring already uses: segments visible, assembled ring hidden.
-    OFF = ("Cutters", "Blank layers")
+    # "Machining" is OFF for the same reason "Blank layers" is: it occupies
+    # the same space as Core split and would z-fight with it. Tick it to see
+    # the four pieces that actually go on the router - the vertical seam is
+    # the bed length, the horizontal one is the gantry height.
+    OFF = ("Cutters", "Blank layers", "Machining")
     for lc in bpy.context.view_layer.layer_collection.children:
         for sub in lc.children:
             if sub.name in OFF:

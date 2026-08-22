@@ -57,7 +57,7 @@ M = dict(hatch_bolts=R["bom_hatch_bolts"],
          cells=R["pack"]["cells"],
          conduit_mm=R["bom_conduit_mm"],
          pad_pieces=R["deck_pad_pieces_per_board"],
-         pad_sheets=R["deck_pad_sheets_per_board"],
+         pad_roll_mm=R["deck_pad_roll_mm_per_board"],
          # nickel_m is not geometry - it is a build estimate, so it stays
          # here. 8.0 not 7.0: the edge strips get a second welded layer.
          nickel_m=8.0)
@@ -1010,8 +1010,8 @@ def build():
         1, "kit", 5.99, OK, "2 straps per board, plus the module lift loops "
         "in section 7, all out of the one 6 yd pack", vendor="Amazon")
     add("10c Restraint & fitout", "EVA bedding pads", 0, "set", 0.00, OWNED,
-        "cut from the 40% of the roll the deck and lid pieces do not use - "
-        "same material, already self-adhesive, already bought")
+        "cut from the roll the deck and lid pieces do not use - same "
+        "material, already self-adhesive, already bought")
 
     # ------------------------------------------------- 10d shop consumables
     # The thermometer stays, and matters MORE without a hot box - it is the
@@ -1187,13 +1187,19 @@ def build():
     # not stack: 446 + 334 needs 786 mm of sheet width against 600. And two
     # boards will not share a sheet either, because 2 x 1433 mm overruns the
     # 2400 length. So: one sheet per board.
+    # ONE SHEET FOR THE PAIR. Dropping the side slivers and splitting the
+    # deck at the hatch took a board from 60% of the roll to 35%, so two
+    # boards now lie down on one 2400 mm roll with 30% spare. Driven off the
+    # measured nest length rather than rounding sheets per board and
+    # doubling, which would have bought a second sheet to hold 700 mm of pad.
     add("11 Finishing", "FOCEAN EVA deck sheet 2400 x 600 x 5.8",
-        M["pad_sheets"] * N, "sheet", 54.14, OK,
-        str(M["pad_pieces"]) + " pieces a board (deck + lid), nested side by "
-        "side on 60% of one roll. Self-adhesive EVA, 55 shore. CUT LONG AND "
-        "TRIM ON THE BOARD, working from the centreline outward - with no "
-        "seams the crown's arc excess has to go into stretch and into the "
-        "trim at the rail", vendor="Amazon")
+        math.ceil(M["pad_roll_mm"] * N / 2400.0), "sheet", 54.14, OK,
+        str(M["pad_pieces"]) + " pieces a board - aft of the hatch, forward "
+        "of it, and one on the lid - using "
+        + str(int(round(M["pad_roll_mm"]))) + " mm of the 2400 roll each. "
+        "Self-adhesive EVA, 55 shore. CUT LONG AND TRIM ON THE BOARD from "
+        "the centreline outward: with no seams, the crown's arc excess has "
+        "to go into stretch and into the trim at the rail", vendor="Amazon")
     # WAS "Abrasives, cups, gloves, tape" at 2 x $40. Two of those four were
     # already bought somewhere else - cups and stirrers ship with the gallon
     # kit, gloves are their own line in 10e - so the bundle was double-
