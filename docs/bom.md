@@ -62,8 +62,8 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | Item | Qty | Unit | Unit $ | Ext $ | | Note |
 |---|---:|---|---:|---:|---|---|
 | Neat epoxy, sealing every cut laminate edge | 0 | off | $0.00 | $0.00 | on hand | off the laminating kit. Groove walls, lid perimeter, all 12 lid bores, every machined edge. This is V1's Test 2 verbatim - water came in through unsealed fibre ends at the cavity ledge, and its own note reads: cured laminate is NOT waterproof at a cut edge |
-| Solid silicone cord, 3.5 mm round - the spare size | 4 | m | $4.00 | $16.00 | estimate | fitted ONLY if the routed groove measures deep. Choosing after you measure is the whole point |
-| Solid silicone cord, 3 mm round - BOTH seals | 8 | m | $2.00 | $16.00 | estimate | buy long - splice on a straight run, never a corner |
+| Solid silicone cord, 1/8 in (3.175 mm) - the spare size | 1 | pc | $15.39 | $15.39 | verified | 10 ft piece, 70A. Fitted ONLY if the routed groove measures deep. Gives 24% squeeze at the nominal 2.4 depth and 15% at a bad 2.7 - the true 3.5 mm that would give 23% at 2.7 is an industrial-supply size, so if the groove really comes out at 2.7 the answer is to fix the groove, not to chase cord |
+| Solid silicone cord, 3 mm round - BOTH seals | 2 | pc | $15.39 | $30.78 | verified | 10 ft (3.05 m) pieces, 70A. Buy long - splice on a straight run, never a corner |
 | Paste wax, releasing the groove filler | 1 | ea | $12.00 | $12.00 | estimate | the filler must NOT bond - it comes back out after the glass goes over it |
 | 2.5 mm straight cutter - fallback | 1 | ea | $14.00 | $14.00 | estimate | only if you would rather cut the groove open than sand down to a proud filler strip. Undersize in a 4 mm groove on purpose |
 | Silicone adhesive, bonding the cord into groove | 1 | tube | $12.00 | $12.00 | estimate | a thin continuous bead under the cord. It cannot then migrate, lift out, or be pinched under the lid in a dark car park |
@@ -71,7 +71,7 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | M5 penny washer O15, under the captive nut | 34 | ea | $0.18 | $6.12 | estimate | goes in at the SAME print pause as the nut, underneath it |
 | M5 A4 hex nut, CAPTIVE - printed into the ring | 34 | ea | $0.22 | $7.48 | estimate | dropped in at a print pause at Z=6.0; steel thread, so a hatch that comes off every ride never wears anything out |
 | MDF 12 mm, 4 check gauges | 1 | sheet | $22.00 | $22.00 | estimate | 3 station sections + the rocker/deck profile. Was a 14-template set at $70 - the router templates go with the CNC pass. The caul is an EPS offcut and the groove guide is fallback-only, so this sheet is now the whole MDF requirement |
-| **subtotal** | | | | **$118.80** | | |
+| **subtotal** | | | | **$132.97** | | |
 
 ## 7  Module
 
@@ -85,7 +85,7 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | Acetone, solvent-welding the printed joints | 1 | qt | $14.00 | $14.00 | estimate | ASA dissolves in it like ABS - a brushed acetone/scrap slurry makes the joint one piece of plastic, not an adhesive line |
 | ASA filament, printed module shell | 3 | kg | $24.49 | $73.47 | verified | 4 L-pieces/board, ~1.13 kg of part + supports and brim; largest piece 226 x 146 fits the A1 bed |
 | Sikaflex-292 marine structural PU | 1 | tube | $28.99 | $28.99 | verified | ~6-8 MPa vs 4200's ~2. Fillet BOTH sides of the joint - on a flexible bond the fillets are what stop it peeling |
-| Sika Primer-206 G+P, aluminium side | 1 | ea | $28.00 | $28.00 | estimate | abrade + solvent wipe + prime the 5052; scuff the ASA. The primer is not optional on aluminium and it is why this beats 4200 |
+| Sika Aktivator-PRO 250 ml + daubers | 1 | ea | $28.95 | $28.95 | verified | abrade + solvent wipe + activate the 5052; scuff the ASA. Aktivator-205 is DISCONTINUED - Aktivator-PRO replaces it. UPGRADE PATH: full Primer-206 G+P is the belt-and-braces answer for immersed PU on metal but is $67/250 ml on Amazon. Skipping it is defensible HERE only because the bond line is mechanically backed by the flange bolts and the gasket - not the PU - is the water barrier |
 | 2 mm glass beads or shim wire, bond-line control | 1 | ea | $8.00 | $8.00 | estimate | clamping a PU joint metal-to-plastic squeezes the line out and puts you back to a rigid joint that will fail |
 | Neoprene sheet 1/8in, module + mast gaskets | 1 | sheet | $16.00 | $16.00 | estimate | TORRAMI 18x24 or similar - you kept a part sheet from V1 |
 | Gebildet PG11 gland, M18x1.5, 30 pk | 1 | pk | $9.99 | $9.99 | verified | your listing: M18x1.5 thread (matches the 18.5 hole) and 5-10 mm cable, against our 6.5 mm 8 AWG. 6 needed of 30 - one wire per gland; three in one gland deforms the insert into a clover and leaks between them |
@@ -96,7 +96,7 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | M12 IP68 momentary panel button | 1 | ea | $12.49 | $12.49 | verified | 1 on hand; this line buys the second board's |
 | SP17 2-pin IP68 flange receptacle + cap | 2 | ea | $11.00 | $22.00 | estimate | 67.2 V 5 A charge; O17 panel hole, 2 x M3 flange screws |
 | M3 heat-set insert + M3 x 8 A4, port flange | 4 | set | $0.60 | $2.40 | estimate |  |
-| **subtotal** | | | | **$360.82** | | |
+| **subtotal** | | | | **$361.77** | | |
 
 ## 9  Electrical
 
@@ -115,9 +115,9 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | Pure nickel 0.2 x 10 mm, 5 m roll | 4 | roll | $14.83 | $59.32 | verified |  |
 | 21700 spacer brackets | 0 | set | $0.00 | $0.00 | on hand |  |
 | ANL 150 A fuse + holder | 2 | ea | $10.59 | $21.18 | verified |  |
-| 8 AWG silicone, 25 ft red + 25 ft black | 1 | pk | $49.99 | $49.99 | verified | one pack covers BOTH boards - the longest run in the module is the 278 mm ESC-to-fuse. Motor supplies its own phase leads + bullets |
+| 8 AWG silicone, 10 ft red + 10 ft black | 1 | pk | $21.99 | $21.99 | verified | one pack covers BOTH boards - the longest run in the module is the 278 mm ESC-to-fuse, so 10 ft a side is already 10x what the runs need. Motor supplies its own phase leads + bullets. Amazon 8 AWG 10+10 spans $18.88-$23.99; the 25 ft pack at $49.99 was buying 40 ft of wire to use about 3 |
 | Heat shrink, Kapton, pack wrap | 2 | set | $18.00 | $36.00 | estimate |  |
-| **subtotal** | | | | **$1,941.97** | | |
+| **subtotal** | | | | **$1,913.97** | | |
 
 ## 8  Mast hardpoint
 
@@ -135,13 +135,13 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | M8 x 30 A4 mast bolts, spares | 8 | ea | $0.90 | $7.20 | estimate | Gong supplies its own; these are spares |
 | Silicone grease for the seal cord | 1 | tube | $9.00 | $9.00 | estimate | stops the cord bonding to the lid in storage |
 | Cyanoacrylate for the cord splice | 1 | ea | $6.00 | $6.00 | estimate |  |
-| Water-ingress alarm | 2 | ea | $12.00 | $24.00 | estimate | V1 carried one. Put the SENSOR on the module floor in the lowest corner, not up on the pack - it is only useful where water collects |
-| 1/4 in torque wrench, 1-10 Nm | 1 | ea | $38.00 | $38.00 | estimate | CALIBRATION TOOL - set the drill clutch with it, then use the clutch. The hatch is captive nuts in ASA against a hard stop; past the stop more torque only loads the nut pockets |
+| Water-ingress alarm, 2 pk | 1 | pk | $12.99 | $12.99 | verified | Geevon 100 dB pucks - the 2-pack covers BOTH boards. Put the SENSOR on the module floor in the lowest corner, not up on the pack - it is only useful where water collects |
+| 1/4 in torque wrench, 10-50 in-lb | 1 | ea | $25.97 | $25.97 | verified | 1.1-5.6 Nm. RANGE MATTERS: our hatch spec is 2 Nm = 17.7 in-lb, which is BELOW the 20 in-lb floor of the common 20-200 in-lb wrenches - they cannot read our number at all. CALIBRATION TOOL - set the drill clutch with it, then use the clutch. The hatch is captive nuts in ASA against a hard stop; past the stop more torque only loads the nut pockets |
 | Coiled ankle leash | 2 | ea | $14.99 | $29.98 | verified | you trust the remote failsafe; this is so the board stays with you |
 | FCS-pattern leash plug | 2 | ea | $9.00 | $18.00 | estimate |  |
 | Kayak-style webbing carry handle, 4 pk | 1 | pk | $13.89 | $13.89 | verified | 4 needed; 2 x M6 into the 6061 strip in the rail pocket |
 | M6 x 16 A4 + M6 insert, strap mounts | 8 | set | $1.40 | $11.20 | estimate |  |
-| **subtotal** | | | | **$157.27** | | |
+| **subtotal** | | | | **$134.23** | | |
 
 ## 9c Pack wiring
 
@@ -153,10 +153,10 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | Dielectric grease, terminals | 1 | tube | $8.00 | $8.00 | estimate |  |
 | Cable ties, lacing, adhesive mounts | 2 | set | $11.00 | $22.00 | estimate |  |
 | Silicone sealant, BMS anti-vibration dabs | 1 | tube | $7.00 | $7.00 | estimate | V1 did this; stops the BMS walking |
-| CESFONJER IP68 M25 inline housing, 3 pk | 2 | pk | $15.00 | $30.00 | estimate | 3 per board, one per phase; SIZE UNVERIFIED - Amazon blocks scraping. Check they fit the 60 x 318 bay before ordering wire |
+| IP68 M25 inline housing, 5 pk | 2 | pk | $15.98 | $31.96 | verified | 3 per board, one per phase, 2 spare. M25 bodies take 4-14 mm cable against our 6.5 mm 8 AWG, so the size class is confirmed. Still CHECK THE BODY LENGTH against the 60 x 318 bay before ordering wire - diameter fits, length is the risk |
 | 5.5 mm bullets + adhesive shrink, ESC side | 2 | set | $12.00 | $24.00 | estimate | motor pigtails arrive with their own |
 | Fish tape / pull cord for the mast conduit | 1 | ea | $12.00 | $12.00 | estimate |  |
-| **subtotal** | | | | **$121.00** | | |
+| **subtotal** | | | | **$122.96** | | |
 
 ## 10 Foil
 
@@ -237,27 +237,27 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | Item | Qty | Unit | Unit $ | Ext $ | | Note |
 |---|---:|---|---:|---:|---|---|
 | Shipping - G10, Divinycell, epoxy hazmat | 1 | allow | $220.00 | $220.00 | estimate | heavy and hazmat lines |
-| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $447.30 | $447.30 | verified |  |
-| **subtotal** | | | | **$667.30** | | |
+| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $445.26 | $445.26 | verified |  |
+| **subtotal** | | | | **$665.26** | | |
 
 ## Totals
 
 | | |
 |---|---:|
-| **Grand total, 2 boards** | **$7,902.29** |
-| Per board | $3,951.14 |
-| Of which verified | $6,423.70  (81%) |
-| Of which estimated | $1,478.59 |
+| **Grand total, 2 boards** | **$7,866.29** |
+| Per board | $3,933.14 |
+| Of which verified | $6,539.70  (83%) |
+| Of which estimated | $1,326.59 |
 
 ## What is a board, and what is a shop
 
-Some of the total above is not the cost of a board at all - it is tools, jigs and templates that exist afterwards and do not repeat. Splitting them out is the difference between "a board costs $3,951" and "a board costs $3,574 and I now own a vacuum rig, a crimper and a full template set".
+Some of the total above is not the cost of a board at all - it is tools, jigs and templates that exist afterwards and do not repeat. Splitting them out is the difference between "a board costs $3,933" and "a board costs $3,562 and I now own a vacuum rig, a crimper and a full template set".
 
 | | |
 |---|---:|
-| One-time tooling (incl. its share of tax) | $755.11 |
-| **Marginal cost of a board** | **$3,573.59** |
-| Cost of the NEXT board after these 2 | $3,573.59 |
+| One-time tooling (incl. its share of tax) | $742.36 |
+| **Marginal cost of a board** | **$3,561.96** |
+| Cost of the NEXT board after these 2 | $3,561.96 |
 
 | One-time item | $ |
 |---|---:|
@@ -267,7 +267,7 @@ Some of the total above is not the cost of a board at all - it is tools, jigs an
 | Bagging starter kit - film, peel ply, tape, breather, connector | $127.40 |
 | Vacuum gauge, 0-30 inHg, 1/4 NPT | $18.00 |
 | M8 x 1.25 tap set + 6.8 mm drill | $18.00 |
-| 1/4 in torque wrench, 1-10 Nm | $38.00 |
+| 1/4 in torque wrench, 10-50 in-lb | $25.97 |
 | Hydraulic lug crimper, 10 ton, 12-2/0 AWG | $39.99 |
 | Dowel pins + drill, two-sided registration | $12.00 |
 | 1/2 in single-flute + 1/2 in ball nose | $70.00 |

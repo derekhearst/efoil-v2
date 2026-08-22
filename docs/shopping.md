@@ -6,12 +6,12 @@ Grouped by where you buy it rather than by what it does, because that is the ord
 
 | Supplier | Lines | $ |
 |---|---:|---:|
-| Amazon | 57 | $1,905.42 |
+| Amazon | 58 | $1,911.49 |
 | Gong | 2 | $1,395.20 |
 | Flipsky | 3 | $1,038.00 |
-| Not a purchase - tax and freight | 3 | $915.30 |
+| Not a purchase - tax and freight | 3 | $913.26 |
 | Fibre Glast | 11 | $643.05 |
-| Home Depot / hardware | 19 | $468.94 |
+| Home Depot / hardware | 19 | $456.91 |
 | Fiberglass Supply | 4 | $364.10 |
 | Battery International | 1 | $318.00 |
 | BatteryHookup | 2 | $297.50 |
@@ -19,8 +19,8 @@ Grouped by where you buy it rather than by what it does, because that is the ord
 | Fasteners / shop consumables | 8 | $144.00 |
 | 3M / auto parts | 3 | $102.98 |
 | Speedy Metals | 2 | $102.81 |
-| Sika / marine supplier | 2 | $56.99 |
-| **TOTAL** | | **$7,902.29** |
+| Sika / marine supplier | 1 | $28.99 |
+| **TOTAL** | | **$7,866.29** |
 
 ## Amazon
 
@@ -37,7 +37,6 @@ https://www.amazon.com
 | 5052 1/8in x 12 x 24, 2-pack - module floors | 1 | pk | $61.99 | **verified** | your Apr 2026 receipt (MorningRo/Huaiian). One sheet is one floor, so this pack does both boards |
 | Pure nickel 0.2 x 10 mm, 5 m roll | 4 | roll | $59.32 | **verified** |  |
 | VECOTOOLS 4.5 CFM single-stage pump, oil incl. | 1 | ea | $57.99 | **verified** | your listing, ASIN B0GZVLP3PL. Was a $139.99 Pittsburgh 2-stage plus $15 of oil - $97 for ultimate vacuum we m |
-| 8 AWG silicone, 25 ft red + 25 ft black | 1 | pk | $49.99 | **verified** | one pack covers BOTH boards - the longest run in the module is the 278 mm ESC-to-fuse. Motor supplies its own  |
 | Traction pad, 3-piece | 2 | set | $49.90 | **verified** |  |
 | ASA filament, printed rim ring | 2 | kg | $48.98 | **verified** | 6 dovetailed pieces/board at ~90% infill, 710 g of part each; PRINT SEAL FACE DOWN - the bed is flatter than a |
 | TotalBoat Premium Marine Topside Primer | 1 | kit | $46.99 | **verified** | one covers both |
@@ -47,13 +46,15 @@ https://www.amazon.com
 | Heat shrink, Kapton, pack wrap | 2 | set | $36.00 | estimate |  |
 | Rotary-tool router base + collets, if needed | 1 | set | $35.00 | estimate | you have the tool; this is only if the base you have will not hold depth over the groove run |
 | 8 AWG marine ring lugs, 20 pk | 2 | pk | $33.98 | **verified** | 28 needed; on M6 studs - nothing to solder |
-| CESFONJER IP68 M25 inline housing, 3 pk | 2 | pk | $30.00 | estimate | 3 per board, one per phase; SIZE UNVERIFIED - Amazon blocks scraping. Check they fit the 60 x 318 bay before o |
+| IP68 M25 inline housing, 5 pk | 2 | pk | $31.96 | **verified** | 3 per board, one per phase, 2 spare. M25 bodies take 4-14 mm cable against our 6.5 mm 8 AWG, so the size class |
+| Solid silicone cord, 3 mm round - BOTH seals | 2 | pc | $30.78 | **verified** | 10 ft (3.05 m) pieces, 70A. Buy long - splice on a straight run, never a corner |
 | Coiled ankle leash | 2 | ea | $29.98 | **verified** | you trust the remote failsafe; this is so the board stays with you |
-| Water-ingress alarm | 2 | ea | $24.00 | estimate | V1 carried one. Put the SENSOR on the module floor in the lowest corner, not up on the pack - it is only usefu |
+| Sika Aktivator-PRO 250 ml + daubers | 1 | ea | $28.95 | **verified** | abrade + solvent wipe + activate the 5052; scuff the ASA. Aktivator-205 is DISCONTINUED - Aktivator-PRO replac |
 | 5.5 mm bullets + adhesive shrink, ESC side | 2 | set | $24.00 | estimate | motor pigtails arrive with their own |
 | EVA bedding pads | 2 | set | $24.00 | estimate |  |
 | SP17 2-pin IP68 flange receptacle + cap | 2 | ea | $22.00 | estimate | 67.2 V 5 A charge; O17 panel hole, 2 x M3 flange screws |
 | Cable ties, lacing, adhesive mounts | 2 | set | $22.00 | estimate |  |
+| 8 AWG silicone, 10 ft red + 10 ft black | 1 | pk | $21.99 | **verified** | one pack covers BOTH boards - the longest run in the module is the 278 mm ESC-to-fuse, so 10 ft a side is alre |
 | ANL 150 A fuse + holder | 2 | ea | $21.18 | **verified** |  |
 | PETG filament 1 kg, mast clamp set | 2 | kg | $19.98 | **verified** | 4 STEP files; 0.6 nozzle, 5 perims, 40% infill |
 | PETG for props, 4-5 spares per board | 2 | kg | $19.98 | **verified** | 0.4 nozzle, 100% infill; balance-check on a bolt, then epoxy-coat - V1 skipped the coat and layer lines cost d |
@@ -62,12 +63,12 @@ https://www.amazon.com
 | FCS-pattern leash plug | 2 | ea | $18.00 | estimate |  |
 | 16 AWG wire, charge port and power button runs | 2 | set | $18.00 | estimate |  |
 | M5 x 250 threaded rod (cut to ~171 mm) | 8 | ea | $17.60 | estimate | dry-assemble and mark before cutting all four |
-| Solid silicone cord, 3.5 mm round - the spare size | 4 | m | $16.00 | estimate | fitted ONLY if the routed groove measures deep. Choosing after you measure is the whole point |
-| Solid silicone cord, 3 mm round - BOTH seals | 8 | m | $16.00 | estimate | buy long - splice on a straight run, never a corner |
 | Neoprene sheet 1/8in, module + mast gaskets | 1 | sheet | $16.00 | estimate | TORRAMI 18x24 or similar - you kept a part sheet from V1 |
 | Adhesive-lined heat shrink, assorted | 1 | kit | $16.00 | estimate |  |
+| Solid silicone cord, 1/8 in (3.175 mm) - the spare size | 1 | pc | $15.39 | **verified** | 10 ft piece, 70A. Fitted ONLY if the routed groove measures deep. Gives 24% squeeze at the nominal 2.4 depth a |
 | EPDM/neoprene sheet 1/2in, conduit bungs | 1 | sheet | $14.00 | estimate | cut O33 plugs for a O32 bore, punch 3 x O5 for 6.5 mm lead - interference fit, soap them through |
 | M5 x 25 A4 stainless socket cap | 24 | ea | $13.20 | estimate |  |
+| Water-ingress alarm, 2 pk | 1 | pk | $12.99 | **verified** | Geevon 100 dB pucks - the 2-pack covers BOTH boards. Put the SENSOR on the module floor in the lowest corner,  |
 | M4 x 12 A4 stainless socket cap | 36 | ea | $12.60 | estimate |  |
 | M12 IP68 momentary panel button | 1 | ea | $12.49 | **verified** | 1 on hand; this line buys the second board's |
 | Silica gel, indicating, 50 g per module | 1 | pk | $12.00 | estimate | ~40 g is a season at 50 breathing cycles; a token sachet is worth about six. Bake it dry when the indicator tu |
@@ -113,7 +114,7 @@ Some Flipsky appears on Amazon but the range is thin and usually dearer. Buy dir
 
 | Item | Qty | Unit | Ext | Price | Note |
 |---|---:|---|---:|---|---|
-| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $447.30 | **verified** |  |
+| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $445.26 | **verified** |  |
 | Gong shipping to Idaho, per foil | 2 | ea | $248.00 | **verified** | 115.50 EUR on order 252112; charged per ORDER, so putting both boards' foils in ONE order saves about $124 |
 | Shipping - G10, Divinycell, epoxy hazmat | 1 | allow | $220.00 | estimate | heavy and hazmat lines |
 
@@ -146,9 +147,9 @@ https://www.homedepot.com
 | Abrasives, cups, gloves, tape | 2 | set | $80.00 | estimate |  |
 | Folding sawhorses, pair, 700 lb | 1 | pair | $39.99 | **verified** | ~30 in high. Racks buy height for planing, and this core comes machined - so they buy nothing here |
 | Acetone, 1 gal, cleanup | 1 | gal | $39.95 | **verified** |  |
-| 1/4 in torque wrench, 1-10 Nm | 1 | ea | $38.00 | estimate | CALIBRATION TOOL - set the drill clutch with it, then use the clutch. The hatch is captive nuts in ASA against |
 | Spray adhesive + sacrificial MDF, CNC hold-down | 1 | set | $35.00 | estimate | foam is taped down, not clamped |
 | Sanding blocks + longboard for fairing | 1 | set | $30.00 | estimate |  |
+| 1/4 in torque wrench, 10-50 in-lb | 1 | ea | $25.97 | **verified** | 1.1-5.6 Nm. RANGE MATTERS: our hatch spec is 2 Nm = 17.7 in-lb, which is BELOW the 20 in-lb floor of the commo |
 | Nitrile gloves, 100 pk | 2 | box | $24.00 | estimate |  |
 | Rosin paper roll, floor and bench | 1 | roll | $24.00 | estimate | absorbs instead of pooling. This is the actual upgrade over a tarp, and it is $24 |
 | MDF 12 mm, 4 check gauges | 1 | sheet | $22.00 | estimate | 3 station sections + the rocker/deck profile. Was a 14-template set at $70 - the router templates go with the  |
@@ -248,5 +249,4 @@ https://usa.sika.com
 | Item | Qty | Unit | Ext | Price | Note |
 |---|---:|---|---:|---|---|
 | Sikaflex-292 marine structural PU | 1 | tube | $28.99 | **verified** | ~6-8 MPa vs 4200's ~2. Fillet BOTH sides of the joint - on a flexible bond the fillets are what stop it peelin |
-| Sika Primer-206 G+P, aluminium side | 1 | ea | $28.00 | estimate | abrade + solvent wipe + prime the 5052; scuff the ASA. The primer is not optional on aluminium and it is why t |
 

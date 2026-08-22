@@ -408,14 +408,28 @@ def build():
     #     measured 2.4  ->  O3.0 = 20%
     #     measured 2.7  ->  O3.5 = 23%   (O3.0 would be only 10%)
     # Guessing the cord before the groove exists is how you end up at 10%.
-    add("6  Hatch and seal", "Solid silicone cord, 3.5 mm round - the spare "
-        "size", 4, "m", 4.00, EST,
-        "fitted ONLY if the routed groove measures deep. Choosing after you "
-        "measure is the whole point")
+    # SIZING REALITY CHECK, priced on Amazon: silicone O-ring cord is sold in
+    # 10 ft (3.05 m) pieces at ~$15.39, i.e. ~$5.05/m - NOT the $2/m this line
+    # used to assume. And 3.5 mm is not a stocked section: Amazon carries the
+    # inch series, so the sizes actually available around our target are
+    #     3/32" = 2.62      1/8" = 3.175      3/16" = 4.76
+    # plus a true metric 3.0. So the "one size up" spare is 1/8", not 3.5.
+    add("6  Hatch and seal", "Solid silicone cord, 1/8 in (3.175 mm) - the "
+        "spare size", 1, "pc", 15.39, OK,
+        "10 ft piece, 70A. Fitted ONLY if the routed groove measures deep. "
+        "Gives 24% squeeze at the nominal 2.4 depth and 15% at a bad 2.7 - "
+        "the true 3.5 mm that would give 23% at 2.7 is an industrial-supply "
+        "size, so if the groove really comes out at 2.7 the answer is to fix "
+        "the groove, not to chase cord")
+    # 1713 mm a board, so 3.43 m for the pair. Two 10 ft pieces is 6.1 m -
+    # nearly 2x the need, which is the right call on a part where the failure
+    # mode is a bad splice and the fix is to cut it out and start the run again.
     add("6  Hatch and seal", "Solid silicone cord, 3 mm round - BOTH seals",
-        math.ceil((M["hatch_cord_mm"] + M["mod_cord_mm"]) * N / 1000) + 4,
-        "m", 2.00, EST,
-        "buy long - splice on a straight run, never a corner")
+        math.ceil(((M["hatch_cord_mm"] + M["mod_cord_mm"]) * N / 1000 + 2.5)
+                  / 3.05),
+        "pc", 15.39, OK,
+        "10 ft (3.05 m) pieces, 70A. Buy long - splice on a straight run, "
+        "never a corner")
     # The plug that keeps resin out of the groove while the deck is glassed
     # over it. It has to hold shape under the bag, release from ASA, and come
     # out in one piece afterwards.
@@ -513,9 +527,13 @@ def build():
     add("7  Module", "Sikaflex-292 marine structural PU", 1, "tube",
         28.99, OK, "~6-8 MPa vs 4200's ~2. Fillet BOTH sides of the joint - "
         "on a flexible bond the fillets are what stop it peeling")
-    add("7  Module", "Sika Primer-206 G+P, aluminium side", 1, "ea", 28.00,
-        EST, "abrade + solvent wipe + prime the 5052; scuff the ASA. The "
-        "primer is not optional on aluminium and it is why this beats 4200")
+    add("7  Module", "Sika Aktivator-PRO 250 ml + daubers", 1, "ea", 28.95,
+        OK, "abrade + solvent wipe + activate the 5052; scuff the ASA. "
+        "Aktivator-205 is DISCONTINUED - Aktivator-PRO replaces it. "
+        "UPGRADE PATH: full Primer-206 G+P is the belt-and-braces answer for "
+        "immersed PU on metal but is $67/250 ml on Amazon. Skipping it is "
+        "defensible HERE only because the bond line is mechanically backed by "
+        "the flange bolts and the gasket - not the PU - is the water barrier")
     add("7  Module", "2 mm glass beads or shim wire, bond-line control", 1,
         "ea", 8.00, EST, "clamping a PU joint metal-to-plastic squeezes the "
         "line out and puts you back to a rigid joint that will fail")
@@ -626,9 +644,12 @@ def build():
         math.ceil(M["nickel_m"] * N / 5), "roll", 14.83, OK)
     add("9  Electrical", "21700 spacer brackets", 0, "set", 0.00, OWNED)
     add("9  Electrical", "ANL 150 A fuse + holder", N, "ea", 10.59, OK)
-    add("9  Electrical", "8 AWG silicone, 25 ft red + 25 ft black",
-        1, "pk", 49.99, OK, "one pack covers BOTH boards - the longest run in the module is the "
-        "278 mm ESC-to-fuse. Motor supplies its own phase leads + bullets")
+    add("9  Electrical", "8 AWG silicone, 10 ft red + 10 ft black",
+        1, "pk", 21.99, OK, "one pack covers BOTH boards - the longest run in "
+        "the module is the 278 mm ESC-to-fuse, so 10 ft a side is already 10x "
+        "what the runs need. Motor supplies its own phase leads + bullets. "
+        "Amazon 8 AWG 10+10 spans $18.88-$23.99; the 25 ft pack at $49.99 was "
+        "buying 40 ft of wire to use about 3")
     add("9  Electrical", "Heat shrink, Kapton, pack wrap", N, "set", 18.00, EST)
 
     # --------------------------------------------------- 9b odds and ends
@@ -646,17 +667,21 @@ def build():
     # discontinuities in the same place.
     add("9b Small but essential", "Cyanoacrylate for the cord splice",
         1, "ea", 6.00, EST)
-    add("9b Small but essential", "Water-ingress alarm", N, "ea", 12.00, EST,
-        "V1 carried one. Put the SENSOR on the module floor in the lowest "
-        "corner, not up on the pack - it is only useful where water collects")
+    add("9b Small but essential", "Water-ingress alarm, 2 pk", 1, "pk",
+        12.99, OK, "Geevon 100 dB pucks - the 2-pack covers BOTH boards. Put "
+        "the SENSOR on the module floor in the lowest corner, not up on the "
+        "pack - it is only useful where water collects")
     # Remote float deleted - the VX3 ships with a floating band.
     # Used ONCE, to find which clutch number on the drill gives 3 Nm. After
     # that the drill does the 12 bolts at speed and the wrench goes in a
     # drawer. That is the right way round: nobody torque-wrenches 12 bolts in
     # a car park in the dark, and a clutch that has been calibrated is more
     # repeatable than a wrench that gets skipped.
-    add("9b Small but essential", "1/4 in torque wrench, 1-10 Nm", 1, "ea",
-        38.00, EST, "CALIBRATION TOOL - set the drill clutch with it, then "
+    add("9b Small but essential", "1/4 in torque wrench, 10-50 in-lb", 1,
+        "ea", 25.97, OK, "1.1-5.6 Nm. RANGE MATTERS: our hatch spec is 2 Nm = "
+        "17.7 in-lb, which is BELOW the 20 in-lb floor of the common "
+        "20-200 in-lb wrenches - they cannot read our number at all. "
+        "CALIBRATION TOOL - set the drill clutch with it, then "
         "use the clutch. The hatch is captive nuts in ASA against a hard "
         "stop; past the stop more torque only loads the nut pockets",
         tool=True)
@@ -704,10 +729,11 @@ def build():
     # potting/bung is decorative: the motor's pigtails run up the mast and
     # through the bore, so if they cannot be parted in the cavity the mast is
     # bolted on for life. M25 size takes 6-11 mm cable; 8 AWG silicone is 6.5.
-    add("9c Pack wiring", "CESFONJER IP68 M25 inline housing, 3 pk",
-        N, "pk", 15.00, EST,
-        "3 per board, one per phase; SIZE UNVERIFIED - Amazon blocks "
-        "scraping. Check they fit the 60 x 318 bay before ordering wire")
+    add("9c Pack wiring", "IP68 M25 inline housing, 5 pk", N, "pk", 15.98,
+        OK, "3 per board, one per phase, 2 spare. M25 bodies take 4-14 mm "
+        "cable against our 6.5 mm 8 AWG, so the size class is confirmed. "
+        "Still CHECK THE BODY LENGTH against the 60 x 318 bay before "
+        "ordering wire - diameter fits, length is the risk")
     add("9c Pack wiring", "5.5 mm bullets + adhesive shrink, ESC side",
         N, "set", 12.00, EST, "motor pigtails arrive with their own")
     add("9c Pack wiring", "Fish tape / pull cord for the mast conduit",
