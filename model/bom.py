@@ -988,7 +988,9 @@ def build():
     add("10c Restraint & fitout", "1 in polyester webbing 6 yd + 6 buckles",
         1, "kit", 5.99, OK, "2 straps per board, plus the module lift loops "
         "in section 7, all out of the one 6 yd pack", vendor="Amazon")
-    add("10c Restraint & fitout", "EVA bedding pads", N, "set", 12.00, EST)
+    add("10c Restraint & fitout", "EVA bedding pads", 0, "set", 0.00, OWNED,
+        "cut from the ~1000 x 600 offcut left over from each deck sheet in "
+        "section 11 - same material, already self-adhesive, already bought")
 
     # ------------------------------------------------- 10d shop consumables
     # The thermometer stays, and matters MORE without a hot box - it is the
@@ -1078,7 +1080,20 @@ def build():
         "$18.39/pr on Amazon against $31.49 at envirosafetyproducts. "
         "Cartridges EXPIRE - buy these near the layup, not with the rest of "
         "the order", vendor="Amazon")
-    add("10e Layup kit", "Acetone, 1 gal, cleanup", 1, "gal", 39.95, OK)
+    # NO GALLON. Asked directly whether it was needed, and on the named uses
+    # it is not. What acetone actually does on this build:
+    #   - solvent-welding the printed ASA rim segments (the quart line in 7)
+    #   - degreasing the 5052 before the Sikaflex goes on
+    # That is it. Chip brushes are disposable at $0.50 and get binned rather
+    # than cleaned; cured epoxy comes off tools with a scraper; and amine
+    # blush is washed off with WATER, not solvent - a mistake worth not
+    # making, because acetone smears blush around instead of removing it.
+    # Both named uses together are comfortably under a quart.
+    # Worth knowing if that changes: at Home Depot a gallon is $20.98 and a
+    # quart $11.48, so the gallon is CHEAPER than buying two quarts. The
+    # moment you think you need more than one quart, buy the gallon.
+    add("10e Layup kit", "Acetone, 1 gal, cleanup", 0, "gal", 0.00, OWNED,
+        "DELETED - see comment. The quart in section 7 covers the real uses")
     # --- somewhere to actually work, which V1 did not have ----------------
     # V1 was glassed on a blue tarp over a table, and tarps are the wrong
     # surface for two separate reasons: they do not absorb, so drips pool and
@@ -1134,7 +1149,22 @@ def build():
         1, "kit", 46.99, OK, "one covers both")
     add("11 Finishing", "TotalBoat Wet Edge topside paint, colour",
         N, "kit", 53.99, OK, "one-part polyurethane, quart")
-    add("11 Finishing", "Traction pad, 3-piece", N, "set", 24.95, OK)
+    # FULL-DECK SHEET, not a 3-piece surf pad. Derek's call, and it suits a
+    # foil board better: on a foil you move your feet fore and aft through
+    # the whole ride to trim, so a pad sized for a surf stance leaves you
+    # standing on bare paint half the time.
+    # 0.23 in = 5.8 mm, which is about half a typical surf pad - thin was the
+    # requirement. One 2400 x 600 sheet covers a 1400 x 560 deck with ~1000
+    # mm left over, so it is one sheet per board and the offcut is what feeds
+    # the bedding pads in 10c.
+    # The 47.2 in wide sheet ($123.48) would yield BOTH decks side by side
+    # out of one sheet, but two of these come to $108.28 and leave far more
+    # usable offcut, so it is cheaper AND more useful.
+    add("11 Finishing", "FOCEAN EVA deck sheet 2400 x 600 x 5.8", N, "sheet",
+        54.14, OK,
+        "self-adhesive EVA, 55 shore. Cut to the rail line with a fresh "
+        "blade; it will not follow the deck crown if you try to wrap it over "
+        "the rails, so stop it short", vendor="Amazon")
     # WAS "Abrasives, cups, gloves, tape" at 2 x $40. Two of those four were
     # already bought somewhere else - cups and stirrers ship with the gallon
     # kit, gloves are their own line in 10e - so the bundle was double-

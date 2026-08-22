@@ -6,17 +6,17 @@ Grouped by where you buy it rather than by what it does, because that is the ord
 
 | Supplier | Lines | $ |
 |---|---:|---:|
-| Amazon | 109 | $3,443.08 |
+| Amazon | 108 | $3,409.10 |
 | Gong | 1 | $1,404.00 |
 | Flipsky | 3 | $1,038.00 |
-| Not a purchase - tax and freight | 3 | $805.10 |
+| Not a purchase - tax and freight | 3 | $801.80 |
 | BatteryHookup | 2 | $297.50 |
 | Fiberglass Supply | 3 | $253.38 |
-| Home Depot / hardware | 5 | $190.14 |
+| Home Depot / hardware | 4 | $169.16 |
 | Maker Shop Boise | 1 | $150.00 |
 | Speedy Metals | 1 | $88.92 |
 | Easy Composites | 1 | $52.00 |
-| **TOTAL** | | **$7,722.12** |
+| **TOTAL** | | **$7,663.86** |
 
 ## Amazon
 
@@ -42,7 +42,7 @@ https://www.amazon.com
 | [ASA filament, printed rim ring](https://www.amazon.com/dp/B09DKPYYBP) | 2 | kg | $48.98 | **verified** | 6 dovetailed pieces/board at ~90% infill, 710 g of part each; PRINT SEAL FACE DOWN - the bed is flatter than a |
 | [TotalBoat Premium Marine Topside Primer](https://www.amazon.com/dp/B00HS4YY7G) | 1 | kit | $46.99 | **verified** | one covers both |
 | [1/2 in ball nose, finishing pass](https://www.amazon.com/dp/B00KZM3GSG) | 1 | ea | $41.95 | **verified** | 1/2 in shank. ONLY if the makerspace does not supply tooling |
-| [Traction pad, 3-piece](https://www.amazon.com/dp/B07L9LPPT2) | 2 | set | $41.90 | **verified** |  |
+| [FOCEAN EVA deck sheet 2400 x 600 x 5.8](https://www.amazon.com/dp/B07L9LPPT2) | 2 | sheet | $41.90 | **verified** | self-adhesive EVA, 55 shore. Cut to the rail line with a fresh blade; it will not follow the deck crown if you |
 | [Hydraulic lug crimper, 10 ton, 12-2/0 AWG](https://www.amazon.com/dp/B0CFV249X3) | 1 | ea | $39.99 | **verified** | one-time; this is what replaces soldering XT150s |
 | [Folding sawhorses, pair, 700 lb](https://www.amazon.com/dp/B0G4CH7SKB) | 1 | pair | $39.99 | **verified** | ~30 in high. Racks buy height for planing, and this core comes machined - so they buy nothing here |
 | [E-glass 6 oz, 50in x 12ft, 2-pack](https://www.amazon.com/dp/B0CQY5KX84) | 2 | pack | $39.98 | **verified** | your receipt |
@@ -51,7 +51,6 @@ https://www.amazon.com
 | [Ultra Tef-Gel, galvanic barrier](https://www.amazon.com/dp/B01606TCAG) | 1 | ea | $39.00 | **verified** | every mast bolt, every time it goes back in. DEARER than the $22 this was carried at - and do not reach for th |
 | [3M 60923 organic vapour / acid gas P100, pair](https://www.amazon.com/dp/B00AEFCKKY) | 2 | pr | $35.98 | **verified** | $18.39/pr on Amazon against $31.49 at envirosafetyproducts. Cartridges EXPIRE - buy these near the layup, not  |
 | [Solid silicone cord, 3 mm round - BOTH seals](https://www.amazon.com/dp/B096N67R2D) | 2 | pc | $35.18 | **verified** | 10 ft (3.05 m) pieces, 70A. Buy long - splice on a straight run, never a corner |
-| [EVA bedding pads](https://www.amazon.com/dp/B0GG9H6VS2) | 2 | set | $33.98 | estimate |  |
 | [M12 IP68 momentary panel button](https://www.amazon.com/dp/B0FPQP7CP9) | 1 | ea | $32.65 | **verified** | 1 on hand; this line buys the second board's |
 | [M5 x 25 A4 socket cap, 20 pk](https://www.amazon.com/dp/B0CJFMMF58) | 2 | pk | $31.98 | **verified** | 24 needed. A4/316 - every cheaper listing is A2/304, which pits in salt water |
 | [IP68 M25 inline housing, 5 pk](https://www.amazon.com/dp/B0DPKM5HF7) | 2 | pk | $31.96 | **verified** | 3 per board, one per phase, 2 spare. M25 bodies take 4-14 mm cable against our 6.5 mm 8 AWG, so the size class |
@@ -160,7 +159,7 @@ Some Flipsky appears on Amazon but the range is thin and usually dearer. Buy dir
 
 | Item | Qty | Unit | Ext | Price | Note |
 |---|---:|---|---:|---|---|
-| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $437.10 | **verified** |  |
+| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $433.80 | **verified** |  |
 | Gong shipping to Idaho, per foil | 2 | ea | $248.00 | **verified** | 115.50 EUR on order 252112; charged per ORDER, so putting both boards' foils in ONE order saves about $124 |
 | Shipping - Divinycell, 6061 plate, VR20 | 1 | allow | $120.00 | estimate | STILL THE BIGGEST UNVERIFIED LINE - it wants three real carts to settle. Was $220 when it covered G10 sheet an |
 
@@ -195,7 +194,6 @@ https://www.homedepot.com
 |---|---:|---|---:|---|---|
 | [EPS rigid foam 2in x 48in x 8ft (HD 202532856)](https://www.homedepot.com/p/Henry-2-in-x-48-in-x-8-ft-R-7-7-EPS-Rigid-Foam-Board-Insulation-320825/202532856) | 4 | sheet | $110.72 | **verified** | HD Meridian, 30 in stock, aisle 29 bay 020; $23.53 at 32+. EPS, not the XPS V1 used - deliberate, ~$90 cheaper |
 | [MDF 12 mm, 4 check gauges](https://www.homedepot.com/p/ProWood-1-2-in-x-2-ft-x-4-ft-Medium-Density-Fiberboard-Project-Panel-109097/202093821) | 1 | sheet | $30.73 | estimate | 3 station sections + the rocker/deck profile. Was a 14-template set at $70 - the router templates go with the  |
-| [Acetone, 1 gal, cleanup](https://www.homedepot.com/p/Klean-Strip-1-Gal-Acetone-Flammable-Paint-Solvent-GAC18/100141096) | 1 | gal | $20.98 | **verified** |  |
 | [Sacrificial MDF, CNC spoilboard](https://www.homedepot.com/p/1-4-in-x-2-ft-x-4-ft-Medium-Density-Fiberboard-1508104/202089069) | 1 | sheet | $16.23 | estimate | buy it local, a 4x8 sheet does not travel well |
 | [Acetone, solvent-welding the printed joints](https://www.homedepot.com/p/Klean-Strip-1-qt-Acetone-Thins-Fiberglass-Resins-Epoxy-and-Adhesives-QAC18/100144922) | 1 | qt | $11.48 | estimate | ASA dissolves in it like ABS - a brushed acetone/scrap slurry makes the joint one piece of plastic, not an adh |
 
