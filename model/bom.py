@@ -843,13 +843,18 @@ def build():
     add("10e Layup kit", "Rosin paper roll, floor and bench", 1, "roll",
         24.00, EST, "absorbs instead of pooling. This is the actual upgrade "
         "over a tarp, and it is $24", tool=True)
-    # SHAPING STANDS. Two padded uprights at hip height so you can walk round
-    # the board and reach both rails - for shaping, sanding and wet-out. Bought
-    # ones are $180-400; 2x4, ply and pipe lagging is $50-90 and the same job.
-    add("10e Layup kit", "Shaping stands, pair - DIY 2x4 + pipe lagging",
-        1, "pair", 70.00, EST,
-        "hip height, padded,board supported on its rails. Bought equivalents are "
-        "$180-400 and do nothing extra", tool=True)
+    # SAWHORSES. Derek's call and it is the right one. Proper shaping racks are
+    # $180-400 and the DIY version is $50-90 of lumber you then have to build;
+    # a pair of folding sawhorses is $35 off a shelf.
+    # The one thing a rack buys that a sawhorse does not is HEIGHT - ~30 in
+    # against 36-40 - and that gap matters for PLANING A BLANK. This core
+    # arrives machined, so there is no planing. For wet-out and bagging,
+    # leaning over a bit is not the constraint.
+    add("10e Layup kit", "Folding sawhorses, pair", 1, "pair", 35.00, EST,
+        "~30 in high. Racks buy height for planing, and this core comes "
+        "machined - so they buy nothing here", tool=True)
+    add("10e Layup kit", "Pipe lagging or carpet, sawhorse padding", 1, "set",
+        8.00, EST, "bare sawhorse tops mark foam and wet laminate")
     # NO "CONFORMING BAGGING BED". I put one here on a calculation that was
     # simply wrong: 24 kPa x 1400 x 600 = 20 kN "pressing the board into the
     # table". That is the sum on ONE face. This is an ENVELOPE bag - the part

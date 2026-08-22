@@ -217,10 +217,11 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | 3M 60923 organic vapour / acid gas P100, pair | 2 | pr | $31.49 | $62.98 | verified | envirosafetyproducts.com; cartridges expire - buy near the layup |
 | Acetone, 1 gal, cleanup | 1 | gal | $39.95 | $39.95 | verified |  |
 | Rosin paper roll, floor and bench | 1 | roll | $24.00 | $24.00 | estimate | absorbs instead of pooling. This is the actual upgrade over a tarp, and it is $24 |
-| Shaping stands, pair - DIY 2x4 + pipe lagging | 1 | pair | $70.00 | $70.00 | estimate | hip height, padded,board supported on its rails. Bought equivalents are $180-400 and do nothing extra |
+| Folding sawhorses, pair | 1 | pair | $35.00 | $35.00 | estimate | ~30 in high. Racks buy height for planing, and this core comes machined - so they buy nothing here |
+| Pipe lagging or carpet, sawhorse padding | 1 | set | $8.00 | $8.00 | estimate | bare sawhorse tops mark foam and wet laminate |
 | Plastic sheeting + masking tape, bench protection | 1 | set | $20.00 | $20.00 | estimate |  |
 | Sanding blocks + longboard for fairing | 1 | set | $30.00 | $30.00 | estimate |  |
-| **subtotal** | | | | **$304.91** | | |
+| **subtotal** | | | | **$277.91** | | |
 
 ## 11 Finishing
 
@@ -238,27 +239,27 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | Item | Qty | Unit | Unit $ | Ext $ | | Note |
 |---|---:|---|---:|---:|---|---|
 | Shipping - G10, Divinycell, epoxy hazmat | 1 | allow | $220.00 | $220.00 | estimate | heavy and hazmat lines |
-| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $459.87 | $459.87 | verified |  |
-| **subtotal** | | | | **$679.87** | | |
+| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $458.25 | $458.25 | verified |  |
+| **subtotal** | | | | **$678.25** | | |
 
 ## Totals
 
 | | |
 |---|---:|
-| **Grand total, 2 boards** | **$8,124.44** |
-| Per board | $4,062.22 |
-| Of which verified | $6,309.85  (78%) |
-| Of which estimated | $1,814.59 |
+| **Grand total, 2 boards** | **$8,095.82** |
+| Per board | $4,047.91 |
+| Of which verified | $6,308.23  (78%) |
+| Of which estimated | $1,787.59 |
 
 ## What is a board, and what is a shop
 
-Some of the total above is not the cost of a board at all - it is tools, jigs and templates that exist afterwards and do not repeat. Splitting them out is the difference between "a board costs $4,062" and "a board costs $3,590 and I now own a vacuum rig, a crimper and a full template set".
+Some of the total above is not the cost of a board at all - it is tools, jigs and templates that exist afterwards and do not repeat. Splitting them out is the difference between "a board costs $4,048" and "a board costs $3,595 and I now own a vacuum rig, a crimper and a full template set".
 
 | | |
 |---|---:|
-| One-time tooling (incl. its share of tax) | $943.81 |
-| **Marginal cost of a board** | **$3,590.31** |
-| Cost of the NEXT board after these 2 | $3,590.31 |
+| One-time tooling (incl. its share of tax) | $906.71 |
+| **Marginal cost of a board** | **$3,594.55** |
+| Cost of the NEXT board after these 2 | $3,594.55 |
 
 | One-time item | $ |
 |---|---:|
@@ -275,5 +276,5 @@ Some of the total above is not the cost of a board at all - it is tools, jigs an
 | 1/2 in single-flute + 1/2 in ball nose | $70.00 |
 | Rotary-tool router base + collets, if needed | $35.00 |
 | Rosin paper roll, floor and bench | $24.00 |
-| Shaping stands, pair - DIY 2x4 + pipe lagging | $70.00 |
+| Folding sawhorses, pair | $35.00 |
 | Sanding blocks + longboard for fairing | $30.00 |
