@@ -345,7 +345,7 @@ cord before the groove exists is how you end up at 10%.
 `2 mm glass beads or shim wire, bond-line control` ·
 `M4 x 8 brass heat-set insert, 100 pc` · `Neoprene sheet 1/8in, module + mast gaskets` ·
 `Gebildet PG11 gland, M18x1.5, 30 pk` · `M12 IP68 membrane vent plug` ·
-`M12 IP68 momentary panel button` · `SP17 2-pin IP68 flange receptacle` ·
+`M12 IP68 momentary panel button` · `JST GH 1.25 mm pigtail pair, BMS switch` · `SP17 2-pin IP68 flange receptacle` ·
 `M3 heat-set insert kit, 361 pc` · `M3 x 8 A4 stainless, 10 pk`
 
 Acetone-weld the four printed L-pieces into a shell. Bond it to the 5052
@@ -705,7 +705,7 @@ there is no reason to, and a 150 A fuse never protected a 16 AWG lead anyway:
 | 6 | ANL fuse OUT | ESC V− | 8 AWG | ring lug |
 | 7 | **P−** | Charge port − | 16 AWG | ring lug — stacks on joint 5 |
 | 8 | Sampling cable | 17 series taps + overall + | 22 AWG harness | as supplied — **this replaces any B+ wire** |
-| 9 | BMS switch | Panel button | 2 × 22 AWG | as the BMS specifies |
+| 9 | BMS key-switch input | Panel button | 2 × 22 AWG | **JST GH 1.25 mm** at the BMS end |
 | 10 | ESC phases | Motor, in the cavity | motor's own | 5.5 mm bullets + IP68 housing |
 
 **On joint 8:** there is **no B+ power lead** on this BMS, and none is
@@ -759,23 +759,33 @@ low-current **switch terminal** — JK calls it that, and it is what V1 used —
 and all it does is tell the board to turn its FETs on or off. It carries
 milliamps. The 92 A goes through the MOSFETs, which is what they are for.
 
-> ### ⚠ CONFIRM THE DALY HAS A SWITCH TERMINAL — THE BUTTON DEPENDS ON IT
+> ### ✔ The DALY does have a key switch input — confirmed
 >
-> V1's JK had one. **This DALY's listing does not mention one.** It talks
-> about CAN, RS485 and dual UART expansion ports, and about app control over
-> Bluetooth and WiFi — but nowhere about an on/off switch input. Absence from
-> a marketing bullet is not proof of absence, and DALY smart units commonly
-> do have an `SW` pair, often on the UART/expansion connector rather than as
-> its own terminal.
+> The Amazon listing never mentions one, which is why this was open. **DALY's
+> own documentation does:** *"The default function of the key switch is to
+> activate the BMS; other logic functions can be customized."* So the button
+> has somewhere to land, and the design stands.
 >
-> **But if it does not have one, the M12 panel button has nothing to connect
-> to** and on/off becomes app-only — which is a poor answer for a board you
-> switch on standing in the water with wet hands and a phone in a dry bag.
+> Three things that follow, worth knowing before you wire it:
 >
-> Settle it from the manual, or ask DALY before the module is closed up. If
-> the answer is no, the options are an app-only start, or a low-current
-> latching relay in the switch path, or a different BMS. All three are much
-> cheaper decisions before the lid goes on than after.
+> - **It is a JST GH 1.25 mm connector, not a screw terminal.** DALY sell a
+>   ready-made key switch for about $5 that plugs into it. Our M12 panel
+>   button is bare wires, so it needs a **JST GH 1.25 mm pigtail** to marry
+>   the two — a part worth having before the module closes, because
+>   crimping GH 1.25 by hand is unpleasant and it is a $6 problem now versus
+>   opening a sealed module later.
+> - **The behaviour is configurable in the app.** Default is "activate the
+>   BMS". Another option is *control discharge MOS and sleep* — contacts
+>   open, the BMS opens the discharge MOSFET and sleeps. Pick that one and
+>   the button behaves like a power switch rather than a wake button.
+> - **Bluetooth is the fallback, not the plan.** The app can switch the
+>   charge and discharge MOSFETs directly, so a failed button never strands
+>   you — but starting the board should not require getting a phone out with
+>   wet hands, which is exactly why the physical button is in the design.
+>
+> *(Connector type and the $5 key switch are community-sourced; DALY's own
+> page confirms the switch input but not the connector. Check what is in the
+> box before ordering a pigtail.)*
 
 > A note on the term: "switch input" means *the input on the BMS that a
 > switch connects to*, not switching the input side of anything. Nothing on

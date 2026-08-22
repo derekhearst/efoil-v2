@@ -95,11 +95,12 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | [3M 4200 FC 3 oz tube, fillet over the bung](https://www.amazon.com/dp/B00MJ9K78A) | 1 | tube | $17.99 | $17.99 | verified | does both boards; 4200 NOT 5200 - 5200 never comes out |
 | 25 mm webbing loop, module lift handle | 0 | ea | $0.00 | $0.00 | on hand | cut from the 6 yd webbing pack in 10c - it is the same 1 in strap. Through the two printed bosses on the forward wall; the module is ~14 kg in a cavity with 12 mm of side clearance, so there is no way to get a hand beside it |
 | [M12 IP68 membrane vent plug](https://www.amazon.com/dp/B0FXSNDGTV) | 2 | ea | $9.95 | $19.90 | verified | NOT optional on a sealed lithium box |
-| [M12 IP68 momentary panel button](https://www.amazon.com/dp/B0FPQP7CP9) | 1 | ea | $32.65 | $32.65 | verified | 1 on hand; this line buys the second board's. CONFIRM the DALY has a switch terminal for it - see fabrication.md App. D |
+| [M12 IP68 momentary panel button](https://www.amazon.com/dp/B0FPQP7CP9) | 1 | ea | $32.65 | $32.65 | verified | 1 on hand; this line buys the second board's |
+| JST GH 1.25 mm pigtail pair, BMS switch | 2 | ea | $6.00 | $12.00 | estimate | connects the panel button to the BMS key-switch input. CHECK THE BOX FIRST - DALY ship a ready-made key switch with some units |
 | [SP17 2-pin IP68 flange receptacle](https://www.amazon.com/dp/B0CDH5R8P4) | 2 | ea | $13.20 | $26.40 | verified | 67.2 V 5 A charge; O17 panel hole, 2 x M3 flange screws. $2.49, not the $11 this carried. CHECK THE CAP IS INCLUDED before ordering - on a board that gets submerged the cap is the part that does the sealing when nothing is plugged in |
 | [M3 heat-set insert kit, 361 pc](https://www.amazon.com/dp/B0G8JLX1HR) | 1 | kit | $13.98 | $13.98 | verified | covers the port flange (4 sets) and the nose cone. The kit's screws are PLAIN STEEL - buy M3 x 8 A4 separately for the flange, which lives in the wet cavity |
 | [M3 x 8 A4 stainless, 10 pk](https://www.amazon.com/dp/B07DVMFMJZ) | 1 | pk | $6.76 | $6.76 | verified | the kit's screws are not stainless and this joint is submerged |
-| **subtotal** | | | | **$410.33** | | |
+| **subtotal** | | | | **$422.33** | | |
 
 ## 9  Electrical
 
@@ -255,30 +256,30 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | Item | Qty | Unit | Unit $ | Ext $ | | Note |
 |---|---:|---|---:|---:|---|---|
 | Shipping - Divinycell, 6061 plate, VR20 | 1 | allow | $120.00 | $120.00 | estimate | STILL THE BIGGEST UNVERIFIED LINE - it wants three real carts to settle. Was $220 when it covered G10 sheet and hazmat epoxy, both of which are now out of the build entirely |
-| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $441.96 | $441.96 | verified |  |
-| **subtotal** | | | | **$561.96** | | |
+| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $442.68 | $442.68 | verified |  |
+| **subtotal** | | | | **$562.68** | | |
 
 ## Totals
 
 | | |
 |---|---:|
-| **Grand total, 2 boards** | **$7,807.91** |
-| Per board | $3,903.95 |
-| Of which verified | $7,203.88  (92%) |
-| Of which estimated | $604.03 |
+| **Grand total, 2 boards** | **$7,820.63** |
+| Per board | $3,910.31 |
+| Of which verified | $7,204.60  (92%) |
+| Of which estimated | $616.03 |
 | Linked to a real listing | 127 lines |
-| Priced but NOT linked | 3 lines, $59.00 |
-| Allowances, not linkable (tax, freight) | 3 lines, $830.59 |
+| Priced but NOT linked | 4 lines, $71.00 |
+| Allowances, not linkable (tax, freight) | 3 lines, $831.31 |
 
 ## What is a board, and what is a shop
 
-Some of the total above is not the cost of a board at all - it is tools, jigs and templates that exist afterwards and do not repeat. Splitting them out is the difference between "a board costs $3,904" and "a board costs $3,513 and I now own a vacuum rig, a crimper and a full template set".
+Some of the total above is not the cost of a board at all - it is tools, jigs and templates that exist afterwards and do not repeat. Splitting them out is the difference between "a board costs $3,910" and "a board costs $3,520 and I now own a vacuum rig, a crimper and a full template set".
 
 | | |
 |---|---:|
 | One-time tooling (incl. its share of tax) | $781.41 |
-| **Marginal cost of a board** | **$3,513.25** |
-| Cost of the NEXT board after these 2 | $3,513.25 |
+| **Marginal cost of a board** | **$3,519.61** |
+| Cost of the NEXT board after these 2 | $3,519.61 |
 
 | One-time item | $ |
 |---|---:|

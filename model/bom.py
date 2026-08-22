@@ -740,18 +740,25 @@ def build():
     # CHECKED, AND IT DOES. This DALY's listing names a "Pre-charging
     # function" outright, so the FETs closing into the ESC's caps is
     # soft-started by the board. That question is closed.
-    # BUT THE BUTTON IS NOT YET CONFIRMED TO HAVE ANYWHERE TO GO. V1's JK
-    # had a switch input and this button wired to it. THIS DALY'S LISTING
-    # NEVER MENTIONS AN ON/OFF SWITCH TERMINAL - it advertises CAN, RS485,
-    # dual UART and app control over BLE/WiFi. DALY smart units commonly do
-    # carry an SW pair, often on the expansion connector rather than as its
-    # own post, so this is "unconfirmed" and not "absent". Settle it from the
-    # manual before the module closes: if there is no switch terminal, this
-    # button has nothing to land on and starting the board becomes an
-    # app-only action, standing in the water with wet hands.
+    # THE SWITCH INPUT EXISTS - confirmed from DALY's own documentation,
+    # which the Amazon listing never mentions: "the default function of the
+    # key switch is to activate the BMS; other logic functions can be
+    # customized". So the button has somewhere to land. Set it to "control
+    # discharge MOS and sleep" in the app and it behaves like a power switch
+    # rather than a wake button. Bluetooth can switch the MOSFETs too, so a
+    # dead button strands nobody - but starting a board should not need a
+    # phone and wet hands, which is why the button is here.
     add("7  Module", "M12 IP68 momentary panel button", max(0, N - 1), "ea",
-        12.49, OK, "1 on hand; this line buys the second board's. CONFIRM "
-        "the DALY has a switch terminal for it - see fabrication.md App. D")
+        12.49, OK, "1 on hand; this line buys the second board's")
+    # THE PART THAT MARRIES THEM. The BMS switch input is a JST GH 1.25 mm
+    # connector, not a screw terminal, and the M12 button is bare wires.
+    # Crimping GH 1.25 by hand is miserable, and this is a $6 problem now
+    # against opening a sealed module later.
+    add("7  Module", "JST GH 1.25 mm pigtail pair, BMS switch", N, "ea",
+        6.00, EST,
+        "connects the panel button to the BMS key-switch input. CHECK THE "
+        "BOX FIRST - DALY ship a ready-made key switch with some units",
+        vendor="Amazon")
     # SP17 2-pin flange receptacle. Chosen over an XT60-in-a-box because this
     # port is unplugged and replugged EVERY RIDE: IP68 mated, screw cap when
     # not, gold-plated contacts, 500 mating cycles. 5 A of charge current is
