@@ -737,10 +737,21 @@ def build():
     # The single remaining surge event is the BMS switching into the ESC's
     # input capacitors, and that is a solid-state switch doing the exact job
     # it is built for - every ebike on earth works this way.
-    # WORTH CHECKING once: some smart DALYs carry precharge on the switch
-    # input. If yours does, even that surge is soft-started for free.
+    # CHECKED, AND IT DOES. This DALY's listing names a "Pre-charging
+    # function" outright, so the FETs closing into the ESC's caps is
+    # soft-started by the board. That question is closed.
+    # BUT THE BUTTON IS NOT YET CONFIRMED TO HAVE ANYWHERE TO GO. V1's JK
+    # had a switch input and this button wired to it. THIS DALY'S LISTING
+    # NEVER MENTIONS AN ON/OFF SWITCH TERMINAL - it advertises CAN, RS485,
+    # dual UART and app control over BLE/WiFi. DALY smart units commonly do
+    # carry an SW pair, often on the expansion connector rather than as its
+    # own post, so this is "unconfirmed" and not "absent". Settle it from the
+    # manual before the module closes: if there is no switch terminal, this
+    # button has nothing to land on and starting the board becomes an
+    # app-only action, standing in the water with wet hands.
     add("7  Module", "M12 IP68 momentary panel button", max(0, N - 1), "ea",
-        12.49, OK, "1 on hand; this line buys the second board's")
+        12.49, OK, "1 on hand; this line buys the second board's. CONFIRM "
+        "the DALY has a switch terminal for it - see fabrication.md App. D")
     # SP17 2-pin flange receptacle. Chosen over an XT60-in-a-box because this
     # port is unplugged and replugged EVERY RIDE: IP68 mated, screw cap when
     # not, gold-plated contacts, 500 mating cycles. 5 A of charge current is

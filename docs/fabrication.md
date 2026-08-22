@@ -755,20 +755,41 @@ negative for both at once. Turn the BMS off and load *and* charge die
 together — there is no separate load switch and no need for one.
 
 The panel button is **not** in the power path. It lands on the BMS's
-low-current **switch terminal** — DALY and JK both call it that, and it is
-what V1 used — and all it does is tell the board to turn its FETs on or off.
-It carries milliamps. The 92 A goes through the MOSFETs, which is what they
-are for.
+low-current **switch terminal** — JK calls it that, and it is what V1 used —
+and all it does is tell the board to turn its FETs on or off. It carries
+milliamps. The 92 A goes through the MOSFETs, which is what they are for.
+
+> ### ⚠ CONFIRM THE DALY HAS A SWITCH TERMINAL — THE BUTTON DEPENDS ON IT
+>
+> V1's JK had one. **This DALY's listing does not mention one.** It talks
+> about CAN, RS485 and dual UART expansion ports, and about app control over
+> Bluetooth and WiFi — but nowhere about an on/off switch input. Absence from
+> a marketing bullet is not proof of absence, and DALY smart units commonly
+> do have an `SW` pair, often on the UART/expansion connector rather than as
+> its own terminal.
+>
+> **But if it does not have one, the M12 panel button has nothing to connect
+> to** and on/off becomes app-only — which is a poor answer for a board you
+> switch on standing in the water with wet hands and a phone in a dry bag.
+>
+> Settle it from the manual, or ask DALY before the module is closed up. If
+> the answer is no, the options are an app-only start, or a low-current
+> latching relay in the switch path, or a different BMS. All three are much
+> cheaper decisions before the lid goes on than after.
 
 > A note on the term: "switch input" means *the input on the BMS that a
 > switch connects to*, not switching the input side of anything. Nothing on
 > the pack side is ever switched.
 
-**So there is no precharge problem in service.** The classic arc comes from
-mating a connector across a live pack into discharged ESC capacitors. Here
-that connector does not exist: the FETs close into the caps under gate
-control, which is a solid-state switch doing exactly the job it is built for.
-Every ebike on earth works this way.
+**So there is no precharge problem in service — and this BMS confirms it in
+writing.** Its listing names a **"Pre-charging function"** among the upgrades,
+so the surge of the FETs closing into the ESC's input capacitors is
+soft-started by the board itself. That closes the one question the BOM had
+left open on this ("worth checking once: some smart DALYs carry precharge").
+It does.
+
+The classic arc comes from mating a connector across a live pack into
+discharged capacitors, and here that connector does not exist at all.
 
 The one moment it *is* a real connection is **assembly** — landing the B−
 lead for the first time with the ESC already wired will charge the caps
