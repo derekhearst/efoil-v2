@@ -32,7 +32,12 @@ OUT = os.path.join(os.path.dirname(HERE), "cnc", "templates")
 # before cutting any BUSHING template - it is the one number here that
 # depends on tooling rather than on the design.
 GUIDE_OFF = 5.0
-STATIONS = (0.10, 0.25, 0.40, 0.55, 0.70, 0.85)   # for the section templates
+# Every 100 mm, not every 15% of length. Six gauges is enough to CHECK a
+# machined core; it is nowhere near enough to SHAPE one by hand, and hand
+# shaping is now the realistic fallback - the makerspace is not answering, and
+# the EPS core is the only part left on this board that wants a CNC at all.
+# 13 stations at 100 mm centres is what a longboard sander can fair between.
+STATIONS = tuple(round(x / 1400.0, 4) for x in range(100, 1400, 100))
 
 PARTS = []
 

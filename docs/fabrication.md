@@ -377,6 +377,53 @@ pump was worth $58 rather than doing this by hand.**
 
 ---
 
+## If the CNC falls through
+
+**It very nearly does not matter any more.** Of the ten parts on the cut list,
+**none strictly needs a 3-axis CNC**:
+
+| Part | What it actually takes |
+|---|---|
+| Rim ring, module shell | **printed** — no machine at all |
+| Module floor (461 × 302 5052) | a rectangle. Jigsaw and deburr |
+| Mast plate (250 × 175 ½" 6061) | a rectangle and four tapped holes. Bandsaw + drill press |
+| Handle strips (150 × 22) | same, off the mast plate offcut |
+| Hatch and module lids | bagged flat oversize, then trimmed to a **template** |
+| Lid cores, caul, groove guide | jigsaw, knife, router table |
+
+That leaves **exactly one part that wants a CNC: the EPS core.** Everything
+else moved off the machine when the G10 did.
+
+### Four ways to get the core cut
+
+1. **Hand shape it.** V1 was shaped this way — box cutter, surform, orbital
+   sander — and it worked. This repo emits **13 station gauges at 100 mm
+   centres** plus a rocker/deck profile specifically so this is possible. It
+   is slow, not risky.
+2. **Hot wire.** Gustav's method, referenced in V1's notes: nichrome against
+   1:1 templates. Cleaner than hand tools on long runs.
+3. **A surfboard shaping service.** This is the *right* machine for the job —
+   dedicated blank-shaping CNCs exist precisely to cut EPS board cores, and
+   they are used to files, not drawings. Worth a search before settling for a
+   general router bureau.
+4. **Any big flat-bed router.** Sign shops, cabinet shops, boat builders. The
+   bed needs 1030 × 560 and the material is foam — this is an easy job for
+   anyone with the table, and a much easier ask than it was when it involved
+   G10 dust.
+
+### On the makerspace specifically
+
+Email is the wrong channel for a small shop. **Phone, or turn up.** Maker Shop
+Boise: **(208) 254-6151.** The three questions that actually matter are now
+much shorter than they were:
+
+1. Is the bed at least **1030 × 560**?
+2. Will they cut **EPS foam** (mess, static, and it clogs extraction)?
+3. Does a month membership cancel cleanly?
+
+G10 is no longer one of them, and that was the question most likely to get a
+no.
+
 ## What to job-shop instead
 
 | Part | Why |

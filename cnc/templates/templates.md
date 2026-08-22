@@ -19,12 +19,19 @@ Every template carries the centreline and station ticks on the `REG` layer. **`C
 | `T05_mast_plate_pocket` | 250 x 175 | BEARING | plate pocket, and it doubles as the drill guide for the four bushing bores. |
 | `T06_handle_strip` | 150 x 22 | BEARING | one template, used both sides. NOT a pocket - the handles are a webbing strap bolted to the rail surface. This locates the shallow milled facet the G10 strip beds into, and drills the two inserts. Strip centreline sits 223 mm off the board centreline, where the rail is at 12.7 mm thick stock; facet is only ~1.6 mm deep because the strip is narrow. |
 | `T07_leash_pad` | 70 x 70 | BEARING | pad pocket; HOLES circle is the FCS plug bore, cut after the pad is bonded in. |
-| `T08_station_10` | 414 x 150 | GAUGE | section at x = 140 mm (10% of length). Shape gauge, not a router template. |
-| `T08_station_25` | 521 x 154 | GAUGE | section at x = 350 mm (25% of length). Shape gauge, not a router template. |
-| `T08_station_40` | 557 x 154 | GAUGE | section at x = 560 mm (40% of length). Shape gauge, not a router template. |
-| `T08_station_55` | 554 x 154 | GAUGE | section at x = 770 mm (55% of length). Shape gauge, not a router template. |
-| `T08_station_70` | 505 x 155 | GAUGE | section at x = 980 mm (70% of length). Shape gauge, not a router template. |
-| `T08_station_85` | 395 x 158 | GAUGE | section at x = 1190 mm (85% of length). Shape gauge, not a router template. |
+| `T08_station_07` | 377 x 146 | GAUGE | section at x = 100 mm (7% of length). Shape gauge, not a router template. |
+| `T08_station_14` | 457 x 152 | GAUGE | section at x = 200 mm (14% of length). Shape gauge, not a router template. |
+| `T08_station_21` | 504 x 154 | GAUGE | section at x = 300 mm (21% of length). Shape gauge, not a router template. |
+| `T08_station_29` | 534 x 154 | GAUGE | section at x = 400 mm (29% of length). Shape gauge, not a router template. |
+| `T08_station_36` | 551 x 154 | GAUGE | section at x = 500 mm (36% of length). Shape gauge, not a router template. |
+| `T08_station_43` | 559 x 154 | GAUGE | section at x = 600 mm (43% of length). Shape gauge, not a router template. |
+| `T08_station_50` | 559 x 154 | GAUGE | section at x = 700 mm (50% of length). Shape gauge, not a router template. |
+| `T08_station_57` | 550 x 154 | GAUGE | section at x = 800 mm (57% of length). Shape gauge, not a router template. |
+| `T08_station_64` | 530 x 154 | GAUGE | section at x = 900 mm (64% of length). Shape gauge, not a router template. |
+| `T08_station_71` | 498 x 155 | GAUGE | section at x = 1000 mm (71% of length). Shape gauge, not a router template. |
+| `T08_station_79` | 452 x 156 | GAUGE | section at x = 1100 mm (79% of length). Shape gauge, not a router template. |
+| `T08_station_86` | 388 x 158 | GAUGE | section at x = 1200 mm (86% of length). Shape gauge, not a router template. |
+| `T08_station_93` | 293 x 161 | GAUGE | section at x = 1300 mm (93% of length). Shape gauge, not a router template. |
 | `T09_rocker_and_deck` | 1400 x 164 | GAUGE | centreline profile. Solid is the hull bottom (rocker), CHANNEL is the deck. Cut as two separate gauges or one long one. |
 
 ## The one number that is not from the model
