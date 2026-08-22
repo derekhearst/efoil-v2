@@ -39,7 +39,7 @@ https://www.amazon.com
 | [Pure nickel 0.2 x 10 mm, 5 m roll](https://www.amazon.com/dp/B0961Q1VVR) | 4 | roll | $59.96 | **verified** |  |
 | [TotalBoat 5:1 quart kit, fillets and bonding](https://www.amazon.com/dp/B00HR8517A) | 1 | kit | $58.99 | **verified** |  |
 | [VECOTOOLS 4.5 CFM single-stage pump, oil incl.](https://www.amazon.com/dp/B0GZVLP3PL) | 1 | ea | $57.99 | **verified** | your listing, ASIN B0GZVLP3PL. Was a $139.99 Pittsburgh 2-stage plus $15 of oil - $97 for ultimate vacuum we m |
-| [FOCEAN EVA deck sheet 2400 x 600 x 5.8](https://www.amazon.com/dp/B0BTLW75FL) | 1 | sheet | $54.14 | **verified** | 3 pieces a board - aft of the hatch, forward of it, and one on the lid - using 846 mm of the 2400 roll each. S |
+| [FOCEAN EVA deck sheet 2400 x 600 x 5.8](https://www.amazon.com/dp/B0BTLW75FL) | 1 | sheet | $54.14 | **verified** | 3 pieces a board - aft of the hatch, forward of it, and one on the lid - using 818 mm of the 2400 roll each. S |
 | [ASA filament, printed rim ring](https://www.amazon.com/dp/B09DKPYYBP) | 2 | kg | $48.98 | **verified** | 6 dovetailed pieces/board at ~90% infill, 710 g of part each; PRINT SEAL FACE DOWN - the bed is flatter than a |
 | [TotalBoat Premium Marine Topside Primer](https://www.amazon.com/dp/B00HS4YY7G) | 1 | kit | $46.99 | **verified** | one covers both |
 | [1/2 in ball nose, finishing pass](https://www.amazon.com/dp/B00KZM3GSG) | 1 | ea | $41.95 | **verified** | 1/2 in shank. ONLY if the makerspace does not supply tooling |

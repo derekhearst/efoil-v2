@@ -232,7 +232,17 @@ RIM_T = 12.7                       # printed ASA, thickness unchanged
 #     need no filler at all.
 #   2 straight fillers close the 593 - 2 x 170 = 253 mm gap in each long side.
 # 6 pieces, 6 joints, every one of them on a straight run.
-RIM_SEG_CORNER_L = 170.0           # corner piece reach along the long side
+# 190, was 170. The cavity grew 17 mm longer for the wire bay, and the mid
+# filler spans whatever the two corner pieces do not - so it went to 270 mm
+# against a 256 mm bed. RIM_SEG_N does NOT control this; the fillers are one
+# piece each regardless of it, which is why raising N did nothing. Reaching
+# the corners 20 mm further along takes 40 mm off the filler: 230 mm, fits.
+# 176, was 170. The wire bay grew 8 mm, so the ring grew 8 mm, and the mid
+# filler - which spans whatever the two corner pieces leave - went to 263 mm
+# against a 256 mm bed. Reaching 6 mm further along each corner takes 12 mm
+# off the filler. NOTE: RIM_SEG_N does not control this. The fillers are one
+# piece each whatever N says, which is why raising N did nothing at all.
+RIM_SEG_CORNER_L = 176.0           # corner piece reach along the long side
 # ...and along the short side. This is HALF the short side, which puts the two
 # short-side joints exactly on y=0 - the board's own centreline. That is not a
 # choice, it is what the bed forces: the short side is 387, two corner pieces
@@ -393,7 +403,16 @@ LID_T = LID_SKIN * 2 + LID_CORE
 # the largest cavity corner radius a square-cornered module can live inside.
 # +CAV_LAM because the fillet gets laminated too, so the finished wall is that
 # much further in than the foam the fillet was cut into.
-ENC_GAP = GLASS_R + CAV_LAM + 2.0
+# WAS +2.0 all round. Derek asked for a few more millimetres everywhere,
+# and 2 mm of slack around a 14 kg module you have to drop into a laminated
+# hole - after the laminate has cured and gone wherever it went - is the
+# kind of clearance that is fine on a drawing and tight in a garage.
+# +4.0, not the +5.0 I first tried: at +5 the cavity got wide enough that
+# the rim LEDGE ran to within 4.8 mm of where the flat deck turns into rail,
+# and the check for that is set at 5. The width is the constrained
+# direction on this board - the length is not - so the extra room Derek
+# wanted goes into the wire bay, which is where he asked for it anyway.
+ENC_GAP = GLASS_R + CAV_LAM + 4.0
 # G10 is sold in IMPERIAL thicknesses. Every one of these used to be a round
 # metric number that cannot actually be bought - 3, 10, 12 and 20 mm are all
 # between stock sizes, and ordering material for three boards off those numbers
@@ -461,7 +480,9 @@ MOD_GASKET_OUT, MOD_GASKET_IN = 12.0, 19.0
 MOD_SEAL_GASKET = True
 ENC_LID_SKIN, ENC_LID_CORE = 1.0, 6.0
 ENC_LID_T = ENC_LID_SKIN * 2 + ENC_LID_CORE
-ENC_TOP_GAP = CAV_LAM + 2.0        # +CAV_LAM: the cavity floor is laminated too                  # module top to the underside of the rim
+# Also +2 -> +5. Costs 3 mm of board thickness and buys headroom over the
+# tallest thing in the module.
+ENC_TOP_GAP = CAV_LAM + 5.0        # +CAV_LAM: the cavity floor is laminated too
 
 # No internal divider. It was justified as a thermal break and a stiffening
 # rib, but it bought neither cheaply: power had to cross it through glands
@@ -605,7 +626,10 @@ DECK_PAD_INSET = 20.0              # from the rail - the pad STOPS SHORT, it
                                    # a rail radius peels from the edge inward,
                                    # and a lifting edge on the deck is where
                                    # water gets under the whole panel.
-DECK_PAD_GAP = 6.0                 # clearance to the rim ring and to hardware
+# 6 was too tight - it put the aft piece's forward corner right on the
+# transition down into the cavity, where a pad edge is both unsupported and
+# the first thing to catch a heel. 20 keeps the pad on flat deck.
+DECK_PAD_GAP = 20.0                # clearance to the rim ring and to hardware
 # NOT PANELLED. Derek's call, against my suggestion of longitudinal strips.
 # The argument for strips was real - the deck arc runs ~8.6% longer than its
 # flat projection and that excess varies along the board - but the argument
@@ -711,7 +735,12 @@ CONDUIT_X_OFF = 0.0                # from MAST_X, on the mast's chord centreline
 #
 # The aft bay is now sized by the only thing that actually needs room there -
 # the module's aft-wall fittings, which stand 40 mm proud - not by the tube.
-WIRE_BAY_LEN = 60.0                # module aft wall to cavity aft wall
+# WHERE THE WIRE COMES IN, and the place Derek specifically wanted more
+# room. 60 was set by the conduit needing to surface inside the bay; it took
+# no account of the bend radius of three 8 AWG silicone leads plus their
+# barrel housings, which is what actually occupies this space. 75 gives the
+# leads somewhere to go that is not "pressed against the cavity wall".
+WIRE_BAY_LEN = 68.0                # module aft wall to cavity aft wall
 # 62, not 48. At 48 the tube's LOWER edge sat at z=32 - 2 mm above the cavity
 # floor and buried in the GLASS_R=10 floor fillet, so the gland had no flat to
 # seat on. Nothing caught it until the channel was actually modelled.
@@ -3343,11 +3372,18 @@ def build():
     rep["rim_segments"] = RIM_SEG_N
     rep["rim_joints"] = len(males)
     rep["rim_joint_on_corner"] = False
-    rep["rim_seg_max_bbox_mm"] = (round(RIM_SEG_CORNER_L),
-                                  round(RIM_SEG_CORNER_W))
+    # DERIVED, not the hand-set RIM_SEG_CORNER_W - the corner pieces run to
+    # the centreline of the short side, so their width IS the ring's half
+    # width and it moves whenever the cavity does. The constant had gone
+    # stale at 193.5 against a real 197.5, and it is what the failure message
+    # prints, so a real over-size would have been reported as a fitting one.
+    _seg_w = CAV_WIDTH / 2 + RIM_W
+    rep["rim_seg_max_bbox_mm"] = (round(max(RIM_SEG_CORNER_L, jx1 - jx0)),
+                                  round(_seg_w))
     rep["rim_seg_fits_bed"] = (RIM_SEG_CORNER_L <= PRINT_BED
-                               and RIM_SEG_CORNER_W <= PRINT_BED
+                               and _seg_w <= PRINT_BED
                                and (jx1 - jx0) <= PRINT_BED)
+    rep["rim_filler_bed_margin_mm"] = round(PRINT_BED - (jx1 - jx0), 1)
     rep["rim_filler_len_mm"] = round(jx1 - jx0)
     rep["rim_joint_method"] = RIM_JOINT
     rep["rim_dovetail_mm"] = (RIM_DT_NECK, RIM_DT_HEAD, RIM_DT_DEPTH)
