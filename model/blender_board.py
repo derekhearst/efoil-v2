@@ -671,7 +671,15 @@ PACK_SIDE_CLR = 2.0
 # through the lid opening, which means it has to live inside the OPENING
 # footprint, not the interior footprint. Datumed to the wall it ran 12.3 mm
 # into the starboard flange and simply could not be installed.
-PACK_UNDER_FLANGE_CLR = 2.0        # pack top to the flange underside
+# 5.0, was 2.0. Two millimetres between a 14 kg pack and a PRINTED flange it
+# has to slide sideways under is not a clearance, it is a coincidence: ASA
+# runs +/-0.3 on a good day and more once a 400 mm part has warped a little,
+# 21700s vary about +/-0.2 in length, and a spot weld leaves a bump on top of
+# that. Any two of those eat the whole gap.
+# COSTS 3 mm OF BOARD THICKNESS and nothing else - 156.8 to 159.8. Height is
+# the cheap axis here; width is the one that pushes the rim ledge onto the
+# rail, which is why this was bought in height last time too.
+PACK_UNDER_FLANGE_CLR = 5.0        # pack top to the flange underside
 
 # --- aft service bay ------------------------------------------------------
 # Everything the rider touches lives in the bay the conduit already needs:
@@ -796,6 +804,10 @@ HOLD_BED = 250.0                   # usable Bambu A1 bed
 # real discrepancy lives - see PITCH_Y.
 HOLDER_T = 10.0                    # brick height
 HOLDER_BORE_CLR = 0.4              # on the cell diameter, so it slides
+# The top brick has to sit DOWN the cell, not flush with its top, or the
+# terminal is buried and there is nowhere to land a weld. Modelling it flush
+# is what made that obvious.
+HOLDER_TERM_CLR = 4.0              # cell top proud of the top brick
 
 # --- LYING pack, 16S8P ----------------------------------------------------
 # MEASURED, not assumed: lying the cells down is not worth it here.
@@ -2431,7 +2443,7 @@ def build_cell_holders(coll, px0, pack_x1, pack_y0, pack_y1,
     bores.hide_render = True
 
     for nm, z0 in (("Btm", iz0),
-                   ("Top", iz0 + pack_h - HOLDER_T)):
+                   ("Top", iz0 + pack_h - HOLDER_T - HOLDER_TERM_CLR)):
         plate = box(f"V2_CellHolder_{nm}", px0, pack_x1, pack_y0, pack_y1,
                     z0, z0 + HOLDER_T, coll, mat)
         boolean(plate, bores, op='DIFFERENCE')
@@ -2442,6 +2454,7 @@ def build_cell_holders(coll, px0, pack_x1, pack_y0, pack_y1,
     rep["cell_holder_positions"] = PACK_S * PACK_P * 2
     rep["cell_holder_bricks"] = PACK_S * PACK_P            # 1x2, so half
     rep["cell_holder_t_mm"] = HOLDER_T
+    rep["cell_terminal_proud_of_holder_mm"] = HOLDER_TERM_CLR
     rep["cell_holder_adds_height_mm"] = 0.0
     # The one place model and bought part disagree. PITCH_Y was set for the
     # wall thickness of a PRINTED holder that is no longer built; the bought
