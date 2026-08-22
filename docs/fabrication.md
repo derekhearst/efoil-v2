@@ -73,18 +73,38 @@ does not matter — it only matters that nothing overhangs.
 
 ## Envelope
 
-Axiom AR8 Pro V5: **1219 × 610 mm, 165 mm gantry clearance.**
+Confirmed from Maker Shop's own site: **Axiom AR8 Pro V5, work area
+24 × 47.63 × 5.9 in = 609.6 × 1209.8 × 149.9 mm.** The 1219 figure this
+section used to quote was a round "48 inches" and was 9 mm optimistic.
 
 | | Needs | |
 |---|---|---|
-| Longer core half (seam at x=1030) | 1030 × 560 | fits, 189 mm spare in X |
+| Longer core half (seam at x=1030) | 1030 × 560 | fits, 180 mm spare in X |
 | Shorter core half | 370 × 560 | fits |
 | Rebate footprint | 591 × 386 | fits easily |
 | Whole board in one piece | 1400 × 560 | **no** — hence the seam |
 
-`SEAM_X = 1030` exists precisely so both halves clear a 1219 mm bed. **Y is the
-tight axis**: 560 mm in a 610 mm bed leaves 25 mm each side, which is fine for
+`SEAM_X = 1030` exists precisely so both halves clear the bed. **Y is the tight
+axis**: 560 mm in a 609.6 mm bed leaves 24.8 mm each side, which is fine for
 tape-down but leaves no room for clamps beside the part.
+
+### The Z question — ask this on the phone
+
+Two different numbers get called "Z" and only one of them is a problem.
+
+**Cutting depth is fine.** Two-sided machining removes 39.4 mm in total, and
+the quoted Z *travel* is 149.9 mm. Not close.
+
+**Gantry clearance is the risk.** The blank envelope is **163.8 mm** and this
+document has been assuming 165 mm of clearance — a margin of **1.2 mm**, which
+is no margin at all, and the 165 was never sourced from anywhere. Maker Shop
+publishes the 5.9 in travel but not a clearance figure.
+
+If the blank does not pass under the gantry, the fix is cheap but has to be
+known in advance: **machine the bottom before the last layer is bonded on.**
+Cut the rocker into a 3-layer stack (113 mm), then bond layer four and cut the
+deck. The two-sided fixture and dowel registration already exist for exactly
+this kind of flip, so it costs a bonding step, not a redesign.
 
 ---
 
@@ -92,7 +112,10 @@ tape-down but leaves no room for clamps beside the part.
 
 ### Before the machine
 
-1. Cut three EPS layers per board, oversize to ~1420 × 580.
+1. Cut **four** EPS layers per board, oversize to ~1420 × 580. Four, not
+   three: three is 152.4 mm of stack against a 163.8 mm envelope, because
+   the rocker adds ~10 mm the old figure never counted. Two layers nest
+   per 1219 × 2438 sheet, so 4 sheets covers both boards.
 2. **Cavity through-cut in layers 2 and 3.** A 2D profile through 50.8 mm.
    Jigsaw and a template is fine; the glass and the rim ring set the finished
    dimension, not this cut.
@@ -523,9 +546,19 @@ Email is the wrong channel for a small shop. **Phone, or turn up.** Maker Shop
 Boise: **(208) 254-6151.** The three questions that actually matter are now
 much shorter than they were:
 
-1. Is the bed at least **1030 × 560**?
-2. Will they cut **EPS foam** (mess, static, and it clogs extraction)?
-3. Does a month membership cancel cleanly?
+1. ~~Is the bed at least 1030 × 560?~~ **Answered: 609.6 × 1209.8 mm.** Fits.
+2. **How much clearance is there under the gantry?** The blank is 163.8 mm
+   tall. This is now the question that matters most — see the Z note above.
+3. Will they cut **EPS foam** (mess, static, and it clogs extraction)? Still
+   unanswered, and it is a woodworking shop — SawStop, Powermatic, Festool,
+   HEPA extraction — with no published material policy.
+4. ~~Does a month membership cancel cleanly?~~ **Answered: month-to-month,
+   10 days notice.**
+
+Also answered, and it changes the plan: **Basic at $150 is 8 shop visits a
+month, not unlimited.** Unlimited is $250. Eight visits is probably enough for
+two cores, but it is a budget, not a door key — and a day pass is $99, so
+running over is expensive.
 
 G10 is no longer one of them, and that was the question most likely to get a
 no.
@@ -546,6 +579,8 @@ no.
 | Never having run a CNC | Test piece in scrap first; foam is unbreakable |
 | Flip registration wrong | Dowel pins; dry-run in air; check the mirror axis |
 | Shop bans EPS | Ask before buying a pass. G10 is no longer a question — there is none |
-| Bed too small | **Unverified.** The AR8 is 1219 × 610 on paper — confirm |
+| Bed too small | **Resolved.** 609.6 × 1209.8 mm confirmed; 1030 × 560 fits |
+| Blank too tall for the gantry | **Open.** 163.8 mm blank vs unpublished clearance. Fix is to cut the bottom at 3 layers and bond the fourth after |
+| Running out of visits | Basic is 8/month, not unlimited; a day pass is $99 |
 | Tool reach | Solved by cutting layers before glue-up |
 | Seam misalignment | Both halves off the same fixture and datum |
