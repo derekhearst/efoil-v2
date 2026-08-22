@@ -87,9 +87,11 @@ def add(sec, item, qty, unit, price, conf, note="", tool=False,
     # silent. A big one usually means the line is specced wrong rather than
     # merely mispriced - pack goods costed as loose units, A2 quoted for A4.
     if item in LINKS:
-        _asin, _listed, _t = LINKS[item]
+        _ref, _listed, _t = LINKS[item]
         if url is None:
-            url = "https://www.amazon.com/dp/" + _asin
+            # a bare 10-char ASIN expands to an Amazon URL; anything else is
+            # already a full URL at whatever vendor actually stocks the part
+            url = _ref if _ref.startswith("http")                 else "https://www.amazon.com/dp/" + _ref
         if _listed and abs(_listed - price) > 0.005:
             DRIFT.append((item, price, _listed, qty))
             price = _listed
@@ -1216,9 +1218,20 @@ def render(rows):
     out.append("| Of which verified | $" + format(ver, ",.2f") + "  ("
                + format(100 * ver / tot, ".0f") + "%) |")
     out.append("| Of which estimated | $" + format(tot - ver, ",.2f") + " |")
-    _nl = [r for r in rows if r["ext"] > 0 and not r.get("url")]
-    out.append("| Priced but NOT linked to a listing | " + str(len(_nl))
+    # Tax and freight are computed allowances, not things you can open a
+    # product page for. Counting them as "missing a link" would mean this
+    # number could never reach zero, which makes it useless as a target.
+    _nl = [r for r in rows if r["ext"] > 0 and not r.get("url")
+           and not any(k in r["item"].lower() for k in NOT_A_PURCHASE)]
+    _al = [r for r in rows if r["ext"] > 0
+           and any(k in r["item"].lower() for k in NOT_A_PURCHASE)]
+    out.append("| Linked to a real listing | "
+               + str(len([r for r in rows if r.get("url")])) + " lines |")
+    out.append("| Priced but NOT linked | " + str(len(_nl))
                + " lines, $" + format(sum(r["ext"] for r in _nl), ",.2f")
+               + " |")
+    out.append("| Allowances, not linkable (tax, freight) | " + str(len(_al))
+               + " lines, $" + format(sum(r["ext"] for r in _al), ",.2f")
                + " |")
     out.append("")
     tl, marg = tooling(rows, tot)

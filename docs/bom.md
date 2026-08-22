@@ -261,7 +261,9 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | Per board | $3,871.20 |
 | Of which verified | $7,145.85  (92%) |
 | Of which estimated | $596.55 |
-| Priced but NOT linked to a listing | 21 lines, $4,594.72 |
+| Linked to a real listing | 108 lines |
+| Priced but NOT linked | 18 lines, $3,788.47 |
+| Allowances, not linkable (tax, freight) | 3 lines, $806.25 |
 
 ## What is a board, and what is a shop
 
