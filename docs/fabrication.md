@@ -747,21 +747,34 @@ What remains true, and worth knowing rather than worrying about:
    ladder, ~3.6 V per step. One transposed pair is a dead BMS and possibly a
    dead group.
 
-## Precharge — decide before first power-up
+## There is only one switch, and it is the BMS
 
-A 75200's input capacitors are a short circuit at the instant of connection.
-On a 67 V pack that is a hard arc, pitted contacts, occasionally a welded
-pair.
+**Nothing is plugged or unplugged in normal use.** The ESC and the charge
+port are both permanently wired to P+ / P−, and the BMS's MOSFETs gate the
+negative for both at once. Turn the BMS off and load *and* charge die
+together — there is no separate load switch and no need for one.
 
-If the DALY's **switch output is what energises the load**, its FETs take the
-inrush and the button is your anti-spark. If the ESC is hard-wired across P−
-with the BMS simply always on, every connection arcs and you want an
-anti-spark connector or a precharge resistor.
+The panel button is **not** in the power path. It lands on the BMS's
+low-current **switch terminal** — DALY and JK both call it that, and it is
+what V1 used — and all it does is tell the board to turn its FETs on or off.
+It carries milliamps. The 92 A goes through the MOSFETs, which is what they
+are for.
 
-**This is the one question the wiring diagram does not answer** — it shows no
-switch at all. Check the manual or ask DALY. It is worth settling before the
-first connection rather than after, because the failure is a pitted or welded
-contact you then have to find inside a sealed module.
+> A note on the term: "switch input" means *the input on the BMS that a
+> switch connects to*, not switching the input side of anything. Nothing on
+> the pack side is ever switched.
+
+**So there is no precharge problem in service.** The classic arc comes from
+mating a connector across a live pack into discharged ESC capacitors. Here
+that connector does not exist: the FETs close into the caps under gate
+control, which is a solid-state switch doing exactly the job it is built for.
+Every ebike on earth works this way.
+
+The one moment it *is* a real connection is **assembly** — landing the B−
+lead for the first time with the ESC already wired will charge the caps
+through that joint. Connect **B− last**, and if you want it gentle, bridge it
+through a resistor for a second first. One-time, at the bench, with the lid
+off.
 
 ## Sanity checks before the lid goes on
 
@@ -769,6 +782,7 @@ contact you then have to find inside a sealed module.
 - Charge port polarity, metered, with the pack live and the BMS on.
 - ANL 150 A is in the **negative** leg, between P− and the ESC.
 - Inline 10 A is in the **charge positive**, off P+.
+- Button goes to the BMS **switch terminal** — two thin wires, nothing else.
 - Tug every crimp. One that moves is one that failed.
 - Dielectric grease on every terminal, then leak-test again with the vent
   blanked before the cells go in for good.
