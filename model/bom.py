@@ -64,9 +64,9 @@ M = dict(hatch_bolts=R["bom_hatch_bolts"],
 
 OK, EST, OWNED = "verified", "estimate", "on hand"
 try:
-    from links import LINKS       # generated; item name -> (ASIN, price, title)
+    from links import LINKS, LINK_VENDOR
 except ImportError:               # importable as a package too
-    from .links import LINKS
+    from .links import LINKS, LINK_VENDOR
 
 ROWS = []
 DRIFT = []                        # (item, believed, listed, qty)
@@ -1324,6 +1324,15 @@ def vendor_of(r):
     # re-sourced to Amazon: "peel ply" and "breather" still matched Fibre
     # Glast and sent the shopping list to the wrong vendor at the right
     # price. Where a line has been priced against a specific listing, say so.
+    # A line that links to a real listing is sold BY WHOEVER THAT LISTING
+    # BELONGS TO. That beats both the AMAZON_LINES list and the keyword
+    # table below, which are guesses from the item's name.
+    if not r.get("vendor") and r["item"] in LINK_VENDOR:
+        v = LINK_VENDOR[r["item"]]
+        for n, u, _ in VENDORS:
+            if n == v:
+                return n, u
+        return v, ""
     if any(k in r["item"].lower() for k in AMAZON_LINES) and not r.get("vendor"):
         return "Amazon", "https://www.amazon.com"
     if r.get("vendor"):

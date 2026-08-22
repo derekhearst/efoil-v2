@@ -109,10 +109,10 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | Flipsky 75200 Pro V2 ESC | 2 | ea | $150.00 | $300.00 | verified |  |
 | [Thermal pad 1 mm non-conductive, 100 x 100](https://www.amazon.com/dp/B0GTLRJJGT) | 1 | ea | $9.99 | $9.99 | verified | 15.8 W/mK. One 100 x 100 sheet cuts both boards' baseplates. The ESC PCB face goes DOWN onto the floor, same as V1 did onto its alu bottom plate |
 | Flipsky VX3 remote | 2 | ea | $71.00 | $142.00 | verified |  |
-| DALY Smart BMS Li-ion 16S 60V 150A | 2 | ea | $159.00 | $318.00 | verified | batteryint.com; confirm it is <= 164 x 66 x 21 mm |
+| [DALY Smart BMS Li-ion 16S 60V 150A](https://www.amazon.com/dp/B0CXXFQT9S) | 2 | ea | $147.70 | $295.40 | verified | batteryint.com; confirm it is <= 164 x 66 x 21 mm |
 | [Charger 67.2 V 5 A, 16S  (NOT 58.8 V)](https://www.amazon.com/dp/B0DK6FTB1P) | 2 | ea | $45.99 | $91.98 | verified | Amazon B0DK6FTB1P, aluminium case + fan |
-| BAK N21700CG-50, 130-cell case (BatteryHookup) | 1 | case | $260.00 | $260.00 | verified | new overstock |
-| BAK N21700CG-50 singles, spares | 15 | ea | $2.50 | $37.50 | verified | 7% margin on a spot-welded pack |
+| [BAK N21700CG-50, 130-cell case (BatteryHookup)](https://batteryhookup.com/products/new-3-6v-5000mah-bak-n21700cg-50-2170-lithium-ion-cells?variant=46196788789410) | 1 | case | $260.00 | $260.00 | verified | new overstock |
+| [BAK N21700CG-50 singles, spares](https://batteryhookup.com/products/new-3-6v-5000mah-bak-n21700cg-50-2170-lithium-ion-cells?variant=46196788756642) | 15 | ea | $2.50 | $37.50 | verified | 7% margin on a spot-welded pack |
 | 21700 cells already on hand | 128 | ea | $0.00 | $0.00 | on hand |  |
 | [Pure nickel 0.2 x 10 mm, 5 m roll](https://www.amazon.com/dp/B0961Q1VVR) | 4 | roll | $14.99 | $59.96 | verified |  |
 | 21700 spacer brackets | 0 | set | $0.00 | $0.00 | on hand |  |
@@ -120,7 +120,7 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | [8 AWG silicone, 10 ft red + 10 ft black](https://www.amazon.com/dp/B0BYJRDT19) | 1 | pk | $21.99 | $21.99 | verified | one pack covers BOTH boards - the longest run in the module is the 278 mm ESC-to-fuse, so 10 ft a side is already 10x what the runs need. Motor supplies its own phase leads + bullets. Amazon 8 AWG 10+10 spans $18.88-$23.99; the 25 ft pack at $49.99 was buying 40 ft of wire to use about 3 |
 | [PVC pack wrap, 200 mm lay-flat](https://www.amazon.com/dp/B09SVFL33L) | 1 | roll | $13.99 | $13.99 | verified | wide enough to sleeve a 16S brick; one roll does both |
 | [Kapton tape, pack insulation](https://www.amazon.com/dp/B006ZFQNT6) | 1 | roll | $8.25 | $8.25 | estimate |  |
-| **subtotal** | | | | **$1,893.63** | | |
+| **subtotal** | | | | **$1,871.03** | | |
 
 ## 8  Mast hardpoint
 
@@ -250,30 +250,30 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | Item | Qty | Unit | Unit $ | Ext $ | | Note |
 |---|---:|---|---:|---:|---|---|
 | Shipping - Divinycell, 6061 plate, VR20 | 1 | allow | $120.00 | $120.00 | estimate | STILL THE BIGGEST UNVERIFIED LINE - it wants three real carts to settle. Was $220 when it covered G10 sheet and hazmat epoxy, both of which are now out of the build entirely |
-| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $438.25 | $438.25 | verified |  |
-| **subtotal** | | | | **$558.25** | | |
+| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $436.89 | $436.89 | verified |  |
+| **subtotal** | | | | **$556.89** | | |
 
 ## Totals
 
 | | |
 |---|---:|
-| **Grand total, 2 boards** | **$7,742.40** |
-| Per board | $3,871.20 |
-| Of which verified | $7,145.85  (92%) |
+| **Grand total, 2 boards** | **$7,718.44** |
+| Per board | $3,859.22 |
+| Of which verified | $7,121.89  (92%) |
 | Of which estimated | $596.55 |
-| Linked to a real listing | 108 lines |
-| Priced but NOT linked | 18 lines, $3,788.47 |
-| Allowances, not linkable (tax, freight) | 3 lines, $806.25 |
+| Linked to a real listing | 111 lines |
+| Priced but NOT linked | 15 lines, $3,172.97 |
+| Allowances, not linkable (tax, freight) | 3 lines, $804.89 |
 
 ## What is a board, and what is a shop
 
-Some of the total above is not the cost of a board at all - it is tools, jigs and templates that exist afterwards and do not repeat. Splitting them out is the difference between "a board costs $3,871" and "a board costs $3,524 and I now own a vacuum rig, a crimper and a full template set".
+Some of the total above is not the cost of a board at all - it is tools, jigs and templates that exist afterwards and do not repeat. Splitting them out is the difference between "a board costs $3,859" and "a board costs $3,512 and I now own a vacuum rig, a crimper and a full template set".
 
 | | |
 |---|---:|
 | One-time tooling (incl. its share of tax) | $693.44 |
-| **Marginal cost of a board** | **$3,524.48** |
-| Cost of the NEXT board after these 2 | $3,524.48 |
+| **Marginal cost of a board** | **$3,512.50** |
+| Cost of the NEXT board after these 2 | $3,512.50 |
 
 | One-time item | $ |
 |---|---:|

@@ -6,19 +6,17 @@ Grouped by where you buy it rather than by what it does, because that is the ord
 
 | Supplier | Lines | $ |
 |---|---:|---:|
-| Amazon | 105 | $3,123.74 |
+| Amazon | 109 | $3,443.08 |
 | Gong | 1 | $1,388.00 |
 | Flipsky | 3 | $1,038.00 |
-| Not a purchase - tax and freight | 3 | $806.25 |
-| Battery International | 1 | $318.00 |
+| Not a purchase - tax and freight | 3 | $804.89 |
 | BatteryHookup | 2 | $297.50 |
 | Fiberglass Supply | 3 | $253.38 |
 | Home Depot / hardware | 5 | $202.67 |
 | Maker Shop Boise | 1 | $150.00 |
 | Speedy Metals | 1 | $88.92 |
 | Fibre Glast | 1 | $52.00 |
-| Fasteners / shop consumables | 3 | $23.94 |
-| **TOTAL** | | **$7,742.40** |
+| **TOTAL** | | **$7,718.44** |
 
 ## Amazon
 
@@ -27,6 +25,7 @@ https://www.amazon.com
 | Item | Qty | Unit | Ext | Price | Note |
 |---|---:|---|---:|---|---|
 | [TotalBoat 5:1 gallon kit, slow hardener](https://www.amazon.com/dp/B00HR8515C) | 2 | kit | $299.98 | **verified** | 2.51 m2 laminate = 4.8 kg mixed = 1 kit/board |
+| [DALY Smart BMS Li-ion 16S 60V 150A](https://www.amazon.com/dp/B0CXXFQT9S) | 2 | ea | $295.40 | **verified** | batteryint.com; confirm it is <= 164 x 66 x 21 mm |
 | [Peel ply, 60in](https://www.amazon.com/dp/B0H5JTMTZ3) | 6 | yd | $113.94 | **verified** | was only in the starter kit, and one kit's worth does not cover 6.12 m2 of part |
 | [TotalBoat Wet Edge topside paint, colour](https://www.amazon.com/dp/B00HQP5D9A) | 2 | kit | $107.98 | **verified** | one-part polyurethane, quart |
 | [Charger 67.2 V 5 A, 16S  (NOT 58.8 V)](https://www.amazon.com/dp/B0DK6FTB1P) | 2 | ea | $91.98 | **verified** | Amazon B0DK6FTB1P, aluminium case + fan |
@@ -112,6 +111,7 @@ https://www.amazon.com
 | [M6 heat-set insert, strap mounts](https://www.amazon.com/dp/B0DNJNLP95) | 1 | pk | $9.99 | **verified** | not supplied with the screws above |
 | [Fish tape / pull cord for the mast conduit](https://www.amazon.com/dp/B0FGCY7XPS) | 1 | ea | $9.99 | estimate |  |
 | [Plastic sheeting + masking tape, bench protection](https://www.amazon.com/dp/B0GF2BWRC6) | 1 | set | $9.99 | estimate |  |
+| [M6 x 20 fender washer, 100 pk](https://www.amazon.com/dp/B0DPMPJW4H) | 1 | pk | $9.49 | **verified** | 8 needed |
 | [M5 A4 hex nut DIN934, 50 pk - CAPTIVE in the ring](https://www.amazon.com/dp/B084HLMN7B) | 1 | pk | $9.19 | **verified** | 34 needed. Dropped in at a print pause at Z=6.0; steel thread, so a hatch that comes off every ride never wear |
 | [Dielectric grease, terminals](https://www.amazon.com/dp/B0D6R543V2) | 1 | tube | $8.99 | estimate |  |
 | [M5 nyloc nut 316, 150 pk](https://www.amazon.com/dp/B0BP2T6Z4Q) | 1 | pk | $8.99 | **verified** | a separate pack from the washers above - they do not come together |
@@ -124,11 +124,13 @@ https://www.amazon.com
 | [M6 x 16 A4 button head, 10 pk](https://www.amazon.com/dp/B07DVRLQTK) | 1 | pk | $8.06 | **verified** | 8 needed, strap mounts. The M6 THREADED INSERT IS NOT INCLUDED - separate line below |
 | [2.5 mm straight cutter - fallback](https://www.amazon.com/dp/B0GWSZ2KV2) | 1 | ea | $7.99 | estimate | only if you would rather cut the groove open than sand down to a proud filler strip. Undersize in a 4 mm groov |
 | [M5 penny washer O15 DIN9021, 150 pk](https://www.amazon.com/dp/B0G58KQN6L) | 1 | pk | $7.99 | **verified** | 34 needed. DIN9021 is what confirms the large 15 mm OD. Goes in at the SAME print pause as the nut, underneath |
+| [M8 316 washer, prop nut](https://www.amazon.com/dp/B0DDGRXHT7) | 1 | pk | $7.69 | **verified** | only 2 needed; sold in 10s |
 | [Silicone adhesive, bonding the cord into groove](https://www.amazon.com/dp/B0002UEN1U) | 1 | tube | $7.56 | estimate | a thin continuous bead under the cord. It cannot then migrate, lift out, or be pinched under the lid in a dark |
 | [Silicone sealant, BMS anti-vibration dabs](https://www.amazon.com/dp/B0F4MT4FW6) | 1 | tube | $7.49 | estimate | V1 did this; stops the BMS walking |
 | [2 mm glass beads or shim wire, bond-line control](https://www.amazon.com/dp/B0FVSHYP99) | 1 | ea | $7.19 | estimate | clamping a PU joint metal-to-plastic squeezes the line out and puts you back to a rigid joint that will fail |
 | [Loctite 242](https://www.amazon.com/dp/B000I1RSNS) | 1 | ea | $6.98 | estimate | rod ends into the motor only - nyloc end does not need it |
 | [M4 A4 washer, 316, 100 pk](https://www.amazon.com/dp/B0DZ5BVLP5) | 1 | pk | $6.79 | **verified** | 36 needed, under every lid bolt. NOTE the OD is 12 mm, not the 9 mm this line specced - the only 9 mm-OD listi |
+| [M3 x 8 A4 stainless, 10 pk](https://www.amazon.com/dp/B07DVMFMJZ) | 1 | pk | $6.76 | **verified** | the kit's screws are not stainless and this joint is submerged |
 | [1 in polyester webbing 6 yd + 6 buckles](https://www.amazon.com/dp/B0FBRMSRLK) | 1 | kit | $5.99 | **verified** | 2 straps per board, plus the module lift loops in section 7, all out of the one 6 yd pack |
 | [Cyanoacrylate for the cord splice](https://www.amazon.com/dp/B0DKP4TVSF) | 1 | ea | $5.39 | estimate |  |
 
@@ -158,19 +160,9 @@ Some Flipsky appears on Amazon but the range is thin and usually dearer. Buy dir
 
 | Item | Qty | Unit | Ext | Price | Note |
 |---|---:|---|---:|---|---|
-| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $438.25 | **verified** |  |
+| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $436.89 | **verified** |  |
 | Gong shipping to Idaho, per foil | 2 | ea | $248.00 | **verified** | 115.50 EUR on order 252112; charged per ORDER, so putting both boards' foils in ONE order saves about $124 |
 | Shipping - Divinycell, 6061 plate, VR20 | 1 | allow | $120.00 | estimate | STILL THE BIGGEST UNVERIFIED LINE - it wants three real carts to settle. Was $220 when it covered G10 sheet an |
-
-## Battery International
-
-https://batteryint.com
-
-**Amazon carries DALY.** Check the price, but confirm it is the 16S 150A and <= 164 x 66 x 21 - the module is laid out around that size.
-
-| Item | Qty | Unit | Ext | Price | Note |
-|---|---:|---|---:|---|---|
-| DALY Smart BMS Li-ion 16S 60V 150A | 2 | ea | $318.00 | **verified** | batteryint.com; confirm it is <= 164 x 66 x 21 mm |
 
 ## BatteryHookup
 
@@ -180,8 +172,8 @@ https://batteryhookup.com
 
 | Item | Qty | Unit | Ext | Price | Note |
 |---|---:|---|---:|---|---|
-| BAK N21700CG-50, 130-cell case (BatteryHookup) | 1 | case | $260.00 | **verified** | new overstock |
-| BAK N21700CG-50 singles, spares | 15 | ea | $37.50 | **verified** | 7% margin on a spot-welded pack |
+| [BAK N21700CG-50, 130-cell case (BatteryHookup)](https://batteryhookup.com/products/new-3-6v-5000mah-bak-n21700cg-50-2170-lithium-ion-cells?variant=46196788789410) | 1 | case | $260.00 | **verified** | new overstock |
+| [BAK N21700CG-50 singles, spares](https://batteryhookup.com/products/new-3-6v-5000mah-bak-n21700cg-50-2170-lithium-ion-cells?variant=46196788756642) | 15 | ea | $37.50 | **verified** | 7% margin on a spot-welded pack |
 
 ## Fiberglass Supply
 
@@ -234,12 +226,4 @@ https://www.fibreglast.com
 | Item | Qty | Unit | Ext | Price | Note |
 |---|---:|---|---:|---|---|
 | VR20 vacuum regulator | 1 | ea | $52.00 | **verified** | one-time |
-
-## Fasteners / shop consumables
-
-| Item | Qty | Unit | Ext | Price | Note |
-|---|---:|---|---:|---|---|
-| [M6 x 20 fender washer, 100 pk](https://www.amazon.com/dp/B0DPMPJW4H) | 1 | pk | $9.49 | **verified** | 8 needed |
-| [M8 316 washer, prop nut](https://www.amazon.com/dp/B0DDGRXHT7) | 1 | pk | $7.69 | **verified** | only 2 needed; sold in 10s |
-| [M3 x 8 A4 stainless, 10 pk](https://www.amazon.com/dp/B07DVMFMJZ) | 1 | pk | $6.76 | **verified** | the kit's screws are not stainless and this joint is submerged |
 
