@@ -1281,12 +1281,38 @@ CNC_BED_Z = 149.9                  # 5.9 in of CUTTER TRAVEL - see the check
 # The long axis is fine (1030 of 1209.8) and so is the width (560 of 609.6,
 # though that leaves only 24.8 mm a side for clamps, so the blank has to be
 # held from above or taped down - which it is).
-# Z IS THE ONE TO WATCH. The blank envelope is 163.8 mm = 6.45 in, and the
-# quoted Z travel is 5.9. That is NOT automatically fatal: two-sided
-# machining only removes 39.4 mm in total, so the CUTTING depth is far
-# inside the travel. What it threatens is whether a 163.8 mm blank passes
-# UNDER the gantry at all, which is a clearance spec the site does not
-# publish. Ask on the same phone call as the EPS question.
+# Z IS THE PROBLEM, and it is worse than the envelope figure suggests.
+# The number that has to pass under the gantry is not the 163.8 mm finished
+# envelope, it is the 203.2 mm GLUED STACK - four 50.8 layers, before a
+# single chip is cut. No 6-inch-class router takes that, so "will it fit"
+# was never really the question.
+#
+# THE FIX IS A HORIZONTAL SPLIT, and it costs nothing this build was not
+# already doing. Machine the two outer surfaces on two half-stacks and bond
+# them together LAST, instead of gluing the full stack and then machining:
+#
+#   Sub-stack A, layers 1+2 (101.6):  rocker + mast pocket on the underside,
+#                                     lower half of the cavity on the top face
+#   Sub-stack B, layers 3+4 (101.6):  deck crown on the top face, upper half
+#                                     of the cavity cut straight through
+#   Then bond A to B on the flat mid-plane. No outer surface is touched after.
+#
+# Nothing ever goes under the gantry taller than 101.6 mm plus the fixture.
+# That turns the requirement from "needs >163.8 mm of clearance", which is
+# improbable on this machine, into "needs >110 mm", which is close to
+# certain - and it is the difference between a phone call that can sink the
+# plan and one that merely confirms it.
+#
+# Two things fall out of this for free:
+#   - TOOL REACH. The cavity is 123.8 mm below the deck. Plunging that from
+#     a full stack wants a 130 mm cutter, which does not exist in 1/2 in for
+#     foam at sane money. Split, the deepest single pocket is ~77 mm.
+#   - The 4-layer stack stops being an awkward object to handle at all.
+# The cost is one full-area glue line at mid-thickness, in EPS, where the
+# skins carry the load - and the board already has three such lines between
+# its four layers. Alignment is the dowel-pin fixture that is already in the
+# BOM for two-sided registration.
+CNC_SUBSTACK_LAYERS = 2            # layers machined per half before bonding
 # The blank is stacked from 2 in construction EPS, not carved from a billet.
 # FOUR layers, not three. Three is 152.4 mm and the blank envelope is 163.8 -
 # the board is 153.8 thick and the rocker adds 10 on top of that, which the
@@ -3513,6 +3539,12 @@ def build():
     rep["cnc_len_margin_mm"] = round(CNC_BED_X - max(SEAM_X, LENGTH - SEAM_X), 1)
     rep["cnc_width_margin_mm"] = round(CNC_BED_Y - WIDTH, 1)
     rep["cnc_clamp_margin_per_side_mm"] = round((CNC_BED_Y - WIDTH) / 2, 1)
+    # What actually has to pass under the gantry, under the split sequence
+    _sub = CNC_SUBSTACK_LAYERS * EPS_SHEET_T
+    rep["cnc_workpiece_h_naive_mm"] = round(EPS_LAYERS * EPS_SHEET_T, 1)
+    rep["cnc_workpiece_h_split_mm"] = round(_sub, 1)
+    rep["cnc_split_fits_quoted_z"] = _sub <= CNC_BED_Z
+    rep["cnc_naive_fits_quoted_z"] = EPS_LAYERS * EPS_SHEET_T <= CNC_BED_Z
     # With the pad gone the only thing that has to clear the rim ring is the
     # strip itself, which it does by handle_to_ring_mm below.
     rep["handle_to_ring_mm"] = round(

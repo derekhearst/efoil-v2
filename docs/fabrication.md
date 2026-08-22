@@ -88,23 +88,47 @@ section used to quote was a round "48 inches" and was 9 mm optimistic.
 axis**: 560 mm in a 609.6 mm bed leaves 24.8 mm each side, which is fine for
 tape-down but leaves no room for clamps beside the part.
 
-### The Z question — ask this on the phone
+### The Z problem, and why the answer is to bond last
 
-Two different numbers get called "Z" and only one of them is a problem.
+The height that has to pass under the gantry was never the 163.8 mm finished
+envelope. It is the **203.2 mm glued stack** — four 50.8 mm layers, before a
+single chip is cut. Against 149.9 mm of quoted Z, that is not a near miss and
+no amount of phoning will make it fit.
 
-**Cutting depth is fine.** Two-sided machining removes 39.4 mm in total, and
-the quoted Z *travel* is 149.9 mm. Not close.
+| | mm | vs 149.9 |
+|---|---|---|
+| Glue the full stack, then machine | 203.2 | **no** |
+| Machine two half-stacks, bond last | 101.6 | yes, comfortably |
 
-**Gantry clearance is the risk.** The blank envelope is **163.8 mm** and this
-document has been assuming 165 mm of clearance — a margin of **1.2 mm**, which
-is no margin at all, and the 165 was never sourced from anywhere. Maker Shop
-publishes the 5.9 in travel but not a clearance figure.
+**So bond last.** Machine the two outer surfaces on two half-stacks and join
+them at the end, instead of gluing everything and then carving it:
 
-If the blank does not pass under the gantry, the fix is cheap but has to be
-known in advance: **machine the bottom before the last layer is bonded on.**
-Cut the rocker into a 3-layer stack (113 mm), then bond layer four and cut the
-deck. The two-sided fixture and dowel registration already exist for exactly
-this kind of flip, so it costs a bonding step, not a redesign.
+| | layers | what gets cut |
+|---|---|---|
+| Sub-stack **A** | 1 + 2 | rocker and mast pocket on the underside; **lower** half of the cavity into the top face |
+| Sub-stack **B** | 3 + 4 | deck crown on the top face; **upper** half of the cavity cut straight through |
+| Then | — | bond A to B on the flat mid-plane. No outer surface is touched again |
+
+Nothing goes under the gantry taller than 101.6 mm plus the fixture. That
+changes the question from *"is there 164 mm of clearance?"* — improbable on a
+6-inch-class router — to *"is there 110 mm?"*, which is close to certain. It
+turns a phone call that could sink the plan into one that merely confirms it.
+
+Two things fall out for free:
+
+- **Tool reach.** The cavity floor is 123.8 mm below the deck. Plunging that
+  from a full stack wants a ~130 mm cutter, which does not exist in ½ in for
+  foam at sane money. Split, the deepest single pocket is about 77 mm.
+- The 203 mm stack stops being an awkward thing to lift, clamp and square up.
+
+The cost is one full-area glue line at mid-thickness, in EPS, where the skins
+carry the load — and the board already has three such lines between its four
+layers. This just promotes one of them to the assembly joint. Alignment is the
+dowel-pin fixture already in the BOM for two-sided registration.
+
+**Still worth asking on the phone:** the actual clearance figure. Not because
+the plan now depends on it, but because if it turns out to be generous the
+mid-plane bond could be skipped.
 
 ---
 
@@ -547,8 +571,9 @@ Boise: **(208) 254-6151.** The three questions that actually matter are now
 much shorter than they were:
 
 1. ~~Is the bed at least 1030 × 560?~~ **Answered: 609.6 × 1209.8 mm.** Fits.
-2. **How much clearance is there under the gantry?** The blank is 163.8 mm
-   tall. This is now the question that matters most — see the Z note above.
+2. **How much clearance is there under the gantry?** Now a nice-to-know
+   rather than a blocker: the split sequence needs only ~110 mm. If they say
+   180+, the mid-plane bond can be skipped.
 3. Will they cut **EPS foam** (mess, static, and it clogs extraction)? Still
    unanswered, and it is a woodworking shop — SawStop, Powermatic, Festool,
    HEPA extraction — with no published material policy.
@@ -580,7 +605,7 @@ no.
 | Flip registration wrong | Dowel pins; dry-run in air; check the mirror axis |
 | Shop bans EPS | Ask before buying a pass. G10 is no longer a question — there is none |
 | Bed too small | **Resolved.** 609.6 × 1209.8 mm confirmed; 1030 × 560 fits |
-| Blank too tall for the gantry | **Open.** 163.8 mm blank vs unpublished clearance. Fix is to cut the bottom at 3 layers and bond the fourth after |
+| Blank too tall for the gantry | **Resolved by sequence.** The 203.2 mm stack never goes on the machine; two 101.6 mm half-stacks do, bonded after |
 | Running out of visits | Basic is 8/month, not unlimited; a day pass is $99 |
 | Tool reach | Solved by cutting layers before glue-up |
 | Seam misalignment | Both halves off the same fixture and datum |
