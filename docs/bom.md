@@ -35,12 +35,12 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | Item | Qty | Unit | Unit $ | Ext $ | | Note |
 |---|---:|---|---:|---:|---|---|
 | E-glass 6 oz, 50in x 12ft, 2-pack | 2 | pack | $19.07 | $38.14 | verified | your receipt |
-| 1708 biax, 50in wide | 6 | yd | $12.50 | $75.00 | verified |  |
+| 1708 biax, 50in x 10 yd roll | 1 | roll | $79.99 | $79.99 | verified | 6 yd needed across both boards; $8.00/yd against Fibre Glast's $12.50 and no freight |
 | TotalBoat 5:1 quart FAST hardener, cold days | 1 | ea | $39.99 | $39.99 | estimate | min 40-45 F against slow's 60. In a cold shop this is the one that cures, and the cold gives the pot life back |
 | TotalBoat 5:1 gallon kit, slow hardener | 2 | kit | $149.00 | $298.00 | verified | 2.51 m2 laminate = 4.8 kg mixed = 1 kit/board |
 | TotalBoat 5:1 quart kit, fillets and bonding | 1 | kit | $68.99 | $68.99 | verified |  |
 | Fumed silica thickener | 0 | off | $0.00 | $0.00 | on hand | plenty on hand from V1 |
-| **subtotal** | | | | **$520.12** | | |
+| **subtotal** | | | | **$525.11** | | |
 
 ## 5  Vacuum bagging
 
@@ -48,14 +48,15 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 |---|---:|---|---:|---:|---|---|
 | VECOTOOLS 4.5 CFM single-stage pump, oil incl. | 1 | ea | $57.99 | $57.99 | verified | your listing, ASIN B0GZVLP3PL. Was a $139.99 Pittsburgh 2-stage plus $15 of oil - $97 for ultimate vacuum we must not use |
 | VR20 vacuum regulator | 1 | ea | $52.00 | $52.00 | verified | one-time |
-| Bagging starter kit - film, peel ply, tape, breather, connector | 1 | kit | $127.40 | $127.40 | verified | one-time + first board |
+| Bag connector w/ ball valve, 1/4 in QD | 2 | ea | $19.59 | $39.18 | verified | THE BALL VALVE IS THE POINT: shut it and the bag is isolated from the pump, so leak-down is a real measurement and not a guess about whether the pump is keeping up. Two of them - a 1400 mm hull bag pulls down far faster from both ends, and one is a spare |
+| Vacuum hose + hose clamps | 1 | set | $15.00 | $15.00 | estimate | 1/2 in tubing pump-to-bag plus clamps; the other half of what the deleted kit was actually carrying |
 | Test cap + tubing, module leak test | 1 | set | $12.00 | $12.00 | estimate | PROVE THE MODULE BEFORE THE CELLS GO IN, and prove it the way the failure actually happens: seal it empty, pull 5 inHg, shut the pump off and watch the gauge for 30 min - porosity reads as a slow bleed. Then do it again SUBMERGED: under vacuum any path pulls water IN and you see exactly where. V1 found its leaks by riding |
 | Vacuum gauge, 0-30 inHg, 1/4 NPT | 1 | ea | $18.00 | $18.00 | estimate | reads the BAG, not the pump - tee it in at the bag end. The regulator sets the level; this is how you know it worked |
-| Vac bag film, 5 yd | 3 | roll | $24.95 | $74.85 | verified | 3.06 m2 a hull session; 2 hulls + 4 lids + a practice piece + one re-do. Single-use on the hull, reusable on flat parts |
+| Vac bag film, 5 yd | 3 | roll | $24.95 | $74.85 | verified | 3.06 m2 a hull session; 2 hulls + 4 lids + a practice piece + one re-do. Single-use on the hull, reusable on flat parts. Same Elite Lab product Fibre Glast sells, at the same price, with free delivery |
 | Peel ply, 60in | 6 | yd | $15.33 | $91.98 | verified | was only in the starter kit, and one kit's worth does not cover 6.12 m2 of part |
-| Breather / bleeder cloth | 6 | yd | $13.95 | $83.70 | verified |  |
-| Sealant tape, 50 ft roll | 2 | roll | $19.99 | $39.98 | verified | 31 m of bag perimeter across the project; the kit has one roll |
-| **subtotal** | | | | **$557.90** | | |
+| Breather / bleeder cloth | 6 | yd | $13.95 | $83.70 | verified | $13.95/yd cut; a 5 yd roll at $59.99 is $12.00/yd if you would rather buy the roll |
+| Sealant tape, 50 ft roll | 2 | roll | $19.99 | $39.98 | verified | 31 m of bag perimeter across the project. 2 x 50 ft at $19.99 replaced 4 x 25 ft at $12 - same tape, fewer joins |
+| **subtotal** | | | | **$484.68** | | |
 
 ## 6  Hatch and seal
 
@@ -236,35 +237,36 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 
 | Item | Qty | Unit | Unit $ | Ext $ | | Note |
 |---|---:|---|---:|---:|---|---|
-| Shipping - G10, Divinycell, epoxy hazmat | 1 | allow | $220.00 | $220.00 | estimate | heavy and hazmat lines |
-| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $445.26 | $445.26 | verified |  |
-| **subtotal** | | | | **$665.26** | | |
+| Shipping - Divinycell, 6061 plate, VR20 | 1 | allow | $120.00 | $120.00 | estimate | STILL THE BIGGEST UNVERIFIED LINE - it wants three real carts to settle. Was $220 when it covered G10 sheet and hazmat epoxy, both of which are now out of the build entirely |
+| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $435.17 | $435.17 | verified |  |
+| **subtotal** | | | | **$555.17** | | |
 
 ## Totals
 
 | | |
 |---|---:|
-| **Grand total, 2 boards** | **$7,866.29** |
-| Per board | $3,933.14 |
-| Of which verified | $6,539.70  (83%) |
-| Of which estimated | $1,326.59 |
+| **Grand total, 2 boards** | **$7,687.97** |
+| Per board | $3,843.98 |
+| Of which verified | $6,446.38  (84%) |
+| Of which estimated | $1,241.59 |
 
 ## What is a board, and what is a shop
 
-Some of the total above is not the cost of a board at all - it is tools, jigs and templates that exist afterwards and do not repeat. Splitting them out is the difference between "a board costs $3,933" and "a board costs $3,562 and I now own a vacuum rig, a crimper and a full template set".
+Some of the total above is not the cost of a board at all - it is tools, jigs and templates that exist afterwards and do not repeat. Splitting them out is the difference between "a board costs $3,844" and "a board costs $3,512 and I now own a vacuum rig, a crimper and a full template set".
 
 | | |
 |---|---:|
-| One-time tooling (incl. its share of tax) | $742.36 |
-| **Marginal cost of a board** | **$3,561.96** |
-| Cost of the NEXT board after these 2 | $3,561.96 |
+| One-time tooling (incl. its share of tax) | $664.75 |
+| **Marginal cost of a board** | **$3,511.61** |
+| Cost of the NEXT board after these 2 | $3,511.61 |
 
 | One-time item | $ |
 |---|---:|
 | Maker Shop Boise Basic month | $150.00 |
 | VECOTOOLS 4.5 CFM single-stage pump, oil incl. | $57.99 |
 | VR20 vacuum regulator | $52.00 |
-| Bagging starter kit - film, peel ply, tape, breather, connector | $127.40 |
+| Bag connector w/ ball valve, 1/4 in QD | $39.18 |
+| Vacuum hose + hose clamps | $15.00 |
 | Vacuum gauge, 0-30 inHg, 1/4 NPT | $18.00 |
 | M8 x 1.25 tap set + 6.8 mm drill | $18.00 |
 | 1/4 in torque wrench, 10-50 in-lb | $25.97 |

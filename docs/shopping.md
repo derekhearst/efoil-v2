@@ -6,21 +6,21 @@ Grouped by where you buy it rather than by what it does, because that is the ord
 
 | Supplier | Lines | $ |
 |---|---:|---:|
-| Amazon | 58 | $1,911.49 |
+| Amazon | 66 | $2,374.31 |
 | Gong | 2 | $1,395.20 |
 | Flipsky | 3 | $1,038.00 |
-| Not a purchase - tax and freight | 3 | $913.26 |
-| Fibre Glast | 11 | $643.05 |
+| Not a purchase - tax and freight | 3 | $803.17 |
 | Home Depot / hardware | 19 | $456.91 |
 | Fiberglass Supply | 4 | $364.10 |
 | Battery International | 1 | $318.00 |
 | BatteryHookup | 2 | $297.50 |
 | Maker Shop Boise | 1 | $150.00 |
 | Fasteners / shop consumables | 8 | $144.00 |
+| Fibre Glast | 4 | $112.00 |
 | 3M / auto parts | 3 | $102.98 |
 | Speedy Metals | 2 | $102.81 |
 | Sika / marine supplier | 1 | $28.99 |
-| **TOTAL** | | **$7,866.29** |
+| **TOTAL** | | **$7,687.97** |
 
 ## Amazon
 
@@ -30,8 +30,12 @@ https://www.amazon.com
 |---|---:|---|---:|---|---|
 | TotalBoat 5:1 gallon kit, slow hardener | 2 | kit | $298.00 | **verified** | 2.51 m2 laminate = 4.8 kg mixed = 1 kit/board |
 | TotalBoat Wet Edge topside paint, colour | 2 | kit | $107.98 | **verified** | one-part polyurethane, quart |
+| Peel ply, 60in | 6 | yd | $91.98 | **verified** | was only in the starter kit, and one kit's worth does not cover 6.12 m2 of part |
 | Charger 67.2 V 5 A, 16S  (NOT 58.8 V) | 2 | ea | $91.98 | **verified** | Amazon B0DK6FTB1P, aluminium case + fan |
 | TotalBoat TotalFair epoxy fairing compound | 2 | kit | $91.98 | **verified** | smallest kit, one per board |
+| Breather / bleeder cloth | 6 | yd | $83.70 | **verified** | $13.95/yd cut; a 5 yd roll at $59.99 is $12.00/yd if you would rather buy the roll |
+| 1708 biax, 50in x 10 yd roll | 1 | roll | $79.99 | **verified** | 6 yd needed across both boards; $8.00/yd against Fibre Glast's $12.50 and no freight |
+| Vac bag film, 5 yd | 3 | roll | $74.85 | **verified** | 3.06 m2 a hull session; 2 hulls + 4 lids + a practice piece + one re-do. Single-use on the hull, reusable on f |
 | ASA filament, printed module shell | 3 | kg | $73.47 | **verified** | 4 L-pieces/board, ~1.13 kg of part + supports and brim; largest piece 226 x 146 fits the A1 bed |
 | TotalBoat 5:1 quart kit, fillets and bonding | 1 | kit | $68.99 | **verified** |  |
 | 5052 1/8in x 12 x 24, 2-pack - module floors | 1 | pk | $61.99 | **verified** | your Apr 2026 receipt (MorningRo/Huaiian). One sheet is one floor, so this pack does both boards |
@@ -43,6 +47,9 @@ https://www.amazon.com
 | 25 mm webbing + ladder-lock buckles | 2 | set | $40.00 | estimate | 2 straps per board |
 | TotalBoat 5:1 quart FAST hardener, cold days | 1 | ea | $39.99 | estimate | min 40-45 F against slow's 60. In a cold shop this is the one that cures, and the cold gives the pot life back |
 | Hydraulic lug crimper, 10 ton, 12-2/0 AWG | 1 | ea | $39.99 | **verified** | one-time; this is what replaces soldering XT150s |
+| Sealant tape, 50 ft roll | 2 | roll | $39.98 | **verified** | 31 m of bag perimeter across the project. 2 x 50 ft at $19.99 replaced 4 x 25 ft at $12 - same tape, fewer joi |
+| Bag connector w/ ball valve, 1/4 in QD | 2 | ea | $39.18 | **verified** | THE BALL VALVE IS THE POINT: shut it and the bag is isolated from the pump, so leak-down is a real measurement |
+| E-glass 6 oz, 50in x 12ft, 2-pack | 2 | pack | $38.14 | **verified** | your receipt |
 | Heat shrink, Kapton, pack wrap | 2 | set | $36.00 | estimate |  |
 | Rotary-tool router base + collets, if needed | 1 | set | $35.00 | estimate | you have the tool; this is only if the base you have will not hold depth over the groove run |
 | 8 AWG marine ring lugs, 20 pk | 2 | pk | $33.98 | **verified** | 28 needed; on M6 studs - nothing to solder |
@@ -66,6 +73,7 @@ https://www.amazon.com
 | Neoprene sheet 1/8in, module + mast gaskets | 1 | sheet | $16.00 | estimate | TORRAMI 18x24 or similar - you kept a part sheet from V1 |
 | Adhesive-lined heat shrink, assorted | 1 | kit | $16.00 | estimate |  |
 | Solid silicone cord, 1/8 in (3.175 mm) - the spare size | 1 | pc | $15.39 | **verified** | 10 ft piece, 70A. Fitted ONLY if the routed groove measures deep. Gives 24% squeeze at the nominal 2.4 depth a |
+| Vacuum hose + hose clamps | 1 | set | $15.00 | estimate | 1/2 in tubing pump-to-bag plus clamps; the other half of what the deleted kit was actually carrying |
 | EPDM/neoprene sheet 1/2in, conduit bungs | 1 | sheet | $14.00 | estimate | cut O33 plugs for a O32 bore, punch 3 x O5 for 6.5 mm lead - interference fit, soap them through |
 | M5 x 25 A4 stainless socket cap | 24 | ea | $13.20 | estimate |  |
 | Water-ingress alarm, 2 pk | 1 | pk | $12.99 | **verified** | Geevon 100 dB pucks - the 2-pack covers BOTH boards. Put the SENSOR on the module floor in the lowest corner,  |
@@ -114,29 +122,9 @@ Some Flipsky appears on Amazon but the range is thin and usually dearer. Buy dir
 
 | Item | Qty | Unit | Ext | Price | Note |
 |---|---:|---|---:|---|---|
-| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $445.26 | **verified** |  |
+| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $435.17 | **verified** |  |
 | Gong shipping to Idaho, per foil | 2 | ea | $248.00 | **verified** | 115.50 EUR on order 252112; charged per ORDER, so putting both boards' foils in ONE order saves about $124 |
-| Shipping - G10, Divinycell, epoxy hazmat | 1 | allow | $220.00 | estimate | heavy and hazmat lines |
-
-## Fibre Glast
-
-https://www.fibreglast.com
-
-**Amazon carries all of this** - bagging film, peel ply, breather, sealant tape, gauges. Prices here are Fibre Glast list; check Amazon before ordering, it is usually close and ships faster.
-
-| Item | Qty | Unit | Ext | Price | Note |
-|---|---:|---|---:|---|---|
-| Bagging starter kit - film, peel ply, tape, breather, connector | 1 | kit | $127.40 | **verified** | one-time + first board |
-| Peel ply, 60in | 6 | yd | $91.98 | **verified** | was only in the starter kit, and one kit's worth does not cover 6.12 m2 of part |
-| Breather / bleeder cloth | 6 | yd | $83.70 | **verified** |  |
-| 1708 biax, 50in wide | 6 | yd | $75.00 | **verified** |  |
-| Vac bag film, 5 yd | 3 | roll | $74.85 | **verified** | 3.06 m2 a hull session; 2 hulls + 4 lids + a practice piece + one re-do. Single-use on the hull, reusable on f |
-| VR20 vacuum regulator | 1 | ea | $52.00 | **verified** | one-time |
-| Sealant tape, 50 ft roll | 2 | roll | $39.98 | **verified** | 31 m of bag perimeter across the project; the kit has one roll |
-| E-glass 6 oz, 50in x 12ft, 2-pack | 2 | pack | $38.14 | **verified** | your receipt |
-| Chip brushes and laminating roller | 1 | set | $22.00 | estimate |  |
-| Release wax / PVA for the cavity caul | 1 | set | $20.00 | estimate |  |
-| Vacuum gauge, 0-30 inHg, 1/4 NPT | 1 | ea | $18.00 | estimate | reads the BAG, not the pump - tee it in at the bag end. The regulator sets the level; this is how you know it  |
+| Shipping - Divinycell, 6061 plate, VR20 | 1 | allow | $120.00 | estimate | STILL THE BIGGEST UNVERIFIED LINE - it wants three real carts to settle. Was $220 when it covered G10 sheet an |
 
 ## Home Depot / hardware
 
@@ -218,6 +206,19 @@ Unresolved - two emails unanswered. Phone (208) 254-6151, or the EPS core goes t
 | Silicone sealant, BMS anti-vibration dabs | 1 | tube | $7.00 | estimate | V1 did this; stops the BMS walking |
 | M5 nyloc nut + M6 x 20 fender washer | 8 | set | $4.80 | estimate |  |
 | M8 nyloc + washer, prop nut | 2 | set | $3.00 | estimate |  |
+
+## Fibre Glast
+
+https://www.fibreglast.com
+
+**Amazon carries all of this** - bagging film, peel ply, breather, sealant tape, gauges. Prices here are Fibre Glast list; check Amazon before ordering, it is usually close and ships faster.
+
+| Item | Qty | Unit | Ext | Price | Note |
+|---|---:|---|---:|---|---|
+| VR20 vacuum regulator | 1 | ea | $52.00 | **verified** | one-time |
+| Chip brushes and laminating roller | 1 | set | $22.00 | estimate |  |
+| Release wax / PVA for the cavity caul | 1 | set | $20.00 | estimate |  |
+| Vacuum gauge, 0-30 inHg, 1/4 NPT | 1 | ea | $18.00 | estimate | reads the BAG, not the pump - tee it in at the bag end. The regulator sets the level; this is how you know it  |
 
 ## 3M / auto parts
 

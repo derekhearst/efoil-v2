@@ -66,7 +66,7 @@ OK, EST, OWNED = "verified", "estimate", "on hand"
 ROWS = []
 
 
-def add(sec, item, qty, unit, price, conf, note="", tool=False):
+def add(sec, item, qty, unit, price, conf, note="", tool=False, vendor=None):
     """tool=True marks a ONE-TIME cost - a tool, jig or template that is
     bought once and still exists after the build. It is real money out the
     door, but it is not the cost of a board, and it does not repeat on the
@@ -74,7 +74,8 @@ def add(sec, item, qty, unit, price, conf, note="", tool=False):
     $4,100" and "a board costs $3,700 and I now own a vacuum rig".
     """
     ROWS.append(dict(sec=sec, item=item, qty=qty, unit=unit, price=price,
-                     conf=conf, note=note, ext=qty * price, tool=tool))
+                     conf=conf, note=note, ext=qty * price, tool=tool,
+                     vendor=vendor))
 
 
 # What the makerspace covers, and therefore is NOT in this BOM.
@@ -212,8 +213,14 @@ def build():
 
     # ---------------------------------------------------------- 4 laminate
     add("4  Laminate", "E-glass 6 oz, 50in x 12ft, 2-pack",
-        N, "pack", 19.07, OK, "your receipt")
-    add("4  Laminate", "1708 biax, 50in wide", 3 * N, "yd", 12.50, OK)
+        N, "pack", 19.07, OK, "your receipt", vendor="Amazon")
+    # 6 yd needed for the pair. Fibre Glast sells it by the yard at $12.50
+    # and then freights it; Amazon has the 50in x 10 yd roll at $79.99, which
+    # is $8.00/yd, arrives free, and leaves 4 yd of margin on a part where
+    # the biax is the structural layer you do not want to be short of.
+    add("4  Laminate", "1708 biax, 50in x 10 yd roll", 1, "roll", 79.99, OK,
+        "6 yd needed across both boards; $8.00/yd against Fibre Glast's "
+        "$12.50 and no freight", vendor="Amazon")
     # HARDENER FOLLOWS THE SHOP TEMPERATURE, and this build runs autumn into
     # spring in a Boise garage, so it is not one choice for the whole job:
     #     SLOW  minimum 60 F.   pot life 20 min at 75 F
@@ -280,9 +287,33 @@ def build():
         tool=True)
     add("5  Vacuum bagging", "VR20 vacuum regulator", 1, "ea", 52.00, OK,
         "one-time", tool=True)
-    add("5  Vacuum bagging",
-        "Bagging starter kit - film, peel ply, tape, breather, connector",
-        1, "kit", 127.40, OK, "one-time + first board", tool=True)
+    # THE "BAGGING STARTER KIT" IS DELETED. This line was wrong three ways.
+    # It was costed at $127.40 and described as "film, peel ply, tape,
+    # breather, connector" - consumables. Fibre Glast's actual Vacuum Bagging
+    # Starter Kit (02227-A) is $506.42 and contains NO consumables at all:
+    # it is a regulator/filter, a venturi vacuum GENERATOR, two air hoses, a
+    # gauge, tubing, clamps and a connector. Its own page says "you supply
+    # the air source and consumables".
+    #   - wrong price, by 4x
+    #   - wrong contents, so it never covered the consumables it was
+    #     supposedly covering (those are all bought per-item below anyway)
+    #   - wrong ARCHITECTURE: it is a venturi that runs off a shop air
+    #     compressor. We bought a $57.99 ELECTRIC vacuum pump. Buying the kit
+    #     means buying a second vacuum source we cannot feed, plus a second
+    #     regulator and a second gauge on top of the VR20 and the gauge below.
+    # What the kit had that we genuinely still need is only the plumbing:
+    # a through-bag connector, tubing and clamps. Those are the two lines
+    # that replace it, for $54 instead of $506.
+    add("5  Vacuum bagging", "Bag connector w/ ball valve, 1/4 in QD",
+        2, "ea", 19.59, OK,
+        "THE BALL VALVE IS THE POINT: shut it and the bag is isolated from "
+        "the pump, so leak-down is a real measurement and not a guess about "
+        "whether the pump is keeping up. Two of them - a 1400 mm hull bag "
+        "pulls down far faster from both ends, and one is a spare",
+        vendor="Amazon", tool=True)
+    add("5  Vacuum bagging", "Vacuum hose + hose clamps", 1, "set", 15.00,
+        EST, "1/2 in tubing pump-to-bag plus clamps; the other half of what "
+        "the deleted kit was actually carrying", vendor="Amazon", tool=True)
     # Fibre Glast, per-item rather than a kit: film 5 yd $24.95, breather
     # 1 yd $13.95, release film 1 yd $11.28.
     # A VACUUM GAUGE, which was missing, and on this build it is not an
@@ -368,7 +399,9 @@ def build():
     # like. 3 rolls covers 6 sessions with a re-do in hand.
     add("5  Vacuum bagging", "Vac bag film, 5 yd", 3, "roll", 24.95, OK,
         "3.06 m2 a hull session; 2 hulls + 4 lids + a practice piece + one "
-        "re-do. Single-use on the hull, reusable on flat parts")
+        "re-do. Single-use on the hull, reusable on flat parts. Same Elite "
+        "Lab product Fibre Glast sells, at the same price, with free "
+        "delivery", vendor="Amazon")
     # These three are SACRIFICIAL, every one of them - they come out of the
     # bag full of cured resin. Nothing in this group is reusable, which is
     # the honest answer to "can we reuse it": the film sometimes, these never.
@@ -377,8 +410,10 @@ def build():
     # 5.57 - short before any mistakes.
     add("5  Vacuum bagging", "Peel ply, 60in", 3 * N, "yd", 15.33, OK,
         "was only in the starter kit, and one kit's worth does not cover "
-        "6.12 m2 of part")
-    add("5  Vacuum bagging", "Breather / bleeder cloth", 3 * N, "yd", 13.95, OK)
+        "6.12 m2 of part", vendor="Amazon")
+    add("5  Vacuum bagging", "Breather / bleeder cloth", 3 * N, "yd", 13.95,
+        OK, "$13.95/yd cut; a 5 yd roll at $59.99 is $12.00/yd if you would "
+        "rather buy the roll", vendor="Amazon")
     # NO RELEASE FILM. Perforated release film exists to CONTROL how much
     # resin bleeds through into the breather. On a wet layup, where the resin
     # content is already set by how much you put on, the peel ply bleeds into
@@ -389,7 +424,9 @@ def build():
     # there - which is why breather is at 3 yd a board, not 2.
     # 5.2 m of bag perimeter a session, 6 sessions = 31 m, and a roll is 7.6.
     add("5  Vacuum bagging", "Sealant tape, 50 ft roll", 2, "roll", 19.99,
-        OK, "31 m of bag perimeter across the project; the kit has one roll")
+        OK, "31 m of bag perimeter across the project. 2 x 50 ft at $19.99 "
+        "replaced 4 x 25 ft at $12 - same tape, fewer joins",
+        vendor="Amazon")
 
     # ----------------------------------------------------- 6 hatch and seal
     # O3 CORD, BONDED IN - kept after the aluminium ring was reverted, because
@@ -919,8 +956,26 @@ def build():
     # ------------------------------------------------------- 12 logistics
     # G10 sheets are heavy and epoxy ships hazmat. Leaving this off is how a
     # BOM comes in under on the day.
-    add("12 Freight and tax", "Shipping - G10, Divinycell, epoxy hazmat",
-        1, "allow", 220.00, EST, "heavy and hazmat lines")
+    # RE-SCOPED. This line was written when the build had G10 sheet and
+    # drum-shipped epoxy in it. Both of those are gone:
+    #   - G10 was eliminated entirely when the module became printed ASA +
+    #     5052, so there is no heavy sheet order left at all
+    #   - epoxy is TotalBoat off Amazon now, so there is no hazmat freight
+    #   - 1708 biax and E-glass moved to Amazon too, which took the largest
+    #     remaining Fibre Glast box out of the order
+    # What actually still ships from a non-Amazon vendor, and therefore what
+    # this number now has to cover:
+    #     Fiberglass Supply   3 Divinycell quarter sheets, 24x48 - light but
+    #                         oversize, so it prices on dimension not weight
+    #     Speedy Metals       one 12 x 18 x 1/2 6061 plate, ~10.5 lb, WI->ID
+    #     Fibre Glast         VR20 regulator and a few small items
+    # Gong, Flipsky, BatteryHookup and Battery International each carry their
+    # own shipping in their line prices and are NOT in here.
+    add("12 Freight and tax", "Shipping - Divinycell, 6061 plate, VR20",
+        1, "allow", 120.00, EST,
+        "STILL THE BIGGEST UNVERIFIED LINE - it wants three real carts to "
+        "settle. Was $220 when it covered G10 sheet and hazmat epoxy, both "
+        "of which are now out of the build entirely")
     # Idaho is a flat 6% state rate with NO local add-on in Ada County -
     # Boise and Meridian are both exactly 6%. This is the real rate, not a
     # placeholder.
@@ -1051,6 +1106,17 @@ NOT_A_PURCHASE = ("sales tax", "shipping")
 
 
 def vendor_of(r):
+    # An explicit vendor= on the line always wins. The keyword table below is
+    # a guess, and it guessed WRONG for every bagging consumable that got
+    # re-sourced to Amazon: "peel ply" and "breather" still matched Fibre
+    # Glast and sent the shopping list to the wrong vendor at the right
+    # price. Where a line has been priced against a specific listing, say so.
+    if r.get("vendor"):
+        name = r["vendor"]
+        for n, url, _ in VENDORS:
+            if n == name:
+                return n, url
+        return name, ""
     t = (r["item"] + " " + (r.get("note") or "")).lower()
     if any(k in t for k in NOT_A_PURCHASE):
         return "Not a purchase - tax and freight", ""
