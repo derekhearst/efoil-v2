@@ -1691,7 +1691,21 @@ PALETTE = {
     "alu_anod":      ((0.28, 0.30, 0.33), 0.35, 1.0, 1.00),  # anodised alu foil
     "carbon":        ((0.07, 0.07, 0.08), 0.28, 0.1, 1.00),  # carbon wing
     "seal":          ((0.85, 0.15, 0.35), 0.60, 0.0, 1.00),  # EPDM sponge gasket
-    "eva":           ((0.18, 0.22, 0.20), 0.92, 0.0, 1.00),  # EVA deck pad
+    # TRANSPARENT, like the hull and the lids. An opaque pad hides the
+    # thing you are checking it against - the rim, the bolt circle, the
+    # rail line - which is the whole reason it is in the model.
+    "eva":           ((0.18, 0.22, 0.20), 0.92, 0.0, 0.45),  # EVA deck pad
+    # FOUR colours for the four machining pieces, and they have to be four.
+    # These used to borrow "eps" and "eps_fwd", which meant Aft_Lower and
+    # Fwd_Lower were the same colour and Aft_Upper and Fwd_Upper were too -
+    # so the vertical seam simply did not appear. Hue says which side of the
+    # bed-length seam; value says which side of the gantry-height seam.
+    # OPAQUE on purpose - the point of this collection is to look AT the
+    # two cuts, and a translucent core turns both seams into a faint tint.
+    "mach_al":       ((0.13, 0.34, 0.62), 0.55, 0.0, 1.00),  # aft, lower
+    "mach_au":       ((0.46, 0.72, 0.94), 0.55, 0.0, 1.00),  # aft, upper
+    "mach_fl":       ((0.72, 0.36, 0.07), 0.55, 0.0, 1.00),  # fwd, lower
+    "mach_fu":       ((0.97, 0.76, 0.36), 0.55, 0.0, 1.00),  # fwd, upper
 }
 
 
@@ -1736,6 +1750,11 @@ PALETTE_LEGEND = {
     "alu_anod":   "anodised aluminium - foil mast and fuselage",
     "carbon":     "carbon - front wing, stabiliser, prop",
     "seal":       "O3 silicone cord, bonded into a 4 x 2.4 groove",
+    "mach_al":    "core piece AFT-LOWER  - layers 1+2, rocker and mast pocket under, lower cavity on top",
+    "mach_au":    "core piece AFT-UPPER  - layers 3+4, deck crown on top, upper cavity cut through",
+    "mach_fl":    "core piece FWD-LOWER  - layers 1+2",
+    "mach_fu":    "core piece FWD-UPPER  - layers 3+4",
+    "eva":        "EVA deck pad, 5.8 mm self-adhesive - deck, plus the lid's own piece",
 }
 
 
@@ -2589,6 +2608,13 @@ def boolean(target, cutter, op='DIFFERENCE'):
     m.object = cutter
     m.operation = op
     m.solver = 'EXACT'
+    # KEEP THE TARGET'S OWN MATERIAL. The default carries the operand's
+    # materials across, so an INTERSECT against the hull came out wearing
+    # hull_glass - which is why the four machining pieces rendered as one
+    # white body no matter what colours they were given. INDEX maps every
+    # resulting face to this object's own slot instead.
+    if hasattr(m, "material_mode"):
+        m.material_mode = 'INDEX'
     return m
 
 
@@ -3785,11 +3811,11 @@ def build():
     # then Lower bonds to Upper on the flat mid-plane and no outer surface is
     # touched again. Nothing over 101.6 ever goes under the gantry.
     _split_z = min(_blank_z0, 0.0) + CNC_SUBSTACK_LAYERS * EPS_SHEET_T
-    for nm, x0, x1 in (("Aft", -20.0, SEAM_X),
-                       ("Fwd", SEAM_X, LENGTH + 20.0)):
+    for nm, x0, x1, tag in (("Aft", -20.0, SEAM_X, "a"),
+                            ("Fwd", SEAM_X, LENGTH + 20.0, "f")):
         for half_nm, z0, z1, mat in (
-                ("Lower", -20.0, _split_z, "eps"),
-                ("Upper", _split_z, THICK + 40.0, "eps_fwd")):
+                ("Lower", -20.0, _split_z, "mach_" + tag + "l"),
+                ("Upper", _split_z, THICK + 40.0, "mach_" + tag + "u")):
             pc = box(f"V2_MachStack_{nm}_{half_nm}", x0, x1, -WIDTH, WIDTH,
                      z0, z1, coll, bom_mat(mat))
             boolean(pc, hull, op='INTERSECT')
@@ -5389,24 +5415,27 @@ def organise(root):
 
     # Off by default. Cutters are machinery, not parts; the other two are
     # alternative views of the hull and would z-fight with it.
-    # "Core split" is ON. The two halves ARE the parts - they are what gets
-    # machined and what you have to hold on a bed - and the one-piece Hull is
-    # the reference for what they add up to. Exactly the arrangement the rim
-    # ring already uses: segments visible, assembled ring hidden.
-    # "Machining" is OFF for the same reason "Blank layers" is: it occupies
-    # the same space as Core split and would z-fight with it. Tick it to see
-    # the four pieces that actually go on the router - the vertical seam is
-    # the bed length, the horizontal one is the gantry height.
-    OFF = ("Cutters", "Blank layers", "Machining")
+    # MACHINING IS ON, CORE SPLIT IS OFF - they occupy the same space and
+    # would z-fight, and of the two it is Machining that shows what actually
+    # happens. Its four pieces carry BOTH cuts: the vertical seam at
+    # SEAM_X because the bed is 1209.8 long, and the horizontal one at
+    # 101.6 because the gantry is 149.9 and the glued stack is 203.2.
+    # Core split only ever showed the vertical one, so leaving it on top was
+    # showing the older, less complete answer.
+    OFF = ("Cutters", "Blank layers", "Core split")
     for lc in bpy.context.view_layer.layer_collection.children:
         for sub in lc.children:
             if sub.name in OFF:
                 sub.exclude = True
     # ...and inside those, the objects themselves are visible, so ticking the
     # collection on is all it takes.
-    for ob in bpy.data.collections["Blank layers"].objects:
-        ob.hide_set(False)          # visible the moment you tick it on
-        ob.hide_render = False
+    for _cn in ("Blank layers", "Core split"):
+        for ob in bpy.data.collections[_cn].objects:
+            ob.hide_set(False)      # visible the moment you tick it on
+            ob.hide_render = False
+    # Hull stays hidden: the Machining pieces sum to it exactly, so leaving
+    # the one-piece hull on top would z-fight and bury the very seams the
+    # collection exists to show. Tick Hull back on to see what they add up to.
     _h = bpy.data.objects.get("Hull")
     if _h:
         _h.hide_set(True)
