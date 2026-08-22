@@ -566,6 +566,46 @@ SHOW_RESTRAINT = False
 CHOCK_T, CHOCK_H = 20.0, 30.0      # G10 end chock, bonded to the cavity floor
 STRAP_W, STRAP_T = 25.0, 2.0       # webbing
 PAD_T = 4.0                        # EVA bedding pad under the module
+
+# ------------------------------------------------------------- deck pad
+# FULL-DECK traction, not a 3-piece surf pad. On a foil you move your feet
+# fore and aft through the whole ride to trim, so a pad sized for a surf
+# stance leaves you standing on bare paint half the time.
+# Sheet is FOCEAN self-adhesive EVA, 2400 x 600 x 5.8 (0.23 in) - about half
+# the thickness of a surf pad, which is what "thin" meant.
+DECK_PAD_T = 5.8
+DECK_PAD_SHEET = (2400.0, 600.0)
+# COVERAGE. "Entire board" within two hard limits:
+#   aft  - the leash plug pad occupies x 145..215 and has to stay clear, so
+#          the pad starts at 230 rather than running to the tail block
+#   fwd  - the last ~120 mm of nose rolls away hard in both rocker and crown.
+#          A pad there is unreachable underfoot, wastes sheet, and its leading
+#          edge is the first thing a nose-first landing peels back.
+DECK_PAD_X0, DECK_PAD_X1 = 230.0, 1280.0
+DECK_PAD_INSET = 20.0              # from the rail - the pad STOPS SHORT, it
+                                   # does not wrap. A 5.8 mm sheet forced over
+                                   # a rail radius peels from the edge inward,
+                                   # and a lifting edge on the deck is where
+                                   # water gets under the whole panel.
+DECK_PAD_GAP = 6.0                 # clearance to the rim ring and to hardware
+# PANELLED, and the gaps are structural not cosmetic. The deck crown is ~50 mm
+# over a 280 mm half width, so the surface arc is ~8.6% longer than its flat
+# projection - and that excess VARIES from 10 mm at the nose to 22 mm amidships.
+# One sheet cannot absorb a 12 mm differential and will wrinkle at the ends.
+# Longitudinal panels split the difference between them, and the gaps take up
+# what is left, drain water, and give a foot edge to feel for.
+DECK_PAD_PANELS = 3                # per side, centreline outward
+DECK_PAD_SEAM = 4.0                # gap between panels
+# THE LID IS THE STANDING AREA. The hatch is 587 x 384 in the middle of a
+# 1400 board - modelling the pad is what made that obvious, because the deck
+# panels came out as thin strips around a huge bare lid. Pad that stops at
+# the rim leaves you standing on painted glass exactly where your back foot
+# goes. So the lid gets its own pad, cut as separate pieces that come off
+# with it.
+# Inset clears the BOLT RING: 12 M5s sit about 10.7 mm inside the lid edge,
+# and a pad over them means unbolting the hatch through foam. 25 mm leaves
+# them exposed with a socket's worth of room.
+LID_PAD_INSET = 25.0
 EQUIP_T = 4.0                      # G10 equipment plate on the module floor
 TAB_T, TAB_H = 5.0, 26.0           # G10 strap tab
 PACK_END_CLR = 14.7                # unchanged; was CORNER_POST + 2
@@ -1628,6 +1668,7 @@ PALETTE = {
     "alu_anod":      ((0.28, 0.30, 0.33), 0.35, 1.0, 1.00),  # anodised alu foil
     "carbon":        ((0.07, 0.07, 0.08), 0.28, 0.1, 1.00),  # carbon wing
     "seal":          ((0.85, 0.15, 0.35), 0.60, 0.0, 1.00),  # EPDM sponge gasket
+    "eva":           ((0.18, 0.22, 0.20), 0.92, 0.0, 1.00),  # EVA deck pad
 }
 
 
@@ -2648,6 +2689,171 @@ def pack_fit(S, P, layers, int_l, int_w, int_h):
     return out
 
 
+def build_deck_pad(coll, rep):
+    """Self-adhesive EVA deck pad, conforming to the crowned deck.
+
+    Built as longitudinal panels per side. Each panel is a grid of quads
+    following deck_z_at, lifted by DECK_PAD_T - it is a skin, so the top
+    surface is just the deck offset in Z rather than a true normal offset;
+    over a 50 mm crown the difference is under a tenth of a millimetre and
+    the material is compressible foam anyway.
+    """
+    mat = bom_mat("eva")
+    # keep-out: the rim ring, plus the two handle straps
+    rim_x0 = CAV_X0 - RIM_W - DECK_PAD_GAP
+    rim_x1 = CAV_X1 + RIM_W + DECK_PAD_GAP
+    rim_y = CAV_WIDTH / 2 + RIM_W + DECK_PAD_GAP
+    h_x0 = HANDLE_X - HANDLE_PLATE_L / 2 - DECK_PAD_GAP
+    h_x1 = HANDLE_X + HANDLE_PLATE_L / 2 + DECK_PAD_GAP
+    h_y0 = HANDLE_Y - HANDLE_PLATE_W / 2 - DECK_PAD_GAP
+    h_y1 = HANDLE_Y + HANDLE_PLATE_W / 2 + DECK_PAD_GAP
+
+    def blocked(x, y):
+        ay = abs(y)
+        if rim_x0 <= x <= rim_x1 and ay <= rim_y:
+            return True
+        if h_x0 <= x <= h_x1 and h_y0 <= ay <= h_y1:
+            return True
+        return False
+
+    NX, NY = 180, 14
+    area = 0.0
+    widest = 0.0
+    boxes = []
+
+    def _arc_across(x, ya, yb, n=48):
+        """Deck arc between two y offsets - the developed width of a strip."""
+        tot, py, pz = 0.0, ya, deck_z_at(x, ya)
+        for i in range(1, n + 1):
+            y = ya + (yb - ya) * i / n
+            z = deck_z_at(x, y)
+            tot += math.hypot(y - py, z - pz)
+            py, pz = y, z
+        return tot
+    # Lid outline, same derivation as V2_Lid itself so the two cannot drift
+    _lc = CAV_LAM + 1.5
+    lid_x0 = CAV_X0 - RIM_W + _lc + LID_PAD_INSET
+    lid_x1 = CAV_X1 + RIM_W - _lc - LID_PAD_INSET
+    lid_hy = CAV_WIDTH / 2 + RIM_W - 1.5 - LID_PAD_INSET
+
+    def emit(name, x_lo, x_hi, y_lo_f, y_hi_f, side, skip):
+        """Grid a panel between two y-functions of x and emit a 5.8 shell."""
+        nonlocal area, widest
+        verts, faces, grid = [], [], {}
+        bx0, bx1, dev_w = 1e9, -1e9, 0.0
+        for i in range(NX + 1):
+            x = x_lo + (x_hi - x_lo) * i / NX
+            ya, yb = y_lo_f(x), y_hi_f(x)
+            if yb - ya <= 2.0:
+                continue
+            widest = max(widest, yb - ya)
+            # DEVELOPED width at THIS station. Taking the arc across the
+            # panel's whole y range instead would measure the taper as though
+            # it were width, and reported the outer strip as 241 mm when it
+            # is nowhere wider than 92.
+            dev_w = max(dev_w, _arc_across(x, ya, yb))
+            for j in range(NY + 1):
+                y = ya + (yb - ya) * j / NY
+                if skip and skip(x, y * side):
+                    continue
+                z = deck_z_at(x, y * side)
+                grid[(i, j)] = len(verts)
+                verts.append((x, y * side, z))
+                verts.append((x, y * side, z + DECK_PAD_T))
+                bx0, bx1 = min(bx0, x), max(bx1, x)
+        for i in range(NX):
+            for j in range(NY):
+                q = [(i, j), (i + 1, j), (i + 1, j + 1), (i, j + 1)]
+                if not all(c in grid for c in q):
+                    continue
+                b = [grid[c] for c in q]
+                faces.append([b[0], b[1], b[2], b[3]])
+                faces.append([b[3] + 1, b[2] + 1, b[1] + 1, b[0] + 1])
+                for a, c in ((0, 1), (1, 2), (2, 3), (3, 0)):
+                    faces.append([b[a], b[a] + 1, b[c] + 1, b[c]])
+                p0, p1, p2 = verts[b[0]], verts[b[1]], verts[b[2]]
+                area += abs((p1[0] - p0[0]) * (p2[1] - p1[1])) / 1e6
+        if verts:
+            new_object(name, verts, faces, coll, mat)
+            # FLAT-pattern bbox: length as-is, width DEVELOPED across the
+            # crown, because that is what has to come off the sheet
+            boxes.append((bx1 - bx0, dev_w))
+
+    # --- the lid's own pad, in the same panel count so the seams line up
+    for side in (-1, 1):
+        for k in range(DECK_PAD_PANELS):
+            span = lid_hy / DECK_PAD_PANELS
+            ya = k * span + (DECK_PAD_SEAM / 2 if k else 0.0)
+            yb = ((k + 1) * span
+                  - (DECK_PAD_SEAM / 2 if k < DECK_PAD_PANELS - 1 else 0.0))
+            emit(f"V2_DeckPad_Lid_{'P' if side > 0 else 'S'}{k + 1}",
+                 lid_x0, lid_x1, lambda _x, a=ya: a, lambda _x, b=yb: b,
+                 side, None)
+
+    # --- the deck itself, panels tapering with the outline
+    def _span(x, k):
+        avail = half_width(x / LENGTH) - DECK_PAD_INSET
+        if avail <= 10.0:
+            return 0.0, 0.0
+        sp = avail / DECK_PAD_PANELS
+        return (k * sp + (DECK_PAD_SEAM / 2 if k else 0.0),
+                (k + 1) * sp - (DECK_PAD_SEAM / 2
+                                if k < DECK_PAD_PANELS - 1 else 0.0))
+
+    for side in (-1, 1):
+        for k in range(DECK_PAD_PANELS):
+            emit(f"V2_DeckPad_{'P' if side > 0 else 'S'}{k + 1}",
+                 DECK_PAD_X0, DECK_PAD_X1,
+                 lambda x, kk=k: _span(x, kk)[0],
+                 lambda x, kk=k: _span(x, kk)[1],
+                 side, blocked)
+
+    sheet_a = DECK_PAD_SHEET[0] * DECK_PAD_SHEET[1] / 1e6
+    # REAL NESTING, not an area ratio. The panels are long thin strips, so
+    # what decides the sheet count is how many 900 x 85 bounding boxes lie
+    # down on a 2400 x 600 sheet - and that is a far better answer than
+    # dividing 0.17 m2 into 1.44 m2 and rounding up.
+    KERF = 3.0                     # blade width plus a little to true the edge
+    # Shelf-nest every panel, deck strips AND lid pieces, longest first. They
+    # are two different sizes now, so a single bounding box would either waste
+    # sheet or promise a fit that is not there.
+    need = len(boxes)
+    shelf_y, shelf_h, cur_x, sheets = 0.0, 0.0, 0.0, 1
+    for w, h in sorted(boxes, key=lambda b: -b[0]):
+        if cur_x + w + KERF > DECK_PAD_SHEET[0]:
+            shelf_y += shelf_h + KERF
+            cur_x, shelf_h = 0.0, 0.0
+        if shelf_y + h > DECK_PAD_SHEET[1]:
+            sheets += 1
+            shelf_y, shelf_h, cur_x = 0.0, 0.0, 0.0
+        cur_x += w + KERF
+        shelf_h = max(shelf_h, h)
+    per_sheet = math.ceil(need / sheets) if sheets else need
+    rep["deck_pad"] = (f"full-deck EVA {DECK_PAD_T} mm, {DECK_PAD_PANELS} "
+                       f"panels a side, {DECK_PAD_SEAM:.0f} mm seams, "
+                       f"inset {DECK_PAD_INSET:.0f} from the rail")
+    rep["deck_pad_area_m2"] = round(area, 3)
+    rep["deck_pad_sheet_m2"] = round(sheet_a, 3)
+    rep["deck_pad_panels_per_board"] = need
+    rep["deck_pad_sheets_per_board"] = sheets
+    rep["deck_pad_nest_per_sheet"] = per_sheet
+    rep["deck_pad_panel_bboxes_mm"] = [(round(w), round(h)) for w, h in
+                                       sorted(boxes, key=lambda b: -b[0])]
+    # NOT the fleet count - the model is per-board and does not know how many
+    # boards are being built. bom.py multiplies these two out.
+    rep["deck_pad_widest_panel_mm"] = round(widest, 1)
+    rep["deck_pad_panel_fits_sheet"] = widest <= DECK_PAD_SHEET[1]
+    rep["deck_pad_len_fits_sheet"] = (DECK_PAD_X1 - DECK_PAD_X0) <= DECK_PAD_SHEET[0]
+    rep["deck_pad_clears_rim_mm"] = DECK_PAD_GAP
+    rep["deck_pad_bare_tail_mm"] = round(DECK_PAD_X0, 1)
+    rep["deck_pad_bare_nose_mm"] = round(LENGTH - DECK_PAD_X1, 1)
+    rep["deck_pad_clears_leash_mm"] = round(DECK_PAD_X0
+                                            - (LEASH_X + LEASH_PAD / 2), 1)
+    rep["deck_pad_covers_pct_of_length"] = round(
+        100.0 * (DECK_PAD_X1 - DECK_PAD_X0) / LENGTH, 1)
+    return rep
+
+
 # -------------------------------------------------------------------- build
 def build():
     coll = fresh_collection()
@@ -3372,6 +3578,12 @@ def build():
     rep["hardpoint_material"] = ("H-80 dense PVC - 1/2 and 3/4 in are H-80 "
                                  "only. Leash plug bond is 1.4x, the thinnest "
                                  "margin on the board.")
+
+    # LAST thing onto the deck, and modelled because it is the one part whose
+    # fit you cannot check by eye on a drawing: it has to clear the rim ring,
+    # miss both handle straps, and stop short of the rail everywhere along a
+    # deck that changes width by 80 mm over its length.
+    build_deck_pad(coll, rep)
 
     # Rail handles: NO POCKET, and everything here is built TANGENT to the
     # rail rather than square to the world. On a 29 deg face an axis-aligned
@@ -5048,6 +5260,7 @@ GROUPS = [
     ("Electrical",   lambda n: n.startswith(("Pack_", "BMS", "ESC", "Fuse",
                                              "PowerButton", "ChargePort",
                                              "BayGland", "Conduit", "Nickel"))),
+    ("Deck pad",     lambda n: n.startswith("DeckPad_")),
     ("Hardpoints",   lambda n: n.startswith(("MastPlate", "MastBolt",
                                              "MastInsert", "Handle", "Leash",
                                              "Cav_"))),

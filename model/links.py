@@ -94,7 +94,7 @@ LINKS = {
     "FCS-pattern leash plug":
         ("B0F1F97R4D", 8.59, "Round Cup Surfboard Leash Plug 30x12mm with Rope Bar"),
     "FOCEAN EVA deck sheet 2400 x 600 x 5.8":
-        ("B07L9LPPT2", 20.95, "3-Piece Traction Pad Arch Flat or Front 3M Adhesive"),
+        ("https://www.amazon.com/dp/B0BTLW75FL", 54.14, "FOCEAN EVA Foam Deck Sheet Camo Lake 94.5 x 23.6 x 0.23 in self-adhesive"),
     "Fish tape / pull cord for the mast conduit":
         ("B0FGCY7XPS", 9.99, "Fish Tape 16.4ft Wire Puller Electrical Snake"),
     "Flex longboard sander, 16-1/2 x 2-3/4":
@@ -245,6 +245,8 @@ LINKS = {
         ("B00S9RBWIA", 45.99, "TotalBoat TotalFair Epoxy Fairing Compound - 2 Pint Kit"),
     "TotalBoat Wet Edge topside paint, colour":
         ("B00HQP5D9A", 53.99, "TotalBoat Wet Edge Topside Marine Paint Black Quart"),
+    "Traction pad, 3-piece":
+        ("B07L9LPPT2", 20.95, "3-Piece Traction Pad Arch Flat or Front 3M Adhesive"),
     "Ultra Tef-Gel, galvanic barrier":
         ("B01606TCAG", 39.00, "Ultra Tef-Gel Anti Corrosion Lubricant for Rigging Hardware"),
     "VECOTOOLS 4.5 CFM single-stage pump, oil incl.":
@@ -384,6 +386,7 @@ LINK_VENDOR = {
     "TotalBoat Premium Marine Topside Primer": "Amazon",
     "TotalBoat TotalFair epoxy fairing compound": "Amazon",
     "TotalBoat Wet Edge topside paint, colour": "Amazon",
+    "Traction pad, 3-piece": "Amazon",
     "Ultra Tef-Gel, galvanic barrier": "Amazon",
     "VECOTOOLS 4.5 CFM single-stage pump, oil incl.": "Amazon",
     "VR20 vacuum regulator": "Easy Composites",

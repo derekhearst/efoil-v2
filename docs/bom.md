@@ -198,7 +198,7 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 |---|---:|---|---:|---:|---|---|
 | G10 chocks, equipment plate, pack tabs | 0 | off | $0.00 | $0.00 | on hand | cut from 1/8 and 1/2 in offcuts |
 | [1 in polyester webbing 6 yd + 6 buckles](https://www.amazon.com/dp/B0FBRMSRLK) | 1 | kit | $5.99 | $5.99 | verified | 2 straps per board, plus the module lift loops in section 7, all out of the one 6 yd pack |
-| [EVA bedding pads](https://www.amazon.com/dp/B0GG9H6VS2) | 0 | set | $16.99 | $0.00 | on hand | cut from the ~1000 x 600 offcut left over from each deck sheet in section 11 - same material, already self-adhesive, already bought |
+| [EVA bedding pads](https://www.amazon.com/dp/B0GG9H6VS2) | 0 | set | $16.99 | $0.00 | on hand | cut from the spare panels and edge offcut on the single deck sheet in section 11 - same material, already self-adhesive, already bought |
 | **subtotal** | | | | **$5.99** | | |
 
 ## 10d Shop consumables
@@ -240,41 +240,41 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | [TotalBoat TotalFair epoxy fairing compound](https://www.amazon.com/dp/B00S9RBWIA) | 2 | kit | $45.99 | $91.98 | verified | smallest kit, one per board |
 | [TotalBoat Premium Marine Topside Primer](https://www.amazon.com/dp/B00HS4YY7G) | 1 | kit | $46.99 | $46.99 | verified | one covers both |
 | [TotalBoat Wet Edge topside paint, colour](https://www.amazon.com/dp/B00HQP5D9A) | 2 | kit | $53.99 | $107.98 | verified | one-part polyurethane, quart |
-| [FOCEAN EVA deck sheet 2400 x 600 x 5.8](https://www.amazon.com/dp/B07L9LPPT2) | 2 | sheet | $20.95 | $41.90 | verified | self-adhesive EVA, 55 shore. Cut to the rail line with a fresh blade; it will not follow the deck crown if you try to wrap it over the rails, so stop it short |
+| [FOCEAN EVA deck sheet 2400 x 600 x 5.8](https://www.amazon.com/dp/B0BTLW75FL) | 2 | sheet | $54.14 | $108.28 | verified | 12 panels a board, 12 nest per sheet. Self-adhesive EVA, 55 shore. Cut to the rail line with a fresh blade; it will not follow the deck crown if you try to wrap it over the rails, so stop it short |
 | [Longboard PSA sandpaper 80 grit, 20 yd roll](https://www.amazon.com/dp/B0CQ7CVGK6) | 1 | roll | $15.99 | $15.99 | verified | 2-3/4 in, self-adhesive, fits the longboard above. 80 is the fairing grit - it cuts fair, it does not finish |
 | [Longboard PSA sandpaper 120-180 grit, 20 yd roll](https://www.amazon.com/dp/B001AVC8ZI) | 1 | roll | $20.99 | $20.99 | verified | after 80 has the shape right |
 | [Wet/dry sandpaper assortment, 45 pc](https://www.amazon.com/dp/B0GHND351C) | 1 | pk | $8.99 | $8.99 | verified | 80-400 for detail and between primer coats |
-| **subtotal** | | | | **$334.82** | | |
+| **subtotal** | | | | **$401.20** | | |
 
 ## 12 Freight and tax
 
 | Item | Qty | Unit | Unit $ | Ext $ | | Note |
 |---|---:|---|---:|---:|---|---|
 | Shipping - Divinycell, 6061 plate, VR20 | 1 | allow | $120.00 | $120.00 | estimate | STILL THE BIGGEST UNVERIFIED LINE - it wants three real carts to settle. Was $220 when it covered G10 sheet and hazmat epoxy, both of which are now out of the build entirely |
-| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $435.04 | $435.04 | verified |  |
-| **subtotal** | | | | **$555.04** | | |
+| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $439.02 | $439.02 | verified |  |
+| **subtotal** | | | | **$559.02** | | |
 
 ## Totals
 
 | | |
 |---|---:|
-| **Grand total, 2 boards** | **$7,685.73** |
-| Per board | $3,842.86 |
-| Of which verified | $7,116.72  (93%) |
+| **Grand total, 2 boards** | **$7,756.09** |
+| Per board | $3,878.04 |
+| Of which verified | $7,187.08  (93%) |
 | Of which estimated | $569.01 |
 | Linked to a real listing | 126 lines |
 | Priced but NOT linked | 0 lines, $0.00 |
-| Allowances, not linkable (tax, freight) | 3 lines, $823.67 |
+| Allowances, not linkable (tax, freight) | 3 lines, $827.65 |
 
 ## What is a board, and what is a shop
 
-Some of the total above is not the cost of a board at all - it is tools, jigs and templates that exist afterwards and do not repeat. Splitting them out is the difference between "a board costs $3,843" and "a board costs $3,496 and I now own a vacuum rig, a crimper and a full template set".
+Some of the total above is not the cost of a board at all - it is tools, jigs and templates that exist afterwards and do not repeat. Splitting them out is the difference between "a board costs $3,878" and "a board costs $3,531 and I now own a vacuum rig, a crimper and a full template set".
 
 | | |
 |---|---:|
 | One-time tooling (incl. its share of tax) | $693.44 |
-| **Marginal cost of a board** | **$3,496.14** |
-| Cost of the NEXT board after these 2 | $3,496.14 |
+| **Marginal cost of a board** | **$3,531.32** |
+| Cost of the NEXT board after these 2 | $3,531.32 |
 
 | One-time item | $ |
 |---|---:|
