@@ -166,6 +166,15 @@ The cavity flooded again and **water got into both the ESC and battery enclosure
 
 *Secondary lesson, still worth the twenty minutes:* **a printed enclosure is not a pressure boundary on its own.** It needs a continuous barrier applied to it — a brushed coat of neat epoxy on both faces, outside first, since stopping water entering the wall beats catching it once it is already travelling inside one. And it needs to be **proved before it is trusted**, not discovered by riding: seal it empty, pull a vacuum, watch the gauge, then repeat submerged so any path pulls water *in* where you can see it.
 
+**Repair — 4 more hatch bolts (Aug 2026).**
+Two at the upper corners and two at the midpoints of the long sides, taking the lid from **6 bolts to 10**. Each new hardpoint was made by **plugging with epoxy, then drilling undersized for a threaded insert** — the same principle V2 uses for its potted lid holes, and the right way to put a fastener into plywood or laminate.
+
+*Effect:* pitch goes 313 mm → 188 mm, and bow between fasteners goes as pitch⁴, so this is a **7.7× reduction**. V2 is 141 mm for comparison, so V1 still bows about 3× more than V2 will.
+
+*But the seals are not comparable, and it matters:* V1's EPDM sponge is 7.6 mm tall and compresses 25–50%, so it has **1.9–3.8 mm of travel**. V2's Ø3 cord at 20% squeeze has **0.60 mm**. In absolute terms V1's seal can swallow far more bow than V2's can — which says the bolt count was probably not the whole story on V1.
+
+**What is still unfixed on V1: the hinges.** Test 1 was a *tilt*, not a bow — oversized spacers held one edge proud and left the gasket light at the free edge. A tilt puts an edge out by millimetres, which is the order the sponge actually struggles with, and adding bolts does not straighten a lid that is being held crooked. **Worth checking the lid sits parallel before the next session, and worth telling Kev.**
+
 *This supersedes the "layered defence worked as designed" conclusion above.* The layers were the same material with the same flaw — a printed box inside a glassed cavity is two barriers only if the printed one is actually a barrier.
 
 ---
