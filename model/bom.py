@@ -266,6 +266,45 @@ def build():
     # goes at 130-200 kPa and full vacuum is 101, so the target is 5-10 inHg
     # and "as much as it will pull" is the wrong answer. Without a gauge you
     # cannot tell 7 inHg from 25.
+    # --- what V1 actually taught us about water ---------------------------
+    # V1 flooded its cavity three times and then, more recently, got water
+    # into the ESC and battery enclosures too. Its own leak notes name the
+    # mechanism: "cured laminate is NOT waterproof at a cut edge" - exposed
+    # fibre ends wick, and XPS/EPS carries it onward. V2 repeats two of those
+    # cut edges (the routed seal groove, the machined lid perimeter and its 12
+    # holes) and adds a new one V1 also hit: PRINTED plastic is porous.
+    add("6  Hatch and seal", "Neat epoxy, sealing every cut laminate edge",
+        0, "off", 0.00, OWNED,
+        "off the laminating kit. Groove walls, lid perimeter, all 12 lid "
+        "bores, every machined edge. This is V1's Test 2 verbatim - water "
+        "came in through unsealed fibre ends at the cavity ledge, and its own "
+        "note reads: cured laminate is NOT waterproof at a cut edge")
+    # THIS IS THE ONE. Derek's read on the V1 failure is that water seeped
+    # through the PETG itself, and that is entirely consistent with how FDM
+    # parts behave: an extruded wall is beads laid side by side, and the
+    # valleys between them are a connected path straight through. More
+    # perimeters lengthens the path, it does not close it - V1 ran FOUR wall
+    # loops and still wetted through.
+    # Wall thickness is not the fix. A CONTINUOUS BARRIER is, and the cheapest
+    # one is a brushed coat of neat laminating epoxy. Coat BOTH faces and do
+    # the outside first: stopping water entering the wall beats catching it
+    # after it is already travelling inside one.
+    add("7  Module", "Epoxy wash coat, BOTH faces of the printed shell",
+        0, "off", 0.00, OWNED,
+        "off the laminating kit. Outside face first - that is the wet one. "
+        "Keep it OFF the gasket flange and the insert faces; a soft film at "
+        "a clamping surface undoes the seal geometry, which is V1's own "
+        "warning about Flex Seal")
+    add("9  Electrical", "Conformal coating, ESC + BMS boards", 1, "can",
+        16.00, EST, "so a splash inside the module is an inconvenience "
+        "instead of the end of a $450 pair of boards")
+    add("5  Vacuum bagging", "Test cap + tubing, module leak test", 1, "set",
+        12.00, EST,
+        "PROVE THE MODULE BEFORE THE CELLS GO IN, and prove it the way the "
+        "failure actually happens: seal it empty, pull 5 inHg, shut the pump "
+        "off and watch the gauge for 30 min - porosity reads as a slow "
+        "bleed. Then do it again SUBMERGED: under vacuum any path pulls water "
+        "IN and you see exactly where. V1 found its leaks by riding")
     add("5  Vacuum bagging", "Vacuum gauge, 0-30 inHg, 1/4 NPT", 1, "ea",
         18.00, EST, "reads the BAG, not the pump - tee it in at the bag end. "
         "The regulator sets the level; this is how you know it worked",

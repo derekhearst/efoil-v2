@@ -49,17 +49,19 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | VECOTOOLS 4.5 CFM single-stage pump, oil incl. | 1 | ea | $57.99 | $57.99 | verified | your listing, ASIN B0GZVLP3PL. Was a $139.99 Pittsburgh 2-stage plus $15 of oil - $97 for ultimate vacuum we must not use |
 | VR20 vacuum regulator | 1 | ea | $52.00 | $52.00 | verified | one-time |
 | Bagging starter kit - film, peel ply, tape, breather, connector | 1 | kit | $127.40 | $127.40 | verified | one-time + first board |
+| Test cap + tubing, module leak test | 1 | set | $12.00 | $12.00 | estimate | PROVE THE MODULE BEFORE THE CELLS GO IN, and prove it the way the failure actually happens: seal it empty, pull 5 inHg, shut the pump off and watch the gauge for 30 min - porosity reads as a slow bleed. Then do it again SUBMERGED: under vacuum any path pulls water IN and you see exactly where. V1 found its leaks by riding |
 | Vacuum gauge, 0-30 inHg, 1/4 NPT | 1 | ea | $18.00 | $18.00 | estimate | reads the BAG, not the pump - tee it in at the bag end. The regulator sets the level; this is how you know it worked |
 | Vac bag film, 5 yd | 3 | roll | $24.95 | $74.85 | verified | 3.06 m2 a hull session; 2 hulls + 4 lids + a practice piece + one re-do. Single-use on the hull, reusable on flat parts |
 | Peel ply | 6 | yd | $12.50 | $75.00 | verified | was only in the starter kit, and one kit's worth does not cover 6.12 m2 of part |
 | Breather / bleeder cloth | 6 | yd | $13.95 | $83.70 | verified |  |
 | Sealant tape, 25 ft roll | 4 | roll | $12.00 | $48.00 | estimate | 31 m of bag perimeter across the project; the kit has one roll |
-| **subtotal** | | | | **$536.94** | | |
+| **subtotal** | | | | **$548.94** | | |
 
 ## 6  Hatch and seal
 
 | Item | Qty | Unit | Unit $ | Ext $ | | Note |
 |---|---:|---|---:|---:|---|---|
+| Neat epoxy, sealing every cut laminate edge | 0 | off | $0.00 | $0.00 | on hand | off the laminating kit. Groove walls, lid perimeter, all 12 lid bores, every machined edge. This is V1's Test 2 verbatim - water came in through unsealed fibre ends at the cavity ledge, and its own note reads: cured laminate is NOT waterproof at a cut edge |
 | Solid silicone cord, 3 mm round - BOTH seals | 8 | m | $2.00 | $16.00 | estimate | buy long - splice on a straight run, never a corner |
 | Paste wax, releasing the groove filler | 1 | ea | $12.00 | $12.00 | estimate | the filler must NOT bond - it comes back out after the glass goes over it |
 | 2.5 mm straight cutter, groove opening | 2 | ea | $14.00 | $28.00 | estimate | undersize in a 4 mm groove on purpose: 0.75 mm of lateral slop before it can touch the sealing land. Two, because breaking one mid-groove on a finished board is the bad day |
@@ -74,6 +76,7 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 
 | Item | Qty | Unit | Unit $ | Ext $ | | Note |
 |---|---:|---|---:|---:|---|---|
+| Epoxy wash coat, BOTH faces of the printed shell | 0 | off | $0.00 | $0.00 | on hand | off the laminating kit. Outside face first - that is the wet one. Keep it OFF the gasket flange and the insert faces; a soft film at a clamping surface undoes the seal geometry, which is V1's own warning about Flex Seal |
 | M4 x 12 A4 stainless socket cap | 36 | ea | $0.35 | $12.60 | estimate |  |
 | M4 A4 washer O9, 100 pk | 1 | pk | $8.00 | $8.00 | estimate | 36 needed, under every lid bolt |
 | M4 x 8 brass heat-set insert, 100 pc | 1 | pack | $12.00 | $12.00 | estimate | 36 needed; 5.6 mm printed pilot |
@@ -94,18 +97,11 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | M3 heat-set insert + M3 x 8 A4, port flange | 4 | set | $0.60 | $2.40 | estimate |  |
 | **subtotal** | | | | **$353.38** | | |
 
-## 8  Mast hardpoint
-
-| Item | Qty | Unit | Unit $ | Ext $ | | Note |
-|---|---:|---|---:|---:|---|---|
-| M8 x 1.25 tap set + 6.8 mm drill | 1 | set | $18.00 | $18.00 | estimate | 8 blind holes; a BOTTOMING tap is the one that matters - blind at 10 mm in a 12.7 plate |
-| Tef-Gel or Duralac, galvanic barrier | 1 | ea | $22.00 | $22.00 | estimate | every mast bolt, every time it goes back in |
-| **subtotal** | | | | **$40.00** | | |
-
 ## 9  Electrical
 
 | Item | Qty | Unit | Unit $ | Ext $ | | Note |
 |---|---:|---|---:|---:|---|---|
+| Conformal coating, ESC + BMS boards | 1 | can | $16.00 | $16.00 | estimate | so a splash inside the module is an inconvenience instead of the end of a $450 pair of boards |
 | Flipsky 65161 120KV motor | 2 | ea | $298.00 | $596.00 | verified |  |
 | Flipsky 75200 Pro V2 ESC | 2 | ea | $150.00 | $300.00 | verified |  |
 | Thermal pad 1 mm, ESC baseplate to alu floor | 2 | ea | $9.00 | $18.00 | estimate | or paste; the ESC PCB face goes DOWN onto the floor, same as V1 did onto its alu bottom plate |
@@ -120,7 +116,15 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | ANL 150 A fuse + holder | 2 | ea | $10.59 | $21.18 | verified |  |
 | 8 AWG silicone wire, 5 m red + 5 m black | 2 | set | $22.00 | $44.00 | estimate | motor supplies its own phase leads + bullets |
 | Heat shrink, Kapton, pack wrap | 2 | set | $18.00 | $36.00 | estimate |  |
-| **subtotal** | | | | **$1,923.98** | | |
+| **subtotal** | | | | **$1,939.98** | | |
+
+## 8  Mast hardpoint
+
+| Item | Qty | Unit | Unit $ | Ext $ | | Note |
+|---|---:|---|---:|---:|---|---|
+| M8 x 1.25 tap set + 6.8 mm drill | 1 | set | $18.00 | $18.00 | estimate | 8 blind holes; a BOTTOMING tap is the one that matters - blind at 10 mm in a 12.7 plate |
+| Tef-Gel or Duralac, galvanic barrier | 1 | ea | $22.00 | $22.00 | estimate | every mast bolt, every time it goes back in |
+| **subtotal** | | | | **$40.00** | | |
 
 ## 9b Small but essential
 
@@ -230,27 +234,27 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | Item | Qty | Unit | Unit $ | Ext $ | | Note |
 |---|---:|---|---:|---:|---|---|
 | Shipping - G10, Divinycell, epoxy hazmat | 1 | allow | $220.00 | $220.00 | estimate | heavy and hazmat lines |
-| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $446.55 | $446.55 | verified |  |
-| **subtotal** | | | | **$666.55** | | |
+| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $448.23 | $448.23 | verified |  |
+| **subtotal** | | | | **$668.23** | | |
 
 ## Totals
 
 | | |
 |---|---:|
-| **Grand total, 2 boards** | **$7,889.12** |
-| Per board | $3,944.56 |
-| Of which verified | $6,146.53  (78%) |
-| Of which estimated | $1,742.59 |
+| **Grand total, 2 boards** | **$7,918.80** |
+| Per board | $3,959.40 |
+| Of which verified | $6,148.21  (78%) |
+| Of which estimated | $1,770.59 |
 
 ## What is a board, and what is a shop
 
-Some of the total above is not the cost of a board at all - it is tools, jigs and templates that exist afterwards and do not repeat. Splitting them out is the difference between "a board costs $3,945" and "a board costs $3,565 and I now own a vacuum rig, a crimper and a full template set".
+Some of the total above is not the cost of a board at all - it is tools, jigs and templates that exist afterwards and do not repeat. Splitting them out is the difference between "a board costs $3,959" and "a board costs $3,580 and I now own a vacuum rig, a crimper and a full template set".
 
 | | |
 |---|---:|
 | One-time tooling (incl. its share of tax) | $759.37 |
-| **Marginal cost of a board** | **$3,564.87** |
-| Cost of the NEXT board after these 2 | $3,564.87 |
+| **Marginal cost of a board** | **$3,579.71** |
+| Cost of the NEXT board after these 2 | $3,579.71 |
 
 | One-time item | $ |
 |---|---:|

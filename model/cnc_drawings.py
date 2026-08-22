@@ -226,9 +226,18 @@ def build(p):
     for (bx, by) in hb:
         d.circle(bx - 1.5, by - 1.5, (p["HATCH_BOLT_D"] + 0.6) / 2)
     add("02_hatch_lid", f"glass/H80/glass {p['LID_T']:.0f}mm", p["LID_T"], 1,
-        d, lw, lh, "Bag oversize flat, then machine to this profile. Face the "
-                   "underside flat in the same setup - it is the sealing face "
-                   "and it lands hard on the rim ring, so it must be flat.")
+        d, lw, lh,
+        "Bag oversize flat, then machine to this profile. Face the underside "
+        "flat in the same setup - it is the sealing face and it lands hard on "
+        "the rim ring, so it must be flat. "
+        "POT EVERY BOLT HOLE. NOT a V1 problem - V1's lid was solid plywood "
+        "and never crushed - but this one is a cored sandwich, and at 910 N a "
+        "bolt an M5 washer puts 16.6 MPa on H100, which crushes at 2.0. Eight "
+        "times over. Drill O14 through the TOP skin and core only, leave the "
+        "bottom skin, fill with thickened epoxy, cure, then drill O5.5. "
+        "AND SEAL EVERY CUT EDGE WITH NEAT EPOXY - machined perimeter and the "
+        "inside of all 12 bores. THAT part is V1's Test 2 verbatim: water "
+        "wicking in through unsealed fibre ends at the cavity ledge.")
 
     d = Dxf()
     d.poly(rrect(2.0, lw - 2.0, 2.0, lh - 2.0, R + RIM_W - 3.5))
@@ -401,7 +410,12 @@ def build(p):
         f"- {(p['CHAN_W']-p['CHAN_CUTTER'])/2:.2f} mm of lateral slop each "
         f"side before it can touch the sealing land. Set depth to just break "
         f"into the filler; you will feel it go soft. Then pick the filler out "
-        f"and the PRINTED walls are the finished groove. Opening offset "
+        f"and the PRINTED walls are the finished groove. "
+        f"THEN WET THE GROOVE OUT WITH NEAT EPOXY and let it cure before the "
+        f"cord goes in. Routing through the laminate leaves cut glass fibre "
+        f"ends in the groove's top edge, in the seal itself - the same path "
+        f"that flooded V1's cavity. Silicone adhesive does not stop a wick; "
+        f"epoxy does. Opening offset "
         f"{GUIDE_OFF:.0f} mm for a guide bushing - RE-CHECK against your own. "
         f"The CHANNEL outline is the rim ring's outer edge, for registering.")
 

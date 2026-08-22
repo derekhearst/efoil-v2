@@ -151,7 +151,16 @@ Remaining seepage traced no further with pour testing.
 
 **Validated separately:** with the lid off and the hull pushed under, no water entered through the mast penetration or wire holes. The mast gasket and wire pass-throughs are sound.
 
-**Both enclosures held.** The ESC and battery boxes stayed dry through every test, including the sessions where the cavity flooded. The layered defence worked as designed.
+**Both enclosures held** — *through the August tests.* The ESC and battery boxes stayed dry through every test recorded above, including the sessions where the cavity flooded.
+
+**Test 4 — the enclosures did NOT hold (Aug 2026, after this doc was written).**
+The cavity flooded again and **water got into both the ESC and battery enclosures.** No gasket, gland or fastener path was identified. Derek's read is that **water seeped through the printed PETG wall itself**, and then sat trapped inside.
+
+*Why that is the likely answer:* an FDM wall is extruded beads laid side by side, and the valleys between them form a connected path straight through the wall. More perimeters make the path longer, not closed — **these enclosures ran four wall loops and still wetted through.** Wall thickness is not the fix.
+
+*Lesson, and it is the single most important one for V2:* **a printed enclosure is not a pressure boundary on its own.** It needs a continuous barrier applied to it — a brushed coat of neat epoxy on both faces, outside first, since stopping water entering the wall beats catching it once it is already travelling inside one. And it needs to be **proved before it is trusted**, not discovered by riding: seal it empty, pull a vacuum, watch the gauge, then repeat submerged so any path pulls water *in* where you can see it.
+
+*This supersedes the "layered defence worked as designed" conclusion above.* The layers were the same material with the same flaw — a printed box inside a glassed cavity is two barriers only if the printed one is actually a barrier.
 
 ---
 
