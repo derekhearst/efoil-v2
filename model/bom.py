@@ -295,9 +295,31 @@ def build():
         "Keep it OFF the gasket flange and the insert faces; a soft film at "
         "a clamping surface undoes the seal geometry, which is V1's own "
         "warning about Flex Seal")
-    add("9  Electrical", "Conformal coating, ESC + BMS boards", 1, "can",
-        16.00, EST, "so a splash inside the module is an inconvenience "
-        "instead of the end of a $450 pair of boards")
+    # NO CONFORMAL COATING. Dropped on Derek's objection, and he is right -
+    # on a VESC it is worse than awkward:
+    #   - the 75200's aluminium PCB is thermally bonded to its baseplate, and
+    #     that baseplate is the whole reason the module floor is aluminium.
+    #     Coating it kills the heat path we just designed in.
+    #   - connectors, the programming header and the thermal face all have to
+    #     be masked, and you cannot reach under components anyway
+    #   - PARTIAL coverage is worse than none: it traps moisture against the
+    #     board instead of letting it dry
+    # A coating is what you reach for when you accept the box will get wet.
+    # The answer here is to make the box not get wet, and to PROVE it - which
+    # is what the epoxy wash coat and the vacuum leak test are for.
+    #
+    # What does earn its place is DESICCANT, and for a reason that has
+    # nothing to do with leaks. This box breathes: the Gore vent has to pass
+    # gas both ways or the lid pumps its own seal. So every time the board
+    # goes from cold water to hot sun it draws humid air in, and every time it
+    # cools that moisture condenses INSIDE. Over a season that accumulates
+    # with no leak at all - and "water got in and got trapped" is exactly what
+    # that looks like. Silica gel with a colour indicator, so you can see when
+    # it is spent and bake it dry.
+    add("9  Electrical", "Silica gel packs, indicating, 10 pk", 1, "pk",
+        12.00, EST, "2 per module, swapped when the indicator turns. A "
+        "vented box breathes humid air in and condenses it - that fills a "
+        "sealed box slowly without anything having leaked")
     add("5  Vacuum bagging", "Test cap + tubing, module leak test", 1, "set",
         12.00, EST,
         "PROVE THE MODULE BEFORE THE CELLS GO IN, and prove it the way the "
@@ -562,7 +584,8 @@ def build():
     add("9b Small but essential", "Cyanoacrylate for the cord splice",
         1, "ea", 6.00, EST)
     add("9b Small but essential", "Water-ingress alarm", N, "ea", 12.00, EST,
-        "V1 carried one - finds a leak before the cells do")
+        "V1 carried one. Put the SENSOR on the module floor in the lowest "
+        "corner, not up on the pack - it is only useful where water collects")
     # Remote float deleted - the VX3 ships with a floating band.
     # Used ONCE, to find which clutch number on the drill gives 3 Nm. After
     # that the drill does the 12 bolts at speed and the wrench goes in a

@@ -101,7 +101,7 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 
 | Item | Qty | Unit | Unit $ | Ext $ | | Note |
 |---|---:|---|---:|---:|---|---|
-| Conformal coating, ESC + BMS boards | 1 | can | $16.00 | $16.00 | estimate | so a splash inside the module is an inconvenience instead of the end of a $450 pair of boards |
+| Silica gel packs, indicating, 10 pk | 1 | pk | $12.00 | $12.00 | estimate | 2 per module, swapped when the indicator turns. A vented box breathes humid air in and condenses it - that fills a sealed box slowly without anything having leaked |
 | Flipsky 65161 120KV motor | 2 | ea | $298.00 | $596.00 | verified |  |
 | Flipsky 75200 Pro V2 ESC | 2 | ea | $150.00 | $300.00 | verified |  |
 | Thermal pad 1 mm, ESC baseplate to alu floor | 2 | ea | $9.00 | $18.00 | estimate | or paste; the ESC PCB face goes DOWN onto the floor, same as V1 did onto its alu bottom plate |
@@ -116,7 +116,7 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | ANL 150 A fuse + holder | 2 | ea | $10.59 | $21.18 | verified |  |
 | 8 AWG silicone wire, 5 m red + 5 m black | 2 | set | $22.00 | $44.00 | estimate | motor supplies its own phase leads + bullets |
 | Heat shrink, Kapton, pack wrap | 2 | set | $18.00 | $36.00 | estimate |  |
-| **subtotal** | | | | **$1,939.98** | | |
+| **subtotal** | | | | **$1,935.98** | | |
 
 ## 8  Mast hardpoint
 
@@ -134,7 +134,7 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | M8 x 30 A4 mast bolts, spares | 8 | ea | $0.90 | $7.20 | estimate | Gong supplies its own; these are spares |
 | Silicone grease for the seal cord | 1 | tube | $9.00 | $9.00 | estimate | stops the cord bonding to the lid in storage |
 | Cyanoacrylate for the cord splice | 1 | ea | $6.00 | $6.00 | estimate |  |
-| Water-ingress alarm | 2 | ea | $12.00 | $24.00 | estimate | V1 carried one - finds a leak before the cells do |
+| Water-ingress alarm | 2 | ea | $12.00 | $24.00 | estimate | V1 carried one. Put the SENSOR on the module floor in the lowest corner, not up on the pack - it is only useful where water collects |
 | 1/4 in torque wrench, 1-10 Nm | 1 | ea | $38.00 | $38.00 | estimate | CALIBRATION TOOL - set the drill clutch with it, then use the clutch. The hatch is captive nuts in ASA against a hard stop; past the stop more torque only loads the nut pockets |
 | Coiled ankle leash | 2 | ea | $14.99 | $29.98 | verified | you trust the remote failsafe; this is so the board stays with you |
 | FCS-pattern leash plug | 2 | ea | $9.00 | $18.00 | estimate |  |
@@ -234,27 +234,27 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | Item | Qty | Unit | Unit $ | Ext $ | | Note |
 |---|---:|---|---:|---:|---|---|
 | Shipping - G10, Divinycell, epoxy hazmat | 1 | allow | $220.00 | $220.00 | estimate | heavy and hazmat lines |
-| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $448.23 | $448.23 | verified |  |
-| **subtotal** | | | | **$668.23** | | |
+| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $447.99 | $447.99 | verified |  |
+| **subtotal** | | | | **$667.99** | | |
 
 ## Totals
 
 | | |
 |---|---:|
-| **Grand total, 2 boards** | **$7,918.80** |
-| Per board | $3,959.40 |
-| Of which verified | $6,148.21  (78%) |
-| Of which estimated | $1,770.59 |
+| **Grand total, 2 boards** | **$7,914.56** |
+| Per board | $3,957.28 |
+| Of which verified | $6,147.97  (78%) |
+| Of which estimated | $1,766.59 |
 
 ## What is a board, and what is a shop
 
-Some of the total above is not the cost of a board at all - it is tools, jigs and templates that exist afterwards and do not repeat. Splitting them out is the difference between "a board costs $3,959" and "a board costs $3,580 and I now own a vacuum rig, a crimper and a full template set".
+Some of the total above is not the cost of a board at all - it is tools, jigs and templates that exist afterwards and do not repeat. Splitting them out is the difference between "a board costs $3,957" and "a board costs $3,578 and I now own a vacuum rig, a crimper and a full template set".
 
 | | |
 |---|---:|
 | One-time tooling (incl. its share of tax) | $759.37 |
-| **Marginal cost of a board** | **$3,579.71** |
-| Cost of the NEXT board after these 2 | $3,579.71 |
+| **Marginal cost of a board** | **$3,577.59** |
+| Cost of the NEXT board after these 2 | $3,577.59 |
 
 | One-time item | $ |
 |---|---:|
