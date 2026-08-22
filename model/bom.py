@@ -101,13 +101,20 @@ def build():
     # "4 day passes @ $200 = $800" - and went out with that file when it was
     # retired as a stale duplicate. Every total quoted since has been missing
     # it, which also made the shaping-service comparison look worse than it is.
-    # UNRESOLVED: the makerspace has not answered two emails. Carried at $400
-    # as a placeholder for a month's membership or a few day passes. If this
-    # ends up being a shaping service or hand work, the line goes to zero.
-    add("1  Core and shaping", "CNC access - membership or day passes",
-        1, "job", 400.00, EST,
-        "PLACEHOLDER, unresolved. Only ONE part still wants a CNC: the EPS "
-        "core. Everything else is bandsaw, drill press, printer or template",
+    # $150 for a month at the makerspace, which settles the comparison:
+    #   makerspace   EPS 110.72 + 150            = $261
+    #   shaping svc  ~180-250 a blank x 2        = $360-500
+    # The month pass wins on cost, and it is the only route that also covers
+    # the lid trimming and the MDF templates rather than just the cores.
+    # WHAT IT BUYS IS A DEADLINE. Everything that needs the machine has to
+    # happen inside those 30 days: 4 core halves, 2 hatch lids, 2 module lids,
+    # the caul, the groove guide and 21 MDF templates. Cut ALL of it in the
+    # month and let the layups follow the weather afterwards - the machine
+    # work and the wet work do not have to be in the same season, and given a
+    # Boise winter they should not be.
+    add("1  Core and shaping", "Makerspace month pass", 1, "mo", 150.00, OK,
+        "their quoted rate. Only ONE part still truly wants a CNC - the EPS "
+        "core - but the pass covers the lids and templates too",
         tool=True)
     add("1  Core and shaping",
         "EPS rigid foam 2in x 48in x 8ft (HD 202532856)",

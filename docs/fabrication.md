@@ -450,6 +450,34 @@ The rest is drill-press work:
    anyone with the table, and a much easier ask than it was when it involved
    G10 dust.
 
+### Cost, now that the month pass is known
+
+| Route | Cost | Notes |
+|---|---:|---|
+| **Makerspace month pass** | **$150** + $111 EPS = **$261** | covers cores *and* lids *and* templates |
+| Shaping service | ~$360–500 for two | blanks included, but outer shape only |
+| Hand shape | $111 EPS | 13 station gauges are cut for it |
+
+The month pass wins, and it is the only route that also covers **trimming the
+four sandwich lids and cutting the 21 MDF templates** rather than just the
+cores.
+
+**What a month pass really buys is a deadline.** Everything that touches the
+machine has to happen inside those 30 days:
+
+- 4 core halves (two boards, 1030 + 370 each)
+- 2 hatch lids and 2 module lids, trimmed from bagged panels
+- the cavity caul and the groove guide
+- 21 MDF templates
+
+**Cut all of it in the month, then let the layups follow the weather.** The
+machine work and the wet work do not have to be in the same season — and given
+a Boise winter and a 60 °F floor for slow hardener, they should not be. Machine
+in the pass, glass in the spring.
+
+That also means the lid panels have to be **bagged before the pass starts**,
+since they get trimmed on the machine. Plan that one backwards.
+
 ### On the makerspace specifically
 
 Email is the wrong channel for a small shop. **Phone, or turn up.** Maker Shop
