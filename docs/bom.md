@@ -62,6 +62,7 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | Item | Qty | Unit | Unit $ | Ext $ | | Note |
 |---|---:|---|---:|---:|---|---|
 | Neat epoxy, sealing every cut laminate edge | 0 | off | $0.00 | $0.00 | on hand | off the laminating kit. Groove walls, lid perimeter, all 12 lid bores, every machined edge. This is V1's Test 2 verbatim - water came in through unsealed fibre ends at the cavity ledge, and its own note reads: cured laminate is NOT waterproof at a cut edge |
+| Solid silicone cord, 3.5 mm round - the spare size | 4 | m | $4.00 | $16.00 | estimate | fitted ONLY if the routed groove measures deep. Choosing after you measure is the whole point |
 | Solid silicone cord, 3 mm round - BOTH seals | 8 | m | $2.00 | $16.00 | estimate | buy long - splice on a straight run, never a corner |
 | Paste wax, releasing the groove filler | 1 | ea | $12.00 | $12.00 | estimate | the filler must NOT bond - it comes back out after the glass goes over it |
 | 2.5 mm straight cutter, groove opening | 2 | ea | $14.00 | $28.00 | estimate | undersize in a 4 mm groove on purpose: 0.75 mm of lateral slop before it can touch the sealing land. Two, because breaking one mid-groove on a finished board is the bad day |
@@ -70,7 +71,7 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | M5 penny washer O15, under the captive nut | 34 | ea | $0.18 | $6.12 | estimate | goes in at the SAME print pause as the nut, underneath it |
 | M5 A4 hex nut, CAPTIVE - printed into the ring | 34 | ea | $0.22 | $7.48 | estimate | dropped in at a print pause at Z=6.0; steel thread, so a hatch that comes off every ride never wears anything out |
 | MDF 12 mm, full template set (14 templates) | 2 | sheet | $35.00 | $70.00 | estimate | one-time; cut once, used on both boards and any future one |
-| **subtotal** | | | | **$164.80** | | |
+| **subtotal** | | | | **$180.80** | | |
 
 ## 7  Module
 
@@ -101,7 +102,7 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 
 | Item | Qty | Unit | Unit $ | Ext $ | | Note |
 |---|---:|---|---:|---:|---|---|
-| Silica gel packs, indicating, 10 pk | 1 | pk | $12.00 | $12.00 | estimate | 2 per module, swapped when the indicator turns. A vented box breathes humid air in and condenses it - that fills a sealed box slowly without anything having leaked |
+| Silica gel, indicating, 50 g per module | 1 | pk | $12.00 | $12.00 | estimate | ~40 g is a season at 50 breathing cycles; a token sachet is worth about six. Bake it dry when the indicator turns |
 | Flipsky 65161 120KV motor | 2 | ea | $298.00 | $596.00 | verified |  |
 | Flipsky 75200 Pro V2 ESC | 2 | ea | $150.00 | $300.00 | verified |  |
 | Thermal pad 1 mm, ESC baseplate to alu floor | 2 | ea | $9.00 | $18.00 | estimate | or paste; the ESC PCB face goes DOWN onto the floor, same as V1 did onto its alu bottom plate |
@@ -234,27 +235,27 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | Item | Qty | Unit | Unit $ | Ext $ | | Note |
 |---|---:|---|---:|---:|---|---|
 | Shipping - G10, Divinycell, epoxy hazmat | 1 | allow | $220.00 | $220.00 | estimate | heavy and hazmat lines |
-| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $447.99 | $447.99 | verified |  |
-| **subtotal** | | | | **$667.99** | | |
+| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $448.95 | $448.95 | verified |  |
+| **subtotal** | | | | **$668.95** | | |
 
 ## Totals
 
 | | |
 |---|---:|
-| **Grand total, 2 boards** | **$7,914.56** |
-| Per board | $3,957.28 |
-| Of which verified | $6,147.97  (78%) |
-| Of which estimated | $1,766.59 |
+| **Grand total, 2 boards** | **$7,931.52** |
+| Per board | $3,965.76 |
+| Of which verified | $6,148.93  (78%) |
+| Of which estimated | $1,782.59 |
 
 ## What is a board, and what is a shop
 
-Some of the total above is not the cost of a board at all - it is tools, jigs and templates that exist afterwards and do not repeat. Splitting them out is the difference between "a board costs $3,957" and "a board costs $3,578 and I now own a vacuum rig, a crimper and a full template set".
+Some of the total above is not the cost of a board at all - it is tools, jigs and templates that exist afterwards and do not repeat. Splitting them out is the difference between "a board costs $3,966" and "a board costs $3,586 and I now own a vacuum rig, a crimper and a full template set".
 
 | | |
 |---|---:|
 | One-time tooling (incl. its share of tax) | $759.37 |
-| **Marginal cost of a board** | **$3,577.59** |
-| Cost of the NEXT board after these 2 | $3,577.59 |
+| **Marginal cost of a board** | **$3,586.07** |
+| Cost of the NEXT board after these 2 | $3,586.07 |
 
 | One-time item | $ |
 |---|---:|

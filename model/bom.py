@@ -316,10 +316,15 @@ def build():
     # with no leak at all - and "water got in and got trapped" is exactly what
     # that looks like. Silica gel with a colour indicator, so you can see when
     # it is spent and bake it dry.
-    add("9  Electrical", "Silica gel packs, indicating, 10 pk", 1, "pk",
-        12.00, EST, "2 per module, swapped when the indicator turns. A "
-        "vented box breathes humid air in and condenses it - that fills a "
-        "sealed box slowly without anything having leaked")
+    # SIZED, because Derek is right that a token pack does nothing. The
+    # module holds 9.6 L of air, which carries 0.22 g of water at 100% RH, and
+    # a 5 g pack absorbs ~1.5 g - about six full breathing cycles. A season is
+    # nearer fifty, so it wants ~40 g and swapping, not two sachets.
+    # Third-order either way. It is worth $12 because condensation is the one
+    # path that leaves no trace to find, not because it is a main defence.
+    add("9  Electrical", "Silica gel, indicating, 50 g per module", 1, "pk",
+        12.00, EST, "~40 g is a season at 50 breathing cycles; a token sachet "
+        "is worth about six. Bake it dry when the indicator turns")
     add("5  Vacuum bagging", "Test cap + tubing, module leak test", 1, "set",
         12.00, EST,
         "PROVE THE MODULE BEFORE THE CELLS GO IN, and prove it the way the "
@@ -370,6 +375,19 @@ def build():
     # An extruded cord is dimensionally perfect out of the packet; bonding it
     # in solves the only thing pour-in-place was buying, which was stopping it
     # lifting out of the groove on a hatch opened every ride.
+    # BUY BOTH SIZES AND CHOOSE AFTER MEASURING. This is what actually kills
+    # the 10-30% squeeze spread, and it costs a few dollars.
+    # The groove comes out somewhere in 2.1..2.7 deep depending on how much
+    # glass ended up over the ring. Measure the routed groove with a depth
+    # gauge at half a dozen points, then fit the cord that lands 20-25%:
+    #     measured 2.1  ->  O3.0 = 30%
+    #     measured 2.4  ->  O3.0 = 20%
+    #     measured 2.7  ->  O3.5 = 23%   (O3.0 would be only 10%)
+    # Guessing the cord before the groove exists is how you end up at 10%.
+    add("6  Hatch and seal", "Solid silicone cord, 3.5 mm round - the spare "
+        "size", 4, "m", 4.00, EST,
+        "fitted ONLY if the routed groove measures deep. Choosing after you "
+        "measure is the whole point")
     add("6  Hatch and seal", "Solid silicone cord, 3 mm round - BOTH seals",
         math.ceil((M["hatch_cord_mm"] + M["mod_cord_mm"]) * N / 1000) + 4,
         "m", 2.00, EST,
@@ -581,6 +599,11 @@ def build():
         8, "ea", 0.90, EST, "Gong supplies its own; these are spares")
     add("9b Small but essential", "Silicone grease for the seal cord",
         1, "tube", 9.00, EST, "stops the cord bonding to the lid in storage")
+    # SPLICE PLACEMENT, and it is not fussiness - V1's own build notes say
+    # "do NOT cut and butt-joint at corners (corner joints leak)". Put it at
+    # the MIDPOINT OF A LONG STRAIGHT RUN, and also clear of the six printed
+    # ring joints: a cord splice sitting on top of a ring joint stacks two
+    # discontinuities in the same place.
     add("9b Small but essential", "Cyanoacrylate for the cord splice",
         1, "ea", 6.00, EST)
     add("9b Small but essential", "Water-ingress alarm", N, "ea", 12.00, EST,
