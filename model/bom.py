@@ -473,14 +473,22 @@ def build():
     # reproduces that direction, pressure inside tests the opposite and would
     # fail a joint the board never loads that way. And pressure here is
     # genuinely unsafe: 0.2 bar across a 451 x 292 lid is about 2.6 kN.
-    add("5  Vacuum bagging", "M12 x 0.75 male to hose barb, test port",
-        1, "ea", 9.00, EST,
-        "screws into the VENT BOSS with the membrane vent removed - that is "
-        "the test port, no extra hole needed. Fit the real vent afterwards")
+    # NO SPECIAL FITTING NEEDED - THE GLAND IS THE TEST PORT. The first plan
+    # was an M12 x 0.75 male-to-barb into the vent boss, and that thread is a
+    # fine pitch nobody stocks: searching it returns M12 x 1.25 and x 1.75 and
+    # nothing else. Wrong problem anyway.
+    # At leak-test time the module has NO cables fitted - all three PG11
+    # glands are empty. A gland IS a compression seal on a round thing, so
+    # feed a length of the test kit's own tubing through one and tighten it.
+    # PG11 takes 5-10 mm, so use one of the smaller hoses in the kit, not the
+    # 1/4 in. Blank the other two glands, blank the vent boss, pull vacuum.
+    # No extra hole, no odd thread, no part to buy.
     add("5  Vacuum bagging", "Test cap + tubing, module leak test", 1, "set",
         12.00, EST,
         "PROVE THE MODULE BEFORE THE CELLS GO IN, and prove it the way the "
-        "failure actually happens: blank the vent boss with the barb adapter, "
+        "failure actually happens: run one of the kit's smaller hoses through "
+        "an empty PG11 gland and tighten it - that is your test port - blank "
+        "the other glands and the vent boss, "
         "seal it empty, pull 5 inHg, shut the ball valve and watch the gauge "
         "for 30 min - porosity reads as a slow bleed. Then do it again "
         "SUBMERGED: under vacuum any path pulls water IN and you see exactly "
@@ -754,8 +762,8 @@ def build():
     # connector, not a screw terminal, and the M12 button is bare wires.
     # Crimping GH 1.25 by hand is miserable, and this is a $6 problem now
     # against opening a sealed module later.
-    add("7  Module", "JST GH 1.25 mm pigtail pair, BMS switch", N, "ea",
-        6.00, EST,
+    add("7  Module", "JST GH 1.25 mm pigtail pair, BMS switch", 1, "pk",
+        5.99, OK,
         "connects the panel button to the BMS key-switch input. CHECK THE "
         "BOX FIRST - DALY ship a ready-made key switch with some units",
         vendor="Amazon")
@@ -805,7 +813,7 @@ def build():
     # buys back a thread if one ever galls in service, which on alu + A4 in
     # salt water is not a remote possibility.
     add("8  Mast hardpoint", "M8 thread repair kit (Time-Sert / helicoil)",
-        1, "kit", 34.00, EST,
+        1, "kit", 14.59, OK,
         "for the mast plate. Not expected - kept because the failure it "
         "covers is unrecoverable without it", vendor="Amazon")
     add("8  Mast hardpoint", "Ultra Tef-Gel, galvanic barrier", 1, "ea",
@@ -895,8 +903,8 @@ def build():
     # charge lead inside a sealed module, protected only by a fuse sized for
     # 150 A, is an unprotected 16 AWG wire next to a lithium pack. One small
     # fuse at the positive split closes that.
-    add("9  Electrical", "Inline 10 A fuse + holder, charge lead", N, "ea",
-        8.00, EST,
+    add("9  Electrical", "Inline 10 A fuse + holder, charge lead", 1, "pk",
+        7.59, OK,
         "at SPLIT A on the charge positive. The ANL is sized for the motor "
         "and cannot protect 16 AWG", vendor="Amazon")
     add("9  Electrical", "8 AWG silicone, 10 ft red + 10 ft black",

@@ -361,11 +361,17 @@ plain steel — use the A4 ones for the port flange, which lives in the wet.
 
 **Blocks on:** step 14
 **Uses:** `Test cap + tubing, module leak test` ·
-`M12 x 0.75 male to hose barb, test port` · `Bag connector w/ ball valve, 1/4 in QD`
+`Bag connector w/ ball valve, 1/4 in QD` · `Gebildet PG11 gland, M18x1.5, 30 pk`
 
-**The module has no test port — and does not need one. Use the vent boss.**
-In service that threaded hole carries the M12 membrane vent; for the test it
-carries an M12 × 0.75 male-to-barb adapter. Same hole, no extra penetration.
+**The module has no test port — and does not need one. A gland is a test
+port.** At this stage no cables are fitted and all three PG11 glands are
+empty. A gland is a compression seal on a round thing, so feed one of the
+test kit's smaller hoses through it and tighten. Blank the other two glands
+and the vent boss. No extra hole, no special fitting.
+
+*(The first plan here was an M12 × 0.75 barb into the vent boss. That is a
+fine pitch nobody stocks — and it was the wrong problem: the sealing hardware
+you already have does the job.)*
 
 **The vent must be OUT while you test.** An ePTFE membrane passes air by
 design — that is the entire point of it — so with the vent fitted the module

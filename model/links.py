@@ -117,6 +117,10 @@ LINKS = {
         ("B0CFV249X3", 39.99, "YUZES 10-Ton Hydraulic Crimping Tool, 12 to 2/0 AWG"),
     "IP68 M25 inline housing, 5 pk":
         ("B0DPKM5HF7", 15.98, "Linkstyle 5PCS IP68 Waterproof Junction Box Inline Connectors"),
+    "Inline 10 A fuse + holder, charge lead":
+        ("B0F2YXV41Q", 7.59, "3 Pack Inline Waterproof Fuse Holder with 10A/15A ATC Blade Fuses, 16 AWG Pre-"),
+    "JST GH 1.25 mm pigtail pair, BMS switch":
+        ("B07FP2FCYC", 5.99, "10 Pairs 1.25mm JST 2 Pin Micro Male and Female Connector Plug with 80mm Wire"),
     "Kapton tape, pack insulation":
         ("B006ZFQNT6", 8.25, "1/2in x 36 Yds 1 Mil Polyimide High Temp Electrical Tape"),
     "Kayak-style webbing carry handle, 4 pk":
@@ -167,6 +171,8 @@ LINKS = {
         ("B0DDGRXHT7", 7.69, "uxcell 10Pcs M8 Flat Washer 316 Stainless 8.4 ID x 24 OD x 2mm"),
     "M8 nyloc nut 316, 30 pk - prop nut":
         ("B0BP2R3YHY", 8.99, "M8 Stainless Lock Nuts 30pcs 316 Hex Nylon Insert"),
+    "M8 thread repair kit (Time-Sert / helicoil)":
+        ("B09WN4QTNL", 14.59, "BILITOOLS M8x1.25 Thread Repair Kit with HSS Drill, Helicoil, Metric"),
     "M8 x 1.25 BOTTOMING tap, 4-flute":
         ("B00DLCTUDM", 8.78, "Drill America DWTB8X1.25 M8 x 1.25 HSS 4-Flute Bottoming Tap"),
     "M8 x 1.25 tap + 6.8 mm drill set":
@@ -324,6 +330,8 @@ LINK_VENDOR = {
     "Gong Foil Setup X-Over V3 Atmo Perf Series - XL, Alu 85": "Gong",
     "Hydraulic lug crimper, 10 ton, 12-2/0 AWG": "Amazon",
     "IP68 M25 inline housing, 5 pk": "Amazon",
+    "Inline 10 A fuse + holder, charge lead": "Amazon",
+    "JST GH 1.25 mm pigtail pair, BMS switch": "Amazon",
     "Kapton tape, pack insulation": "Amazon",
     "Kayak-style webbing carry handle, 4 pk": "Amazon",
     "Laminating bubble roller kit, 4 pc": "Amazon",
@@ -349,6 +357,7 @@ LINK_VENDOR = {
     "M6 x 20 fender washer, 100 pk": "Amazon",
     "M8 316 washer, prop nut": "Amazon",
     "M8 nyloc nut 316, 30 pk - prop nut": "Amazon",
+    "M8 thread repair kit (Time-Sert / helicoil)": "Amazon",
     "M8 x 1.25 BOTTOMING tap, 4-flute": "Amazon",
     "M8 x 1.25 tap + 6.8 mm drill set": "Amazon",
     "M8 x 30 A4 mast bolts, 10 pk - spares": "Amazon",

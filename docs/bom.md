@@ -50,14 +50,13 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | [VR20 vacuum regulator](https://www.easycomposites.us/vacuum-regulator-for-vacuum-bagging) | 1 | ea | $52.00 | $52.00 | verified | one-time. Holds the bag at 5-10 inHg, which is the whole ball game: EPS crushes around 150 kPa and full vacuum is 101. Hose tails are +$4.70 if you want them |
 | [Bag connector w/ ball valve, 1/4 in QD](https://www.amazon.com/dp/B0FSKGGL8H) | 2 | ea | $19.59 | $39.18 | verified | THE BALL VALVE IS THE POINT: shut it and the bag is isolated from the pump, so leak-down is a real measurement and not a guess about whether the pump is keeping up. Two of them - a 1400 mm hull bag pulls down far faster from both ends, and one is a spare |
 | [Vacuum hose + hose clamps](https://www.amazon.com/dp/B0FH52FT4G) | 1 | set | $11.61 | $11.61 | estimate | 1/2 in tubing pump-to-bag plus clamps; the other half of what the deleted kit was actually carrying |
-| M12 x 0.75 male to hose barb, test port | 1 | ea | $9.00 | $9.00 | estimate | screws into the VENT BOSS with the membrane vent removed - that is the test port, no extra hole needed. Fit the real vent afterwards |
-| [Test cap + tubing, module leak test](https://www.amazon.com/dp/B0DPWRP6FR) | 1 | set | $22.99 | $22.99 | estimate | PROVE THE MODULE BEFORE THE CELLS GO IN, and prove it the way the failure actually happens: blank the vent boss with the barb adapter, seal it empty, pull 5 inHg, shut the ball valve and watch the gauge for 30 min - porosity reads as a slow bleed. Then do it again SUBMERGED: under vacuum any path pulls water IN and you see exactly where. V1 found its leaks by riding |
+| [Test cap + tubing, module leak test](https://www.amazon.com/dp/B0DPWRP6FR) | 1 | set | $22.99 | $22.99 | estimate | PROVE THE MODULE BEFORE THE CELLS GO IN, and prove it the way the failure actually happens: run one of the kit's smaller hoses through an empty PG11 gland and tighten it - that is your test port - blank the other glands and the vent boss, seal it empty, pull 5 inHg, shut the ball valve and watch the gauge for 30 min - porosity reads as a slow bleed. Then do it again SUBMERGED: under vacuum any path pulls water IN and you see exactly where. V1 found its leaks by riding |
 | [Vacuum gauge, -30 inHg, 1/4 NPT, glycerin](https://www.amazon.com/dp/B00VQSOZFQ) | 1 | ea | $10.50 | $10.50 | verified | reads the BAG, not the pump - tee it in at the bag end. The regulator sets the level; this is how you know it worked. GLYCERIN FILLED on purpose: a dry needle flutters with every pump stroke and you cannot read 7 inHg off it, which is the one number that matters |
 | [Vac bag film, 5 yd](https://www.amazon.com/dp/B079MBL5TX) | 3 | roll | $24.95 | $74.85 | verified | 3.06 m2 a hull session; 2 hulls + 4 lids + a practice piece + one re-do. Single-use on the hull, reusable on flat parts. Same Elite Lab product Fibre Glast sells, at the same price, with free delivery |
 | [Peel ply, 60in](https://www.amazon.com/dp/B0H5JTMTZ3) | 6 | yd | $18.99 | $113.94 | verified | was only in the starter kit, and one kit's worth does not cover 6.12 m2 of part |
 | [Breather / bleeder cloth](https://www.amazon.com/dp/B015NM0B8K) | 6 | yd | $13.95 | $83.70 | verified | $13.95/yd cut; a 5 yd roll at $59.99 is $12.00/yd if you would rather buy the roll |
 | [Sealant tape, 50 ft roll](https://www.amazon.com/dp/B0GF25BPN6) | 2 | roll | $19.99 | $39.98 | verified | 31 m of bag perimeter across the project. 2 x 50 ft at $19.99 replaced 4 x 25 ft at $12 - same tape, fewer joins |
-| **subtotal** | | | | **$515.74** | | |
+| **subtotal** | | | | **$506.74** | | |
 
 ## 6  Hatch and seal
 
@@ -96,11 +95,11 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | 25 mm webbing loop, module lift handle | 0 | ea | $0.00 | $0.00 | on hand | cut from the 6 yd webbing pack in 10c - it is the same 1 in strap. Through the two printed bosses on the forward wall; the module is ~14 kg in a cavity with 12 mm of side clearance, so there is no way to get a hand beside it |
 | [M12 IP68 membrane vent plug](https://www.amazon.com/dp/B0FXSNDGTV) | 2 | ea | $9.95 | $19.90 | verified | NOT optional on a sealed lithium box |
 | [M12 IP68 momentary panel button](https://www.amazon.com/dp/B0FPQP7CP9) | 1 | ea | $32.65 | $32.65 | verified | 1 on hand; this line buys the second board's |
-| JST GH 1.25 mm pigtail pair, BMS switch | 2 | ea | $6.00 | $12.00 | estimate | connects the panel button to the BMS key-switch input. CHECK THE BOX FIRST - DALY ship a ready-made key switch with some units |
+| [JST GH 1.25 mm pigtail pair, BMS switch](https://www.amazon.com/dp/B07FP2FCYC) | 1 | pk | $5.99 | $5.99 | verified | connects the panel button to the BMS key-switch input. CHECK THE BOX FIRST - DALY ship a ready-made key switch with some units |
 | [SP17 2-pin IP68 flange receptacle](https://www.amazon.com/dp/B0CDH5R8P4) | 2 | ea | $13.20 | $26.40 | verified | 67.2 V 5 A charge; O17 panel hole, 2 x M3 flange screws. $2.49, not the $11 this carried. CHECK THE CAP IS INCLUDED before ordering - on a board that gets submerged the cap is the part that does the sealing when nothing is plugged in |
 | [M3 heat-set insert kit, 361 pc](https://www.amazon.com/dp/B0G8JLX1HR) | 1 | kit | $13.98 | $13.98 | verified | covers the port flange (4 sets) and the nose cone. The kit's screws are PLAIN STEEL - buy M3 x 8 A4 separately for the flange, which lives in the wet cavity |
 | [M3 x 8 A4 stainless, 10 pk](https://www.amazon.com/dp/B07DVMFMJZ) | 1 | pk | $6.76 | $6.76 | verified | the kit's screws are not stainless and this joint is submerged |
-| **subtotal** | | | | **$422.33** | | |
+| **subtotal** | | | | **$416.32** | | |
 
 ## 9  Electrical
 
@@ -119,11 +118,11 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | [Pure nickel 0.2 x 10 mm, 5 m roll](https://www.amazon.com/dp/B0961Q1VVR) | 3 | roll | $14.99 | $44.97 | verified | 6.9 m a board derived from the pack, not guessed. YOU ALREADY OWN 3 ROLLS (SUIDI, ordered Apr 16 x2 and May 6) - check the drawer before buying more. There is also a 5 m roll of 0.2 x 27 mm uxcell from Apr 12: too wide for bridges, but it is the right stock for the two terminal collectors and for doubling the edges without stacking two thin layers |
 | 21700 spacer brackets | 0 | set | $0.00 | $0.00 | on hand |  |
 | [ANL 150 A fuse + holder](https://www.amazon.com/dp/B0B6ZHJR7D) | 2 | ea | $9.99 | $19.98 | verified | in the NEGATIVE leg, between BMS P- and the ESC - that is where V1 ran it and it is the node the charge negative branches from too |
-| Inline 10 A fuse + holder, charge lead | 2 | ea | $8.00 | $16.00 | estimate | at SPLIT A on the charge positive. The ANL is sized for the motor and cannot protect 16 AWG |
+| [Inline 10 A fuse + holder, charge lead](https://www.amazon.com/dp/B0F2YXV41Q) | 1 | pk | $7.59 | $7.59 | verified | at SPLIT A on the charge positive. The ANL is sized for the motor and cannot protect 16 AWG |
 | [8 AWG silicone, 10 ft red + 10 ft black](https://www.amazon.com/dp/B0BYJRDT19) | 1 | pk | $21.99 | $21.99 | verified | one pack covers BOTH boards - the longest run in the module is the 278 mm ESC-to-fuse, so 10 ft a side is already 10x what the runs need. Motor supplies its own phase leads + bullets. Amazon 8 AWG 10+10 spans $18.88-$23.99; the 25 ft pack at $49.99 was buying 40 ft of wire to use about 3 |
 | [PVC pack wrap, 200 mm lay-flat](https://www.amazon.com/dp/B09SVFL33L) | 1 | roll | $13.99 | $13.99 | verified | wide enough to sleeve a 16S brick; one roll does both |
 | [Kapton tape, pack insulation](https://www.amazon.com/dp/B006ZFQNT6) | 1 | roll | $8.25 | $8.25 | estimate |  |
-| **subtotal** | | | | **$1,872.04** | | |
+| **subtotal** | | | | **$1,863.63** | | |
 
 ## 8  Mast hardpoint
 
@@ -131,9 +130,9 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 |---|---:|---|---:|---:|---|---|
 | [M8 x 1.25 tap + 6.8 mm drill set](https://www.amazon.com/dp/B0GD1YF5PL) | 1 | set | $8.63 | $8.63 | verified | 8 blind holes |
 | [M8 x 1.25 BOTTOMING tap, 4-flute](https://www.amazon.com/dp/B00DLCTUDM) | 1 | ea | $8.78 | $8.78 | verified | the one that actually matters - blind at 10 mm in a 12.7 plate, and the taper tap in the set above cannot reach the bottom |
-| M8 thread repair kit (Time-Sert / helicoil) | 1 | kit | $34.00 | $34.00 | estimate | for the mast plate. Not expected - kept because the failure it covers is unrecoverable without it |
+| [M8 thread repair kit (Time-Sert / helicoil)](https://www.amazon.com/dp/B09WN4QTNL) | 1 | kit | $14.59 | $14.59 | verified | for the mast plate. Not expected - kept because the failure it covers is unrecoverable without it |
 | [Ultra Tef-Gel, galvanic barrier](https://www.amazon.com/dp/B01606TCAG) | 1 | ea | $39.00 | $39.00 | verified | every mast bolt, every time it goes back in. DEARER than the $22 this was carried at - and do not reach for the small tube to save it: the 3cc syringe is $31.51, so it is 80% of the price for a fraction of the gel |
-| **subtotal** | | | | **$90.41** | | |
+| **subtotal** | | | | **$71.00** | | |
 
 ## 9b Small but essential
 
@@ -256,30 +255,30 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | Item | Qty | Unit | Unit $ | Ext $ | | Note |
 |---|---:|---|---:|---:|---|---|
 | Shipping - Divinycell, 6061 plate, VR20 | 1 | allow | $120.00 | $120.00 | estimate | STILL THE BIGGEST UNVERIFIED LINE - it wants three real carts to settle. Was $220 when it covered G10 sheet and hazmat epoxy, both of which are now out of the build entirely |
-| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $442.68 | $442.68 | verified |  |
-| **subtotal** | | | | **$562.68** | | |
+| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $440.11 | $440.11 | verified |  |
+| **subtotal** | | | | **$560.11** | | |
 
 ## Totals
 
 | | |
 |---|---:|
-| **Grand total, 2 boards** | **$7,820.63** |
-| Per board | $3,910.31 |
-| Of which verified | $7,204.60  (92%) |
-| Of which estimated | $616.03 |
-| Linked to a real listing | 127 lines |
-| Priced but NOT linked | 4 lines, $71.00 |
-| Allowances, not linkable (tax, freight) | 3 lines, $831.31 |
+| **Grand total, 2 boards** | **$7,775.23** |
+| Per board | $3,887.61 |
+| Of which verified | $7,230.20  (93%) |
+| Of which estimated | $545.03 |
+| Linked to a real listing | 130 lines |
+| Priced but NOT linked | 0 lines, $0.00 |
+| Allowances, not linkable (tax, freight) | 3 lines, $828.74 |
 
 ## What is a board, and what is a shop
 
-Some of the total above is not the cost of a board at all - it is tools, jigs and templates that exist afterwards and do not repeat. Splitting them out is the difference between "a board costs $3,910" and "a board costs $3,520 and I now own a vacuum rig, a crimper and a full template set".
+Some of the total above is not the cost of a board at all - it is tools, jigs and templates that exist afterwards and do not repeat. Splitting them out is the difference between "a board costs $3,888" and "a board costs $3,497 and I now own a vacuum rig, a crimper and a full template set".
 
 | | |
 |---|---:|
 | One-time tooling (incl. its share of tax) | $781.41 |
-| **Marginal cost of a board** | **$3,519.61** |
-| Cost of the NEXT board after these 2 | $3,519.61 |
+| **Marginal cost of a board** | **$3,496.91** |
+| Cost of the NEXT board after these 2 | $3,496.91 |
 
 | One-time item | $ |
 |---|---:|
