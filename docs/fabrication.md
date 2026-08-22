@@ -630,8 +630,19 @@ draft of this appendix were wrong and are corrected below: the fuse is on the
 ## The rule everything follows from
 
 **A common-port BMS switches the NEGATIVE rail only. Pack positive is a
-straight pass-through that never enters the BMS.** V1's JK was common-port,
-and the DALY is too.
+straight pass-through that never enters the BMS.**
+
+**Confirmed against DALY's own wiring diagram** for this unit, which settles
+three things that were open:
+
+| Question | Answer from the diagram |
+|---|---|
+| Is there a B+ terminal? | **No.** The board has exactly two power terminals, **B−** and **P−**. Pack positive never lands on the BMS at all |
+| Common or separate port? | **Common.** The load and the recharger both hang off the same **P+ / P−** pair |
+| How is pack positive sensed? | Through the **sampling cable** — the same harness that taps each series junction |
+
+So V1's JK and this DALY behave identically. Anything below that says "if
+fitted" about a B+ terminal is now settled: there is none.
 
 ## The current path
 
@@ -639,71 +650,69 @@ V1's, with one change: V1 ran the charger and the ESC through the *same*
 XT150 pair. V2 has a dedicated SP17 charge port, so each leg now branches.
 
 ```
-   PACK + collector ──┬── 8 AWG ──────────────────────► ESC  V+
-   (never touches     │                                  (direct)
-    the BMS)          └── 16 AWG ─────────────────────► CHARGE  +
-                              ↑ SPLIT A
+   PACK +  ─── 8 AWG ───────► P+ ──┬── 8 AWG ──► ESC  V+
+   (straight through,              │
+    never enters the BMS)          └── 16 AWG ─► 10 A fuse ──► CHARGE  +
 
-   PACK − collector ── 8 AWG ──► BMS B− ─┐
-                                          │  MOSFETs
-                                 BMS P− ◄─┘
-                                    │
-                                    └── 8 AWG ──► ANL 150 A ──┬── 8 AWG ──► ESC  V−
-                                                              │
-                                                              └── 16 AWG ─► CHARGE  −
-                                                                    ↑ SPLIT B
+   PACK −  ─── 8 AWG ───────► B−  ─┐
+                                    │  MOSFETs  (this is the switch)
+                              P−  ◄─┘
+                               │
+                               ├── 8 AWG ──► ANL 150 A ──► ESC  V−
+                               │
+                               └── 16 AWG ─────────────────► CHARGE  −
 
-   BALANCE: 17-wire harness, B0 … B16, one tap per series junction
-   BUTTON:  2-wire momentary to the BMS switch input — NOT in the main path
+   SAMPLING CABLE: taps every series junction AND the overall positive.
+                   This is how the BMS sees pack + - there is no B+ wire.
+   BUTTON:         2-wire to the BMS switch input - NOT in the main path
 ```
 
 ## Where the splits go — your question, answered
 
-**Split A — positive.** At the **pack + collector**. The ESC lead and the
-charge lead both land there. Nothing else is on that node.
+**You already own the splitter. It is P+ and P−.**
 
-**Split B — negative.** At the **ANL fuse holder's OUTPUT stud**, downstream
-of both the BMS and the fuse. Same reason: that is the node the ESC negative
-already lands on, so the charge lead joins it there.
+DALY's diagram draws both as terminal blocks with the load *and* the
+recharger landing on them — that is the design intent, not an improvisation.
+Everything meets there:
 
-Putting charge − *after* the fuse and *after* the BMS is deliberate — it is
-what V1 did by sharing one connector, and it means charge current is
-protected and supervised by exactly the same hardware the discharge current
-is. Branch it anywhere upstream and you have quietly built a path into the
-pack that the BMS cannot cut.
+- **P+** — pack positive in, ESC positive out, charge positive out
+- **P−** — from the MOSFETs, ESC negative out, charge negative out
+
+**Fuse each leg for what it carries, rather than sharing one.** V1 shared a
+single XT150 so both went through the 150 A ANL; with a dedicated charge port
+there is no reason to, and a 150 A fuse never protected a 16 AWG lead anyway:
+
+- **ANL 150 A** in the ESC negative, between **P−** and ESC V−
+- **Inline 10 A** in the charge positive, off **P+**
 
 ### How to physically make the split
 
 | | |
 |---|---|
-| **Stacked ring lugs** *(recommended)* | Two lugs on one M6 stud, 8 AWG under 16 AWG, star washer between. Standard marine practice, no new parts — both studs already exist |
-| **2-post busbar** | If you want labelled, separately torqued landings. Costs bay space, and the bay is 68 mm deep |
-| ~~Dual-barrel lug~~ | **No.** One barrel crimped onto 8 AWG *and* 16 AWG compresses neither properly. This is the one that fails later |
-
-> **The charge leads are not protected.** A 150 A ANL does nothing for 16 AWG.
-> Put a small **inline 10 A fuse in the charge + lead**, at split A. The
-> charger self-limits in normal use; this is for the abnormal one.
+| **Stacked ring lugs on P+ / P−** *(recommended)* | 8 AWG under 16 AWG, star washer between. This is what the terminals are for — no new part, no new bay space |
+| **2-post busbar** | Only if you want separately torqued, labelled landings. The bay is 68 mm deep, so it costs room you do not have much of |
+| ~~Dual-barrel lug~~ | **No.** One barrel crimped onto 8 AWG *and* 16 AWG compresses neither properly. That is the joint that fails a year later |
 
 ## Joint by joint
 
 | # | From | To | Wire | Termination |
 |---|---|---|---|---|
-| 1 | Pack + collector | ESC V+ | 8 AWG | ring lug, hydraulic crimp |
-| 2 | Pack + collector | Charge port + *(via 10 A fuse)* | 16 AWG | ring lug — **split A** |
-| 3 | Pack − collector | BMS B− | 8 AWG | ring lug |
-| 4 | BMS P− | ANL fuse IN | 8 AWG | ring lug |
-| 5 | ANL fuse OUT | ESC V− | 8 AWG | ring lug |
-| 6 | ANL fuse OUT | Charge port − | 16 AWG | ring lug — **split B** |
-| 7 | BMS B+ *(if fitted)* | Pack + collector | per BMS | see note below |
-| 8 | BMS balance | 17 series taps | 22 AWG harness | JST at BMS, welded tab at pack |
+| 1 | Pack + collector | **P+** | 8 AWG | ring lug, hydraulic crimp |
+| 2 | **P+** | ESC V+ | 8 AWG | ring lug |
+| 3 | **P+** | 10 A fuse → charge port + | 16 AWG | ring lug — stacks on joint 1/2 |
+| 4 | Pack − collector | **B−** | 8 AWG | ring lug |
+| 5 | **P−** | ANL fuse IN | 8 AWG | ring lug |
+| 6 | ANL fuse OUT | ESC V− | 8 AWG | ring lug |
+| 7 | **P−** | Charge port − | 16 AWG | ring lug — stacks on joint 5 |
+| 8 | Sampling cable | 17 series taps + overall + | 22 AWG harness | as supplied — **this replaces any B+ wire** |
 | 9 | BMS switch | Panel button | 2 × 22 AWG | as the BMS specifies |
 | 10 | ESC phases | Motor, in the cavity | motor's own | 5.5 mm bullets + IP68 housing |
 
-**On joint 7:** V1's JK had **no B+ terminal at all** — pack positive was
-sensed through balance wire #15. Most DALY units do have a B+ terminal, and
-if yours does it wants a thin lead to the pack + collector. **Check the
-terminal layout on the unit in your hand before cutting anything**; this is
-the one place the two BMS brands genuinely differ.
+**On joint 8:** there is **no B+ power lead** on this BMS, and none is
+missing. Pack positive reaches the board only through the sampling cable,
+exactly as V1's JK did through balance wire #15. If you find yourself looking
+for somewhere to land a pack-positive wire on the BMS, you are looking for a
+terminal that does not exist — it goes to P+.
 
 Every 8 AWG lug: **hydraulic crimp, then adhesive-lined heat shrink** over
 the barrel and onto the insulation. Not soldered — solder wicks up the
@@ -749,14 +758,17 @@ inrush and the button is your anti-spark. If the ESC is hard-wired across P−
 with the BMS simply always on, every connection arcs and you want an
 anti-spark connector or a precharge resistor.
 
-**Confirm which you have built before the first connection.** The model
-cannot tell you — it depends on the DALY variant.
+**This is the one question the wiring diagram does not answer** — it shows no
+switch at all. Check the manual or ask DALY. It is worth settling before the
+first connection rather than after, because the failure is a pitted or welded
+contact you then have to find inside a sealed module.
 
 ## Sanity checks before the lid goes on
 
 - Pack voltage at the collectors: ~57.6 V nominal, 67.2 V full.
 - Charge port polarity, metered, with the pack live and the BMS on.
-- Fuse is in the **negative** leg, between BMS P− and the ESC.
+- ANL 150 A is in the **negative** leg, between P− and the ESC.
+- Inline 10 A is in the **charge positive**, off P+.
 - Tug every crimp. One that moves is one that failed.
 - Dielectric grease on every terminal, then leak-test again with the vent
   blanked before the cells go in for good.

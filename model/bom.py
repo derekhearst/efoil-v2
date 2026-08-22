@@ -821,13 +821,15 @@ def build():
     # season with the VESC limited to 100 A. CHECK THE DIMENSIONS before
     # ordering - the module is laid out around the 200 A unit at 164 x 66 x 21,
     # and a bigger board would need the service strip re-cut.
-    # SEPARATE PORT IF THERE IS A CHOICE. On a COMMON-port BMS the charge
-    # port's two pins are B+ and P-, so shorting them is a dead short across
-    # the pack and you are trusting the overcurrent trip. A SEPARATE-port
-    # unit switches the charge return on its own C- FET, so with the BMS off
-    # the port cannot pass current at all no matter what bridges it. The two
-    # variants look identical and differ by one terminal, and it is not
-    # fixable by rewiring afterwards - it is the BMS.
+    # CONFIRMED FROM DALY'S OWN WIRING DIAGRAM, so this is no longer a
+    # question to settle at build time: COMMON PORT, and the board carries
+    # exactly two power terminals - B- and P-. There is NO B+ terminal; pack
+    # positive never touches the BMS and is sensed through the sampling
+    # cable, identical to V1's JK. The load and the charger both land on the
+    # same P+ / P- pair, which is what makes those terminals the wire
+    # splitter the charge port needs.
+    # Common port is fine here: charge return goes P- -> MOSFETs -> B-, so
+    # with the BMS off there is no path and the port cannot pass current.
     add("9  Electrical", "DALY Smart BMS Li-ion 16S 60V 150A", N, "ea",
         159.00, OK, "batteryint.com; confirm it is <= 164 x 66 x 21 mm")
     add("9  Electrical", "Charger 67.2 V 5 A, 16S  (NOT 58.8 V)",
