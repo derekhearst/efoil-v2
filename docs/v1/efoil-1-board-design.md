@@ -173,6 +173,20 @@ Two at the upper corners and two at the midpoints of the long sides, taking the 
 
 *But the seals are not comparable, and it matters:* V1's EPDM sponge is 7.6 mm tall and compresses 25–50%, so it has **1.9–3.8 mm of travel**. V2's Ø3 cord at 20% squeeze has **0.60 mm**. In absolute terms V1's seal can swallow far more bow than V2's can — which says the bolt count was probably not the whole story on V1.
 
+**Observed pattern (Derek, Aug 2026):** upper corners sitting slightly low or not reaching full compression; **the hinges applying compression** on their edge; **the long-side midpoints running long** — i.e. proud and under-compressed. That is the classic hinge-edge-over / free-edge-under signature, and it is exactly where the four new bolts went.
+
+**Diagnose before modifying — use a witness.** Smear a thin film of grease, chalk or marker on the lid's sealing face, close and torque normally, then open. Where it transferred, the seal made contact; where it did not, it did not. That maps compression right round the perimeter in five minutes with no parts and no guessing, and it will tell you whether the four new bolts actually fixed the midpoints or just moved the light spot.
+
+**A hard stop for V1 is possible without rebuilding anything:** a **spacer at each bolt**, landing on the ledge outboard of the seal. The ledge is 38 mm wide and the seal is 12.7, so there is **25 mm of spare ledge** to land on. The seal is 7.6 mm tall, so:
+
+| Target compression | Lid bottoms at | Spacer |
+|---|---|---|
+| 25% | 5.7 mm | 5.7 mm |
+| **30%** | **5.3 mm** | **5.3 mm** |
+| 35% | 5.0 mm | 5.0 mm |
+
+Build them from washer stacks and tune once — the same method already used to shim the hinges. What this buys is not less compression at the hinge, it is **permission to pull every other bolt down hard** without fear of crushing the hinge edge, which is precisely the "midpoints running long" complaint. It is a stop at the bolts only, so it does not force compression at midspan on its own — but with 10 bolts at 188 mm it does not need to.
+
 **What is still unfixed on V1: the hinges.** Test 1 was a *tilt*, not a bow — oversized spacers held one edge proud and left the gasket light at the free edge. A tilt puts an edge out by millimetres, which is the order the sponge actually struggles with, and adding bolts does not straighten a lid that is being held crooked. **Worth checking the lid sits parallel before the next session, and worth telling Kev.**
 
 *This supersedes the "layered defence worked as designed" conclusion above.* The layers were the same material with the same flaw — a printed box inside a glassed cavity is two barriers only if the printed one is actually a barrier.
