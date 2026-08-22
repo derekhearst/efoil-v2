@@ -198,7 +198,7 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 |---|---:|---|---:|---:|---|---|
 | G10 chocks, equipment plate, pack tabs | 0 | off | $0.00 | $0.00 | on hand | cut from 1/8 and 1/2 in offcuts |
 | [1 in polyester webbing 6 yd + 6 buckles](https://www.amazon.com/dp/B0FBRMSRLK) | 1 | kit | $5.99 | $5.99 | verified | 2 straps per board, plus the module lift loops in section 7, all out of the one 6 yd pack |
-| [EVA bedding pads](https://www.amazon.com/dp/B0GG9H6VS2) | 0 | set | $16.99 | $0.00 | on hand | cut from the spare panels and edge offcut on the single deck sheet in section 11 - same material, already self-adhesive, already bought |
+| [EVA bedding pads](https://www.amazon.com/dp/B0GG9H6VS2) | 0 | set | $16.99 | $0.00 | on hand | cut from the 40% of the roll the deck and lid pieces do not use - same material, already self-adhesive, already bought |
 | **subtotal** | | | | **$5.99** | | |
 
 ## 10d Shop consumables
@@ -240,7 +240,7 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | [TotalBoat TotalFair epoxy fairing compound](https://www.amazon.com/dp/B00S9RBWIA) | 2 | kit | $45.99 | $91.98 | verified | smallest kit, one per board |
 | [TotalBoat Premium Marine Topside Primer](https://www.amazon.com/dp/B00HS4YY7G) | 1 | kit | $46.99 | $46.99 | verified | one covers both |
 | [TotalBoat Wet Edge topside paint, colour](https://www.amazon.com/dp/B00HQP5D9A) | 2 | kit | $53.99 | $107.98 | verified | one-part polyurethane, quart |
-| [FOCEAN EVA deck sheet 2400 x 600 x 5.8](https://www.amazon.com/dp/B0BTLW75FL) | 2 | sheet | $54.14 | $108.28 | verified | 12 panels a board, 12 nest per sheet. Self-adhesive EVA, 55 shore. Cut to the rail line with a fresh blade; it will not follow the deck crown if you try to wrap it over the rails, so stop it short |
+| [FOCEAN EVA deck sheet 2400 x 600 x 5.8](https://www.amazon.com/dp/B0BTLW75FL) | 2 | sheet | $54.14 | $108.28 | verified | 2 pieces a board (deck + lid), nested side by side on 60% of one roll. Self-adhesive EVA, 55 shore. CUT LONG AND TRIM ON THE BOARD, working from the centreline outward - with no seams the crown's arc excess has to go into stretch and into the trim at the rail |
 | [Longboard PSA sandpaper 80 grit, 20 yd roll](https://www.amazon.com/dp/B0CQ7CVGK6) | 1 | roll | $15.99 | $15.99 | verified | 2-3/4 in, self-adhesive, fits the longboard above. 80 is the fairing grit - it cuts fair, it does not finish |
 | [Longboard PSA sandpaper 120-180 grit, 20 yd roll](https://www.amazon.com/dp/B001AVC8ZI) | 1 | roll | $20.99 | $20.99 | verified | after 80 has the shape right |
 | [Wet/dry sandpaper assortment, 45 pc](https://www.amazon.com/dp/B0GHND351C) | 1 | pk | $8.99 | $8.99 | verified | 80-400 for detail and between primer coats |

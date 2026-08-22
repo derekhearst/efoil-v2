@@ -452,7 +452,6 @@ def build(p):
     # Three strips a side split it, and the seams take up the remainder.
     dz, hwf = p["deck_z_at"], p["half_width"]
     PX0, PX1 = p["DECK_PAD_X0"], p["DECK_PAD_X1"]
-    PN, PSEAM = p["DECK_PAD_PANELS"], p["DECK_PAD_SEAM"]
     PIN, PGAP = p["DECK_PAD_INSET"], p["DECK_PAD_GAP"]
     SHT_L, SHT_W = p["DECK_PAD_SHEET"]
     LEN = p["LENGTH"]
@@ -466,94 +465,106 @@ def build(p):
             py, pz = y, z
         return tot
 
-    STN = 40
+    STN = 90
     LIDIN = p["LID_PAD_INSET"]
-    CAVL, CAVW = p["CAV_X0"], p["CAV_WIDTH"]
     _lc = p["CAV_LAM"] + 1.5
-    lid_x0 = CAVL - RIM_W + _lc + LIDIN
-    lid_x1 = p["CAV_X1"] + RIM_W - _lc - LIDIN
-    lid_hy = CAVW / 2 + RIM_W - 1.5 - LIDIN
+    lx0 = p["CAV_X0"] - RIM_W + _lc + LIDIN
+    lx1 = p["CAV_X1"] + RIM_W - _lc - LIDIN
+    lhy = p["CAV_WIDTH"] / 2 + RIM_W - 1.5 - LIDIN
+    lr = max(0.0, p["CAV_CORNER_R"] + RIM_W - 1.5 - LIDIN)
+    SLOPE = p["DECK_PAD_MAX_SLOPE"]
 
-    def _strip(x_lo, x_hi, ya_f, yb_f):
-        """Flat pattern of one panel: length along x, DEVELOPED width across."""
-        bot, top = [], []
+    def _edge(x):
+        hwv = hwf(x / LEN)
+        prev, y = 0.0, 0.0
+        while y < hwv - 1.0:
+            y2 = min(y + 2.0, hwv - 1.0)
+            if math.degrees(math.atan2(abs(dz(x, y2) - dz(x, y)),
+                                       y2 - y)) > SLOPE:
+                return prev
+            prev = y2
+            y = y2
+        return prev
+
+    def _tap(x):
+        f = 1.0
+        n0 = PX1 - p["DECK_PAD_NOSE_TAPER"]
+        if x > n0:
+            t = (x - n0) / p["DECK_PAD_NOSE_TAPER"]
+            f = min(f, 1.0 - (1.0 - p["DECK_PAD_TIP_F"]) * t * t)
+        t1 = PX0 + p["DECK_PAD_TAIL_TAPER"]
+        if x < t1:
+            t = (t1 - x) / p["DECK_PAD_TAIL_TAPER"]
+            f = min(f, 1.0 - (1.0 - p["DECK_PAD_TAIL_F"]) * t * t)
+        return f
+
+    def _lid_half(x):
+        d = min(x - lx0, lx1 - x)
+        if d >= lr:
+            return lhy
+        return lhy - lr + math.sqrt(max(0.0, lr * lr - (lr - d) ** 2))
+
+    def _flat(x_lo, x_hi, half_f):
+        """Symmetric flat pattern: developed half width either side of centre."""
+        up, dn = [], []
         for i in range(STN + 1):
             x = x_lo + (x_hi - x_lo) * i / STN
-            ya, yb = ya_f(x), yb_f(x)
-            if yb - ya <= 2.0:
+            hy = half_f(x)
+            if hy <= 1.0:
                 continue
-            bot.append((x - x_lo, 0.0))
-            top.append((x - x_lo, _arc(x, ya, yb)))
-        return (bot + list(reversed(top))) if top else None
+            w = _arc(x, 0.0, hy)
+            up.append((x - x_lo, w))
+            dn.append((x - x_lo, -w))
+        return (up + list(reversed(dn))) if up else None
 
-    def _span(x, k):
-        avail = hwf(x / LEN) - PIN
-        if avail <= 10.0:
-            return 0.0, 0.0
-        sp = avail / PN
-        return (k * sp + (PSEAM / 2 if k else 0.0),
-                (k + 1) * sp - (PSEAM / 2 if k < PN - 1 else 0.0))
-
-    panels = []
-    for k in range(PN):                       # deck strips
-        pl = _strip(PX0, PX1, lambda x, kk=k: _span(x, kk)[0],
-                    lambda x, kk=k: _span(x, kk)[1])
-        if pl:
-            panels.append(("deck", pl))
-    for k in range(PN):                       # lid pieces
-        sp = lid_hy / PN
-        ya = k * sp + (PSEAM / 2 if k else 0.0)
-        yb = (k + 1) * sp - (PSEAM / 2 if k < PN - 1 else 0.0)
-        pl = _strip(lid_x0, lid_x1, lambda _x, a=ya: a, lambda _x, b=yb: b)
-        if pl:
-            panels.append(("lid", pl))
+    deck_pat = _flat(PX0, PX1, lambda x: _edge(x) * _tap(x))
+    lid_pat = _flat(lx0, lx1, _lid_half)
 
     d = Dxf()
     d.poly([(0, 0), (SHT_L, 0), (SHT_L, SHT_W), (0, SHT_W), (0, 0)],
            layer="CHANNEL")
-    KERF = 3.0
-    allp = [pl for _t, pl in panels] * 2      # both sides of the board
-    allp.sort(key=lambda pl: -(max(q[0] for q in pl)))
-    shelf_y = shelf_h = cur_x = 0.0
-    placed, spilled = 0, 0
-    for pl in allp:
-        w = max(q[0] for q in pl)
-        h = max(q[1] for q in pl)
-        if cur_x + w + KERF > SHT_L:
-            shelf_y += shelf_h + KERF
-            cur_x = shelf_h = 0.0
-        if shelf_y + h > SHT_W:
-            spilled += 1
+    # SIDE BY SIDE, not stacked. The two pieces are 890 x 446 and 537 x 334;
+    # stacking them needs 786 mm of sheet width and there is 600, while laying
+    # them along the roll needs 1433 mm of the 2400 available.
+    KERF = 6.0
+    x_cur, placed, spill = 0.0, 0, 0
+    for pat in (deck_pat, lid_pat):
+        if not pat:
             continue
-        d.poly([(q[0] + cur_x, q[1] + shelf_y) for q in pl] +
-               [(pl[0][0] + cur_x, pl[0][1] + shelf_y)])
-        cur_x += w + KERF
-        shelf_h = max(shelf_h, h)
+        w = max(q[0] for q in pat) - min(q[0] for q in pat)
+        h = max(q[1] for q in pat) - min(q[1] for q in pat)
+        lo = min(q[1] for q in pat)
+        if x_cur + w > SHT_L or h > SHT_W:
+            spill += 1
+            continue
+        d.poly([(q[0] + x_cur, q[1] - lo) for q in pat] +
+               [(pat[0][0] + x_cur, pat[0][1] - lo)])
+        x_cur += w + KERF
         placed += 1
+    sheet_use = 100.0 * x_cur / SHT_L
     add("15_deck_pad_nest", "EVA sheet 2400 x 600", p["DECK_PAD_T"], 1, d,
         SHT_L, SHT_W,
         f"CUTTING PATTERN, not a machined part - knife and a straightedge. "
-        f"{placed} panels nested for ONE BOARD"
-        + (f"; {spilled} SPILLED onto a second sheet." if spilled else ".")
-        + f" {PN} deck strips and {PN} lid pieces a side. "
-        f"THE LID GETS PADDED TOO, and that is the whole point of the "
-        f"layout: the hatch is 587 x 384 in the middle of the board, so a pad "
-        f"that stops at the rim leaves you standing on bare paint exactly "
-        f"where your back foot goes. The lid pieces are separate because they "
-        f"come off with the lid, and they are inset {LIDIN:.0f} mm so the 12 "
-        f"M5 bolt heads stay exposed - pad over them and the hatch has to be "
-        f"unbolted through foam. "
-        f"WIDTHS ARE DEVELOPED (arc across the crown), not projected: the "
-        f"deck arc runs ~8.6% longer than its flat shadow, so projected "
-        f"panels would finish ~20 mm short of the rail. "
-        f"Deck panels stop {PIN:.0f} mm short of the rail and clear the rim "
-        f"ring and both handle straps by {PGAP:.0f} mm. "
-        f"{PSEAM:.0f} mm seams are not decoration - the crown's arc excess "
-        f"varies along the board and the seams absorb it, drain water, and "
-        f"give a foot edge to feel for. "
-        f"CUT LONG AND TRIM ON THE BOARD. Peel the backing progressively from "
-        f"the centreline outward; a 5.8 mm sheet laid in one go traps air it "
-        f"will not give back. The CHANNEL outline is the sheet edge.")
+        f"{placed} pieces for ONE BOARD, using {sheet_use:.0f}% of the roll"
+        + (f", {spill} SPILLED to a second sheet" if spill else "")
+        + ": the deck in one piece and the lid in one piece. "
+        f"NOT PANELLED - seams land in the middle of where you stand, and "
+        f"every seam is an edge that lifts and packs with grit. "
+        f"WIDTHS ARE DEVELOPED (arc across the crown), not projected. The "
+        f"deck arc runs ~8.6% longer than its flat shadow, so a projected "
+        f"outline finishes ~20 mm short of where it was drawn. With no seams "
+        f"to absorb the variation along the board, that slack goes into "
+        f"stretch and into trimming AT THE RAIL - so CUT LONG AND TRIM ON "
+        f"THE BOARD, and work from the centreline outward. "
+        f"The edge follows the {SLOPE:.0f} deg deck slope so the pad stays on "
+        f"TOP and never turns down the rail; on this board that leaves about "
+        f"55 mm of bare rail, which is where the top actually ends rather "
+        f"than a margin being timid. "
+        f"THE LID PIECE HAS RADIUSED CORNERS matching the lid - a square "
+        f"corner on a radiused lid is four spikes of pad overhanging nothing, "
+        f"and a corner is where lifting starts. It is inset {LIDIN:.0f} mm so "
+        f"the 12 M5 bolt heads stay exposed. "
+        f"The CHANNEL outline is the sheet edge.")
 
     # Template 15 (module seal groove) IS GONE. There is no module groove any
     # more: the printed flange takes a FLAT NEOPRENE GASKET, so there is

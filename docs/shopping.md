@@ -27,7 +27,7 @@ https://www.amazon.com
 | [TotalBoat 5:1 gallon kit, slow hardener](https://www.amazon.com/dp/B00HR8515C) | 2 | kit | $299.98 | **verified** | 2.51 m2 laminate = 4.8 kg mixed = 1 kit/board |
 | [DALY Smart BMS Li-ion 16S 60V 150A](https://www.amazon.com/dp/B0CXXFQT9S) | 2 | ea | $295.40 | **verified** | batteryint.com; confirm it is <= 164 x 66 x 21 mm |
 | [Peel ply, 60in](https://www.amazon.com/dp/B0H5JTMTZ3) | 6 | yd | $113.94 | **verified** | was only in the starter kit, and one kit's worth does not cover 6.12 m2 of part |
-| [FOCEAN EVA deck sheet 2400 x 600 x 5.8](https://www.amazon.com/dp/B0BTLW75FL) | 2 | sheet | $108.28 | **verified** | 12 panels a board, 12 nest per sheet. Self-adhesive EVA, 55 shore. Cut to the rail line with a fresh blade; it |
+| [FOCEAN EVA deck sheet 2400 x 600 x 5.8](https://www.amazon.com/dp/B0BTLW75FL) | 2 | sheet | $108.28 | **verified** | 2 pieces a board (deck + lid), nested side by side on 60% of one roll. Self-adhesive EVA, 55 shore. CUT LONG A |
 | [TotalBoat Wet Edge topside paint, colour](https://www.amazon.com/dp/B00HQP5D9A) | 2 | kit | $107.98 | **verified** | one-part polyurethane, quart |
 | [Charger 67.2 V 5 A, 16S  (NOT 58.8 V)](https://www.amazon.com/dp/B0DK6FTB1P) | 2 | ea | $91.98 | **verified** | Amazon B0DK6FTB1P, aluminium case + fan |
 | [TotalBoat TotalFair epoxy fairing compound](https://www.amazon.com/dp/B00S9RBWIA) | 2 | kit | $91.98 | **verified** | smallest kit, one per board |

@@ -56,8 +56,8 @@ M = dict(hatch_bolts=R["bom_hatch_bolts"],
          bay_glands=R["bom_bay_glands"],
          cells=R["pack"]["cells"],
          conduit_mm=R["bom_conduit_mm"],
-         pad_panels=R["deck_pad_panels_per_board"],
-         pad_per_sheet=R["deck_pad_nest_per_sheet"],
+         pad_pieces=R["deck_pad_pieces_per_board"],
+         pad_sheets=R["deck_pad_sheets_per_board"],
          # nickel_m is not geometry - it is a build estimate, so it stays
          # here. 8.0 not 7.0: the edge strips get a second welded layer.
          nickel_m=8.0)
@@ -1010,8 +1010,8 @@ def build():
         1, "kit", 5.99, OK, "2 straps per board, plus the module lift loops "
         "in section 7, all out of the one 6 yd pack", vendor="Amazon")
     add("10c Restraint & fitout", "EVA bedding pads", 0, "set", 0.00, OWNED,
-        "cut from the spare panels and edge offcut on the single deck sheet "
-        "in section 11 - same material, already self-adhesive, already bought")
+        "cut from the 40% of the roll the deck and lid pieces do not use - "
+        "same material, already self-adhesive, already bought")
 
     # ------------------------------------------------- 10d shop consumables
     # The thermometer stays, and matters MORE without a hot box - it is the
@@ -1181,18 +1181,19 @@ def build():
     # The 47.2 in wide sheet ($123.48) would yield BOTH decks side by side
     # out of one sheet, but two of these come to $108.28 and leave far more
     # usable offcut, so it is cheaper AND more useful.
-    # ONE SHEET, NOT TWO. Modelling the pad is what settled this: the panels
-    # are 900 x 85 strips, and 12 of those nest on a 2400 x 600 sheet against
-    # 6 needed a board - so a single sheet covers BOTH boards with two spare
-    # panels. Costing it per board was an area guess (0.172 m2 of pad into
-    # 1.44 m2 of sheet) dressed up as a quantity; the nest is the real answer.
+    # ONE SHEET A BOARD, and it is the NEST that says so rather than an area
+    # ratio. The two pieces - deck 890 x 446 and lid 537 x 334, both DEVELOPED
+    # widths - lie side by side along the roll and use 60% of it. They will
+    # not stack: 446 + 334 needs 786 mm of sheet width against 600. And two
+    # boards will not share a sheet either, because 2 x 1433 mm overruns the
+    # 2400 length. So: one sheet per board.
     add("11 Finishing", "FOCEAN EVA deck sheet 2400 x 600 x 5.8",
-        math.ceil(M["pad_panels"] * N / M["pad_per_sheet"]), "sheet",
-        54.14, OK,
-        str(M["pad_panels"]) + " panels a board, " + str(M["pad_per_sheet"])
-        + " nest per sheet. Self-adhesive EVA, 55 shore. Cut to the rail line "
-        "with a fresh blade; it will not follow the deck crown if you try to "
-        "wrap it over the rails, so stop it short", vendor="Amazon")
+        M["pad_sheets"] * N, "sheet", 54.14, OK,
+        str(M["pad_pieces"]) + " pieces a board (deck + lid), nested side by "
+        "side on 60% of one roll. Self-adhesive EVA, 55 shore. CUT LONG AND "
+        "TRIM ON THE BOARD, working from the centreline outward - with no "
+        "seams the crown's arc excess has to go into stretch and into the "
+        "trim at the rail", vendor="Amazon")
     # WAS "Abrasives, cups, gloves, tape" at 2 x $40. Two of those four were
     # already bought somewhere else - cups and stirrers ship with the gallon
     # kit, gloves are their own line in 10e - so the bundle was double-

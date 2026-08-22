@@ -581,21 +581,40 @@ DECK_PAD_SHEET = (2400.0, 600.0)
 #   fwd  - the last ~120 mm of nose rolls away hard in both rocker and crown.
 #          A pad there is unreachable underfoot, wastes sheet, and its leading
 #          edge is the first thing a nose-first landing peels back.
-DECK_PAD_X0, DECK_PAD_X1 = 230.0, 1280.0
+DECK_PAD_X0, DECK_PAD_X1 = 230.0, 1120.0
+# TAPER, so the pad reads as a shape rather than a rectangle with the ends
+# sawn off. Both are fractions of the local slope-limited half width, eased
+# in quadratically so the edge is a curve and not a chamfer.
+DECK_PAD_NOSE_TAPER = 340.0        # length over which the tip draws in
+DECK_PAD_TIP_F = 0.34              # half width left at the very tip
+DECK_PAD_TAIL_TAPER = 210.0        # softer than the nose but no longer square
+DECK_PAD_TAIL_F = 0.62
 DECK_PAD_INSET = 20.0              # from the rail - the pad STOPS SHORT, it
                                    # does not wrap. A 5.8 mm sheet forced over
                                    # a rail radius peels from the edge inward,
                                    # and a lifting edge on the deck is where
                                    # water gets under the whole panel.
 DECK_PAD_GAP = 6.0                 # clearance to the rim ring and to hardware
-# PANELLED, and the gaps are structural not cosmetic. The deck crown is ~50 mm
-# over a 280 mm half width, so the surface arc is ~8.6% longer than its flat
-# projection - and that excess VARIES from 10 mm at the nose to 22 mm amidships.
-# One sheet cannot absorb a 12 mm differential and will wrinkle at the ends.
-# Longitudinal panels split the difference between them, and the gaps take up
-# what is left, drain water, and give a foot edge to feel for.
-DECK_PAD_PANELS = 3                # per side, centreline outward
-DECK_PAD_SEAM = 4.0                # gap between panels
+# NOT PANELLED. Derek's call, against my suggestion of longitudinal strips.
+# The argument for strips was real - the deck arc runs ~8.6% longer than its
+# flat projection and that excess varies along the board - but the argument
+# against is better: seams land in the middle of where you stand, and every
+# seam is an edge that lifts and packs with grit. 5.8 mm EVA is compliant
+# enough to be worked onto a crown if you go from the centreline outward, and
+# the leftover arc is taken up by stretch and by trimming AT THE RAIL rather
+# than in the middle of the pad. So: cut it long, trim on the board.
+# ONLY ON THE TOP. The edge is set by deck SLOPE, not by an inset from
+# half_width - half_width is measured at the widest point of the section,
+# which on this board is already well down the rail turn, so "inset 20 from
+# half_width" was putting pad on a surface heading for vertical. Past this
+# angle a self-adhesive sheet is trying to hold itself onto a curve that is
+# pulling it off, and that edge is where water gets under the whole panel.
+DECK_PAD_MAX_SLOPE = 30.0          # degrees of deck tilt the pad will follow
+# Worth knowing before anyone retunes this: the rail turn is sharp, so the
+# angle barely moves the edge. 18 deg puts the pad 65 mm off the widest point
+# and 45 deg only pulls it in to 41 - the surface goes from gentle to nearly
+# vertical inside about 25 mm. So ~55 mm of bare rail is not the setting being
+# timid, it is where the top of this board actually ends.
 # THE LID IS THE STANDING AREA. The hatch is 587 x 384 in the middle of a
 # 1400 board - modelling the pad is what made that obvious, because the deck
 # panels came out as thin strips around a huge bare lid. Pad that stops at
@@ -2689,17 +2708,52 @@ def pack_fit(S, P, layers, int_l, int_w, int_h):
     return out
 
 
-def build_deck_pad(coll, rep):
-    """Self-adhesive EVA deck pad, conforming to the crowned deck.
+def _deck_slope_edge(x, limit_deg):
+    """How far out the deck is still TOP rather than rail.
 
-    Built as longitudinal panels per side. Each panel is a grid of quads
-    following deck_z_at, lifted by DECK_PAD_T - it is a skin, so the top
-    surface is just the deck offset in Z rather than a true normal offset;
-    over a 50 mm crown the difference is under a tenth of a millimetre and
-    the material is compressible foam anyway.
+    Walks outboard from the centreline and stops where the surface tilts past
+    limit_deg. That is the honest definition of "only on the top": a fixed
+    inset from half_width does not know where the rail starts, and half_width
+    is measured at the widest point of the section, which on this board is
+    already well down the turn.
+    """
+    hw = half_width(x / LENGTH)
+    prev = 0.0
+    y = 0.0
+    while y < hw - 1.0:
+        y2 = min(y + 2.0, hw - 1.0)
+        dz = deck_z_at(x, y2) - deck_z_at(x, y)
+        if math.degrees(math.atan2(abs(dz), y2 - y)) > limit_deg:
+            return prev
+        prev = y2
+        y = y2
+    return prev
+
+
+def _taper(x):
+    """Multiplier on the pad half width - tapers the tip and softens the tail."""
+    f = 1.0
+    nose0 = DECK_PAD_X1 - DECK_PAD_NOSE_TAPER
+    if x > nose0:
+        t = (x - nose0) / DECK_PAD_NOSE_TAPER
+        f = min(f, 1.0 - (1.0 - DECK_PAD_TIP_F) * t * t)
+    tail1 = DECK_PAD_X0 + DECK_PAD_TAIL_TAPER
+    if x < tail1:
+        t = (tail1 - x) / DECK_PAD_TAIL_TAPER
+        f = min(f, 1.0 - (1.0 - DECK_PAD_TAIL_F) * t * t)
+    return f
+
+
+def build_deck_pad(coll, rep):
+    """Self-adhesive EVA deck pad - ONE piece on the deck, one on the lid.
+
+    Not panelled. Derek's call: seams in the middle of where you stand are
+    edges that peel and collect grit, and a 5.8 mm sheet is compliant enough
+    to be worked onto the crown from the centreline outward. The cost is that
+    the ~8.6% arc excess has to be absorbed by stretch and by trimming at the
+    rail rather than by seams, so CUT IT LONG and trim on the board.
     """
     mat = bom_mat("eva")
-    # keep-out: the rim ring, plus the two handle straps
     rim_x0 = CAV_X0 - RIM_W - DECK_PAD_GAP
     rim_x1 = CAV_X1 + RIM_W + DECK_PAD_GAP
     rim_y = CAV_WIDTH / 2 + RIM_W + DECK_PAD_GAP
@@ -2712,17 +2766,13 @@ def build_deck_pad(coll, rep):
         ay = abs(y)
         if rim_x0 <= x <= rim_x1 and ay <= rim_y:
             return True
-        if h_x0 <= x <= h_x1 and h_y0 <= ay <= h_y1:
-            return True
-        return False
+        return h_x0 <= x <= h_x1 and h_y0 <= ay <= h_y1
 
-    NX, NY = 180, 14
+    NX, NY = 200, 30
     area = 0.0
-    widest = 0.0
     boxes = []
 
     def _arc_across(x, ya, yb, n=48):
-        """Deck arc between two y offsets - the developed width of a strip."""
         tot, py, pz = 0.0, ya, deck_z_at(x, ya)
         for i in range(1, n + 1):
             y = ya + (yb - ya) * i / n
@@ -2730,36 +2780,26 @@ def build_deck_pad(coll, rep):
             tot += math.hypot(y - py, z - pz)
             py, pz = y, z
         return tot
-    # Lid outline, same derivation as V2_Lid itself so the two cannot drift
-    _lc = CAV_LAM + 1.5
-    lid_x0 = CAV_X0 - RIM_W + _lc + LID_PAD_INSET
-    lid_x1 = CAV_X1 + RIM_W - _lc - LID_PAD_INSET
-    lid_hy = CAV_WIDTH / 2 + RIM_W - 1.5 - LID_PAD_INSET
 
-    def emit(name, x_lo, x_hi, y_lo_f, y_hi_f, side, skip):
-        """Grid a panel between two y-functions of x and emit a 5.8 shell."""
-        nonlocal area, widest
+    def emit(name, x_lo, x_hi, half_f, skip):
+        """One pad piece: full width, -half_f(x) .. +half_f(x)."""
+        nonlocal area
         verts, faces, grid = [], [], {}
-        bx0, bx1, dev_w = 1e9, -1e9, 0.0
+        bx0, bx1, dev = 1e9, -1e9, 0.0
         for i in range(NX + 1):
             x = x_lo + (x_hi - x_lo) * i / NX
-            ya, yb = y_lo_f(x), y_hi_f(x)
-            if yb - ya <= 2.0:
+            hy = half_f(x)
+            if hy <= 2.0:
                 continue
-            widest = max(widest, yb - ya)
-            # DEVELOPED width at THIS station. Taking the arc across the
-            # panel's whole y range instead would measure the taper as though
-            # it were width, and reported the outer strip as 241 mm when it
-            # is nowhere wider than 92.
-            dev_w = max(dev_w, _arc_across(x, ya, yb))
+            dev = max(dev, 2.0 * _arc_across(x, 0.0, hy))
             for j in range(NY + 1):
-                y = ya + (yb - ya) * j / NY
-                if skip and skip(x, y * side):
+                y = -hy + 2.0 * hy * j / NY
+                if skip and skip(x, y):
                     continue
-                z = deck_z_at(x, y * side)
+                z = deck_z_at(x, y)
                 grid[(i, j)] = len(verts)
-                verts.append((x, y * side, z))
-                verts.append((x, y * side, z + DECK_PAD_T))
+                verts.append((x, y, z))
+                verts.append((x, y, z + DECK_PAD_T))
                 bx0, bx1 = min(bx0, x), max(bx1, x)
         for i in range(NX):
             for j in range(NY):
@@ -2769,88 +2809,76 @@ def build_deck_pad(coll, rep):
                 b = [grid[c] for c in q]
                 faces.append([b[0], b[1], b[2], b[3]])
                 faces.append([b[3] + 1, b[2] + 1, b[1] + 1, b[0] + 1])
-                for a, c in ((0, 1), (1, 2), (2, 3), (3, 0)):
-                    faces.append([b[a], b[a] + 1, b[c] + 1, b[c]])
+                for u, v in ((0, 1), (1, 2), (2, 3), (3, 0)):
+                    faces.append([b[u], b[u] + 1, b[v] + 1, b[v]])
                 p0, p1, p2 = verts[b[0]], verts[b[1]], verts[b[2]]
                 area += abs((p1[0] - p0[0]) * (p2[1] - p1[1])) / 1e6
         if verts:
             new_object(name, verts, faces, coll, mat)
-            # FLAT-pattern bbox: length as-is, width DEVELOPED across the
-            # crown, because that is what has to come off the sheet
-            boxes.append((bx1 - bx0, dev_w))
+            boxes.append((bx1 - bx0, dev))
 
-    # --- the lid's own pad, in the same panel count so the seams line up
-    for side in (-1, 1):
-        for k in range(DECK_PAD_PANELS):
-            span = lid_hy / DECK_PAD_PANELS
-            ya = k * span + (DECK_PAD_SEAM / 2 if k else 0.0)
-            yb = ((k + 1) * span
-                  - (DECK_PAD_SEAM / 2 if k < DECK_PAD_PANELS - 1 else 0.0))
-            emit(f"V2_DeckPad_Lid_{'P' if side > 0 else 'S'}{k + 1}",
-                 lid_x0, lid_x1, lambda _x, a=ya: a, lambda _x, b=yb: b,
-                 side, None)
+    # --- deck: one piece, slope-limited and tapered
+    def deck_half(x):
+        return _deck_slope_edge(x, DECK_PAD_MAX_SLOPE) * _taper(x)
 
-    # --- the deck itself, panels tapering with the outline
-    def _span(x, k):
-        avail = half_width(x / LENGTH) - DECK_PAD_INSET
-        if avail <= 10.0:
-            return 0.0, 0.0
-        sp = avail / DECK_PAD_PANELS
-        return (k * sp + (DECK_PAD_SEAM / 2 if k else 0.0),
-                (k + 1) * sp - (DECK_PAD_SEAM / 2
-                                if k < DECK_PAD_PANELS - 1 else 0.0))
+    emit("V2_DeckPad", DECK_PAD_X0, DECK_PAD_X1, deck_half, blocked)
 
-    for side in (-1, 1):
-        for k in range(DECK_PAD_PANELS):
-            emit(f"V2_DeckPad_{'P' if side > 0 else 'S'}{k + 1}",
-                 DECK_PAD_X0, DECK_PAD_X1,
-                 lambda x, kk=k: _span(x, kk)[0],
-                 lambda x, kk=k: _span(x, kk)[1],
-                 side, blocked)
+    # --- lid: one piece, ROUNDED CORNERS to match the lid it sits on. A
+    # square-cornered pad on a radiused lid leaves four spikes of pad
+    # overhanging nothing, and a corner is where a pad starts lifting.
+    _lc = CAV_LAM + 1.5
+    lx0 = CAV_X0 - RIM_W + _lc + LID_PAD_INSET
+    lx1 = CAV_X1 + RIM_W - _lc - LID_PAD_INSET
+    lhy = CAV_WIDTH / 2 + RIM_W - 1.5 - LID_PAD_INSET
+    lr = max(0.0, CAV_CORNER_R + RIM_W - 1.5 - LID_PAD_INSET)
+
+    def lid_half(x):
+        d = min(x - lx0, lx1 - x)
+        if d >= lr:
+            return lhy
+        return lhy - lr + math.sqrt(max(0.0, lr * lr - (lr - d) ** 2))
+
+    emit("V2_DeckPad_Lid", lx0, lx1, lid_half, None)
 
     sheet_a = DECK_PAD_SHEET[0] * DECK_PAD_SHEET[1] / 1e6
-    # REAL NESTING, not an area ratio. The panels are long thin strips, so
-    # what decides the sheet count is how many 900 x 85 bounding boxes lie
-    # down on a 2400 x 600 sheet - and that is a far better answer than
-    # dividing 0.17 m2 into 1.44 m2 and rounding up.
-    KERF = 3.0                     # blade width plus a little to true the edge
-    # Shelf-nest every panel, deck strips AND lid pieces, longest first. They
-    # are two different sizes now, so a single bounding box would either waste
-    # sheet or promise a fit that is not there.
+    KERF = 3.0
     need = len(boxes)
-    shelf_y, shelf_h, cur_x, sheets = 0.0, 0.0, 0.0, 1
+    shelf_y = shelf_h = cur_x = 0.0
+    sheets = 1
     for w, h in sorted(boxes, key=lambda b: -b[0]):
         if cur_x + w + KERF > DECK_PAD_SHEET[0]:
             shelf_y += shelf_h + KERF
-            cur_x, shelf_h = 0.0, 0.0
+            cur_x = shelf_h = 0.0
         if shelf_y + h > DECK_PAD_SHEET[1]:
             sheets += 1
-            shelf_y, shelf_h, cur_x = 0.0, 0.0, 0.0
+            shelf_y = shelf_h = cur_x = 0.0
         cur_x += w + KERF
         shelf_h = max(shelf_h, h)
-    per_sheet = math.ceil(need / sheets) if sheets else need
-    rep["deck_pad"] = (f"full-deck EVA {DECK_PAD_T} mm, {DECK_PAD_PANELS} "
-                       f"panels a side, {DECK_PAD_SEAM:.0f} mm seams, "
-                       f"inset {DECK_PAD_INSET:.0f} from the rail")
+    rep["deck_pad"] = (f"ONE piece on the deck + ONE on the lid, {DECK_PAD_T} "
+                       f"mm EVA, no seams. Edge follows the "
+                       f"{DECK_PAD_MAX_SLOPE:.0f} deg deck slope so it stays "
+                       f"on top and never turns down the rail")
     rep["deck_pad_area_m2"] = round(area, 3)
     rep["deck_pad_sheet_m2"] = round(sheet_a, 3)
-    rep["deck_pad_panels_per_board"] = need
+    rep["deck_pad_pieces_per_board"] = need
     rep["deck_pad_sheets_per_board"] = sheets
-    rep["deck_pad_nest_per_sheet"] = per_sheet
-    rep["deck_pad_panel_bboxes_mm"] = [(round(w), round(h)) for w, h in
+    rep["deck_pad_piece_bboxes_mm"] = [(round(w), round(h)) for w, h in
                                        sorted(boxes, key=lambda b: -b[0])]
-    # NOT the fleet count - the model is per-board and does not know how many
-    # boards are being built. bom.py multiplies these two out.
-    rep["deck_pad_widest_panel_mm"] = round(widest, 1)
-    rep["deck_pad_panel_fits_sheet"] = widest <= DECK_PAD_SHEET[1]
-    rep["deck_pad_len_fits_sheet"] = (DECK_PAD_X1 - DECK_PAD_X0) <= DECK_PAD_SHEET[0]
-    rep["deck_pad_clears_rim_mm"] = DECK_PAD_GAP
+    rep["deck_pad_max_developed_w_mm"] = round(max(h for _w, h in boxes), 1)
+    rep["deck_pad_fits_sheet_width"] = max(h for _w, h in boxes) <= DECK_PAD_SHEET[1]
+    rep["deck_pad_slope_limit_deg"] = DECK_PAD_MAX_SLOPE
     rep["deck_pad_bare_tail_mm"] = round(DECK_PAD_X0, 1)
     rep["deck_pad_bare_nose_mm"] = round(LENGTH - DECK_PAD_X1, 1)
     rep["deck_pad_clears_leash_mm"] = round(DECK_PAD_X0
                                             - (LEASH_X + LEASH_PAD / 2), 1)
+    rep["deck_pad_tip_half_w_mm"] = round(deck_half(DECK_PAD_X1 - 1.0), 1)
+    rep["deck_pad_tail_half_w_mm"] = round(deck_half(DECK_PAD_X0 + 1.0), 1)
+    rep["deck_pad_mid_half_w_mm"] = round(deck_half(HANDLE_X), 1)
+    rep["deck_pad_rail_standoff_mm"] = round(
+        half_width(HANDLE_X / LENGTH) - deck_half(HANDLE_X), 1)
     rep["deck_pad_covers_pct_of_length"] = round(
         100.0 * (DECK_PAD_X1 - DECK_PAD_X0) / LENGTH, 1)
+    rep["deck_pad_clears_rim_mm"] = DECK_PAD_GAP
     return rep
 
 
@@ -5260,7 +5288,7 @@ GROUPS = [
     ("Electrical",   lambda n: n.startswith(("Pack_", "BMS", "ESC", "Fuse",
                                              "PowerButton", "ChargePort",
                                              "BayGland", "Conduit", "Nickel"))),
-    ("Deck pad",     lambda n: n.startswith("DeckPad_")),
+    ("Deck pad",     lambda n: n.startswith("DeckPad")),
     ("Hardpoints",   lambda n: n.startswith(("MastPlate", "MastBolt",
                                              "MastInsert", "Handle", "Leash",
                                              "Cav_"))),
