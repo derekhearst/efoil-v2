@@ -7,16 +7,16 @@ Grouped by where you buy it rather than by what it does, because that is the ord
 | Supplier | Lines | $ |
 |---|---:|---:|
 | Amazon | 109 | $3,443.08 |
-| Gong | 1 | $1,388.00 |
+| Gong | 1 | $1,404.00 |
 | Flipsky | 3 | $1,038.00 |
-| Not a purchase - tax and freight | 3 | $804.89 |
+| Not a purchase - tax and freight | 3 | $805.10 |
 | BatteryHookup | 2 | $297.50 |
 | Fiberglass Supply | 3 | $253.38 |
-| Home Depot / hardware | 5 | $202.67 |
+| Home Depot / hardware | 5 | $190.14 |
 | Maker Shop Boise | 1 | $150.00 |
 | Speedy Metals | 1 | $88.92 |
-| Fibre Glast | 1 | $52.00 |
-| **TOTAL** | | **$7,718.44** |
+| Easy Composites | 1 | $52.00 |
+| **TOTAL** | | **$7,722.12** |
 
 ## Amazon
 
@@ -142,7 +142,7 @@ Gong only. One order, and the Atmo-vs-standard decision is still open pending Da
 
 | Item | Qty | Unit | Ext | Price | Note |
 |---|---:|---|---:|---|---|
-| Gong Foil Setup X-Over V3 Atmo Perf Series - XL, Alu 85 | 2 | ea | $1,388.00 | **verified** | complete: FW + matched stab + V3 alu 85/17 mast + V3 MFC + fuselage + V3 top plate + all screws + foil bag. Cu |
+| [Gong Foil Setup X-Over V3 Atmo Perf Series - XL, Alu 85](https://www.gong-galaxy.com/en-us/products/gong-foil-setup-x-over-atmo?variant=57158084231543) | 2 | ea | $1,404.00 | **verified** | complete: FW + matched stab + V3 alu 85/17 mast + V3 MFC + fuselage + V3 top plate + all screws + foil bag. Cu |
 
 ## Flipsky
 
@@ -152,15 +152,15 @@ Some Flipsky appears on Amazon but the range is thin and usually dearer. Buy dir
 
 | Item | Qty | Unit | Ext | Price | Note |
 |---|---:|---|---:|---|---|
-| Flipsky 65161 120KV motor | 2 | ea | $596.00 | **verified** |  |
-| Flipsky 75200 Pro V2 ESC | 2 | ea | $300.00 | **verified** |  |
-| Flipsky VX3 remote | 2 | ea | $142.00 | **verified** |  |
+| [Flipsky 65161 120KV motor](https://flipsky.net/products/brushless-motor-sensorless-amphibious-fully-waterproof-motor-65161-120kv-100kv-6000w-for-efoil-ejet-boards-ebike-electric-surfboard) | 2 | ea | $596.00 | **verified** |  |
+| [Flipsky 75200 Pro V2 ESC](https://flipsky.net/products/flipsky-75200-pro-v2-0-with-aluminum-pcb-based-on-vesc-for-electric-skateboard-electric-scooter-ebike-speed-controller) | 2 | ea | $300.00 | **verified** |  |
+| [Flipsky VX3 remote](https://flipsky.net/products/flipsky-fully-waterproof-remote-vx3-controller-for-efoil-esurf-esk8) | 2 | ea | $142.00 | **verified** |  |
 
 ## Not a purchase - tax and freight
 
 | Item | Qty | Unit | Ext | Price | Note |
 |---|---:|---|---:|---|---|
-| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $436.89 | **verified** |  |
+| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $437.10 | **verified** |  |
 | Gong shipping to Idaho, per foil | 2 | ea | $248.00 | **verified** | 115.50 EUR on order 252112; charged per ORDER, so putting both boards' foils in ONE order saves about $124 |
 | Shipping - Divinycell, 6061 plate, VR20 | 1 | allow | $120.00 | estimate | STILL THE BIGGEST UNVERIFIED LINE - it wants three real carts to settle. Was $220 when it covered G10 sheet an |
 
@@ -183,9 +183,9 @@ https://fiberglasssupply.com
 
 | Item | Qty | Unit | Ext | Price | Note |
 |---|---:|---|---:|---|---|
-| Divinycell H-80 3/4in quarter sheet 24x48, mast block + leash pad | 1 | sheet | $100.26 | **verified** | L18-1112, 24x48. Was 2 sheets when it carried 2 shear ribs |
-| Divinycell H-100 1/4in quarter 21x42, hatch lid cores - 2 sheets bonded to 1/2in | 2 | sheet | $99.18 | **verified** | fiberglasssupply.com; no 1/2in H-100 is made |
-| Divinycell H-80 1/4in quarter 24x48, module lid cores | 1 | sheet | $53.94 | **verified** | L18-1070; nobody stands on this one |
+| [Divinycell H-80 3/4in quarter sheet 24x48, mast block + leash pad](https://fiberglasssupply.com/quarter-sheet-3-4-h-80-divinycell-plain-sheet/) | 1 | sheet | $100.26 | **verified** | L18-1112, 24x48. Was 2 sheets when it carried 2 shear ribs |
+| [Divinycell H-100 1/4in quarter 21x42, hatch lid cores - 2 sheets bonded to 1/2in](https://fiberglasssupply.com/1-4-in-h-100-divinycell-quarter-sheet-21-x-42/) | 2 | sheet | $99.18 | **verified** | fiberglasssupply.com; no 1/2in H-100 is made |
+| [Divinycell H-80 1/4in quarter 24x48, module lid cores](https://fiberglasssupply.com/quarter-sheet-1-4-h-80-divinycell-plain-sheet/) | 1 | sheet | $53.94 | **verified** | L18-1070; nobody stands on this one |
 
 ## Home Depot / hardware
 
@@ -193,11 +193,11 @@ https://www.homedepot.com
 
 | Item | Qty | Unit | Ext | Price | Note |
 |---|---:|---|---:|---|---|
-| EPS rigid foam 2in x 48in x 8ft (HD 202532856) | 4 | sheet | $110.72 | **verified** | HD Meridian, 30 in stock, aisle 29 bay 020; $23.53 at 32+. EPS, not the XPS V1 used - deliberate, ~$90 cheaper |
-| Acetone, 1 gal, cleanup | 1 | gal | $39.95 | **verified** |  |
-| MDF 12 mm, 4 check gauges | 1 | sheet | $22.00 | estimate | 3 station sections + the rocker/deck profile. Was a 14-template set at $70 - the router templates go with the  |
-| Sacrificial MDF, CNC spoilboard | 1 | sheet | $16.00 | estimate | buy it local, a 4x8 sheet does not travel well |
-| Acetone, solvent-welding the printed joints | 1 | qt | $14.00 | estimate | ASA dissolves in it like ABS - a brushed acetone/scrap slurry makes the joint one piece of plastic, not an adh |
+| [EPS rigid foam 2in x 48in x 8ft (HD 202532856)](https://www.homedepot.com/p/Henry-2-in-x-48-in-x-8-ft-R-7-7-EPS-Rigid-Foam-Board-Insulation-320825/202532856) | 4 | sheet | $110.72 | **verified** | HD Meridian, 30 in stock, aisle 29 bay 020; $23.53 at 32+. EPS, not the XPS V1 used - deliberate, ~$90 cheaper |
+| [MDF 12 mm, 4 check gauges](https://www.homedepot.com/p/ProWood-1-2-in-x-2-ft-x-4-ft-Medium-Density-Fiberboard-Project-Panel-109097/202093821) | 1 | sheet | $30.73 | estimate | 3 station sections + the rocker/deck profile. Was a 14-template set at $70 - the router templates go with the  |
+| [Acetone, 1 gal, cleanup](https://www.homedepot.com/p/Klean-Strip-1-Gal-Acetone-Flammable-Paint-Solvent-GAC18/100141096) | 1 | gal | $20.98 | **verified** |  |
+| [Sacrificial MDF, CNC spoilboard](https://www.homedepot.com/p/1-4-in-x-2-ft-x-4-ft-Medium-Density-Fiberboard-1508104/202089069) | 1 | sheet | $16.23 | estimate | buy it local, a 4x8 sheet does not travel well |
+| [Acetone, solvent-welding the printed joints](https://www.homedepot.com/p/Klean-Strip-1-qt-Acetone-Thins-Fiberglass-Resins-Epoxy-and-Adhesives-QAC18/100144922) | 1 | qt | $11.48 | estimate | ASA dissolves in it like ABS - a brushed acetone/scrap slurry makes the joint one piece of plastic, not an adh |
 
 ## Maker Shop Boise
 
@@ -205,7 +205,7 @@ Unresolved - two emails unanswered. Phone (208) 254-6151, or the EPS core goes t
 
 | Item | Qty | Unit | Ext | Price | Note |
 |---|---:|---|---:|---|---|
-| Maker Shop Boise Basic month | 1 | month | $150.00 | **verified** | month-to-month; confirm it cancels cleanly. Only ONE part truly wants a CNC - the EPS core - but the pass cove |
+| [Maker Shop Boise Basic month](https://www.makershopboise.com/membership) | 1 | month | $150.00 | **verified** | month-to-month; confirm it cancels cleanly. Only ONE part truly wants a CNC - the EPS core - but the pass cove |
 
 ## Speedy Metals
 
@@ -215,15 +215,13 @@ https://www.speedymetals.com/p-2411-12-6061-t651-aluminum-plate.aspx
 
 | Item | Qty | Unit | Ext | Price | Note |
 |---|---:|---|---:|---|---|
-| 6061-T651 1/2in x 12 x 18 - mast plates | 1 | sheet | $88.92 | **verified** | speedymetals.com 61p.5; both plates nest, 2 x 6.89in of 18, 4.2 spare. Saw-cut edge, +/-1/4in - profile it you |
+| [6061-T651 1/2in x 12 x 18 - mast plates](https://www.speedymetals.com/pc-2411-8360-12-6061-t651-aluminum-plate.aspx) | 1 | sheet | $88.92 | **verified** | speedymetals.com 61p.5; both plates nest, 2 x 6.89in of 18, 4.2 spare. Saw-cut edge, +/-1/4in - profile it you |
 
-## Fibre Glast
+## Easy Composites
 
-https://www.fibreglast.com
-
-**Amazon carries all of this** - bagging film, peel ply, breather, sealant tape, gauges. Prices here are Fibre Glast list; check Amazon before ordering, it is usually close and ships faster.
+https://www.easycomposites.us
 
 | Item | Qty | Unit | Ext | Price | Note |
 |---|---:|---|---:|---|---|
-| VR20 vacuum regulator | 1 | ea | $52.00 | **verified** | one-time |
+| [VR20 vacuum regulator](https://www.easycomposites.us/vacuum-regulator-for-vacuum-bagging) | 1 | ea | $52.00 | **verified** | one-time. Holds the bag at 5-10 inHg, which is the whole ball game: EPS crushes around 150 kPa and full vacuum |
 

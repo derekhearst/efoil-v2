@@ -1272,8 +1272,21 @@ HANDLE_PLATE_BOND = 0.5            # glue line under the strip
 HANDLE_STRAP_SLACK = 25.0          # standoff at mid-span - this is what your
                                    # fingers go into now that there is no
                                    # recess. Set it when you make the strap up.
-SEAM_X = 1030.0                    # halves of 1030 + 370, both under a 1219 bed
-CNC_BED_X = 1219.0                 # 48 in - the number SEAM_X exists because of
+SEAM_X = 1030.0                    # halves of 1030 + 370, both under the bed
+# THE REAL MACHINE, not a round 48 in. Maker Shop Boise runs an Axiom AR8
+# Pro V5 and its published work area is 24 x 47.63 x 5.9 in:
+CNC_BED_X = 1209.8                 # 47.63 in of travel along the board
+CNC_BED_Y = 609.6                  # 24 in across it
+CNC_BED_Z = 149.9                  # 5.9 in of CUTTER TRAVEL - see the check
+# The long axis is fine (1030 of 1209.8) and so is the width (560 of 609.6,
+# though that leaves only 24.8 mm a side for clamps, so the blank has to be
+# held from above or taped down - which it is).
+# Z IS THE ONE TO WATCH. The blank envelope is 163.8 mm = 6.45 in, and the
+# quoted Z travel is 5.9. That is NOT automatically fatal: two-sided
+# machining only removes 39.4 mm in total, so the CUTTING depth is far
+# inside the travel. What it threatens is whether a 163.8 mm blank passes
+# UNDER the gantry at all, which is a clearance spec the site does not
+# publish. Ask on the same phone call as the EPS question.
 # The blank is stacked from 2 in construction EPS, not carved from a billet.
 # FOUR layers, not three. Three is 152.4 mm and the blank envelope is 163.8 -
 # the board is 153.8 thick and the rocker adds 10 on top of that, which the
@@ -3496,6 +3509,10 @@ def build():
     rep["core_seam_x_mm"] = SEAM_X
     rep["core_halves_mm"] = (round(SEAM_X), round(LENGTH - SEAM_X))
     rep["core_halves_fit_bed"] = max(SEAM_X, LENGTH - SEAM_X) <= CNC_BED_X
+    rep["cnc_bed_mm"] = (CNC_BED_X, CNC_BED_Y, CNC_BED_Z)
+    rep["cnc_len_margin_mm"] = round(CNC_BED_X - max(SEAM_X, LENGTH - SEAM_X), 1)
+    rep["cnc_width_margin_mm"] = round(CNC_BED_Y - WIDTH, 1)
+    rep["cnc_clamp_margin_per_side_mm"] = round((CNC_BED_Y - WIDTH) / 2, 1)
     # With the pad gone the only thing that has to clear the rim ring is the
     # strip itself, which it does by handle_to_ring_mm below.
     rep["handle_to_ring_mm"] = round(

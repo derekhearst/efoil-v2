@@ -33,6 +33,8 @@ LINKS = {
         ("B096DJKR5Y", 12.99, "20 Pairs Gold-Plated 5.5MM Bullet Male and Female Connectors"),
     "5052 1/8in x 12 x 24, 2-pack - module floors":
         ("B0D3TH4TTC", 61.99, "2 Pack 5052 Aluminum Sheet Metal 1/8in x 12in x 24in"),
+    "6061-T651 1/2in x 12 x 18 - mast plates":
+        ("https://www.speedymetals.com/pc-2411-8360-12-6061-t651-aluminum-plate.aspx", 88.92, "1/2in 6061-T651 Aluminum Plate 12in x 18in"),
     "8 AWG marine ring lugs, 20 pk":
         ("B0CWGXB4NB", 9.99, "haisstronica 20PCS Battery Cable Lug and Heat Shrink Kit 8 AWG M6"),
     "8 AWG silicone, 10 ft red + 10 ft black":
@@ -43,6 +45,10 @@ LINKS = {
         ("B09DKPYYBP", 24.49, "Polymaker ASA Filament 1.75mm Black 1KG UV Resistant"),
     "ASA filament, printed rim ring":
         ("B09DKPYYBP", 24.49, "Polymaker ASA Filament 1.75mm Black 1KG"),
+    "Acetone, 1 gal, cleanup":
+        ("https://www.homedepot.com/p/Klean-Strip-1-Gal-Acetone-Flammable-Paint-Solvent-GAC18/100141096", 20.98, "Klean-Strip 1 Gal Acetone Flammable Paint Solvent"),
+    "Acetone, solvent-welding the printed joints":
+        ("https://www.homedepot.com/p/Klean-Strip-1-qt-Acetone-Thins-Fiberglass-Resins-Epoxy-and-Adhesives-QAC18/100144922", 11.48, "Klean-Strip 1 qt Acetone Thins Fiberglass Resins Epoxy and Adhesives"),
     "Adhesive-lined heat shrink 3:1, 400 pc kit":
         ("B0BVVMCY86", 13.99, "400Pcs Heat Shrink Tubing Kit 3:1 Adhesive Lined"),
     "Adjustable hand sanding block":
@@ -69,12 +75,20 @@ LINKS = {
         ("https://www.amazon.com/dp/B0CXXFQT9S", 147.70, "DALY Smart BMS 16S 60V 150A Li-ion WiFi Bluetooth CAN RS485"),
     "Dielectric grease, terminals":
         ("B0D6R543V2", 8.99, "BTAS Dielectric Grease for Electrical Connectors 1oz"),
+    "Divinycell H-100 1/4in quarter 21x42, hatch lid cores - 2 sheets bonded to 1/2in":
+        ("https://fiberglasssupply.com/1-4-in-h-100-divinycell-quarter-sheet-21-x-42/", 49.59, "1/4 in H-100 Divinycell Quarter Sheet 21in x 42in (L20-1894)"),
+    "Divinycell H-80 1/4in quarter 24x48, module lid cores":
+        ("https://fiberglasssupply.com/quarter-sheet-1-4-h-80-divinycell-plain-sheet/", 53.94, "Quarter Sheet 1/4in H-80 Divinycell Plain Sheet (L18-1070)"),
+    "Divinycell H-80 3/4in quarter sheet 24x48, mast block + leash pad":
+        ("https://fiberglasssupply.com/quarter-sheet-3-4-h-80-divinycell-plain-sheet/", 100.26, "Quarter Sheet 3/4in H-80 Divinycell Plain Sheet (L18-1112)"),
     "Dowel pins + drill, two-sided registration":
         ("B0GS2R3F5G", 12.99, "284Pcs 8-Size Wood Dowels Kit with 3 Drill Bits"),
     "E-glass 6 oz, 50in x 12ft, 2-pack":
         ("B0CQY5KX84", 19.99, "2 Packs 6 oz 12ft x 50in Fiberglass Cloth E-Glass Plain Weave"),
     "EPDM/neoprene sheet 1/2in, conduit bungs":
         ("B00P5VFKCC", 15.77, "General Purpose Rubber Sheet 50A 1/2in x 12 x 12"),
+    "EPS rigid foam 2in x 48in x 8ft (HD 202532856)":
+        ("https://www.homedepot.com/p/Henry-2-in-x-48-in-x-8-ft-R-7-7-EPS-Rigid-Foam-Board-Insulation-320825/202532856", 27.68, "Henry 2 in x 48 in x 8 ft R-7.7 EPS Rigid Foam Board Insulation"),
     "EVA bedding pads":
         ("B0GG9H6VS2", 16.99, "Adhesive Foam Padding Closed Cell EVA Sheets Sticky Back"),
     "FCS-pattern leash plug":
@@ -83,10 +97,18 @@ LINKS = {
         ("B0FGCY7XPS", 9.99, "Fish Tape 16.4ft Wire Puller Electrical Snake"),
     "Flex longboard sander, 16-1/2 x 2-3/4":
         ("B0CPR1CGQV", 19.99, "Adjustable Radius Flex Longboard Hand Sanding Block H&L and PSA"),
+    "Flipsky 65161 120KV motor":
+        ("https://flipsky.net/products/brushless-motor-sensorless-amphibious-fully-waterproof-motor-65161-120kv-100kv-6000w-for-efoil-ejet-boards-ebike-electric-surfboard", 298.00, "Flipsky Waterproof Motor 65161 120KV 6000W for Efoil"),
+    "Flipsky 75200 Pro V2 ESC":
+        ("https://flipsky.net/products/flipsky-75200-pro-v2-0-with-aluminum-pcb-based-on-vesc-for-electric-skateboard-electric-scooter-ebike-speed-controller", 150.00, "Flipsky 75200 Pro V2.0 Aluminum PCB VESC ESC"),
+    "Flipsky VX3 remote":
+        ("https://flipsky.net/products/flipsky-fully-waterproof-remote-vx3-controller-for-efoil-esurf-esk8", 71.00, "Flipsky Fully Waterproof Remote VX3 Controller"),
     "Folding sawhorses, pair, 700 lb":
         ("B0G4CH7SKB", 39.99, "Saw Horses 2 Pack Folding Plastic 700 LBS/Pair"),
     "Gebildet PG11 gland, M18x1.5, 30 pk":
         ("B0B8NJR62L", 9.99, "30Pcs PG11 Cable Gland IP68 Waterproof Adjustable 5.0-10mm"),
+    "Gong Foil Setup X-Over V3 Atmo Perf Series - XL, Alu 85":
+        ("https://www.gong-galaxy.com/en-us/products/gong-foil-setup-x-over-atmo?variant=57158084231543", 702.00, "Foil Setup X-Over V3 Atmo Perf Series - Aluminium / XL / Black"),
     "Hydraulic lug crimper, 10 ton, 12-2/0 AWG":
         ("B0CFV249X3", 39.99, "YUZES 10-Ton Hydraulic Crimping Tool, 12 to 2/0 AWG"),
     "IP68 M25 inline housing, 5 pk":
@@ -147,6 +169,10 @@ LINKS = {
         ("B0GD1YF5PL", 8.63, "M8 x 1.25 Tap and 6.8mm Drill Bit HSS Set"),
     "M8 x 30 A4 mast bolts, 10 pk - spares":
         ("B07HZKSP72", 10.82, "M8 x 30mm Button Head Screws ISO 7380 Marine Grade SS 10 Pack"),
+    "MDF 12 mm, 4 check gauges":
+        ("https://www.homedepot.com/p/ProWood-1-2-in-x-2-ft-x-4-ft-Medium-Density-Fiberboard-Project-Panel-109097/202093821", 30.73, "ProWood 1/2 in x 2 ft x 4 ft MDF Project Panel"),
+    "Maker Shop Boise Basic month":
+        ("https://www.makershopboise.com/membership", 150.00, "Maker Shop Boise Membership - Basic"),
     "Neoprene sheet 1/8in, module + mast gaskets":
         ("B08DLP2DBF", 22.65, "TORRAMI Neoprene Rubber Sheet 1/8in x 18in x 24in"),
     "Nitrile gloves 6 mil, 100 pk":
@@ -179,6 +205,8 @@ LINKS = {
         ("B0000DEZK4", 24.63, "Dremel 335-01 Plunge Router Attachment for Rotary Tool"),
     "SP17 2-pin IP68 flange receptacle":
         ("B0CDH5R8P4", 13.20, "SP17 2 Pin Waterproof Connector Panel Mount Socket IP68"),
+    "Sacrificial MDF, CNC spoilboard":
+        ("https://www.homedepot.com/p/1-4-in-x-2-ft-x-4-ft-Medium-Density-Fiberboard-1508104/202089069", 16.23, "1/4 in x 2 ft x 4 ft Medium Density Fiberboard"),
     "Sealant tape, 50 ft roll":
         ("B0GF25BPN6", 19.99, "50ft High-Temp Vacuum Seal Tape, Yellow Tacky Tape"),
     "Sika Aktivator-PRO 250 ml + daubers":
@@ -221,6 +249,8 @@ LINKS = {
         ("B01606TCAG", 39.00, "Ultra Tef-Gel Anti Corrosion Lubricant for Rigging Hardware"),
     "VECOTOOLS 4.5 CFM single-stage pump, oil incl.":
         ("B0GZVLP3PL", 57.99, "4.5CFM 1/3HP Vacuum Pump for HVAC Systems, Single Stage, Foldable Handle"),
+    "VR20 vacuum regulator":
+        ("https://www.easycomposites.us/vacuum-regulator-for-vacuum-bagging", 52.00, "VR20 Vacuum Regulator - integrated gauge, 1/4in BSP, bracket"),
     "Vac bag film, 5 yd":
         ("B079MBL5TX", 24.95, "Vac Bag Film 5 Yards Elite Lab Vacuum Bagging Supplies"),
     "Vacuum gauge, -30 inHg, 1/4 NPT, glycerin":
@@ -250,11 +280,14 @@ LINK_VENDOR = {
     "3M Fastbond 1077 water-based, CNC hold-down": "Amazon",
     "5.5 mm gold bullets, 20 pair": "Amazon",
     "5052 1/8in x 12 x 24, 2-pack - module floors": "Amazon",
+    "6061-T651 1/2in x 12 x 18 - mast plates": "Speedy Metals",
     "8 AWG marine ring lugs, 20 pk": "Amazon",
     "8 AWG silicone, 10 ft red + 10 ft black": "Amazon",
     "ANL 150 A fuse + holder": "Amazon",
     "ASA filament, printed module shell": "Amazon",
     "ASA filament, printed rim ring": "Amazon",
+    "Acetone, 1 gal, cleanup": "Home Depot / hardware",
+    "Acetone, solvent-welding the printed joints": "Home Depot / hardware",
     "Adhesive-lined heat shrink 3:1, 400 pc kit": "Amazon",
     "Adjustable hand sanding block": "Amazon",
     "Bag connector w/ ball valve, 1/4 in QD": "Amazon",
@@ -266,15 +299,23 @@ LINK_VENDOR = {
     "Cyanoacrylate for the cord splice": "Amazon",
     "DALY Smart BMS Li-ion 16S 60V 150A": "Amazon",
     "Dielectric grease, terminals": "Amazon",
+    "Divinycell H-100 1/4in quarter 21x42, hatch lid cores - 2 sheets bonded to 1/2in": "Fiberglass Supply",
+    "Divinycell H-80 1/4in quarter 24x48, module lid cores": "Fiberglass Supply",
+    "Divinycell H-80 3/4in quarter sheet 24x48, mast block + leash pad": "Fiberglass Supply",
     "Dowel pins + drill, two-sided registration": "Amazon",
     "E-glass 6 oz, 50in x 12ft, 2-pack": "Amazon",
     "EPDM/neoprene sheet 1/2in, conduit bungs": "Amazon",
+    "EPS rigid foam 2in x 48in x 8ft (HD 202532856)": "Home Depot / hardware",
     "EVA bedding pads": "Amazon",
     "FCS-pattern leash plug": "Amazon",
     "Fish tape / pull cord for the mast conduit": "Amazon",
     "Flex longboard sander, 16-1/2 x 2-3/4": "Amazon",
+    "Flipsky 65161 120KV motor": "Flipsky",
+    "Flipsky 75200 Pro V2 ESC": "Flipsky",
+    "Flipsky VX3 remote": "Flipsky",
     "Folding sawhorses, pair, 700 lb": "Amazon",
     "Gebildet PG11 gland, M18x1.5, 30 pk": "Amazon",
+    "Gong Foil Setup X-Over V3 Atmo Perf Series - XL, Alu 85": "Gong",
     "Hydraulic lug crimper, 10 ton, 12-2/0 AWG": "Amazon",
     "IP68 M25 inline housing, 5 pk": "Amazon",
     "Kapton tape, pack insulation": "Amazon",
@@ -305,6 +346,8 @@ LINK_VENDOR = {
     "M8 x 1.25 BOTTOMING tap, 4-flute": "Amazon",
     "M8 x 1.25 tap + 6.8 mm drill set": "Amazon",
     "M8 x 30 A4 mast bolts, 10 pk - spares": "Amazon",
+    "MDF 12 mm, 4 check gauges": "Home Depot / hardware",
+    "Maker Shop Boise Basic month": "Maker Shop Boise",
     "Neoprene sheet 1/8in, module + mast gaskets": "Amazon",
     "Nitrile gloves 6 mil, 100 pk": "Amazon",
     "PETG filament 1 kg, mast clamp set": "Amazon",
@@ -321,6 +364,7 @@ LINK_VENDOR = {
     "Rosin paper roll, floor and bench": "Amazon",
     "Rotary-tool router base + collets, if needed": "Amazon",
     "SP17 2-pin IP68 flange receptacle": "Amazon",
+    "Sacrificial MDF, CNC spoilboard": "Home Depot / hardware",
     "Sealant tape, 50 ft roll": "Amazon",
     "Sika Aktivator-PRO 250 ml + daubers": "Amazon",
     "Sikaflex-292 marine structural PU": "Amazon",
@@ -342,6 +386,7 @@ LINK_VENDOR = {
     "Traction pad, 3-piece": "Amazon",
     "Ultra Tef-Gel, galvanic barrier": "Amazon",
     "VECOTOOLS 4.5 CFM single-stage pump, oil incl.": "Amazon",
+    "VR20 vacuum regulator": "Easy Composites",
     "Vac bag film, 5 yd": "Amazon",
     "Vacuum gauge, -30 inHg, 1/4 NPT, glycerin": "Amazon",
     "Vacuum hose + hose clamps": "Amazon",

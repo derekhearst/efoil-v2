@@ -335,15 +335,25 @@ def build():
         "your listing, ASIN B0GZVLP3PL. Was a $139.99 Pittsburgh 2-stage "
         "plus $15 of oil - $97 for ultimate vacuum we must not use",
         tool=True)
-    # CHECKED ON AMAZON, STAYS HERE. Amazon sells vacuum PUMPS, vacuum bag
-    # connectors and compressed-air regulators, but no true vacuum regulator
-    # - nothing that bleeds air in to HOLD a set level. That is the entire
-    # job here: EPS crushes around 150 kPa, full vacuum is 101, so the bag
-    # has to sit at 5-10 inHg and stay there. Without this part the honest
-    # alternative is a manual bleed valve you nurse by hand for the whole
-    # cure, and a moment of inattention is a crushed core.
+    # TWO CORRECTIONS HERE, both worth keeping.
+    # 1. THE VR20 IS AN EASY COMPOSITES PART, NOT FIBRE GLAST. This line sat
+    #    under Fibre Glast for the whole project; fibreglast.com returns ZERO
+    #    results for "VR20" - their part numbers are numeric. Their nearest
+    #    equivalent is the Bleedoff Valve Assembly 902-A at $70.97, which is
+    #    a manual needle valve: it bleeds vacuum down but does not HOLD a
+    #    setpoint as the pump and the bag's leak rate change.
+    # 2. "NO VACUUM REGULATOR ON AMAZON" WAS WRONG. Amazon does sell genuine
+    #    IRV-pattern negative-pressure regulators, just not marketed for
+    #    composites. The cheap ones ($24-30) are Rc 1/8 with ~0.6 L/min
+    #    intake - fine on a tight bag, marginal against the VR20's 1/4 in
+    #    ports. The correctly sized IRV20-C10/C12 is $60-66, i.e. MORE than
+    #    the real VR20, and without its integrated gauge or bracket.
+    # So the VR20 still wins - but on price and completeness, not because
+    # nothing else exists.
     add("5  Vacuum bagging", "VR20 vacuum regulator", 1, "ea", 52.00, OK,
-        "one-time", tool=True)
+        "one-time. Holds the bag at 5-10 inHg, which is the whole ball game: "
+        "EPS crushes around 150 kPa and full vacuum is 101. Hose tails are "
+        "+$4.70 if you want them", tool=True)
     # THE "BAGGING STARTER KIT" IS DELETED. This line was wrong three ways.
     # It was costed at $127.40 and described as "film, peel ply, tape,
     # breather, connector" - consumables. Fibre Glast's actual Vacuum Bagging
@@ -1269,6 +1279,7 @@ def render(rows):
 VENDORS = [
     ("Fiberglass Supply", "https://fiberglasssupply.com", (
         "divinycell", "h-80", "h-100", "l18-", "l20-")),
+    ("Easy Composites", "https://www.easycomposites.us", ("vr20",)),
     ("Fibre Glast", "https://www.fibreglast.com", (
         "breather", "peel ply", "vac bag film", "bagging", "1708", "e-glass",
         "release wax", "release film", "chip brush", "laminating roller",
