@@ -210,10 +210,15 @@ through everything; and it is slippery under a wet board. **Rosin or builder's
 paper** soaks it up and rolls into the bin. ~$24 a roll and it is the whole
 upgrade.
 
-**Stands.** Two padded uprights at hip height so you can walk round the board
-and reach both rails — for shaping, sanding and wet-out. Bought ones are
-**$180–400**; 2×4, ply and foam pipe lagging is **$50–90** and does the same
-job. Rack pads want to grip the foam so the blank does not slide.
+**Stands — a pair of folding sawhorses, ~$35.** Proper shaping racks are
+$180–400 and DIY ones are $50–90 of lumber you then have to build. The only
+thing a rack buys that a sawhorse does not is **height** — ~30" against a
+rack's 36–40" — and that gap matters for **planing a blank**, which this build
+does not do because the core arrives machined. For wet-out and bagging,
+leaning over a bit is not the constraint.
+
+**Pad the tops** — pipe lagging or carpet, a few dollars. Bare sawhorse edges
+mark foam and wet laminate.
 
 **The bagging bed — and here I was wrong, so ignore what this used to say.**
 
