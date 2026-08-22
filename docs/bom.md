@@ -189,10 +189,10 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | [M8 nyloc nut 316, 30 pk - prop nut](https://www.amazon.com/dp/B0BP2R3YHY) | 1 | pk | $8.99 | $8.99 | verified | 2 needed. 316 not 304 - this one is permanently submerged. WASHER NOT INCLUDED, see below |
 | [M8 316 washer, prop nut](https://www.amazon.com/dp/B0DDGRXHT7) | 1 | pk | $7.69 | $7.69 | verified | only 2 needed; sold in 10s |
 | [8 AWG marine ring lugs, 20 pk](https://www.amazon.com/dp/B0CWGXB4NB) | 2 | pk | $9.99 | $19.98 | verified | 28 needed; on M6 studs - nothing to solder |
-| [M6 stainless stud/busbar hardware](https://www.amazon.com/dp/B0DP79B987) | 2 | set | $11.99 | $23.98 | estimate |  |
+| [M6 stainless stud/busbar hardware](https://www.amazon.com/dp/B0DP79B987) | 0 | set | $11.99 | $0.00 | on hand | DELETED - the fuse holder's input stud is the positive node and the BMS's P- is the negative one. See Appendix D in fabrication.md |
 | [Hydraulic lug crimper, 10 ton, 12-2/0 AWG](https://www.amazon.com/dp/B0CFV249X3) | 1 | ea | $39.99 | $39.99 | verified | one-time; this is what replaces soldering XT150s |
 | [Adhesive-lined heat shrink 3:1, 400 pc kit](https://www.amazon.com/dp/B0BVVMCY86) | 1 | kit | $13.99 | $13.99 | verified | marine grade, glue-lined - plain heat shrink over a joint in a wet cavity is decoration |
-| **subtotal** | | | | **$225.01** | | |
+| **subtotal** | | | | **$201.03** | | |
 
 ## 10c Restraint & fitout
 
@@ -254,30 +254,30 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | Item | Qty | Unit | Unit $ | Ext $ | | Note |
 |---|---:|---|---:|---:|---|---|
 | Shipping - Divinycell, 6061 plate, VR20 | 1 | allow | $120.00 | $120.00 | estimate | STILL THE BIGGEST UNVERIFIED LINE - it wants three real carts to settle. Was $220 when it covered G10 sheet and hazmat epoxy, both of which are now out of the build entirely |
-| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $442.44 | $442.44 | verified |  |
-| **subtotal** | | | | **$562.44** | | |
+| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $441.00 | $441.00 | verified |  |
+| **subtotal** | | | | **$561.00** | | |
 
 ## Totals
 
 | | |
 |---|---:|
-| **Grand total, 2 boards** | **$7,816.37** |
-| Per board | $3,908.18 |
-| Of which verified | $7,204.36  (92%) |
-| Of which estimated | $612.01 |
+| **Grand total, 2 boards** | **$7,790.95** |
+| Per board | $3,895.47 |
+| Of which verified | $7,202.92  (92%) |
+| Of which estimated | $588.03 |
 | Linked to a real listing | 127 lines |
 | Priced but NOT linked | 2 lines, $43.00 |
-| Allowances, not linkable (tax, freight) | 3 lines, $831.07 |
+| Allowances, not linkable (tax, freight) | 3 lines, $829.63 |
 
 ## What is a board, and what is a shop
 
-Some of the total above is not the cost of a board at all - it is tools, jigs and templates that exist afterwards and do not repeat. Splitting them out is the difference between "a board costs $3,908" and "a board costs $3,517 and I now own a vacuum rig, a crimper and a full template set".
+Some of the total above is not the cost of a board at all - it is tools, jigs and templates that exist afterwards and do not repeat. Splitting them out is the difference between "a board costs $3,895" and "a board costs $3,505 and I now own a vacuum rig, a crimper and a full template set".
 
 | | |
 |---|---:|
 | One-time tooling (incl. its share of tax) | $781.41 |
-| **Marginal cost of a board** | **$3,517.48** |
-| Cost of the NEXT board after these 2 | $3,517.48 |
+| **Marginal cost of a board** | **$3,504.77** |
+| Cost of the NEXT board after these 2 | $3,504.77 |
 
 | One-time item | $ |
 |---|---:|

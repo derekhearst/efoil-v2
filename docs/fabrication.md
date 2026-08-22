@@ -414,7 +414,7 @@ answer at a glance. Silicone dabs stop the BMS walking; V1 needed them.
 `ANL 150 A fuse + holder` · `8 AWG marine ring lugs, 20 pk` ·
 `Hydraulic lug crimper, 10 ton, 12-2/0 AWG` ·
 `Adhesive-lined heat shrink 3:1, 400 pc kit` · `5.5 mm gold bullets, 20 pair` ·
-`M6 stainless stud/busbar hardware` · `Dielectric grease, terminals` ·
+`Dielectric grease, terminals` ·
 `Cable ties, lacing, adhesive mounts` · `Thermal pad 1 mm non-conductive, 100 x 100` ·
 `Silica gel, indicating, 50 g per module` · `Water-ingress alarm, 2 pk`
 
@@ -634,47 +634,51 @@ e-boards and is what this assumes.
 
 ## The current path
 
-```
-        CELLS 16S8P                                          ┌─ ESC  V+
-             │                                               │
-   B+ ───────┴──────────► P+ BUSBAR ──► ANL 150 A fuse ──────┤
-   (pack positive,        (one stud,        │                └─ (nothing else)
-    never switched)        three taps)      │
-                               │            └─ 16 AWG ──────► CHARGE PORT  +
-                               │
-                               └─ thin lead ──────────────► BMS  B+   (sense)
+**There is no busbar.** An earlier version of this appendix said there was,
+and built the whole topology on the BOM line `M6 stainless stud/busbar
+hardware` — which is a $14 line with no note, never specified, and matched to
+a distribution block by a guess. Nothing was designed around it. There is no
+room budgeted for it either.
 
-   B- ───────► BMS  B-                     ┌─ ESC  V-
-                     │                     │
-                     └── P- ──► P- BUSBAR ─┤
-                         (switched)        └─ 16 AWG ──────► CHARGE PORT  −
+**The positive node is the ANL fuse holder's input stud**, which already
+exists and is already in the module. Three ring lugs land on it. That is the
+whole of it.
+
+```
+        CELLS 16S8P                              ┌── ANL 150 A ──► ESC  V+
+             │                                   │   (fuse OUT)
+   B+ ───────┴───────────► FUSE HOLDER IN stud ──┤
+   (pack positive)         3 ring lugs           ├── 16 AWG ─────► CHARGE  +
+                                                 │
+                                                 └── thin lead ──► BMS  B+
+                                                                   (sense)
+
+   B- ──────► BMS  B-  ──► P-  ──┬── 8 AWG ─────► ESC  V-
+                     (switched)  │
+                                 └── 16 AWG ────► CHARGE  −   [see below]
 
    BALANCE: 17-wire harness, B0 … B16, one tap per series junction
    BUTTON:  2-wire momentary to the BMS switch input — NOT in the main path
 ```
 
-**So: P+ does not "split into" a BMS lead and a charge lead — it is one
-node.** The busbar is that node. Three things land on it: the BMS's thin B+
-sense lead, the fuse feeding the ESC, and the charge port positive. That is
-what the M6 distribution stud in the BOM is for.
-
-Charging returns through the BMS: charger − → port − → P− → BMS → cells. That
-is why a common-port pack can still be charged after the BMS has cut for
-over-discharge — the charge FET is separate from the discharge FET.
+**So P+ does not "split into" a BMS lead and a charge lead — it is one node**,
+and that node is a stud you already own. Charge current is 5 A, so it does
+not pass the 150 A fuse and does not need to; the charger limits itself and
+the lead is 100 mm of 16 AWG inside a sealed box.
 
 ## Joint by joint
 
 | # | From | To | Wire | Termination |
 |---|---|---|---|---|
-| 1 | Pack B+ collector | P+ busbar | 8 AWG | ring lug both ends, hydraulic crimp |
-| 2 | P+ busbar | ANL fuse in | 8 AWG | ring lug |
-| 3 | ANL fuse out | ESC V+ | 8 AWG | ring lug |
-| 4 | P+ busbar | Charge port + | 16 AWG | ring lug at bus, solder at port |
-| 5 | P+ busbar | BMS B+ | per BMS | as supplied |
+| 1 | Pack B+ collector | Fuse holder IN stud | 8 AWG | ring lug both ends, hydraulic crimp |
+| 2 | Fuse holder IN stud | Charge port + | 16 AWG | ring lug at stud, solder at port |
+| 3 | Fuse holder IN stud | BMS B+ | per BMS | as supplied |
+| 4 | Fuse holder OUT stud | ESC V+ | 8 AWG | ring lug |
+| 5 | — | — | — | *(three lugs share the IN stud: 1, 2, 3)* |
 | 6 | Pack B− collector | BMS B− | 8 AWG | ring lug, hydraulic crimp |
-| 7 | BMS P− | P− busbar | 8 AWG | ring lug |
-| 8 | P− busbar | ESC V− | 8 AWG | ring lug |
-| 9 | P− busbar | Charge port − | 16 AWG | ring lug at bus, solder at port |
+| 7 | BMS P− | ESC V− | 8 AWG | ring lug |
+| 8 | BMS P− *(common port)* or **C−** *(separate port)* | Charge port − | 16 AWG | ring lug |
+| 9 | — | — | — | *(two lugs share P−: 7, and 8 if common port)* |
 | 10 | BMS balance | 17 series taps | 22 AWG harness | JST at BMS, welded tab at pack |
 | 11 | BMS switch | Panel button | 2 × 22 AWG | as the BMS specifies |
 | 12 | ESC phases | Motor, in the cavity | motor's own | 5.5 mm bullets + IP68 housing |
@@ -703,17 +707,38 @@ which is the run buried in a sealed module you cannot reach.
    should read a clean ladder, ~3.6 V per step. One transposed pair is a
    dead BMS and possibly a dead group.
 
-## The charge port is live. Always.
+## Making the charge port dead when the BMS is off
 
-Because the positive side is never switched, **the charge port's + pin sits
-at up to 67.2 V whenever the cap is off** — with the board switched off, with
-the BMS cut, always. That is above the 60 V generally treated as the safe DC
-threshold.
+Derek's requirement, and it is the right one. It also needs a correction to
+what this appendix said before, which over-stated the hazard: **the charge
+port is not on the outside of the board.** It is panel-mounted through the
+module's aft wall, inside the cavity, under a hatch held by twelve M5s. To
+reach it you open the board. Nobody brushes against it on a beach.
 
-- Keep the screw cap on. It is not weather protection, it is the guard.
-- Never probe the port with the pack connected and the cap off.
-- If you ever build a third board, consider a separate-port BMS purely to
-  kill this.
+That said, "live pins inside a sealed box full of wiring" is still not what
+you want, and the fix is a **BMS choice, not a wiring trick**:
+
+| | Common port | **Separate port** |
+|---|---|---|
+| Charge − | shares P− with the load | its own **C−**, switched by the charge FET |
+| Short the two port pins together | dead short across the pack through the discharge FET — you are relying on the BMS's overcurrent trip to save you | **nothing happens.** The return path is open |
+| Port pins with BMS off | + live, − live | + live, **− open** |
+
+**A port is only dangerous if both of its pins can pass current between
+them.** Separate port opens the return, so the port cannot deliver anything
+no matter what touches it. That is a real difference in kind, not a degree —
+and it is the answer to "off when the BMS is off".
+
+Be honest about what it does not do: the **+ pin is still at pack potential**,
+because nothing switches the positive side on either type. What changes is
+that it can no longer source current through the port.
+
+**Action: confirm which DALY you have before wiring, and buy separate-port if
+there is a choice.** The two variants look identical and differ by one
+terminal. Getting this wrong is not recoverable by rewiring — it is the BMS.
+
+If you end up on common port anyway: keep the screw cap on as a guard, and
+never probe the port with the pack connected.
 
 ## Precharge — decide this before first power-up
 
@@ -735,7 +760,7 @@ depends on the DALY variant in your hand.
 
 - Meter pack voltage at the busbars: ~57.6 V nominal, 67.2 V full.
 - Meter the charge port with the pack live — polarity, and that + really is +.
-- Confirm the fuse is on the **positive** side, at the busbar end.
+- Confirm the fuse is on the **positive** side, pack-side stud.
 - Tug every crimp. A crimp that moves is a crimp that failed.
 - Dielectric grease on every terminal, then the leak test again with the
   vent blanked before the cells go in for good.

@@ -821,6 +821,13 @@ def build():
     # season with the VESC limited to 100 A. CHECK THE DIMENSIONS before
     # ordering - the module is laid out around the 200 A unit at 164 x 66 x 21,
     # and a bigger board would need the service strip re-cut.
+    # SEPARATE PORT IF THERE IS A CHOICE. On a COMMON-port BMS the charge
+    # port's two pins are B+ and P-, so shorting them is a dead short across
+    # the pack and you are trusting the overcurrent trip. A SEPARATE-port
+    # unit switches the charge return on its own C- FET, so with the BMS off
+    # the port cannot pass current at all no matter what bridges it. The two
+    # variants look identical and differ by one terminal, and it is not
+    # fixable by rewiring afterwards - it is the BMS.
     add("9  Electrical", "DALY Smart BMS Li-ion 16S 60V 150A", N, "ea",
         159.00, OK, "batteryint.com; confirm it is <= 164 x 66 x 21 mm")
     add("9  Electrical", "Charger 67.2 V 5 A, 16S  (NOT 58.8 V)",
@@ -1050,8 +1057,18 @@ def build():
     # Crimped, not soldered. XT150 is out.
     add("10b Drivetrain", "8 AWG marine ring lugs, 20 pk", 2, "pk", 16.99,
         OK, str(14 * N) + " needed; on M6 studs - nothing to solder")
-    add("10b Drivetrain", "M6 stainless stud/busbar hardware", N, "set",
-        14.00, EST)
+    # DELETED - THERE IS NO BUSBAR. This line was $14 of unspecified "stud/
+    # busbar hardware" with no note, nothing designed around it and no space
+    # budgeted for it, and a wiring appendix then got written on top of it as
+    # though it were a defined distribution block. It is not.
+    # The positive node is the ANL FUSE HOLDER'S INPUT STUD, which already
+    # exists in the module: pack B+, charge +, and the BMS sense lead all
+    # ring-lug onto it. The negative node is the BMS's own P- terminal. Both
+    # are hardware already on the list.
+    add("10b Drivetrain", "M6 stainless stud/busbar hardware", 0, "set",
+        0.00, OWNED,
+        "DELETED - the fuse holder's input stud is the positive node and the "
+        "BMS's P- is the negative one. See Appendix D in fabrication.md")
     add("10b Drivetrain", "Hydraulic lug crimper, 10 ton, 12-2/0 AWG", 1, "ea", 39.99,
         OK, "one-time; this is what replaces soldering XT150s", tool=True)
     add("10b Drivetrain", "Adhesive-lined heat shrink 3:1, 400 pc kit", 1,
