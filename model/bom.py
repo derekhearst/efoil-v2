@@ -112,10 +112,9 @@ def build():
     # month and let the layups follow the weather afterwards - the machine
     # work and the wet work do not have to be in the same season, and given a
     # Boise winter they should not be.
-    add("1  Core and shaping", "Makerspace month pass", 1, "mo", 150.00, OK,
-        "their quoted rate. Only ONE part still truly wants a CNC - the EPS "
-        "core - but the pass covers the lids and templates too",
-        tool=True)
+    # NO LINE HERE. There was already a "Maker Shop Boise Basic month" at
+    # $150 further down, and I added this as a second one - so the pass was
+    # billed TWICE for four commits. The surviving line is the original.
     add("1  Core and shaping",
         "EPS rigid foam 2in x 48in x 8ft (HD 202532856)",
         # 2 * N, not 1.5 * N. FOUR layers a board, not three: three is 152.4
@@ -144,7 +143,11 @@ def build():
     # month. Their page says month-to-month, so it should cancel cleanly -
     # worth confirming when you ask about the bed size.
     add("1  Core and shaping", "Maker Shop Boise Basic month",
-        1, "month", 150.00, OK, "month-to-month; confirm it cancels cleanly", tool=True)
+        1, "month", 150.00, OK,
+        "month-to-month; confirm it cancels cleanly. Only ONE part truly "
+        "wants a CNC - the EPS core - but the pass covers the lids and the "
+        "MDF gauges too, so cut everything inside the 30 days and let the "
+        "layups follow the weather afterwards", tool=True)
 
     # ---------------------------------------------------- 2 G10: NONE
     # There is no G10 on this board any more. It went in three steps:
@@ -973,6 +976,102 @@ def render(rows):
     return "\n".join(out) + "\n"
 
 
+# --- where each line is actually bought -------------------------------------
+# The BOM says WHAT and HOW MUCH. This says WHERE, which is the part you need
+# with a card in your hand. Keyed on words already in the item/note so it
+# cannot drift out of step with the lines themselves.
+VENDORS = [
+    ("Fiberglass Supply", "https://fiberglasssupply.com", (
+        "divinycell", "h-80", "h-100", "l18-", "l20-")),
+    ("Fibre Glast", "https://www.fibreglast.com", (
+        "breather", "peel ply", "vac bag film", "bagging", "1708", "e-glass",
+        "release wax", "release film", "chip brush", "laminating roller",
+        "vr20", "vacuum gauge", "sealant tape", "vacuum regulator")),
+    ("Speedy Metals", "https://www.speedymetals.com/p-2411-12-6061-t651-"
+                      "aluminum-plate.aspx", ("6061",)),
+    ("TotalBoat", "https://www.totalboat.com", ("totalboat",)),
+    ("Flipsky", "https://flipsky.net", ("flipsky",)),
+    ("Gong", "https://www.gong-galaxy.com", ("gong",)),
+    ("BatteryHookup", "https://batteryhookup.com", ("bak n21700", "batteryhookup")),
+    ("Battery International", "https://batteryint.com", ("daly", "batteryint")),
+    ("Maker Shop Boise", "", ("makerspace", "maker shop")),
+    ("Home Depot / hardware", "https://www.homedepot.com", (
+        "hd ", "eps rigid", "mdf", "sawhorse", "rosin", "pipe lagging",
+        "acetone", "plastic sheeting", "gorilla", "pl300", "spray adhesive",
+        "sacrificial", "dowel pin", "sanding block", "longboard", "abrasive",
+        "paste wax", "masking", "respirator", "glove", "cutter", "tap set",
+        "tap ", "drill", "torque wrench", "thermometer", "beads", "shim")),
+    ("Amazon", "https://www.amazon.com", (
+        "asin", "amazon", "b0", "gebildet", "apiele", "vecotools", "morningro",
+        "cesfonjer", "sp17", "torrami", "suidi", "overture", "silica gel",
+        "heat-set", "penny washer", "hex nut", "socket cap", "thermal pad",
+        "webbing", "leash", "carry handle", "asa filament", "petg", "nickel",
+        "heat shrink", "kapton", "awg", "fuse", "crimper", "traction",
+        "cable tie", "vent plug", "silicone cord", "silicone adhesive",
+        "silicone grease", "cyanoacrylate", "bullet", "eva ", "alarm",
+        "solder", "dielectric", "fish tape", "loctite", "roll pin",
+        "threaded rod", "lug", "charger", "button", "spacer bracket",
+        "neoprene", "conduit", "gland", "rotary-tool", "collet")),
+    ("Sika / marine supplier", "https://usa.sika.com", ("sikaflex", "sika primer")),
+    ("3M / auto parts", "", ("3m ", "4200", "550fc", "tef-gel", "duralac", "dp460")),
+]
+# anything left that is plainly a fastener or a shop consumable
+FASTENER_HINTS = ("a4", "nyloc", "washer", "insert", "stud", "busbar",
+                  "sealant", "tubing", "test cap", "ball nose", "single-flute")
+NOT_A_PURCHASE = ("sales tax", "shipping")
+
+
+def vendor_of(r):
+    t = (r["item"] + " " + (r.get("note") or "")).lower()
+    if any(k in t for k in NOT_A_PURCHASE):
+        return "Not a purchase - tax and freight", ""
+    for name, url, keys in VENDORS:
+        if any(k in t for k in keys):
+            return name, url
+    if any(k in t for k in FASTENER_HINTS):
+        return "Fasteners / shop consumables", ""
+    return "NOT SOURCED YET", ""
+
+
+def shopping(rows):
+    out = ["# Shopping list", "",
+           "Generated by `model/bom.py` - do not edit by hand.", "",
+           "Grouped by where you buy it rather than by what it does, because "
+           "that is the order you actually place orders in. Quantities are for "
+           "**" + str(N) + " boards**.", ""]
+    buckets = {}
+    for r in rows:
+        if r["ext"] <= 0:
+            continue
+        v, u = vendor_of(r)
+        buckets.setdefault((v, u), []).append(r)
+    order = sorted(buckets, key=lambda k: -sum(r["ext"] for r in buckets[k]))
+    out.append("| Supplier | Lines | $ |")
+    out.append("|---|---:|---:|")
+    for k in order:
+        out.append("| " + k[0] + " | " + str(len(buckets[k])) + " | $"
+                   + format(sum(r["ext"] for r in buckets[k]), ",.2f") + " |")
+    out.append("| **TOTAL** | | **$"
+               + format(sum(r["ext"] for r in rows), ",.2f") + "** |")
+    out.append("")
+    for name, url in order:
+        out.append("## " + name)
+        if url:
+            out.append("")
+            out.append(url)
+        out.append("")
+        out.append("| Item | Qty | Unit | Ext | Price | Note |")
+        out.append("|---|---:|---|---:|---|---|")
+        for r in sorted(buckets[(name, url)], key=lambda r: -r["ext"]):
+            out.append("| " + r["item"] + " | " + str(r["qty"]) + " | "
+                       + r["unit"] + " | $" + format(r["ext"], ",.2f") + " | "
+                       + ("**verified**" if r["conf"] == OK else "estimate")
+                       + " | " + (r.get("note") or "").replace("|", "/")[:110]
+                       + " |")
+        out.append("")
+    return chr(10).join(out) + chr(10)
+
+
 def tooling(rows, tot):
     """(tooling incl. its share of sales tax, marginal cost of one board)."""
     ex = sum(r["ext"] for r in rows if r["tool"])
@@ -985,6 +1084,8 @@ if __name__ == "__main__":
     md = render(rows)
     path = os.path.join(os.path.dirname(HERE), "docs", "bom.md")
     open(path, "w", encoding="utf-8").write(md)
+    spath = os.path.join(os.path.dirname(HERE), "docs", "shopping.md")
+    open(spath, "w", encoding="utf-8").write(shopping(rows))
     tot = sum(r["ext"] for r in rows)
     ver = sum(r["ext"] for r in rows if r["conf"] == OK)
     print("BOM  " + str(len(rows)) + " line items, " + str(N) + " boards")
@@ -1003,3 +1104,4 @@ if __name__ == "__main__":
           + "   <- what board 3 costs")
     print("  verified " + format(100 * ver / tot, ".0f") + "% of spend")
     print("wrote " + path)
+    print("wrote " + spath)

@@ -8,11 +8,10 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 
 | Item | Qty | Unit | Unit $ | Ext $ | | Note |
 |---|---:|---|---:|---:|---|---|
-| Makerspace month pass | 1 | mo | $150.00 | $150.00 | verified | their quoted rate. Only ONE part still truly wants a CNC - the EPS core - but the pass covers the lids and templates too |
 | EPS rigid foam 2in x 48in x 8ft (HD 202532856) | 4 | sheet | $27.68 | $110.72 | verified | HD Meridian, 30 in stock, aisle 29 bay 020; $23.53 at 32+. EPS, not the XPS V1 used - deliberate, ~$90 cheaper across both boards, and the shear it gives up is covered by H-80 at the hardpoints. See the note at RHO_EPS in blender_board.py |
 | PL300 / Gorilla Glue, layer glue-up | 2 | tube | $8.00 | $16.00 | estimate |  |
-| Maker Shop Boise Basic month | 1 | month | $150.00 | $150.00 | verified | month-to-month; confirm it cancels cleanly |
-| **subtotal** | | | | **$426.72** | | |
+| Maker Shop Boise Basic month | 1 | month | $150.00 | $150.00 | verified | month-to-month; confirm it cancels cleanly. Only ONE part truly wants a CNC - the EPS core - but the pass covers the lids and the MDF gauges too, so cut everything inside the 30 days and let the layups follow the weather afterwards |
+| **subtotal** | | | | **$276.72** | | |
 
 ## 2b Aluminium
 
@@ -239,31 +238,30 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | Item | Qty | Unit | Unit $ | Ext $ | | Note |
 |---|---:|---|---:|---:|---|---|
 | Shipping - G10, Divinycell, epoxy hazmat | 1 | allow | $220.00 | $220.00 | estimate | heavy and hazmat lines |
-| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $458.25 | $458.25 | verified |  |
-| **subtotal** | | | | **$678.25** | | |
+| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $449.25 | $449.25 | verified |  |
+| **subtotal** | | | | **$669.25** | | |
 
 ## Totals
 
 | | |
 |---|---:|
-| **Grand total, 2 boards** | **$8,095.82** |
-| Per board | $4,047.91 |
-| Of which verified | $6,308.23  (78%) |
+| **Grand total, 2 boards** | **$7,936.82** |
+| Per board | $3,968.41 |
+| Of which verified | $6,149.23  (77%) |
 | Of which estimated | $1,787.59 |
 
 ## What is a board, and what is a shop
 
-Some of the total above is not the cost of a board at all - it is tools, jigs and templates that exist afterwards and do not repeat. Splitting them out is the difference between "a board costs $4,048" and "a board costs $3,595 and I now own a vacuum rig, a crimper and a full template set".
+Some of the total above is not the cost of a board at all - it is tools, jigs and templates that exist afterwards and do not repeat. Splitting them out is the difference between "a board costs $3,968" and "a board costs $3,595 and I now own a vacuum rig, a crimper and a full template set".
 
 | | |
 |---|---:|
-| One-time tooling (incl. its share of tax) | $906.71 |
+| One-time tooling (incl. its share of tax) | $747.71 |
 | **Marginal cost of a board** | **$3,594.55** |
 | Cost of the NEXT board after these 2 | $3,594.55 |
 
 | One-time item | $ |
 |---|---:|
-| Makerspace month pass | $150.00 |
 | Maker Shop Boise Basic month | $150.00 |
 | VECOTOOLS 4.5 CFM single-stage pump, oil incl. | $57.99 |
 | VR20 vacuum regulator | $52.00 |
