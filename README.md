@@ -71,18 +71,19 @@ redistribute).
 
 ## V2 documentation
 
-These describe the board being built. Start here.
+Four documents, three of them generated. Start with the build guide.
 
 | Doc | What it covers |
 |---|---|
-| [fabrication.md](docs/fabrication.md) | How the core gets made: the CNC envelope, the two splits and why each exists, machining sequence, workholding, bagging, the winter schedule |
+| **[fabrication.md](docs/fabrication.md)** | **The build guide.** Every step in order, what blocks on what, what runs in parallel, and the exact BOM lines each step consumes |
 | [cut-list.md](cnc/cut-list.md) | *Generated.* Every flat part, the four core pieces, the milling table, and the deck-pad cutting pattern |
 | [bom.md](docs/bom.md) | *Generated.* Every line, linked to the listing its price came from, with per-line confidence |
 | [shopping.md](docs/shopping.md) | *Generated.* The same spend grouped by supplier — the order you actually place orders in |
-| [materials-and-pricing.md](docs/materials-and-pricing.md) | What each material is and why it was chosen over the alternative |
-| [colour-key.md](docs/colour-key.md) | What every colour in the model means |
 | [shape-research.md](docs/shape-research.md) | Traced production boards and the shape law fitted from them |
-| [v2-powertrain-options.md](docs/v2-powertrain-options.md) | Motor / ESC / BMS options, against V1's measured numbers |
+
+The build guide quotes BOM item names verbatim, and
+`python model/check_build_guide.py` verifies every one still exists. 124 of
+127 purchasable lines are claimed by a step; the rest are contingency tools.
 
 ---
 
@@ -174,3 +175,4 @@ Numbering skips 5 and 6 — those were never written.
 | `model/price_check.py` | Re-checks BOM prices against recorded sources |
 | `model/trace_reference.py` | Extracts planform, thickness and rocker from manufacturer orthos |
 | `model/links.py` | *Generated.* item → (ASIN or URL, price, title) for every sourced line |
+| `model/check_build_guide.py` | Verifies the build guide's BOM references still resolve |

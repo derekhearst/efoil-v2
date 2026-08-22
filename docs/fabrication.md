@@ -1,611 +1,531 @@
-# Fabrication plan — how this board actually gets made
+# Build guide — every step, in order
 
-Written for someone who has **never run a CNC**. The honest summary first, then
-the sequence, then the parts of it that will bite.
+How this board actually gets made, start to finish. Each step says what you
+do, what it needs finished first, and **exactly which BOM lines it consumes**.
 
----
+- **Uses:** lines quote BOM item names verbatim. `model/check_build_guide.py`
+  verifies every one still exists, so this file cannot quietly drift from
+  [bom.md](bom.md) the way the old colour key drifted from the model.
+- **Blocks on:** what must be done first. Anything with no blocker can start
+  today.
+- Step numbers are stable. Add with letters (`4a`) rather than renumbering.
 
-## The honest assessment
-
-Machining a board core is not a beginner CNC job. But it splits into two very
-different halves, and only one of them is hard:
-
-| | Difficulty |
-|---|---|
-| **Running the machine** | Low. Maker Shop includes free tool training, and foam cuts with almost no force — you cannot break a cutter or crash hard enough to hurt the machine. |
-| **CAM — generating the toolpaths** | This is the real work. Two-sided 3D surfacing with flip registration is an intermediate job, and it is done at a computer before you ever touch the machine. |
-
-You are not learning to *cut*. You are learning to *program a cut*. Budget your
-effort accordingly.
-
-**Everything internal to this board is 2D.** The cavity, the rebate, the mast
-pocket, the handle pockets, the leash pad — all of them are prismatic shapes
-that a router and a template can make. Only the **outside of the hull** genuinely
-needs 3D machining. If the CNC falls through entirely, the board is still
-buildable; it just gets hand-shaped like V1 was.
+Two boards are being built. Almost everything below is "×2" — the exceptions
+are the shop kit, which is bought once, and the CNC session, which does both
+cores in one booking.
 
 ---
 
-## The finding that changes the whole sequence
+## The shape of the job
 
-**Do not machine the cavity into a glued-up blank.**
+Three chains run in parallel and only meet at the end. **Start all three on
+day one** — the board chain is the long one, and the other two are pure
+waiting if you leave them late.
 
-| Feature | Reach below the deck |
-|---|---|
-| Rim rebate / ledge | 27.0 mm |
-| Handle pocket floor | 29.3 mm |
-| Leash pad floor | 19.8 mm |
-| **Cavity floor** | **117.3 mm** |
+| Chain | What | Wall time | On the critical path? |
+|---|---|---|---|
+| **A — Board** | core → laminate → fair → paint | ~8 weekends | **Yes.** Everything else waits on it |
+| **B — Printing** | rim rings, module shells, props, clamps | ~120 print hours | No, *if started first* |
+| **C — Pack** | cells → weld → BMS → wiring | ~2 weekends | No |
 
-A 1/2 in endmill has 25–76 mm of flute. **Nothing you can buy off a shelf
-reaches 117 mm**, and a tool that long in foam would deflect and chatter anyway.
+The two things that will actually delay you are **not** in the shop:
 
-The core is three glued layers of 2 in (50.8 mm) EPS. Cut the cavity **before**
-glue-up and the problem evaporates:
+1. **The foil ships from France** and US customs arrives *after* delivery as a
+   courier invoice. Order it first.
+2. **The makerspace has not confirmed it allows EPS.** If the answer is no,
+   step 4 changes completely — see [Appendix C](#appendix-c--if-the-cnc-falls-through).
 
-| Layer | z | What it needs |
+---
+
+# Phase 0 — Before anything
+
+### Step 1. Order the long-lead items
+
+Everything else can wait a week. These cannot.
+
+**Uses:** `Gong Foil Setup X-Over V3 Atmo Perf Series - XL, Alu 85` ·
+`Gong shipping to Idaho, ONE order, both foils` ·
+`BAK N21700CG-50, 130-cell case (BatteryHookup)` ·
+`BAK N21700CG-50 singles, spares` ·
+`Flipsky 65161 120KV motor` · `Flipsky 75200 Pro V2 ESC` ·
+`Flipsky VX3 remote` · `DALY Smart BMS Li-ion 16S 60V 150A`
+
+Both foils go in **one** Gong order — shipping is charged per order, not per
+foil. Budget for import duty separately; it is not quoted at checkout.
+
+### Step 2. Phone the makerspace — do not email
+
+Email got no reply twice. **(208) 254-6151.** Ask, in this order:
+
+1. **Will you allow EPS foam on the CNC?** Mess, static, clogs extraction.
+   This one can stop the plan.
+2. What is the clearance under the gantry? The split sequence needs ~110 mm,
+   so this is now a nice-to-know rather than a blocker.
+3. Which CAM do you use, and can I bring my own toolpaths?
+
+**Uses:** `Maker Shop Boise Basic month`
+
+Basic is **8 shop visits a month, not unlimited** — a budget, not a door key.
+Unlimited is $250, a day pass $99. Month-to-month, 10 days notice to cancel.
+
+### Step 3. Start the printers, and do not stop them
+
+~120 hours of printing. Start now and it is never the thing you are waiting
+for; start in week six and it is the only thing you are waiting for.
+
+**Uses:** `ASA filament, printed rim ring` · `ASA filament, printed module shell` ·
+`PETG filament 1 kg, mast clamp set` · `PETG for props, 4-5 spares per board` ·
+`M5 A4 hex nut DIN934, 50 pk - CAPTIVE in the ring` ·
+`M5 penny washer O15 DIN9021, 150 pk`
+
+Print order, longest first: module shells → rim rings → props → clamps.
+
+**The rim ring prints seal-face DOWN.** The bed is flatter than any top
+surface, and that face is the sealing land. **Pause at Z = 6.0 mm**, drop 12
+M5 nuts and their washers into the pockets, resume. Get this wrong and the
+hatch has no threads.
+
+---
+
+# Phase 1 — The core
+
+### Step 4. Glue up two sub-stacks per board
+
+Not one stack. **Four EPS layers become two 2-layer slabs**, because the
+glued 4-layer stack is 203.2 mm and the gantry is 149.9 mm.
+
+**Blocks on:** —
+**Uses:** `EPS rigid foam 2in x 48in x 8ft (HD 202532856)` ·
+`PL300 / Gorilla Glue, layer glue-up`
+
+Four sheets cover both boards. Cut layers oversize to ~1420 × 580 — two nest
+per 1219 × 2438 sheet. Glue **layers 1+2** and **layers 3+4** as separate
+slabs, 101.6 mm each. Keep both faces flat; they are the machining datum.
+
+> Four layers, not three. Three is 152.4 mm against a 166.8 mm envelope,
+> because the rocker adds ~10 mm the old three-sheet figure never counted.
+
+### Step 5. Machine the core — one booking, both boards
+
+**Blocks on:** steps 2, 4
+**Uses:** `1/2 in O-flute up-spiral, foam roughing` · `1/2 in ball nose, finishing pass` ·
+`3M Fastbond 1077 water-based, CNC hold-down` · `Sacrificial MDF, CNC spoilboard` ·
+`Dowel pins + drill, two-sided registration`
+
+**Five setups, one flip, no cradle.** The full table is in
+[cut-list.md](../cnc/cut-list.md); the short version:
+
+| Piece | Setups | Cut |
 |---|---|---|
-| 1 (bottom) | 0 – 50.8 | cavity floor pocket, **20.8 mm deep** |
-| 2 (middle) | 50.8 – 101.6 | cavity outline, **through-cut** |
-| 3 (top) | 101.6 – 152.4 | cavity outline through-cut; rebate 32.1 mm; handles 34.4 mm; leash 25.0 mm |
+| `Aft_Lower` | 2 | cavity lower half (top); rocker + mast pocket (bottom) — **the flip** |
+| `Aft_Upper` | 1 | deck crown, cavity through, rim ledge, leash pocket |
+| `Fwd_Lower` | 1 | rocker |
+| `Fwd_Upper` | 1 | deck crown |
 
-Nothing deeper than **34.4 mm**. All of it reachable with a standard 1/2 in
-cutter.
+Every setup beds on a flat face, so **tape or vacuum down — never clamp from
+the edges**, there is only 24.8 mm a side.
 
-The deck sits at z = 147.3 and layer 3 tops out at 152.4, so there is only
-**5.1 mm of stock to surface off the deck** — the layer stack was already
-almost the right thickness.
+> **CUTTER REACH — settle this before you book.** The deepest pocket is the
+> cavity's lower half at **71.6 mm**. The O-flute above has a *cutting* length
+> of **31.8 mm** — that is flute, not overall — so it is **39.8 mm short and
+> cannot reach the floor.** Buy a long-reach ½ in spiral with 75 mm+ of
+> flute, or rough that pocket with the ball nose. Do not discover this with
+> the foam taped down.
 
----
+Water-based adhesive only. **Super 77 is solvent-based and dissolves EPS.**
 
-## The good news: no undercuts
+### Step 6. Bond the core solid
 
-Checked at 21 stations. The rail's widest point is the parting line — above it
-the surface is reachable from straight above, below it from straight below, and
-the half-width is **monotonic in both directions at every station**.
+**Blocks on:** step 5
+**Uses:** `PL300 / Gorilla Glue, layer glue-up`
 
-That means the hull is a clean **two-sided 3-axis part**. No 4th axis, no
-tilted fixtures, no unreachable geometry. The parting line is not at a constant
-height (11.5 mm at the tail, 23.6 mm mid-board, 137.5 mm at the nose) but that
-does not matter — it only matters that nothing overhangs.
+Mid-plane first — Lower to Upper, each side of the seam — which gives two
+full-thickness halves you can handle on a bench. Then butt those at the
+vertical seam (1030 mm). Dowel pins keep the halves registered.
 
----
+### Step 7. Fit the hardpoints
 
-## Envelope
+**Blocks on:** step 6
+**Uses:** `Divinycell H-80 3/4in quarter sheet 24x48, mast block + leash pad` ·
+`6061-T651 1/2in x 12 x 18 - mast plates` · `M8 x 1.25 tap + 6.8 mm drill set` ·
+`M8 x 1.25 BOTTOMING tap, 4-flute`
 
-Confirmed from Maker Shop's own site: **Axiom AR8 Pro V5, work area
-24 × 47.63 × 5.9 in = 609.6 × 1209.8 × 149.9 mm.** The 1219 figure this
-section used to quote was a round "48 inches" and was 9 mm optimistic.
+The CNC already cut the pockets. Bond the H-80 mast block and leash pad in,
+flush.
 
-| | Needs | |
-|---|---|---|
-| Longer core half (seam at x=1030) | 1030 × 560 | fits, 180 mm spare in X |
-| Shorter core half | 370 × 560 | fits |
-| Rebate footprint | 591 × 386 | fits easily |
-| Whole board in one piece | 1400 × 560 | **no** — hence the seam |
+**The mast plate needs no machine — the Gong plate is the jig.** Clamp the
+real foil plate to the 6061, spot through its holes, drill 6.8, tap M8. The
+bottoming tap is the one that matters: blind at 10 mm in a 12.7 plate, and
+the taper tap in the set cannot reach. Both plates nest on one 12 × 18 sheet.
 
-`SEAM_X = 1030` exists precisely so both halves clear the bed. **Y is the tight
-axis**: 560 mm in a 609.6 mm bed leaves 24.8 mm each side, which is fine for
-tape-down but leaves no room for clamps beside the part.
-
-### The Z problem, and why the answer is to bond last
-
-The height that has to pass under the gantry was never the 163.8 mm finished
-envelope. It is the **203.2 mm glued stack** — four 50.8 mm layers, before a
-single chip is cut. Against 149.9 mm of quoted Z, that is not a near miss and
-no amount of phoning will make it fit.
-
-| | mm | vs 149.9 |
-|---|---|---|
-| Glue the full stack, then machine | 203.2 | **no** |
-| Machine two half-stacks, bond last | 101.6 | yes, comfortably |
-
-**So bond last.** Machine the two outer surfaces on two half-stacks and join
-them at the end, instead of gluing everything and then carving it:
-
-| | layers | what gets cut |
-|---|---|---|
-| Sub-stack **A** | 1 + 2 | rocker and mast pocket on the underside; **lower** half of the cavity into the top face |
-| Sub-stack **B** | 3 + 4 | deck crown on the top face; **upper** half of the cavity cut straight through |
-| Then | — | bond A to B on the flat mid-plane. No outer surface is touched again |
-
-Nothing goes under the gantry taller than 101.6 mm plus the fixture. That
-changes the question from *"is there 164 mm of clearance?"* — improbable on a
-6-inch-class router — to *"is there 110 mm?"*, which is close to certain. It
-turns a phone call that could sink the plan into one that merely confirms it.
-
-Two things fall out for free:
-
-- **Tool reach.** The cavity floor is 123.8 mm below the deck. Plunging that
-  from a full stack wants a ~130 mm cutter, which does not exist in ½ in for
-  foam at sane money. Split, the deepest single pocket is about 77 mm.
-- The 203 mm stack stops being an awkward thing to lift, clamp and square up.
-
-The cost is one full-area glue line at mid-thickness, in EPS, where the skins
-carry the load — and the board already has three such lines between its four
-layers. This just promotes one of them to the assembly joint. Alignment is the
-dowel-pin fixture already in the BOM for two-sided registration.
-
-**Still worth asking on the phone:** the actual clearance figure. Not because
-the plan now depends on it, but because if it turns out to be generous the
-mid-plane bond could be skipped.
+Temper matters — this must say **T651**. 6061-O has about a fifth the yield,
+and this plate carries 6.3 kN.
 
 ---
 
-## Sequence
+# Phase 2 — Laminate
 
-### Before the machine
+Read [Appendix A](#appendix-a--vacuum-bagging-in-detail) before the first
+session. The whole phase is governed by one number: **20 minutes of pot life.**
 
-1. Cut **four** EPS layers per board, oversize to ~1420 × 580. Four, not
-   three: three is 152.4 mm of stack against a 163.8 mm envelope, because
-   the rocker adds ~10 mm the old figure never counted. Two layers nest
-   per 1219 × 2438 sheet, so 4 sheets covers both boards.
-2. **Cavity through-cut in layers 2 and 3.** A 2D profile through 50.8 mm.
-   Jigsaw and a template is fine; the glass and the rim ring set the finished
-   dimension, not this cut.
-3. **Layer 1: cavity floor pocket and the mast/dense-block pocket.** 2D
-   pockets, router and template.
-4. **Glue up** with alignment pins so the layers cannot creep.
-5. **Split the blank at x = 1030.**
+### Step 8. Set up the shop
 
-### On the machine, per half
+**Blocks on:** —  *(do this while the printers run)*
+**Uses:** `Folding sawhorses, pair, 700 lb` · `Pipe lagging or carpet, sawhorse padding` ·
+`Rosin paper roll, floor and bench` · `Plastic sheeting + masking tape, bench protection` ·
+`Thermometer / hygrometer, 2 pk` · `3M 60923 organic vapour / acid gas P100, pair` ·
+`Nitrile gloves 6 mil, 100 pk`
 
-6. **Op A — bottom.** Fixture deck-down on a sacrificial sheet. Surface the
-   hull bottom, finish the mast pocket.
-7. **Flip. Op B — top.** Surface the deck, cut the rebate, both handle
-   pockets, the leash pad.
+Two padded sawhorses at ~30 in, rosin paper down. Cartridges expire — buy
+them near the layup, not with the rest of the order.
 
-### After
+### Step 9. Prove the vacuum rig before it matters
 
-8. Glue the halves, fair the seam.
-9. Bond in the **printed ASA rim ring** (six dovetailed segments, acetone-welded), the **6061 mast plate**, and the handle/leash hardpoints.
-10. Glass.
-11. Rout both seal grooves off templates 14 and 15 — **after** glassing.
+**Blocks on:** step 8
+**Uses:** `VECOTOOLS 4.5 CFM single-stage pump, oil incl.` · `VR20 vacuum regulator` ·
+`Vacuum gauge, -30 inHg, 1/4 NPT, glycerin` · `Bag connector w/ ball valve, 1/4 in QD` ·
+`Vacuum hose + hose clamps` · `Vac bag film, 5 yd` · `Sealant tape, 50 ft roll`
 
----
+Bag a scrap dry, pull down, **shut the ball valve** and watch the gauge for
+30 minutes. That valve is why leak-down is a measurement and not a guess
+about whether the pump is keeping up.
 
-## Templates for everything
+**Target 5–10 inHg, never more.** EPS crushes around 150 kPa and full vacuum
+is 101 — the regulator is what stops the bag destroying the core.
 
-Nothing on this board should be hand-traced or laid out with a tape.
-`python model/templates.py` emits **14 templates** to `cnc/templates/`, all
-derived from the same parametric model as the board, so they cannot disagree
-with it.
+### Step 10. Bottom skin
 
-| | |
-|---|---|
-| `T01_planform_half` | board outline, flipped on the centreline |
-| `T02_cavity_opening` | the through-cut in layers 2 and 3, and the layer-1 floor pocket |
-| `T03_rim_rebate` | the ledge the rim ring beds into |
-| `T04_mast_block_pocket` | dense-foam block in the underside |
-| `T05_mast_plate_pocket` | plate pocket. **No longer a bushing drill guide** — the 6061 plate is tapped M8 direct, so there are no bushings to bore |
-| `T06_handle_pocket` | one template, used both sides |
-| `T07_leash_pad` | pad pocket + the FCS bore |
-| `T08_station_*` (×6) | section gauges to check the machined shape |
-| `T09_rocker_and_deck` | centreline profile, bottom and deck |
+**Blocks on:** steps 7, 9
+**Uses:** `E-glass 6 oz, 50in x 12ft, 2-pack` · `1708 biax, 50in x 10 yd roll` ·
+`TotalBoat 5:1 gallon kit, slow hardener` · `Peel ply, 60in` ·
+`Breather / bleeder cloth` · `Chip brushes 2 in, 36 pk` ·
+`Laminating bubble roller kit, 4 pc`
 
-All the router templates are **BEARING** type — cut at finished size, used with
-a flush-trim bit whose bearing rides the template edge. That deliberately
-sidesteps the guide-bushing offset, which is the one number in the whole set
-that depends on your tooling rather than on the design. Only the two seal-groove
-templates need it.
+**Both bottom layers in one session, always.** A second session onto cured
+laminate is a secondary bond that needs sanding and washing first, and buys
+nothing.
 
-Every template carries the centreline and station ticks on a `REG` layer, so it
-can only sit one way on the blank. `CHANNEL` lines are reference, never cuts.
+### Step 11. Deck skin and cavity
 
-**These are also the fallback.** If the CNC falls through, T01 plus the six
-station gauges and the rocker profile are exactly how V1 was shaped by hand.
+**Blocks on:** step 10 cured
+**Uses:** `E-glass 6 oz, 50in x 12ft, 2-pack` · `1708 biax, 50in x 10 yd roll` ·
+`TotalBoat 5:1 gallon kit, slow hardener` · `Peel ply, 60in` ·
+`Breather / bleeder cloth` · `Release wax / PVA for the cavity caul`
 
-## Workholding
+The cavity is a **concave box** — a bag bridges it like a drum skin and
+touches nothing inside. The caul does the work, not the bag: it is a male
+plug (an EPS offcut, part 13) that drops onto the wet laminate so the bag
+presses on *it*. Wax and PVA it properly; a caul bonded into a cured cavity
+is not recoverable.
 
-Foam cannot be clamped — it crushes, and there is no room beside the part
-anyway. Standard practice:
+### Step 11a. Lay up the two lids
 
-- **Sacrificial sheet** of MDF screwed to the machine bed.
-- **Spray adhesive or double-sided carpet tape** to stick the blank down.
-- Leave the blank **oversize** so the tape sits outside the finished profile.
-- Cut a **perimeter tab** the part stays attached by, and cut it free by hand.
+**Blocks on:** step 9
+**Uses:** `Divinycell H-100 1/4in quarter 21x42, hatch lid cores - 2 sheets bonded to 1/2in` ·
+`Divinycell H-80 1/4in quarter 24x48, module lid cores` ·
+`E-glass 6 oz, 50in x 12ft, 2-pack` · `TotalBoat 5:1 gallon kit, slow hardener` ·
+`Peel ply, 60in` · `Breather / bleeder cloth`
 
-Ask the shop before doing this — it puts adhesive on their spoilboard.
+Both lids are flat sandwiches — glass / foam / glass — so they bag on the
+bench and **do not need the board**. Do them alongside a hull session while
+the pump is already set up and mixed resin is going spare.
 
----
+The hatch lid core is **H-100**, and it is two ¼ in sheets bonded to ½ in
+because no ½ in H-100 is made. That grade is deliberate: you stand on this
+one. The module lid is H-80 — nobody stands on it.
 
-## Two-sided registration — the part that goes wrong
+Trim to net profile after cure (parts 02, 03, 10, 11), and face the hatch
+lid's underside flat in the same setup — it has to bottom evenly on the seal
+land.
 
-When you flip the part for Op B, the machine has no idea it moved. Get this
-wrong and the deck is offset from the bottom, and the mast pocket ends up in
-the wrong place relative to the deck.
+### Step 12. Seal every cut edge
 
-The standard fix is **dowel pins**: drill two holes through the blank *and*
-into the spoilboard during Op A, at known coordinates well outside the finished
-profile. Drop dowels in. Flip about the axis through both dowels. The part can
-only go back one way.
+**Blocks on:** step 11
+**Uses:** `TotalBoat 5:1 quart kit, fillets and bonding`
 
-Mirror the X or Y axis in CAM for the flipped op — **which one depends on which
-way you flip**, and getting it backwards machines a mirror-image board. Dry-run
-in the air first.
+Neat epoxy into groove walls, the lid perimeter, all 12 lid bores, every
+machined edge. **This is V1's leak, verbatim** — its own notes read *"cured
+laminate is NOT waterproof at a cut edge."* Water came in through unsealed
+fibre ends at the cavity ledge.
 
 ---
 
-## Tooling
+# Phase 3 — Hatch and module
 
-Foam wants the opposite of metal: large chip clearance, high feed, and a sharp
-single flute so it cuts rather than melts.
+### Step 13. Bond the rim ring in and open the groove
 
-| Op | Tool |
-|---|---|
-| Roughing | 1/2 in single-flute upcut, or a foam-specific rougher |
-| 3D finishing | 1/2 in ball nose |
-| Pockets, rebate | 1/4 or 1/2 in single-flute |
-| Cavity through-cut | anything with ≥ 51 mm of flute |
+**Blocks on:** steps 3, 11
+**Uses:** `Acetone, solvent-welding the printed joints` ·
+`Paste wax, releasing the groove filler` ·
+`Solid silicone cord, 3 mm round - BOTH seals` ·
+`Silicone adhesive, bonding the cord into groove` ·
+`Cyanoacrylate for the cord splice` · `2.5 mm straight cutter - fallback` ·
+`M5 x 25 A4 socket cap, 20 pk` ·
+`Solid silicone cord, 1/8 in (3.175 mm) - the spare size`
 
-**Do not use a downcut bit** — it packs melted foam into the cut.
+Acetone-weld the six ring segments into one ring — brushed acetone/ASA slurry
+makes it one piece of plastic, not an adhesive line. Glass over it with the
+printed filler strip in the groove, then sand the ring face flat; the filler
+shows as a line and lifts out. **Wet the opened groove with neat epoxy before
+the cord goes in** — routing leaves cut glass ends in the seal itself, the
+same wick that flooded V1.
 
-Ask the shop what they have. Do not assume; a 1/2 in ball nose long enough for
-the deck surfacing is not a given.
+Bond the cord in on a thin continuous bead. Splice on a straight run, never a
+corner.
+
+**Measure the finished groove before choosing cord.** Nominal is 2.4 mm deep,
+which the 3 mm cord squeezes 20%. If it routs deep the 3 mm only reaches 10%
+and you want the 1/8 in spare instead — that is what it is for. Guessing the
+cord before the groove exists is how you end up at 10%.
+
+### Step 14. Build the module
+
+**Blocks on:** step 3
+**Uses:** `5052 1/8in x 12 x 24, 2-pack - module floors` ·
+`Sikaflex-292 marine structural PU` · `Sika Aktivator-PRO 250 ml + daubers` ·
+`2 mm glass beads or shim wire, bond-line control` ·
+`M4 x 8 brass heat-set insert, 100 pc` · `Neoprene sheet 1/8in, module + mast gaskets` ·
+`Gebildet PG11 gland, M18x1.5, 30 pk` · `M12 IP68 membrane vent plug` ·
+`M12 IP68 momentary panel button` · `SP17 2-pin IP68 flange receptacle` ·
+`M3 heat-set insert kit, 361 pc` · `M3 x 8 A4 stainless, 10 pk`
+
+Acetone-weld the four printed L-pieces into a shell. Bond it to the 5052
+floor on a **2 mm controlled bond line** — glass beads set the gap, fillet
+both sides. It must be flexible PU, not epoxy: ASA and aluminium differ by
+66 µm/m·K, which is 0.60 mm of movement from the centre over 40 °C. A rigid
+line sees 299% shear strain and tears itself apart.
+
+Heat-set the lid inserts into the printed flange. The M3 kit's screws are
+plain steel — use the A4 ones for the port flange, which lives in the wet.
+
+### Step 15. Leak-test the module empty
+
+**Blocks on:** step 14
+**Uses:** `Test cap + tubing, module leak test`
+
+**Prove it before the cells go in.** Seal it empty, pull 5 inHg, shut the
+pump off, watch the gauge 30 minutes — porosity reads as a slow bleed. Then
+do it **submerged**: under vacuum any path pulls water *in* and shows you
+exactly where. V1 found its leaks by riding.
 
 ---
 
-## Vacuum bagging — the actual session
+# Phase 4 — Pack and electronics
 
-### Somewhere to work — and the bed matters more than the stand
+Runs entirely in parallel with Phases 1–3.
 
-V1 was glassed on a blue tarp over a table. Two things are wrong with that, and
-they are separate problems.
+### Step 16. Build the pack
 
-**The tarp.** It does not absorb, so drips pool, stay wet, and get walked
-through everything; and it is slippery under a wet board. **Rosin or builder's
-paper** soaks it up and rolls into the bin. ~$24 a roll and it is the whole
-upgrade.
+**Blocks on:** step 1
+**Uses:** `BAK N21700CG-50, 130-cell case (BatteryHookup)` ·
+`BAK N21700CG-50 singles, spares` · `Pure nickel 0.2 x 10 mm, 5 m roll` ·
+`Kapton tape, pack insulation` · `PVC pack wrap, 200 mm lay-flat` ·
+`DALY Smart BMS Li-ion 16S 60V 150A` · `Silicone sealant, BMS anti-vibration dabs`
 
-**Stands — a pair of folding sawhorses, ~$35.** Proper shaping racks are
-$180–400 and DIY ones are $50–90 of lumber you then have to build. The only
-thing a rack buys that a sawhorse does not is **height** — ~30" against a
-rack's 36–40" — and that gap matters for **planing a blank**, which this build
-does not do because the core arrives machined. For wet-out and bagging,
-leaning over a bit is not the constraint.
+16S8P, 128 cells, 2,304 Wh, 9.22 kg. Confirm the BMS is **Li-ion, not
+LiFePO4** — different chemistry and pack voltage, and it is the easy wrong
+answer at a glance. Silicone dabs stop the BMS walking; V1 needed them.
 
-**Pad the tops** — pipe lagging or carpet, a few dollars. Bare sawhorse edges
-mark foam and wet laminate.
+### Step 17. Wire the module
 
-**The bagging bed — and here I was wrong, so ignore what this used to say.**
+**Blocks on:** steps 15, 16
+**Uses:** `8 AWG silicone, 10 ft red + 10 ft black` · `16 AWG silicone, 6 colours x 5 ft` ·
+`ANL 150 A fuse + holder` · `8 AWG marine ring lugs, 20 pk` ·
+`Hydraulic lug crimper, 10 ton, 12-2/0 AWG` ·
+`Adhesive-lined heat shrink 3:1, 400 pc kit` · `5.5 mm gold bullets, 20 pair` ·
+`M6 stainless stud/busbar hardware` · `Dielectric grease, terminals` ·
+`Cable ties, lacing, adhesive mounts` · `Thermal pad 1 mm non-conductive, 100 x 100` ·
+`Silica gel, indicating, 50 g per module` · `Water-ingress alarm, 2 pk`
 
-I claimed the bag presses the board into the table with 20 kN and that you
-need a conforming bed to spread it. **That is not how an envelope bag works.**
-The part is fully enclosed, so the 24 kPa acting down on the top acts equally
-*up* on the bottom. **Uniform pressure on a closed body is zero net force** —
-it consolidates the laminate from every direction and pushes the part nowhere.
+Crimped, not soldered. The thermal pad **must be non-conductive** — the ESC
+PCB face goes down onto an aluminium floor and a metal-loaded pad is a dead
+short. Put the leak alarm's sensor on the module floor in the lowest corner,
+not up on the pack.
 
-The table only ever carries the board's **weight**: ~8 kg wet, about 78 N,
-which over even 50 cm² of contact is 16 kPa against EPS's 150. Not a problem
-by three orders of magnitude.
+### Step 18. Run the mast conduit
 
-That 20 kN figure would be real for **single-sided bagging** — bag taped down
-to a table around the part, with the table acting as the pressure boundary.
-Nobody bags a rockered board that way.
+**Blocks on:** steps 7, 17
+**Uses:** `Fish tape / pull cord for the mast conduit` ·
+`IP68 M25 inline housing, 5 pk` · `EPDM/neoprene sheet 1/2in, conduit bungs` ·
+`3M 4200 FC 3 oz tube, fillet over the bung`
 
-A blanket under it is still pleasant, and it stops a stray screw head marking
-the skin. **A nicety, not a requirement.**
+Motor leads part **in the cavity**, one housing per phase — without that the
+mast is bolted on for life. Cut Ø33 bungs for the Ø32 bore, punch three Ø5
+holes, soap them through, then fillet over with 4200. **4200 not 5200** —
+5200 never comes out.
+
+---
+
+# Phase 5 — Finishing
+
+### Step 19. Fair
+
+**Blocks on:** step 12
+**Uses:** `TotalBoat TotalFair epoxy fairing compound` ·
+`Flex longboard sander, 16-1/2 x 2-3/4` · `Adjustable hand sanding block` ·
+`Longboard PSA sandpaper 80 grit, 20 yd roll` ·
+`Longboard PSA sandpaper 120-180 grit, 20 yd roll`
+
+**Flex longboard, not a rigid block.** The deck is crowned and the bottom
+rockered; a rigid block bridges the curve and cuts flats you then have to
+fair back out. 80 grit cuts fair, it does not finish.
+
+### Step 20. Prime and paint
+
+**Blocks on:** step 19
+**Uses:** `TotalBoat Premium Marine Topside Primer` ·
+`TotalBoat Wet Edge topside paint, colour` · `Wet/dry sandpaper assortment, 45 pc`
+
+Wash before any secondary bond — amine blush comes off with **water**, not
+solvent. Acetone smears it around.
+
+### Step 21. Deck pad
+
+**Blocks on:** step 20
+**Uses:** `FOCEAN EVA deck sheet 2400 x 600 x 5.8`
+
+Three pieces per board — aft of the hatch, forward of it, and one on the lid.
+One sheet does both boards. Pattern is part 15 in
+[cut-list.md](../cnc/cut-list.md).
+
+Cut **long** and trim on the board; with no seams the crown's arc excess goes
+into stretch and the trim at the rail. Peel the backing progressively from
+the centreline outward — a 5.8 mm sheet laid in one go traps air it will not
+give back.
+
+---
+
+# Phase 6 — Assembly and first water
+
+### Step 22. Fit out
+
+**Blocks on:** steps 18, 21
+**Uses:** `Kayak-style webbing carry handle, 4 pk` · `M6 x 16 A4 button head, 10 pk` ·
+`M6 heat-set insert, strap mounts` · `1 in polyester webbing 6 yd + 6 buckles` ·
+`FCS-pattern leash plug` · `Coiled ankle leash` ·
+`M4 x 12 A4 socket cap DIN912, 10 pk` · `M4 A4 washer, 316, 100 pk`
+
+Webbing is **polyester, not nylon** — nylon absorbs water and stretches, so
+what you tightened on the beach is loose on the water.
+
+### Step 23. Mount the foil and drivetrain
+
+**Blocks on:** steps 7, 22
+**Uses:** `M8 x 30 A4 mast bolts, 10 pk - spares` · `Ultra Tef-Gel, galvanic barrier` ·
+`M5 x 250 threaded rod, 4 pk (cut to ~171 mm)` · `M6 x 20 fender washer, 100 pk` ·
+`M5 nyloc nut 316, 150 pk` · `Loctite 242` · `Roll pin assortment M1.5-M6, 220 pc` ·
+`M8 nyloc nut 316, 30 pk - prop nut` · `M8 316 washer, prop nut` ·
+`1/4 in torque wrench, 10-50 in-lb`
+
+**Tef-Gel every mast bolt, every time.** Aluminium plate, A4 bolts, wet
+cavity — that is the whole galvanic mitigation and it is not optional.
+
+**Measure** the prop shaft cross-hole rather than trusting the 4 mm figure;
+that is why the roll pin line is an assortment.
+
+The torque wrench is a **calibration tool**: set the drill clutch with it,
+then use the clutch. Hatch spec is 2 Nm — 17.7 in-lb, which is *below* the
+floor of the common 20–200 in-lb wrenches, hence the 10–50 one.
+
+### Step 24. Seal, charge, and go
+
+**Blocks on:** step 23
+**Uses:** `Silicone grease for the seal cord` · `Charger 67.2 V 5 A, 16S  (NOT 58.8 V)`
+
+Grease the cord so it does not bond to the lid in storage. Confirm the
+charger is **67.2 V** — a 58.8 V charger is a 14S charger and will never fill
+this pack.
+
+First session: bag-test the module one more time, then ride it shallow.
+
+---
+
+# Appendix A — Vacuum bagging in detail
 
 ### The number that shapes everything: 20 minutes
 
-TotalBoat 5:1 with **slow** hardener has a **20-minute pot life at 75 °F**. That
-is not much time to wet out 2.51 m² of laminate, and it is the single thing
-most likely to go wrong.
+Slow hardener is 20 minutes of pot life at 75 °F. That is the entire design
+constraint on every session — how much you can mix, how much you can wet out,
+how far you can be from the bag when it starts to go off.
 
-Three things buy you time, and you want all of them:
-
-| | |
-|---|---|
-| **Work cool** | 62–68 °F. Slow hardener's minimum is 60 °F. Cooler is longer, right down to the limit |
-| **Mix small** | 300–400 g batches. Pot life is measured **in the pot**, where the exotherm feeds itself — spread thin on the cloth it lasts much longer |
-| **Get a second pair of hands** | one person wets out, one person keeps mixing |
-
-Pot life is not working time. A batch that is going off in the cup is still
-fine on the cloth. What kills you is mixing a big pot and then finding it
-warm.
+Mix in **small batches**, never one big pot. A full pot goes off in the pot.
 
 ### Building through a Boise winter
 
-This build runs autumn into spring, and that changes the hardener from a
-decision to a **daily thermometer reading**:
-
-| | Minimum temp | Notes |
+| Hardener | Minimum | Pot life |
 |---|---|---|
-| **Slow** hardener | **60 °F** | 20-min pot life at 75 °F |
-| **Fast** hardener | **40 °F** (45 to be safe) | shorter at the same temp — but in a 50 °F shop the cold hands the working time back |
+| Slow | 60 °F | 20 min @ 75 °F |
+| Fast | 40–45 °F | shorter, but the cold gives it back |
 
-**Below about 35–40 °F epoxy cannot generate enough heat to cure at all.** It
-does not go slowly — it stays soft permanently. **A cold laminate is not a slow
-laminate, it is a ruined one.** Buy both hardeners and pick on the morning.
-
-### The hot box
-
-On this schedule it is not optional. A poly-sheet tent over the bagged part
-with a thermostatic heater holds 70 °F while the garage sits at 45, and it
-fixes three separate problems:
-
-1. **The epoxy cures, and cures fully**
-2. **Sealant tape tacks.** Cold tape does not stick — that is a bag that leaks
-   at hour three, discovered too late
-3. **Amine blush**, which is much worse cold and damp, gets far milder
-
-EPS is happy to ~75 °C, so a 20 °C box is nothing to it. Leave the pump
-*outside* the tent.
-
-**Wash the blush off with water and a scotchbrite before any secondary bond.**
-Winter epoxy blushes more, and blush is the classic reason a second layer
-delaminates.
-
-### "Both bottom layers at once" — yes, and always
-
-All plies of one skin go on **wet-on-wet in a single bag cycle**: 2 × 6 oz plus
-the 1708 biax, laid straight onto each other while wet, bagged once. Never cure
-between plies of the same skin — you would be creating a secondary bond, with
-blush, where the design assumes a monolithic laminate.
-
-What you should **not** do is both *boards* in one session. That is 5 m² of
-wet-out inside a 20-minute pot life, and the second hull would be curing before
-you bagged it.
-
-**One skin, one board, one session.** Six sessions total.
+Below ~35–40 °F epoxy **cannot cure at all** — it does not go slowly, it
+stays soft forever. A cold laminate is not a slow laminate, it is a ruined
+one. **Uses:** `TotalBoat 5:1 FAST hardener 6 oz, cold days`
 
 ### Dry-run the bag before you mix anything
 
-**This is the step people skip and it is the one that saves a hull.**
+Full rehearsal: cloth dry, caul in, bag sealed, pump on, gauge watched. Every
+problem you find dry is free. Every one you find wet costs a laminate.
 
-Put the part in the bag with the breather, seal it, pull it down, set the
-regulator, and **watch the gauge for ten minutes**. Find the leaks now — with
-the pump off, a good bag should lose only a couple of inHg over several
-minutes. Chase leaks with a wetted finger along the tape line, listening.
+### The bag does not press the part onto the table
 
-You will not find leaks with epoxy going off.
+Envelope bagging puts the same pressure on every face of a closed body, so
+the **net force is zero** — it consolidates from all sides and pushes the
+part nowhere. The table only ever carries the board's weight. A blanket under
+it is a nicety, not a requirement.
 
-### Target: 5–10 inHg, and never more
+### What good looks like at de-bag
 
-The core is **EPS, and it crushes at 130–200 kPa. Full vacuum is 101.** So
-"as much as it will pull" would collapse the blank.
-
-Set the regulator to **7 inHg** and confirm it on the gauge **at the bag**, not
-at the pump. This is the whole reason there is a gauge on the list.
-
-### Sequence
-
-**Cut everything first.** Glass plies, peel ply, breather, film, tape — all to
-size, laid out in the order they go on, before any resin is mixed.
-
-1. Dry-run the bag (above). Un-bag.
-2. Mix batch one. Wet out the core, lay glass, wet through. Work in batches.
-3. **Peel ply** over the whole laminate, smoothed down. No release film — the
-   peel ply bleeds into the breather on its own.
-4. **Breather** over that, lapping past the part everywhere.
-5. Film over, sealant tape round, **through-bag connector** in — its base sits
-   on the breather inside, the threaded top clamps down through the film.
-6. Pull down **slowly**, watching the gauge. Stop at 7 inHg.
-7. **Work the bridges out.** Rail transitions and the nose are where the film
-   spans a concave corner instead of pressing into it, and a bridge is a void.
-   Pleat the film into the corners with your fingers and re-seat the tape.
-
-### Bagging the internal cavity — the caul does it, not the bag
-
-The cavity is a **concave box**, and this is the one shape vacuum bagging is
-bad at. Atmospheric pressure presses a bag *onto* convex surfaces and
-**bridges** it across concave ones — a bag laid over the cavity opening spans
-it like a drum skin and touches nothing inside. Every corner and fillet would
-cure as a void.
-
-**So the bag never goes into the cavity. A caul does.**
-
-`13_cavity_caul` is a male plug of the cavity, 0.5 mm under size per side
-(laminate plus peel ply). It drops in on top of the wet cavity laminate, and
-the bag presses on **the caul** — which presses the laminate into the floor,
-the walls and the R10 fillets. Pressure gets where a bag cannot reach.
-
-**Order for that session:**
-
-1. **Release the caul properly** — wax and PVA, or packing tape over the whole
-   plug. A caul bonded into a cured cavity is not recoverable, and you would be
-   digging MDF out of a finished board
-2. Break the caul's own edges to the cavity's R10, or it will not seat
-3. Wet out the cavity laminate, working the fillets with a brush — stipple,
-   don't drag
-4. Peel ply into the cavity, pressed into the corners
-5. Caul in, firmly
-6. Breather and film over the whole board as normal
-7. Pull down. The caul takes the load
-
-The caul also **supports the deck skin** across the opening during the same
-cycle, which is the other thing that would otherwise bridge.
-
-### How long the pump runs
-
-**Until the resin has gelled hard — not until it looks set.**
-
-Practically: **run it overnight, 8–12 hours.** De-bag in the morning. The rule
-underneath that is *hold vacuum past gel*, because a laminate released while
-the resin can still move will spring back and reopen the voids you just spent
-the session closing.
-
-Once the bag is sealed the pump is barely working — with a sound bag it will
-idle, and on a small pump it would cycle a couple of seconds every 10–20
-minutes. Leaving a 4.5 CFM pump running overnight is well within its duty.
-
-**Do not sand or recoat for 24 hours** minimum, longer if it is cool. Full cure
-is 1–4 days at 75 °F.
-
-### What "good" looks like at de-bag
-
-- Peel ply comes off dry-ish and takes a fuzzy print with it — that is the
-  surface you want for the next bond, and **do not sand it smooth**
-- Breather is stiff with resin in places. Normal, and more so without release
-  film
-- No shiny patches. A shiny area is a place the bag bridged and never pressed
-
-### If it goes wrong mid-cure
-
-A bag that fails at hour one is recoverable — re-tape and pull back down. A bag
-that fails at hour four is not; the resin has moved. **Which is exactly why the
-pump was worth $58 rather than doing this by hand.**
-
-## What to learn, in order
-
-1. **Ask Maker Shop which CAM they use.** Axiom machines commonly ship with
-   Vectric VCarve, which handles 3D roughing and finishing from an STL and is
-   the easiest path here. Fusion 360 is free for personal use and more capable
-   but steeper. Whichever it is, that is the software to learn — and it is the
-   only real prerequisite.
-2. **Take their tool training.** It is included with membership.
-3. **Cut a test piece.** Take one of the 1:12 miniature STLs from `print/`,
-   scale it, and machine it in a scrap of the same EPS. It exercises the whole
-   chain — CAM, workholding, two-sided flip, tool choice — for the cost of an
-   offcut. **Do this before you cut a real core.**
-4. Then cut the shorter core half first (370 mm). If it goes wrong you have
-   wasted the cheap end.
+Even, dull peel-ply texture. No shiny patches (resin-rich), no white ones
+(dry). Breather uniformly stained, not soaked in one corner.
 
 ---
 
-## If the CNC falls through
+# Appendix B — Machine envelope and workholding
 
-**It very nearly does not matter any more.** Of the ten parts on the cut list,
-**none strictly needs a 3-axis CNC**:
+Maker Shop runs an **Axiom AR8 Pro V5: 609.6 × 1209.8 × 149.9 mm.**
 
-| Part | What it actually takes |
-|---|---|
-| Rim ring, module shell | **printed** — no machine at all |
-| Module floor (461 × 302 5052) | a rectangle. Jigsaw and deburr |
-| Mast plate (250 × 175 ½" 6061) | a rectangle and four tapped holes. Bandsaw + drill press |
-| Handle strips (150 × 22) | same, off the mast plate offcut |
-| Hatch and module lids | bagged flat oversize, then trimmed to a **template** |
-| Lid cores, caul, groove guide | jigsaw, knife, router table |
+| | Needs | |
+|---|---|---|
+| Longer core half | 1030 × 560 | fits, 180 mm spare |
+| Shorter core half | 370 × 560 | fits |
+| Whole board in one piece | 1400 × 560 | **no** — hence the vertical seam |
+| Glued 4-layer stack | 203.2 tall | **no** — hence the horizontal split |
 
-That leaves **exactly one part that wants a CNC: the EPS core.** Everything
-else moved off the machine when the G10 did.
+**Y is the tight axis:** 560 mm in a 609.6 mm bed leaves 24.8 mm a side. Fine
+for tape-down, no room for clamps.
 
-### The mast plate does not need a machine — and the Gong plate is the jig
-
-This is the part where hole position actually matters: the four M8s have to
-line up with the Gong top plate or the mast will not bolt on. The model
-carries `BOLT_SPACING_X = 165` marked **UNVERIFIED**.
-
-**Do not measure it. Copy it.** Clamp the real Gong top plate to the 6061 and
-**spot through its own holes**. The pattern is then correct by construction,
-the unverified number stops mattering, and no CNC was involved.
-
-The rest is drill-press work:
-
-1. Bandsaw or jigsaw the 250 × 175 rectangle from ½" 6061, file the edges
-2. Clamp the Gong plate on, spot the four positions through it
-3. Drill **Ø6.8 to 10 mm depth** with the depth stop set — blind, leaving
-   2.7 mm of solid aluminium so the plate stays watertight
-4. Taper tap, then **bottoming tap**, M8 × 1.25
-5. Cut the pocket in the foam to the plate you actually made, not to the
-   drawing — template T05 registers off the plate, so make the plate first
-
-### Four ways to get the core cut
-
-
-
-1. **Hand shape it.** V1 was shaped this way — box cutter, surform, orbital
-   sander — and it worked. This repo emits **13 station gauges at 100 mm
-   centres** plus a rocker/deck profile specifically so this is possible. It
-   is slow, not risky.
-2. **Hot wire.** Gustav's method, referenced in V1's notes: nichrome against
-   1:1 templates. Cleaner than hand tools on long runs.
-3. **A surfboard shaping service.** The right *class* of machine — dedicated
-   blank-shaping CNCs cut EPS board cores all day and take files rather than
-   drawings. Real ones that mail order: [Greenlight Surf
-   Co.](https://greenlightsurfsupply.com/products/aku-shaper-custom-file),
-   [Marko Foam Blanks](https://markofoamblanks.com/pages/cnc-cuts), [Eco Surf
-   Supply](https://ecosurfsupply.com/CNC-Preshape/), [Kona Surf
-   Co.](https://www.konasurfco.com/cnc-surfboard-shaping-services). They want
-   Shape3D, AkuShaper or BoardCAD format; Eco Surf will make the file for you.
-
-   **Two things to settle before sending anything.** First, **stock size**:
-   this board is 1400 × 600 × 164, and while the length is ordinary the
-   **600 wide and 164 thick is SUP territory or past it** — ask what they can
-   actually get a blank out of. Second, **a shaping machine cuts the outside
-   only**. The cavity, rim rebate, mast pocket and conduit are not surfboard
-   features and no shaping service will cut them.
-
-   That second point is really the answer to the whole problem: **split the
-   job.** Outer shape to a service or to hand tools, where a millimetre does
-   not matter; internal features off router templates T02–T07, where it does.
-   The templates already exist for exactly this, and the precision ends up
-   where it is needed instead of spread across a machine you had to find.
-4. **Any big flat-bed router.** Sign shops, cabinet shops, boat builders. The
-   bed needs 1030 × 560 and the material is foam — this is an easy job for
-   anyone with the table, and a much easier ask than it was when it involved
-   G10 dust.
-
-### Cost, now that the month pass is known
-
-| Route | Cost | Notes |
-|---|---:|---|
-| **Makerspace month pass** | **$150** + $111 EPS = **$261** | covers cores *and* lids *and* templates |
-| Shaping service | ~$360–500 for two | blanks included, but outer shape only |
-| Hand shape | $111 EPS | 13 station gauges are cut for it |
-
-The month pass wins, and it is the only route that also covers **trimming the
-four sandwich lids and cutting the 21 MDF templates** rather than just the
-cores.
-
-**What a month pass really buys is a deadline.** Everything that touches the
-machine has to happen inside those 30 days:
-
-- 4 core halves (two boards, 1030 + 370 each)
-- 2 hatch lids and 2 module lids, trimmed from bagged panels
-- the cavity caul and the groove guide
-- 21 MDF templates
-
-**Cut all of it in the month, then let the layups follow the weather.** The
-machine work and the wet work do not have to be in the same season — and given
-a Boise winter and a 60 °F floor for slow hardener, they should not be. Machine
-in the pass, glass in the spring.
-
-That also means the lid panels have to be **bagged before the pass starts**,
-since they get trimmed on the machine. Plan that one backwards.
-
-### On the makerspace specifically
-
-Email is the wrong channel for a small shop. **Phone, or turn up.** Maker Shop
-Boise: **(208) 254-6151.** The three questions that actually matter are now
-much shorter than they were:
-
-1. ~~Is the bed at least 1030 × 560?~~ **Answered: 609.6 × 1209.8 mm.** Fits.
-2. **How much clearance is there under the gantry?** Now a nice-to-know
-   rather than a blocker: the split sequence needs only ~110 mm. If they say
-   180+, the mid-plane bond can be skipped.
-3. Will they cut **EPS foam** (mess, static, and it clogs extraction)? Still
-   unanswered, and it is a woodworking shop — SawStop, Powermatic, Festool,
-   HEPA extraction — with no published material policy.
-4. ~~Does a month membership cancel cleanly?~~ **Answered: month-to-month,
-   10 days notice.**
-
-Also answered, and it changes the plan: **Basic at $150 is 8 shop visits a
-month, not unlimited.** Unlimited is $250. Eight visits is probably enough for
-two cores, but it is a budget, not a door key — and a day pass is $99, so
-running over is expensive.
-
-G10 is no longer one of them, and that was the question most likely to get a
-no.
-
-## What to job-shop instead
-
-| Part | Why |
-|---|---|
-| ~~G10 flat parts~~ | **There are none.** The shell and rim ring print; the floor, mast plate and handle strips are aluminium — a bandsaw and a drill press cover all three. This used to be the biggest reason a shop might turn the job away. |
-| **The two MDF templates** | 2D profiles — trivial for anyone with a router table, and not worth machine time. |
+**Two-sided registration** matters exactly once — only `Aft_Lower` flips.
+Drill the dowel holes in the spoilboard and in the waste perimeter *before*
+any 3D work starts.
 
 ---
 
-## Risks, honestly
+# Appendix C — If the CNC falls through
+
+The mast plate does not need a machine (step 7). For the core:
+
+1. **Hot-wire the rocker and plan-shape, hand-shape the crown.** How every
+   home-built board was made before CNC. Slow, forgiving in EPS.
+2. **Job-shop just the core.** Send the STL; keep everything else in-house.
+3. **Another makerspace or a maker with a large-format router.**
+4. **Buy a shaped blank** and adapt the cavity by hand.
+
+The check gauges exist for exactly this case — station sections you can
+offer the shape up to. **Uses:** `MDF 12 mm, 4 check gauges`
+
+---
+
+# Risks, honestly
 
 | Risk | Mitigation |
 |---|---|
+| **Shop bans EPS** | Ask before buying a pass. Appendix C |
+| **Cutter cannot reach the cavity floor** | Known: 39.8 mm short. Buy long-reach or rough with the ball nose |
 | Never having run a CNC | Test piece in scrap first; foam is unbreakable |
 | Flip registration wrong | Dowel pins; dry-run in air; check the mirror axis |
-| Shop bans EPS | Ask before buying a pass. G10 is no longer a question — there is none |
-| Bed too small | **Resolved.** 609.6 × 1209.8 mm confirmed; 1030 × 560 fits |
-| Blank too tall for the gantry | **Resolved by sequence.** The 203.2 mm stack never goes on the machine; two 101.6 mm half-stacks do, bonded after |
-| Running out of visits | Basic is 8/month, not unlimited; a day pass is $99 |
-| Tool reach | Solved by cutting layers before glue-up |
+| Blank too tall for the gantry | Solved by sequence — 101.6 mm halves, bonded after |
+| Running out of shop visits | Basic is 8/month, not unlimited; a day pass is $99 |
+| Epoxy too cold to cure | Fast hardener + hot box; below 35 °F do not start |
+| Crushing the core in the bag | Regulator at 5–10 inHg. Never "as much as it pulls" |
+| Cavity cures with voids | The caul, not the bag. Wax and PVA it |
 | Seam misalignment | Both halves off the same fixture and datum |
