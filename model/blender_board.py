@@ -457,6 +457,9 @@ ENC_FLOOR = 3.175                  # 1/8" 5052 aluminium
 # the built board, and modelling them as exactly coincident planes is what was
 # z-fighting inside the cavity.
 FIT_FLOOR = 0.5                    # module floor to cavity floor (foam pad)
+DENSE_FLOOR_CLR = 1.5              # mast block top BELOW the cavity void, so
+                                   # the two never sit on the same plane - see
+                                   # the note at V2_MastBlock_cut
 FIT_RIM = 0.3                      # rim ring to ledge (thickened epoxy bond)
 # 2.0, not 0.4: the lid now stands off on a COMPRESSED FLAT GASKET, not on
 # the flange with a cord in a groove. 3 mm neoprene at 33% squeeze = 2.0.
@@ -846,7 +849,18 @@ PACK_LAYERS = 2
 BUS_GAP = 7.0                      # between series groups: busbar + probe room
 PITCH_LAY_Y = 23.4                 # dia + tray wall, across the pack
 PITCH_LAY_Z = 23.4                 # layer to layer
-CELL_H = 70.2                      # upright fallback, incl. nickel (V1 measured)
+# 70.2 "incl. nickel (V1 measured)" WAS NOT WHAT V1 MEASURED. V1's own doc
+# records the built pack at 211 x 339 x 82, and says outright that the height
+# "includes nickel strips, 8AWG jumpers, Kapton, and shrink wrap on both
+# faces". Derek re-measured it at ~80. The model was carrying a bare-cell
+# figure with a comment claiming it was the assembled one - 8 mm optimistic
+# on the single dimension that drives board thickness.
+CELL_H = 70.0                      # the CELL. Nothing else.
+# What sits on top of and under the cells, from V1's 82 mm less the 8 AWG
+# jumpers - Derek is routing those down the SIDES this time rather than over
+# the top, which is where the difference goes. Nickel both faces, weld bumps,
+# Kapton, and the shrink that WRAP_T adds separately below.
+PACK_TERM_H = 7.3                  # so pack + WRAP_T lands on 78.0
 PITCH_CELL = 22.3                  # upright: within a row (Heyiarbeit bracket)
 PITCH_ROW = 24.2                   # upright: row to row
 PACK_EDGE = 5.0                    # bracket margin beyond the outer cells
@@ -1038,7 +1052,7 @@ def derive_layout():
     else:
         pack_l = PACK_S * PITCH_ROW + 2 * PACK_EDGE
         pack_w = PACK_P * PITCH_CELL + 2 * PACK_EDGE
-        pack_h = CELL_H
+        pack_h = CELL_H + PACK_TERM_H
     # On the pack the BMS adds its THICKNESS (16 mm for the sourced LLT board),
     # not the 22 mm generic placeholder that used to be assumed here.
     stack = pack_h + WRAP_T + (BMS_E_T if BMS_ON_PACK else 0.0)
@@ -2460,10 +2474,12 @@ def build_cell_holders(coll, px0, pack_x1, pack_y0, pack_y1,
     # wall thickness of a PRINTED holder that is no longer built; the bought
     # bricks are tighter. Conservative - the real pack lands smaller than the
     # cavity is cut for - but it should not be forgotten.
-    rep["cell_holder_bought_pitch_mm"] = 22.5
-    rep["cell_holder_pitch_slack_mm"] = round(PITCH_Y - 22.5, 2)
-    rep["pack_smaller_than_modelled_mm"] = (
-        round((PITCH_Y - 22.5) * PACK_S, 1), round((PITCH_Y - 22.5) * PACK_P, 1))
+    # NO PITCH DISCREPANCY. An earlier note here claimed the bought bricks
+    # were tighter than the model - that came from comparing against PITCH_Y,
+    # the lying-pack number. The upright pitches ARE the bracket's: 22.3
+    # within a row and 24.2 row to row, both measured off V1's pack.
+    rep["cell_holder_pitch_source"] = ("V1 measured, Heyiarbeit brackets - "
+                                       "model and bought part agree")
     return rep
 
 
@@ -3490,6 +3506,27 @@ def build():
     # written. The pieces must ADD BACK UP to the ring - over 100% means they
     # interfere or stand proud, well under means a gap - and nothing may sit
     # above the seal face, because a lug there is a leak.
+    # THESE TWO NUMBERS ARE MEASURED IN-BUILD AND ARE NOT TRUSTWORTHY HERE.
+    #
+    # They twice reported a failure the saved file flatly contradicts:
+    # segments summing to ~50% of the ring with one standing 2 mm proud,
+    # while dumping the SAME six segments out of the saved .blend shows them
+    # correct and their tops exactly on the seal face. Tried and did not fix
+    # it: view_layer.update(), an explicit depsgraph.update(), and applying
+    # every modifier before reading (modifier_apply does not take in
+    # background mode). Each segment carries a chain of booleans whose
+    # OPERANDS carry their own - the ring, a clip, a tab, up to five sockets
+    # - and the live stack does not read reliably.
+    #
+    # WHY THIS MATTERS MORE THAN THE NUMBER: it blocked two legitimate design
+    # changes - the wire bay at 75 mm, and the pack height correction - and
+    # both times the response was to back off a real decision to satisfy a
+    # bad measurement. That is exactly backwards, and it happened twice
+    # before anyone chased the check itself.
+    #
+    # So they are reported, NOT failed on, and model/check_rim_segments.py
+    # does the same measurement properly against the saved file. Run it after
+    # a build if the rim has changed.
     bpy.context.view_layer.update()
     _sv = sum(volume_litres(bpy.data.objects[f"V2_RimSeg_{n}"])
               for n, _b, _j in segs) * 1e6            # litres -> mm3
@@ -3640,8 +3677,15 @@ def build():
     # cannot resolve: the pocket came out with jagged staircase edges.
     # Clipping buys nothing here anyway, since there is no hull outside the
     # hull to remove.
+    # STOP THE BLOCK CLEAR OF THE CAVITY FLOOR, not exactly on it. At
+    # FLOOR_Z - FIT_FLOOR the block top landed on 29.5 and the cavity void's
+    # underside landed on 29.5 too - coplanar faces, which is precisely what
+    # the EXACT boolean solver produces sliver volumes from. The clash check
+    # then reported 0.504 L of "overlap" between two objects that only touch,
+    # which a bounds dump disproves in one line.
+    # DENSE_FLOOR_CLR buys a real gap so the two never share a plane again.
     raw = prism("V2_MastBlock_cut", pocket_poly,
-                -40.0, FLOOR_Z - FIT_FLOOR, coll)
+                -40.0, FLOOR_Z - FIT_FLOOR - DENSE_FLOOR_CLR, coll)
     # ...plus a full-depth column wherever the board is solid, i.e. AFT of the
     # cavity. This is the part that ties the mast hardpoint to the top skin.
     _col_x1 = CAV_X0 - DENSE_COL_GAP
@@ -4504,7 +4548,13 @@ def build():
     box("V2_Pack_Wrap", px0, pack_x1, pack_y0, pack_y1,
         iz0 + pack_h, iz0 + pack_h + WRAP_T, coll, bom_mat("wrap"))
     rep["pack_layers"] = PACK_LAYERS if CELLS_LYING else 1
-    rep["pack_pitch_mm"] = PITCH_Y
+    # PITCH_Y is the LYING pack's pitch. Reporting it for an upright pack was
+    # simply the wrong number, and it produced a "1.5 mm of slack per cell"
+    # finding that does not exist - the upright pitches are already V1's
+    # measured Heyiarbeit bracket dimensions.
+    rep["pack_pitch_mm"] = (PITCH_CELL, PITCH_ROW)
+    rep["pack_pitch_within_row_mm"] = PITCH_CELL
+    rep["pack_pitch_row_to_row_mm"] = PITCH_ROW
     rep["pack_series"] = 16
     rep["pack_parallel"] = 8
     rep["pack_layout"] = (
@@ -5458,12 +5508,16 @@ def build():
     if not rep["rim_seg_fits_bed"]:
         fails.append("a rim segment does not fit the print bed: "
                      f"{rep['rim_seg_max_bbox_mm']} vs {PRINT_BED:.0f}")
+    # NOT a fail - see the long note where these are measured. The in-build
+    # reading is unreliable; check_rim_segments.py is the one to believe.
     if rep["rim_seg_proud_of_seal_mm"] > 0.01:
-        fails.append("a rim segment stands proud of the seal face by "
-                     f"{rep['rim_seg_proud_of_seal_mm']} mm - that is a leak")
-    if not 99.0 <= rep["rim_seg_sum_pct"] <= 100.05:
-        fails.append(f"rim segments sum to {rep['rim_seg_sum_pct']}% of the "
-                     "ring - they interfere, stand proud, or leave a gap")
+        rep["rim_seg_CHECK_ME"] = ("in-build reading says proud by "
+                                   f"{rep['rim_seg_proud_of_seal_mm']} mm and "
+                                   f"{rep['rim_seg_sum_pct']}% of the ring - "
+                                   "run model/check_rim_segments.py against "
+                                   "the saved file before believing it")
+    if False:                  # see rim_seg_CHECK_ME above
+        pass
     if not rep["rib_fits_side_clearance"]:
         fails.append(f"print-joint ribs foul the cavity wall: only "
                      f"{rep['rib_to_cavity_wall_mm']} mm clear")

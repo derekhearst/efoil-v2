@@ -60,7 +60,10 @@ M = dict(hatch_bolts=R["bom_hatch_bolts"],
          pad_roll_mm=R["deck_pad_roll_mm_per_board"],
          pack_series=R["pack_series"],
          pack_parallel=R["pack_parallel"],
-         pack_pitch=R["pack_pitch_mm"],
+         # ROW to ROW - the series boundaries are between rows, and that is
+         # what a nickel bridge spans. pack_pitch_mm is now a (within-row,
+         # row-to-row) pair, so taking it whole put a list here.
+         pack_pitch=R["pack_pitch_row_to_row_mm"],
          holder_bricks=R["cell_holder_bricks"],
          holder_positions=R["cell_holder_positions"],
          # nickel_m is not geometry - it is a build estimate, so it stays

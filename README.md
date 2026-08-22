@@ -91,26 +91,27 @@ The build guide quotes BOM item names verbatim, and
 
 | | V1 (built) | V2 (current model) |
 |---|---|---|
-| Dimensions | 1600 × 600 × 153 mm | 1400 × 560 × 157 mm |
-| Sealed displacement | 96.6 L | 86.2 L |
-| Board mass | 25–30 kg | 24.0 kg |
-| Board reserve, alone | — | +62.2 kg |
-| With an 86 kg rider | — | **−23.8 kg — a sinker at rest** |
-| Pack | 14S9P, 2,268 Wh | 16S8P, 2,304 Wh, 9.22 kg |
-| Cavity | 660 × 280 × 115 mm | 535 × 323 × 100 mm |
+| Dimensions | 1600 × 600 × 153 mm | 1400 × 560 × 167 mm |
+| Sealed displacement | 96.6 L | 91.8 L |
+| Board mass | 25–30 kg | 24.3 kg |
+| Board reserve, alone | — | +67.6 kg |
+| With an 86 kg rider | — | **−18.4 kg — a sinker at rest** |
+| Pack | 14S9P, 2,268 Wh | 16S8P, 2,304 Wh, 9.22 kg, 397 × 188 × 78 |
+| Cavity | 660 × 280 × 115 mm | 535 × 323 × 110 mm |
 | Electronics | 2 sealed boxes | 1 removable module: printed ASA walls on a 5052 floor |
 | Mast plate | — | 6061-**T651**, 12.7 mm, M8 tapped, 2.6× margin |
 | Hatch | — | 12 × M5 into captive nuts printed into an ASA rim ring |
 | Core splits | — | vertical at 1030 mm (bed length), horizontal at 101.6 mm (gantry) |
 | Machining | — | 4 pieces, 5 setups, 1 flip, no cradle |
 | Deck pad | — | 3 pieces of 5.8 mm EVA, one sheet does both boards |
-| Cost | ~$3,900 spent | **$3,849/board**, 93% verified |
+| Cost | ~$3,900 spent | **$3,917/board**, 93% verified |
 
-The board is a **sinker** — 86.2 L will not float a rider standing still.
-That is a deliberate consequence of narrowing to 560 mm, but note it changed:
-an earlier revision of this README claimed "+12.0 kg — it floats the rider",
-from back when displacement was 114 L. If floating at rest matters to you,
-that is the number to argue with.
+The board is a **sinker** — 91.8 L will not float a rider standing still.
+That is a consequence of narrowing to 560 mm, but note it has moved twice:
+an earlier revision of this README claimed "+12.0 kg — it floats the rider"
+from when displacement was 114 L, and the pack-height correction has since
+given 5 kg of it back. If floating at rest matters to you, that is the number
+to argue with.
 
 ---
 
