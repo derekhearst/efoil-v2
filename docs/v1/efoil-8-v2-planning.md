@@ -1,3 +1,8 @@
+> **Superseded planning document.** This predates the parametric model and its
+> numbers no longer hold — thickness, module material and cavity size have all
+> changed since. Kept because the reasoning is useful and the conclusions are
+> not. See the [README](../../README.md) for the current design.
+
 # eFoil V2 — Design & Build Planning
 
 **Created:** August 7, 2026

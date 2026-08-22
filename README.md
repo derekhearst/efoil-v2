@@ -1,134 +1,176 @@
-# eFoil
+# eFoil V2
 
-DIY electric hydrofoil. V1 is built and in shakedown at Lucky Peak; V2 is a
-design spec that starts after a season of V1 riding data.
+A DIY electric hydrofoil board, generated from a parametric Blender model that
+also emits its own CNC drawings, cutting patterns, glass ply templates and
+bill of materials. Change a parameter, re-run, and every downstream document
+follows.
 
-## Layout
+**V1 is built and riding.** V2 is the board this repo is about: a full model
+with `FAILS: ['none']` on every check, a BOM where 126 of 129 purchasable
+lines link to a real listing, and a machining plan that fits a specific
+router in a specific shop.
 
-```
-docs/        project documentation (originals + research)
-model/       parametric hull generator, Blender scene, STL export, CNC drawings
-cnc/         generated DXF part drawings + cut list  (regenerate, never edit)
-renders/     model renders
-print/       print-ready miniature STLs  (regenerate, never edit)
-print/glass/ full-size glass ply templates  (regenerate, never edit)
-reference/   traced manufacturer orthos used to fit the hull shape
-```
+---
 
-Running `blender_board.py` now rewrites `model/efoil_v2.blend` **and**
-`model/efoil_v2_hull.stl` on every run. It used not to, and both files silently
-drifted a full day behind the script — opening the .blend showed geometry that
-had already been fixed in the model, which is a very convincing way to waste an
-afternoon. If you have the .blend open in the GUI, reopen it after a run.
+## The one rule
 
-Regenerate the CNC drawings after any parameter change — they are derived from
-`blender_board.py`, so editing them by hand guarantees drift:
+**Nothing in `cnc/`, `print/`, `docs/bom.md` or `docs/shopping.md` is written
+by hand.** They are generated from `model/*.py`. Editing them guarantees
+drift, and drift in a cut list is a part you machine twice.
+
+`model/report.json` is the contract between the scripts: `blender_board.py`
+writes it, everything else reads it. `bom.py` refuses to run if it is stale.
+
+---
+
+## Regenerate everything
 
 ```bash
-python model/cnc_drawings.py
+blender -b --factory-startup --python-expr "exec(open(r'C:/Users/derek/Development/eFoil/model/blender_board.py').read())"
 ```
 
-Miniatures for printing. Scene units are metres and the board is 1.4 units
-long, so a plain STL export reads as **1.4 mm** in a slicer — these are exported
-with an explicit scale so each file arrives at the size in its own filename,
-with nothing to remember:
+That rewrites `model/efoil_v2.blend`, `model/efoil_v2_hull.stl` and
+`model/report.json`, and prints the full check report. **If you have the
+.blend open in the GUI, reopen it afterwards** — otherwise you are looking at
+geometry that has already been fixed.
+
+Then, in any order:
+
+```bash
+python model/cnc_drawings.py      # DXF part drawings + cnc/cut-list.md
+python model/bom.py               # docs/bom.md + docs/shopping.md
+python model/glass_templates.py   # developed glass ply outlines, DXF + printable HTML
+```
 
 ```bash
 blender -b --factory-startup --python model/print_miniature.py
 ```
 
-Glass ply templates — developed (not plan) outlines plus relief-cut positions,
-as DXF and as tiled HTML you print at 100% from a browser:
+Miniatures are exported at an explicit scale — scene units are metres and the
+board is 1.4 units long, so a plain STL export reads as **1.4 mm** in a
+slicer. Each file arrives at the size in its own filename.
 
-```bash
-python model/glass_templates.py
+---
+
+## Layout
+
+```
+model/       the parametric model and every generator that reads it
+cnc/         generated DXF drawings + cut list        (regenerate, never edit)
+docs/        V2 documentation - see below
+docs/v1/     V1 as-built, kept for reference only     (see "V1 archive")
+print/       print-ready miniature STLs               (regenerate, never edit)
+snapshots/   dated .blend captures of past shape decisions
 ```
 
-## Docs
+Not in the repo: `renders/` (173 MB of build output) and `reference/`
+(manufacturer marketing imagery used to fit the hull — not ours to
+redistribute).
 
-| File | What it covers |
+---
+
+## V2 documentation
+
+These describe the board being built. Start here.
+
+| Doc | What it covers |
 |---|---|
-| [efoil-1-board-design.md](docs/efoil-1-board-design.md) | V1 board as-built: dimensions, 3-layer XPS construction, hatch, leak history |
-| [efoil-2-electrical.md](docs/efoil-2-electrical.md) | Pack architecture, BMS, enclosures, mast mount hardware, wiring |
-| [efoil-3-propulsion.md](docs/efoil-3-propulsion.md) | Motor, ESC, foil, prop, motor mount, measured performance |
-| [fabrication.md](docs/fabrication.md) | How the V2 core actually gets machined — CNC plan, sequence, workholding, two-sided registration, what to job-shop |
-| [efoil-4-build-order.md](docs/efoil-4-build-order.md) | Build phases, pack welding procedure, 3D printing |
-| [efoil-7-vesc-config.md](docs/efoil-7-vesc-config.md) | VESC settings, current limits, power diagnosis, gotchas |
-| [efoil-8-v2-planning.md](docs/efoil-8-v2-planning.md) | V2 direction: pillars, construction method, CNC, budget |
-| [efoil-9-v2-board-design.md](docs/efoil-9-v2-board-design.md) | V2 board spec: dimensions, hardpoint, cavity, hatch, sealing, layup |
-| [shopping-list-v10.md](docs/shopping-list-v10.md) | Full spend reconciliation, ~$3,900 to date |
-| [shape-research.md](docs/shape-research.md) | Production eFoil dimensions + traced shape law behind the V2 hull |
-| [v2-powertrain-options.md](docs/v2-powertrain-options.md) | Motor / ESC / BMS options for V2, against V1's measured numbers |
-| [materials-and-pricing.md](docs/materials-and-pricing.md) | What each material is, quantities from the model, quoted + estimated prices |
-| [build-budget.md](docs/build-budget.md) | Complete BOM and cost for the whole V2 build, per-line confidence |
-| [colour-key.md](docs/colour-key.md) | What every colour in the model means, and the foil dimensions |
+| [fabrication.md](docs/fabrication.md) | How the core gets made: the CNC envelope, the two splits and why each exists, machining sequence, workholding, bagging, the winter schedule |
+| [cut-list.md](cnc/cut-list.md) | *Generated.* Every flat part, the four core pieces, the milling table, and the deck-pad cutting pattern |
+| [bom.md](docs/bom.md) | *Generated.* Every line, linked to the listing its price came from, with per-line confidence |
+| [shopping.md](docs/shopping.md) | *Generated.* The same spend grouped by supplier — the order you actually place orders in |
+| [materials-and-pricing.md](docs/materials-and-pricing.md) | What each material is and why it was chosen over the alternative |
+| [colour-key.md](docs/colour-key.md) | What every colour in the model means |
+| [shape-research.md](docs/shape-research.md) | Traced production boards and the shape law fitted from them |
+| [v2-powertrain-options.md](docs/v2-powertrain-options.md) | Motor / ESC / BMS options, against V1's measured numbers |
 
-Numbering skips 5 and 6 — those docs are either missing from the archive or
-were never written.
-
-## Model
-
-`model/blender_board.py` builds the whole V2 board in Blender from parameters:
-hull, cavity, G10 rim with machined O-ring groove, sandwich lid, mast
-hardpoint, dense-foam load path, CNC seam, charge port, vent boss, and the
-actual Gong X-Over V2 XL foil. It reports volume, fit, and clash checks on
-every run.
-
-Run it with Blender open:
-
-```bash
-blender --python-expr "exec(open(r'C:/Users/derek/Development/eFoil/model/blender_board.py').read())"
-```
-
-`model/trace_reference.py` extracts planform, thickness and rocker curves from
-manufacturer orthographic renders. Usage:
-
-```bash
-python model/trace_reference.py reference/lift43_ortho.png 1300 480 100 42
-```
+---
 
 ## Key numbers
 
 | | V1 (built) | V2 (current model) |
 |---|---|---|
-| Dimensions | 1600 x 600 x 153 mm | 1400 x 600 x 167 mm |
-| Volume | 96.6 L sealed | 114.0 L sealed (81.3% bbox fill) |
-| Net float | - | **+12.0 kg** - it floats the rider |
-| Weight | 25-30 kg | 16-18 kg target |
-| Pack | 14S9P upright, 82 mm tall | 14S9P upright, BMS on top, 93 mm |
-| Energy | 2,268 Wh | 2,268 Wh |
-| Cavity | 660 x 280 x 115 mm | 479 x 329 x 111 mm (incl. aft service bay) |
-| Electronics | 2 sealed boxes | 1 removable G10 module, 383 x 313 x 109, no divider |
-| Mast | 400 mm from tail, 90 x 165 mm | same, M8 blind inserts in a 16 mm G10 plate |
-| CG | - | 641.2 mm, 45.8% from tail, 241.2 mm ahead of the mast |
-| Seam | - | 1030 mm (halves 1030 + 370) |
+| Dimensions | 1600 × 600 × 153 mm | 1400 × 560 × 157 mm |
+| Sealed displacement | 96.6 L | 86.2 L |
+| Board mass | 25–30 kg | 24.0 kg |
+| Board reserve, alone | — | +62.2 kg |
+| With an 86 kg rider | — | **−23.8 kg — a sinker at rest** |
+| Pack | 14S9P, 2,268 Wh | 16S8P, 2,304 Wh, 9.22 kg |
+| Cavity | 660 × 280 × 115 mm | 535 × 323 × 100 mm |
+| Electronics | 2 sealed boxes | 1 removable module: printed ASA walls on a 5052 floor |
+| Mast plate | — | 6061-**T651**, 12.7 mm, M8 tapped, 2.6× margin |
+| Hatch | — | 12 × M5 into captive nuts printed into an ASA rim ring |
+| Core splits | — | vertical at 1030 mm (bed length), horizontal at 101.6 mm (gantry) |
+| Machining | — | 4 pieces, 5 setups, 1 flip, no cradle |
+| Deck pad | — | 3 pieces of 5.8 mm EVA, one sheet does both boards |
+| Cost | ~$3,900 spent | **$3,849/board**, 93% verified |
 
-Hull shape is fitted to traced production boards - see
-[shape-research.md](docs/shape-research.md). Both ends terminate in a flat
-(108 mm tail, 54 mm nose), and the nose rocker is *derived* from a specified
-deck line rather than dialled in, so the deck rises monotonically to +10 mm at
-the tip instead of dropping. Colour coding of every part is documented in
-[colour-key.md](docs/colour-key.md).
+The board is a **sinker** — 86.2 L will not float a rider standing still.
+That is a deliberate consequence of narrowing to 560 mm, but note it changed:
+an earlier revision of this README claimed "+12.0 kg — it floats the rider",
+from back when displacement was 114 L. If floating at rest matters to you,
+that is the number to argue with.
 
-The model runs a fit check on every build (pack, BMS, ESC, fuse, lift-out
-clearance, rim vs rail, floor thickness over the rocker, lid flush). Current
-status: **no failures**. Tightest clearance is the BMS in its pocket, 17 mm.
+---
 
 ## Open questions
 
-Carried from the V2 docs, plus what the shape research and pack analysis added:
+Ordered by what can actually stop the build.
 
-- **Pack architecture** — 14S vs 16S, and whether cells lie down (21.4 mm per
-  layer) instead of standing up (70.75 mm). This drives cavity depth, which
-  drives board thickness.
-- **`board_gen.py` is missing.** The V2 doc cites it as the source of the
-  53.9 L headline figure; it is not in the archive. That number also rests on a
-  45–47% bounding-box fill assumption that does not hold for eFoils.
-- **Thickness disagreement** — efoil-9 specs 150 mm, efoil-8 specs a
-  1600 × 600 × 120 mm blank. Also 1600 vs 1400 length.
-- **Mast position** — V2 proposes 350 mm; V1 as-built is 400 mm with a
-  90 × 165 mm pattern. Verify against the wing's centre of lift.
-- Makerspace CNC bed size, and whether they allow foam.
-- Lid flush vs proud (currently flush, 2.6 mm below deck).
-- **Reed switch kill system is still not installed on V1.** Parts on hand.
-  Required before any beginner rides the board.
+1. **Will the makerspace allow EPS on the CNC?** Unanswered. It is a
+   woodworking shop with no published material policy, and this is the one
+   that can stop the booking outright. Maker Shop Boise, (208) 254-6151.
+2. **Cutter reach.** The deepest pocket is the cavity's lower half at
+   **71.6 mm**. The O-flute in the BOM has a *cutting* length of 31.8 mm — it
+   is 39.8 mm short and physically cannot reach the floor. Buy a long-reach
+   ½ in spiral, or rough it with the ball nose.
+3. **Wire bay stops at 68 mm.** At 75 the rim segmentation checks collapse —
+   segment volumes sum to 50% of the ring and one reads 2 mm proud of the seal
+   face — while a per-segment dump shows all six correct and flush. Geometry
+   looks right, measurement does not, cause unresolved. 68 is the largest
+   value that stays green.
+4. **Gong import duty.** Shipping is measured ($268.63 for two foils, from
+   their checkout), but US customs is not. It arrives later as a courier
+   invoice. Budget ~$210 if a 15% rate holds; the BOM carries it at zero so it
+   is never mistaken for a verified figure.
+5. **Sinker at rest** — see above. A design characteristic, not a defect, but
+   confirm it is the one you want.
+6. **V1's reed-switch kill system is still not installed.** Parts on hand.
+   Required before any beginner rides that board.
+
+---
+
+## V1 archive
+
+`docs/v1/` is **reference only** — the board that was built, what it measured,
+and where it leaked. It informs V2 but does not describe it. Where the two
+disagree, the model and the V2 docs above are correct.
+
+Two of these are superseded V2 *planning* documents, kept because the
+reasoning is useful and the conclusions are not: they predate the model and
+their numbers no longer hold.
+
+| Doc | |
+|---|---|
+| [efoil-1-board-design.md](docs/v1/efoil-1-board-design.md) | V1 as-built: XPS construction, hatch, and the leak history that drove V2's sealing |
+| [efoil-2-electrical.md](docs/v1/efoil-2-electrical.md) | V1 pack, BMS, enclosures, wiring as built |
+| [efoil-3-propulsion.md](docs/v1/efoil-3-propulsion.md) | Motor, ESC, foil, prop, and measured performance |
+| [efoil-4-build-order.md](docs/v1/efoil-4-build-order.md) | V1 build phases and pack welding procedure |
+| [efoil-7-vesc-config.md](docs/v1/efoil-7-vesc-config.md) | VESC settings, current limits, power diagnosis |
+| [efoil-8-v2-planning.md](docs/v1/efoil-8-v2-planning.md) | *Superseded.* Early V2 direction and budget |
+| [efoil-9-v2-board-design.md](docs/v1/efoil-9-v2-board-design.md) | *Superseded.* Early V2 spec — 150 mm thick, G10 module, different cavity |
+| [shopping-list-v10.md](docs/v1/shopping-list-v10.md) | V1 spend reconciliation |
+
+Numbering skips 5 and 6 — those were never written.
+
+---
+
+## Other scripts
+
+| Script | |
+|---|---|
+| `model/templates.py` | MDF check gauges for hand-verifying the machined core |
+| `model/performance.py` | Speed / thrust / runtime against V1's measured numbers |
+| `model/price_check.py` | Re-checks BOM prices against recorded sources |
+| `model/trace_reference.py` | Extracts planform, thickness and rocker from manufacturer orthos |
+| `model/links.py` | *Generated.* item → (ASIN or URL, price, title) for every sourced line |

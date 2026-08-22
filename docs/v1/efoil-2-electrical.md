@@ -1,3 +1,8 @@
+> **V1 reference — not the current design.** This describes the board that was
+> built, or early planning that predates the model. V2 is generated from
+> `model/blender_board.py`; where the two disagree, the model and the docs
+> linked from the [README](../../README.md) are correct.
+
 # eFoil Build — Electrical & Battery (V7)
 
 **Last updated:** August 7, 2026 (pack validated in service; kill switch status corrected)

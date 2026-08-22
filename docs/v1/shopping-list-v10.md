@@ -1,3 +1,8 @@
+> **V1 reference — not the current design.** This describes the board that was
+> built, or early planning that predates the model. V2 is generated from
+> `model/blender_board.py`; where the two disagree, the model and the docs
+> linked from the [README](../../README.md) are correct.
+
 # eFoil Build — Shopping List (V10, Aug 8, 2026)
 
 **Rebuilt from source.** Supersedes V9 (Jun 15), which was lost. Reconciled against the full Amazon order export (`amazon-orders-2026-08-08.json` — **122 orders, Mar 3 – Aug 7**) plus Home Depot receipt history. All prices USD.

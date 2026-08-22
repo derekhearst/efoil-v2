@@ -1,3 +1,8 @@
+> **V1 reference — not the current design.** This describes the board that was
+> built, or early planning that predates the model. V2 is generated from
+> `model/blender_board.py`; where the two disagree, the model and the docs
+> linked from the [README](../../README.md) are correct.
+
 # eFoil V1 — VESC Configuration Reference (v2)
 
 **Originally configured:** June 12, 2026 (bench commissioning)
