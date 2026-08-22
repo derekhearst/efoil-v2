@@ -6,11 +6,11 @@ Grouped by where you buy it rather than by what it does, because that is the ord
 
 | Supplier | Lines | $ |
 |---|---:|---:|
-| Amazon | 66 | $2,374.31 |
+| Amazon | 67 | $2,391.19 |
 | Gong | 2 | $1,395.20 |
 | Flipsky | 3 | $1,038.00 |
-| Not a purchase - tax and freight | 3 | $803.17 |
-| Home Depot / hardware | 19 | $456.91 |
+| Not a purchase - tax and freight | 3 | $802.74 |
+| Home Depot / hardware | 18 | $432.91 |
 | Fiberglass Supply | 4 | $364.10 |
 | Battery International | 1 | $318.00 |
 | BatteryHookup | 2 | $297.50 |
@@ -20,7 +20,7 @@ Grouped by where you buy it rather than by what it does, because that is the ord
 | 3M / auto parts | 3 | $102.98 |
 | Speedy Metals | 2 | $102.81 |
 | Sika / marine supplier | 1 | $28.99 |
-| **TOTAL** | | **$7,687.97** |
+| **TOTAL** | | **$7,680.42** |
 
 ## Amazon
 
@@ -45,7 +45,6 @@ https://www.amazon.com
 | ASA filament, printed rim ring | 2 | kg | $48.98 | **verified** | 6 dovetailed pieces/board at ~90% infill, 710 g of part each; PRINT SEAL FACE DOWN - the bed is flatter than a |
 | TotalBoat Premium Marine Topside Primer | 1 | kit | $46.99 | **verified** | one covers both |
 | 25 mm webbing + ladder-lock buckles | 2 | set | $40.00 | estimate | 2 straps per board |
-| TotalBoat 5:1 quart FAST hardener, cold days | 1 | ea | $39.99 | estimate | min 40-45 F against slow's 60. In a cold shop this is the one that cures, and the cold gives the pot life back |
 | Hydraulic lug crimper, 10 ton, 12-2/0 AWG | 1 | ea | $39.99 | **verified** | one-time; this is what replaces soldering XT150s |
 | Sealant tape, 50 ft roll | 2 | roll | $39.98 | **verified** | 31 m of bag perimeter across the project. 2 x 50 ft at $19.99 replaced 4 x 25 ft at $12 - same tape, fewer joi |
 | Bag connector w/ ball valve, 1/4 in QD | 2 | ea | $39.18 | **verified** | THE BALL VALVE IS THE POINT: shut it and the bag is isolated from the pump, so leak-down is a real measurement |
@@ -57,6 +56,8 @@ https://www.amazon.com
 | Solid silicone cord, 3 mm round - BOTH seals | 2 | pc | $30.78 | **verified** | 10 ft (3.05 m) pieces, 70A. Buy long - splice on a straight run, never a corner |
 | Coiled ankle leash | 2 | ea | $29.98 | **verified** | you trust the remote failsafe; this is so the board stays with you |
 | Sika Aktivator-PRO 250 ml + daubers | 1 | ea | $28.95 | **verified** | abrade + solvent wipe + activate the 5052; scuff the ASA. Aktivator-205 is DISCONTINUED - Aktivator-PRO replac |
+| Nitrile gloves 6 mil, 100 pk | 2 | box | $28.88 | **verified** |  |
+| TotalBoat 5:1 FAST hardener 6 oz, cold days | 1 | ea | $27.99 | **verified** | min 40-45 F against slow's 60. In a cold shop this is the one that cures, and the cold gives the pot life back |
 | 5.5 mm bullets + adhesive shrink, ESC side | 2 | set | $24.00 | estimate | motor pigtails arrive with their own |
 | EVA bedding pads | 2 | set | $24.00 | estimate |  |
 | SP17 2-pin IP68 flange receptacle + cap | 2 | ea | $22.00 | estimate | 67.2 V 5 A charge; O17 panel hole, 2 x M3 flange screws |
@@ -122,7 +123,7 @@ Some Flipsky appears on Amazon but the range is thin and usually dearer. Buy dir
 
 | Item | Qty | Unit | Ext | Price | Note |
 |---|---:|---|---:|---|---|
-| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $435.17 | **verified** |  |
+| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $434.74 | **verified** |  |
 | Gong shipping to Idaho, per foil | 2 | ea | $248.00 | **verified** | 115.50 EUR on order 252112; charged per ORDER, so putting both boards' foils in ONE order saves about $124 |
 | Shipping - Divinycell, 6061 plate, VR20 | 1 | allow | $120.00 | estimate | STILL THE BIGGEST UNVERIFIED LINE - it wants three real carts to settle. Was $220 when it covered G10 sheet an |
 
@@ -138,7 +139,6 @@ https://www.homedepot.com
 | Spray adhesive + sacrificial MDF, CNC hold-down | 1 | set | $35.00 | estimate | foam is taped down, not clamped |
 | Sanding blocks + longboard for fairing | 1 | set | $30.00 | estimate |  |
 | 1/4 in torque wrench, 10-50 in-lb | 1 | ea | $25.97 | **verified** | 1.1-5.6 Nm. RANGE MATTERS: our hatch spec is 2 Nm = 17.7 in-lb, which is BELOW the 20 in-lb floor of the commo |
-| Nitrile gloves, 100 pk | 2 | box | $24.00 | estimate |  |
 | Rosin paper roll, floor and bench | 1 | roll | $24.00 | estimate | absorbs instead of pooling. This is the actual upgrade over a tarp, and it is $24 |
 | MDF 12 mm, 4 check gauges | 1 | sheet | $22.00 | estimate | 3 station sections + the rocker/deck profile. Was a 14-template set at $70 - the router templates go with the  |
 | Plastic sheeting + masking tape, bench protection | 1 | set | $20.00 | estimate |  |

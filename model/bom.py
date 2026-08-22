@@ -231,10 +231,18 @@ def build():
     # not a slow laminate, it is a ruined one.
     # Buy BOTH hardeners. Which one goes in the pot is a thermometer decision
     # on the morning, not a decision made now.
-    add("4  Laminate", "TotalBoat 5:1 quart FAST hardener, cold days",
-        1, "ea", 39.99, EST,
+    # TotalBoat sells 5:1 hardener on its own, sized to the RESIN volume it
+    # will catalyse: 6 oz does a quart ($27.99), 25 oz does a gallon ($61.99).
+    # Buying the 6 oz because this is a contingency, not the primary system -
+    # the gallon kit is slow and does the warm sessions.
+    add("4  Laminate", "TotalBoat 5:1 FAST hardener 6 oz, cold days",
+        1, "ea", 27.99, OK,
         "min 40-45 F against slow's 60. In a cold shop this is the one that "
-        "cures, and the cold gives the pot life back")
+        "cures, and the cold gives the pot life back. 6 oz catalyses ONE "
+        "QUART of resin, which is about a single hull session - if the shop "
+        "turns out to be cold for the whole build, the 25 oz at $61.99 does "
+        "a full gallon and is the cheaper way to get there",
+        vendor="Amazon")
     # $149 off Amazon, not $159.99, AND the gallon kit ships with cups,
     # stirrers and spreaders - so the separate spreader line goes with it.
     add("4  Laminate", "TotalBoat 5:1 gallon kit, slow hardener",
@@ -897,7 +905,12 @@ def build():
     # Spreaders, cups and stirrers all ship WITH the gallon kit - no line.
     add("10e Layup kit", "Chip brushes and laminating roller", 1, "set",
         22.00, EST)
-    add("10e Layup kit", "Nitrile gloves, 100 pk", 2, "box", 12.00, EST)
+    # 6 mil, not the 3-4 mil exam glove - thin nitrile tears on a wet layup
+    # and you find out mid-session with resin on your hands. ~6 pairs a
+    # session x 6 sessions is 72 gloves before any contamination changes, so
+    # two boxes is the honest number, not one.
+    add("10e Layup kit", "Nitrile gloves 6 mil, 100 pk", 2, "box", 14.44, OK,
+        vendor="Amazon")
     add("10e Layup kit", "Respirator", 1, "ea", 0.00, OWNED)
     add("10e Layup kit", "3M 60923 organic vapour / acid gas P100, pair",
         2, "pr", 31.49, OK,
