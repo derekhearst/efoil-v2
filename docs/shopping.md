@@ -6,10 +6,10 @@ Grouped by where you buy it rather than by what it does, because that is the ord
 
 | Supplier | Lines | $ |
 |---|---:|---:|
-| Amazon | 105 | $2,996.28 |
+| Amazon | 105 | $3,123.74 |
 | Gong | 1 | $1,388.00 |
 | Flipsky | 3 | $1,038.00 |
-| Not a purchase - tax and freight | 3 | $797.16 |
+| Not a purchase - tax and freight | 3 | $806.34 |
 | Battery International | 1 | $318.00 |
 | BatteryHookup | 2 | $297.50 |
 | Fiberglass Supply | 3 | $253.38 |
@@ -17,7 +17,8 @@ Grouped by where you buy it rather than by what it does, because that is the ord
 | Maker Shop Boise | 1 | $150.00 |
 | Speedy Metals | 1 | $88.92 |
 | Fibre Glast | 1 | $52.00 |
-| **TOTAL** | | **$7,581.91** |
+| Fasteners / shop consumables | 3 | $25.47 |
+| **TOTAL** | | **$7,744.02** |
 
 ## Amazon
 
@@ -25,111 +26,111 @@ https://www.amazon.com
 
 | Item | Qty | Unit | Ext | Price | Note |
 |---|---:|---|---:|---|---|
-| TotalBoat 5:1 gallon kit, slow hardener | 2 | kit | $298.00 | **verified** | 2.51 m2 laminate = 4.8 kg mixed = 1 kit/board |
-| TotalBoat Wet Edge topside paint, colour | 2 | kit | $107.98 | **verified** | one-part polyurethane, quart |
-| Peel ply, 60in | 6 | yd | $91.98 | **verified** | was only in the starter kit, and one kit's worth does not cover 6.12 m2 of part |
-| Charger 67.2 V 5 A, 16S  (NOT 58.8 V) | 2 | ea | $91.98 | **verified** | Amazon B0DK6FTB1P, aluminium case + fan |
-| TotalBoat TotalFair epoxy fairing compound | 2 | kit | $91.98 | **verified** | smallest kit, one per board |
-| Breather / bleeder cloth | 6 | yd | $83.70 | **verified** | $13.95/yd cut; a 5 yd roll at $59.99 is $12.00/yd if you would rather buy the roll |
-| 1708 biax, 50in x 10 yd roll | 1 | roll | $79.99 | **verified** | 6 yd needed across both boards; $8.00/yd against Fibre Glast's $12.50 and no freight |
-| Vac bag film, 5 yd | 3 | roll | $74.85 | **verified** | 3.06 m2 a hull session; 2 hulls + 4 lids + a practice piece + one re-do. Single-use on the hull, reusable on f |
-| ASA filament, printed module shell | 3 | kg | $73.47 | **verified** | 4 L-pieces/board, ~1.13 kg of part + supports and brim; largest piece 226 x 146 fits the A1 bed |
-| TotalBoat 5:1 quart kit, fillets and bonding | 1 | kit | $68.99 | **verified** |  |
-| 1/2 in O-flute up-spiral, foam roughing | 1 | ea | $66.05 | **verified** | Freud 73-214, 1/2 in shank. SINGLE flute for chip clearance - EPS chips are bulky and a 2- or 3-flute packs th |
-| 5052 1/8in x 12 x 24, 2-pack - module floors | 1 | pk | $61.99 | **verified** | your Apr 2026 receipt (MorningRo/Huaiian). One sheet is one floor, so this pack does both boards |
-| Pure nickel 0.2 x 10 mm, 5 m roll | 4 | roll | $59.32 | **verified** |  |
-| VECOTOOLS 4.5 CFM single-stage pump, oil incl. | 1 | ea | $57.99 | **verified** | your listing, ASIN B0GZVLP3PL. Was a $139.99 Pittsburgh 2-stage plus $15 of oil - $97 for ultimate vacuum we m |
-| Traction pad, 3-piece | 2 | set | $49.90 | **verified** |  |
-| ASA filament, printed rim ring | 2 | kg | $48.98 | **verified** | 6 dovetailed pieces/board at ~90% infill, 710 g of part each; PRINT SEAL FACE DOWN - the bed is flatter than a |
-| TotalBoat Premium Marine Topside Primer | 1 | kit | $46.99 | **verified** | one covers both |
-| 1/2 in ball nose, finishing pass | 1 | ea | $41.95 | **verified** | 1/2 in shank. ONLY if the makerspace does not supply tooling |
-| Hydraulic lug crimper, 10 ton, 12-2/0 AWG | 1 | ea | $39.99 | **verified** | one-time; this is what replaces soldering XT150s |
-| Folding sawhorses, pair, 700 lb | 1 | pair | $39.99 | **verified** | ~30 in high. Racks buy height for planing, and this core comes machined - so they buy nothing here |
-| Sealant tape, 50 ft roll | 2 | roll | $39.98 | **verified** | 31 m of bag perimeter across the project. 2 x 50 ft at $19.99 replaced 4 x 25 ft at $12 - same tape, fewer joi |
-| Bag connector w/ ball valve, 1/4 in QD | 2 | ea | $39.18 | **verified** | THE BALL VALVE IS THE POINT: shut it and the bag is isolated from the pump, so leak-down is a real measurement |
-| Ultra Tef-Gel, galvanic barrier | 1 | ea | $39.00 | **verified** | every mast bolt, every time it goes back in. DEARER than the $22 this was carried at - and do not reach for th |
-| E-glass 6 oz, 50in x 12ft, 2-pack | 2 | pack | $38.14 | **verified** | your receipt |
-| 3M 60923 organic vapour / acid gas P100, pair | 2 | pr | $36.78 | **verified** | $18.39/pr on Amazon against $31.49 at envirosafetyproducts. Cartridges EXPIRE - buy these near the layup, not  |
-| Rotary-tool router base + collets, if needed | 1 | set | $35.00 | estimate | you have the tool; this is only if the base you have will not hold depth over the groove run |
-| 8 AWG marine ring lugs, 20 pk | 2 | pk | $33.98 | **verified** | 28 needed; on M6 studs - nothing to solder |
-| IP68 M25 inline housing, 5 pk | 2 | pk | $31.96 | **verified** | 3 per board, one per phase, 2 spare. M25 bodies take 4-14 mm cable against our 6.5 mm 8 AWG, so the size class |
-| Solid silicone cord, 3 mm round - BOTH seals | 2 | pc | $30.78 | **verified** | 10 ft (3.05 m) pieces, 70A. Buy long - splice on a straight run, never a corner |
-| Coiled ankle leash | 2 | ea | $29.98 | **verified** | you trust the remote failsafe; this is so the board stays with you |
-| Sikaflex-292 marine structural PU | 1 | tube | $28.99 | **verified** | ~6-8 MPa vs 4200's ~2. Fillet BOTH sides of the joint - on a flexible bond the fillets are what stop it peelin |
-| Sika Aktivator-PRO 250 ml + daubers | 1 | ea | $28.95 | **verified** | abrade + solvent wipe + activate the 5052; scuff the ASA. Aktivator-205 is DISCONTINUED - Aktivator-PRO replac |
-| Nitrile gloves 6 mil, 100 pk | 2 | box | $28.88 | **verified** |  |
-| M6 stainless stud/busbar hardware | 2 | set | $28.00 | estimate |  |
-| TotalBoat 5:1 FAST hardener 6 oz, cold days | 1 | ea | $27.99 | **verified** | min 40-45 F against slow's 60. In a cold shop this is the one that cures, and the cold gives the pot life back |
-| 3M Fastbond 1077 water-based, CNC hold-down | 1 | ea | $26.02 | **verified** | WATER-BASED because the blank is EPS - solvent sprays like Super 77 eat polystyrene. Foam is taped/tacked down |
-| 1/4 in torque wrench, 10-50 in-lb | 1 | ea | $25.97 | **verified** | 1.1-5.6 Nm. RANGE MATTERS: our hatch spec is 2 Nm = 17.7 in-lb, which is BELOW the 20 in-lb floor of the commo |
-| EVA bedding pads | 2 | set | $24.00 | estimate |  |
-| Rosin paper roll, floor and bench | 1 | roll | $24.00 | estimate | absorbs instead of pooling. This is the actual upgrade over a tarp, and it is $24 |
-| Cable ties, lacing, adhesive mounts | 2 | set | $22.00 | estimate |  |
-| 8 AWG silicone, 10 ft red + 10 ft black | 1 | pk | $21.99 | **verified** | one pack covers BOTH boards - the longest run in the module is the 278 mm ESC-to-fuse, so 10 ft a side is alre |
-| ANL 150 A fuse + holder | 2 | ea | $21.18 | **verified** |  |
-| Release wax / PVA for the cavity caul | 1 | set | $20.00 | estimate |  |
-| Plastic sheeting + masking tape, bench protection | 1 | set | $20.00 | estimate |  |
-| Flex longboard sander, 16-1/2 x 2-3/4 | 1 | ea | $19.99 | **verified** | adjustable radius, hook-and-loop + PSA |
-| PETG filament 1 kg, mast clamp set | 2 | kg | $19.98 | **verified** | 4 STEP files; 0.6 nozzle, 5 perims, 40% infill |
-| PETG for props, 4-5 spares per board | 2 | kg | $19.98 | **verified** | 0.4 nozzle, 100% infill; balance-check on a bolt, then epoxy-coat - V1 skipped the coat and layer lines cost d |
-| M12 IP68 membrane vent plug | 2 | ea | $19.90 | **verified** | NOT optional on a sealed lithium box |
-| FCS-pattern leash plug | 2 | ea | $18.00 | estimate |  |
-| 3M 4200 FC 3 oz tube, fillet over the bung | 1 | tube | $17.99 | **verified** | does both boards; 4200 NOT 5200 - 5200 never comes out |
-| Chip brushes 2 in, 36 pk | 1 | pk | $17.99 | **verified** | disposable, 2-4 a session across 6 sessions. The 12 pk at $7.19 is dearer per brush and runs out mid-build |
-| Laminating bubble roller kit, 4 pc | 1 | kit | $17.99 | **verified** |  |
-| M5 x 250 threaded rod (cut to ~171 mm) | 8 | ea | $17.60 | estimate | dry-assemble and mark before cutting all four |
-| PL300 / Gorilla Glue, layer glue-up | 2 | tube | $16.00 | estimate |  |
-| Neoprene sheet 1/8in, module + mast gaskets | 1 | sheet | $16.00 | estimate | TORRAMI 18x24 or similar - you kept a part sheet from V1 |
-| Adjustable hand sanding block | 1 | ea | $15.99 | **verified** | rails, nose, tail and anywhere the longboard will not reach |
-| Longboard PSA sandpaper 80 grit, 20 yd roll | 1 | roll | $15.99 | **verified** | 2-3/4 in, self-adhesive, fits the longboard above. 80 is the fairing grit - it cuts fair, it does not finish |
-| Longboard PSA sandpaper 120-180 grit, 20 yd roll | 1 | roll | $15.99 | **verified** | after 80 has the shape right |
-| Solid silicone cord, 1/8 in (3.175 mm) - the spare size | 1 | pc | $15.39 | **verified** | 10 ft piece, 70A. Fitted ONLY if the routed groove measures deep. Gives 24% squeeze at the nominal 2.4 depth a |
-| Vacuum hose + hose clamps | 1 | set | $15.00 | estimate | 1/2 in tubing pump-to-bag plus clamps; the other half of what the deleted kit was actually carrying |
-| 16 AWG silicone, 6 colours x 5 ft | 1 | kit | $14.49 | **verified** | charge port and power button runs are short; one kit does both boards and the colours keep them straight |
-| 2.5 mm straight cutter - fallback | 1 | ea | $14.00 | estimate | only if you would rather cut the groove open than sand down to a proud filler strip. Undersize in a 4 mm groov |
-| EPDM/neoprene sheet 1/2in, conduit bungs | 1 | sheet | $14.00 | estimate | cut O33 plugs for a O32 bore, punch 3 x O5 for 6.5 mm lead - interference fit, soap them through |
-| Thermometer / hygrometer, 2 pk | 1 | pk | $14.00 | estimate | one in the shop, one by the part. Slow needs 60 F, fast needs 40-45, and below ~35 nothing cures at all |
-| PVC pack wrap, 200 mm lay-flat | 1 | roll | $13.99 | **verified** | wide enough to sleeve a 16S brick; one roll does both |
-| Adhesive-lined heat shrink 3:1, 400 pc kit | 1 | kit | $13.99 | **verified** | marine grade, glue-lined - plain heat shrink over a joint in a wet cavity is decoration |
-| Kayak-style webbing carry handle, 4 pk | 1 | pk | $13.89 | **verified** | 4 needed; 2 x M6 into the 6061 strip in the rail pocket |
-| M5 x 25 A4 stainless socket cap | 24 | ea | $13.20 | estimate |  |
-| Water-ingress alarm, 2 pk | 1 | pk | $12.99 | **verified** | Geevon 100 dB pucks - the 2-pack covers BOTH boards. Put the SENSOR on the module floor in the lowest corner,  |
-| 5.5 mm gold bullets, 20 pair | 1 | pk | $12.99 | **verified** | 3 pair a board, so one pack covers both with spares. Motor pigtails arrive with their own |
-| M4 x 12 A4 stainless socket cap | 36 | ea | $12.60 | estimate |  |
-| M12 IP68 momentary panel button | 1 | ea | $12.49 | **verified** | 1 on hand; this line buys the second board's |
-| Silica gel, indicating, 50 g per module | 1 | pk | $12.00 | estimate | ~40 g is a season at 50 breathing cycles; a token sachet is worth about six. Bake it dry when the indicator tu |
-| Test cap + tubing, module leak test | 1 | set | $12.00 | estimate | PROVE THE MODULE BEFORE THE CELLS GO IN, and prove it the way the failure actually happens: seal it empty, pul |
-| Paste wax, releasing the groove filler | 1 | ea | $12.00 | estimate | the filler must NOT bond - it comes back out after the glass goes over it |
-| Silicone adhesive, bonding the cord into groove | 1 | tube | $12.00 | estimate | a thin continuous bead under the cord. It cannot then migrate, lift out, or be pinched under the lid in a dark |
-| M4 x 8 brass heat-set insert, 100 pc | 1 | pack | $12.00 | estimate | 36 needed; 5.6 mm printed pilot |
-| Fish tape / pull cord for the mast conduit | 1 | ea | $12.00 | estimate |  |
-| Dowel pins + drill, two-sided registration | 1 | set | $12.00 | estimate |  |
-| M6 x 16 A4 + M6 insert, strap mounts | 8 | set | $11.20 | estimate |  |
-| Vacuum gauge, -30 inHg, 1/4 NPT, glycerin | 1 | ea | $10.50 | **verified** | reads the BAG, not the pump - tee it in at the bag end. The regulator sets the level; this is how you know it  |
-| Gebildet PG11 gland, M18x1.5, 30 pk | 1 | pk | $9.99 | **verified** | your listing: M18x1.5 thread (matches the 18.5 hole) and 5-10 mm cable, against our 6.5 mm 8 AWG. 6 needed of  |
-| Thermal pad 1 mm non-conductive, 100 x 100 | 1 | ea | $9.99 | **verified** | 15.8 W/mK. One 100 x 100 sheet cuts both boards' baseplates. The ESC PCB face goes DOWN onto the floor, same a |
-| Silicone grease for the seal cord | 1 | tube | $9.00 | estimate | stops the cord bonding to the lid in storage |
-| Loctite 242 | 1 | ea | $9.00 | estimate | rod ends into the motor only - nyloc end does not need it |
-| Wet/dry sandpaper assortment, 45 pc | 1 | pk | $8.99 | **verified** | 80-400 for detail and between primer coats |
-| M8 x 1.25 BOTTOMING tap, 4-flute | 1 | ea | $8.78 | **verified** | the one that actually matters - blind at 10 mm in a 12.7 plate, and the taper tap in the set above cannot reac |
-| M8 x 1.25 tap + 6.8 mm drill set | 1 | set | $8.63 | **verified** | 8 blind holes |
-| M4 A4 washer O9, 100 pk | 1 | pk | $8.00 | estimate | 36 needed, under every lid bolt |
-| 2 mm glass beads or shim wire, bond-line control | 1 | ea | $8.00 | estimate | clamping a PU joint metal-to-plastic squeezes the line out and puts you back to a rigid joint that will fail |
-| Kapton tape, pack insulation | 1 | roll | $8.00 | estimate |  |
-| Dielectric grease, terminals | 1 | tube | $8.00 | estimate |  |
-| Pipe lagging or carpet, sawhorse padding | 1 | set | $8.00 | estimate | bare sawhorse tops mark foam and wet laminate |
-| M5 A4 hex nut, CAPTIVE - printed into the ring | 34 | ea | $7.48 | estimate | dropped in at a print pause at Z=6.0; steel thread, so a hatch that comes off every ride never wears anything  |
-| M8 x 30 A4 mast bolts, spares | 8 | ea | $7.20 | estimate | Gong supplies its own; these are spares |
-| Silicone sealant, BMS anti-vibration dabs | 1 | tube | $7.00 | estimate | V1 did this; stops the BMS walking |
-| M5 penny washer O15, under the captive nut | 34 | ea | $6.12 | estimate | goes in at the SAME print pause as the nut, underneath it |
-| Cyanoacrylate for the cord splice | 1 | ea | $6.00 | estimate |  |
-| Stainless roll pin, drive pin | 4 | ea | $6.00 | estimate | MEASURE the shaft cross-hole - do not trust the 4 mm figure |
-| 1 in polyester webbing 6 yd + 6 buckles | 1 | kit | $5.99 | **verified** | 2 straps per board, plus the module lift loops in section 7, all out of the one 6 yd pack |
-| SP17 2-pin IP68 flange receptacle | 2 | ea | $4.98 | **verified** | 67.2 V 5 A charge; O17 panel hole, 2 x M3 flange screws. $2.49, not the $11 this carried. CHECK THE CAP IS INC |
-| M5 nyloc nut + M6 x 20 fender washer | 8 | set | $4.80 | estimate |  |
-| M3 x 6 button head + M3 brass heat-set, nose cone | 8 | set | $4.00 | estimate |  |
-| M8 nyloc + washer, prop nut | 2 | set | $3.00 | estimate |  |
-| M3 heat-set insert + M3 x 8 A4, port flange | 4 | set | $2.40 | estimate |  |
+| [TotalBoat 5:1 gallon kit, slow hardener](https://www.amazon.com/dp/B00HR8515C) | 2 | kit | $299.98 | **verified** | 2.51 m2 laminate = 4.8 kg mixed = 1 kit/board |
+| [Peel ply, 60in](https://www.amazon.com/dp/B0H5JTMTZ3) | 6 | yd | $113.94 | **verified** | was only in the starter kit, and one kit's worth does not cover 6.12 m2 of part |
+| [TotalBoat Wet Edge topside paint, colour](https://www.amazon.com/dp/B00HQP5D9A) | 2 | kit | $107.98 | **verified** | one-part polyurethane, quart |
+| [Charger 67.2 V 5 A, 16S  (NOT 58.8 V)](https://www.amazon.com/dp/B0DK6FTB1P) | 2 | ea | $91.98 | **verified** | Amazon B0DK6FTB1P, aluminium case + fan |
+| [TotalBoat TotalFair epoxy fairing compound](https://www.amazon.com/dp/B00S9RBWIA) | 2 | kit | $91.98 | **verified** | smallest kit, one per board |
+| [Breather / bleeder cloth](https://www.amazon.com/dp/B015NM0B8K) | 6 | yd | $83.70 | **verified** | $13.95/yd cut; a 5 yd roll at $59.99 is $12.00/yd if you would rather buy the roll |
+| [1708 biax, 50in x 10 yd roll](https://www.amazon.com/dp/B07RJWHPKG) | 1 | roll | $79.95 | **verified** | 6 yd needed across both boards; $8.00/yd against Fibre Glast's $12.50 and no freight |
+| [Vac bag film, 5 yd](https://www.amazon.com/dp/B079MBL5TX) | 3 | roll | $74.85 | **verified** | 3.06 m2 a hull session; 2 hulls + 4 lids + a practice piece + one re-do. Single-use on the hull, reusable on f |
+| [ASA filament, printed module shell](https://www.amazon.com/dp/B09DKPYYBP) | 3 | kg | $73.47 | **verified** | 4 L-pieces/board, ~1.13 kg of part + supports and brim; largest piece 226 x 146 fits the A1 bed |
+| [1/2 in O-flute up-spiral, foam roughing](https://www.amazon.com/dp/B001J9I6D4) | 1 | ea | $66.05 | **verified** | Freud 73-214, 1/2 in shank. SINGLE flute for chip clearance - EPS chips are bulky and a 2- or 3-flute packs th |
+| [5052 1/8in x 12 x 24, 2-pack - module floors](https://www.amazon.com/dp/B0D3TH4TTC) | 1 | pk | $61.99 | **verified** | your Apr 2026 receipt (MorningRo/Huaiian). One sheet is one floor, so this pack does both boards |
+| [Pure nickel 0.2 x 10 mm, 5 m roll](https://www.amazon.com/dp/B0961Q1VVR) | 4 | roll | $59.96 | **verified** |  |
+| [TotalBoat 5:1 quart kit, fillets and bonding](https://www.amazon.com/dp/B00HR8517A) | 1 | kit | $58.99 | **verified** |  |
+| [VECOTOOLS 4.5 CFM single-stage pump, oil incl.](https://www.amazon.com/dp/B0GZVLP3PL) | 1 | ea | $57.99 | **verified** | your listing, ASIN B0GZVLP3PL. Was a $139.99 Pittsburgh 2-stage plus $15 of oil - $97 for ultimate vacuum we m |
+| [ASA filament, printed rim ring](https://www.amazon.com/dp/B09DKPYYBP) | 2 | kg | $48.98 | **verified** | 6 dovetailed pieces/board at ~90% infill, 710 g of part each; PRINT SEAL FACE DOWN - the bed is flatter than a |
+| [TotalBoat Premium Marine Topside Primer](https://www.amazon.com/dp/B00HS4YY7G) | 1 | kit | $46.99 | **verified** | one covers both |
+| [1/2 in ball nose, finishing pass](https://www.amazon.com/dp/B00KZM3GSG) | 1 | ea | $41.95 | **verified** | 1/2 in shank. ONLY if the makerspace does not supply tooling |
+| [Traction pad, 3-piece](https://www.amazon.com/dp/B07L9LPPT2) | 2 | set | $41.90 | **verified** |  |
+| [Hydraulic lug crimper, 10 ton, 12-2/0 AWG](https://www.amazon.com/dp/B0CFV249X3) | 1 | ea | $39.99 | **verified** | one-time; this is what replaces soldering XT150s |
+| [Folding sawhorses, pair, 700 lb](https://www.amazon.com/dp/B0G4CH7SKB) | 1 | pair | $39.99 | **verified** | ~30 in high. Racks buy height for planing, and this core comes machined - so they buy nothing here |
+| [E-glass 6 oz, 50in x 12ft, 2-pack](https://www.amazon.com/dp/B0CQY5KX84) | 2 | pack | $39.98 | **verified** | your receipt |
+| [Sealant tape, 50 ft roll](https://www.amazon.com/dp/B0GF25BPN6) | 2 | roll | $39.98 | **verified** | 31 m of bag perimeter across the project. 2 x 50 ft at $19.99 replaced 4 x 25 ft at $12 - same tape, fewer joi |
+| [Bag connector w/ ball valve, 1/4 in QD](https://www.amazon.com/dp/B0FSKGGL8H) | 2 | ea | $39.18 | **verified** | THE BALL VALVE IS THE POINT: shut it and the bag is isolated from the pump, so leak-down is a real measurement |
+| [Ultra Tef-Gel, galvanic barrier](https://www.amazon.com/dp/B01606TCAG) | 1 | ea | $39.00 | **verified** | every mast bolt, every time it goes back in. DEARER than the $22 this was carried at - and do not reach for th |
+| [3M 60923 organic vapour / acid gas P100, pair](https://www.amazon.com/dp/B00AEFCKKY) | 2 | pr | $35.98 | **verified** | $18.39/pr on Amazon against $31.49 at envirosafetyproducts. Cartridges EXPIRE - buy these near the layup, not  |
+| [Solid silicone cord, 3 mm round - BOTH seals](https://www.amazon.com/dp/B096N67R2D) | 2 | pc | $35.18 | **verified** | 10 ft (3.05 m) pieces, 70A. Buy long - splice on a straight run, never a corner |
+| [EVA bedding pads](https://www.amazon.com/dp/B0GG9H6VS2) | 2 | set | $33.98 | estimate |  |
+| [M12 IP68 momentary panel button](https://www.amazon.com/dp/B0FPQP7CP9) | 1 | ea | $32.65 | **verified** | 1 on hand; this line buys the second board's |
+| [M5 x 25 A4 socket cap, 20 pk](https://www.amazon.com/dp/B0CJFMMF58) | 2 | pk | $31.98 | **verified** | 24 needed. A4/316 - every cheaper listing is A2/304, which pits in salt water |
+| [IP68 M25 inline housing, 5 pk](https://www.amazon.com/dp/B0DPKM5HF7) | 2 | pk | $31.96 | **verified** | 3 per board, one per phase, 2 spare. M25 bodies take 4-14 mm cable against our 6.5 mm 8 AWG, so the size class |
+| [Coiled ankle leash](https://www.amazon.com/dp/B096VL3DHV) | 2 | ea | $29.98 | **verified** | you trust the remote failsafe; this is so the board stays with you |
+| [Sikaflex-292 marine structural PU](https://www.amazon.com/dp/B008F8VYMM) | 1 | tube | $28.99 | **verified** | ~6-8 MPa vs 4200's ~2. Fillet BOTH sides of the joint - on a flexible bond the fillets are what stop it peelin |
+| [Sika Aktivator-PRO 250 ml + daubers](https://www.amazon.com/dp/B0D9KTLC1M) | 1 | ea | $28.95 | **verified** | abrade + solvent wipe + activate the 5052; scuff the ASA. Aktivator-205 is DISCONTINUED - Aktivator-PRO replac |
+| [Nitrile gloves 6 mil, 100 pk](https://www.amazon.com/dp/B0C3SSXL4K) | 2 | box | $28.88 | **verified** |  |
+| [M4 x 12 A4 socket cap DIN912, 10 pk](https://www.amazon.com/dp/B07DVPC7HT) | 4 | pk | $28.40 | **verified** | 36 needed. A4/316 again - the $0.09/ea listings are all A2/304 |
+| [TotalBoat 5:1 FAST hardener 6 oz, cold days](https://www.amazon.com/dp/B00HRHA59K) | 1 | ea | $27.99 | **verified** | min 40-45 F against slow's 60. In a cold shop this is the one that cures, and the cold gives the pot life back |
+| [Rosin paper roll, floor and bench](https://www.amazon.com/dp/B0FXJDFW2B) | 1 | roll | $27.95 | estimate | absorbs instead of pooling. This is the actual upgrade over a tarp, and it is $24 |
+| [SP17 2-pin IP68 flange receptacle](https://www.amazon.com/dp/B0CDH5R8P4) | 2 | ea | $26.40 | **verified** | 67.2 V 5 A charge; O17 panel hole, 2 x M3 flange screws. $2.49, not the $11 this carried. CHECK THE CAP IS INC |
+| [3M Fastbond 1077 water-based, CNC hold-down](https://www.amazon.com/dp/B0GRSV587N) | 1 | ea | $26.02 | **verified** | WATER-BASED because the blank is EPS - solvent sprays like Super 77 eat polystyrene. Foam is taped/tacked down |
+| [PETG filament 1 kg, mast clamp set](https://www.amazon.com/dp/B0D41Y3WWZ) | 2 | kg | $25.98 | **verified** | 4 STEP files; 0.6 nozzle, 5 perims, 40% infill |
+| [PETG for props, 4-5 spares per board](https://www.amazon.com/dp/B0D41Y3WWZ) | 2 | kg | $25.98 | **verified** | 0.4 nozzle, 100% infill; balance-check on a bolt, then epoxy-coat - V1 skipped the coat and layer lines cost d |
+| [1/4 in torque wrench, 10-50 in-lb](https://www.amazon.com/dp/B0D7PWP7YF) | 1 | ea | $25.97 | **verified** | 1.1-5.6 Nm. RANGE MATTERS: our hatch spec is 2 Nm = 17.7 in-lb, which is BELOW the 20 in-lb floor of the commo |
+| [Rotary-tool router base + collets, if needed](https://www.amazon.com/dp/B0000DEZK4) | 1 | set | $24.63 | estimate | you have the tool; this is only if the base you have will not hold depth over the groove run |
+| [M6 stainless stud/busbar hardware](https://www.amazon.com/dp/B0DP79B987) | 2 | set | $23.98 | estimate |  |
+| [Test cap + tubing, module leak test](https://www.amazon.com/dp/B0DPWRP6FR) | 1 | set | $22.99 | estimate | PROVE THE MODULE BEFORE THE CELLS GO IN, and prove it the way the failure actually happens: seal it empty, pul |
+| [Neoprene sheet 1/8in, module + mast gaskets](https://www.amazon.com/dp/B08DLP2DBF) | 1 | sheet | $22.65 | estimate | TORRAMI 18x24 or similar - you kept a part sheet from V1 |
+| [8 AWG silicone, 10 ft red + 10 ft black](https://www.amazon.com/dp/B0BYJRDT19) | 1 | pk | $21.99 | **verified** | one pack covers BOTH boards - the longest run in the module is the 278 mm ESC-to-fuse, so 10 ft a side is alre |
+| [Longboard PSA sandpaper 120-180 grit, 20 yd roll](https://www.amazon.com/dp/B001AVC8ZI) | 1 | roll | $20.99 | **verified** | after 80 has the shape right |
+| [Flex longboard sander, 16-1/2 x 2-3/4](https://www.amazon.com/dp/B0CPR1CGQV) | 1 | ea | $19.99 | **verified** | adjustable radius, hook-and-loop + PSA |
+| [ANL 150 A fuse + holder](https://www.amazon.com/dp/B0B6ZHJR7D) | 2 | ea | $19.98 | **verified** |  |
+| [Cable ties, lacing, adhesive mounts](https://www.amazon.com/dp/B08RMS5H25) | 2 | set | $19.98 | estimate |  |
+| [M5 x 250 threaded rod, 4 pk (cut to ~171 mm)](https://www.amazon.com/dp/B0CMZR9L1Y) | 2 | pk | $19.98 | **verified** | a 4-pack is exactly one board's worth. Dry-assemble and mark before cutting |
+| [8 AWG marine ring lugs, 20 pk](https://www.amazon.com/dp/B0CWGXB4NB) | 2 | pk | $19.98 | **verified** | 28 needed; on M6 studs - nothing to solder |
+| [M12 IP68 membrane vent plug](https://www.amazon.com/dp/B0FXSNDGTV) | 2 | ea | $19.90 | **verified** | NOT optional on a sealed lithium box |
+| [Release wax / PVA for the cavity caul](https://www.amazon.com/dp/B0HB5VXRY1) | 1 | set | $19.90 | estimate |  |
+| [3M 4200 FC 3 oz tube, fillet over the bung](https://www.amazon.com/dp/B00MJ9K78A) | 1 | tube | $17.99 | **verified** | does both boards; 4200 NOT 5200 - 5200 never comes out |
+| [Thermometer / hygrometer, 2 pk](https://www.amazon.com/dp/B086PC5962) | 1 | pk | $17.99 | estimate | one in the shop, one by the part. Slow needs 60 F, fast needs 40-45, and below ~35 nothing cures at all |
+| [Chip brushes 2 in, 36 pk](https://www.amazon.com/dp/B078XJ2DCJ) | 1 | pk | $17.99 | **verified** | disposable, 2-4 a session across 6 sessions. The 12 pk at $7.19 is dearer per brush and runs out mid-build |
+| [Laminating bubble roller kit, 4 pc](https://www.amazon.com/dp/B07FCLTHY6) | 1 | kit | $17.99 | **verified** |  |
+| [FCS-pattern leash plug](https://www.amazon.com/dp/B0F1F97R4D) | 2 | ea | $17.18 | estimate |  |
+| [Paste wax, releasing the groove filler](https://www.amazon.com/dp/B0GVCGHZFR) | 1 | ea | $16.99 | estimate | the filler must NOT bond - it comes back out after the glass goes over it |
+| [Adjustable hand sanding block](https://www.amazon.com/dp/B0D4LNDYXD) | 1 | ea | $15.99 | **verified** | rails, nose, tail and anywhere the longboard will not reach |
+| [Longboard PSA sandpaper 80 grit, 20 yd roll](https://www.amazon.com/dp/B0CQ7CVGK6) | 1 | roll | $15.99 | **verified** | 2-3/4 in, self-adhesive, fits the longboard above. 80 is the fairing grit - it cuts fair, it does not finish |
+| [EPDM/neoprene sheet 1/2in, conduit bungs](https://www.amazon.com/dp/B00P5VFKCC) | 1 | sheet | $15.77 | estimate | cut O33 plugs for a O32 bore, punch 3 x O5 for 6.5 mm lead - interference fit, soap them through |
+| [Solid silicone cord, 1/8 in (3.175 mm) - the spare size](https://www.amazon.com/dp/B00QVB0KE8) | 1 | pc | $15.39 | **verified** | 10 ft piece, 70A. Fitted ONLY if the routed groove measures deep. Gives 24% squeeze at the nominal 2.4 depth a |
+| [16 AWG silicone, 6 colours x 5 ft](https://www.amazon.com/dp/B089CPH72F) | 1 | kit | $14.49 | **verified** | charge port and power button runs are short; one kit does both boards and the colours keep them straight |
+| [Silica gel, indicating, 50 g per module](https://www.amazon.com/dp/B0DSBCXHT3) | 1 | pk | $13.99 | estimate | ~40 g is a season at 50 breathing cycles; a token sachet is worth about six. Bake it dry when the indicator tu |
+| [PVC pack wrap, 200 mm lay-flat](https://www.amazon.com/dp/B09SVFL33L) | 1 | roll | $13.99 | **verified** | wide enough to sleeve a 16S brick; one roll does both |
+| [Adhesive-lined heat shrink 3:1, 400 pc kit](https://www.amazon.com/dp/B0BVVMCY86) | 1 | kit | $13.99 | **verified** | marine grade, glue-lined - plain heat shrink over a joint in a wet cavity is decoration |
+| [M3 heat-set insert kit, 361 pc](https://www.amazon.com/dp/B0G8JLX1HR) | 1 | kit | $13.98 | **verified** | covers the port flange (4 sets) and the nose cone. The kit's screws are PLAIN STEEL - buy M3 x 8 A4 separately |
+| [Kayak-style webbing carry handle, 4 pk](https://www.amazon.com/dp/B08BC6Q7ZW) | 1 | pk | $13.89 | **verified** | 4 needed; 2 x M6 into the 6061 strip in the rail pocket |
+| [PL300 / Gorilla Glue, layer glue-up](https://www.amazon.com/dp/B0009XEGVC) | 2 | tube | $13.18 | estimate |  |
+| [Water-ingress alarm, 2 pk](https://www.amazon.com/dp/B09DCMCB8D) | 1 | pk | $12.99 | **verified** | Geevon 100 dB pucks - the 2-pack covers BOTH boards. Put the SENSOR on the module floor in the lowest corner,  |
+| [5.5 mm gold bullets, 20 pair](https://www.amazon.com/dp/B096DJKR5Y) | 1 | pk | $12.99 | **verified** | 3 pair a board, so one pack covers both with spares. Motor pigtails arrive with their own |
+| [Roll pin assortment M1.5-M6, 220 pc](https://www.amazon.com/dp/B09MPWY8L4) | 1 | kit | $12.99 | **verified** | 4 needed. An ASSORTMENT on purpose: the note says MEASURE the shaft cross-hole rather than trust the 4 mm figu |
+| [Dowel pins + drill, two-sided registration](https://www.amazon.com/dp/B0GS2R3F5G) | 1 | set | $12.99 | estimate |  |
+| [Vacuum hose + hose clamps](https://www.amazon.com/dp/B0FH52FT4G) | 1 | set | $11.61 | estimate | 1/2 in tubing pump-to-bag plus clamps; the other half of what the deleted kit was actually carrying |
+| [M8 x 30 A4 mast bolts, 10 pk - spares](https://www.amazon.com/dp/B07HZKSP72) | 1 | pk | $10.82 | **verified** | Gong supplies its own; these are spares. Only listing confirming marine A4/316; head is ISO 7380 button, not s |
+| [Vacuum gauge, -30 inHg, 1/4 NPT, glycerin](https://www.amazon.com/dp/B00VQSOZFQ) | 1 | ea | $10.50 | **verified** | reads the BAG, not the pump - tee it in at the bag end. The regulator sets the level; this is how you know it  |
+| [M4 x 8 brass heat-set insert, 100 pc](https://www.amazon.com/dp/B0D9QHBG6G) | 1 | pack | $9.99 | estimate | 36 needed; 5.6 mm printed pilot |
+| [Gebildet PG11 gland, M18x1.5, 30 pk](https://www.amazon.com/dp/B0B8NJR62L) | 1 | pk | $9.99 | **verified** | your listing: M18x1.5 thread (matches the 18.5 hole) and 5-10 mm cable, against our 6.5 mm 8 AWG. 6 needed of  |
+| [Thermal pad 1 mm non-conductive, 100 x 100](https://www.amazon.com/dp/B0GTLRJJGT) | 1 | ea | $9.99 | **verified** | 15.8 W/mK. One 100 x 100 sheet cuts both boards' baseplates. The ESC PCB face goes DOWN onto the floor, same a |
+| [Silicone grease for the seal cord](https://www.amazon.com/dp/B0BN82MJVK) | 1 | tube | $9.99 | estimate | stops the cord bonding to the lid in storage |
+| M6 heat-set insert, strap mounts | 1 | pk | $9.99 | estimate | not supplied with the screws above |
+| [Fish tape / pull cord for the mast conduit](https://www.amazon.com/dp/B0FGCY7XPS) | 1 | ea | $9.99 | estimate |  |
+| [Plastic sheeting + masking tape, bench protection](https://www.amazon.com/dp/B0GF2BWRC6) | 1 | set | $9.99 | estimate |  |
+| [M5 A4 hex nut DIN934, 50 pk - CAPTIVE in the ring](https://www.amazon.com/dp/B084HLMN7B) | 1 | pk | $9.19 | **verified** | 34 needed. Dropped in at a print pause at Z=6.0; steel thread, so a hatch that comes off every ride never wear |
+| [Dielectric grease, terminals](https://www.amazon.com/dp/B0D6R543V2) | 1 | tube | $8.99 | estimate |  |
+| M5 nyloc nut, stainless pk | 1 | pk | $8.99 | estimate | a separate pack from the washers above - they do not come together |
+| [M8 nyloc nut 316, 30 pk - prop nut](https://www.amazon.com/dp/B0BP2R3YHY) | 1 | pk | $8.99 | **verified** | 2 needed. 316 not 304 - this one is permanently submerged. WASHER NOT INCLUDED, see below |
+| [Pipe lagging or carpet, sawhorse padding](https://www.amazon.com/dp/B0CBYST37N) | 1 | set | $8.99 | estimate | bare sawhorse tops mark foam and wet laminate |
+| [Wet/dry sandpaper assortment, 45 pc](https://www.amazon.com/dp/B0GHND351C) | 1 | pk | $8.99 | **verified** | 80-400 for detail and between primer coats |
+| [M8 x 1.25 BOTTOMING tap, 4-flute](https://www.amazon.com/dp/B00DLCTUDM) | 1 | ea | $8.78 | **verified** | the one that actually matters - blind at 10 mm in a 12.7 plate, and the taper tap in the set above cannot reac |
+| [M8 x 1.25 tap + 6.8 mm drill set](https://www.amazon.com/dp/B0GD1YF5PL) | 1 | set | $8.63 | **verified** | 8 blind holes |
+| [Kapton tape, pack insulation](https://www.amazon.com/dp/B006ZFQNT6) | 1 | roll | $8.25 | estimate |  |
+| [M6 x 16 A4 button head, 10 pk](https://www.amazon.com/dp/B07DVRLQTK) | 1 | pk | $8.06 | **verified** | 8 needed, strap mounts. The M6 THREADED INSERT IS NOT INCLUDED - separate line below |
+| [2.5 mm straight cutter - fallback](https://www.amazon.com/dp/B0GWSZ2KV2) | 1 | ea | $7.99 | estimate | only if you would rather cut the groove open than sand down to a proud filler strip. Undersize in a 4 mm groov |
+| [M5 penny washer O15 DIN9021, 150 pk](https://www.amazon.com/dp/B0G58KQN6L) | 1 | pk | $7.99 | **verified** | 34 needed. DIN9021 is what confirms the large 15 mm OD. Goes in at the SAME print pause as the nut, underneath |
+| [Silicone adhesive, bonding the cord into groove](https://www.amazon.com/dp/B0002UEN1U) | 1 | tube | $7.56 | estimate | a thin continuous bead under the cord. It cannot then migrate, lift out, or be pinched under the lid in a dark |
+| [Silicone sealant, BMS anti-vibration dabs](https://www.amazon.com/dp/B0F4MT4FW6) | 1 | tube | $7.49 | estimate | V1 did this; stops the BMS walking |
+| [2 mm glass beads or shim wire, bond-line control](https://www.amazon.com/dp/B0FVSHYP99) | 1 | ea | $7.19 | estimate | clamping a PU joint metal-to-plastic squeezes the line out and puts you back to a rigid joint that will fail |
+| [Loctite 242](https://www.amazon.com/dp/B000I1RSNS) | 1 | ea | $6.98 | estimate | rod ends into the motor only - nyloc end does not need it |
+| [M4 A4 washer, 316, 100 pk](https://www.amazon.com/dp/B0DZ5BVLP5) | 1 | pk | $6.79 | **verified** | 36 needed, under every lid bolt. NOTE the OD is 12 mm, not the 9 mm this line specced - the only 9 mm-OD listi |
+| [1 in polyester webbing 6 yd + 6 buckles](https://www.amazon.com/dp/B0FBRMSRLK) | 1 | kit | $5.99 | **verified** | 2 straps per board, plus the module lift loops in section 7, all out of the one 6 yd pack |
+| [Cyanoacrylate for the cord splice](https://www.amazon.com/dp/B0DKP4TVSF) | 1 | ea | $5.39 | estimate |  |
 
 ## Gong
 
@@ -157,7 +158,7 @@ Some Flipsky appears on Amazon but the range is thin and usually dearer. Buy dir
 
 | Item | Qty | Unit | Ext | Price | Note |
 |---|---:|---|---:|---|---|
-| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $429.16 | **verified** |  |
+| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $438.34 | **verified** |  |
 | Gong shipping to Idaho, per foil | 2 | ea | $248.00 | **verified** | 115.50 EUR on order 252112; charged per ORDER, so putting both boards' foils in ONE order saves about $124 |
 | Shipping - Divinycell, 6061 plate, VR20 | 1 | allow | $120.00 | estimate | STILL THE BIGGEST UNVERIFIED LINE - it wants three real carts to settle. Was $220 when it covered G10 sheet an |
 
@@ -233,4 +234,12 @@ https://www.fibreglast.com
 | Item | Qty | Unit | Ext | Price | Note |
 |---|---:|---|---:|---|---|
 | VR20 vacuum regulator | 1 | ea | $52.00 | **verified** | one-time |
+
+## Fasteners / shop consumables
+
+| Item | Qty | Unit | Ext | Price | Note |
+|---|---:|---|---:|---|---|
+| [M6 x 20 fender washer, 100 pk](https://www.amazon.com/dp/B0DPMPJW4H) | 1 | pk | $9.49 | **verified** | 8 needed |
+| M3 x 8 A4 stainless, 20 pk | 1 | pk | $8.99 | estimate | the kit's screws are not stainless and this joint is submerged |
+| M8 316 washer, prop nut | 1 | pk | $6.99 | estimate |  |
 

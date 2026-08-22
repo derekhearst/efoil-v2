@@ -63,19 +63,44 @@ M = dict(hatch_bolts=R["bom_hatch_bolts"],
          # (copied from V1's COPPER-jumper design) never paid for.
 
 OK, EST, OWNED = "verified", "estimate", "on hand"
+try:
+    from links import LINKS       # generated; item name -> (ASIN, price, title)
+except ImportError:               # importable as a package too
+    from .links import LINKS
+
 ROWS = []
+DRIFT = []                        # (item, believed, listed, qty)
 
 
-def add(sec, item, qty, unit, price, conf, note="", tool=False, vendor=None):
+def add(sec, item, qty, unit, price, conf, note="", tool=False,
+        vendor=None, url=None):
     """tool=True marks a ONE-TIME cost - a tool, jig or template that is
     bought once and still exists after the build. It is real money out the
     door, but it is not the cost of a board, and it does not repeat on the
     next one. Keeping the two apart is the difference between "a board costs
     $4,100" and "a board costs $3,700 and I now own a vacuum rig".
     """
+    # THE LISTING IS THE PRICE. Where a line is linked to a real listing,
+    # that listing's price wins over the literal written below - the literal
+    # is what we BELIEVED before anyone looked. Disagreements go into DRIFT
+    # and are printed at the end of the build, so an override is never
+    # silent. A big one usually means the line is specced wrong rather than
+    # merely mispriced - pack goods costed as loose units, A2 quoted for A4.
+    if item in LINKS:
+        _asin, _listed, _t = LINKS[item]
+        if url is None:
+            url = "https://www.amazon.com/dp/" + _asin
+        if _listed and abs(_listed - price) > 0.005:
+            DRIFT.append((item, price, _listed, qty))
+            price = _listed
     ROWS.append(dict(sec=sec, item=item, qty=qty, unit=unit, price=price,
                      conf=conf, note=note, ext=qty * price, tool=tool,
-                     vendor=vendor))
+                     vendor=vendor, url=url))
+
+
+def linked(r):
+    """Item name as a markdown link when we know the exact listing."""
+    return ("[" + r["item"] + "](" + r["url"] + ")") if r.get("url")         else r["item"]
 
 
 # What the makerspace covers, and therefore is NOT in this BOM.
@@ -525,8 +550,16 @@ def build():
     # ring above the nut, then 4 through the nut = 24. A 16 would have stood
     # 8 mm short of the thread it is supposed to reach - it would not have
     # picked up the nut at all.
-    add("6  Hatch and seal", "M5 x 25 A4 stainless socket cap",
-        M["hatch_bolts"] * N, "ea", 0.55, EST)
+    # PACK GOODS, NOT LOOSE UNITS. This whole block used to be priced as a
+    # per-piece cost times a piece count - $0.55 an M5 screw, $0.22 a nut -
+    # which is not a thing you can buy. Stainless metric fasteners come in
+    # packs, and the A4/316 the salt water demands is several times the price
+    # of the A2/304 those per-piece figures were really quoting. Every line
+    # below is now (packs needed) x (real pack price).
+    add("6  Hatch and seal", "M5 x 25 A4 socket cap, 20 pk",
+        math.ceil(M["hatch_bolts"] * N / 20), "pk", 15.99, OK,
+        str(M["hatch_bolts"] * N) + " needed. A4/316 - every cheaper listing "
+        "is A2/304, which pits in salt water")
     # NOT the $0.14 self-tapping brass insert that was here: driving a coarse
     # thread into a brittle laminate wedges it between plies, which is exactly
     # why the mast plate uses bonded bushings. A wire-thread insert is tapped
@@ -539,13 +572,17 @@ def build():
     # bears on its own 9.24 mm across-corners circle and tears out of 6 mm of
     # ASA at 5.2 Nm - only 2.6x the 2 Nm spec, and a hand on a hex key hits 5
     # without trying. On a O15 penny washer that becomes 8.5 Nm, 4.2x.
-    add("6  Hatch and seal", "M5 penny washer O15, under the captive nut",
-        M["hatch_bolts"] * N + 10, "ea", 0.18, EST,
-        "goes in at the SAME print pause as the nut, underneath it")
-    add("6  Hatch and seal", "M5 A4 hex nut, CAPTIVE - printed into the ring",
-        M["hatch_bolts"] * N + 10, "ea", 0.22, EST,
-        "dropped in at a print pause at Z=6.0; steel thread, so a hatch that "
-        "comes off every ride never wears anything out")
+    add("6  Hatch and seal", "M5 penny washer O15 DIN9021, 150 pk",
+        1, "pk", 7.99, OK,
+        str(M["hatch_bolts"] * N + 10) + " needed. DIN9021 is what confirms "
+        "the large 15 mm OD. Goes in at the SAME print pause as the nut, "
+        "underneath it")
+    add("6  Hatch and seal",
+        "M5 A4 hex nut DIN934, 50 pk - CAPTIVE in the ring",
+        1, "pk", 9.19, OK,
+        str(M["hatch_bolts"] * N + 10) + " needed. Dropped in at a print "
+        "pause at Z=6.0; steel thread, so a hatch that comes off every ride "
+        "never wears anything out")
     # 4 sheets, not a "full template set". With the makerspace pass booked, the
     # seven ROUTER templates are dead weight - the CNC cuts every feature they
     # would have guided: outline, cavity, rim rebate, both mast pockets, handle
@@ -563,12 +600,17 @@ def build():
         "is now the whole MDF requirement")
 
     # ---------------------------------------------------------- 7 module
-    add("7  Module", "M4 x 12 A4 stainless socket cap",
-        M["mod_inserts"] * N, "ea", 0.35, EST)
+    add("7  Module", "M4 x 12 A4 socket cap DIN912, 10 pk",
+        math.ceil(M["mod_inserts"] * N / 10), "pk", 7.10, OK,
+        str(M["mod_inserts"] * N) + " needed. A4/316 again - the $0.09/ea "
+        "listings are all A2/304")
     # Not optional. The lid is cored; the washer is what spreads bolt load off
     # a O5 hole onto the potted plug. Without it the head sits on the plug edge.
-    add("7  Module", "M4 A4 washer O9, 100 pk", 1, "pk", 8.00, EST,
-        str(M["mod_inserts"] * N) + " needed, under every lid bolt")
+    add("7  Module", "M4 A4 washer, 316, 100 pk", 1, "pk", 6.79, OK,
+        str(M["mod_inserts"] * N) + " needed, under every lid bolt. NOTE the "
+        "OD is 12 mm, not the 9 mm this line specced - the only 9 mm-OD "
+        "listing is 304. Took the alloy over the diameter because this sits "
+        "in the wet cavity; check 12 mm clears the lid pocket before ordering")
     # Heat-set inserts are RIGHT again: the flange prints as part of the wall,
     # so the insert melts into ASA the way it is meant to. This line went
     # heat-set (wrong - G10) -> tap set (right for G10) -> heat-set (right for
@@ -666,8 +708,14 @@ def build():
         "$2.49, not the $11 this carried. CHECK THE CAP IS INCLUDED before "
         "ordering - on a board that gets submerged the cap is the part that "
         "does the sealing when nothing is plugged in", vendor="Amazon")
-    add("7  Module", "M3 heat-set insert + M3 x 8 A4, port flange", 2 * N,
-        "set", 0.60, EST)
+    # ONE 361-pc M3 kit covers this AND the nose cone in 10b, so it is
+    # bought once here and shows as 0 there.
+    add("7  Module", "M3 heat-set insert kit, 361 pc", 1, "kit", 13.98, OK,
+        "covers the port flange (" + str(2 * N) + " sets) and the nose cone. "
+        "The kit's screws are PLAIN STEEL - buy M3 x 8 A4 separately for the "
+        "flange, which lives in the wet cavity")
+    add("7  Module", "M3 x 8 A4 stainless, 20 pk", 1, "pk", 8.99, EST,
+        "the kit's screws are not stainless and this joint is submerged")
 
     # -------------------------------------------------- 8 mast hardpoint
     # The 316 bar, the lathe work and the DP460 are all GONE - $133 of parts
@@ -753,8 +801,10 @@ def build():
     # Things that are easy to leave off a BOM and then stop a build dead.
     add("9b Small but essential", "Capacitor spot welder", 1, "ea", 0.00,
         OWNED, "used on V1")
-    add("9b Small but essential", "M8 x 30 A4 mast bolts, spares",
-        8, "ea", 0.90, EST, "Gong supplies its own; these are spares")
+    add("9b Small but essential", "M8 x 30 A4 mast bolts, 10 pk - spares",
+        1, "pk", 10.82, OK, "Gong supplies its own; these are spares. Only "
+        "listing confirming marine A4/316; head is ISO 7380 button, not "
+        "socket cap - check that suits the counterbore")
     add("9b Small but essential", "Silicone grease for the seal cord",
         1, "tube", 9.00, EST, "stops the cord bonding to the lid in storage")
     # SPLICE PLACEMENT, and it is not fussiness - V1's own build notes say
@@ -791,8 +841,11 @@ def build():
         1, "pk", 13.89, OK,
         str(2 * N) + " needed; 2 x M6 into the 6061 strip in the rail pocket",
         vendor="Amazon")
-    add("9b Small but essential", "M6 x 16 A4 + M6 insert, strap mounts",
-        4 * N, "set", 1.40, EST)
+    add("9b Small but essential", "M6 x 16 A4 button head, 10 pk",
+        1, "pk", 8.06, OK, str(4 * N) + " needed, strap mounts. The M6 "
+        "THREADED INSERT IS NOT INCLUDED - separate line below")
+    add("9b Small but essential", "M6 heat-set insert, strap mounts",
+        1, "pk", 9.99, EST, "not supplied with the screws above")
 
 
     # ---------------------------------------------- 9c every joint in the pack
@@ -868,12 +921,17 @@ def build():
     # print is free, the hardware is not. Quantities off V1's as-built list.
     add("10b Drivetrain", "PETG filament 1 kg, mast clamp set", N, "kg",
         9.99, OK, "4 STEP files; 0.6 nozzle, 5 perims, 40% infill")
-    add("10b Drivetrain", "M5 x 250 threaded rod (cut to ~171 mm)", 4 * N,
-        "ea", 2.20, EST, "dry-assemble and mark before cutting all four")
-    add("10b Drivetrain", "M5 nyloc nut + M6 x 20 fender washer", 4 * N,
-        "set", 0.60, EST)
-    add("10b Drivetrain", "M3 x 6 button head + M3 brass heat-set, nose cone",
-        4 * N, "set", 0.50, EST)
+    add("10b Drivetrain", "M5 x 250 threaded rod, 4 pk (cut to ~171 mm)",
+        N, "pk", 9.99, OK,
+        "a 4-pack is exactly one board's worth. Dry-assemble and mark before "
+        "cutting")
+    add("10b Drivetrain", "M6 x 20 fender washer, 100 pk", 1, "pk", 9.49,
+        OK, str(4 * N) + " needed")
+    add("10b Drivetrain", "M5 nyloc nut, stainless pk", 1, "pk", 8.99, EST,
+        "a separate pack from the washers above - they do not come together")
+    add("10b Drivetrain", "M3 x 6 button head + heat-set, nose cone",
+        0, "set", 0.00, OWNED,
+        "off the 361-pc M3 kit bought in section 7 - one kit does both")
     add("10b Drivetrain", "Loctite 242", 1, "ea", 9.00, EST,
         "rod ends into the motor only - nyloc end does not need it")
     # Prop: PRINTED, as V1 ran. The MakerWorld prop is bored for our 12 mm
@@ -885,9 +943,14 @@ def build():
     add("10b Drivetrain", "PETG for props, 4-5 spares per board", N, "kg",
         9.99, OK, "0.4 nozzle, 100% infill; balance-check on a bolt, then "
         "epoxy-coat - V1 skipped the coat and layer lines cost drag")
-    add("10b Drivetrain", "Stainless roll pin, drive pin", 2 * N, "ea", 1.50,
-        EST, "MEASURE the shaft cross-hole - do not trust the 4 mm figure")
-    add("10b Drivetrain", "M8 nyloc + washer, prop nut", N, "set", 1.50, EST)
+    add("10b Drivetrain", "Roll pin assortment M1.5-M6, 220 pc", 1, "kit",
+        12.99, OK, str(2 * N) + " needed. An ASSORTMENT on purpose: the note "
+        "says MEASURE the shaft cross-hole rather than trust the 4 mm "
+        "figure, and a kit means the measurement does not cost another order")
+    add("10b Drivetrain", "M8 nyloc nut 316, 30 pk - prop nut", 1, "pk",
+        8.99, OK, str(N) + " needed. 316 not 304 - this one is permanently "
+        "submerged. WASHER NOT INCLUDED, see below")
+    add("10b Drivetrain", "M8 316 washer, prop nut", 1, "pk", 6.99, EST)
     # Crimped, not soldered. XT150 is out.
     add("10b Drivetrain", "8 AWG marine ring lugs, 20 pk", 2, "pk", 16.99,
         OK, str(14 * N) + " needed; on M6 studs - nothing to solder")
@@ -1135,7 +1198,7 @@ def render(rows):
             tot += r["ext"]
             if r["conf"] == OK:
                 ver += r["ext"]
-            out.append("| " + r["item"] + " | " + str(r["qty"]) + " | "
+            out.append("| " + linked(r) + " | " + str(r["qty"]) + " | "
                        + r["unit"] + " | $" + format(r["price"], ",.2f")
                        + " | $" + format(r["ext"], ",.2f") + " | "
                        + r["conf"] + " | " + r["note"] + " |")
@@ -1152,6 +1215,10 @@ def render(rows):
     out.append("| Of which verified | $" + format(ver, ",.2f") + "  ("
                + format(100 * ver / tot, ".0f") + "%) |")
     out.append("| Of which estimated | $" + format(tot - ver, ",.2f") + " |")
+    _nl = [r for r in rows if r["ext"] > 0 and not r.get("url")]
+    out.append("| Priced but NOT linked to a listing | " + str(len(_nl))
+               + " lines, $" + format(sum(r["ext"] for r in _nl), ",.2f")
+               + " |")
     out.append("")
     tl, marg = tooling(rows, tot)
     out.append("## What is a board, and what is a shop")
@@ -1331,7 +1398,7 @@ def shopping(rows):
         out.append("| Item | Qty | Unit | Ext | Price | Note |")
         out.append("|---|---:|---|---:|---|---|")
         for r in sorted(buckets[(name, url)], key=lambda r: -r["ext"]):
-            out.append("| " + r["item"] + " | " + str(r["qty"]) + " | "
+            out.append("| " + linked(r) + " | " + str(r["qty"]) + " | "
                        + r["unit"] + " | $" + format(r["ext"], ",.2f") + " | "
                        + ("**verified**" if r["conf"] == OK else "estimate")
                        + " | " + (r.get("note") or "").replace("|", "/")[:110]
@@ -1371,5 +1438,17 @@ if __name__ == "__main__":
     print("  " + "MARGINAL per board".ljust(26) + "$" + format(marg, ">10,.2f")
           + "   <- what board 3 costs")
     print("  verified " + format(100 * ver / tot, ".0f") + "% of spend")
+    if DRIFT:
+        _d = sorted(DRIFT, key=lambda x: -abs((x[2] - x[1]) * x[3]))
+        print("")
+        print("  " + str(len(DRIFT)) + " lines repriced from their listing "
+              "(net $" + format(sum((b - a) * q for _i, a, b, q in DRIFT),
+                                "+,.2f") + "):")
+        for _i, _a, _b, _q in _d[:10]:
+            print("    " + format(_a, "8.2f") + " -> " + format(_b, "8.2f")
+                  + " x" + str(_q).ljust(4) + _i[:44])
+        if len(_d) > 10:
+            print("    ... and " + str(len(_d) - 10) + " smaller")
+        print("")
     print("wrote " + path)
     print("wrote " + spath)
