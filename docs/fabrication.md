@@ -200,6 +200,43 @@ the deck surfacing is not a given.
 
 ## Vacuum bagging — the actual session
 
+### Somewhere to work — and the bed matters more than the stand
+
+V1 was glassed on a blue tarp over a table. Two things are wrong with that, and
+they are separate problems.
+
+**The tarp.** It does not absorb, so drips pool, stay wet, and get walked
+through everything; and it is slippery under a wet board. **Rosin or builder's
+paper** soaks it up and rolls into the bin. ~$24 a roll and it is the whole
+upgrade.
+
+**Stands.** Two padded uprights at hip height so you can walk round the board
+and reach both rails — for shaping, sanding and wet-out. Bought ones are
+**$180–400**; 2×4, ply and foam pipe lagging is **$50–90** and does the same
+job. Rack pads want to grip the foam so the blank does not slide.
+
+**The bagging bed — this is the one that actually bites.** It is *not* the same
+thing as a table, and skipping it ruins a hull.
+
+At 7 inHg the bag presses the board onto whatever it is lying on:
+
+| | |
+|---|---|
+| Pressure | 24 kPa |
+| Over 1400 × 600 | **20,160 N — two tonnes** |
+| EPS crushes at | 150 kPa |
+| So you need | **134,000 mm² of contact — 16% of the footprint** |
+
+**A flat table under a rockered hull touches nowhere near that.** It lands on a
+patch in the middle and dents the core straight through the fresh laminate,
+and you will not see it until the bag comes off.
+
+A **carpet offcut or a moving blanket** conforms and gives you the whole
+footprint. ~$22, and it is the cheapest insurance in the whole process.
+
+Stands for shaping and wet-out; **conforming bed for the bag.** Not the same
+surface, not interchangeable.
+
 ### The number that shapes everything: 20 minutes
 
 TotalBoat 5:1 with **slow** hardener has a **20-minute pot life at 75 °F**. That

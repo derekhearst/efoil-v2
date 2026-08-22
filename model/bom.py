@@ -835,6 +835,35 @@ def build():
         2, "pr", 31.49, OK,
         "envirosafetyproducts.com; cartridges expire - buy near the layup")
     add("10e Layup kit", "Acetone, 1 gal, cleanup", 1, "gal", 39.95, OK)
+    # --- somewhere to actually work, which V1 did not have ----------------
+    # V1 was glassed on a blue tarp over a table, and tarps are the wrong
+    # surface for two separate reasons: they do not absorb, so drips pool and
+    # then get walked through everything, and they are slippery under a wet
+    # board. Rosin/builder's paper soaks it up and rolls into the bin.
+    add("10e Layup kit", "Rosin paper roll, floor and bench", 1, "roll",
+        24.00, EST, "absorbs instead of pooling. This is the actual upgrade "
+        "over a tarp, and it is $24", tool=True)
+    # SHAPING STANDS. Two padded uprights at hip height so you can walk round
+    # the board and reach both rails - for shaping, sanding and wet-out. Bought
+    # ones are $180-400; 2x4, ply and pipe lagging is $50-90 and the same job.
+    add("10e Layup kit", "Shaping stands, pair - DIY 2x4 + pipe lagging",
+        1, "pair", 70.00, EST,
+        "hip height, padded,board supported on its rails. Bought equivalents are "
+        "$180-400 and do nothing extra", tool=True)
+    # AND A CONFORMING BED FOR BAGGING, which is NOT the same thing as a table
+    # and matters more than any of the above.
+    # At 7 inHg the bag presses the board onto whatever it sits on: 24 kPa over
+    # 1400 x 600 is 20,160 N. Two tonnes. Spread over EPS that crushes at 150
+    # kPa, you need 134,000 mm2 of contact - 16% of the board's footprint - and
+    # a FLAT table under a ROCKERED hull touches nowhere near that. It lands on
+    # a patch in the middle and dents the core through the fresh laminate.
+    # A carpet offcut or a moving blanket conforms and gives you the whole
+    # footprint. It is the cheapest thing on this page and skipping it ruins a
+    # hull at hour three.
+    add("10e Layup kit", "Moving blanket / carpet offcut, bagging bed",
+        1, "ea", 22.00, EST,
+        "the board must NOT bag down onto a flat table - rocker means point "
+        "contact, and 20 kN through a small patch dents the core", tool=True)
     add("10e Layup kit", "Plastic sheeting + masking tape, bench protection",
         1, "set", 20.00, EST)
     add("10e Layup kit", "Sanding blocks + longboard for fairing", 1, "set",
