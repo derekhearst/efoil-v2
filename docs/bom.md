@@ -117,11 +117,12 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | 21700 cells already on hand | 128 | ea | $0.00 | $0.00 | on hand |  |
 | [Pure nickel 0.2 x 10 mm, 5 m roll](https://www.amazon.com/dp/B0961Q1VVR) | 3 | roll | $14.99 | $44.97 | verified | 6.9 m a board derived from the pack, not guessed. YOU ALREADY OWN 3 ROLLS (SUIDI, ordered Apr 16 x2 and May 6) - check the drawer before buying more. There is also a 5 m roll of 0.2 x 27 mm uxcell from Apr 12: too wide for bridges, but it is the right stock for the two terminal collectors and for doubling the edges without stacking two thin layers |
 | 21700 spacer brackets | 0 | set | $0.00 | $0.00 | on hand |  |
-| [ANL 150 A fuse + holder](https://www.amazon.com/dp/B0B6ZHJR7D) | 2 | ea | $9.99 | $19.98 | verified |  |
+| [ANL 150 A fuse + holder](https://www.amazon.com/dp/B0B6ZHJR7D) | 2 | ea | $9.99 | $19.98 | verified | in the NEGATIVE leg, between BMS P- and the ESC - that is where V1 ran it and it is the node the charge negative branches from too |
+| Inline 10 A fuse + holder, charge lead | 2 | ea | $8.00 | $16.00 | estimate | at SPLIT A on the charge positive. The ANL is sized for the motor and cannot protect 16 AWG |
 | [8 AWG silicone, 10 ft red + 10 ft black](https://www.amazon.com/dp/B0BYJRDT19) | 1 | pk | $21.99 | $21.99 | verified | one pack covers BOTH boards - the longest run in the module is the 278 mm ESC-to-fuse, so 10 ft a side is already 10x what the runs need. Motor supplies its own phase leads + bullets. Amazon 8 AWG 10+10 spans $18.88-$23.99; the 25 ft pack at $49.99 was buying 40 ft of wire to use about 3 |
 | [PVC pack wrap, 200 mm lay-flat](https://www.amazon.com/dp/B09SVFL33L) | 1 | roll | $13.99 | $13.99 | verified | wide enough to sleeve a 16S brick; one roll does both |
 | [Kapton tape, pack insulation](https://www.amazon.com/dp/B006ZFQNT6) | 1 | roll | $8.25 | $8.25 | estimate |  |
-| **subtotal** | | | | **$1,856.04** | | |
+| **subtotal** | | | | **$1,872.04** | | |
 
 ## 8  Mast hardpoint
 
@@ -254,30 +255,30 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | Item | Qty | Unit | Unit $ | Ext $ | | Note |
 |---|---:|---|---:|---:|---|---|
 | Shipping - Divinycell, 6061 plate, VR20 | 1 | allow | $120.00 | $120.00 | estimate | STILL THE BIGGEST UNVERIFIED LINE - it wants three real carts to settle. Was $220 when it covered G10 sheet and hazmat epoxy, both of which are now out of the build entirely |
-| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $441.00 | $441.00 | verified |  |
-| **subtotal** | | | | **$561.00** | | |
+| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $441.96 | $441.96 | verified |  |
+| **subtotal** | | | | **$561.96** | | |
 
 ## Totals
 
 | | |
 |---|---:|
-| **Grand total, 2 boards** | **$7,790.95** |
-| Per board | $3,895.47 |
-| Of which verified | $7,202.92  (92%) |
-| Of which estimated | $588.03 |
+| **Grand total, 2 boards** | **$7,807.91** |
+| Per board | $3,903.95 |
+| Of which verified | $7,203.88  (92%) |
+| Of which estimated | $604.03 |
 | Linked to a real listing | 127 lines |
-| Priced but NOT linked | 2 lines, $43.00 |
-| Allowances, not linkable (tax, freight) | 3 lines, $829.63 |
+| Priced but NOT linked | 3 lines, $59.00 |
+| Allowances, not linkable (tax, freight) | 3 lines, $830.59 |
 
 ## What is a board, and what is a shop
 
-Some of the total above is not the cost of a board at all - it is tools, jigs and templates that exist afterwards and do not repeat. Splitting them out is the difference between "a board costs $3,895" and "a board costs $3,505 and I now own a vacuum rig, a crimper and a full template set".
+Some of the total above is not the cost of a board at all - it is tools, jigs and templates that exist afterwards and do not repeat. Splitting them out is the difference between "a board costs $3,904" and "a board costs $3,513 and I now own a vacuum rig, a crimper and a full template set".
 
 | | |
 |---|---:|
 | One-time tooling (incl. its share of tax) | $781.41 |
-| **Marginal cost of a board** | **$3,504.77** |
-| Cost of the NEXT board after these 2 | $3,504.77 |
+| **Marginal cost of a board** | **$3,513.25** |
+| Cost of the NEXT board after these 2 | $3,513.25 |
 
 | One-time item | $ |
 |---|---:|

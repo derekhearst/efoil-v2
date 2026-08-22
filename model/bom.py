@@ -867,7 +867,18 @@ def build():
         "right stock for the two terminal collectors and for doubling the "
         "edges without stacking two thin layers")
     add("9  Electrical", "21700 spacer brackets", 0, "set", 0.00, OWNED)
-    add("9  Electrical", "ANL 150 A fuse + holder", N, "ea", 10.59, OK)
+    add("9  Electrical", "ANL 150 A fuse + holder", N, "ea", 9.99, OK,
+        "in the NEGATIVE leg, between BMS P- and the ESC - that is where V1 "
+        "ran it and it is the node the charge negative branches from too")
+    # THE 150 A ANL DOES NOTHING FOR THE CHARGE LEADS. They are 16 AWG on a
+    # 5 A charger, so in normal use the charger limits itself - but a shorted
+    # charge lead inside a sealed module, protected only by a fuse sized for
+    # 150 A, is an unprotected 16 AWG wire next to a lithium pack. One small
+    # fuse at the positive split closes that.
+    add("9  Electrical", "Inline 10 A fuse + holder, charge lead", N, "ea",
+        8.00, EST,
+        "at SPLIT A on the charge positive. The ANL is sized for the motor "
+        "and cannot protect 16 AWG", vendor="Amazon")
     add("9  Electrical", "8 AWG silicone, 10 ft red + 10 ft black",
         1, "pk", 21.99, OK, "one pack covers BOTH boards - the longest run in "
         "the module is the 278 mm ESC-to-fuse, so 10 ft a side is already 10x "
