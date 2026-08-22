@@ -130,7 +130,7 @@ def build():
         "HD Meridian, 30 in stock, aisle 29 bay 020; $23.53 at 32+. EPS, not "
         "the XPS V1 used - deliberate, ~$90 cheaper across both boards, and "
         "the shear it gives up is covered by H-80 at the hardpoints. See the "
-        "note at RHO_EPS in blender_board.py")
+        "note at RHO_EPS in blender_board.py", vendor="Home Depot / hardware")
     add("1  Core and shaping", "PL300 / Gorilla Glue, layer glue-up",
         N, "tube", 8.00, EST)
     # Maker Shop Boise, Overland & Cole: day pass $99, 5-day punch $250,
@@ -167,6 +167,15 @@ def build():
         1, "pk", 61.99, OK,
         "your Apr 2026 receipt (MorningRo/Huaiian). One sheet is one floor, "
         "so this pack does both boards")
+    # CHECKED ON AMAZON, STAYS HERE, AND THE REASON IS TEMPER. Amazon has
+    # 1/2in "6061" at 11.8 x 11.8 for $41.99, and since a plate is 250 x 175
+    # one nests per sheet - two sheets is $83.98, under this line, with free
+    # delivery. But that listing states no temper anywhere: not T6, not T651,
+    # just "high-quality aluminum alloy". 6061-O yields about 55 MPa against
+    # T6's 276. This plate carries 6293 N of bolt demand at a margin of 2.62
+    # ON THE ASSUMPTION OF T6; at O temper it becomes the weak link by 5x,
+    # and the failure is the foil leaving the board at speed. $5 is not the
+    # price of finding out. Speedy Metals states T651.
     add("2b Aluminium", "6061-T651 1/2in x 12 x 18 - mast plates",
         1, "sheet", 88.92, OK,
         "speedymetals.com 61p.5; both plates nest, 2 x 6.89in of 18, 4.2 "
@@ -207,6 +216,12 @@ def build():
     # service, so the block alone at 2.8x V1 is the honest bar. They also cost
     # more than foam: the aft rib landed under the rim board and the mast
     # conduit ran straight through it.
+    # CHECKED ON AMAZON, STAYS HERE. Amazon does carry Divinycell - H-80
+    # 3/4in 24x48 is $112.99 there against $100.26 here - but ONLY in 1/2in
+    # and 3/4in. There is no 1/4in Divinycell on Amazon at all, and both lid
+    # cores below are 1/4in. So the Fiberglass Supply order and its freight
+    # happen regardless, and moving just this sheet would pay $12.73 more to
+    # save nothing. Do not re-open this without checking 1/4in stock first.
     add("3  Structural foam", "Divinycell H-80 3/4in quarter sheet 24x48, "
         "mast block + leash pad", 1, "sheet", 100.26, OK,
         "L18-1112, 24x48. Was 2 sheets when it carried 2 shear ribs")
@@ -293,6 +308,13 @@ def build():
         "your listing, ASIN B0GZVLP3PL. Was a $139.99 Pittsburgh 2-stage "
         "plus $15 of oil - $97 for ultimate vacuum we must not use",
         tool=True)
+    # CHECKED ON AMAZON, STAYS HERE. Amazon sells vacuum PUMPS, vacuum bag
+    # connectors and compressed-air regulators, but no true vacuum regulator
+    # - nothing that bleeds air in to HOLD a set level. That is the entire
+    # job here: EPS crushes around 150 kPa, full vacuum is 101, so the bag
+    # has to sit at 5-10 inHg and stay there. Without this part the honest
+    # alternative is a manual bleed valve you nurse by hand for the whole
+    # cure, and a moment of inattention is a crushed core.
     add("5  Vacuum bagging", "VR20 vacuum regulator", 1, "ea", 52.00, OK,
         "one-time", tool=True)
     # THE "BAGGING STARTER KIT" IS DELETED. This line was wrong three ways.
@@ -395,10 +417,13 @@ def build():
         "off and watch the gauge for 30 min - porosity reads as a slow "
         "bleed. Then do it again SUBMERGED: under vacuum any path pulls water "
         "IN and you see exactly where. V1 found its leaks by riding")
-    add("5  Vacuum bagging", "Vacuum gauge, 0-30 inHg, 1/4 NPT", 1, "ea",
-        18.00, EST, "reads the BAG, not the pump - tee it in at the bag end. "
-        "The regulator sets the level; this is how you know it worked",
-        tool=True)
+    add("5  Vacuum bagging", "Vacuum gauge, -30 inHg, 1/4 NPT, glycerin",
+        1, "ea", 10.50, OK,
+        "reads the BAG, not the pump - tee it in at the bag end. The "
+        "regulator sets the level; this is how you know it worked. GLYCERIN "
+        "FILLED on purpose: a dry needle flutters with every pump stroke and "
+        "you cannot read 7 inHg off it, which is the one number that matters",
+        vendor="Amazon", tool=True)
     # FILM IS THE CHEAP PART. 3.06 m2 an envelope-bagged hull, about $11 a
     # session, ~$75 for the project. It is also the one thing you should NOT
     # try to reuse on a shaped part: nylon film stretches permanently over a
@@ -571,7 +596,8 @@ def build():
     # same family, roughly 3x the strength, and the bond line controlled.
     add("7  Module", "Sikaflex-292 marine structural PU", 1, "tube",
         28.99, OK, "~6-8 MPa vs 4200's ~2. Fillet BOTH sides of the joint - "
-        "on a flexible bond the fillets are what stop it peeling")
+        "on a flexible bond the fillets are what stop it peeling",
+        vendor="Amazon")
     add("7  Module", "Sika Aktivator-PRO 250 ml + daubers", 1, "ea", 28.95,
         OK, "abrade + solvent wipe + activate the 5052; scuff the ASA. "
         "Aktivator-205 is DISCONTINUED - Aktivator-PRO replaces it. "
@@ -599,8 +625,9 @@ def build():
     add("7  Module", "EPDM/neoprene sheet 1/2in, conduit bungs", 1, "sheet",
         14.00, EST, "cut O33 plugs for a O32 bore, punch 3 x O5 for 6.5 mm "
         "lead - interference fit, soap them through")
-    add("7  Module", "3M 4200 FC, fillet over the bung", 1, "tube", 18.00,
-        EST, "does both boards; 4200 NOT 5200 - 5200 never comes out")
+    add("7  Module", "3M 4200 FC 3 oz tube, fillet over the bung", 1, "tube",
+        17.99, OK, "does both boards; 4200 NOT 5200 - 5200 never comes out",
+        vendor="Amazon")
     add("7  Module", "25 mm webbing loop, module lift handle", N, "ea", 6.00,
         EST, "through the two printed bosses on the forward wall - the module "
         "is ~14 kg in a cavity with 12 mm of side clearance, so there is no "
@@ -644,13 +671,24 @@ def build():
     # bushings into it. 6061 shears at ~207 MPa against G10's ~55, so less
     # material holds more: 136 mm2 of thread carries 17.7 kN and the M8 bolt's
     # own 16.5 kN proof load becomes the limit.
-    add("8  Mast hardpoint", "M8 x 1.25 tap set + 6.8 mm drill", 1, "set",
-        18.00, EST, str(M["mast_bushings"] * N) + " blind holes; a BOTTOMING "
-        "tap is the one that matters - blind at 10 mm in a 12.7 plate",
-        tool=True)
+    # These are TWO purchases, not one. The cheap tap-and-drill sets all ship
+    # a TAPER tap, which cannot finish a blind hole - it runs out of thread
+    # about 4 mm before the bottom. Buying only the set would have left the
+    # blind holes short of full engagement on the one joint that holds the
+    # foil to the board.
+    add("8  Mast hardpoint", "M8 x 1.25 tap + 6.8 mm drill set", 1, "set",
+        8.63, OK, str(M["mast_bushings"] * N) + " blind holes",
+        vendor="Amazon", tool=True)
+    add("8  Mast hardpoint", "M8 x 1.25 BOTTOMING tap, 4-flute", 1, "ea",
+        8.78, OK, "the one that actually matters - blind at 10 mm in a 12.7 "
+        "plate, and the taper tap in the set above cannot reach the bottom",
+        vendor="Amazon", tool=True)
     # Aluminium plate, A4 stainless bolts, wet cavity. Not optional.
-    add("8  Mast hardpoint", "Tef-Gel or Duralac, galvanic barrier", 1, "ea",
-        22.00, EST, "every mast bolt, every time it goes back in")
+    add("8  Mast hardpoint", "Ultra Tef-Gel, galvanic barrier", 1, "ea",
+        39.00, OK, "every mast bolt, every time it goes back in. DEARER than "
+        "the $22 this was carried at - and do not reach for the small tube "
+        "to save it: the 3cc syringe is $31.51, so it is 80% of the price "
+        "for a fraction of the gel", vendor="Amazon")
     # No G10 tube. The conduit is a BORE, cut with the rest of the CNC work
     # and sealed with thickened epoxy off the laminating kit. A bought tube
     # would have been bonded into that same bore and added a part number, a
@@ -737,7 +775,8 @@ def build():
     # dense-foam surround that used to wrap the strip is gone.
     add("9b Small but essential", "Kayak-style webbing carry handle, 4 pk",
         1, "pk", 13.89, OK,
-        str(2 * N) + " needed; 2 x M6 into the 6061 strip in the rail pocket")
+        str(2 * N) + " needed; 2 x M6 into the 6061 strip in the rail pocket",
+        vendor="Amazon")
     add("9b Small but essential", "M6 x 16 A4 + M6 insert, strap mounts",
         4 * N, "set", 1.40, EST)
 
@@ -866,16 +905,36 @@ def build():
     # than slows. Plan the six bagging sessions around that, and keep an eye
     # on blush - it is worse cold and damp, so wash every laminate before any
     # secondary bond.
-    add("10d Shop consumables", "Spray adhesive + sacrificial MDF, CNC hold-down",
-        1, "set", 35.00, EST, "foam is taped down, not clamped")
+    # DO NOT BUY SUPER 77 FOR THIS. It is $18.45 and it is the obvious
+    # choice, and it is solvent-based - it attacks polystyrene. The thing
+    # being held down here is an EPS blank. Spraying it would etch the blank
+    # you are about to spend two days shaping. 3M Fastbond 1077 is
+    # water-based and safe on foam, and that is the whole reason it is here
+    # at $26.02 instead of $18.45.
+    add("10d Shop consumables", "3M Fastbond 1077 water-based, CNC hold-down",
+        1, "ea", 26.02, OK,
+        "WATER-BASED because the blank is EPS - solvent sprays like Super 77 "
+        "eat polystyrene. Foam is taped/tacked down, not clamped",
+        vendor="Amazon")
+    add("10d Shop consumables", "Sacrificial MDF, CNC spoilboard", 1, "sheet",
+        16.00, EST, "local - a 4x8 sheet is not worth shipping")
     add("10d Shop consumables", "Release wax / PVA for the cavity caul",
         1, "set", 20.00, EST)
     # Spare bagging film folded into the 3 rolls in section 5 - it was a
     # duplicate of the same consumable in a different section.
     add("10d Shop consumables", "Dowel pins + drill, two-sided registration",
         1, "set", 12.00, EST, tool=True)
-    add("10d Shop consumables", "1/2 in single-flute + 1/2 in ball nose",
-        1, "set", 70.00, EST, "if the shop does not have foam-suitable tooling", tool=True)
+    # ONLY IF THE MAKERSPACE MAKES US SUPPLY TOOLING - still unanswered, and
+    # it is $108, so it is worth asking before it is worth buying. Priced
+    # real rather than left at a $70 round number:
+    add("10d Shop consumables", "1/2 in O-flute up-spiral, foam roughing",
+        1, "ea", 66.05, OK, "Freud 73-214, 1/2 in shank. SINGLE flute for "
+        "chip clearance - EPS chips are bulky and a 2- or 3-flute packs the "
+        "gullets and starts melting the blank. ONLY if the makerspace does "
+        "not supply tooling", tool=True, vendor="Amazon")
+    add("10d Shop consumables", "1/2 in ball nose, finishing pass", 1, "ea",
+        41.95, OK, "1/2 in shank. ONLY if the makerspace does not supply "
+        "tooling", tool=True, vendor="Amazon")
     # NO ROUTER. Derek already owns a rotary tool with a router/plunge base -
     # a Dremel-class spinner - and for what is actually left to rout that is
     # the RIGHT tool, not a compromise:
@@ -903,8 +962,11 @@ def build():
     # volume is what the resin is specified for. No cups line either, for the
     # same reason - buy more only if a layup runs long.
     # Spreaders, cups and stirrers all ship WITH the gallon kit - no line.
-    add("10e Layup kit", "Chip brushes and laminating roller", 1, "set",
-        22.00, EST)
+    add("10e Layup kit", "Chip brushes 2 in, 36 pk", 1, "pk", 17.99, OK,
+        "disposable, 2-4 a session across 6 sessions. The 12 pk at $7.19 is "
+        "dearer per brush and runs out mid-build", vendor="Amazon")
+    add("10e Layup kit", "Laminating bubble roller kit, 4 pc", 1, "kit",
+        17.99, OK, vendor="Amazon")
     # 6 mil, not the 3-4 mil exam glove - thin nitrile tears on a wet layup
     # and you find out mid-session with resin on your hands. ~6 pairs a
     # session x 6 sessions is 72 gloves before any contamination changes, so
@@ -953,8 +1015,16 @@ def build():
     # marking the skin. It is a nicety, not a requirement, and free.
     add("10e Layup kit", "Plastic sheeting + masking tape, bench protection",
         1, "set", 20.00, EST)
-    add("10e Layup kit", "Sanding blocks + longboard for fairing", 1, "set",
-        30.00, EST, tool=True)
+    # FLEX, not a rigid block. The deck is crowned and the bottom is
+    # rockered; a rigid block bridges the curve and cuts flats into it, then
+    # you fair the flats back out. The adjustable-radius longboard follows
+    # the surface it is on.
+    add("10e Layup kit", "Flex longboard sander, 16-1/2 x 2-3/4", 1, "ea",
+        19.99, OK, "adjustable radius, hook-and-loop + PSA", tool=True,
+        vendor="Amazon")
+    add("10e Layup kit", "Adjustable hand sanding block", 1, "ea", 15.99, OK,
+        "rails, nose, tail and anywhere the longboard will not reach",
+        tool=True, vendor="Amazon")
 
     # ------------------------------------------------------- 11 finishing
     add("11 Finishing", "TotalBoat TotalFair epoxy fairing compound",
@@ -964,7 +1034,20 @@ def build():
     add("11 Finishing", "TotalBoat Wet Edge topside paint, colour",
         N, "kit", 53.99, OK, "one-part polyurethane, quart")
     add("11 Finishing", "Traction pad, 3-piece", N, "set", 24.95, OK)
-    add("11 Finishing", "Abrasives, cups, gloves, tape", N, "set", 40.00, EST)
+    # WAS "Abrasives, cups, gloves, tape" at 2 x $40. Two of those four were
+    # already bought somewhere else - cups and stirrers ship with the gallon
+    # kit, gloves are their own line in 10e - so the bundle was double-
+    # counting about $30 of stuff and hiding the abrasive, which is the part
+    # that actually gets consumed. Split out and priced:
+    add("11 Finishing", "Longboard PSA sandpaper 80 grit, 20 yd roll",
+        1, "roll", 15.99, OK, "2-3/4 in, self-adhesive, fits the longboard "
+        "above. 80 is the fairing grit - it cuts fair, it does not finish",
+        vendor="Amazon")
+    add("11 Finishing", "Longboard PSA sandpaper 120-180 grit, 20 yd roll",
+        1, "roll", 15.99, OK, "after 80 has the shape right",
+        vendor="Amazon")
+    add("11 Finishing", "Wet/dry sandpaper assortment, 45 pc", 1, "pk", 8.99,
+        OK, "80-400 for detail and between primer coats", vendor="Amazon")
 
     # ------------------------------------------------------- 12 logistics
     # G10 sheets are heavy and epoxy ships hazmat. Leaving this off is how a

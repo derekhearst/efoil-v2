@@ -6,21 +6,20 @@ Grouped by where you buy it rather than by what it does, because that is the ord
 
 | Supplier | Lines | $ |
 |---|---:|---:|
-| Amazon | 67 | $2,391.19 |
+| Amazon | 84 | $2,765.92 |
 | Gong | 2 | $1,395.20 |
 | Flipsky | 3 | $1,038.00 |
-| Not a purchase - tax and freight | 3 | $802.74 |
-| Home Depot / hardware | 18 | $432.91 |
-| Fiberglass Supply | 4 | $364.10 |
+| Not a purchase - tax and freight | 4 | $820.83 |
+| Home Depot / hardware | 15 | $380.63 |
 | Battery International | 1 | $318.00 |
 | BatteryHookup | 2 | $297.50 |
+| Fiberglass Supply | 3 | $253.38 |
 | Maker Shop Boise | 1 | $150.00 |
-| Fasteners / shop consumables | 8 | $144.00 |
-| Fibre Glast | 4 | $112.00 |
-| 3M / auto parts | 3 | $102.98 |
-| Speedy Metals | 2 | $102.81 |
-| Sika / marine supplier | 1 | $28.99 |
-| **TOTAL** | | **$7,680.42** |
+| Speedy Metals | 1 | $88.92 |
+| Fasteners / shop consumables | 7 | $74.00 |
+| Fibre Glast | 2 | $72.00 |
+| 3M / auto parts | 1 | $62.98 |
+| **TOTAL** | | **$7,717.36** |
 
 ## Amazon
 
@@ -38,16 +37,19 @@ https://www.amazon.com
 | Vac bag film, 5 yd | 3 | roll | $74.85 | **verified** | 3.06 m2 a hull session; 2 hulls + 4 lids + a practice piece + one re-do. Single-use on the hull, reusable on f |
 | ASA filament, printed module shell | 3 | kg | $73.47 | **verified** | 4 L-pieces/board, ~1.13 kg of part + supports and brim; largest piece 226 x 146 fits the A1 bed |
 | TotalBoat 5:1 quart kit, fillets and bonding | 1 | kit | $68.99 | **verified** |  |
+| 1/2 in O-flute up-spiral, foam roughing | 1 | ea | $66.05 | **verified** | Freud 73-214, 1/2 in shank. SINGLE flute for chip clearance - EPS chips are bulky and a 2- or 3-flute packs th |
 | 5052 1/8in x 12 x 24, 2-pack - module floors | 1 | pk | $61.99 | **verified** | your Apr 2026 receipt (MorningRo/Huaiian). One sheet is one floor, so this pack does both boards |
 | Pure nickel 0.2 x 10 mm, 5 m roll | 4 | roll | $59.32 | **verified** |  |
 | VECOTOOLS 4.5 CFM single-stage pump, oil incl. | 1 | ea | $57.99 | **verified** | your listing, ASIN B0GZVLP3PL. Was a $139.99 Pittsburgh 2-stage plus $15 of oil - $97 for ultimate vacuum we m |
 | Traction pad, 3-piece | 2 | set | $49.90 | **verified** |  |
 | ASA filament, printed rim ring | 2 | kg | $48.98 | **verified** | 6 dovetailed pieces/board at ~90% infill, 710 g of part each; PRINT SEAL FACE DOWN - the bed is flatter than a |
 | TotalBoat Premium Marine Topside Primer | 1 | kit | $46.99 | **verified** | one covers both |
+| 1/2 in ball nose, finishing pass | 1 | ea | $41.95 | **verified** | 1/2 in shank. ONLY if the makerspace does not supply tooling |
 | 25 mm webbing + ladder-lock buckles | 2 | set | $40.00 | estimate | 2 straps per board |
 | Hydraulic lug crimper, 10 ton, 12-2/0 AWG | 1 | ea | $39.99 | **verified** | one-time; this is what replaces soldering XT150s |
 | Sealant tape, 50 ft roll | 2 | roll | $39.98 | **verified** | 31 m of bag perimeter across the project. 2 x 50 ft at $19.99 replaced 4 x 25 ft at $12 - same tape, fewer joi |
 | Bag connector w/ ball valve, 1/4 in QD | 2 | ea | $39.18 | **verified** | THE BALL VALVE IS THE POINT: shut it and the bag is isolated from the pump, so leak-down is a real measurement |
+| Ultra Tef-Gel, galvanic barrier | 1 | ea | $39.00 | **verified** | every mast bolt, every time it goes back in. DEARER than the $22 this was carried at - and do not reach for th |
 | E-glass 6 oz, 50in x 12ft, 2-pack | 2 | pack | $38.14 | **verified** | your receipt |
 | Heat shrink, Kapton, pack wrap | 2 | set | $36.00 | estimate |  |
 | Rotary-tool router base + collets, if needed | 1 | set | $35.00 | estimate | you have the tool; this is only if the base you have will not hold depth over the groove run |
@@ -55,27 +57,37 @@ https://www.amazon.com
 | IP68 M25 inline housing, 5 pk | 2 | pk | $31.96 | **verified** | 3 per board, one per phase, 2 spare. M25 bodies take 4-14 mm cable against our 6.5 mm 8 AWG, so the size class |
 | Solid silicone cord, 3 mm round - BOTH seals | 2 | pc | $30.78 | **verified** | 10 ft (3.05 m) pieces, 70A. Buy long - splice on a straight run, never a corner |
 | Coiled ankle leash | 2 | ea | $29.98 | **verified** | you trust the remote failsafe; this is so the board stays with you |
+| Sikaflex-292 marine structural PU | 1 | tube | $28.99 | **verified** | ~6-8 MPa vs 4200's ~2. Fillet BOTH sides of the joint - on a flexible bond the fillets are what stop it peelin |
 | Sika Aktivator-PRO 250 ml + daubers | 1 | ea | $28.95 | **verified** | abrade + solvent wipe + activate the 5052; scuff the ASA. Aktivator-205 is DISCONTINUED - Aktivator-PRO replac |
 | Nitrile gloves 6 mil, 100 pk | 2 | box | $28.88 | **verified** |  |
 | TotalBoat 5:1 FAST hardener 6 oz, cold days | 1 | ea | $27.99 | **verified** | min 40-45 F against slow's 60. In a cold shop this is the one that cures, and the cold gives the pot life back |
+| 3M Fastbond 1077 water-based, CNC hold-down | 1 | ea | $26.02 | **verified** | WATER-BASED because the blank is EPS - solvent sprays like Super 77 eat polystyrene. Foam is taped/tacked down |
 | 5.5 mm bullets + adhesive shrink, ESC side | 2 | set | $24.00 | estimate | motor pigtails arrive with their own |
 | EVA bedding pads | 2 | set | $24.00 | estimate |  |
 | SP17 2-pin IP68 flange receptacle + cap | 2 | ea | $22.00 | estimate | 67.2 V 5 A charge; O17 panel hole, 2 x M3 flange screws |
 | Cable ties, lacing, adhesive mounts | 2 | set | $22.00 | estimate |  |
 | 8 AWG silicone, 10 ft red + 10 ft black | 1 | pk | $21.99 | **verified** | one pack covers BOTH boards - the longest run in the module is the 278 mm ESC-to-fuse, so 10 ft a side is alre |
 | ANL 150 A fuse + holder | 2 | ea | $21.18 | **verified** |  |
+| Flex longboard sander, 16-1/2 x 2-3/4 | 1 | ea | $19.99 | **verified** | adjustable radius, hook-and-loop + PSA |
 | PETG filament 1 kg, mast clamp set | 2 | kg | $19.98 | **verified** | 4 STEP files; 0.6 nozzle, 5 perims, 40% infill |
 | PETG for props, 4-5 spares per board | 2 | kg | $19.98 | **verified** | 0.4 nozzle, 100% infill; balance-check on a bolt, then epoxy-coat - V1 skipped the coat and layer lines cost d |
 | M12 IP68 membrane vent plug | 2 | ea | $19.90 | **verified** | NOT optional on a sealed lithium box |
 | Thermal pad 1 mm, ESC baseplate to alu floor | 2 | ea | $18.00 | estimate | or paste; the ESC PCB face goes DOWN onto the floor, same as V1 did onto its alu bottom plate |
 | FCS-pattern leash plug | 2 | ea | $18.00 | estimate |  |
 | 16 AWG wire, charge port and power button runs | 2 | set | $18.00 | estimate |  |
+| 3M 4200 FC 3 oz tube, fillet over the bung | 1 | tube | $17.99 | **verified** | does both boards; 4200 NOT 5200 - 5200 never comes out |
+| Chip brushes 2 in, 36 pk | 1 | pk | $17.99 | **verified** | disposable, 2-4 a session across 6 sessions. The 12 pk at $7.19 is dearer per brush and runs out mid-build |
+| Laminating bubble roller kit, 4 pc | 1 | kit | $17.99 | **verified** |  |
 | M5 x 250 threaded rod (cut to ~171 mm) | 8 | ea | $17.60 | estimate | dry-assemble and mark before cutting all four |
 | Neoprene sheet 1/8in, module + mast gaskets | 1 | sheet | $16.00 | estimate | TORRAMI 18x24 or similar - you kept a part sheet from V1 |
 | Adhesive-lined heat shrink, assorted | 1 | kit | $16.00 | estimate |  |
+| Adjustable hand sanding block | 1 | ea | $15.99 | **verified** | rails, nose, tail and anywhere the longboard will not reach |
+| Longboard PSA sandpaper 80 grit, 20 yd roll | 1 | roll | $15.99 | **verified** | 2-3/4 in, self-adhesive, fits the longboard above. 80 is the fairing grit - it cuts fair, it does not finish |
+| Longboard PSA sandpaper 120-180 grit, 20 yd roll | 1 | roll | $15.99 | **verified** | after 80 has the shape right |
 | Solid silicone cord, 1/8 in (3.175 mm) - the spare size | 1 | pc | $15.39 | **verified** | 10 ft piece, 70A. Fitted ONLY if the routed groove measures deep. Gives 24% squeeze at the nominal 2.4 depth a |
 | Vacuum hose + hose clamps | 1 | set | $15.00 | estimate | 1/2 in tubing pump-to-bag plus clamps; the other half of what the deleted kit was actually carrying |
 | EPDM/neoprene sheet 1/2in, conduit bungs | 1 | sheet | $14.00 | estimate | cut O33 plugs for a O32 bore, punch 3 x O5 for 6.5 mm lead - interference fit, soap them through |
+| Kayak-style webbing carry handle, 4 pk | 1 | pk | $13.89 | **verified** | 4 needed; 2 x M6 into the 6061 strip in the rail pocket |
 | M5 x 25 A4 stainless socket cap | 24 | ea | $13.20 | estimate |  |
 | Water-ingress alarm, 2 pk | 1 | pk | $12.99 | **verified** | Geevon 100 dB pucks - the 2-pack covers BOTH boards. Put the SENSOR on the module floor in the lowest corner,  |
 | M4 x 12 A4 stainless socket cap | 36 | ea | $12.60 | estimate |  |
@@ -85,9 +97,13 @@ https://www.amazon.com
 | M4 x 8 brass heat-set insert, 100 pc | 1 | pack | $12.00 | estimate | 36 needed; 5.6 mm printed pilot |
 | 25 mm webbing loop, module lift handle | 2 | ea | $12.00 | estimate | through the two printed bosses on the forward wall - the module is ~14 kg in a cavity with 12 mm of side clear |
 | Fish tape / pull cord for the mast conduit | 1 | ea | $12.00 | estimate |  |
+| Vacuum gauge, -30 inHg, 1/4 NPT, glycerin | 1 | ea | $10.50 | **verified** | reads the BAG, not the pump - tee it in at the bag end. The regulator sets the level; this is how you know it  |
 | Gebildet PG11 gland, M18x1.5, 30 pk | 1 | pk | $9.99 | **verified** | your listing: M18x1.5 thread (matches the 18.5 hole) and 5-10 mm cable, against our 6.5 mm 8 AWG. 6 needed of  |
 | Silicone grease for the seal cord | 1 | tube | $9.00 | estimate | stops the cord bonding to the lid in storage |
 | Loctite 242 | 1 | ea | $9.00 | estimate | rod ends into the motor only - nyloc end does not need it |
+| Wet/dry sandpaper assortment, 45 pc | 1 | pk | $8.99 | **verified** | 80-400 for detail and between primer coats |
+| M8 x 1.25 BOTTOMING tap, 4-flute | 1 | ea | $8.78 | **verified** | the one that actually matters - blind at 10 mm in a 12.7 plate, and the taper tap in the set above cannot reac |
+| M8 x 1.25 tap + 6.8 mm drill set | 1 | set | $8.63 | **verified** | 8 blind holes |
 | Dielectric grease, terminals | 1 | tube | $8.00 | estimate |  |
 | M5 A4 hex nut, CAPTIVE - printed into the ring | 34 | ea | $7.48 | estimate | dropped in at a print pause at Z=6.0; steel thread, so a hatch that comes off every ride never wears anything  |
 | M5 penny washer O15, under the captive nut | 34 | ea | $6.12 | estimate | goes in at the SAME print pause as the nut, underneath it |
@@ -123,9 +139,10 @@ Some Flipsky appears on Amazon but the range is thin and usually dearer. Buy dir
 
 | Item | Qty | Unit | Ext | Price | Note |
 |---|---:|---|---:|---|---|
-| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $434.74 | **verified** |  |
+| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $436.83 | **verified** |  |
 | Gong shipping to Idaho, per foil | 2 | ea | $248.00 | **verified** | 115.50 EUR on order 252112; charged per ORDER, so putting both boards' foils in ONE order saves about $124 |
 | Shipping - Divinycell, 6061 plate, VR20 | 1 | allow | $120.00 | estimate | STILL THE BIGGEST UNVERIFIED LINE - it wants three real carts to settle. Was $220 when it covered G10 sheet an |
+| Sacrificial MDF, CNC spoilboard | 1 | sheet | $16.00 | estimate | local - a 4x8 sheet is not worth shipping |
 
 ## Home Depot / hardware
 
@@ -133,16 +150,13 @@ https://www.homedepot.com
 
 | Item | Qty | Unit | Ext | Price | Note |
 |---|---:|---|---:|---|---|
-| Abrasives, cups, gloves, tape | 2 | set | $80.00 | estimate |  |
+| EPS rigid foam 2in x 48in x 8ft (HD 202532856) | 4 | sheet | $110.72 | **verified** | HD Meridian, 30 in stock, aisle 29 bay 020; $23.53 at 32+. EPS, not the XPS V1 used - deliberate, ~$90 cheaper |
 | Folding sawhorses, pair, 700 lb | 1 | pair | $39.99 | **verified** | ~30 in high. Racks buy height for planing, and this core comes machined - so they buy nothing here |
 | Acetone, 1 gal, cleanup | 1 | gal | $39.95 | **verified** |  |
-| Spray adhesive + sacrificial MDF, CNC hold-down | 1 | set | $35.00 | estimate | foam is taped down, not clamped |
-| Sanding blocks + longboard for fairing | 1 | set | $30.00 | estimate |  |
 | 1/4 in torque wrench, 10-50 in-lb | 1 | ea | $25.97 | **verified** | 1.1-5.6 Nm. RANGE MATTERS: our hatch spec is 2 Nm = 17.7 in-lb, which is BELOW the 20 in-lb floor of the commo |
 | Rosin paper roll, floor and bench | 1 | roll | $24.00 | estimate | absorbs instead of pooling. This is the actual upgrade over a tarp, and it is $24 |
 | MDF 12 mm, 4 check gauges | 1 | sheet | $22.00 | estimate | 3 station sections + the rocker/deck profile. Was a 14-template set at $70 - the router templates go with the  |
 | Plastic sheeting + masking tape, bench protection | 1 | set | $20.00 | estimate |  |
-| M8 x 1.25 tap set + 6.8 mm drill | 1 | set | $18.00 | estimate | 8 blind holes; a BOTTOMING tap is the one that matters - blind at 10 mm in a 12.7 plate |
 | PL300 / Gorilla Glue, layer glue-up | 2 | tube | $16.00 | estimate |  |
 | 2.5 mm straight cutter - fallback | 1 | ea | $14.00 | estimate | only if you would rather cut the groove open than sand down to a proud filler strip. Undersize in a 4 mm groov |
 | Acetone, solvent-welding the printed joints | 1 | qt | $14.00 | estimate | ASA dissolves in it like ABS - a brushed acetone/scrap slurry makes the joint one piece of plastic, not an adh |
@@ -151,19 +165,6 @@ https://www.homedepot.com
 | Dowel pins + drill, two-sided registration | 1 | set | $12.00 | estimate |  |
 | 2 mm glass beads or shim wire, bond-line control | 1 | ea | $8.00 | estimate | clamping a PU joint metal-to-plastic squeezes the line out and puts you back to a rigid joint that will fail |
 | Pipe lagging or carpet, sawhorse padding | 1 | set | $8.00 | estimate | bare sawhorse tops mark foam and wet laminate |
-
-## Fiberglass Supply
-
-https://fiberglasssupply.com
-
-**NOT on Amazon.** Divinycell in sheet form is a composites-supplier item. These are verified part numbers - just order them.
-
-| Item | Qty | Unit | Ext | Price | Note |
-|---|---:|---|---:|---|---|
-| EPS rigid foam 2in x 48in x 8ft (HD 202532856) | 4 | sheet | $110.72 | **verified** | HD Meridian, 30 in stock, aisle 29 bay 020; $23.53 at 32+. EPS, not the XPS V1 used - deliberate, ~$90 cheaper |
-| Divinycell H-80 3/4in quarter sheet 24x48, mast block + leash pad | 1 | sheet | $100.26 | **verified** | L18-1112, 24x48. Was 2 sheets when it carried 2 shear ribs |
-| Divinycell H-100 1/4in quarter 21x42, hatch lid cores - 2 sheets bonded to 1/2in | 2 | sheet | $99.18 | **verified** | fiberglasssupply.com; no 1/2in H-100 is made |
-| Divinycell H-80 1/4in quarter 24x48, module lid cores | 1 | sheet | $53.94 | **verified** | L18-1070; nobody stands on this one |
 
 ## Battery International
 
@@ -186,6 +187,18 @@ https://batteryhookup.com
 | BAK N21700CG-50, 130-cell case (BatteryHookup) | 1 | case | $260.00 | **verified** | new overstock |
 | BAK N21700CG-50 singles, spares | 15 | ea | $37.50 | **verified** | 7% margin on a spot-welded pack |
 
+## Fiberglass Supply
+
+https://fiberglasssupply.com
+
+**NOT on Amazon.** Divinycell in sheet form is a composites-supplier item. These are verified part numbers - just order them.
+
+| Item | Qty | Unit | Ext | Price | Note |
+|---|---:|---|---:|---|---|
+| Divinycell H-80 3/4in quarter sheet 24x48, mast block + leash pad | 1 | sheet | $100.26 | **verified** | L18-1112, 24x48. Was 2 sheets when it carried 2 shear ribs |
+| Divinycell H-100 1/4in quarter 21x42, hatch lid cores - 2 sheets bonded to 1/2in | 2 | sheet | $99.18 | **verified** | fiberglasssupply.com; no 1/2in H-100 is made |
+| Divinycell H-80 1/4in quarter 24x48, module lid cores | 1 | sheet | $53.94 | **verified** | L18-1070; nobody stands on this one |
+
 ## Maker Shop Boise
 
 Unresolved - two emails unanswered. Phone (208) 254-6151, or the EPS core goes to a shaping service or gets hand-shaped.
@@ -194,11 +207,20 @@ Unresolved - two emails unanswered. Phone (208) 254-6151, or the EPS core goes t
 |---|---:|---|---:|---|---|
 | Maker Shop Boise Basic month | 1 | month | $150.00 | **verified** | month-to-month; confirm it cancels cleanly. Only ONE part truly wants a CNC - the EPS core - but the pass cove |
 
+## Speedy Metals
+
+https://www.speedymetals.com/p-2411-12-6061-t651-aluminum-plate.aspx
+
+**Amazon carries 6061 plate** - you bought the 5052 there. Speedy is $88.92 for 12x18 and cuts to size; worth comparing.
+
+| Item | Qty | Unit | Ext | Price | Note |
+|---|---:|---|---:|---|---|
+| 6061-T651 1/2in x 12 x 18 - mast plates | 1 | sheet | $88.92 | **verified** | speedymetals.com 61p.5; both plates nest, 2 x 6.89in of 18, 4.2 spare. Saw-cut edge, +/-1/4in - profile it you |
+
 ## Fasteners / shop consumables
 
 | Item | Qty | Unit | Ext | Price | Note |
 |---|---:|---|---:|---|---|
-| 1/2 in single-flute + 1/2 in ball nose | 1 | set | $70.00 | estimate | if the shop does not have foam-suitable tooling |
 | M6 stainless stud/busbar hardware | 2 | set | $28.00 | estimate |  |
 | Test cap + tubing, module leak test | 1 | set | $12.00 | estimate | PROVE THE MODULE BEFORE THE CELLS GO IN, and prove it the way the failure actually happens: seal it empty, pul |
 | M6 x 16 A4 + M6 insert, strap mounts | 8 | set | $11.20 | estimate |  |
@@ -216,9 +238,7 @@ https://www.fibreglast.com
 | Item | Qty | Unit | Ext | Price | Note |
 |---|---:|---|---:|---|---|
 | VR20 vacuum regulator | 1 | ea | $52.00 | **verified** | one-time |
-| Chip brushes and laminating roller | 1 | set | $22.00 | estimate |  |
 | Release wax / PVA for the cavity caul | 1 | set | $20.00 | estimate |  |
-| Vacuum gauge, 0-30 inHg, 1/4 NPT | 1 | ea | $18.00 | estimate | reads the BAG, not the pump - tee it in at the bag end. The regulator sets the level; this is how you know it  |
 
 ## 3M / auto parts
 
@@ -227,27 +247,4 @@ https://www.fibreglast.com
 | Item | Qty | Unit | Ext | Price | Note |
 |---|---:|---|---:|---|---|
 | 3M 60923 organic vapour / acid gas P100, pair | 2 | pr | $62.98 | **verified** | envirosafetyproducts.com; cartridges expire - buy near the layup |
-| Tef-Gel or Duralac, galvanic barrier | 1 | ea | $22.00 | estimate | every mast bolt, every time it goes back in |
-| 3M 4200 FC, fillet over the bung | 1 | tube | $18.00 | estimate | does both boards; 4200 NOT 5200 - 5200 never comes out |
-
-## Speedy Metals
-
-https://www.speedymetals.com/p-2411-12-6061-t651-aluminum-plate.aspx
-
-**Amazon carries 6061 plate** - you bought the 5052 there. Speedy is $88.92 for 12x18 and cuts to size; worth comparing.
-
-| Item | Qty | Unit | Ext | Price | Note |
-|---|---:|---|---:|---|---|
-| 6061-T651 1/2in x 12 x 18 - mast plates | 1 | sheet | $88.92 | **verified** | speedymetals.com 61p.5; both plates nest, 2 x 6.89in of 18, 4.2 spare. Saw-cut edge, +/-1/4in - profile it you |
-| Kayak-style webbing carry handle, 4 pk | 1 | pk | $13.89 | **verified** | 4 needed; 2 x M6 into the 6061 strip in the rail pocket |
-
-## Sika / marine supplier
-
-https://usa.sika.com
-
-**On Amazon.** Sikaflex-252 and Primer-206 both list there.
-
-| Item | Qty | Unit | Ext | Price | Note |
-|---|---:|---|---:|---|---|
-| Sikaflex-292 marine structural PU | 1 | tube | $28.99 | **verified** | ~6-8 MPa vs 4200's ~2. Fillet BOTH sides of the joint - on a flexible bond the fillets are what stop it peelin |
 

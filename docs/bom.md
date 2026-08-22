@@ -51,12 +51,12 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | Bag connector w/ ball valve, 1/4 in QD | 2 | ea | $19.59 | $39.18 | verified | THE BALL VALVE IS THE POINT: shut it and the bag is isolated from the pump, so leak-down is a real measurement and not a guess about whether the pump is keeping up. Two of them - a 1400 mm hull bag pulls down far faster from both ends, and one is a spare |
 | Vacuum hose + hose clamps | 1 | set | $15.00 | $15.00 | estimate | 1/2 in tubing pump-to-bag plus clamps; the other half of what the deleted kit was actually carrying |
 | Test cap + tubing, module leak test | 1 | set | $12.00 | $12.00 | estimate | PROVE THE MODULE BEFORE THE CELLS GO IN, and prove it the way the failure actually happens: seal it empty, pull 5 inHg, shut the pump off and watch the gauge for 30 min - porosity reads as a slow bleed. Then do it again SUBMERGED: under vacuum any path pulls water IN and you see exactly where. V1 found its leaks by riding |
-| Vacuum gauge, 0-30 inHg, 1/4 NPT | 1 | ea | $18.00 | $18.00 | estimate | reads the BAG, not the pump - tee it in at the bag end. The regulator sets the level; this is how you know it worked |
+| Vacuum gauge, -30 inHg, 1/4 NPT, glycerin | 1 | ea | $10.50 | $10.50 | verified | reads the BAG, not the pump - tee it in at the bag end. The regulator sets the level; this is how you know it worked. GLYCERIN FILLED on purpose: a dry needle flutters with every pump stroke and you cannot read 7 inHg off it, which is the one number that matters |
 | Vac bag film, 5 yd | 3 | roll | $24.95 | $74.85 | verified | 3.06 m2 a hull session; 2 hulls + 4 lids + a practice piece + one re-do. Single-use on the hull, reusable on flat parts. Same Elite Lab product Fibre Glast sells, at the same price, with free delivery |
 | Peel ply, 60in | 6 | yd | $15.33 | $91.98 | verified | was only in the starter kit, and one kit's worth does not cover 6.12 m2 of part |
 | Breather / bleeder cloth | 6 | yd | $13.95 | $83.70 | verified | $13.95/yd cut; a 5 yd roll at $59.99 is $12.00/yd if you would rather buy the roll |
 | Sealant tape, 50 ft roll | 2 | roll | $19.99 | $39.98 | verified | 31 m of bag perimeter across the project. 2 x 50 ft at $19.99 replaced 4 x 25 ft at $12 - same tape, fewer joins |
-| **subtotal** | | | | **$484.68** | | |
+| **subtotal** | | | | **$477.18** | | |
 
 ## 6  Hatch and seal
 
@@ -91,13 +91,13 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | Neoprene sheet 1/8in, module + mast gaskets | 1 | sheet | $16.00 | $16.00 | estimate | TORRAMI 18x24 or similar - you kept a part sheet from V1 |
 | Gebildet PG11 gland, M18x1.5, 30 pk | 1 | pk | $9.99 | $9.99 | verified | your listing: M18x1.5 thread (matches the 18.5 hole) and 5-10 mm cable, against our 6.5 mm 8 AWG. 6 needed of 30 - one wire per gland; three in one gland deforms the insert into a clover and leaks between them |
 | EPDM/neoprene sheet 1/2in, conduit bungs | 1 | sheet | $14.00 | $14.00 | estimate | cut O33 plugs for a O32 bore, punch 3 x O5 for 6.5 mm lead - interference fit, soap them through |
-| 3M 4200 FC, fillet over the bung | 1 | tube | $18.00 | $18.00 | estimate | does both boards; 4200 NOT 5200 - 5200 never comes out |
+| 3M 4200 FC 3 oz tube, fillet over the bung | 1 | tube | $17.99 | $17.99 | verified | does both boards; 4200 NOT 5200 - 5200 never comes out |
 | 25 mm webbing loop, module lift handle | 2 | ea | $6.00 | $12.00 | estimate | through the two printed bosses on the forward wall - the module is ~14 kg in a cavity with 12 mm of side clearance, so there is no way to get a hand beside it |
 | M12 IP68 membrane vent plug | 2 | ea | $9.95 | $19.90 | verified | NOT optional on a sealed lithium box |
 | M12 IP68 momentary panel button | 1 | ea | $12.49 | $12.49 | verified | 1 on hand; this line buys the second board's |
 | SP17 2-pin IP68 flange receptacle + cap | 2 | ea | $11.00 | $22.00 | estimate | 67.2 V 5 A charge; O17 panel hole, 2 x M3 flange screws |
 | M3 heat-set insert + M3 x 8 A4, port flange | 4 | set | $0.60 | $2.40 | estimate |  |
-| **subtotal** | | | | **$361.77** | | |
+| **subtotal** | | | | **$361.76** | | |
 
 ## 9  Electrical
 
@@ -124,9 +124,10 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 
 | Item | Qty | Unit | Unit $ | Ext $ | | Note |
 |---|---:|---|---:|---:|---|---|
-| M8 x 1.25 tap set + 6.8 mm drill | 1 | set | $18.00 | $18.00 | estimate | 8 blind holes; a BOTTOMING tap is the one that matters - blind at 10 mm in a 12.7 plate |
-| Tef-Gel or Duralac, galvanic barrier | 1 | ea | $22.00 | $22.00 | estimate | every mast bolt, every time it goes back in |
-| **subtotal** | | | | **$40.00** | | |
+| M8 x 1.25 tap + 6.8 mm drill set | 1 | set | $8.63 | $8.63 | verified | 8 blind holes |
+| M8 x 1.25 BOTTOMING tap, 4-flute | 1 | ea | $8.78 | $8.78 | verified | the one that actually matters - blind at 10 mm in a 12.7 plate, and the taper tap in the set above cannot reach the bottom |
+| Ultra Tef-Gel, galvanic barrier | 1 | ea | $39.00 | $39.00 | verified | every mast bolt, every time it goes back in. DEARER than the $22 this was carried at - and do not reach for the small tube to save it: the 3cc syringe is $31.51, so it is 80% of the price for a fraction of the gel |
+| **subtotal** | | | | **$56.41** | | |
 
 ## 9b Small but essential
 
@@ -199,18 +200,21 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | Item | Qty | Unit | Unit $ | Ext $ | | Note |
 |---|---:|---|---:|---:|---|---|
 | Thermometer / hygrometer, 2 pk | 1 | pk | $14.00 | $14.00 | estimate | one in the shop, one by the part. Slow needs 60 F, fast needs 40-45, and below ~35 nothing cures at all |
-| Spray adhesive + sacrificial MDF, CNC hold-down | 1 | set | $35.00 | $35.00 | estimate | foam is taped down, not clamped |
+| 3M Fastbond 1077 water-based, CNC hold-down | 1 | ea | $26.02 | $26.02 | verified | WATER-BASED because the blank is EPS - solvent sprays like Super 77 eat polystyrene. Foam is taped/tacked down, not clamped |
+| Sacrificial MDF, CNC spoilboard | 1 | sheet | $16.00 | $16.00 | estimate | local - a 4x8 sheet is not worth shipping |
 | Release wax / PVA for the cavity caul | 1 | set | $20.00 | $20.00 | estimate |  |
 | Dowel pins + drill, two-sided registration | 1 | set | $12.00 | $12.00 | estimate |  |
-| 1/2 in single-flute + 1/2 in ball nose | 1 | set | $70.00 | $70.00 | estimate | if the shop does not have foam-suitable tooling |
+| 1/2 in O-flute up-spiral, foam roughing | 1 | ea | $66.05 | $66.05 | verified | Freud 73-214, 1/2 in shank. SINGLE flute for chip clearance - EPS chips are bulky and a 2- or 3-flute packs the gullets and starts melting the blank. ONLY if the makerspace does not supply tooling |
+| 1/2 in ball nose, finishing pass | 1 | ea | $41.95 | $41.95 | verified | 1/2 in shank. ONLY if the makerspace does not supply tooling |
 | Rotary-tool router base + collets, if needed | 1 | set | $35.00 | $35.00 | estimate | you have the tool; this is only if the base you have will not hold depth over the groove run |
-| **subtotal** | | | | **$186.00** | | |
+| **subtotal** | | | | **$231.02** | | |
 
 ## 10e Layup kit
 
 | Item | Qty | Unit | Unit $ | Ext $ | | Note |
 |---|---:|---|---:|---:|---|---|
-| Chip brushes and laminating roller | 1 | set | $22.00 | $22.00 | estimate |  |
+| Chip brushes 2 in, 36 pk | 1 | pk | $17.99 | $17.99 | verified | disposable, 2-4 a session across 6 sessions. The 12 pk at $7.19 is dearer per brush and runs out mid-build |
+| Laminating bubble roller kit, 4 pc | 1 | kit | $17.99 | $17.99 | verified |  |
 | Nitrile gloves 6 mil, 100 pk | 2 | box | $14.44 | $28.88 | verified |  |
 | Respirator | 1 | ea | $0.00 | $0.00 | on hand |  |
 | 3M 60923 organic vapour / acid gas P100, pair | 2 | pr | $31.49 | $62.98 | verified | envirosafetyproducts.com; cartridges expire - buy near the layup |
@@ -219,8 +223,9 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | Folding sawhorses, pair, 700 lb | 1 | pair | $39.99 | $39.99 | verified | ~30 in high. Racks buy height for planing, and this core comes machined - so they buy nothing here |
 | Pipe lagging or carpet, sawhorse padding | 1 | set | $8.00 | $8.00 | estimate | bare sawhorse tops mark foam and wet laminate |
 | Plastic sheeting + masking tape, bench protection | 1 | set | $20.00 | $20.00 | estimate |  |
-| Sanding blocks + longboard for fairing | 1 | set | $30.00 | $30.00 | estimate |  |
-| **subtotal** | | | | **$275.80** | | |
+| Flex longboard sander, 16-1/2 x 2-3/4 | 1 | ea | $19.99 | $19.99 | verified | adjustable radius, hook-and-loop + PSA |
+| Adjustable hand sanding block | 1 | ea | $15.99 | $15.99 | verified | rails, nose, tail and anywhere the longboard will not reach |
+| **subtotal** | | | | **$295.76** | | |
 
 ## 11 Finishing
 
@@ -230,35 +235,37 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | TotalBoat Premium Marine Topside Primer | 1 | kit | $46.99 | $46.99 | verified | one covers both |
 | TotalBoat Wet Edge topside paint, colour | 2 | kit | $53.99 | $107.98 | verified | one-part polyurethane, quart |
 | Traction pad, 3-piece | 2 | set | $24.95 | $49.90 | verified |  |
-| Abrasives, cups, gloves, tape | 2 | set | $40.00 | $80.00 | estimate |  |
-| **subtotal** | | | | **$376.85** | | |
+| Longboard PSA sandpaper 80 grit, 20 yd roll | 1 | roll | $15.99 | $15.99 | verified | 2-3/4 in, self-adhesive, fits the longboard above. 80 is the fairing grit - it cuts fair, it does not finish |
+| Longboard PSA sandpaper 120-180 grit, 20 yd roll | 1 | roll | $15.99 | $15.99 | verified | after 80 has the shape right |
+| Wet/dry sandpaper assortment, 45 pc | 1 | pk | $8.99 | $8.99 | verified | 80-400 for detail and between primer coats |
+| **subtotal** | | | | **$337.82** | | |
 
 ## 12 Freight and tax
 
 | Item | Qty | Unit | Unit $ | Ext $ | | Note |
 |---|---:|---|---:|---:|---|---|
 | Shipping - Divinycell, 6061 plate, VR20 | 1 | allow | $120.00 | $120.00 | estimate | STILL THE BIGGEST UNVERIFIED LINE - it wants three real carts to settle. Was $220 when it covered G10 sheet and hazmat epoxy, both of which are now out of the build entirely |
-| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $434.74 | $434.74 | verified |  |
-| **subtotal** | | | | **$554.74** | | |
+| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $436.83 | $436.83 | verified |  |
+| **subtotal** | | | | **$556.83** | | |
 
 ## Totals
 
 | | |
 |---|---:|
-| **Grand total, 2 boards** | **$7,680.42** |
-| Per board | $3,840.21 |
-| Of which verified | $6,502.82  (85%) |
-| Of which estimated | $1,177.60 |
+| **Grand total, 2 boards** | **$7,717.36** |
+| Per board | $3,858.68 |
+| Of which verified | $6,836.76  (89%) |
+| Of which estimated | $880.60 |
 
 ## What is a board, and what is a shop
 
-Some of the total above is not the cost of a board at all - it is tools, jigs and templates that exist afterwards and do not repeat. Splitting them out is the difference between "a board costs $3,840" and "a board costs $3,508 and I now own a vacuum rig, a crimper and a full template set".
+Some of the total above is not the cost of a board at all - it is tools, jigs and templates that exist afterwards and do not repeat. Splitting them out is the difference between "a board costs $3,859" and "a board costs $3,507 and I now own a vacuum rig, a crimper and a full template set".
 
 | | |
 |---|---:|
-| One-time tooling (incl. its share of tax) | $664.75 |
-| **Marginal cost of a board** | **$3,507.84** |
-| Cost of the NEXT board after these 2 | $3,507.84 |
+| One-time tooling (incl. its share of tax) | $702.79 |
+| **Marginal cost of a board** | **$3,507.28** |
+| Cost of the NEXT board after these 2 | $3,507.28 |
 
 | One-time item | $ |
 |---|---:|
@@ -267,13 +274,16 @@ Some of the total above is not the cost of a board at all - it is tools, jigs an
 | VR20 vacuum regulator | $52.00 |
 | Bag connector w/ ball valve, 1/4 in QD | $39.18 |
 | Vacuum hose + hose clamps | $15.00 |
-| Vacuum gauge, 0-30 inHg, 1/4 NPT | $18.00 |
-| M8 x 1.25 tap set + 6.8 mm drill | $18.00 |
+| Vacuum gauge, -30 inHg, 1/4 NPT, glycerin | $10.50 |
+| M8 x 1.25 tap + 6.8 mm drill set | $8.63 |
+| M8 x 1.25 BOTTOMING tap, 4-flute | $8.78 |
 | 1/4 in torque wrench, 10-50 in-lb | $25.97 |
 | Hydraulic lug crimper, 10 ton, 12-2/0 AWG | $39.99 |
 | Dowel pins + drill, two-sided registration | $12.00 |
-| 1/2 in single-flute + 1/2 in ball nose | $70.00 |
+| 1/2 in O-flute up-spiral, foam roughing | $66.05 |
+| 1/2 in ball nose, finishing pass | $41.95 |
 | Rotary-tool router base + collets, if needed | $35.00 |
 | Rosin paper roll, floor and bench | $24.00 |
 | Folding sawhorses, pair, 700 lb | $39.99 |
-| Sanding blocks + longboard for fairing | $30.00 |
+| Flex longboard sander, 16-1/2 x 2-3/4 | $19.99 |
+| Adjustable hand sanding block | $15.99 |
