@@ -61,6 +61,8 @@ M = dict(hatch_bolts=R["bom_hatch_bolts"],
          pack_series=R["pack_series"],
          pack_parallel=R["pack_parallel"],
          pack_pitch=R["pack_pitch_mm"],
+         holder_bricks=R["cell_holder_bricks"],
+         holder_positions=R["cell_holder_positions"],
          # nickel_m is not geometry - it is a build estimate, so it stays
          # here. 8.0 not 7.0: the edge strips get a second welded layer.
          nickel_m=8.0)
@@ -915,11 +917,18 @@ def build():
     # longer exists. That is CONSERVATIVE, not a clash - the real pack comes
     # out ~16 mm narrower and ~8 mm shorter than the cavity is cut for. Do
     # not "fix" PITCH_Y without re-checking every clearance it feeds.
+    # COUNT BRICKS, NOT POSITIONS. First pass here divided cell POSITIONS by
+    # the pack size and asked for 11 packs - but each 1x2 brick covers TWO
+    # positions, so it is half that. Driven off the model now so it cannot
+    # drift again: 128 cells a board, both ends held, 2 positions per brick,
+    # which works out to exactly one brick per cell.
     add("9  Electrical", "21700 cell holder, 1x2 brick, 50 pk",
-        math.ceil(128 * N * 2 / 50), "pk", 9.99, OK,
-        str(128 * N * 2) + " cell positions - both ends of every cell. "
-        "~22-23 mm pitch; the model assumes 24, which leaves the pack "
-        "smaller than the cavity is cut for", vendor="Amazon")
+        math.ceil(M["holder_bricks"] * N / 50), "pk", 9.99, OK,
+        str(M["holder_positions"] * N) + " cell positions across both boards, "
+        "2 per brick = " + str(M["holder_bricks"] * N) + " bricks. "
+        "THROUGH-HOLE spacers, so they add no height - they locate the cells "
+        "and set the pitch. ~22.5 mm against the model's 24, which leaves the "
+        "real pack smaller than the cavity is cut for", vendor="Amazon")
     add("9  Electrical", "ANL 150 A fuse + holder", N, "ea", 9.99, OK,
         "in the NEGATIVE leg, between BMS P- and the ESC - that is where V1 "
         "ran it and it is the node the charge negative branches from too")

@@ -116,13 +116,13 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | [BAK N21700CG-50 singles, spares](https://batteryhookup.com/products/new-3-6v-5000mah-bak-n21700cg-50-2170-lithium-ion-cells?variant=46196788756642) | 15 | ea | $2.50 | $37.50 | verified | 7% margin on a spot-welded pack |
 | 21700 cells already on hand | 128 | ea | $0.00 | $0.00 | on hand |  |
 | [Pure nickel 0.2 x 10 mm, 5 m roll](https://www.amazon.com/dp/B0961Q1VVR) | 3 | roll | $14.99 | $44.97 | verified | 6.9 m a board derived from the pack, not guessed. YOU ALREADY OWN 3 ROLLS (SUIDI, ordered Apr 16 x2 and May 6) - check the drawer before buying more. There is also a 5 m roll of 0.2 x 27 mm uxcell from Apr 12: too wide for bridges, but it is the right stock for the two terminal collectors and for doubling the edges without stacking two thin layers |
-| [21700 cell holder, 1x2 brick, 50 pk](https://www.amazon.com/dp/B092PSRGZ6) | 11 | pk | $9.99 | $109.89 | verified | 512 cell positions - both ends of every cell. ~22-23 mm pitch; the model assumes 24, which leaves the pack smaller than the cavity is cut for |
+| [21700 cell holder, 1x2 brick, 50 pk](https://www.amazon.com/dp/B092PSRGZ6) | 6 | pk | $9.99 | $59.94 | verified | 512 cell positions across both boards, 2 per brick = 256 bricks. THROUGH-HOLE spacers, so they add no height - they locate the cells and set the pitch. ~22.5 mm against the model's 24, which leaves the real pack smaller than the cavity is cut for |
 | [ANL 150 A fuse + holder](https://www.amazon.com/dp/B0B6ZHJR7D) | 2 | ea | $9.99 | $19.98 | verified | in the NEGATIVE leg, between BMS P- and the ESC - that is where V1 ran it and it is the node the charge negative branches from too |
 | [Inline 10 A fuse + holder, charge lead](https://www.amazon.com/dp/B0F2YXV41Q) | 1 | pk | $7.59 | $7.59 | verified | at SPLIT A on the charge positive. The ANL is sized for the motor and cannot protect 16 AWG |
 | [8 AWG silicone, 10 ft red + 10 ft black](https://www.amazon.com/dp/B0BYJRDT19) | 1 | pk | $21.99 | $21.99 | verified | one pack covers BOTH boards - the longest run in the module is the 278 mm ESC-to-fuse, so 10 ft a side is already 10x what the runs need. Motor supplies its own phase leads + bullets. Amazon 8 AWG 10+10 spans $18.88-$23.99; the 25 ft pack at $49.99 was buying 40 ft of wire to use about 3 |
 | [PVC pack wrap, 200 mm lay-flat](https://www.amazon.com/dp/B09SVFL33L) | 1 | roll | $13.99 | $13.99 | verified | wide enough to sleeve a 16S brick; one roll does both |
 | [Kapton tape, pack insulation](https://www.amazon.com/dp/B006ZFQNT6) | 1 | roll | $8.25 | $8.25 | estimate |  |
-| **subtotal** | | | | **$1,973.52** | | |
+| **subtotal** | | | | **$1,923.57** | | |
 
 ## 8  Mast hardpoint
 
@@ -255,31 +255,31 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | Item | Qty | Unit | Unit $ | Ext $ | | Note |
 |---|---:|---|---:|---:|---|---|
 | Shipping - Divinycell, 6061 plate, VR20 | 1 | allow | $120.00 | $120.00 | estimate | STILL THE BIGGEST UNVERIFIED LINE - it wants three real carts to settle. Was $220 when it covered G10 sheet and hazmat epoxy, both of which are now out of the build entirely |
-| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $446.43 | $446.43 | verified |  |
-| **subtotal** | | | | **$566.43** | | |
+| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $443.43 | $443.43 | verified |  |
+| **subtotal** | | | | **$563.43** | | |
 
 ## Totals
 
 | | |
 |---|---:|
-| **Grand total, 2 boards** | **$7,886.94** |
-| Per board | $3,943.47 |
-| Of which verified | $7,341.91  (93%) |
+| **Grand total, 2 boards** | **$7,833.99** |
+| Per board | $3,916.99 |
+| Of which verified | $7,288.96  (93%) |
 | Of which estimated | $545.03 |
 | Linked to a real listing | 131 lines |
 | Priced but NOT linked | 0 lines, $0.00 |
-| Not linkable, but MEASURED (freight quotes) | 2 lines, $715.06 |
+| Not linkable, but MEASURED (freight quotes) | 2 lines, $712.06 |
 | Not linkable and still estimated | 1 lines, $120.00 |
 
 ## What is a board, and what is a shop
 
-Some of the total above is not the cost of a board at all - it is tools, jigs and templates that exist afterwards and do not repeat. Splitting them out is the difference between "a board costs $3,943" and "a board costs $3,553 and I now own a vacuum rig, a crimper and a full template set".
+Some of the total above is not the cost of a board at all - it is tools, jigs and templates that exist afterwards and do not repeat. Splitting them out is the difference between "a board costs $3,917" and "a board costs $3,526 and I now own a vacuum rig, a crimper and a full template set".
 
 | | |
 |---|---:|
 | One-time tooling (incl. its share of tax) | $781.41 |
-| **Marginal cost of a board** | **$3,552.76** |
-| Cost of the NEXT board after these 2 | $3,552.76 |
+| **Marginal cost of a board** | **$3,526.29** |
+| Cost of the NEXT board after these 2 | $3,526.29 |
 
 | One-time item | $ |
 |---|---:|

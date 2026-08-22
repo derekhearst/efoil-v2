@@ -788,6 +788,15 @@ HOLD_RETAIN_T = 2.0                # thin; a foam pad above it takes up the slac
 HOLD_CLEAR = 0.3                   # cradle radial clearance on the cell
 HOLD_BED = 250.0                   # usable Bambu A1 bed
 
+# --- BOUGHT cell holders, which is what the pack actually uses -------------
+# 1x2 spacer bricks, top and bottom of every cell. THROUGH-HOLE, not a
+# cradle: the cell passes through and the brick locates it sideways, so it
+# adds NO height to the stack and nothing cascades into the module or the
+# board thickness. What it does set is the PITCH, and that is where the one
+# real discrepancy lives - see PITCH_Y.
+HOLDER_T = 10.0                    # brick height
+HOLDER_BORE_CLR = 0.4              # on the cell diameter, so it slides
+
 # --- LYING pack, 16S8P ----------------------------------------------------
 # MEASURED, not assumed: lying the cells down is not worth it here.
 #
@@ -2385,6 +2394,64 @@ def _fix_normals(ob):
     bm.free()
     ob.data.update()
     return ob
+
+
+def build_cell_holders(coll, px0, pack_x1, pack_y0, pack_y1,
+                       iz0, pack_h, rep):
+    """The BOUGHT 1x2 spacer bricks - one plate at each end of the cells.
+
+    Modelled as two perforated plates rather than 128 separate bricks: the
+    bricks clip together into exactly that, and one plate each end is a far
+    cheaper mesh than 256 little boxes for a part whose only job in the model
+    is to show that the cells ARE located and that nothing else wants the
+    space they occupy.
+    """
+    mat = bom_mat("wrap")
+    seg = 16
+    r = CELL_D / 2 + HOLDER_BORE_CLR
+    verts, faces = [], []
+    for row in range(PACK_S):
+        for p in range(PACK_P):
+            cx = px0 + PACK_EDGE + (row + 0.5) * PITCH_ROW
+            cy = pack_y0 + PACK_EDGE + (p + 0.5) * PITCH_CELL
+            b = len(verts)
+            for i in range(seg):
+                a = 2 * math.pi * i / seg
+                c, sn = r * math.cos(a), r * math.sin(a)
+                verts.append((cx + c, cy + sn, iz0 - 5.0))
+                verts.append((cx + c, cy + sn, iz0 + pack_h + 5.0))
+            for i in range(seg):
+                j = (i + 1) % seg
+                faces.append([b + 2 * i, b + 2 * j, b + 2 * j + 1,
+                              b + 2 * i + 1])
+            faces.append([b + 2 * i for i in range(seg - 1, -1, -1)])
+            faces.append([b + 2 * i + 1 for i in range(seg)])
+    bores = new_object("V2_HolderBore_cut", verts, faces, coll)
+    bores.hide_set(True)
+    bores.hide_render = True
+
+    for nm, z0 in (("Btm", iz0),
+                   ("Top", iz0 + pack_h - HOLDER_T)):
+        plate = box(f"V2_CellHolder_{nm}", px0, pack_x1, pack_y0, pack_y1,
+                    z0, z0 + HOLDER_T, coll, mat)
+        boolean(plate, bores, op='DIFFERENCE')
+
+    rep["cell_holders"] = ("bought 1x2 spacer bricks, THROUGH-HOLE, top and "
+                           "bottom of every cell - they locate the cells and "
+                           "set the pitch, and add no height")
+    rep["cell_holder_positions"] = PACK_S * PACK_P * 2
+    rep["cell_holder_bricks"] = PACK_S * PACK_P            # 1x2, so half
+    rep["cell_holder_t_mm"] = HOLDER_T
+    rep["cell_holder_adds_height_mm"] = 0.0
+    # The one place model and bought part disagree. PITCH_Y was set for the
+    # wall thickness of a PRINTED holder that is no longer built; the bought
+    # bricks are tighter. Conservative - the real pack lands smaller than the
+    # cavity is cut for - but it should not be forgotten.
+    rep["cell_holder_bought_pitch_mm"] = 22.5
+    rep["cell_holder_pitch_slack_mm"] = round(PITCH_Y - 22.5, 2)
+    rep["pack_smaller_than_modelled_mm"] = (
+        round((PITCH_Y - 22.5) * PACK_S, 1), round((PITCH_Y - 22.5) * PACK_P, 1))
+    return rep
 
 
 def build_cell_holder(coll, cols, x_start, pack_y0, iz0, mat, rep):
@@ -4418,6 +4485,9 @@ def build():
                 cy = pack_y0 + PACK_EDGE + (p + 0.5) * PITCH_CELL
                 _tube((cx, cy, iz0), (cx, cy, iz0 + pack_h), 2)
     new_object("V2_Pack_Cells", verts, faces, coll, m_cell)
+    if not CELLS_LYING:
+        build_cell_holders(coll, px0, pack_x1, pack_y0, pack_y1,
+                           iz0, pack_h, rep)
     box("V2_Pack_Wrap", px0, pack_x1, pack_y0, pack_y1,
         iz0 + pack_h, iz0 + pack_h + WRAP_T, coll, bom_mat("wrap"))
     rep["pack_layers"] = PACK_LAYERS if CELLS_LYING else 1
@@ -5512,7 +5582,8 @@ GROUPS = [
                                              "Hatch", "Lid", "Seal"))),
     ("Module",       lambda n: n.startswith(("Mod_", "ModPiece_", "ModInsert",
                                              "ModDT", "ModGasket"))),
-    ("Electrical",   lambda n: n.startswith(("Pack_", "BMS", "ESC", "Fuse",
+    ("Electrical",   lambda n: n.startswith(("Pack_", "CellHolder_", "BMS",
+                                             "ESC", "Fuse",
                                              "PowerButton", "ChargePort",
                                              "BayGland", "Conduit", "Nickel"))),
     ("Deck pad",     lambda n: n.startswith("DeckPad")),
