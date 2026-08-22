@@ -589,6 +589,13 @@ DECK_PAD_NOSE_TAPER = 340.0        # length over which the tip draws in
 DECK_PAD_TIP_F = 0.34              # half width left at the very tip
 DECK_PAD_TAIL_TAPER = 210.0        # softer than the nose but no longer square
 DECK_PAD_TAIL_F = 0.62
+DECK_PAD_LIFT = 0.15               # DISPLAY ONLY. The pad is glued flat to
+                                   # the deck, so its underside and the deck
+                                   # are the same surface - and two coincident
+                                   # surfaces z-fight, which is what made the
+                                   # pad shimmer in stripes. Lift it a tenth
+                                   # of a millimetre to separate them; it is
+                                   # below any tolerance that matters.
 DECK_PAD_CORNER_R = 45.0           # every corner radiused - a square
                                    # corner on a 5.8 mm self-adhesive
                                    # sheet is both the first place it
@@ -1376,6 +1383,11 @@ CNC_BED_Z = 149.9                  # 5.9 in of CUTTER TRAVEL - see the check
 # its four layers. Alignment is the dowel-pin fixture that is already in the
 # BOM for two-sided registration.
 CNC_SUBSTACK_LAYERS = 2            # layers machined per half before bonding
+CUTTER_FLUTE_L = 31.8              # 1-1/4 in - the Freud 73-214's CUTTING
+                                   # length, which is not its overall length.
+                                   # The BOM buys that bit for foam roughing,
+                                   # so this is the reach the plan actually
+                                   # has unless another cutter is bought.
 # The blank is stacked from 2 in construction EPS, not carved from a billet.
 # FOUR layers, not three. Three is 152.4 mm and the blank envelope is 163.8 -
 # the board is 153.8 thick and the rocker adds 10 on top of that, which the
@@ -2843,20 +2855,33 @@ def build_deck_pad(coll, rep):
             dev = max(dev, 2.0 * _arc_across(x, 0.0, hy))
             for j in range(NY + 1):
                 y = -hy + 2.0 * hy * j / NY
-                z = deck_z_at(x, y)
+                z = deck_z_at(x, y) + DECK_PAD_LIFT
                 grid[(i, j)] = len(verts)
                 verts.append((x, y, z))
                 verts.append((x, y, z + DECK_PAD_T))
+        def cell(a, bb):
+            return all((a + du, bb + dv) in grid
+                       for du, dv in ((0, 0), (1, 0), (1, 1), (0, 1)))
+
         for i in range(NX):
             for j in range(NY):
-                q = [(i, j), (i + 1, j), (i + 1, j + 1), (i, j + 1)]
-                if not all(c in grid for c in q):
+                if not cell(i, j):
                     continue
+                q = [(i, j), (i + 1, j), (i + 1, j + 1), (i, j + 1)]
                 b = [grid[c] for c in q]
                 faces.append([b[0], b[1], b[2], b[3]])
                 faces.append([b[3] + 1, b[2] + 1, b[1] + 1, b[0] + 1])
-                for u, v in ((0, 1), (1, 2), (2, 3), (3, 0)):
-                    faces.append([b[u], b[u] + 1, b[v] + 1, b[v]])
+                # WALLS ONLY ON THE OUTSIDE. Skinning every cell put an
+                # internal partition between each pair of neighbours - a
+                # 160 x 26 grid of them - and through a transparent material
+                # they all render, which is what made the pad look striped.
+                # A wall goes in only where the neighbouring cell is absent.
+                for (u, v), (du, dv) in ((((0, 1)), (0, -1)),
+                                         (((1, 2)), (1, 0)),
+                                         (((2, 3)), (0, 1)),
+                                         (((3, 0)), (-1, 0))):
+                    if not cell(i + du, j + dv):
+                        faces.append([b[u], b[u] + 1, b[v] + 1, b[v]])
                 p0, p1, p2 = verts[b[0]], verts[b[1]], verts[b[2]]
                 area += abs((p1[0] - p0[0]) * (p2[1] - p1[1])) / 1e6
         if verts:
@@ -3789,6 +3814,12 @@ def build():
     # number in a report.
     _blank_z0 = min(v.z * 1000.0 for v in
                     (hull.matrix_world @ vv.co for vv in hull.data.vertices))
+    # Solids that are LET INTO the EPS rather than made of it. Looked up by
+    # name so this does not depend on where in build() they were created.
+    _hardpoint_pockets = [o for o in
+                          (bpy.data.objects.get("V2_DenseFoam_Block"),
+                           bpy.data.objects.get("V2_LeashHardpoint"))
+                          if o is not None]
     for nm, x0, x1, mat in (("Aft", -20.0, SEAM_X, "eps"),
                             ("Fwd", SEAM_X, LENGTH + 20.0, "eps_fwd")):
         half = box(f"V2_CoreHalf_{nm}", x0, x1, -WIDTH, WIDTH,
@@ -3819,14 +3850,54 @@ def build():
             pc = box(f"V2_MachStack_{nm}_{half_nm}", x0, x1, -WIDTH, WIDTH,
                      z0, z1, coll, bom_mat(mat))
             boolean(pc, hull, op='INTERSECT')
+            # THE HARDPOINTS ARE POCKETS, NOT MAGIC. The H-80 mast block and
+            # the leash pad are let INTO the EPS - so the EPS piece has a
+            # pocket where each one goes, and the machining piece has to show
+            # that or it is claiming to be solid foam through a volume that
+            # is not. It also fixed a real display bug: the block occupied
+            # exactly the same space as the core piece around it, so the two
+            # surfaces z-fought and the whole mast area shimmered.
+            for _hp in _hardpoint_pockets:
+                boolean(pc, _hp, op='DIFFERENCE')
     rep["mach_split_z_mm"] = round(_split_z, 1)
     rep["mach_substack_h_mm"] = round(CNC_SUBSTACK_LAYERS * EPS_SHEET_T, 1)
     rep["mach_pieces"] = 4
-    rep["mach_setups"] = ("4 pieces x 2 faces = 8 setups, none taller than "
-                          f"{CNC_SUBSTACK_LAYERS * EPS_SHEET_T:.1f} mm")
+    # FIVE SETUPS, NOT EIGHT. "4 pieces x 2 faces" was arithmetic, not a
+    # plan - most of these faces have nothing on them. Worked through:
+    #   Aft_Lower   TOP: lower half of the cavity.  BOTTOM: rocker + mast
+    #               pocket.                                        2 setups
+    #   Aft_Upper   BOTTOM is the mid-plane, dead flat, nothing to cut.
+    #               TOP: deck crown, cavity through, ledge, leash 1 setup
+    #   Fwd_Lower   TOP is the mid-plane. BOTTOM: rocker only.     1 setup
+    #   Fwd_Upper   BOTTOM is the mid-plane. TOP: deck crown.      1 setup
+    # The cavity is entirely aft of SEAM_X, which is why the forward pieces
+    # are one-and-done.
+    rep["mach_setups"] = 5
+    rep["mach_setups_by_piece"] = {"Aft_Lower": 2, "Aft_Upper": 1,
+                                   "Fwd_Lower": 1, "Fwd_Upper": 1}
+    rep["mach_flips_needing_registration"] = 1
+    # AND NO CRADLE ANYWHERE, which is the real prize. Every setup beds on a
+    # flat face: the as-glued slab face, or the mid-plane, or - for the one
+    # flip - a top that has a pocket in it but is still flat all round it.
+    # Machining a full-thickness board would have meant holding a crowned
+    # deck while cutting the rocker, and that needs a cradle cut to match.
+    rep["mach_needs_cradle"] = False
+    rep["mach_workholding"] = ("tape or vacuum to the spoilboard, every "
+                               "setup - each one presents a flat face")
     rep["mach_fits_gantry"] = (CNC_SUBSTACK_LAYERS * EPS_SHEET_T) <= CNC_BED_Z
     rep["mach_naive_h_mm"] = round(EPS_LAYERS * EPS_SHEET_T, 1)
     rep["mach_naive_fits_gantry"] = (EPS_LAYERS * EPS_SHEET_T) <= CNC_BED_Z
+    # DEPTH OF CUT, which is a different limit from gantry height and is the
+    # one that actually bites. The cavity floor sits at z=30 and the split at
+    # 101.6, so its lower half is a pocket 71.6 mm deep - more than twice the
+    # cutting length of the O-flute the BOM buys.
+    _deep = _split_z - FLOOR_Z
+    rep["mach_deepest_pocket_mm"] = round(_deep, 1)
+    rep["mach_deepest_pocket_is"] = "cavity lower half, pocketed into *_Lower"
+    rep["mach_cutter_flute_mm"] = CUTTER_FLUTE_L
+    rep["mach_cutter_reaches"] = _deep <= CUTTER_FLUTE_L
+    rep["mach_cutter_shortfall_mm"] = round(max(0.0, _deep - CUTTER_FLUTE_L), 1)
+    rep["mach_upper_through_mm"] = round(rep["lid_top_z_mm"] - _split_z, 1)
     # Two shades on purpose. Butted, the halves are geometrically identical to
     # the hull, so in one colour the seam is a hairline you have to hunt for -
     # which is the whole thing being shown.

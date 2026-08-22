@@ -749,6 +749,48 @@ def write_cut_list(parts, rows, L, p):
               "the seam), which gives two full-thickness halves you can handle "
               "on a bench; then butt those at the vertical seam.",
               "",
+              "### How the four pieces are actually milled", "",
+              "**Five setups, one flip, no cradle.** Not eight - \"4 pieces "
+              "x 2 faces\" is arithmetic, not a plan, because most of these "
+              "faces have nothing on them. The cavity is entirely aft of the "
+              "vertical seam, so both forward pieces are one-and-done.", "",
+              "| Piece | Setup | Face up | What gets cut |",
+              "|---|---|---|---|",
+              "| `Aft_Lower` | 1 | top | lower half of the cavity, "
+              f"{p['CNC_SUBSTACK_LAYERS']*p['EPS_SHEET_T'] - p['FLOOR_Z']:.1f}"
+              " mm deep |",
+              "| `Aft_Lower` | 2 | bottom | rocker (3D) + mast block pocket "
+              "— **the one flip** |",
+              "| `Aft_Upper` | 3 | top | deck crown (3D), cavity cut through, "
+              "rim ledge, leash pocket |",
+              "| `Fwd_Lower` | 4 | bottom | rocker (3D). Top is the mid-plane "
+              "— nothing on it |",
+              "| `Fwd_Upper` | 5 | top | deck crown (3D). Bottom is the "
+              "mid-plane — nothing on it |",
+              "",
+              "**Workholding: tape or vacuum to the spoilboard, every time.** "
+              "Every setup presents a flat face — the as-glued slab face, or "
+              "the mid-plane, or (for the flip) a top that has a pocket in it "
+              "but is still flat all the way round it. **No cradle is needed "
+              "anywhere**, and that is the real prize from splitting "
+              "horizontally: machining a full-thickness board means holding a "
+              "crowned deck while you cut the rocker into the other side, and "
+              "that needs a cradle milled to match the deck. This plan never "
+              "has to.", "",
+              "Only setup 2 is a flip, so the dowel-pin registration matters "
+              "exactly once. Drill the dowel holes in the spoilboard and in "
+              "the waste perimeter of the slab before any 3D work starts.", "",
+              "> **CUTTER REACH — CHECK THIS BEFORE THE DAY.** The deepest "
+              f"single pocket is the cavity's lower half at "
+              f"{p['CNC_SUBSTACK_LAYERS']*p['EPS_SHEET_T'] - p['FLOOR_Z']:.1f}"
+              " mm. The O-flute the BOM buys (Freud 73-214) has a **cutting "
+              f"length of {p['CUTTER_FLUTE_L']:.1f} mm** — that is its flute, "
+              "not its overall length, and it is "
+              f"{p['CNC_SUBSTACK_LAYERS']*p['EPS_SHEET_T'] - p['FLOOR_Z'] - p['CUTTER_FLUTE_L']:.1f}"
+              " mm short. Either buy a long-reach 1/2 in spiral with 75 mm+ "
+              "of flute for that one pocket, or rough it with the ball nose "
+              "and accept the stepover. Do not find this out with the foam "
+              "already taped down.", "",
               "### Station table", "",
               "Width and thickness are the finished "
               "hull; rocker is the bottom's rise above the datum plane.", "",
@@ -759,9 +801,9 @@ def write_cut_list(parts, rows, L, p):
 
     lines += ["", "## Two-day plan", "",
               "**Day 1 — before layup**", "",
-              "1. EPS core — **4 pieces, 8 setups**: Aft/Fwd x Lower/Upper, "
-              "each face. None taller than "
-              f"{p['CNC_SUBSTACK_LAYERS']*p['EPS_SHEET_T']:.1f} mm",
+              "1. EPS core — **4 pieces, 5 setups, 1 flip**. None taller "
+              f"than {p['CNC_SUBSTACK_LAYERS']*p['EPS_SHEET_T']:.1f} mm; see "
+              "the milling table above",
               "2. Bond mid-plane (Lower+Upper), then butt at the vertical seam",
               "3. Cavity caul (13)",
               "4. Aluminium flat parts (4 module floor, 12 mast plate)",
