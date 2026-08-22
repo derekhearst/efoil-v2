@@ -218,10 +218,9 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | Acetone, 1 gal, cleanup | 1 | gal | $39.95 | $39.95 | verified |  |
 | Rosin paper roll, floor and bench | 1 | roll | $24.00 | $24.00 | estimate | absorbs instead of pooling. This is the actual upgrade over a tarp, and it is $24 |
 | Shaping stands, pair - DIY 2x4 + pipe lagging | 1 | pair | $70.00 | $70.00 | estimate | hip height, padded,board supported on its rails. Bought equivalents are $180-400 and do nothing extra |
-| Moving blanket / carpet offcut, bagging bed | 1 | ea | $22.00 | $22.00 | estimate | the board must NOT bag down onto a flat table - rocker means point contact, and 20 kN through a small patch dents the core |
 | Plastic sheeting + masking tape, bench protection | 1 | set | $20.00 | $20.00 | estimate |  |
 | Sanding blocks + longboard for fairing | 1 | set | $30.00 | $30.00 | estimate |  |
-| **subtotal** | | | | **$326.91** | | |
+| **subtotal** | | | | **$304.91** | | |
 
 ## 11 Finishing
 
@@ -239,25 +238,25 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | Item | Qty | Unit | Unit $ | Ext $ | | Note |
 |---|---:|---|---:|---:|---|---|
 | Shipping - G10, Divinycell, epoxy hazmat | 1 | allow | $220.00 | $220.00 | estimate | heavy and hazmat lines |
-| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $461.19 | $461.19 | verified |  |
-| **subtotal** | | | | **$681.19** | | |
+| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $459.87 | $459.87 | verified |  |
+| **subtotal** | | | | **$679.87** | | |
 
 ## Totals
 
 | | |
 |---|---:|
-| **Grand total, 2 boards** | **$8,147.76** |
-| Per board | $4,073.88 |
-| Of which verified | $6,311.17  (77%) |
-| Of which estimated | $1,836.59 |
+| **Grand total, 2 boards** | **$8,124.44** |
+| Per board | $4,062.22 |
+| Of which verified | $6,309.85  (78%) |
+| Of which estimated | $1,814.59 |
 
 ## What is a board, and what is a shop
 
-Some of the total above is not the cost of a board at all - it is tools, jigs and templates that exist afterwards and do not repeat. Splitting them out is the difference between "a board costs $4,074" and "a board costs $3,590 and I now own a vacuum rig, a crimper and a full template set".
+Some of the total above is not the cost of a board at all - it is tools, jigs and templates that exist afterwards and do not repeat. Splitting them out is the difference between "a board costs $4,062" and "a board costs $3,590 and I now own a vacuum rig, a crimper and a full template set".
 
 | | |
 |---|---:|
-| One-time tooling (incl. its share of tax) | $967.13 |
+| One-time tooling (incl. its share of tax) | $943.81 |
 | **Marginal cost of a board** | **$3,590.31** |
 | Cost of the NEXT board after these 2 | $3,590.31 |
 
@@ -277,5 +276,4 @@ Some of the total above is not the cost of a board at all - it is tools, jigs an
 | Rotary-tool router base + collets, if needed | $35.00 |
 | Rosin paper roll, floor and bench | $24.00 |
 | Shaping stands, pair - DIY 2x4 + pipe lagging | $70.00 |
-| Moving blanket / carpet offcut, bagging bed | $22.00 |
 | Sanding blocks + longboard for fairing | $30.00 |

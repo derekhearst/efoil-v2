@@ -215,27 +215,24 @@ and reach both rails — for shaping, sanding and wet-out. Bought ones are
 **$180–400**; 2×4, ply and foam pipe lagging is **$50–90** and does the same
 job. Rack pads want to grip the foam so the blank does not slide.
 
-**The bagging bed — this is the one that actually bites.** It is *not* the same
-thing as a table, and skipping it ruins a hull.
+**The bagging bed — and here I was wrong, so ignore what this used to say.**
 
-At 7 inHg the bag presses the board onto whatever it is lying on:
+I claimed the bag presses the board into the table with 20 kN and that you
+need a conforming bed to spread it. **That is not how an envelope bag works.**
+The part is fully enclosed, so the 24 kPa acting down on the top acts equally
+*up* on the bottom. **Uniform pressure on a closed body is zero net force** —
+it consolidates the laminate from every direction and pushes the part nowhere.
 
-| | |
-|---|---|
-| Pressure | 24 kPa |
-| Over 1400 × 600 | **20,160 N — two tonnes** |
-| EPS crushes at | 150 kPa |
-| So you need | **134,000 mm² of contact — 16% of the footprint** |
+The table only ever carries the board's **weight**: ~8 kg wet, about 78 N,
+which over even 50 cm² of contact is 16 kPa against EPS's 150. Not a problem
+by three orders of magnitude.
 
-**A flat table under a rockered hull touches nowhere near that.** It lands on a
-patch in the middle and dents the core straight through the fresh laminate,
-and you will not see it until the bag comes off.
+That 20 kN figure would be real for **single-sided bagging** — bag taped down
+to a table around the part, with the table acting as the pressure boundary.
+Nobody bags a rockered board that way.
 
-A **carpet offcut or a moving blanket** conforms and gives you the whole
-footprint. ~$22, and it is the cheapest insurance in the whole process.
-
-Stands for shaping and wet-out; **conforming bed for the bag.** Not the same
-surface, not interchangeable.
+A blanket under it is still pleasant, and it stops a stray screw head marking
+the skin. **A nicety, not a requirement.**
 
 ### The number that shapes everything: 20 minutes
 

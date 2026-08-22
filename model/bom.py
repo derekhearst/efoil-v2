@@ -850,20 +850,20 @@ def build():
         1, "pair", 70.00, EST,
         "hip height, padded,board supported on its rails. Bought equivalents are "
         "$180-400 and do nothing extra", tool=True)
-    # AND A CONFORMING BED FOR BAGGING, which is NOT the same thing as a table
-    # and matters more than any of the above.
-    # At 7 inHg the bag presses the board onto whatever it sits on: 24 kPa over
-    # 1400 x 600 is 20,160 N. Two tonnes. Spread over EPS that crushes at 150
-    # kPa, you need 134,000 mm2 of contact - 16% of the board's footprint - and
-    # a FLAT table under a ROCKERED hull touches nowhere near that. It lands on
-    # a patch in the middle and dents the core through the fresh laminate.
-    # A carpet offcut or a moving blanket conforms and gives you the whole
-    # footprint. It is the cheapest thing on this page and skipping it ruins a
-    # hull at hour three.
-    add("10e Layup kit", "Moving blanket / carpet offcut, bagging bed",
-        1, "ea", 22.00, EST,
-        "the board must NOT bag down onto a flat table - rocker means point "
-        "contact, and 20 kN through a small patch dents the core", tool=True)
+    # NO "CONFORMING BAGGING BED". I put one here on a calculation that was
+    # simply wrong: 24 kPa x 1400 x 600 = 20 kN "pressing the board into the
+    # table". That is the sum on ONE face. This is an ENVELOPE bag - the part
+    # is fully enclosed - so the same 24 kPa acts on the BOTTOM face pushing
+    # UP. Uniform pressure on a closed body is ZERO net force. It consolidates
+    # the laminate from every side and pushes the part nowhere.
+    # The table only ever carries the board's WEIGHT: ~8 kg wet = 78 N, which
+    # over even 50 cm2 of contact is 16 kPa against EPS's 150. Not a problem,
+    # by three orders of magnitude.
+    # The 20 kN figure would be real for SINGLE-SIDED bagging - bag taped down
+    # to a table around the part, table acting as the pressure boundary - and
+    # nobody bags a rockered board that way.
+    # A blanket under it is still pleasant, and it stops a stray screw head
+    # marking the skin. It is a nicety, not a requirement, and free.
     add("10e Layup kit", "Plastic sheeting + masking tape, bench protection",
         1, "set", 20.00, EST)
     add("10e Layup kit", "Sanding blocks + longboard for fairing", 1, "set",
