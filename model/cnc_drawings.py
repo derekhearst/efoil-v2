@@ -383,7 +383,13 @@ def build(p):
     # A caul bonded into a cured cavity is not recoverable.
     d = Dxf()
     d.poly(rrect(0, cav_l - 1.0, 0, CAV_W - 1.0, R))
-    add("13_cavity_caul", "MDF or foam", L["ext_h"], 1, d, cav_l - 1, CAV_W - 1,
+    add("13_cavity_caul", "EPS offcut", L["ext_h"], 1, d, cav_l - 1, CAV_W - 1,
+        "EPS, not MDF - it only has to transmit bag pressure, and at 7 inHg "
+        "that is 24 kPa against EPS's 150 kPa crush, 6x, deflecting 0.2 mm "
+        "over its 90 mm depth. MDF was over-specifying a pusher. "
+        "BEST CASE IT IS FREE: if the CNC PROFILES the cavity rather than "
+        "pocketing it to chips, the plug that drops out IS this part, already "
+        "the right shape - just skim it undersize. "
         "Release-taped or waxed. Supports the deck skin during bagging, then "
         "presses the cavity laminate into the corners. 0.5 mm under size per "
         "side. Break its own edges to the cavity's R10 or it will not seat.")
@@ -404,7 +410,16 @@ def build(p):
                  RIM_W - gi - GUIDE_OFF, oh - RIM_W + gi + GUIDE_OFF,
                  R + gi + GUIDE_OFF))
     d.poly(rrect(0, ow, 0, oh, R + RIM_W), layer="CHANNEL")
-    add("14_groove_guide", "MDF 12 mm", 12.0, 1, d, ow, oh,
+    add("14_groove_guide", "MDF 12 mm - FALLBACK ONLY", 12.0, 1, d, ow, oh,
+        f"PROBABLY NOT NEEDED. Print the filler strip "
+        f"{p['CHAN_FILLER_PROUD']:.1f} mm PROUD of the ring face and the glass "
+        f"drapes over a {p['CHAN_W']:.0f} mm ridge you can see and feel. Then "
+        f"the job is just SANDING THE RING FACE FLAT - which that face needs "
+        f"anyway, since it is the seal land and the lid has to bottom evenly "
+        f"on it. The ridge sands through first, the filler shows as a line "
+        f"along the whole groove, and you pick it out. No cutter, no guide, "
+        f"no template on a finished board. "
+        f"Cut this only if you would rather route it. "
         f"Opens the seal groove AFTER glassing. Use a "
         f"{p['CHAN_CUTTER']:.1f} mm cutter in the {p['CHAN_W']:.0f} mm groove "
         f"- {(p['CHAN_W']-p['CHAN_CUTTER'])/2:.2f} mm of lateral slop each "

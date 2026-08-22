@@ -66,13 +66,13 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | Solid silicone cord, 3.5 mm round - the spare size | 4 | m | $4.00 | $16.00 | estimate | fitted ONLY if the routed groove measures deep. Choosing after you measure is the whole point |
 | Solid silicone cord, 3 mm round - BOTH seals | 8 | m | $2.00 | $16.00 | estimate | buy long - splice on a straight run, never a corner |
 | Paste wax, releasing the groove filler | 1 | ea | $12.00 | $12.00 | estimate | the filler must NOT bond - it comes back out after the glass goes over it |
-| 2.5 mm straight cutter, groove opening | 2 | ea | $14.00 | $28.00 | estimate | undersize in a 4 mm groove on purpose: 0.75 mm of lateral slop before it can touch the sealing land. Two, because breaking one mid-groove on a finished board is the bad day |
+| 2.5 mm straight cutter - fallback | 1 | ea | $14.00 | $14.00 | estimate | only if you would rather cut the groove open than sand down to a proud filler strip. Undersize in a 4 mm groove on purpose |
 | Silicone adhesive, bonding the cord into groove | 1 | tube | $12.00 | $12.00 | estimate | a thin continuous bead under the cord. It cannot then migrate, lift out, or be pinched under the lid in a dark car park |
 | M5 x 25 A4 stainless socket cap | 24 | ea | $0.55 | $13.20 | estimate |  |
 | M5 penny washer O15, under the captive nut | 34 | ea | $0.18 | $6.12 | estimate | goes in at the SAME print pause as the nut, underneath it |
 | M5 A4 hex nut, CAPTIVE - printed into the ring | 34 | ea | $0.22 | $7.48 | estimate | dropped in at a print pause at Z=6.0; steel thread, so a hatch that comes off every ride never wears anything out |
-| MDF 12 mm, 4 check gauges | 1 | sheet | $22.00 | $22.00 | estimate | 3 station sections + the rocker/deck profile. Was a 14-template set at $70 - the router templates go with the CNC pass |
-| **subtotal** | | | | **$132.80** | | |
+| MDF 12 mm, 4 check gauges | 1 | sheet | $22.00 | $22.00 | estimate | 3 station sections + the rocker/deck profile. Was a 14-template set at $70 - the router templates go with the CNC pass. The caul is an EPS offcut and the groove guide is fallback-only, so this sheet is now the whole MDF requirement |
+| **subtotal** | | | | **$118.80** | | |
 
 ## 7  Module
 
@@ -236,27 +236,27 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | Item | Qty | Unit | Unit $ | Ext $ | | Note |
 |---|---:|---|---:|---:|---|---|
 | Shipping - G10, Divinycell, epoxy hazmat | 1 | allow | $220.00 | $220.00 | estimate | heavy and hazmat lines |
-| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $455.07 | $455.07 | verified |  |
-| **subtotal** | | | | **$675.07** | | |
+| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $454.23 | $454.23 | verified |  |
+| **subtotal** | | | | **$674.23** | | |
 
 ## Totals
 
 | | |
 |---|---:|
-| **Grand total, 2 boards** | **$8,039.64** |
-| Per board | $4,019.82 |
-| Of which verified | $6,305.05  (78%) |
-| Of which estimated | $1,734.59 |
+| **Grand total, 2 boards** | **$8,024.80** |
+| Per board | $4,012.40 |
+| Of which verified | $6,304.21  (79%) |
+| Of which estimated | $1,720.59 |
 
 ## What is a board, and what is a shop
 
-Some of the total above is not the cost of a board at all - it is tools, jigs and templates that exist afterwards and do not repeat. Splitting them out is the difference between "a board costs $4,020" and "a board costs $3,598 and I now own a vacuum rig, a crimper and a full template set".
+Some of the total above is not the cost of a board at all - it is tools, jigs and templates that exist afterwards and do not repeat. Splitting them out is the difference between "a board costs $4,012" and "a board costs $3,590 and I now own a vacuum rig, a crimper and a full template set".
 
 | | |
 |---|---:|
 | One-time tooling (incl. its share of tax) | $844.17 |
-| **Marginal cost of a board** | **$3,597.73** |
-| Cost of the NEXT board after these 2 | $3,597.73 |
+| **Marginal cost of a board** | **$3,590.31** |
+| Cost of the NEXT board after these 2 | $3,590.31 |
 
 | One-time item | $ |
 |---|---:|

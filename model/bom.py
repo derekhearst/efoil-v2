@@ -421,10 +421,13 @@ def build():
     add("6  Hatch and seal", "Paste wax, releasing the groove filler", 1, "ea",
         12.00, EST, "the filler must NOT bond - it comes back out after the "
         "glass goes over it")
-    add("6  Hatch and seal", "2.5 mm straight cutter, groove opening", 2, "ea",
-        14.00, EST, "undersize in a 4 mm groove on purpose: 0.75 mm of "
-        "lateral slop before it can touch the sealing land. Two, because "
-        "breaking one mid-groove on a finished board is the bad day")
+    # ONE, not two, and only as the fallback. Printing the filler strip 0.5 mm
+    # PROUD turns this from routing-a-groove into sanding-the-ring-face-flat -
+    # which that face needs regardless, because it is the seal land. The ridge
+    # sands through first and the filler shows up as a line to pick out.
+    add("6  Hatch and seal", "2.5 mm straight cutter - fallback", 1, "ea",
+        14.00, EST, "only if you would rather cut the groove open than sand "
+        "down to a proud filler strip. Undersize in a 4 mm groove on purpose")
     add("6  Hatch and seal", "Silicone adhesive, bonding the cord into groove",
         1, "tube", 12.00, EST,
         "a thin continuous bead under the cord. It cannot then migrate, lift "
@@ -466,7 +469,9 @@ def build():
     # here: the cavity caul and the groove guide.
     add("6  Hatch and seal", "MDF 12 mm, 4 check gauges", 1, "sheet", 22.00,
         EST, "3 station sections + the rocker/deck profile. Was a 14-template "
-        "set at $70 - the router templates go with the CNC pass")
+        "set at $70 - the router templates go with the CNC pass. The caul is "
+        "an EPS offcut and the groove guide is fallback-only, so this sheet "
+        "is now the whole MDF requirement")
 
     # ---------------------------------------------------------- 7 module
     add("7  Module", "M4 x 12 A4 stainless socket cap",

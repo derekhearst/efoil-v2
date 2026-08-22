@@ -355,7 +355,18 @@ RING_LAM = 0.6                     # glass lying over the ring, 2 ply of 6 oz
 CHAN_D_PRINT = CHAN_D - RING_LAM   # ...so this much is printed into the ASA
 # Use a 2.5 mm cutter in the 4 mm groove: 0.75 mm of lateral slop each side
 # before it can touch the land. Break through, then pick the filler out.
-CHAN_CUTTER = 2.5          # groove: 74% fill at 20% squeeze
+CHAN_CUTTER = 2.5
+# ...although you may not need a cutter or a guide at all. PRINT THE FILLER
+# STRIP PROUD of the ring face by CHAN_FILLER_PROUD. The glass then drapes
+# over a 4 mm ridge instead of a flat face, and that ridge is a line you can
+# see and feel through the laminate.
+# Which turns the whole operation into SANDING THE RING FACE FLAT - which is
+# something you want to do anyway, because that face is the seal land and it
+# has to be flat for the lid to bottom evenly on it. The ridge sands through
+# first, the filler shows up as a 4 mm line along the whole groove, and you
+# pick it out. No cutter following a template on a finished board at all.
+# Keep the guide template as the fallback for anyone who would rather cut it.
+CHAN_FILLER_PROUD = 0.5          # groove: 74% fill at 20% squeeze
 CHAN_INSET = 10.0                  # groove centreline outboard of the opening.
                                    # Seal inboard, bolts outboard - at 15 the
                                    # M5 heads landed on top of the channel.
