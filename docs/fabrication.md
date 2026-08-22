@@ -394,7 +394,29 @@ pump was worth $58 rather than doing this by hand.**
 That leaves **exactly one part that wants a CNC: the EPS core.** Everything
 else moved off the machine when the G10 did.
 
+### The mast plate does not need a machine — and the Gong plate is the jig
+
+This is the part where hole position actually matters: the four M8s have to
+line up with the Gong top plate or the mast will not bolt on. The model
+carries `BOLT_SPACING_X = 165` marked **UNVERIFIED**.
+
+**Do not measure it. Copy it.** Clamp the real Gong top plate to the 6061 and
+**spot through its own holes**. The pattern is then correct by construction,
+the unverified number stops mattering, and no CNC was involved.
+
+The rest is drill-press work:
+
+1. Bandsaw or jigsaw the 250 × 175 rectangle from ½" 6061, file the edges
+2. Clamp the Gong plate on, spot the four positions through it
+3. Drill **Ø6.8 to 10 mm depth** with the depth stop set — blind, leaving
+   2.7 mm of solid aluminium so the plate stays watertight
+4. Taper tap, then **bottoming tap**, M8 × 1.25
+5. Cut the pocket in the foam to the plate you actually made, not to the
+   drawing — template T05 registers off the plate, so make the plate first
+
 ### Four ways to get the core cut
+
+
 
 1. **Hand shape it.** V1 was shaped this way — box cutter, surform, orbital
    sander — and it worked. This repo emits **13 station gauges at 100 mm
@@ -402,10 +424,27 @@ else moved off the machine when the G10 did.
    is slow, not risky.
 2. **Hot wire.** Gustav's method, referenced in V1's notes: nichrome against
    1:1 templates. Cleaner than hand tools on long runs.
-3. **A surfboard shaping service.** This is the *right* machine for the job —
-   dedicated blank-shaping CNCs exist precisely to cut EPS board cores, and
-   they are used to files, not drawings. Worth a search before settling for a
-   general router bureau.
+3. **A surfboard shaping service.** The right *class* of machine — dedicated
+   blank-shaping CNCs cut EPS board cores all day and take files rather than
+   drawings. Real ones that mail order: [Greenlight Surf
+   Co.](https://greenlightsurfsupply.com/products/aku-shaper-custom-file),
+   [Marko Foam Blanks](https://markofoamblanks.com/pages/cnc-cuts), [Eco Surf
+   Supply](https://ecosurfsupply.com/CNC-Preshape/), [Kona Surf
+   Co.](https://www.konasurfco.com/cnc-surfboard-shaping-services). They want
+   Shape3D, AkuShaper or BoardCAD format; Eco Surf will make the file for you.
+
+   **Two things to settle before sending anything.** First, **stock size**:
+   this board is 1400 × 600 × 164, and while the length is ordinary the
+   **600 wide and 164 thick is SUP territory or past it** — ask what they can
+   actually get a blank out of. Second, **a shaping machine cuts the outside
+   only**. The cavity, rim rebate, mast pocket and conduit are not surfboard
+   features and no shaping service will cut them.
+
+   That second point is really the answer to the whole problem: **split the
+   job.** Outer shape to a service or to hand tools, where a millimetre does
+   not matter; internal features off router templates T02–T07, where it does.
+   The templates already exist for exactly this, and the precision ends up
+   where it is needed instead of spread across a machine you had to find.
 4. **Any big flat-bed router.** Sign shops, cabinet shops, boat builders. The
    bed needs 1030 × 560 and the material is foam — this is an easy job for
    anyone with the table, and a much easier ask than it was when it involved

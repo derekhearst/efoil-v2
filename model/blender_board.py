@@ -1066,7 +1066,14 @@ MOD_X0_TARGET = 444.0
 # bond the bushings once a real plate is in hand. Same for template T05 -
 # cut the profile now, add its four holes later. The exposure is four holes,
 # not a $268 sheet.
-BOLT_SPACING_X = 165.0             # UNVERIFIED - check against a real plate
+# UNVERIFIED - and it does NOT need verifying, because the plate should never
+# be marked out from this number. CLAMP THE REAL GONG TOP PLATE TO THE 6061
+# AND SPOT THROUGH ITS OWN HOLES. The pattern is then right by construction
+# whatever this says, and the one dimension on the board where being 1 mm out
+# means the mast will not bolt on stops depending on a figure nobody measured.
+# This value is here so the model can place the pocket and check clearances;
+# it is not a manufacturing instruction.
+BOLT_SPACING_X = 165.0             # for layout only - SPOT THROUGH THE PLATE
 BOLT_SPACING_Y = 90.0              # US rails, 90 mm on centre
 BOLT_D = 8.0                       # M8, Gong's mast screws
 G10_L, G10_W = 250.0, 175.0
