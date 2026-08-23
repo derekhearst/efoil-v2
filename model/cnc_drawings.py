@@ -198,7 +198,7 @@ def build(p):
     #   4 mm, which ASA does without support.
     #
     # PAUSE AT Z = 6.0 mm and drop in 12 M5 nuts. That is the whole fastening:
-    #   a captive steel thread, ~5.2 kN pull-out against the 910 N a bolt the
+    #   a captive steel thread, ~5.2 kN pull-out against the preload a bolt
     #   seal actually needs, and nothing to wear out on a hatch that comes off
     #   every single ride. No STI tap, no tangless tool, no heat-set insert.
     #   DO NOT OVER-TORQUE - the lid lands on a hard stop, so past that point
@@ -267,11 +267,15 @@ def build(p):
         f"the other eleven. A five-minute fix instead of a scrapped lid. "
         f"POT EVERY BOLT HOLE, THEN COUNTERSINK IT. NOT a V1 problem - V1's "
         f"lid was solid plywood and never crushed - but this one is a cored "
-        f"sandwich. At 910 N a bolt, an M5 cap head puts 28 MPa on H100 and "
-        f"even a O15 penny washer puts 6.0, against a core that crushes at "
-        f"2.0. It takes a O25 fender washer to get under the limit, twelve "
-        f"times round the hatch, which is why the answer is resin and not "
-        f"hardware. Drill O{p['HATCH_POT_D']:.0f} through the TOP skin and "
+        f"sandwich. At {p['BOLT_PRELOAD_N']:.0f} N a bolt - the PRELOAD at "
+        f"{p['HATCH_TORQUE_NM']:.1f} Nm, not the {p['SEAL_N'] / 12:.0f} N the "
+        f"cord actually needs - an M5 cap head puts "
+        f"{p['BOLT_PRELOAD_N'] / (math.pi / 4 * (8.5 ** 2 - 5.6 ** 2)):.0f} "
+        f"MPa on H100 and even a O15 penny washer puts "
+        f"{p['BOLT_PRELOAD_N'] / (math.pi / 4 * (15.0 ** 2 - 5.6 ** 2)):.1f}, "
+        f"against a core that crushes at 2.0. It takes a O28 fender washer to "
+        f"get under the limit, twelve times round the hatch, which is why the "
+        f"answer is resin and not hardware. Drill O{p['HATCH_POT_D']:.0f} through the TOP skin and "
         f"core only, leave the bottom skin, fill with thickened epoxy, cure, "
         f"re-drill from the underside, then countersink 90 deg to "
         f"O{p['HATCH_BOLT_HEAD_D']:.1f} - about "

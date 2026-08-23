@@ -1318,12 +1318,34 @@ NUT_AF, NUT_T = 8.0, 4.0           # M5 A4 hex nut, across flats x thickness
 # O15 and not O18: at t=12 in the band a O18 leaves 1.0 mm to the groove,
 # a O15 leaves 2.5.
 NUT_WASHER_D, NUT_WASHER_T = 15.0, 1.2
-HATCH_TORQUE_NM = 2.0
+# 1.2 Nm, not 2.0. The old figure was set against a seal load that turns out
+# to be 5x too high (see CORD_N_PER_MM), so it was asking for 2000 N a bolt
+# to do a job that needs 182 - and every one of those 2000 N lands on the lid.
+# At 1.2 it is still 10.6 in-lb, inside the 10-50 in-lb wrench on the list.
+HATCH_TORQUE_NM = 1.2
 NUT_CLR = 0.25                     # per side; ASA prints tight
 NUT_Z = 6.0                        # cover between nut top face and seal face
 ASA_TAU = 30.0                     # MPa design shear
-# O3 silicone at 20% squeeze is ~6 N/mm; the hatch cord is 1820 mm.
-SEAL_N = 6.0 * 1820.0
+# --- WHAT THE CORD ACTUALLY PUSHES BACK WITH ------------------------------
+# THIS WAS 6.0 AND IT WAS WRONG BY 5x. Worse, the model already knew: the bow
+# calculation carried its own copy of this number, with a comment saying the
+# 6.0-era figure was calibrated for the ORIGINAL O5 cord and that "the true
+# figure is nearer 1.2" now the hatch runs O3. That correction was applied to
+# the bow and never to SEAL_N, so one physical quantity had two values 5x
+# apart and every bearing, pull-out and torque number downstream used the old
+# one. It is one constant now, and bow() applies its own safety factor.
+#
+# Sanity check against published O-ring compression data: a 2.62 mm nitrile
+# section at 20% squeeze runs about 4 lb per inch, which is 0.7 N/mm; scaled
+# to 3.0 mm that is ~0.8, and silicone is softer than nitrile. So 1.2 is
+# still on the conservative side of measured rubber.
+CORD_N_PER_MM = 1.2                # O3 silicone, 20% squeeze
+HATCH_CORD_MM = 1820.0
+SEAL_N = CORD_N_PER_MM * HATCH_CORD_MM
+# What a bolt at HATCH_TORQUE_NM actually delivers - and THIS, not the seal
+# demand, is what the head bears on. The seal only sets how much of it is
+# needed; the torque sets how much of it arrives.
+BOLT_PRELOAD_N = HATCH_TORQUE_NM / (0.2 * HATCH_BOLT_D / 1000.0)
 HATCH_BOLT_INSET = 12.0            # from the rim's outer edge, outboard of the seal
 
 # --- the bolt HEAD, which was never specified -----------------------------
@@ -4039,7 +4061,8 @@ def build():
     rim.hide_render = True
     rep["hatch_nut_cover_mm"] = round(NUT_Z, 1)
     rep["hatch_nut_pullout_N"] = round(_plug * ASA_TAU)
-    rep["hatch_nut_pullout_margin"] = round(_plug * ASA_TAU / (SEAL_N / len(hb)), 1)
+    rep["hatch_nut_pullout_margin"] = round(
+        _plug * ASA_TAU / BOLT_PRELOAD_N, 1)
     # The number that matters is not margin over the SEAL LOAD - it is how
     # much harder than spec you can do a bolt up before the nut tears out.
     # M5 dry: F = T / (0.2 * 0.005), so Nm and kN are numerically equal.
@@ -4083,19 +4106,17 @@ def build():
     # Lid edge as a built-in beam between two bolts, carrying the cord's
     # reaction as a line load. The sandwich's bending stiffness is the two
     # glass skins about their shared centroid; the foam core only sets d.
-    # CORD_N_PER_MM was calibrated for the ORIGINAL O5 cord. The hatch now
-    # runs O3, whose compression load per unit length is roughly proportional
-    # to cord diameter, so the true figure is nearer 1.2. Left at 2.0 because
-    # it errs the safe way - it OVERSTATES the bow. If it is ever tightened,
-    # bow drops and the margin gets better, never worse.
-    E_GLASS, CORD_N_PER_MM = 25000.0, 2.0     # MPa, N/mm - conservative for O3
+    # The cord figure is CORD_N_PER_MM up top now - there is one of it. Bow is
+    # the one check where overstating the cord errs SAFE, so it keeps its own
+    # factor rather than its own constant, which is what let the two drift.
+    E_GLASS, BOW_SF = 25000.0, 2.0            # MPa, and a safety factor
     E_SKIN_MPA = 25000.0
     CORE_COMP_MPA, CORE_E_MPA = 2.0, 105.0    # Divinycell H100
     HEEL_MM = 25.0                            # heel-sized contact patch
     def bow(pitch, skin, core, land):
         d = skin + core                        # skin centroid separation
         I = land * skin * d * d / 2.0
-        return CORD_N_PER_MM * pitch ** 4 / (384.0 * E_GLASS * I)
+        return BOW_SF * CORD_N_PER_MM * pitch ** 4 / (384.0 * E_GLASS * I)
     _n_hb = len(hb)
     _per = 2 * ((CAV_X1 - CAV_X0 + 2 * (RIM_W - bi))
                 + (CAV_WIDTH + 2 * (RIM_W - bi)))
@@ -4130,11 +4151,17 @@ def build():
     # lid_crush above is a HEEL on the lid. This is the other contact nobody
     # had costed: the fastener heads, which are the only thing on the board
     # sitting on bare cored panel with a hard number pulling them down.
-    _bolt_N = SEAL_N / max(1, _n_hb)
+    # THE HEAD CARRIES THE PRELOAD, NOT THE SEAL DEMAND. This was computed off
+    # SEAL_N, which is what the cord NEEDS - but a bolt does not deliver what
+    # is needed, it delivers what the torque wrench puts in, and the surplus
+    # goes straight into the lid under the head.
+    _bolt_N = BOLT_PRELOAD_N
+    rep["hatch_seal_demand_per_bolt_N"] = round(SEAL_N / max(1, _n_hb))
     _hole = HATCH_BOLT_D + 0.6
     def _seat(d):
         return math.pi / 4.0 * (d ** 2 - _hole ** 2)
     rep["hatch_bolt_preload_N"] = round(_bolt_N)
+    rep["hatch_seat_load_is"] = "the applied preload, not the seal demand"
     rep["hatch_head_style"] = (
         "ISO 10642 flat head, TORX, FLUSH" if HATCH_BOLT_CSK
         else "socket cap, proud")
@@ -4156,6 +4183,18 @@ def build():
         _bolt_N / _seat(HATCH_BOLT_HEAD_D), 1)
     rep["hatch_seat_margin_potted"] = round(
         EPOXY_COMP_MPA / (_bolt_N / _seat(HATCH_BOLT_HEAD_D)), 1)
+    # The number that actually answers "is the lid strong enough": the torque
+    # at which the head starts crushing its own boss. The spec has to be well
+    # under it, because nobody torque-wrenches twelve bolts in a car park.
+    rep["hatch_torque_limit_Nm"] = round(
+        _seat(HATCH_BOLT_HEAD_D) * EPOXY_COMP_MPA
+        * 0.2 * HATCH_BOLT_D / 1000.0, 2)
+    rep["hatch_torque_spec_Nm"] = HATCH_TORQUE_NM
+    # NOT hatch_torque_headroom - that name is already taken, by the margin
+    # against tearing the captive nut out of the ASA, and quietly overwriting
+    # it made the build FAIL on the boss's number under the nut's message.
+    rep["hatch_torque_to_crush_boss_headroom"] = round(
+        rep["hatch_torque_limit_Nm"] / HATCH_TORQUE_NM, 1)
     # the boss then hands the load to the BOTTOM skin and the rim's seal land
     rep["hatch_boss_on_rim_MPa"] = round(_bolt_N / _seat(HATCH_POT_D), 1)
     rep["hatch_heads_flush"] = bool(HATCH_BOLT_CSK)

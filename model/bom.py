@@ -618,11 +618,13 @@ def build():
     # real one. (1) These twelve heads sit in the only bare band on the deck -
     # the deck pad stops short of the rim and the lid's own pad sits inboard
     # of them - so proud caps are the most visible hardware on the board.
-    # (2) A cap head bears on 32 mm2 and each bolt pulls 910 N, which is 28
+    # (2) A cap head bears on 32 mm2 and each bolt delivers 1200 N at the
+    # 1.2 Nm spec - the PRELOAD, not the 182 N the cord needs - which is 37
     # MPa onto a cored panel whose H100 crushes at 2.0. A O15 penny washer
-    # only gets that to 6.0; it takes a O25 fender washer to pass. The bolt
-    # holes were already being potted, so a countersink in solid resin fixes
-    # BOTH: flush finish, and 17.9 MPa onto epoxy at ~50 instead of foam at 2.
+    # only gets that to 7.9; it takes a O28 fender washer to pass, and the
+    # bolt is 10.5 mm from the lid edge so one does not fit. The holes were
+    # already being potted, so a countersink in solid resin fixes BOTH: flush
+    # finish, and 23.6 MPa onto epoxy at ~50 instead of foam at 2.
     # TORX because this head is flush with a deck that gets dragged up a
     # beach and undone every ride - a packed hex socket cams out and rounds.
     add("6  Hatch and seal", "M5 x 25 A4 countersunk TORX, 10 pk",
@@ -641,8 +643,8 @@ def build():
     # its quantity at 1 is not removing it; both were still being billed.
     # The washer is what sets how hard you can do these up. The nut alone
     # bears on its own 9.24 mm across-corners circle and tears out of 6 mm of
-    # ASA at 5.2 Nm - only 2.6x the 2 Nm spec, and a hand on a hex key hits 5
-    # without trying. On a O15 penny washer that becomes 8.5 Nm, 4.2x.
+    # ASA at 5.2 Nm - 4.3x the 1.2 Nm spec, and a hand on a key hits 5 without
+    # trying. On a O15 penny washer that becomes 8.5 Nm, 7.1x.
     add("6  Hatch and seal", "M5 penny washer O15 DIN9021, 150 pk",
         1, "pk", 7.99, OK,
         str(M["hatch_bolts"] * N + 10) + " needed. DIN9021 is what confirms "
@@ -1071,8 +1073,8 @@ def build():
     # a car park in the dark, and a clutch that has been calibrated is more
     # repeatable than a wrench that gets skipped.
     add("9b Small but essential", "1/4 in torque wrench, 10-50 in-lb", 1,
-        "ea", 25.97, OK, "1.1-5.6 Nm. RANGE MATTERS: our hatch spec is 2 Nm = "
-        "17.7 in-lb, which is BELOW the 20 in-lb floor of the common "
+        "ea", 25.97, OK, "1.1-5.6 Nm. RANGE MATTERS: our hatch spec is 1.2 Nm "
+        "= 10.6 in-lb, which is BELOW the 20 in-lb floor of the common "
         "20-200 in-lb wrenches - they cannot read our number at all. "
         "CALIBRATION TOOL - set the drill clutch with it, then "
         "use the clutch. The hatch is captive nuts in ASA against a hard "

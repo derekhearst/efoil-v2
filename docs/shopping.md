@@ -69,7 +69,7 @@ https://www.amazon.com
 | [3M Fastbond 1077 water-based, CNC hold-down](https://www.amazon.com/dp/B0GRSV587N) | 1 | ea | $26.02 | **verified** | WATER-BASED because the blank is EPS - solvent sprays like Super 77 eat polystyrene. Foam is taped/tacked down |
 | [PETG filament 1 kg, mast clamp set](https://www.amazon.com/dp/B0D41Y3WWZ) | 2 | kg | $25.98 | **verified** | 4 STEP files; 0.6 nozzle, 5 perims, 40% infill |
 | [PETG for props, 4-5 spares per board](https://www.amazon.com/dp/B0D41Y3WWZ) | 2 | kg | $25.98 | **verified** | 0.4 nozzle, 100% infill; balance-check on a bolt, then epoxy-coat - V1 skipped the coat and layer lines cost d |
-| [1/4 in torque wrench, 10-50 in-lb](https://www.amazon.com/dp/B0D7PWP7YF) | 1 | ea | $25.97 | **verified** | 1.1-5.6 Nm. RANGE MATTERS: our hatch spec is 2 Nm = 17.7 in-lb, which is BELOW the 20 in-lb floor of the commo |
+| [1/4 in torque wrench, 10-50 in-lb](https://www.amazon.com/dp/B0D7PWP7YF) | 1 | ea | $25.97 | **verified** | 1.1-5.6 Nm. RANGE MATTERS: our hatch spec is 1.2 Nm = 10.6 in-lb, which is BELOW the 20 in-lb floor of the com |
 | [Transfer screw set M3-M6](https://www.amazon.com/dp/B01IUBRSLO) | 1 | set | $24.99 | estimate | RECOVERY, not method - the CNC cuts all 12 hatch holes in one setup and the pattern aligns as one rigid body.  |
 | [Transfer punch set, metric 1-13 mm](https://www.amazon.com/dp/B005379HJA) | 1 | set | $24.99 | estimate | the 9 mm punch is a slip fit in Gong's own clearance holes and marks true centre within a few hundredths. A 6. |
 | [Rotary-tool router base + collets, if needed](https://www.amazon.com/dp/B0000DEZK4) | 1 | set | $24.63 | estimate | you have the tool; this is only if the base you have will not hold depth over the groove run |

@@ -361,23 +361,32 @@ cord before the groove exists is how you end up at 10%.
 **The twelve heads finish flush, and nothing goes on top of the lid.** The
 bolt ring sits in the only bare band on the whole deck — the deck pad stops
 20 mm outboard of the rim, the lid's own pad sits inboard — so it is the most
-visible hardware on the board. It is also the most loaded: each bolt pulls
-910 N to squeeze the cord, and a cap head bears that on 32 mm².
+visible hardware on the board. It is also the most loaded.
 
-| Seat | Pressure at 910 N |
+**The load under the head is the PRELOAD, not what the seal needs.** The cord
+only wants **182 N** a bolt. At the 1.2 Nm spec each bolt actually delivers
+**1200 N**, and the surplus does not evaporate — it goes straight into the lid
+under the head, on 32 mm².
+
+| Seat | Pressure at 1200 N |
 |---|---|
-| M5 socket cap Ø8.5 | 28.3 MPa |
-| M5 button Ø9.5 | 19.7 MPa |
-| Ø15 penny washer | 6.0 MPa |
-| Ø25 fender washer | 2.0 MPa |
+| M5 socket cap Ø8.5 | 37.4 MPa |
+| M5 button Ø9.5 | 25.9 MPa |
+| Ø15 penny washer | 7.9 MPa |
+| Ø28 fender washer | 2.0 MPa |
 | **H100 core gives up at** | **2.0 MPa** |
 
-So no washer you would want to look at actually passes — it takes a Ø25
-fender washer twelve times round the hatch to reach the limit, not clear it.
-The holes were already being potted for exactly this reason, so the
-countersink is free: a Ø16 epoxy boss, a 90° cone to Ø9.8 about 2.1 mm deep,
-and the flat head lands on **17.9 MPa against epoxy at ~50** — 2.8× margin,
-flush with the deck, no hardware showing.
+So no washer you would want to look at passes, and the Ø28 that would does
+not fit — the bolt is only 10.5 mm from the lid edge. The holes were already
+being potted for exactly this reason, so the countersink is free: a Ø16 epoxy
+boss, a 90° cone to Ø9.8 about 2.1 mm deep, and the flat head lands on **23.6
+MPa against epoxy at ~50** — 2.1× margin, flush with the deck, no hardware
+showing.
+
+**The number that answers "is the lid strong enough":** the head starts
+crushing its own boss at **2.5 Nm**. The spec is 1.2. You would have to more
+than double it before anything is in trouble — and past the hard stop, extra
+torque buys no extra squeeze anyway.
 
 > **"Boss" just means an oversized hole filled with epoxy.** Drill Ø16
 > through the top skin and the foam, leave the bottom skin as a floor, fill
@@ -690,7 +699,7 @@ rock. Compressible is the wrong property here in either material.
 that is why the roll pin line is an assortment.
 
 The torque wrench is a **calibration tool**: set the drill clutch with it,
-then use the clutch. Hatch spec is 2 Nm — 17.7 in-lb, which is *below* the
+then use the clutch. Hatch spec is 1.2 Nm — 10.6 in-lb, which is *below* the
 floor of the common 20–200 in-lb wrenches, hence the 10–50 one.
 
 ### Step 24. Seal, charge, and go
