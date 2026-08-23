@@ -55,6 +55,14 @@ FPS = int(_arg("--fps", "30"))
 ONLY = _arg("--shot", None)
 
 scene = bpy.context.scene
+# These four lines went missing in a rewrite, so --res and --fps were dead
+# flags for the whole of the first render: it ran at the .blend's own
+# 1920x1080 no matter what was asked for. It came out HIGHER than requested,
+# which is exactly why nothing complained.
+scene.render.resolution_x = RES
+scene.render.resolution_y = int(RES * 9 / 16)
+scene.render.resolution_percentage = 100
+scene.render.fps = FPS
 
 
 # ================================================================== helpers
