@@ -303,6 +303,7 @@ RAW_LAMINATE = "#3B4148"      # cured epoxy over biaxial carbon, unfaired
 
 
 def paint_keys(f_raw, f_hold, f_paint):
+    # see the note on the frame-1 key below
     """Animate the hull and hatch lid from bare laminate to Whaler Blue.
 
     The hull was PAINTED from the moment it appeared, which put a finished
@@ -318,7 +319,14 @@ def paint_keys(f_raw, f_hold, f_paint):
                   if n.type == 'BSDF_PRINCIPLED'), None)
         if b is None:
             continue
-        for f, col, rough, coat in ((f_raw, RAW_LAMINATE, 0.46, 0.10),
+        # THE FRAME-1 KEY IS NOT DECORATION. A keyframe's first value
+        # extends BACKWARDS, so keying bare laminate at the laminate shot
+        # reached back over the opening title and the hero board came up
+        # GREY. The film opens on a finished board, so frame 1 is painted;
+        # CONSTANT below stops it drifting towards raw across the two minutes
+        # in between.
+        for f, col, rough, coat in ((1, PAL["paint"], 0.13, 0.55),
+                                    (f_raw, RAW_LAMINATE, 0.46, 0.10),
                                     (f_hold, RAW_LAMINATE, 0.46, 0.10),
                                     (f_paint, PAL["paint"], 0.13, 0.55)):
             b.inputs["Base Color"].default_value = srgb(col)
@@ -329,6 +337,23 @@ def paint_keys(f_raw, f_hold, f_paint):
                 b.inputs["Coat Weight"].default_value = coat
                 b.inputs["Coat Weight"].keyframe_insert("default_value",
                                                         frame=f)
+        ad = m.node_tree.animation_data
+        act = ad.action if ad else None
+        curves = []
+        if act is not None:
+            if hasattr(act, "fcurves"):
+                curves = list(act.fcurves)
+            else:
+                slot = getattr(ad, "action_slot", None)
+                for layer in act.layers:
+                    for strip in layer.strips:
+                        cb = strip.channelbag(slot) if slot else None
+                        if cb:
+                            curves.extend(cb.fcurves)
+        for fc in curves:
+            for kp in fc.keyframe_points:
+                if kp.co.x <= max(1.5, f_raw + 0.5):
+                    kp.interpolation = 'CONSTANT' 
 
 
 def build_materials():
