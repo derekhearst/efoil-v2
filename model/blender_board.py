@@ -735,7 +735,18 @@ DECK_PAD_MAX_SLOPE = 30.0          # degrees of deck tilt the pad will follow
 LID_PAD_INSET = 25.0
 EQUIP_T = 4.0                      # G10 equipment plate on the module floor
 TAB_T, TAB_H = 5.0, 26.0           # G10 strap tab
-PACK_END_CLR = 14.7                # unchanged; was CORNER_POST + 2
+# 8, was 14.7 - and 14.7 was "CORNER_POST + 2" for corner posts THAT NO
+# LONGER EXIST. Nothing named Post is built any more; the shell went to four
+# L-pieces with dovetails and ribs and the posts went with it, but the
+# clearance they set stayed behind. Measured the ends before touching it:
+# the nearest thing to either interior face is the flange, 15 mm OUTBOARD.
+# Both gaps are simply empty.
+#
+# What the clearance is actually for is pack build tolerance - 16 rows that
+# could each run 0.2 long is 3.2 mm - plus the wrap and getting hold of the
+# thing. 8 leaves nearly 5 mm of true slack after the worst-case stack.
+# Worth 13.4 mm of module length, and the cavity follows it.
+PACK_END_CLR = 8.0
 PACK_SIDE_CLR = 2.0
 # THE PACK DROPS STRAIGHT IN rather than going in through the opening and
 # then sliding sideways underneath the lid flange.
@@ -4330,6 +4341,19 @@ def build():
             cut.hide_render = True
             tilted_cyl(f"V2_HandleIns{nm}{sx}", bx,
                        HANDLE_INS_D, HANDLE_INS_L, fr, coll, m_metal)
+        # THE STRAP, on the rails as well as on the module. Same webbing,
+        # and here it gets its designed span, so it arches HANDLE_FINGER_H
+        # along the rail's outward NORMAL - not straight up. That is the
+        # whole reason the plate is tangent to a 30 deg face: the finger
+        # room has to open away from the rail, not into it.
+        _nrm = (0.0, sgn * math.sin(_tilt), math.cos(_tilt))
+        _ends = [fr(HANDLE_X + sx * HANDLE_BOLT_DX / 2, 0.0, 2.0)
+                 for sx in (-1, 1)]
+        strap(f"V2_Handle{nm}_Strap", _ends[0], _ends[1], _nrm,
+              HANDLE_FINGER_H, coll, bom_mat("seal"))
+        rep["rail_strap_arch_mm"] = HANDLE_FINGER_H
+        rep["rail_strap_proud_of_rail_mm"] = round(
+            HANDLE_FINGER_H * math.cos(_tilt), 1)
         rep["handle_plate_g10_below_insert_mm"] = round(
             HANDLE_PLATE_T - HANDLE_INS_L, 1)
     bpy.data.objects.remove(bpy.data.objects["V2_HullSnap_tmp"], do_unlink=True)
@@ -4861,10 +4885,22 @@ def build():
     #     it faces the service bay, which is the space you open the hatch on.
     #  2. WRONG AXIS. It was a Z-axis cylinder, i.e. a disc lying flat in the
     #     wall. A vent plug threads THROUGH a wall, so its axis is X here.
-    # It goes on the STARBOARD half of the aft wall, opposite the connector
-    # strip: the 3 glands, button and port all live at y +57..+141, so the
-    # negative-y half is empty and the vent is not fighting them for room.
-    vent_y = iy0 + 30.0
+    # THAT HALF OF THE WALL IS NOT EMPTY ANY MORE. This sat at iy0 + 30 on
+    # the strength of a comment saying the negative-y half was free - true
+    # when it was written, and untrue the moment the handle's far pad moved
+    # to -117.6 to give the strap its designed span. The vent landed INSIDE
+    # that pad, overlapping it 4.5 mm in z across its full width. Derek found
+    # it in the viewport; nothing here was looking for it.
+    #
+    # Derived now from the two things it has to miss, so neither of them can
+    # orphan it by moving again: it sits midway between the far pad's inboard
+    # edge and the conduit. The 3 glands, button and port are all at y +57
+    # and up, so this half is still the right side of the wall to be on.
+    _v_lo = _hy_far + MOD_HANDLE_W / 2.0      # inboard edge of the far pad
+    _v_hi = -(CONDUIT_D / 2.0 + CONDUIT_WALL)  # the conduit coming up
+    vent_y = (_v_lo + _v_hi) / 2.0
+    rep["vent_to_handle_pad_mm"] = round(vent_y - 6.0 - _v_lo, 1)
+    rep["vent_to_conduit_mm"] = round(_v_hi - (vent_y + 6.0), 1)
     vent_z = wall_top - 22.0
     cyl_x("V2_Mod_Vent", vent_y, vent_z,
           ex0 - 6.0, ex0 + ENC_WALL + 2.0, 12.0, coll, m_metal)
@@ -4874,9 +4910,9 @@ def build():
     bpy.data.objects["V2_Mod_VentHole_cut"].hide_set(True)
     bpy.data.objects["V2_Mod_VentHole_cut"].hide_render = True
     rep["module_vent"] = ("M12 Gore-type membrane vent THROUGH the AFT wall, "
-                          "starboard half - IP68 to water, open to gas both "
-                          "ways. Axis along X, like every other fitting in "
-                          "that wall")
+                          "between the handle's far pad and the conduit - "
+                          "IP68 to water, open to gas both ways. Axis along "
+                          "X, like every other fitting in that wall")
     # (the glands are built further down; the check that they miss each other
     # is that the vent is on the negative-y half and they are all positive)
     rep["vent_y_mm"] = round(vent_y, 1)
@@ -5943,15 +5979,15 @@ def build():
         coll,
         pairs=[("V2_Pack_Cells", "V2_Mod_Lid"), ("V2_BMS", "V2_Mod_Lid"),
                ("V2_ESC", "V2_Mod_Lid"), ("V2_Pack_Cells", "V2_Mod_WallP"),
-               ("V2_Mod_PostAS", "V2_Mod_FlangeS"),
+               # the Post pairs went when the posts did - a check naming a
+               # part that is never built passes for the wrong reason
                ("V2_BMS", "V2_ESC"), ("V2_BMS", "V2_Pack_Cells"),
                ("V2_BMS", "V2_Mod_Lid"),
                ("V2_PowerButton", "V2_BayGland_2"),
                ("V2_ChargePort", "V2_BayGland_2"),
                ("V2_PowerButton", "V2_ChargePort"),
                ("V2_PowerButton", "V2_Pack_Cells"),
-               ("V2_Pack_Cells", "V2_Mod_PostAS"),
-               ("V2_ESC", "V2_Mod_PostAP"), ("V2_Conduit", "V2_Mod_Floor"),
+               ("V2_Conduit", "V2_Mod_Floor"),
                ("V2_Pack_Cells", "V2_Mod_WallS"), ("V2_ESC", "V2_Mod_WallP"),
                ("V2_DenseFoam_Block", "V2_Cavity_Void_cut"),
                ("V2_MastPlate_Alu", "V2_Cavity_Void_cut"),
@@ -6102,6 +6138,11 @@ def build():
             fails.append("the pack fouls the lid flange - it cannot be "
                          f"installed: {rep['pack_under_flange_clr_mm']} mm "
                          "under the flange")
+    for _k, _what in (("vent_to_handle_pad_mm", "the handle's far pad"),
+                      ("vent_to_conduit_mm", "the mast conduit")):
+        if rep.get(_k, 99) < 4.0:
+            fails.append(f"the module vent fouls {_what}: "
+                         f"{rep[_k]} mm")
     if rep["handle_clear_of_cavity_mm"] < 0:
         fails.append("the module lift handle fouls the cavity wall: "
                      f"{rep['handle_clear_of_cavity_mm']} mm")
