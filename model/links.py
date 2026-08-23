@@ -125,8 +125,6 @@ LINKS = {
         ("B07FP2FCYC", 5.99, "10 Pairs 1.25mm JST 2 Pin Micro Male and Female Connector Plug with 80mm Wire"),
     "Kapton tape, pack insulation":
         ("B006ZFQNT6", 8.25, "1/2in x 36 Yds 1 Mil Polyimide High Temp Electrical Tape"),
-    "Kayak-style webbing carry handle, 4 pk":
-        ("B08BC6Q7ZW", 13.89, "4 Pack Kayak Carry Handles with Screws"),
     "Kayak/board grab handle, 2 pk + screws":
         ("B0FBW3XT5D", 9.99, "Yluvaok Kayak Handle, 2 handles + 8 screws + driver bit, rubber/webbing"),
     "Laminating bubble roller kit, 4 pc":
@@ -143,8 +141,6 @@ LINKS = {
         ("B0FPQP7CP9", 32.65, "5Pcs 12mm Momentary Push Button Switch IP68 SPST NO 3A"),
     "M3 heat-set insert kit, 361 pc":
         ("B0G8JLX1HR", 13.98, "361Pcs M3 Heat Set Insert with Screws Brass Threaded"),
-    "M3 x 6 button head + M3 brass heat-set, nose cone":
-        ("B0G8JLX1HR", 13.98, "361Pcs M3 Heat Set Insert Kit with Screws"),
     "M3 x 8 A4 stainless, 10 pk":
         ("B07DVMFMJZ", 6.76, "M3 x 8mm Socket Head Screws DIN 912 Marine Grade Stainless 10 Pack"),
     "M4 A4 washer, 316, 100 pk":
@@ -257,8 +253,6 @@ LINKS = {
         ("B00S9RBWIA", 45.99, "TotalBoat TotalFair Epoxy Fairing Compound - 2 Pint Kit"),
     "TotalBoat Wet Edge topside paint, colour":
         ("B00HQP5D9A", 53.99, "TotalBoat Wet Edge Topside Marine Paint Black Quart"),
-    "Traction pad, 3-piece":
-        ("B07L9LPPT2", 20.95, "3-Piece Traction Pad Arch Flat or Front 3M Adhesive"),
     "Ultra Tef-Gel, galvanic barrier":
         ("B01606TCAG", 39.00, "Ultra Tef-Gel Anti Corrosion Lubricant for Rigging Hardware"),
     "VECOTOOLS 4.5 CFM single-stage pump, oil incl.":
@@ -338,7 +332,6 @@ LINK_VENDOR = {
     "Inline 10 A fuse + holder, charge lead": "Amazon",
     "JST GH 1.25 mm pigtail pair, BMS switch": "Amazon",
     "Kapton tape, pack insulation": "Amazon",
-    "Kayak-style webbing carry handle, 4 pk": "Amazon",
     "Kayak/board grab handle, 2 pk + screws": "Amazon",
     "Laminating bubble roller kit, 4 pc": "Amazon",
     "Loctite 242": "Amazon",
@@ -347,7 +340,6 @@ LINK_VENDOR = {
     "M12 IP68 membrane vent plug": "Amazon",
     "M12 IP68 momentary panel button": "Amazon",
     "M3 heat-set insert kit, 361 pc": "Amazon",
-    "M3 x 6 button head + M3 brass heat-set, nose cone": "Amazon",
     "M3 x 8 A4 stainless, 10 pk": "Amazon",
     "M4 A4 washer, 316, 100 pk": "Amazon",
     "M4 x 12 A4 socket cap DIN912, 10 pk": "Amazon",
@@ -404,7 +396,6 @@ LINK_VENDOR = {
     "TotalBoat Premium Marine Topside Primer": "Amazon",
     "TotalBoat TotalFair epoxy fairing compound": "Amazon",
     "TotalBoat Wet Edge topside paint, colour": "Amazon",
-    "Traction pad, 3-piece": "Amazon",
     "Ultra Tef-Gel, galvanic barrier": "Amazon",
     "VECOTOOLS 4.5 CFM single-stage pump, oil incl.": "Amazon",
     "VR20 vacuum regulator": "Easy Composites",

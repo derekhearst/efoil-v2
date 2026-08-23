@@ -726,11 +726,15 @@ def build():
     add("7  Module", "3M 4200 FC 3 oz tube, fillet over the bung", 1, "tube",
         17.99, OK, "does both boards; 4200 NOT 5200 - 5200 never comes out",
         vendor="Amazon")
-    add("7  Module", "25 mm webbing loop, module lift handle", 0, "ea", 0.00,
-        OWNED, "cut from the 6 yd webbing pack in 10c - it is the same 1 in "
-        "strap. Through the two printed bosses on the forward wall; the "
-        "module is ~14 kg in a cavity with 12 mm of side clearance, so there "
-        "is no way to get a hand beside it")
+    # NO LINE FOR THE MODULE LIFT HANDLE HERE. It is one of the three
+    # kayak grab handles bought in 9b - that was the whole point of picking
+    # one handle part for both jobs. This line outlived that decision by
+    # carrying on as a $0 "cut from the webbing pack in 10c", and the webbing
+    # pack itself was deleted in the same breath, so it was a free part made
+    # out of a part nobody buys. It bolts to the two printed lugs on the AFT
+    # wall (module_lift_handle in report.json) - the module is ~14 kg in a
+    # cavity with 12 mm of side clearance, so there is no getting a hand
+    # beside it.
     add("7  Module", "M12 IP68 membrane vent plug", N, "ea", 9.95, OK,
         "NOT optional on a sealed lithium box")
     # You have one on the shelf. CHECK IT IS A SPARE and not the one fitted
@@ -820,11 +824,11 @@ def build():
     # list. A helicoil is only what you reach for years later if the Tef-Gel
     # was skipped once and a thread came out with the bolt.
     # So: a someday tool, not a build item. B09WN4QTNL, $14.59, if the day
-    # comes. Left at zero rather than deleted so the reasoning survives.
-    add("8  Mast hardpoint", "M8 thread repair kit (Time-Sert / helicoil)",
-        0, "kit", 0.00, OWNED,
-        "NOT NEEDED for the build - the plate is machined. Buy it only if a "
-        "thread ever galls in service. B09WN4QTNL, $14.59")
+    # comes. NO LINE - the reasoning survives here, which is where it always
+    # was. A $0 row survived here too, and a row is a claim that the part is
+    # part of the build: it printed into bom.md and shopping.md with a live
+    # link and a price beside it, which is exactly how a part nobody decided
+    # to buy ends up in a cart.
     add("8  Mast hardpoint", "Ultra Tef-Gel, galvanic barrier", 1, "ea",
         39.00, OK, "every mast bolt, every time it goes back in. DEARER than "
         "the $22 this was carried at - and do not reach for the small tube "
@@ -1148,10 +1152,7 @@ def build():
     # exists in the module: pack B+, charge +, and the BMS sense lead all
     # ring-lug onto it. The negative node is the BMS's own P- terminal. Both
     # are hardware already on the list.
-    add("10b Drivetrain", "M6 stainless stud/busbar hardware", 0, "set",
-        0.00, OWNED,
-        "DELETED - the fuse holder's input stud is the positive node and the "
-        "BMS's P- is the negative one. See Appendix D in fabrication.md")
+    # See Appendix D in fabrication.md for the distribution that replaced it.
     add("10b Drivetrain", "Hydraulic lug crimper, 10 ton, 12-2/0 AWG", 1, "ea", 39.99,
         OK, "one-time; this is what replaces soldering XT150s", tool=True)
     add("10b Drivetrain", "Adhesive-lined heat shrink 3:1, 400 pc kit", 1,
@@ -1162,8 +1163,13 @@ def build():
     # Currently switched OFF in the model (SHOW_RESTRAINT), so it does not
     # appear in the part list - but the module and pack still have to be held
     # down and the ESC still has to bolt to something.
-    add("10c Restraint & fitout", "G10 chocks, equipment plate, pack tabs",
-        0, "off", 0.00, OWNED, "cut from 1/8 and 1/2 in offcuts")
+    # NO LINE, AND NOTHING TO CUT IT FROM. This was "G10 chocks, equipment
+    # plate, pack tabs - cut from 1/8 and 1/2 in offcuts" at $0, written when
+    # there were two G10 sheets in the build to have offcuts of. There is no
+    # G10 anywhere on this board now, so the line was free in the way that a
+    # part made of a material you do not own is free. When SHOW_RESTRAINT
+    # comes back on, the chocks and the equipment plate have to be re-drawn
+    # in ASA or 5052 and PRICED - they are not offcuts of anything any more.
     # BOTH OF THESE ARE OUT. Derek asked what they were for and the honest
     # answer is that neither had a defined job - they are leftovers from this
     # section back when SHOW_RESTRAINT was on, and they survived because
@@ -1174,12 +1180,8 @@ def build():
     #   EVA BEDDING PADS: no stated purpose at all beyond where the material
     #     came from. If the module ends up wanting a cushion under it, the
     #     deck-pad offcut is still sitting there and is still free.
-    add("10c Restraint & fitout", "1 in polyester webbing 6 yd + 6 buckles",
-        0, "kit", 0.00, OWNED, "DELETED - no defined job. The module lift is "
-        "a bought handle now")
-    add("10c Restraint & fitout", "EVA bedding pads", 0, "set", 0.00, OWNED,
-        "DELETED - no defined job. Deck-pad offcut covers it if one is "
-        "wanted")
+    # Neither gets a line. If the module ends up wanting a cushion under it,
+    # the deck-pad offcut is still sitting there and is still free.
     # STILL UNRESOLVED, and it is not these two parts: WHAT HOLDS THE MODULE
     # DOWN IN THE CAVITY. SHOW_RESTRAINT is False so nothing models it, the
     # chocks line below is 0/OWNED off-cuts, and the module's 18 bolts hold
@@ -1308,8 +1310,7 @@ def build():
     # Worth knowing if that changes: at Home Depot a gallon is $20.98 and a
     # quart $11.48, so the gallon is CHEAPER than buying two quarts. The
     # moment you think you need more than one quart, buy the gallon.
-    add("10e Layup kit", "Acetone, 1 gal, cleanup", 0, "gal", 0.00, OWNED,
-        "DELETED - see comment. The quart in section 7 covers the real uses")
+    # So there is no gallon line here - just the quart in section 7.
     # --- somewhere to actually work, which V1 did not have ----------------
     # V1 was glassed on a blue tarp over a table, and tarps are the wrong
     # surface for two separate reasons: they do not absorb, so drips pool and
@@ -1438,6 +1439,26 @@ def build():
     # placeholder.
     add("12 Freight and tax", "Idaho sales tax, 6% (Ada County, no local)",
         1, "allow", round(0.06 * sum(r["ext"] for r in ROWS), 2), OK)
+
+    # A LINK TO A PART THAT IS NOT IN THE BUILD IS A PART THAT IS STILL IN
+    # THE BUILD as far as anyone reading links.py is concerned. Deleting a
+    # line from this file never deleted its listing, so three dead parts were
+    # still sitting there fully sourced: the kayak carry handle that lost to
+    # the grab handle, the 3-piece traction pad that the full-deck EVA sheet
+    # replaced, and a nose-cone fastener line under its OLD name - which was
+    # the dangerous one. That entry carried the $13.98 kit price, so the day
+    # anyone renamed the $0 "off the kit I already bought" line back to
+    # matching, add() would have silently repriced it to $13.98 and charged
+    # for the same kit twice. Orphans are not clutter, they are ambush.
+    _orphan = sorted((set(LINKS) | set(LINK_VENDOR))
+                     - {r["item"] for r in ROWS})
+    if _orphan:
+        raise SystemExit(
+            "links.py lists " + str(len(_orphan)) + " item(s) that no BOM "
+            "line buys any more. Delete them from LINKS and LINK_VENDOR - if "
+            "a part was renamed, rename the key; if it left the build, the "
+            "listing leaves with it:" + chr(10)
+            + chr(10).join("  " + i for i in _orphan))
     return ROWS
 
 
