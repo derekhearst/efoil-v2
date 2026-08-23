@@ -50,6 +50,30 @@ Miniatures are exported at an explicit scale — scene units are metres and the
 board is 1.4 units long, so a plain STL export reads as **1.4 mm** in a
 slicer. Each file arrives at the size in its own filename.
 
+### The build animation
+
+```bash
+blender -b model/efoil_v2.blend --python model/animate_build.py -- --res 1600
+```
+
+Two minutes covering the whole build in the order
+[fabrication.md](docs/fabrication.md) gives it: glue-up, the CNC setups with
+the router actually removing material, the flip, bonding, hardpoints, layup,
+pack, module, install, deck pad, foil. Lands in `renders/build.mp4`, which is
+**gitignored like the rest of `renders/`** — regenerate it, do not commit it.
+
+Add `--stills` for one PNG per shot (about 15 seconds, and the way to check
+choreography), `--shot NAME` for one shot, or `--dry` to print the shot list
+and render nothing.
+
+The router is not faked. Waste is built as
+`slab − ((slab − part) ∩ swept)`, so the stock starts **solid** and the
+finished surface is uncovered exactly where the tool has already been; the
+cutter's Z is raycast against the real machined geometry rather than dropped
+at a guessed height. Get that construction backwards — waste as `slab − part`,
+which is the obvious one — and the finished planform is on screen before the
+tool has touched anything.
+
 ---
 
 ## Layout
@@ -177,3 +201,5 @@ Numbering skips 5 and 6 — those were never written.
 | `model/trace_reference.py` | Extracts planform, thickness and rocker from manufacturer orthos |
 | `model/links.py` | *Generated.* item → (ASIN or URL, price, title) for every sourced line |
 | `model/check_build_guide.py` | Verifies the build guide's BOM references still resolve |
+| `model/check_rim_segments.py` | Measures the rim segments from the SAVED .blend — the in-build check is not reliable |
+| `model/animate_build.py` | The build animation, above |

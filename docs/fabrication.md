@@ -16,6 +16,16 @@ cores in one booking.
 
 ---
 
+> **Watch it first.** `model/animate_build.py` renders these steps as a
+> two-minute animation straight out of the model — the CNC setups, the flip,
+> the bonding order, the module going together and dropping in. Every frame is
+> the real geometry, so if the animation and this file disagree, one of them
+> has drifted and it is worth finding out which:
+>
+> ```
+> blender -b model/efoil_v2.blend --python model/animate_build.py -- --res 1600
+> ```
+
 ## The shape of the job
 
 Three chains run in parallel and only meet at the end. **Start all three on
