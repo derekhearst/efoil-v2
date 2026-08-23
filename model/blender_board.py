@@ -519,6 +519,12 @@ ENC_LID_T = ENC_LID_SKIN * 2 + ENC_LID_CORE
 # plenty for a part that drops in with nothing to align to. Worth 2 mm of
 # board. If the module ever gets a hold-down, this is the first number it eats.
 ENC_TOP_GAP = CAV_LAM + 3.0        # +CAV_LAM: the cavity floor is laminated too
+# The module's top rises INTO the rim ring's opening rather than stopping
+# under it - see the cav_depth note. What has to be checked is no longer a
+# gap to a ceiling that is not there, but clearance to the hatch lid, which
+# is what MOD_TO_LID_CLR is. The lid deflects 1.0 mm under load, so 4 leaves 3.
+MOD_INTO_RIM = True
+MOD_TO_LID_CLR = 4.0
 
 # No internal divider. It was justified as a thermal break and a stiffening
 # rib, but it bought neither cheaply: power had to cross it through glands
@@ -1300,7 +1306,26 @@ def derive_layout():
     CAV_X0 = MOD_X0 - WIRE_BAY_LEN
     CAV_X1 = MOD_X0 + ext_l + ENC_GAP
     CAV_WIDTH = ext_w + 2 * ENC_GAP
-    cav_depth = ext_h + ENC_TOP_GAP
+    # THE MODULE DOES NOT HAVE TO FIT UNDER THE RIM RING. Derek's call, and
+    # the cavity was carrying 12.7 mm it did not need.
+    #
+    # cav_depth = ext_h + gap assumed the module lives entirely below the
+    # cavity ceiling, with the ring stacked on top of it. But the ring is a
+    # PICTURE FRAME - its inner opening IS the cavity, 518 x 323 - and the
+    # module's widest part is its flange at 457 x 314. It passes straight
+    # through. So the module's top can sit up INSIDE the ring, and what
+    # actually has to be true is only that it clears the hatch lid:
+    #
+    #     module top + clearance  <=  seal plane
+    #     FLOOR_Z + ext_h + clr   <=  FLOOR_Z + cav_depth + RIM_T
+    #     cav_depth               >=  ext_h + clr - RIM_T
+    #
+    # The whole ring height comes off the board. 4 mm of clearance, against a
+    # hatch lid that deflects 1.0 mm under load, leaves 3.
+    if MOD_INTO_RIM:
+        cav_depth = ext_h + MOD_TO_LID_CLR - RIM_T
+    else:
+        cav_depth = ext_h + ENC_TOP_GAP
     THICK = FLOOR_Z + cav_depth + RIM_T + LID_T
     return dict(pack_side=pack_side,
                 pack_l=pack_l, pack_w=pack_w, pack_h=pack_h, stack=stack,
@@ -2937,6 +2962,37 @@ def run_interference(coll, pairs, contains, rep, tol=0.0005):
     return hits
 
 
+def rim_passage(rep):
+    """Does the module actually pass through the rim ring's opening?
+
+    Bounds, not booleans. Both parts are rectangular here, so an AABB test is
+    EXACT rather than conservative - and it cannot return 5.786 L of overlap
+    between a 1.05 L lid and a 0.79 L ring, which is what the boolean check
+    did. Cheap, and right.
+    """
+    def bb(n):
+        o = bpy.data.objects.get(n)
+        if not o or o.type != 'MESH' or not len(o.data.vertices):
+            return None
+        mw = o.matrix_world
+        pts = [mw @ c.to_4d() for c in [__import__("mathutils").Vector(v)
+                                        for v in o.bound_box]]
+        xs = [p.x for p in pts]
+        ys = [p.y for p in pts]
+        zs = [p.z for p in pts]
+        return (min(xs), max(xs), min(ys), max(ys), min(zs), max(zs))
+
+    lid, hole = bb("V2_Mod_Lid"), bb("V2_RimHole_cut")
+    if not lid or not hole:
+        return
+    clr = [round((lid[0] - hole[0]) * 1000, 1),
+           round((hole[1] - lid[1]) * 1000, 1),
+           round((lid[2] - hole[2]) * 1000, 1),
+           round((hole[3] - lid[3]) * 1000, 1)]
+    rep["module_through_rim_clear_mm"] = clr
+    rep["module_through_rim_min_mm"] = min(clr)
+
+
 def snapshot(ob, name, coll):
     """Bake an object's evaluated mesh (all booleans applied) into a new solid.
 
@@ -3334,8 +3390,22 @@ def build():
     rep["cav_laminate_mm"] = CAV_LAM
     rep["fit_module_side_foam_mm"] = round(ENC_GAP, 1)
     rep["fit_module_side_finished_mm"] = round(ENC_GAP - CAV_LAM, 1)
-    rep["fit_module_top_foam_mm"] = round(ENC_TOP_GAP, 1)
-    rep["fit_module_top_finished_mm"] = round(ENC_TOP_GAP - CAV_LAM, 1)
+    if MOD_INTO_RIM:
+        # there is no ceiling over the module any more - it stands up inside
+        # the ring's opening, so the clearance that matters is to the lid
+        rep["module_into_rim_mm"] = round(
+            L["ext_h"] - cav_depth, 1)
+        rep["module_into_rim_pct_of_ring"] = round(
+            100 * (L["ext_h"] - cav_depth) / RIM_T)
+        rep["fit_module_top_foam_mm"] = round(MOD_TO_LID_CLR, 1)
+        rep["fit_module_top_finished_mm"] = round(
+            MOD_TO_LID_CLR - rep.get("lid_deflection_mm", 1.0), 1)
+        rep["module_flange_through_rim_mm"] = round(
+            (CAV_WIDTH - 2 * CAV_LAM - (L["ext_w"] + 2 * MOD_FLANGE_W_OUT))
+            / 2, 1)
+    else:
+        rep["fit_module_top_foam_mm"] = round(ENC_TOP_GAP, 1)
+        rep["fit_module_top_finished_mm"] = round(ENC_TOP_GAP - CAV_LAM, 1)
     rep["fit_module_to_fillet_finished_mm"] = round(ENC_GAP - CAV_LAM - GLASS_R, 1)
     rep["module_int_mm"] = f"{int_l:.0f} x {int_w:.0f} x {int_h:.0f}"
     rep["pack_mm"] = f"{L['pack_l']:.0f} x {L['pack_w']:.0f} x {L['stack']:.0f}"
@@ -5729,6 +5799,7 @@ def build():
     # built above first. Without this the shell evaluates empty and every
     # containment test reports the whole part as protruding.
     bpy.context.view_layer.update()
+    rim_passage(rep)
     hits = run_interference(
         coll,
         pairs=[("V2_Pack_Cells", "V2_Mod_Lid"), ("V2_BMS", "V2_Mod_Lid"),
@@ -5747,7 +5818,13 @@ def build():
                ("V2_MastPlate_Alu", "V2_Cavity_Void_cut"),
                ("V2_Mod_Floor", "V2_MastBolt_11"),
                ("V2_Mod_Floor", "V2_MastBolt_-11"),
-               ("V2_Mod_Lid", "V2_RimRing_ASA"),
+               # WITH MOD_INTO_RIM the lid passes THROUGH the ring's opening
+               # on purpose, so "must not overlap" is answered by a bounds
+               # test below instead - and has to be, because the boolean
+               # volume here reported 5.786 L between a 1.05 L lid and a
+               # 0.79 L ring. Impossible, and the same unreliable in-build
+               # measurement that cried wolf over the rim segments.
+               *([] if MOD_INTO_RIM else [("V2_Mod_Lid", "V2_RimRing_ASA")]),
                # restraint hardware - only when SHOW_RESTRAINT is on
                *([("V2_Cav_ChockA", "V2_Mod_Floor"),
                   ("V2_Cav_ChockF", "V2_Mod_Floor"),
@@ -5761,7 +5838,9 @@ def build():
                   ("V2_Mod_PackStrap_1", "V2_Mod_Lid")]
                  if SHOW_RESTRAINT else [])],
         contains=[("V2_Mod_Floor", "V2_Cavity_Void_cut"),
-                  ("V2_Mod_Lid", "V2_Cavity_Void_cut"),
+                  # the lid stands above the cavity now, inside the ring
+                  *([] if MOD_INTO_RIM
+                    else [("V2_Mod_Lid", "V2_Cavity_Void_cut")]),
                   ("V2_Mod_WallP", "V2_Cavity_Void_cut"),
                   ("V2_Pack_Cells", "V2_Cavity_Void_cut"),
                   *([("V2_Cav_ChockA", "V2_Cavity_Void_cut"),
@@ -5991,6 +6070,10 @@ def build():
         fails.append("rebate width != ring width - ring will not seat square")
     if not rep["module_corners_fit"]:
         fails.append("module corners foul the cavity radii")
+    if MOD_INTO_RIM and rep.get("module_through_rim_min_mm", 99) < 3.0:
+        fails.append("the module will not pass through the rim ring opening: "
+                     f"{rep['module_through_rim_clear_mm']} mm "
+                     "(aft, fwd, stbd, port)")
     if rep.get("ledge_to_deck_edge_mm", 1) < 5.0:
         fails.append("rim ledge runs off the flat deck onto the rail")
     if rep.get("rebate_wall_flat_mm", 1) < 0:
