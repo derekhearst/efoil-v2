@@ -88,7 +88,8 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | [Sikaflex-292 marine structural PU](https://www.amazon.com/dp/B008F8VYMM) | 1 | tube | $28.99 | $28.99 | verified | ~6-8 MPa vs 4200's ~2. Fillet BOTH sides of the joint - on a flexible bond the fillets are what stop it peeling |
 | [Sika Aktivator-PRO 250 ml + daubers](https://www.amazon.com/dp/B0D9KTLC1M) | 1 | ea | $28.95 | $28.95 | verified | abrade + solvent wipe + activate the 5052; scuff the ASA. Aktivator-205 is DISCONTINUED - Aktivator-PRO replaces it. UPGRADE PATH: full Primer-206 G+P is the belt-and-braces answer for immersed PU on metal but is $67/250 ml on Amazon. Skipping it is defensible HERE only because the bond line is mechanically backed by the flange bolts and the gasket - not the PU - is the water barrier |
 | [2 mm glass beads or shim wire, bond-line control](https://www.amazon.com/dp/B0FVSHYP99) | 1 | ea | $7.19 | $7.19 | estimate | clamping a PU joint metal-to-plastic squeezes the line out and puts you back to a rigid joint that will fail |
-| [Neoprene sheet 1/8in, module + mast gaskets](https://www.amazon.com/dp/B08DLP2DBF) | 1 | sheet | $22.65 | $22.65 | estimate | TORRAMI 18x24 or similar - you kept a part sheet from V1 |
+| [Neoprene sheet 1/8in, SOLID, mast gasket](https://www.amazon.com/dp/B08DLP2DBF) | 1 | sheet | $22.65 | $22.65 | estimate | TORRAMI 18x24 or similar - you kept a part sheet from V1 |
+| [Closed-cell sponge neoprene 1/8in, module lid gasket](https://www.amazon.com/dp/B089T6TYXC) | 1 | roll | $13.99 | $13.99 | verified | blank is 457 x 314 mm a board; the roll is 432 wide so it nests across, and 2032 long does both with room over |
 | [Gebildet PG11 gland, M18x1.5, 30 pk](https://www.amazon.com/dp/B0B8NJR62L) | 1 | pk | $9.99 | $9.99 | verified | your listing: M18x1.5 thread (matches the 18.5 hole) and 5-10 mm cable, against our 6.5 mm 8 AWG. 6 needed of 30 - one wire per gland; three in one gland deforms the insert into a clover and leaks between them |
 | [EPDM/neoprene sheet 1/2in, conduit bungs](https://www.amazon.com/dp/B00P5VFKCC) | 1 | sheet | $15.77 | $15.77 | estimate | cut O33 plugs for a O32 bore, punch 3 x O5 for 6.5 mm lead - interference fit, soap them through |
 | [3M 4200 FC 3 oz tube, fillet over the bung](https://www.amazon.com/dp/B00MJ9K78A) | 1 | tube | $17.99 | $17.99 | verified | does both boards; 4200 NOT 5200 - 5200 never comes out |
@@ -98,7 +99,7 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | [SP17 2-pin IP68 flange receptacle](https://www.amazon.com/dp/B0CDH5R8P4) | 2 | ea | $13.20 | $26.40 | verified | 67.2 V 5 A charge; O17 panel hole, 2 x M3 flange screws. $2.49, not the $11 this carried. CHECK THE CAP IS INCLUDED before ordering - on a board that gets submerged the cap is the part that does the sealing when nothing is plugged in |
 | [M3 heat-set insert kit, 361 pc](https://www.amazon.com/dp/B0G8JLX1HR) | 1 | kit | $13.98 | $13.98 | verified | covers the port flange (4 sets) and the nose cone. The kit's screws are PLAIN STEEL - buy M3 x 8 A4 separately for the flange, which lives in the wet cavity |
 | [M3 x 8 A4 stainless, 10 pk](https://www.amazon.com/dp/B07DVMFMJZ) | 1 | pk | $6.76 | $6.76 | verified | the kit's screws are not stainless and this joint is submerged |
-| **subtotal** | | | | **$416.32** | | |
+| **subtotal** | | | | **$430.31** | | |
 
 ## 9  Electrical
 
@@ -243,31 +244,31 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | Item | Qty | Unit | Unit $ | Ext $ | | Note |
 |---|---:|---|---:|---:|---|---|
 | Shipping - Divinycell, 6061 plate, VR20 | 1 | allow | $120.00 | $120.00 | estimate | STILL THE BIGGEST UNVERIFIED LINE - it wants three real carts to settle. Was $220 when it covered G10 sheet and hazmat epoxy, both of which are now out of the build entirely |
-| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $443.42 | $443.42 | verified |  |
-| **subtotal** | | | | **$563.42** | | |
+| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $444.26 | $444.26 | verified |  |
+| **subtotal** | | | | **$564.26** | | |
 
 ## Totals
 
 | | |
 |---|---:|
-| **Grand total, 2 boards** | **$7,833.80** |
-| Per board | $3,916.90 |
-| Of which verified | $7,285.95  (93%) |
+| **Grand total, 2 boards** | **$7,848.63** |
+| Per board | $3,924.31 |
+| Of which verified | $7,300.78  (93%) |
 | Of which estimated | $547.85 |
-| Linked to a real listing | 125 lines |
+| Linked to a real listing | 126 lines |
 | Priced but NOT linked | 2 lines, $20.00 |
-| Not linkable, but MEASURED (freight quotes) | 2 lines, $712.05 |
+| Not linkable, but MEASURED (freight quotes) | 2 lines, $712.89 |
 | Not linkable and still estimated | 1 lines, $120.00 |
 
 ## What is a board, and what is a shop
 
-Some of the total above is not the cost of a board at all - it is tools, jigs and templates that exist afterwards and do not repeat. Splitting them out is the difference between "a board costs $3,917" and "a board costs $3,526 and I now own a vacuum rig, a crimper and a full template set".
+Some of the total above is not the cost of a board at all - it is tools, jigs and templates that exist afterwards and do not repeat. Splitting them out is the difference between "a board costs $3,924" and "a board costs $3,534 and I now own a vacuum rig, a crimper and a full template set".
 
 | | |
 |---|---:|
 | One-time tooling (incl. its share of tax) | $781.41 |
-| **Marginal cost of a board** | **$3,526.19** |
-| Cost of the NEXT board after these 2 | $3,526.19 |
+| **Marginal cost of a board** | **$3,533.61** |
+| Cost of the NEXT board after these 2 | $3,533.61 |
 
 | One-time item | $ |
 |---|---:|

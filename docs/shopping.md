@@ -6,17 +6,17 @@ Grouped by where you buy it rather than by what it does, because that is the ord
 
 | Supplier | Lines | $ |
 |---|---:|---:|
-| Amazon | 111 | $3,548.79 |
+| Amazon | 112 | $3,562.78 |
 | Gong | 1 | $1,404.00 |
 | Flipsky | 3 | $1,038.00 |
-| Not a purchase - tax and freight | 3 | $832.05 |
+| Not a purchase - tax and freight | 3 | $832.89 |
 | BatteryHookup | 2 | $297.50 |
 | Fiberglass Supply | 3 | $253.38 |
 | Home Depot / hardware | 4 | $169.16 |
 | Maker Shop Boise | 1 | $150.00 |
 | Speedy Metals | 1 | $88.92 |
 | Easy Composites | 1 | $52.00 |
-| **TOTAL** | | **$7,833.80** |
+| **TOTAL** | | **$7,848.63** |
 
 ## Amazon
 
@@ -71,7 +71,7 @@ https://www.amazon.com
 | [1/4 in torque wrench, 10-50 in-lb](https://www.amazon.com/dp/B0D7PWP7YF) | 1 | ea | $25.97 | **verified** | 1.1-5.6 Nm. RANGE MATTERS: our hatch spec is 2 Nm = 17.7 in-lb, which is BELOW the 20 in-lb floor of the commo |
 | [Rotary-tool router base + collets, if needed](https://www.amazon.com/dp/B0000DEZK4) | 1 | set | $24.63 | estimate | you have the tool; this is only if the base you have will not hold depth over the groove run |
 | [Test cap + tubing, module leak test](https://www.amazon.com/dp/B0DPWRP6FR) | 1 | set | $22.99 | estimate | PROVE THE MODULE BEFORE THE CELLS GO IN, and prove it the way the failure actually happens: run one of the kit |
-| [Neoprene sheet 1/8in, module + mast gaskets](https://www.amazon.com/dp/B08DLP2DBF) | 1 | sheet | $22.65 | estimate | TORRAMI 18x24 or similar - you kept a part sheet from V1 |
+| [Neoprene sheet 1/8in, SOLID, mast gasket](https://www.amazon.com/dp/B08DLP2DBF) | 1 | sheet | $22.65 | estimate | TORRAMI 18x24 or similar - you kept a part sheet from V1 |
 | [8 AWG silicone, 10 ft red + 10 ft black](https://www.amazon.com/dp/B0BYJRDT19) | 1 | pk | $21.99 | **verified** | one pack covers BOTH boards - the longest run in the module is the 278 mm ESC-to-fuse, so 10 ft a side is alre |
 | [Longboard PSA sandpaper 120-180 grit, 20 yd roll](https://www.amazon.com/dp/B001AVC8ZI) | 1 | roll | $20.99 | **verified** | after 80 has the shape right |
 | [Flex longboard sander, 16-1/2 x 2-3/4](https://www.amazon.com/dp/B0CPR1CGQV) | 1 | ea | $19.99 | **verified** | adjustable radius, hook-and-loop + PSA |
@@ -92,6 +92,7 @@ https://www.amazon.com
 | [Solid silicone cord, 1/8 in (3.175 mm) - the spare size](https://www.amazon.com/dp/B00QVB0KE8) | 1 | pc | $15.39 | **verified** | 10 ft piece, 70A. Fitted ONLY if the routed groove measures deep. Gives 24% squeeze at the nominal 2.4 depth a |
 | [16 AWG silicone, 6 colours x 5 ft](https://www.amazon.com/dp/B089CPH72F) | 1 | kit | $14.49 | **verified** | charge port and power button runs are short; one kit does both boards and the colours keep them straight |
 | [Silica gel, indicating, 50 g per module](https://www.amazon.com/dp/B0DSBCXHT3) | 1 | pk | $13.99 | estimate | ~40 g is a season at 50 breathing cycles; a token sachet is worth about six. Bake it dry when the indicator tu |
+| [Closed-cell sponge neoprene 1/8in, module lid gasket](https://www.amazon.com/dp/B089T6TYXC) | 1 | roll | $13.99 | **verified** | blank is 457 x 314 mm a board; the roll is 432 wide so it nests across, and 2032 long does both with room over |
 | [PVC pack wrap, 200 mm lay-flat](https://www.amazon.com/dp/B09SVFL33L) | 1 | roll | $13.99 | **verified** | wide enough to sleeve a 16S brick; one roll does both |
 | [Adhesive-lined heat shrink 3:1, 400 pc kit](https://www.amazon.com/dp/B0BVVMCY86) | 1 | kit | $13.99 | **verified** | marine grade, glue-lined - plain heat shrink over a joint in a wet cavity is decoration |
 | [M3 heat-set insert kit, 361 pc](https://www.amazon.com/dp/B0G8JLX1HR) | 1 | kit | $13.98 | **verified** | covers the port flange (4 sets) and the nose cone. The kit's screws are PLAIN STEEL - buy M3 x 8 A4 separately |
@@ -162,7 +163,7 @@ Some Flipsky appears on Amazon but the range is thin and usually dearer. Buy dir
 
 | Item | Qty | Unit | Ext | Price | Note |
 |---|---:|---|---:|---|---|
-| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $443.42 | **verified** |  |
+| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $444.26 | **verified** |  |
 | Gong shipping to Idaho, ONE order, both foils | 1 | order | $268.63 | **verified** | quoted at checkout for 2 x XL Alu setups. PER ORDER, not per foil - ordering the two separately would roughly  |
 | Shipping - Divinycell, 6061 plate, VR20 | 1 | allow | $120.00 | estimate | STILL THE BIGGEST UNVERIFIED LINE - it wants three real carts to settle. Was $220 when it covered G10 sheet an |
 

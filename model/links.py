@@ -172,8 +172,11 @@ LINKS = {
         ("https://www.homedepot.com/p/ProWood-1-2-in-x-2-ft-x-4-ft-Medium-Density-Fiberboard-Project-Panel-109097/202093821", 30.73, "ProWood 1/2 in x 2 ft x 4 ft MDF Project Panel"),
     "Maker Shop Boise Basic month":
         ("https://www.makershopboise.com/membership", 150.00, "Maker Shop Boise Membership - Basic"),
-    "Neoprene sheet 1/8in, module + mast gaskets":
+    "Neoprene sheet 1/8in, SOLID, mast gasket":
         ("B08DLP2DBF", 22.65, "TORRAMI Neoprene Rubber Sheet 1/8in x 18in x 24in"),
+    "Closed-cell sponge neoprene 1/8in, module lid gasket":
+        ("B089T6TYXC", 13.99, "NATGAI Neoprene Closed Cell Foam Roll, 1/8in "
+                              "Thick, 17in W x 80in L"),
     "Nitrile gloves 6 mil, 100 pk":
         ("B0C3SSXL4K", 14.44, "Inspire Black Nitrile Gloves HEAVY DUTY 6 Mil Chemical Resistant"),
     "PETG filament 1 kg, mast clamp set":
@@ -344,7 +347,8 @@ LINK_VENDOR = {
     "M8 x 30 A4 mast bolts, 10 pk - spares": "Amazon",
     "MDF 12 mm, 4 check gauges": "Home Depot / hardware",
     "Maker Shop Boise Basic month": "Maker Shop Boise",
-    "Neoprene sheet 1/8in, module + mast gaskets": "Amazon",
+    "Neoprene sheet 1/8in, SOLID, mast gasket": "Amazon",
+    "Closed-cell sponge neoprene 1/8in, module lid gasket": "Amazon",
     "Nitrile gloves 6 mil, 100 pk": "Amazon",
     "PETG filament 1 kg, mast clamp set": "Amazon",
     "PETG for props, 4-5 spares per board": "Amazon",

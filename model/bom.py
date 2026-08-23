@@ -48,7 +48,8 @@ FREE_PACKS = 1                       # packs' worth of cells already on hand
 
 # Counts read straight out of blender_board.py's report.
 R = _report()
-M = dict(hatch_bolts=R["bom_hatch_bolts"],
+M = dict(seal_blank=R["module_seal_blank_mm"],
+         hatch_bolts=R["bom_hatch_bolts"],
          mod_inserts=R["bom_mod_inserts"],
          mast_bushings=R["bom_mast_bolts"],
          hatch_cord_mm=R["bom_hatch_cord_mm"],
@@ -706,9 +707,23 @@ def build():
     add("7  Module", "2 mm glass beads or shim wire, bond-line control", 1,
         "ea", 8.00, EST, "clamping a PU joint metal-to-plastic squeezes the "
         "line out and puts you back to a rigid joint that will fail")
-    add("7  Module", "Neoprene sheet 1/8in, module + mast gaskets", 1,
+    # TWO DIFFERENT RUBBERS, and the difference matters. The module lid gets
+    # a FULL-FACE gasket over the whole 15 mm land, punched for the bolts -
+    # V1's method. Squeeze is geometric, so the bolts have to supply whatever
+    # stress the material needs at 33% over 23,000 mm2. In SOLID neoprene
+    # that is about 11.6 kN, 609 N a bolt, and 1.3x on M4 heat-set pull-out
+    # in printed ASA - too thin. In closed-cell sponge it is 2.8 kN, 146 N a
+    # bolt, 5.5x. So the lid gets sponge.
+    # The mast gasket stays SOLID: it is a bolted compression seal squeezed
+    # between aluminium and laminate, and sponge would extrude out of it.
+    add("7  Module", "Neoprene sheet 1/8in, SOLID, mast gasket", 1,
         "sheet", 16.00, EST,
         "TORRAMI 18x24 or similar - you kept a part sheet from V1")
+    add("7  Module", "Closed-cell sponge neoprene 1/8in, module lid gasket",
+        1, "roll", 13.99, OK,
+        "blank is " + " x ".join(str(v) for v in M["seal_blank"])
+        + " mm a board; the roll is 432 wide so it nests across, and 2032 "
+        "long does both with room over")
     # module cord is now bought with the hatch cord - same 3 mm stock
     # PG11, not PG16 - and sized off the real chart: thread OD 18.03, thread
     # length 9.14, cable range 6.35-10.16 against our 6.5 mm 8 AWG silicone.

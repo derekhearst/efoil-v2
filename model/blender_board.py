@@ -1061,7 +1061,35 @@ PACK_THRU_CLR = 6.0
 # STI tap, install. So nothing here forecloses that; it just is not needed on
 # day one, and it saves an M4 STI tap and install tool.
 MOD_INSERT_D = 5.6                 # M4 x 8 heat-set printed pilot
-MOD_GASKET_W_OUT = ENC_WALL        # exactly the wall top
+# FULL FACE, PUNCHED - V1's method, and V1's own export confirms it: its
+# battery gasket is 1 mm and full face, its ESC gasket 3 mm. One piece cut to
+# the whole ledge, holes punched where the bolts go through, no narrow band
+# to cut accurately or keep in place while the lid goes on.
+#
+# It is not free. Squeeze here is GEOMETRIC - the lid lands FIT_LID above the
+# flange, so the bolts have to compress whatever area is under them to reach
+# it - and going from a 4 mm band to the full 15 mm land multiplies the area,
+# and therefore the clamp force, by nearly four. The bolts have it to give;
+# what to watch is heat-set insert pull-out in printed ASA. Reported below.
+MOD_GASKET_FULL_FACE = True
+MOD_GASKET_W_OUT = (MOD_FLANGE_LAND if MOD_GASKET_FULL_FACE
+                    else ENC_WALL)     # else: exactly the wall top
+MOD_GASKET_EDGE = 0.5              # holds the cut edge off the flange edge
+# A full-face gasket is pierced by the bolts, so what matters is not that it
+# sits inboard of them but that there is enough annulus AROUND each one.
+MOD_GASKET_BOLT_CLR = 0.6          # punch clearance on the bolt
+# CLOSED-CELL SPONGE, NOT SOLID RUBBER. Squeeze here is geometric, so the
+# bolts have to supply whatever stress the material needs at 33% - and over
+# the full land that is an area of 23,000 mm2. Solid ~50 Shore A neoprene
+# wants roughly 0.5 MPa to hold that, which is 11.6 kN, 609 N a bolt, and
+# only 1.3x on M4 heat-set pull-out in printed ASA. Sponge grades need a
+# fraction of it. The BOM used to buy ONE solid sheet for this and the mast
+# gasket; the mast gasket stays solid - it is a bolted compression seal that
+# would extrude - and the lid gets its own sponge sheet.
+# Both numbers are ESTIMATES from published compression-deflection ranges,
+# not measured. If the lid will not pull down onto the flange, this is why.
+MOD_GASKET_SPONGE = True
+MOD_GASKET_STRESS_MPA = 0.12 if MOD_GASKET_SPONGE else 0.5
 # How much daylight is left between the band and the insert bore. Derived, so
 # it cannot quietly disagree with the flange width, the bolt edge or the
 # insert - and checked, so if any of them moves the build says so.
@@ -4546,9 +4574,10 @@ def build():
     # exactly why V1 gasketed both its printed enclosures and why they seal.
     # Cut it from the same 1/8" neoprene sheet as the mast gasket.
     if MOD_FLANGE_OUT:
-        # straight onto the wall top: outer edge at the wall's outer face,
-        # inner edge at its inner face
-        gk_a, gk_b = -(MOD_GASKET_START + MOD_GASKET_W_OUT), -MOD_GASKET_START
+        # full face: from just inside the flange's outer edge, all the way in
+        # to the interior. Punched for the bolts further down.
+        gk_a = -(MOD_GASKET_W_OUT - MOD_GASKET_EDGE)
+        gk_b = -MOD_GASKET_START
     else:
         gk_a, gk_b = MOD_GASKET_OUT, MOD_GASKET_IN
     gk_o = prism("V2_ModGasket_o",
@@ -4563,11 +4592,24 @@ def build():
     gk_o.name = "V2_Mod_Seal"
     gk_i.hide_set(True)
     gk_i.hide_render = True
-    rep["module_seal"] = (
-        f"flat neoprene gasket {MOD_GASKET_T:.0f} mm uncompressed -> "
-        f"{FIT_LID:.1f} at {100 * (1 - FIT_LID / MOD_GASKET_T):.0f}% squeeze, "
-        f"{MOD_GASKET_IN - MOD_GASKET_OUT:.0f} mm wide band on the printed "
-        f"flange, inboard of the bolt circle")
+    if MOD_FLANGE_OUT and MOD_GASKET_FULL_FACE:
+        rep["module_seal"] = (
+            f"{'closed-cell sponge' if MOD_GASKET_SPONGE else 'solid'} "
+            f"neoprene, {MOD_GASKET_T:.0f} mm uncompressed -> {FIT_LID:.1f} at "
+            f"{100 * (1 - FIT_LID / MOD_GASKET_T):.0f}% squeeze. FULL FACE, "
+            f"one piece over the whole {MOD_FLANGE_LAND:.0f} mm land, punched "
+            f"for the bolts - V1's method")
+        rep["module_gasket_squeeze_pct"] = round(
+            100 * (1 - FIT_LID / MOD_GASKET_T))
+        # the sheet it is cut from has to take the whole flange footprint
+        rep["module_seal_blank_mm"] = (round(fx1 - fx0), round(fy1 - fy0))
+    else:
+        rep["module_seal"] = (
+            f"flat neoprene gasket {MOD_GASKET_T:.0f} mm uncompressed -> "
+            f"{FIT_LID:.1f} at "
+            f"{100 * (1 - FIT_LID / MOD_GASKET_T):.0f}% squeeze, "
+            f"{MOD_GASKET_IN - MOD_GASKET_OUT:.0f} mm wide band on the "
+            f"printed flange, inboard of the bolt circle")
     rep["module_gasket_to_bolt_mm"] = round(MOD_GASKET_OUT - MOD_BOLT_INSET, 1)
     rep["module_gasket_squeeze_pct"] = round(100 * (1 - FIT_LID / MOD_GASKET_T))
 
@@ -4630,9 +4672,16 @@ def build():
             MOD_FLANGE_W - MOD_BOLT_INSET, 1)
     rep["hatch_seal_from_interior_mm"] = round(CHAN_INSET, 1)
     rep["hatch_bolt_from_interior_mm"] = round(RIM_W - HATCH_BOLT_INSET, 1)
+    # A FULL-FACE GASKET IS PIERCED BY ITS BOLTS ON PURPOSE, so "seal inboard
+    # of bolts" is the wrong question for it - the seal is the annulus around
+    # each one, checked separately. The hatch still has to answer it: its cord
+    # sits in a groove and a bolt outboard of it would open the sealed volume.
     rep["seal_inboard_of_bolts"] = (
-        rep["module_seal_from_interior_mm"] < rep["module_bolt_from_interior_mm"]
-        and rep["hatch_seal_from_interior_mm"] < rep["hatch_bolt_from_interior_mm"])
+        (MOD_GASKET_FULL_FACE or
+         rep["module_seal_from_interior_mm"]
+         < rep["module_bolt_from_interior_mm"])
+        and rep["hatch_seal_from_interior_mm"]
+        < rep["hatch_bolt_from_interior_mm"])
     rep["hatch_groove_corner_R"] = round(CAV_CORNER_R + CHAN_INSET, 1)
     rep["hatch_cord_min_bend_R"] = round(CORD_BEND_F * CORD_D, 1)
     rep["mod_opening_mm"] = (round(ix1 - ix0 - 2 * MOD_FLANGE_IN),
@@ -4665,6 +4714,59 @@ def build():
         h.hide_render = True
         cyl(f"V2_ModInsert_{i}", bx_, by_, wall_top - MOD_INSERT_L, wall_top,
             MOD_INSERT_D, coll, m_metal)
+    if MOD_FLANGE_OUT and MOD_GASKET_FULL_FACE:
+        seal = bpy.data.objects.get("V2_Mod_Seal")
+        for i, (bx_, by_) in enumerate(mb):
+            p = cyl(f"V2_ModSealPunch_cut_{i}", bx_, by_,
+                    wall_top - 1.0, wall_top + FIT_LID + 1.0,
+                    MOD_BOLT_D + 2 * MOD_GASKET_BOLT_CLR, coll)
+            if seal:
+                boolean(seal, p)
+            p.hide_set(True)
+            p.hide_render = True
+        # what is left of the gasket around each bolt, and what it costs in
+        # clamp force to squeeze the whole land instead of a band
+        _peri = 2 * ((ix1 - ix0) + (iy1 - iy0)) + 8 * MOD_GASKET_W_OUT
+        _area = _peri * MOD_GASKET_W_OUT
+        rep["module_seal_area_mm2"] = round(_area)
+        rep["module_seal_annulus_mm"] = round(
+            min(MOD_FLANGE_LAND - MOD_BOLT_EDGE - MOD_GASKET_START,
+                MOD_BOLT_EDGE - MOD_GASKET_EDGE)
+            - (MOD_BOLT_D / 2 + MOD_GASKET_BOLT_CLR), 2)
+        _F = MOD_GASKET_STRESS_MPA * _area
+        rep["module_seal_clamp_N"] = round(_F)
+        rep["module_seal_per_bolt_N"] = round(_F / max(1, len(mb)))
+        # M4 heat-set in printed ASA, conservative
+        rep["module_insert_pullout_margin"] = round(
+            800.0 / max(1.0, _F / max(1, len(mb))), 1)
+        # the bolt pulls on a flange root MOD_BOLT_EDGE out from the wall
+        _lever = MOD_FLANGE_LAND - MOD_BOLT_EDGE - ENC_WALL
+        _Z = MOD_BOLT_PITCH * MOD_FLANGE_H ** 2 / 6.0
+        rep["module_flange_bend_MPa"] = round(
+            (_F / max(1, len(mb))) * max(0.1, _lever) / _Z, 2)
+    # ---- WHAT A BOTTOM FOOT AND EXTRA RIBS WOULD COST, and whether the
+    # joint is asking for them. Derek ran both on V1 "cuz it wasnt that much
+    # more ASA", and neither is in V2 - so price them rather than guess.
+    #
+    # The wall-to-floor joint's real load case is LIFTING THE MODULE BY ITS
+    # HANDLE: the handle is on the aft wall, so the whole module hangs off
+    # the bond in shear. Everything else pushes DOWN into the floor, which
+    # the bond does not carry.
+    _peri_w = 2 * ((ix1 - ix0) + (iy1 - iy0))
+    _ASA = 1.07e-3                              # g/mm3
+    FOOT_W, FOOT_H, RIB_N, RIB_W = 8.0, 4.0, 12, 10.0
+    rep["module_foot_would_add_g"] = round(_peri_w * FOOT_W * FOOT_H * _ASA)
+    rep["module_ribs_would_add_g"] = round(
+        RIB_N * RIB_W * ENC_WALL * int_h * _ASA)
+    rep["module_bond_area_mm2"] = round(_peri_w * ENC_WALL)
+    rep["module_bond_area_with_foot_mm2"] = round(
+        _peri_w * (ENC_WALL + FOOT_W))
+    # 2g of handling shock on a loaded module, and only a QUARTER of the
+    # perimeter taken as carrying it - the bond near the handle does the work,
+    # not the far wall.
+    _mod_kg = 14.0
+    rep["module_bond_shear_MPa"] = round(
+        (_mod_kg * 9.81 * 2.0) / (0.25 * _peri_w * ENC_WALL), 4)
     rep["module_lid_bolts"] = len(mb)
     # --- BOM COUNTS. bom.py used to hold its own hand-typed copies of these,
     # which is the same failure as fleet_cost: nothing breaks when they drift,
@@ -5643,7 +5745,11 @@ def build():
         fails.append("pack will not pass through the module lid opening: "
                      f"{rep['pack_through_opening_mm']} mm")
     if MOD_FLANGE_OUT:
-        if rep["module_seal_to_insert_bore_mm"] < 1.0:
+        if MOD_GASKET_FULL_FACE:
+            if rep["module_seal_annulus_mm"] < 1.5:
+                fails.append("too little gasket left around the lid bolts: "
+                             f"{rep['module_seal_annulus_mm']} mm of annulus")
+        elif rep["module_seal_to_insert_bore_mm"] < 1.0:
             fails.append("the module gasket band runs into the insert bores: "
                          f"{rep['module_seal_to_insert_bore_mm']} mm clear")
         if rep["module_insert_edge_material_mm"] < 2.5:

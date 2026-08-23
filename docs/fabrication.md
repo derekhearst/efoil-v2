@@ -353,7 +353,7 @@ cord before the groove exists is how you end up at 10%.
 `Sikaflex-292 marine structural PU` · `Sika Aktivator-PRO 250 ml + daubers` ·
 `2 mm glass beads or shim wire, bond-line control` ·
 `M4 x 8 brass heat-set insert, 100 pc` · `M5 x 10 brass heat-set insert, 50 pc` ·
-`Neoprene sheet 1/8in, module + mast gaskets` ·
+`Neoprene sheet 1/8in, SOLID, mast gasket` · `Closed-cell sponge neoprene 1/8in, module lid gasket` ·
 `Gebildet PG11 gland, M18x1.5, 30 pk` · `M12 IP68 membrane vent plug` ·
 `M12 IP68 momentary panel button` · `JST GH 1.25 mm pigtail pair, BMS switch` · `SP17 2-pin IP68 flange receptacle` ·
 `M3 heat-set insert kit, 361 pc` · `M3 x 8 A4 stainless, 10 pk`
