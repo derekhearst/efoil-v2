@@ -731,8 +731,9 @@ def build():
     # one handle part for both jobs. This line outlived that decision by
     # carrying on as a $0 "cut from the webbing pack in 10c", and the webbing
     # pack itself was deleted in the same breath, so it was a free part made
-    # out of a part nobody buys. It bolts to the two printed lugs on the AFT
-    # wall (module_lift_handle in report.json) - the module is ~14 kg in a
+    # out of a part nobody buys. It bolts to the two printed pads on the AFT
+    # wall (module_lift_handle in report.json), on the M5 hardware now listed
+    # in 9b - the module is ~14 kg in a
     # cavity with 12 mm of side clearance, so there is no getting a hand
     # beside it.
     add("7  Module", "M12 IP68 membrane vent plug", N, "ea", 9.95, OK,
@@ -1006,16 +1007,41 @@ def build():
     # This also retires the separate "module lift loop" made from webbing:
     # one bought part with a moulded grip beats a loop of strap you have to
     # sew or fold, and it is the same part in both places.
+    # THE MODEL SETS THE HOLE PATTERN, NOT THE HANDLE. rail_handle_bolt_
+    # pattern_mm and module_handle_bolt_pattern_mm in report.json: 110 mm
+    # centres on the rails, and on the module 2 bolts 18 mm apart per pad
+    # with 70 mm between the pads. The module number is the tight one and it
+    # cannot move - outboard of those pads is 5 mm of clearance to the gland
+    # nuts. MEASURE THE HANDLE'S TABS AGAINST 70 MM when it arrives. If they
+    # are much wider, the module gets a webbing loop through the same two
+    # pads and this line drops to 2 packs, which is $10, not a redesign.
     add("9b Small but essential", "Kayak/board grab handle, 2 pk + screws",
         math.ceil(3 * N / 2), "pk", 9.99, OK,
         "3 a board: 2 on the rails into the 6061 strip, 1 on the module. "
-        "Two reinforcing holes each end - drill to suit M6 rather than using "
-        "the supplied screws on the rail handles", vendor="Amazon")
+        "Two reinforcing holes each end - drill the tabs to OUR pattern, M6 "
+        "on the rails and M5 on the module, rather than using the supplied "
+        "screws", vendor="Amazon")
+    # TAPPED, NOT INSERTED. The strip is 12.7 mm of 6061 and M6 goes straight
+    # into it - 90 mm2 of thread at 207 MPa. There was a "M6 heat-set insert,
+    # strap mounts" line under this one for $9.99, left over from when the
+    # strip was G10; a heat-set insert melts into plastic and there is no
+    # plastic here. Deleted, and this note no longer sends you looking for it.
     add("9b Small but essential", "M6 x 16 A4 button head, 10 pk",
-        1, "pk", 8.06, OK, str(4 * N) + " needed, strap mounts. The M6 "
-        "THREADED INSERT IS NOT INCLUDED - separate line below")
-    add("9b Small but essential", "M6 heat-set insert, strap mounts",
-        1, "pk", 9.99, OK, "not supplied with the screws above")
+        1, "pk", 8.06, OK, str(4 * N) + " needed - 2 per rail handle, tapped "
+        "straight into the 6061 strip")
+    # THE MODULE PADS HAD NO FASTENERS ON THIS LIST AT ALL. The shell prints
+    # two 8 mm-proud pads with 2 x M5 heat-set each (MOD_HANDLE_INS_D/_L),
+    # which is 4 inserts and 4 screws a module - and the BOM bought neither,
+    # because the module handle was a webbing loop when this section was
+    # written and a loop needs no fasteners. The M4 kit in section 7 is the
+    # lid flange's and is the wrong size.
+    add("9b Small but essential", "M5 x 10 brass heat-set insert, 50 pc",
+        1, "pk", 11.00, EST, str(4 * N) + " needed, module handle pads; "
+        "6.4 mm printed pilot, same as the model's cut")
+    add("9b Small but essential", "M5 x 10 A4 button head, 20 pk",
+        1, "pk", 9.00, EST, str(4 * N) + " needed. 10 mm: 8 mm of pad plus "
+        "the handle tab, and the insert is 10 deep - do not reach for the "
+        "M5 x 25s in section 6, they bottom out")
 
 
     # ---------------------------------------------- 9c every joint in the pack

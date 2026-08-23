@@ -144,10 +144,11 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | [1/4 in torque wrench, 10-50 in-lb](https://www.amazon.com/dp/B0D7PWP7YF) | 1 | ea | $25.97 | $25.97 | verified | 1.1-5.6 Nm. RANGE MATTERS: our hatch spec is 2 Nm = 17.7 in-lb, which is BELOW the 20 in-lb floor of the common 20-200 in-lb wrenches - they cannot read our number at all. CALIBRATION TOOL - set the drill clutch with it, then use the clutch. The hatch is captive nuts in ASA against a hard stop; past the stop more torque only loads the nut pockets |
 | [Coiled ankle leash](https://www.amazon.com/dp/B096VL3DHV) | 2 | ea | $14.99 | $29.98 | verified | you trust the remote failsafe; this is so the board stays with you |
 | [FCS-pattern leash plug](https://www.amazon.com/dp/B0F1F97R4D) | 2 | ea | $8.59 | $17.18 | estimate |  |
-| [Kayak/board grab handle, 2 pk + screws](https://www.amazon.com/dp/B0FBW3XT5D) | 3 | pk | $9.99 | $29.97 | verified | 3 a board: 2 on the rails into the 6061 strip, 1 on the module. Two reinforcing holes each end - drill to suit M6 rather than using the supplied screws on the rail handles |
-| [M6 x 16 A4 button head, 10 pk](https://www.amazon.com/dp/B07DVRLQTK) | 1 | pk | $8.06 | $8.06 | verified | 8 needed, strap mounts. The M6 THREADED INSERT IS NOT INCLUDED - separate line below |
-| [M6 heat-set insert, strap mounts](https://www.amazon.com/dp/B0DNJNLP95) | 1 | pk | $9.99 | $9.99 | verified | not supplied with the screws above |
-| **subtotal** | | | | **$160.34** | | |
+| [Kayak/board grab handle, 2 pk + screws](https://www.amazon.com/dp/B0FBW3XT5D) | 3 | pk | $9.99 | $29.97 | verified | 3 a board: 2 on the rails into the 6061 strip, 1 on the module. Two reinforcing holes each end - drill the tabs to OUR pattern, M6 on the rails and M5 on the module, rather than using the supplied screws |
+| [M6 x 16 A4 button head, 10 pk](https://www.amazon.com/dp/B07DVRLQTK) | 1 | pk | $8.06 | $8.06 | verified | 8 needed - 2 per rail handle, tapped straight into the 6061 strip |
+| M5 x 10 brass heat-set insert, 50 pc | 1 | pk | $11.00 | $11.00 | estimate | 8 needed, module handle pads; 6.4 mm printed pilot, same as the model's cut |
+| M5 x 10 A4 button head, 20 pk | 1 | pk | $9.00 | $9.00 | estimate | 8 needed. 10 mm: 8 mm of pad plus the handle tab, and the insert is 10 deep - do not reach for the M5 x 25s in section 6, they bottom out |
+| **subtotal** | | | | **$170.35** | | |
 
 ## 9c Pack wiring
 
@@ -242,31 +243,31 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | Item | Qty | Unit | Unit $ | Ext $ | | Note |
 |---|---:|---|---:|---:|---|---|
 | Shipping - Divinycell, 6061 plate, VR20 | 1 | allow | $120.00 | $120.00 | estimate | STILL THE BIGGEST UNVERIFIED LINE - it wants three real carts to settle. Was $220 when it covered G10 sheet and hazmat epoxy, both of which are now out of the build entirely |
-| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $443.43 | $443.43 | verified |  |
-| **subtotal** | | | | **$563.43** | | |
+| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $444.03 | $444.03 | verified |  |
+| **subtotal** | | | | **$564.03** | | |
 
 ## Totals
 
 | | |
 |---|---:|
-| **Grand total, 2 boards** | **$7,833.99** |
-| Per board | $3,916.99 |
-| Of which verified | $7,288.96  (93%) |
-| Of which estimated | $545.03 |
-| Linked to a real listing | 126 lines |
-| Priced but NOT linked | 0 lines, $0.00 |
-| Not linkable, but MEASURED (freight quotes) | 2 lines, $712.06 |
+| **Grand total, 2 boards** | **$7,844.60** |
+| Per board | $3,922.30 |
+| Of which verified | $7,279.57  (93%) |
+| Of which estimated | $565.03 |
+| Linked to a real listing | 125 lines |
+| Priced but NOT linked | 2 lines, $20.00 |
+| Not linkable, but MEASURED (freight quotes) | 2 lines, $712.66 |
 | Not linkable and still estimated | 1 lines, $120.00 |
 
 ## What is a board, and what is a shop
 
-Some of the total above is not the cost of a board at all - it is tools, jigs and templates that exist afterwards and do not repeat. Splitting them out is the difference between "a board costs $3,917" and "a board costs $3,526 and I now own a vacuum rig, a crimper and a full template set".
+Some of the total above is not the cost of a board at all - it is tools, jigs and templates that exist afterwards and do not repeat. Splitting them out is the difference between "a board costs $3,922" and "a board costs $3,532 and I now own a vacuum rig, a crimper and a full template set".
 
 | | |
 |---|---:|
 | One-time tooling (incl. its share of tax) | $781.41 |
-| **Marginal cost of a board** | **$3,526.29** |
-| Cost of the NEXT board after these 2 | $3,526.29 |
+| **Marginal cost of a board** | **$3,531.59** |
+| Cost of the NEXT board after these 2 | $3,531.59 |
 
 | One-time item | $ |
 |---|---:|

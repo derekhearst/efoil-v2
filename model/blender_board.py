@@ -292,16 +292,19 @@ MOD_DT_NECK, MOD_DT_HEAD, MOD_DT_DEPTH = 5.0, 9.0, 10.0
 # y -106..-16 and y +16..+56. A 34 mm lug at +/-36 sits in both with 3 mm to
 # the conduit and 3 mm to the power button.
 # It BUYS depth, though - the handle projects into the 60 mm service bay
-# rather than into 12 mm of side clearance, so the lug can be a real lug with
-# a slot through it instead of a 10 mm nub.
+# rather than into 12 mm of side clearance, so the pad can stand 8 mm proud
+# and take a real fastener instead of being a 10 mm nub.
 # TWO lugs, deliberately NOT one in the middle: the print seam runs down that
 # wall's centre and a handle straddling it hangs 14 kg off a glued joint.
 # 28 wide at +/-35, not 34 at +/-36. Once the glands went to their real PG11
 # size the port-side band between the conduit (ends y=16) and the first gland
 # (starts y=54.5) is 38 mm, and a 34 mm lug left 1.5 mm to the gland nut. 28
-# leaves 5 mm each side, which is a spanner's worth. The through-slot still
-# passes 25 mm webbing because it spans the lug's FULL width.
-MOD_HANDLE_Y = 35.0                # lug centres, either side of the seam
+# leaves 5 mm each side, which is a spanner's worth.
+# 70 mm BETWEEN THE PADS IS NOT NEGOTIABLE, and it is the number the bought
+# handle has to live with. Outboard is the gland nuts at 5 mm; inboard is the
+# conduit and the seam. The handle gets drilled to this pattern - it does not
+# get to set it.
+MOD_HANDLE_Y = 35.0                # pad centres, either side of the seam
 MOD_HANDLE_W, MOD_HANDLE_H = 28.0, 34.0
 # FLAT PADS, not lugs with slots through them. A lug with a hole is a fitting
 # you then have to thread something through and hope it does not saw on the
@@ -580,7 +583,11 @@ GLAND_D = 25.0                     # bung head + strain-relief tie envelope
 # and a 9 kg pack that are only resting somewhere are the two heaviest things
 # on the board and the two most dangerous in a fall.
 # OFF for now - the board is being printed as a miniature and this is clutter.
-# NOTE when re-enabling: the straps below run lengthwise between the chocks,
+# NOTE when re-enabling: none of this is on the BOM any more - the webbing,
+# the EVA bedding and the G10 chocks all came off it, the G10 twice over
+# because the board has no G10 left to cut them from. Re-spec and re-price
+# before drawing on any of it.
+# Also: the straps below run lengthwise between the chocks,
 # which does not work. The forward chock ended up on the cavity WALL at
 # z 43.5-73.5 while the module top is at z 117, so a strap from there pulls the
 # module FORWARD, not down. Anchor to the SIDE walls above the fillet instead,
@@ -1373,11 +1380,11 @@ LEASH_PAD, LEASH_T = 70.0, 18.0                # G10 block, milled flat
 # NO POCKET. This replaces an earlier recessed grip, and the reason it works
 # is one number: the rail rolls over hard ACROSS the board (0 deg at y=198 to
 # 74 deg at y=276, no flat spot anywhere) but is flat to 0.47 mm over 150 mm
-# ALONG it. Both strap bolts sit at the same y, spaced in x, so they land on a
-# line that is effectively straight - the strap does not care that the line is
-# tilted, and a 25 deg face is where your hand naturally goes anyway.
+# ALONG it. Both handle bolts sit at the same y, spaced in x, so they land on
+# a line that is effectively straight - the handle does not care that the line
+# is tilted, and a 25 deg face is where your hand naturally goes anyway.
 HANDLE_X = 645.0                   # hatch station, both sides
-HANDLE_Y = 223.0                   # strap centreline: 30 mm outboard of the
+HANDLE_Y = 223.0                   # handle centreline: 30 mm outboard of the
                                    # rim ring, local slope ~25 deg
 # Strip is 6061 now, cut from the mast plate sheet's offcut - two plates use
 # 135.6 of 216 in2 and leave a contiguous 12 x 4.22 in strip, which holds all
@@ -1385,7 +1392,8 @@ HANDLE_Y = 223.0                   # strap centreline: 30 mm outboard of the
 # TAPPED M6 straight in: 90 mm2 x 207 MPa = 18.7 kN, on a carry handle. The
 # O8 inserts go with the G10.
 HANDLE_BOLT_D, HANDLE_INS_D, HANDLE_INS_L = 6.0, 6.0, 8.0   # M6
-HANDLE_BOLT_DX = 110.0             # strap mount centres, along the board
+HANDLE_BOLT_DX = 110.0             # handle bolt centres, along the board -
+                                   # the bought handle is drilled to suit
 # The G10 strip runs ALONG the board, which is the flat direction. Keep it
 # NARROW in y: the surface sags ~1.5 mm across 22 mm here, so the strip beds
 # into a shallow milled facet and the laminate lies over it without a visible
@@ -1408,7 +1416,9 @@ HANDLE_POCKET_CLR = 0.5            # bond gap round the strip, per face
 HANDLE_PLATE_BOND = 0.5            # glue line under the strip
 HANDLE_STRAP_SLACK = 25.0          # standoff at mid-span - this is what your
                                    # fingers go into now that there is no
-                                   # recess. Set it when you make the strap up.
+                                   # recess. It is the bought handle's own
+                                   # arch, so it is a number to CHECK on the
+                                   # part, not one to set when making a strap.
 SEAM_X = 1030.0                    # halves of 1030 + 370, both under the bed
 # THE REAL MACHINE, not a round 48 in. Maker Shop Boise runs an Axiom AR8
 # Pro V5 and its published work area is 24 x 47.63 x 5.9 in:
@@ -3846,14 +3856,14 @@ def build():
 
     # LAST thing onto the deck, and modelled because it is the one part whose
     # fit you cannot check by eye on a drawing: it has to clear the rim ring,
-    # miss both handle straps, and stop short of the rail everywhere along a
+    # miss both handle strips, and stop short of the rail everywhere along a
     # deck that changes width by 80 mm over its length.
     build_deck_pad(coll, rep)
 
     # Rail handles: NO POCKET, and everything here is built TANGENT to the
     # rail rather than square to the world. On a 29 deg face an axis-aligned
     # strip stands ~6 mm proud on its inboard edge and buries itself the same
-    # amount outboard; the strap inserts would likewise point at the sky
+    # amount outboard; the tapped holes would likewise point at the sky
     # instead of out of the surface.
     ring_y = CAV_WIDTH / 2 + RIM_W
     hull_snap = snapshot(hull, "V2_HullSnap_tmp", coll)
@@ -3926,8 +3936,9 @@ def build():
                            HANDLE_X + HANDLE_PLATE_L / 2,
                            HANDLE_PLATE_W, HANDLE_PLATE_T, fr, coll,
                            bom_mat("alu"))
-        # ...and BORE THE PLATE for the two strap inserts. They were drawn as
-        # solid studs standing on the G10 with no hole under them at all.
+        # ...and BORE THE PLATE for the two M6 threads the handle bolts to.
+        # They were drawn as solid studs standing on the plate with no hole
+        # under them at all.
         # The cutter is 0.4 mm over the insert and starts 2 mm proud so it
         # breaks the top face cleanly - that 0.2 mm a side is the bond gap.
         fr_cut = rail_frame(sgn * HANDLE_Y,
@@ -4107,14 +4118,17 @@ def build():
     # strip itself, which it does by handle_to_ring_mm below.
     rep["handle_to_ring_mm"] = round(
         HANDLE_Y - HANDLE_PLATE_W / 2 - ring_y, 1)
-    rep["handle_mount"] = (f"webbing strap on 2 x M{HANDLE_BOLT_D:.0f} at "
-                           f"{HANDLE_BOLT_DX:.0f} mm centres into a "
-                           f"{HANDLE_PLATE_T:.1f} mm 6061 strip set TANGENT to "
-                           f"the rail under the skin - NO recess, "
-                           f"{HANDLE_STRAP_SLACK:.0f} mm of strap slack is the "
-                           "finger clearance")
-    rep["handles"] = ("2 x surface-mounted rail strap, port and starboard "
-                      "beside the hatch")
+    rep["handle_mount"] = (f"bought kayak grab handle on 2 x "
+                           f"M{HANDLE_BOLT_D:.0f} at {HANDLE_BOLT_DX:.0f} mm "
+                           f"centres, TAPPED into a {HANDLE_PLATE_T:.1f} mm "
+                           f"6061 strip set TANGENT to the rail under the "
+                           f"skin - NO recess, so the "
+                           f"{HANDLE_STRAP_SLACK:.0f} mm the handle stands "
+                           "proud at mid-span is the whole finger clearance")
+    rep["rail_handle_bolt_pattern_mm"] = HANDLE_BOLT_DX
+    rep["handles"] = ("2 x surface-mounted rail handle, port and starboard "
+                      "beside the hatch, + 1 on the module - one bought part "
+                      "in all three places")
 
     rep["mast_insert_g10_above_mm"] = round(INSERT_BLIND, 1)
     rep["insert_engagement_mm"] = INSERT_L - INSERT_BLIND
@@ -4310,10 +4324,11 @@ def build():
             ("F", ex1, ex1 + ENC_RIB, (ey0 + ey1) / 2 - ENC_RIB_W / 2,
              (ey0 + ey1) / 2 + ENC_RIB_W / 2)):
         box(f"V2_Mod_Rib{nm}", a, b, c, d, wall_z0, wall_top, coll, m_rib)
-    # Lift-handle lugs on the AFT wall, one either side of the seam. The slot
-    # goes ALL THE WAY THROUGH in y, so it is a bar with a gap behind it that
-    # webbing threads through - not a blind pocket, which is what a slot inset
-    # from the lug's own ends would be.
+    # Lift-handle pads on the AFT wall, one either side of the seam. FLAT and
+    # THREADED, with nothing to thread a strap through: the handle is the
+    # bought kayak grab handle from 9b of the BOM, the same part that goes on
+    # the board's rails, and it bolts on. This used to be a slotted lug for a
+    # webbing loop and the comments outlived the decision by several commits.
     hz = (wall_z0 + wall_top) / 2.0
     for sy in (-1, 1):
         hy = sy * MOD_HANDLE_Y
@@ -4322,9 +4337,10 @@ def build():
                  ex0 - MOD_HANDLE_PROUD, ex0, hy - MOD_HANDLE_W / 2,
                  hy + MOD_HANDLE_W / 2, hz - MOD_HANDLE_H / 2,
                  hz + MOD_HANDLE_H / 2, coll, m_rib)
-        # Two M5 heat-set inserts up the pad. The strap end goes on with a
-        # fender washer over the webbing; the loop spans between the two pads
-        # so the WEBBING crosses the print seam and no rigid part does.
+        # Two M5 heat-set inserts up the pad, 18 mm apart. The handle's end
+        # tab bolts flat to them; the handle itself spans the two pads, so
+        # the part that crosses the print seam is cloth and rubber and no
+        # rigid part ever does.
         for sz in (-1, 1):
             iz = hz + sz * MOD_HANDLE_BOLT_DZ / 2
             ic = cyl_x(f"V2_Mod_HandleInsCut{sfx}{sz}", hy, iz,
@@ -4966,12 +4982,17 @@ def build():
     rep["module_seam_dovetail_mm"] = (MOD_DT_NECK, MOD_DT_HEAD, MOD_DT_DEPTH)
     rep["module_dovetail_fits_rib"] = 2 * MOD_DT_DEPTH <= ENC_RIB_W
     rep["module_lift_handle"] = (
-        f"2 printed lugs on the AFT wall at y +/-{MOD_HANDLE_Y:.0f}, "
-        f"{MOD_HANDLE_PROUD:.0f} mm proud, 2 x M5 heat-set each, for a 25 mm "
-        f"webbing handle bolted on with fender washers. One pad per print "
-        f"piece, so the webbing crosses the seam and no rigid part does. Aft "
-        f"because the module butts the forward cavity wall - this is the only "
-        f"reachable face")
+        f"2 printed pads on the AFT wall at y +/-{MOD_HANDLE_Y:.0f}, "
+        f"{MOD_HANDLE_PROUD:.0f} mm proud, 2 x M5 heat-set each at "
+        f"{MOD_HANDLE_BOLT_DZ:.0f} mm centres, for the bought kayak grab "
+        f"handle - drilled to suit, one pad per print piece, so only the "
+        f"handle crosses the seam. Aft because the module butts the forward "
+        f"cavity wall - this is the only reachable face")
+    # The pattern the handle has to be drilled to, in one place, because two
+    # different people are going to need it: whoever prints the shell and
+    # whoever puts a drill through a $10 rubber handle. (per pad, between pads)
+    rep["module_handle_bolt_pattern_mm"] = (MOD_HANDLE_BOLT_DZ,
+                                            2 * MOD_HANDLE_Y)
     rep["module_handle_insert_backing_mm"] = round(
         MOD_HANDLE_PROUD + ENC_WALL - MOD_HANDLE_INS_L, 1)
     # It projects into the BAY now, not the side gap, so that is what to check.

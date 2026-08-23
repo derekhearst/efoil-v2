@@ -352,7 +352,8 @@ cord before the groove exists is how you end up at 10%.
 **Uses:** `5052 1/8in x 12 x 24, 2-pack - module floors` ·
 `Sikaflex-292 marine structural PU` · `Sika Aktivator-PRO 250 ml + daubers` ·
 `2 mm glass beads or shim wire, bond-line control` ·
-`M4 x 8 brass heat-set insert, 100 pc` · `Neoprene sheet 1/8in, module + mast gaskets` ·
+`M4 x 8 brass heat-set insert, 100 pc` · `M5 x 10 brass heat-set insert, 50 pc` ·
+`Neoprene sheet 1/8in, module + mast gaskets` ·
 `Gebildet PG11 gland, M18x1.5, 30 pk` · `M12 IP68 membrane vent plug` ·
 `M12 IP68 momentary panel button` · `JST GH 1.25 mm pigtail pair, BMS switch` · `SP17 2-pin IP68 flange receptacle` ·
 `M3 heat-set insert kit, 361 pc` · `M3 x 8 A4 stainless, 10 pk`
@@ -365,6 +366,11 @@ line sees 299% shear strain and tears itself apart.
 
 Heat-set the lid inserts into the printed flange. The M3 kit's screws are
 plain steel — use the A4 ones for the port flange, which lives in the wet.
+
+**Four M5 inserts go in at the same time**, two into each lift-handle pad on
+the aft wall, 18 mm apart. Do them while the shell is on the bench and open —
+they are 8 mm-proud pads on the outside of a box you are about to seal, and
+the soldering iron wants room.
 
 ### Step 15. Leak-test the module empty
 
@@ -503,14 +509,21 @@ give back.
 
 **Blocks on:** steps 18, 21
 **Uses:** `Kayak/board grab handle, 2 pk + screws` · `M6 x 16 A4 button head, 10 pk` ·
-`M6 heat-set insert, strap mounts` ·
+`M5 x 10 A4 button head, 20 pk` ·
 `FCS-pattern leash plug` · `Coiled ankle leash` ·
 `M4 x 12 A4 socket cap DIN912, 10 pk` · `M4 A4 washer, 316, 100 pk`
 
 **Three handles a board, all the same part:** two on the rails into the 6061
 strip, one on the electronics module. Drill the handle's reinforcing holes to
-suit M6 on the rail pair rather than using the supplied screws — the module
-handle can use them as supplied.
+suit rather than using the supplied screws anywhere: **M6** into the tapped
+6061 on the rails, **M5** into the module's heat-set pads. The supplied screws
+are self-tappers, and a self-tapper in a brass insert is a stripped insert.
+
+**Measure the handle's tabs before you drill the module one.** The rail pair
+is on 110 mm centres and has room either side; the module's pads are on 70 mm
+and cannot move — outboard of them is 5 mm of clearance to the gland nuts. If
+the bought handle's tabs are much wider than 70 mm, put a webbing loop through
+the same two pads on the module and keep the bought handles for the rails.
 
 > **Still open: what holds the module down in the cavity?** Its 18 bolts hold
 > its own lid on, not the module into the board. A 14 kg module loose in a

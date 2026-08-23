@@ -153,8 +153,6 @@ LINKS = {
         ("B0CJFMMF58", 15.99, "M5 x 25mm Full Thread Cap Head Screws DIN 912 A4 Pack of 20"),
     "M5 x 250 threaded rod, 4 pk (cut to ~171 mm)":
         ("B0CMZR9L1Y", 9.99, "4pcs M5 x 250mm Fully Threaded Rod 304 Stainless"),
-    "M6 heat-set insert, strap mounts":
-        ("B0DNJNLP95", 9.99, "Yaocom 100 Pcs M6 Threaded Inserts M6 x D8 x L8 Heat Set"),
     "M6 x 16 A4 button head, 10 pk":
         ("B07DVRLQTK", 8.06, "M6 x 16mm Button Head Screws ISO 7380 Marine Grade SS 10 Pack"),
     "M6 x 20 fender washer, 100 pk":
@@ -336,7 +334,6 @@ LINK_VENDOR = {
     "M5 penny washer O15 DIN9021, 150 pk": "Amazon",
     "M5 x 25 A4 socket cap, 20 pk": "Amazon",
     "M5 x 250 threaded rod, 4 pk (cut to ~171 mm)": "Amazon",
-    "M6 heat-set insert, strap mounts": "Amazon",
     "M6 x 16 A4 button head, 10 pk": "Amazon",
     "M6 x 20 fender washer, 100 pk": "Amazon",
     "M8 316 washer, prop nut": "Amazon",

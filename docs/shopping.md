@@ -6,17 +6,17 @@ Grouped by where you buy it rather than by what it does, because that is the ord
 
 | Supplier | Lines | $ |
 |---|---:|---:|
-| Amazon | 110 | $3,548.97 |
+| Amazon | 111 | $3,558.98 |
 | Gong | 1 | $1,404.00 |
 | Flipsky | 3 | $1,038.00 |
-| Not a purchase - tax and freight | 3 | $832.06 |
+| Not a purchase - tax and freight | 3 | $832.66 |
 | BatteryHookup | 2 | $297.50 |
 | Fiberglass Supply | 3 | $253.38 |
 | Home Depot / hardware | 4 | $169.16 |
 | Maker Shop Boise | 1 | $150.00 |
 | Speedy Metals | 1 | $88.92 |
 | Easy Composites | 1 | $52.00 |
-| **TOTAL** | | **$7,833.99** |
+| **TOTAL** | | **$7,844.60** |
 
 ## Amazon
 
@@ -57,7 +57,7 @@ https://www.amazon.com
 | [M5 x 25 A4 socket cap, 20 pk](https://www.amazon.com/dp/B0CJFMMF58) | 2 | pk | $31.98 | **verified** | 24 needed. A4/316 - every cheaper listing is A2/304, which pits in salt water |
 | [IP68 M25 inline housing, 5 pk](https://www.amazon.com/dp/B0DPKM5HF7) | 2 | pk | $31.96 | **verified** | 3 per board, one per phase, 2 spare. M25 bodies take 4-14 mm cable against our 6.5 mm 8 AWG, so the size class |
 | [Coiled ankle leash](https://www.amazon.com/dp/B096VL3DHV) | 2 | ea | $29.98 | **verified** | you trust the remote failsafe; this is so the board stays with you |
-| [Kayak/board grab handle, 2 pk + screws](https://www.amazon.com/dp/B0FBW3XT5D) | 3 | pk | $29.97 | **verified** | 3 a board: 2 on the rails into the 6061 strip, 1 on the module. Two reinforcing holes each end - drill to suit |
+| [Kayak/board grab handle, 2 pk + screws](https://www.amazon.com/dp/B0FBW3XT5D) | 3 | pk | $29.97 | **verified** | 3 a board: 2 on the rails into the 6061 strip, 1 on the module. Two reinforcing holes each end - drill the tab |
 | [Sikaflex-292 marine structural PU](https://www.amazon.com/dp/B008F8VYMM) | 1 | tube | $28.99 | **verified** | ~6-8 MPa vs 4200's ~2. Fillet BOTH sides of the joint - on a flexible bond the fillets are what stop it peelin |
 | [Sika Aktivator-PRO 250 ml + daubers](https://www.amazon.com/dp/B0D9KTLC1M) | 1 | ea | $28.95 | **verified** | abrade + solvent wipe + activate the 5052; scuff the ASA. Aktivator-205 is DISCONTINUED - Aktivator-PRO replac |
 | [Nitrile gloves 6 mil, 100 pk](https://www.amazon.com/dp/B0C3SSXL4K) | 2 | box | $28.88 | **verified** |  |
@@ -102,17 +102,18 @@ https://www.amazon.com
 | [Roll pin assortment M1.5-M6, 220 pc](https://www.amazon.com/dp/B09MPWY8L4) | 1 | kit | $12.99 | **verified** | 4 needed. An ASSORTMENT on purpose: the note says MEASURE the shaft cross-hole rather than trust the 4 mm figu |
 | [Dowel pins + drill, two-sided registration](https://www.amazon.com/dp/B0GS2R3F5G) | 1 | set | $12.99 | estimate |  |
 | [Vacuum hose + hose clamps](https://www.amazon.com/dp/B0FH52FT4G) | 1 | set | $11.61 | estimate | 1/2 in tubing pump-to-bag plus clamps; the other half of what the deleted kit was actually carrying |
+| M5 x 10 brass heat-set insert, 50 pc | 1 | pk | $11.00 | estimate | 8 needed, module handle pads; 6.4 mm printed pilot, same as the model's cut |
 | [M8 x 30 A4 mast bolts, 10 pk - spares](https://www.amazon.com/dp/B07HZKSP72) | 1 | pk | $10.82 | **verified** | Gong supplies its own; these are spares. Only listing confirming marine A4/316; head is ISO 7380 button, not s |
 | [Vacuum gauge, -30 inHg, 1/4 NPT, glycerin](https://www.amazon.com/dp/B00VQSOZFQ) | 1 | ea | $10.50 | **verified** | reads the BAG, not the pump - tee it in at the bag end. The regulator sets the level; this is how you know it  |
 | [M4 x 8 brass heat-set insert, 100 pc](https://www.amazon.com/dp/B0D9QHBG6G) | 1 | pack | $9.99 | estimate | 36 needed; 5.6 mm printed pilot |
 | [Gebildet PG11 gland, M18x1.5, 30 pk](https://www.amazon.com/dp/B0B8NJR62L) | 1 | pk | $9.99 | **verified** | your listing: M18x1.5 thread (matches the 18.5 hole) and 5-10 mm cable, against our 6.5 mm 8 AWG. 6 needed of  |
 | [Thermal pad 1 mm non-conductive, 100 x 100](https://www.amazon.com/dp/B0GTLRJJGT) | 1 | ea | $9.99 | **verified** | 15.8 W/mK. One 100 x 100 sheet cuts both boards' baseplates. The ESC PCB face goes DOWN onto the floor, same a |
 | [Silicone grease for the seal cord](https://www.amazon.com/dp/B0BN82MJVK) | 1 | tube | $9.99 | estimate | stops the cord bonding to the lid in storage |
-| [M6 heat-set insert, strap mounts](https://www.amazon.com/dp/B0DNJNLP95) | 1 | pk | $9.99 | **verified** | not supplied with the screws above |
 | [Fish tape / pull cord for the mast conduit](https://www.amazon.com/dp/B0FGCY7XPS) | 1 | ea | $9.99 | estimate |  |
 | [Plastic sheeting + masking tape, bench protection](https://www.amazon.com/dp/B0GF2BWRC6) | 1 | set | $9.99 | estimate |  |
 | [M6 x 20 fender washer, 100 pk](https://www.amazon.com/dp/B0DPMPJW4H) | 1 | pk | $9.49 | **verified** | 8 needed |
 | [M5 A4 hex nut DIN934, 50 pk - CAPTIVE in the ring](https://www.amazon.com/dp/B084HLMN7B) | 1 | pk | $9.19 | **verified** | 34 needed. Dropped in at a print pause at Z=6.0; steel thread, so a hatch that comes off every ride never wear |
+| M5 x 10 A4 button head, 20 pk | 1 | pk | $9.00 | estimate | 8 needed. 10 mm: 8 mm of pad plus the handle tab, and the insert is 10 deep - do not reach for the M5 x 25s in |
 | [Dielectric grease, terminals](https://www.amazon.com/dp/B0D6R543V2) | 1 | tube | $8.99 | estimate |  |
 | [M5 nyloc nut 316, 150 pk](https://www.amazon.com/dp/B0BP2T6Z4Q) | 1 | pk | $8.99 | **verified** | a separate pack from the washers above - they do not come together |
 | [M8 nyloc nut 316, 30 pk - prop nut](https://www.amazon.com/dp/B0BP2R3YHY) | 1 | pk | $8.99 | **verified** | 2 needed. 316 not 304 - this one is permanently submerged. WASHER NOT INCLUDED, see below |
@@ -121,7 +122,7 @@ https://www.amazon.com
 | [M8 x 1.25 BOTTOMING tap, 4-flute](https://www.amazon.com/dp/B00DLCTUDM) | 1 | ea | $8.78 | **verified** | the one that actually matters - blind at 10 mm in a 12.7 plate, and the taper tap in the set above cannot reac |
 | [M8 x 1.25 tap + 6.8 mm drill set](https://www.amazon.com/dp/B0GD1YF5PL) | 1 | set | $8.63 | **verified** | 8 blind holes |
 | [Kapton tape, pack insulation](https://www.amazon.com/dp/B006ZFQNT6) | 1 | roll | $8.25 | estimate |  |
-| [M6 x 16 A4 button head, 10 pk](https://www.amazon.com/dp/B07DVRLQTK) | 1 | pk | $8.06 | **verified** | 8 needed, strap mounts. The M6 THREADED INSERT IS NOT INCLUDED - separate line below |
+| [M6 x 16 A4 button head, 10 pk](https://www.amazon.com/dp/B07DVRLQTK) | 1 | pk | $8.06 | **verified** | 8 needed - 2 per rail handle, tapped straight into the 6061 strip |
 | [2.5 mm straight cutter - fallback](https://www.amazon.com/dp/B0GWSZ2KV2) | 1 | ea | $7.99 | estimate | only if you would rather cut the groove open than sand down to a proud filler strip. Undersize in a 4 mm groov |
 | [M5 penny washer O15 DIN9021, 150 pk](https://www.amazon.com/dp/B0G58KQN6L) | 1 | pk | $7.99 | **verified** | 34 needed. DIN9021 is what confirms the large 15 mm OD. Goes in at the SAME print pause as the nut, underneath |
 | [M8 316 washer, prop nut](https://www.amazon.com/dp/B0DDGRXHT7) | 1 | pk | $7.69 | **verified** | only 2 needed; sold in 10s |
@@ -161,7 +162,7 @@ Some Flipsky appears on Amazon but the range is thin and usually dearer. Buy dir
 
 | Item | Qty | Unit | Ext | Price | Note |
 |---|---:|---|---:|---|---|
-| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $443.43 | **verified** |  |
+| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $444.03 | **verified** |  |
 | Gong shipping to Idaho, ONE order, both foils | 1 | order | $268.63 | **verified** | quoted at checkout for 2 x XL Alu setups. PER ORDER, not per foil - ordering the two separately would roughly  |
 | Shipping - Divinycell, 6061 plate, VR20 | 1 | allow | $120.00 | estimate | STILL THE BIGGEST UNVERIFIED LINE - it wants three real carts to settle. Was $220 when it covered G10 sheet an |
 

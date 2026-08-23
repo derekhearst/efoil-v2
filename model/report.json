@@ -204,7 +204,7 @@
  "handle_clear_of_cavity_mm": 60.0,
  "handle_clear_of_seam_mm": 21.0,
  "handle_facet_depth_mm": 2.54,
- "handle_mount": "webbing strap on 2 x M6 at 110 mm centres into a 12.7 mm 6061 strip set TANGENT to the rail under the skin - NO recess, 25 mm of strap slack is the finger clearance",
+ "handle_mount": "bought kayak grab handle on 2 x M6 at 110 mm centres, TAPPED into a 12.7 mm 6061 strip set TANGENT to the rail under the skin - NO recess, so the 25 mm the handle stands proud at mid-span is the whole finger clearance",
  "handle_plate_g10_below_insert_mm": 4.7,
  "handle_plate_proud_mm": -0.76,
  "handle_rail_slope_deg": 32.5,
@@ -215,7 +215,7 @@
  "handle_to_gland_y_mm": 5.5,
  "handle_to_ring_mm": 16.3,
  "handle_untilted_error_mm": 7.01,
- "handles": "2 x surface-mounted rail strap, port and starboard beside the hatch",
+ "handles": "2 x surface-mounted rail handle, port and starboard beside the hatch, + 1 on the module - one bought part in all three places",
  "hardpoint_material": "H-80 dense PVC - 1/2 and 3/4 in are H-80 only. Leash plug bond is 1.4x, the thinnest margin on the board.",
  "hatch_bolt_from_interior_mm": 22.0,
  "hatch_bolt_len_mm": 25,
@@ -361,6 +361,10 @@
  "module_floor_ledge_clear_mm": 9.0,
  "module_gasket_squeeze_pct": 33,
  "module_gasket_to_bolt_mm": 5.5,
+ "module_handle_bolt_pattern_mm": [
+  18.0,
+  70.0
+ ],
  "module_handle_insert_backing_mm": 2.0,
  "module_insert_bores": 18,
  "module_insert_to_wall_mm": 3.7,
@@ -368,7 +372,7 @@
  "module_is_sealed": true,
  "module_lid_bolt_pitch_mm": 80.8,
  "module_lid_bolts": 18,
- "module_lift_handle": "2 printed lugs on the AFT wall at y +/-35, 8 mm proud, 2 x M5 heat-set each, for a 25 mm webbing handle bolted on with fender washers. One pad per print piece, so the webbing crosses the seam and no rigid part does. Aft because the module butts the forward cavity wall - this is the only reachable face",
+ "module_lift_handle": "2 printed pads on the AFT wall at y +/-35, 8 mm proud, 2 x M5 heat-set each at 18 mm centres, for the bought kayak grab handle - drilled to suit, one pad per print piece, so only the handle crosses the seam. Aft because the module butts the forward cavity wall - this is the only reachable face",
  "module_piece_bbox_mm": [
   236,
   156
@@ -456,6 +460,7 @@
  "prop_clear_of_stab": true,
  "prop_to_fuselage_mm": 21.5,
  "prop_to_stab_mm": 81.8,
+ "rail_handle_bolt_pattern_mm": 110.0,
  "rebate_wall_flat_mm": 6.7,
  "rebate_wall_height_mm": 26.7,
  "rebate_width_mm": 34.0,
