@@ -352,7 +352,7 @@ cord before the groove exists is how you end up at 10%.
 **Uses:** `5052 1/8in x 12 x 24, 2-pack - module floors` ·
 `Sikaflex-292 marine structural PU` · `Sika Aktivator-PRO 250 ml + daubers` ·
 `2 mm glass beads or shim wire, bond-line control` ·
-`M4 x 8 brass heat-set insert, 100 pc` · `M5 x 10 brass heat-set insert, 50 pc` ·
+`M4 x 8 brass heat-set insert, 100 pc` · `M6 x 12.7 brass heat-set insert, 50 pc` ·
 `Closed-cell sponge neoprene 1/8in, module lid gasket` · `Hollow punch set 1/8-1/2in + cutting mat` ·
 `Gebildet PG11 gland, M18x1.5, 30 pk` · `M12 IP68 membrane vent plug` ·
 `M12 IP68 momentary panel button` · `JST GH 1.25 mm pigtail pair, BMS switch` · `SP17 2-pin IP68 flange receptacle` ·
@@ -509,7 +509,7 @@ give back.
 
 **Blocks on:** steps 18, 21
 **Uses:** `Kayak/board grab handle, 2 pk + screws` · `M6 x 16 A4 button head, 10 pk` ·
-`M5 x 10 A4 button head, 20 pk` ·
+`M6 x 16 A4 button head, 10 pk` ·
 `Leash plug 30 x 12.5, stainless pin, 2 pk` · `Coiled ankle leash` ·
 `M4 x 12 A4 socket cap DIN912, 10 pk` · `M4 A4 washer, 316, 100 pk`
 

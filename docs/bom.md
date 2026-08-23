@@ -146,11 +146,10 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | [Coiled ankle leash](https://www.amazon.com/dp/B096VL3DHV) | 2 | ea | $14.99 | $29.98 | verified | you trust the remote failsafe; this is so the board stays with you |
 | [Leash plug 30 x 12.5, stainless pin, 2 pk](https://www.amazon.com/dp/B0C6XLK8L9) | 1 | pk | $6.99 | $6.99 | verified | the pack does both boards |
 | [Kayak/board grab handle, 2 pk + screws](https://www.amazon.com/dp/B0FBW3XT5D) | 3 | pk | $9.99 | $29.97 | verified | 3 a board: 2 on the rails into the 6061 strip, 1 on the module. ONE HOLE PER STRAP END - so one bolt per pad, M6 on the rails and M5 on the module. Open the moulded hole out to suit; do not use the supplied self-tappers, everything here is threaded |
-| [M6 x 16 A4 button head, 10 pk](https://www.amazon.com/dp/B07DVRLQTK) | 1 | pk | $8.06 | $8.06 | verified | 8 needed - 2 per rail handle, tapped straight into the 6061 strip. Fender washer under every one: the load lands on WEBBING, and a button head's edge is what tears it |
+| [M6 x 16 A4 button head, 10 pk](https://www.amazon.com/dp/B07DVRLQTK) | 1 | pk | $8.06 | $8.06 | verified | 12 needed - 2 per rail handle into the 6061 strip, 2 into the module pads. Fender washer under every one: the load lands on WEBBING, and a button head's edge is what tears it |
 | M6 washers for the rail handles | 0 | off | $0.00 | $0.00 | on hand | 8 off the M6 x 20 fender washer pack in section 10b, not a second purchase |
-| M5 x 10 brass heat-set insert, 50 pc | 1 | pk | $11.00 | $11.00 | estimate | 4 needed, module handle pads; 6.4 mm printed pilot, same as the model's cut |
-| M5 x 10 A4 button head, 20 pk | 1 | pk | $9.00 | $9.00 | estimate | 4 needed. LOCTITE BOTH: with one bolt an end, two fasteners carry the whole 13.2 kg module and the pedestal pivots on them every time it is lifted. 10 mm: 8 mm of pad plus the handle tab, and the insert is 10 deep - do not reach for the M5 x 25s in section 6, they bottom out. Penny washer under each, off the section 6 pack - same reason as the rails |
-| **subtotal** | | | | **$160.16** | | |
+| M6 x 12.7 brass heat-set insert, 50 pc | 1 | pk | $12.00 | $12.00 | estimate | 4 needed, module handle pads; 8.2 mm printed pilot, same as the model's cut. LOCTITE the bolts - the pedestal pivots on them every time the module is lifted |
+| **subtotal** | | | | **$152.16** | | |
 
 ## 9c Pack wiring
 
@@ -245,31 +244,31 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | Item | Qty | Unit | Unit $ | Ext $ | | Note |
 |---|---:|---|---:|---:|---|---|
 | Shipping - Divinycell, 6061 plate, VR20 | 1 | allow | $120.00 | $120.00 | estimate | STILL THE BIGGEST UNVERIFIED LINE - it wants three real carts to settle. Was $220 when it covered G10 sheet and hazmat epoxy, both of which are now out of the build entirely |
-| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $442.90 | $442.90 | verified |  |
-| **subtotal** | | | | **$562.90** | | |
+| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $442.42 | $442.42 | verified |  |
+| **subtotal** | | | | **$562.42** | | |
 
 ## Totals
 
 | | |
 |---|---:|
-| **Grand total, 2 boards** | **$7,824.62** |
-| Per board | $3,912.31 |
-| Of which verified | $7,299.42  (93%) |
-| Of which estimated | $525.20 |
+| **Grand total, 2 boards** | **$7,816.14** |
+| Per board | $3,908.07 |
+| Of which verified | $7,298.94  (93%) |
+| Of which estimated | $517.20 |
 | Linked to a real listing | 125 lines |
-| Priced but NOT linked | 2 lines, $20.00 |
-| Not linkable, but MEASURED (freight quotes) | 2 lines, $711.53 |
+| Priced but NOT linked | 1 lines, $12.00 |
+| Not linkable, but MEASURED (freight quotes) | 2 lines, $711.05 |
 | Not linkable and still estimated | 1 lines, $120.00 |
 
 ## What is a board, and what is a shop
 
-Some of the total above is not the cost of a board at all - it is tools, jigs and templates that exist afterwards and do not repeat. Splitting them out is the difference between "a board costs $3,912" and "a board costs $3,522 and I now own a vacuum rig, a crimper and a full template set".
+Some of the total above is not the cost of a board at all - it is tools, jigs and templates that exist afterwards and do not repeat. Splitting them out is the difference between "a board costs $3,908" and "a board costs $3,517 and I now own a vacuum rig, a crimper and a full template set".
 
 | | |
 |---|---:|
 | One-time tooling (incl. its share of tax) | $781.41 |
-| **Marginal cost of a board** | **$3,521.60** |
-| Cost of the NEXT board after these 2 | $3,521.60 |
+| **Marginal cost of a board** | **$3,517.36** |
+| Cost of the NEXT board after these 2 | $3,517.36 |
 
 | One-time item | $ |
 |---|---:|

@@ -1070,10 +1070,17 @@ def build():
     # strap mounts" line under this one for $9.99, left over from when the
     # strip was G10; a heat-set insert melts into plastic and there is no
     # plastic here. Deleted, and this note no longer sends you looking for it.
+    # ONE BOLT SIZE FOR ALL THREE HANDLES. With the module pads on M6 too,
+    # the same 16 mm button head does the lot: 1.5 of washer plus ~5 of strap
+    # leaves 9.5 mm of engagement, into 12.7 of tapped 6061 on the rails and
+    # into a 12.7 mm insert on the module. Long enough to hold, short enough
+    # not to bottom in either.
     add("9b Small but essential", "M6 x 16 A4 button head, 10 pk",
-        1, "pk", 8.06, OK, str(4 * N) + " needed - 2 per rail handle, tapped "
-        "straight into the 6061 strip. Fender washer under every one: the "
-        "load lands on WEBBING, and a button head's edge is what tears it")
+        1, "pk", 8.06, OK,
+        str((4 + M["mod_handle_bolts"]) * N) + " needed - 2 per rail handle "
+        "into the 6061 strip, " + str(M["mod_handle_bolts"]) + " into the "
+        "module pads. Fender washer under every one: the load lands on "
+        "WEBBING, and a button head's edge is what tears it")
     # Derek asked for washers. They were already on the list - in the
     # drivetrain section - and they are the right part here: a wide face on a
     # strap rather than a small head cutting into it.
@@ -1087,20 +1094,17 @@ def build():
     # because the module handle was a webbing loop when this section was
     # written and a loop needs no fasteners. The M4 kit in section 7 is the
     # lid flange's and is the wrong size.
-    # HALVED when the strap turned out to have one hole an end, not two.
+    # M6, not M5, and HALVED - the strap has one hole an end, not two.
     # Counted from the model rather than typed here, so it cannot drift back.
-    add("9b Small but essential", "M5 x 10 brass heat-set insert, 50 pc",
-        1, "pk", 11.00, EST,
+    # Bolt size is free (the strap gets drilled either way), so it went where
+    # margin cannot be bought with redundancy instead: two fasteners carry
+    # the whole 13.2 kg module and a single-hole strap end leaves no way to
+    # add a third. Bearing area 1.6x, margin 6.2 -> 10.1.
+    add("9b Small but essential", "M6 x 12.7 brass heat-set insert, 50 pc",
+        1, "pk", 12.00, EST,
         str(M["mod_handle_bolts"] * N) + " needed, module handle pads; "
-        "6.4 mm printed pilot, same as the model's cut")
-    add("9b Small but essential", "M5 x 10 A4 button head, 20 pk",
-        1, "pk", 9.00, EST,
-        str(M["mod_handle_bolts"] * N) + " needed. LOCTITE BOTH: with one "
-        "bolt an end, two fasteners carry the whole 13.2 kg module and the "
-        "pedestal pivots on them every time it is lifted. 10 mm: 8 mm of pad plus "
-        "the handle tab, and the insert is 10 deep - do not reach for the "
-        "M5 x 25s in section 6, they bottom out. Penny washer under each, "
-        "off the section 6 pack - same reason as the rails")
+        "8.2 mm printed pilot, same as the model's cut. LOCTITE the bolts - "
+        "the pedestal pivots on them every time the module is lifted")
 
 
     # ---------------------------------------------- 9c every joint in the pack

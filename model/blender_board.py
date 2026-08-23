@@ -310,8 +310,18 @@ MOD_HANDLE_W, MOD_HANDLE_H = 28.0, 34.0
 # you then have to thread something through and hope it does not saw on the
 # edge; a pad with two threaded holes is just somewhere to BOLT a cloth handle,
 # which is all this ever needed. Same answer as the board's rail handles.
-MOD_HANDLE_PROUD = 8.0             # pad + 4 mm wall = 12, enough for a M5 x 10
-MOD_HANDLE_INS_D, MOD_HANDLE_INS_L = 6.4, 10.0   # M5 heat-set, printed pilot
+# M6, NOT M5. Bolt size is a free choice - the strap gets drilled to suit
+# either way - so it should be picked on the joint, and this is the one place
+# on the module where margin cannot be bought with redundancy instead: two
+# fasteners carry the whole 13.2 kg, and a single-hole strap end leaves no
+# way to add a third. Insert bearing area goes from 6.4 x 10 to 8.0 x 12.7,
+# about 1.6x, which is the cheapest strength on the board.
+# PROUD FOLLOWS THE INSERT. 12 mm of pad plus the 4 mm wall leaves 3.3 mm of
+# ASA behind a 12.7 mm insert, and that backing is the only thing between the
+# insert and the inside of a SEALED box - not a place to run thin. Costs 4 mm
+# of wire-bay clearance, which had 60.
+MOD_HANDLE_PROUD = 12.0
+MOD_HANDLE_INS_D, MOD_HANDLE_INS_L = 8.2, 12.7   # M6 heat-set, printed pilot
 # ONE BOLT PER PAD. The strap end only has one hole - Derek checked the part
 # - so the two-bolts-stacked-up-the-pad pattern could not be built. That is
 # not just a hole count, it changes the joint:
@@ -4839,9 +4849,12 @@ def build():
     _bolts = 2 * MOD_HANDLE_BOLTS_PER_PAD
     _shock = 2.0                            # snatched out of a wet cavity
     rep["module_handle_bolt_N"] = round(_mod_kg * 9.81 * _shock / _bolts)
-    # M5 brass heat-set in printed ASA, conservative published figure
+    # Brass heat-set in printed ASA, conservative, scaled by bearing area -
+    # the insert works in SHEAR here, so it is D x L that matters
+    _cap = 800.0 * (MOD_HANDLE_INS_D * MOD_HANDLE_INS_L) / (6.4 * 10.0)
+    rep["module_handle_insert_cap_N"] = round(_cap)
     rep["module_handle_insert_margin"] = round(
-        800.0 / max(1.0, rep["module_handle_bolt_N"]), 1)
+        _cap / max(1.0, rep["module_handle_bolt_N"]), 1)
     rep["module_handle_load_is"] = (
         "SHEAR, not pull-out - a single-hole strap end pins and rotates until "
         "its line of action goes through the bolt, so there is no prying "
