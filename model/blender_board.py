@@ -310,7 +310,25 @@ MOD_DT_NECK, MOD_DT_HEAD, MOD_DT_DEPTH = 5.0, 9.0, 10.0
 # handle has to live with. Outboard is the gland nuts at 5 mm; inboard is the
 # conduit and the seam. The handle gets drilled to this pattern - it does not
 # get to set it.
-MOD_HANDLE_Y = 35.0                # pad centres, either side of the seam
+# NOT SYMMETRIC, and it should never have been. Derek: "theres plenty of
+# space if the holes are spaced out 7 inches ... it doesnt need to take up
+# space evenly."
+#
+# The +y pad is PINNED, and pinned hard: 35.0 is the only place it fits,
+# between the conduit 16 mm off centre and the gland row starting at 54.5.
+# Symmetry then forced the other pad to -35 and a 70 mm span, which made the
+# 178 mm strap arch 53 mm and very nearly foul the back of the wire bay.
+#
+# Nothing required the second pad to mirror the first. The port half of the
+# aft wall carries nothing at all - just pack behind it - so it goes at
+# -117.6, the span becomes the 152.6 the strap is designed for, and the arch
+# drops 53 -> 38 mm, which is hand room rather than a floppy loop.
+#
+# IT ALSO BALANCES BETTER. The handle's centre lands at -41.3 and the pack's
+# CG is at -46.0: lifting an off-centre mass by an off-centre handle hangs
+# level, where a centred handle would have tilted it.
+MOD_HANDLE_Y = 35.0                # the pinned pad: conduit inboard, glands
+                                   # outboard, ~0.5 mm of choice between them
 MOD_HANDLE_W, MOD_HANDLE_H = 28.0, 34.0
 # FLAT PADS, not lugs with slots through them. A lug with a hole is a fitting
 # you then have to thread something through and hope it does not saw on the
@@ -846,12 +864,17 @@ CONDUIT_X_OFF = 0.0                # from MAST_X, on the mast's chord centreline
 # ring that measures 99.96% in the saved file. That check is demoted now, so
 # the number it blocked can have its say again.
 #
-# It earns the 7 mm here on its own account. The module's handle is a 178 mm
-# strap on a 70 mm span, so it arches 53.2 mm, and the arch bulges AFT into
-# this bay - 12 mm of pad plus 53.2 of loop is 65.2. In a 68 mm bay that is
-# 2.8 mm of daylight behind a strap you have to get a hand through. At 75 it
-# is 9.8. The span cannot move to fix it: the conduit is 5 mm inboard of
-# those pads and the gland row 5.5 mm outboard.
+# IT NO LONGER NEEDS THE STRAP TO JUSTIFY IT, and the commit that raised it
+# said it did. At the time the handle was a 178 mm strap forced onto a 70 mm
+# span, arching 53.2 mm into this bay - 65.2 of pad and loop in 68 mm. Making
+# the pads ASYMMETRIC gave the strap its designed 152.6 span, the arch fell to
+# 38, and that clash went away: 50 into the bay, which 68 would have held.
+#
+# So this stands on the bay being genuinely crowded - conduit gland, three
+# module glands, button, charge port and a handle you put a hand through,
+# with fittings protruding 40 mm - and on it being what Derek asked for
+# before a bad check refused it. The 7 mm is available if the board wants it
+# back; nothing depends on it any more.
 WIRE_BAY_LEN = 75.0                # module aft wall to cavity aft wall
 # 62, not 48. At 48 the tube's LOWER edge sat at z=32 - 2 mm above the cavity
 # floor and buried in the GLASS_R=10 floor fillet, so the gland had no flat to
@@ -4693,8 +4716,9 @@ def build():
     # the board's rails, and it bolts on. This used to be a slotted lug for a
     # webbing loop and the comments outlived the decision by several commits.
     hz = (wall_z0 + wall_top) / 2.0
-    for sy in (-1, 1):
-        hy = sy * MOD_HANDLE_Y
+    _hy_pin = MOD_HANDLE_Y
+    _hy_far = MOD_HANDLE_Y - HANDLE_BOLT_DX
+    for sy, hy in ((1, _hy_pin), (-1, _hy_far)):
         sfx = 'P' if sy > 0 else 'S'
         bs = box(f"V2_Mod_HandleBoss{sfx}",
                  ex0 - MOD_HANDLE_PROUD, ex0, hy - MOD_HANDLE_W / 2,
@@ -4715,12 +4739,16 @@ def build():
     # instead of 152.6 - so it arches further, and the arch has to live
     # somewhere. It bulges AFT into the wire bay, which is the one direction
     # nothing else is using, but it is not free: see the check below.
-    _arch = math.sqrt(max(0.0, 3 * (2 * MOD_HANDLE_Y)
-                          * (HANDLE_STRAP_L - 2 * MOD_HANDLE_Y) / 8))
+    _span = HANDLE_BOLT_DX
+    _arch = math.sqrt(max(0.0, 3 * _span * (HANDLE_STRAP_L - _span) / 8))
     strap("V2_Mod_HandleStrap",
-          (ex0 - MOD_HANDLE_PROUD, -MOD_HANDLE_Y, hz),
-          (ex0 - MOD_HANDLE_PROUD, MOD_HANDLE_Y, hz),
+          (ex0 - MOD_HANDLE_PROUD, _hy_far, hz),
+          (ex0 - MOD_HANDLE_PROUD, _hy_pin, hz),
           (-1.0, 0.0, 0.0), _arch, coll, bom_mat("seal"))
+    rep["module_handle_y_mm"] = [round(_hy_far, 1), round(_hy_pin, 1)]
+    rep["module_handle_centre_mm"] = round((_hy_far + _hy_pin) / 2, 1)
+    rep["module_handle_to_wall_mm"] = round(
+        (iy1 - iy0) / 2 + _hy_far - MOD_HANDLE_W / 2, 1)
     rep["module_strap_arch_mm"] = round(_arch, 1)
     rep["module_strap_into_bay_mm"] = round(MOD_HANDLE_PROUD + _arch, 1)
     rep["module_strap_bay_clear_mm"] = round(
@@ -5433,6 +5461,11 @@ def build():
                                   and 62.0 + CHG_W < CAV_WIDTH / 2)
     rep["bay_items_fit_length"] = max(BTN_D, CHG_L) + 8.0 < bay_l
     rep["pack_offset_mm"] = round(iy_c, 1)
+    # WHERE THE AIR ACTUALLY IS. Asked whether the gap is in x or in y, the
+    # answer should be four numbers, not an opinion.
+    rep["pack_clearance_mm"] = {
+        "aft": round(px0 - ix0, 1), "fwd": round(ix1 - pack_x1, 1),
+        "stbd": round(pack_y0 - iy0, 1), "port": round(iy1 - pack_y1, 1)}
     # It DROPS IN now, so what has to be true is that it fits the opening in
     # BOTH axes - not that there is height under the flange to slide it
     # sideways. Those are different checks, and the old one would happily pass
@@ -5561,7 +5594,10 @@ def build():
     # different people are going to need it: whoever prints the shell and
     # whoever puts a drill through a $10 rubber handle. (per pad, between pads)
     rep["module_handle_bolts_per_pad"] = MOD_HANDLE_BOLTS_PER_PAD
-    rep["module_handle_bolt_pattern_mm"] = 2 * MOD_HANDLE_Y
+    rep["module_handle_bolt_pattern_mm"] = HANDLE_BOLT_DX
+    # off-centre handle over an off-centre pack: how level it hangs
+    rep["module_handle_vs_pack_cg_mm"] = round(
+        rep["module_handle_centre_mm"] - rep["pack_offset_mm"], 1)
     rep["module_handle_insert_backing_mm"] = round(
         MOD_HANDLE_PROUD + ENC_WALL - MOD_HANDLE_INS_L, 1)
     # It projects into the BAY now, not the side gap, so that is what to check.
@@ -5573,6 +5609,7 @@ def build():
     # stale the moment the glands were resized to their real PG11 thread.
     rep["handle_to_gland_y_mm"] = round(
         rep["gland_y_range_mm"][0] - (MOD_HANDLE_Y + MOD_HANDLE_W / 2), 1)
+    rep["handle_far_pad_to_wall_mm"] = rep.get("module_handle_to_wall_mm", 99)
     rep["handle_clear_of_seam_mm"] = round(
         MOD_HANDLE_Y - MOD_HANDLE_W / 2, 1)
     rep["module_seam_band_mm"] = mod_band
