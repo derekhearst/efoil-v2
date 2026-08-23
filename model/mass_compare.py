@@ -40,8 +40,13 @@ DENS = {
     "neoprene": 1250.0,
     "cell":     None,    # from V1's own doc, not from volume
 }
-PRINT_INFILL = 0.55      # printed walls are not solid. V1's own doc gives
-                         # 233 g a corner piece; this is tuned to land on it.
+# CALIBRATED, not guessed - and 0.55 was badly wrong. V1's four battery
+# enclosure walls measure 0.907 L in the export and its own doc weighs them
+# at 233 g a piece, 932 g the set. That is 1027 kg/m3 effective against ASA's
+# 1070: the walls are drawn as the shell that actually gets printed, so they
+# are very nearly SOLID and there is no infill discount to take. At 0.55 the
+# comparison was undercounting V1's printed parts by 0.66 kg.
+PRINT_INFILL = 0.96
 
 # ------------------------------------------------------------------ laminate
 # V1's schedule, straight from efoil-1-board-design.md:
@@ -53,9 +58,12 @@ PRINT_INFILL = 0.55      # printed walls are not solid. V1's own doc gives
 # worse than V2's bagged 2.20 kg/m2 for two 6 oz plus biax.
 GLASS_6OZ_GSM = 203.0
 WETOUT = 2.0
+# FOUR on the deck, not three - C4 is in the schedule and Derek confirmed it.
+# The rails therefore carry 8, which is what his doc says makes them the
+# strongest part of the board.
 LAMINATE = [
     ("hull bottom", 4, 1.05),      # (where, layers, m2)
-    ("deck", 3, 1.05),
+    ("deck", 4, 1.05),
     ("cavity inside", 2, 0.62),
     ("hatch recess", 3, 0.25),
 ]
@@ -124,34 +132,51 @@ def main():
         vols[k] = vols.get(k, 0.0) + v
         parts.setdefault(k, []).append((o.name, v))
 
+    R = json.load(open(REPORT))
     v1 = {}
     v1["EPS/XPS core"] = vols.get("xps", 0) * DENS["xps"] / 1000.0
-    v1["plywood"] = vols.get("plywood", 0) * DENS["plywood"] / 1000.0
+    # SPLIT BY JOB, not by material, or the comparison hides the interesting
+    # part. V1's structural floor and its hatch lid are both 3/4 in plywood;
+    # V2 does the same two jobs in aluminium and in composite.
+    ply = {n: v for n, v in parts.get("plywood", [])}
+
+    def _ply(key):
+        return sum(v for n, v in ply.items() if key in n.lower())             * DENS["plywood"] / 1000.0
+    v1["structural floor"] = _ply("bottom plate")
+    v1["hatch lid"] = _ply("top lid")
+    v1["plywood blocking"] = (vols.get("plywood", 0) * DENS["plywood"] / 1000.0
+                              - v1["structural floor"] - v1["hatch lid"])
     v1["printed shell"] = (vols.get("asa", 0) * DENS["asa"]
                            * PRINT_INFILL / 1000.0)
     v1["aluminium"] = vols.get("alu_plate", 0) * DENS["alu"] / 1000.0
     v1["seals"] = vols.get("neoprene", 0) * DENS["neoprene"] / 1000.0
+    v1["dense foam"] = 0.0
 
     glass = sum(n * a * GLASS_6OZ_GSM * WETOUT / 1000.0
                 for _w, n, a in LAMINATE)
-    v1["glass + epoxy"] = glass + HOTCOAT_KG
+    v1["hull laminate"] = glass + HOTCOAT_KG
     v1["paint"] = PAINT_KG
     v1["hardware"] = HARDWARE_KG
     v1["wiring"] = WIRING_KG
-    # 14S9P of the same 21700 cell V2 uses, from V1's electrical doc
-    v1["battery"] = 126 * 0.0695
+    # SAME CELL, SO SAME MASS. This line used to say 69.5 g a cell while the
+    # model used 72.0 for V2 - two numbers for one part, which made V2's pack
+    # look 0.46 kg heavier when the real difference is TWO CELLS. 16S8P is
+    # 128, 14S9P is 126.
+    cell_g = R["pack"]["mass_kg"] * 1000.0 / R["pack"]["cells"]
+    v1["battery"] = 126 * cell_g / 1000.0
     v1["ESC + BMS + fuse"] = 0.6 + 0.32 + 0.45
 
-    R = json.load(open(REPORT))
     m2 = dict(R["mass_kg"])
     v2 = {
         "EPS/XPS core": m2.get("EPS core", 0),
-        "plywood": 0.0,
+        "structural floor": 0.0,      # V2 does this in aluminium
+        "hatch lid": m2.get("lids", 0),
+        "plywood blocking": 0.0,
+        "dense foam": m2.get("dense foam", 0),
         "printed shell": m2.get("printed shell", 0) + m2.get("printed rim ring", 0),
         "aluminium": m2.get("aluminium", 0),
         "seals": m2.get("hardware + seal", 0) * 0.3,
-        "glass + epoxy": m2.get("glass skin", 0) + m2.get("lids", 0)
-                         + m2.get("dense foam", 0),
+        "hull laminate": m2.get("glass skin", 0),
         "paint": 0.5,
         "hardware": m2.get("hardware + seal", 0) * 0.7,
         "wiring": m2.get("wiring + conduit", 0),
