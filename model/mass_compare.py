@@ -187,6 +187,22 @@ def main():
     print("\nWEIGH V1. If the total is out, the breakdown says which line to")
     print("suspect - laminate and epoxy are the softest numbers here, being")
     print("the only ones no STL can measure.")
+    # ---- reconcile against the scale
+    MOTOR, MAST, MOUNT, MEASURED = 2.6, 3.2, 0.4, 50 * 0.4536
+    print("")
+    print("RECONCILING WITH THE SCALE")
+    print("  estimate, board alone                    %6.2f" % ta)
+    print("  + motor %.1f, mast %.1f, mount %.1f          %6.2f"
+          % (MOTOR, MAST, MOUNT, ta + MOTOR + MAST + MOUNT))
+    print("  measured (50 lb)                         %6.2f" % MEASURED)
+    print("  GAP                                      %6.2f kg"
+          % (ta + MOTOR + MAST + MOUNT - MEASURED))
+    print("")
+    print("  The gap is bigger than every soft number in this file put")
+    print("  together, so it is not a density being slightly wrong.")
+    print("  Removing the pack accounts for 8.8 of it in ONE line, which is")
+    print("  the first thing to check: was the battery in the board when it")
+    print("  was weighed? The rest is arguable by a kilo or two, not fifteen.")
     return 0
 
 
