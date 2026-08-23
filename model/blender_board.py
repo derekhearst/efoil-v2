@@ -869,7 +869,7 @@ BAY_GLAND_N = 3                    # motor phases / charge / switch + sense
 # wall. Bore it with the rest of the CNC work and seal the walls with
 # thickened epoxy - the same hard, waterproof liner the tube would have been,
 # minus the part number. EPS takes epoxy fine; it is polyester that eats it.
-CONDUIT_D = 32.0                   # bore - swallows 3 x 8 AWG with pull room
+CONDUIT_D = 26.0                   # bore - sized by the BUNG, see BUNG_PCD
 CONDUIT_WALL = 2.0                 # epoxy liner thickness, not a tube wall
 CONDUIT_X_OFF = 0.0                # from MAST_X, on the mast's chord centreline
 # The conduit does NOT rise vertically into the cavity. It leaves the mast
@@ -919,6 +919,45 @@ CONDUIT_BEND_R = 60.0              # centreline bend radius at the knee
 # No knee height buys a bigger radius - a circular fillet needs equal tangents
 # and the vertical root is only ~20 mm long, so the short leg sets it.
 CABLE_OD = 6.5                     # 8 AWG silicone, the fattest thing pulled
+
+# --- THE WIRE BUNG, and why the bore shrank to suit it ---------------------
+# The three phase leads leave the mast TOUCHING, in a line along the chord -
+# an alu mast's internal cavity is only ~12-14 mm across (17-19 mm outside,
+# less two walls), so three 6.5 mm leads cannot sit any other way in there.
+# Three touching jackets are three capillary paths: sealant bridges the gap
+# between them instead of going round each one. So the bung's first job is
+# not sealing, it is SPREADING - it pulls the line apart into a triangle with
+# BUNG_WIRE_GAP of rubber between every pair.
+#
+# The triangle is also what let the bore shrink. Spread in a LINE, three leads
+# 2 mm apart span 23.5 mm and need a 32.5 mm bung - BIGGER than the old bore.
+# Rolled into a triangle the same three span 16.3 mm. That is the whole reason
+# CONDUIT_D could come down from 32 to 26.
+BUNG = True
+# CUT FROM THE 1/2 in 50A SHEET THAT IS ALREADY ON THE LIST, not bought as rod.
+# The only 1-1/4 in neoprene ROD on Amazon is 75A, which is wear-pad rubber -
+# too hard to conform to a stranded jacket and a fight to push 6.5 mm cable
+# through 5.5 mm holes. The sheet is 50A, already linked and already bought
+# for this exact job. So the sheet's thickness IS the bung's length: 12.7.
+BUNG_L = 12.7                      # 1/2 in sheet - the stock sets this
+BUNG_ROD_D = 31.75                 # 1-1/4 in disc, arch punch or 1-3/8 hole saw
+# The pocket is deliberately SLOPPY on diameter, which reads wrong until you
+# do the volume: rubber is near enough incompressible, so a bung squeezed in a
+# bore it exactly fills cannot be squeezed at all - it just becomes a solid
+# spacer and the four M8s fight it for nothing. The clearance annulus IS the
+# relief volume, and it has to swallow the squeeze AND a hand-cut disc coming
+# out a millimetre over. See bung_squeeze_absorbable_mm in the report.
+BUNG_BORE_CLR = 2.25               # diametral - this is relief, not slop
+BUNG_D = BUNG_ROD_D + BUNG_BORE_CLR
+# The straight run above the plate is SHORT - bend_path eats it from the knee
+# down - so most of the bung lives in the alu, which is the better bore anyway:
+# a machined 6061 wall is a sealing surface, epoxy-skinned foam is not.
+BUNG_SQUEEZE = 1.0                 # designed axial interference
+BUNG_IN_PLATE = 7.0                # counterbore into the alu plate's top face
+BUNG_POCKET = BUNG_L - BUNG_SQUEEZE - BUNG_IN_PLATE   # up into the dense block
+BUNG_HOLE_D = 5.5                  # drilled UNDERSIZE for CABLE_OD - the seal
+BUNG_WIRE_GAP = 2.0                # rubber between adjacent cable ODs
+BUNG_PCD = 2.0 * (CABLE_OD + BUNG_WIRE_GAP) / math.sqrt(3.0)
 
 # ------------------------------------------------------------ battery pack
 # BAK N21700CG-50, datasheet maxima: 21.4 dia x 70.75 long, 72 g, 18.0 Wh,
@@ -2077,6 +2116,7 @@ PALETTE = {
     "alu_anod":      ((0.28, 0.30, 0.33), 0.35, 1.0, 1.00),  # anodised alu foil
     "carbon":        ((0.07, 0.07, 0.08), 0.28, 0.1, 1.00),  # carbon wing
     "seal":          ((0.85, 0.15, 0.35), 0.60, 0.0, 1.00),  # EPDM sponge gasket
+    "rubber":        ((0.12, 0.12, 0.14), 0.80, 0.0, 1.00),  # solid neoprene rod
     # TRANSPARENT, like the hull and the lids. An opaque pad hides the
     # thing you are checking it against - the rim, the bolt circle, the
     # rail line - which is the whole reason it is in the model.
@@ -2136,6 +2176,7 @@ PALETTE_LEGEND = {
     "alu_anod":   "anodised aluminium - foil mast and fuselage",
     "carbon":     "carbon - front wing, stabiliser, prop",
     "seal":       "O3 silicone cord, bonded into a 4 x 2.4 groove",
+    "rubber":     "solid neoprene rod, 1-1/4 in - the mast wire bung",
     "mach_al":    "core piece AFT-LOWER  - layers 1+2, rocker and mast pocket under, lower cavity on top",
     "mach_au":    "core piece AFT-UPPER  - layers 3+4, deck crown on top, upper cavity cut through",
     "mach_fl":    "core piece FWD-LOWER  - layers 1+2",
@@ -4632,14 +4673,80 @@ def build():
     b.hide_render = True
     rep["conduit_bend_radius_mm"] = round(_r_used, 1)
 
-    # gland on the cavity's aft wall, not its floor
-    # NOT MODELLED any more. It is 3M 4200 worked into the bore around the
-    # three leads with a stick - there is no part here to draw, and drawing a
-    # tidy solid implied a machined component that does not exist.
-    _bung_placeholder = box("V2_Conduit_Bung", x_end - 6.0, x_end + 14.0,
-        -(GLAND_D + 8) / 2, (GLAND_D + 8) / 2,
-        z_end - (GLAND_D + 8) / 2, z_end + (GLAND_D + 8) / 2, coll, m_metal)
-    bpy.data.objects.remove(_bung_placeholder, do_unlink=True)
+    # --- the wire bung, at the MAST end, not the cavity end ---------------
+    # The old placeholder sat up at the cavity aft wall, which is where the
+    # 4200 fillet goes, not where the barrier is. The barrier belongs at the
+    # bottom of the bore, in the alu, before water is inside the foam at all.
+    if BUNG:
+        _bz_lo = plate_z1 - BUNG_IN_PLATE     # counterbore floor: THE LEDGE
+        _bz_hi = plate_z1 + BUNG_POCKET       # stop face, up in the dense block
+        # Two cuts, both made from the plate recess with the board upside down:
+        # a counterbore milled into the plate top face, and the same diameter
+        # carried on up into the dense block. The step where the counterbore
+        # meets the channel is the ledge the plate pushes the bung with; the
+        # step at the top of the pocket is what the bung stops against.
+        for _tgt, _z0, _z1 in (
+                (bpy.data.objects["V2_MastPlate_Alu"], _bz_lo, plate_z1 + 0.5),
+                (dense, plate_z1 - 0.5, _bz_hi)):
+            _c = cyl("V2_BungPocket_" + _tgt.name, cdx, 0.0, _z0, _z1,
+                     BUNG_D, coll)
+            boolean(_tgt, _c)
+            _c.hide_set(True)
+            _c.hide_render = True
+        bung = cyl("V2_WireBung", cdx, 0.0, _bz_lo, _bz_hi, BUNG_ROD_D, coll,
+                   bom_mat("rubber"), seg=48)
+        # Two holes on the chord line, where the outer two leads already are,
+        # and the middle one pushed off to one side. That is the shortest move
+        # from the line they arrive in to a triangle, and it is the only bend
+        # any of the three has to make.
+        for _i, _deg in enumerate((30.0, 150.0, 270.0)):
+            _a = math.radians(_deg)
+            _h = cyl("V2_BungHole_%d" % _i,
+                     cdx + BUNG_PCD / 2 * math.cos(_a),
+                     BUNG_PCD / 2 * math.sin(_a),
+                     _bz_lo - 2.0, _bz_hi + 2.0, BUNG_HOLE_D, coll, seg=24)
+            boolean(bung, _h)
+            _h.hide_set(True)
+            _h.hide_render = True
+
+        rep["bung_rod_d_mm"] = BUNG_ROD_D
+        rep["bung_pocket_d_mm"] = BUNG_D
+        rep["bung_free_len_mm"] = round(BUNG_L, 1)
+        rep["bung_installed_len_mm"] = round(_bz_hi - _bz_lo, 1)
+        rep["bung_hole_d_mm"] = BUNG_HOLE_D
+        rep["bung_pcd_mm"] = round(BUNG_PCD, 2)
+        rep["bung_wire_gap_mm"] = round(BUNG_PCD * math.sqrt(3.0) / 2.0
+                                        - CABLE_OD, 2)
+        rep["bung_wall_mm"] = round(
+            BUNG_ROD_D / 2 - (BUNG_PCD / 2 + CABLE_OD / 2), 2)
+        rep["bung_cable_interference_pct"] = round(
+            100.0 * (CABLE_OD - BUNG_HOLE_D) / CABLE_OD, 1)
+        rep["bung_ledge_w_mm"] = round(
+            (BUNG_D - (CONDUIT_D + 2 * CLR)) / 2.0, 2)
+        # ---- CAN IT ACTUALLY BE SQUEEZED ---------------------------------
+        # Rubber does not compress, it MOVES. Axial squeeze is only possible
+        # if there is somewhere for the displaced volume to go, and here the
+        # only somewhere is the clearance annulus round the bung - minus what
+        # the cables already stole by being forced through undersized holes.
+        _area = math.pi / 4 * (BUNG_ROD_D ** 2 - 3 * BUNG_HOLE_D ** 2)
+        _relief = math.pi / 4 * (BUNG_D ** 2 - BUNG_ROD_D ** 2) * BUNG_L
+        _taken = 3 * math.pi / 4 * (CABLE_OD ** 2 - BUNG_HOLE_D ** 2) * BUNG_L
+        rep["bung_squeeze_mm"] = round(BUNG_SQUEEZE, 2)
+        rep["bung_squeeze_absorbable_mm"] = round(
+            max(0.0, _relief - _taken) / _area, 2)
+        rep["bung_squeeze_fits"] = (
+            BUNG_SQUEEZE <= rep["bung_squeeze_absorbable_mm"] + 0.05)
+        # 50 Shore A at a few percent, against four M8s already carrying 6 kN
+        rep["bung_squeeze_force_N"] = round(_area * 1.0)
+        rep["bung_removable"] = True
+        rep["bung_note"] = (
+            "a %0.2f mm disc punched from the 1/2 in 50A sheet, three %0.1f mm "
+            "holes on a %0.1f mm triangle. Sits in a %0.2f mm counterbore that "
+            "starts %0.1f mm down in the alu plate and carries %0.1f mm up "
+            "into the dense block. Bolting the plate up drives the counterbore "
+            "floor into it and squeezes it %0.1f mm against the foam step."
+            % (BUNG_ROD_D, BUNG_HOLE_D, BUNG_PCD, BUNG_D, BUNG_IN_PLATE,
+               BUNG_POCKET, BUNG_SQUEEZE))
 
     rep["conduit_od_mm"] = CONDUIT_D
     rep["conduit_bore_mm"] = bore

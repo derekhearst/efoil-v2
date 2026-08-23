@@ -751,9 +751,25 @@ def build():
         "the insert into a clover and leaks between them")
     # Was a 25 mm cable gland - nothing to mount one to. See the GLAND_D note
     # in blender_board.py. Undersized rubber is the seal; 4200 is the fillet.
+    #
+    # THE SHEET'S THICKNESS IS THE BUNG'S LENGTH. 1/2 in of 50A is better
+    # rubber for this than anything sold as 1-1/4 in rod - the only rod on
+    # Amazon in that diameter is 75A, which is wear-pad hard: it will not
+    # conform to a stranded jacket and it turns pushing 6.5 mm cable through
+    # 5.5 mm holes into a fight. So the bung is a punched DISC, not a slug of
+    # rod, and blender_board.py takes BUNG_L straight off the stock.
     add("7  Module", "EPDM/neoprene sheet 1/2in, conduit bungs", 1, "sheet",
-        14.00, EST, "cut O33 plugs for a O32 bore, punch 3 x O5 for 6.5 mm "
-        "lead - interference fit, soap them through")
+        14.00, EST, "50A. Punch O31.75 discs, 12.7 thick, and drill 3 x O5.5 "
+        "on a O9.8 triangle for the 6.5 mm leads - 15% interference, soap "
+        "them through. One sheet is a lifetime of bungs for both boards")
+    # Derek's existing punch set stops at 1/2 in and the bung is 1-1/4 in.
+    # A 1-3/8 in hole saw also gets there - its plug comes out about 2.5 mm
+    # under nominal, so ~32 mm, which is the size wanted - but a hole saw
+    # grabs in rubber and an arch punch does not.
+    add("7  Module", "Hollow punch set 3/16-1-3/8in, for the O31.75 bung", 1,
+        "set", 32.99, EST, "the existing set stops at 1/2 in. Skip it if a "
+        "1-3/8 in hole saw is already in the drawer - the plug it leaves is "
+        "about 32 mm, which is the disc we want", tool=True, vendor="Amazon")
     add("7  Module", "3M 4200 FC 3 oz tube, fillet over the bung", 1, "tube",
         17.99, OK, "does both boards; 4200 NOT 5200 - 5200 never comes out",
         vendor="Amazon")

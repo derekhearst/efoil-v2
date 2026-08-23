@@ -6,17 +6,17 @@ Grouped by where you buy it rather than by what it does, because that is the ord
 
 | Supplier | Lines | $ |
 |---|---:|---:|
-| Amazon | 110 | $3,532.13 |
+| Amazon | 111 | $3,565.12 |
 | Gong | 1 | $1,404.00 |
 | Flipsky | 3 | $1,038.00 |
-| Not a purchase - tax and freight | 3 | $831.05 |
+| Not a purchase - tax and freight | 3 | $833.03 |
 | BatteryHookup | 2 | $297.50 |
 | Fiberglass Supply | 3 | $253.38 |
 | Home Depot / hardware | 4 | $169.16 |
 | Maker Shop Boise | 1 | $150.00 |
 | Speedy Metals | 1 | $88.92 |
 | Easy Composites | 1 | $52.00 |
-| **TOTAL** | | **$7,816.14** |
+| **TOTAL** | | **$7,851.11** |
 
 ## Amazon
 
@@ -53,6 +53,7 @@ https://www.amazon.com
 | [Ultra Tef-Gel, galvanic barrier](https://www.amazon.com/dp/B01606TCAG) | 1 | ea | $39.00 | **verified** | every mast bolt, every time it goes back in. DEARER than the $22 this was carried at - and do not reach for th |
 | [3M 60923 organic vapour / acid gas P100, pair](https://www.amazon.com/dp/B00AEFCKKY) | 2 | pr | $35.98 | **verified** | $18.39/pr on Amazon against $31.49 at envirosafetyproducts. Cartridges EXPIRE - buy these near the layup, not  |
 | [Solid silicone cord, 3 mm round - BOTH seals](https://www.amazon.com/dp/B096N67R2D) | 2 | pc | $35.18 | **verified** | 10 ft (3.05 m) pieces, 70A. Buy long - splice on a straight run, never a corner |
+| [Hollow punch set 3/16-1-3/8in, for the O31.75 bung](https://www.amazon.com/dp/B07PQYRG9K) | 1 | set | $32.99 | estimate | the existing set stops at 1/2 in. Skip it if a 1-3/8 in hole saw is already in the drawer - the plug it leaves |
 | [M12 IP68 momentary panel button](https://www.amazon.com/dp/B0FPQP7CP9) | 1 | ea | $32.65 | **verified** | 1 on hand; this line buys the second board's |
 | [M5 x 25 A4 socket cap, 20 pk](https://www.amazon.com/dp/B0CJFMMF58) | 2 | pk | $31.98 | **verified** | 24 needed. A4/316 - every cheaper listing is A2/304, which pits in salt water |
 | [IP68 M25 inline housing, 5 pk](https://www.amazon.com/dp/B0DPKM5HF7) | 2 | pk | $31.96 | **verified** | 3 per board, one per phase, 2 spare. M25 bodies take 4-14 mm cable against our 6.5 mm 8 AWG, so the size class |
@@ -87,7 +88,7 @@ https://www.amazon.com
 | [Paste wax, releasing the groove filler](https://www.amazon.com/dp/B0GVCGHZFR) | 1 | ea | $16.99 | estimate | the filler must NOT bond - it comes back out after the glass goes over it |
 | [Adjustable hand sanding block](https://www.amazon.com/dp/B0D4LNDYXD) | 1 | ea | $15.99 | **verified** | rails, nose, tail and anywhere the longboard will not reach |
 | [Longboard PSA sandpaper 80 grit, 20 yd roll](https://www.amazon.com/dp/B0CQ7CVGK6) | 1 | roll | $15.99 | **verified** | 2-3/4 in, self-adhesive, fits the longboard above. 80 is the fairing grit - it cuts fair, it does not finish |
-| [EPDM/neoprene sheet 1/2in, conduit bungs](https://www.amazon.com/dp/B00P5VFKCC) | 1 | sheet | $15.77 | estimate | cut O33 plugs for a O32 bore, punch 3 x O5 for 6.5 mm lead - interference fit, soap them through |
+| [EPDM/neoprene sheet 1/2in, conduit bungs](https://www.amazon.com/dp/B00P5VFKCC) | 1 | sheet | $15.77 | estimate | 50A. Punch O31.75 discs, 12.7 thick, and drill 3 x O5.5 on a O9.8 triangle for the 6.5 mm leads - 15% interfer |
 | [Solid silicone cord, 1/8 in (3.175 mm) - the spare size](https://www.amazon.com/dp/B00QVB0KE8) | 1 | pc | $15.39 | **verified** | 10 ft piece, 70A. Fitted ONLY if the routed groove measures deep. Gives 24% squeeze at the nominal 2.4 depth a |
 | [16 AWG silicone, 6 colours x 5 ft](https://www.amazon.com/dp/B089CPH72F) | 1 | kit | $14.49 | **verified** | charge port and power button runs are short; one kit does both boards and the colours keep them straight |
 | [Silica gel, indicating, 50 g per module](https://www.amazon.com/dp/B0DSBCXHT3) | 1 | pk | $13.99 | estimate | ~40 g is a season at 50 breathing cycles; a token sachet is worth about six. Bake it dry when the indicator tu |
@@ -161,7 +162,7 @@ Some Flipsky appears on Amazon but the range is thin and usually dearer. Buy dir
 
 | Item | Qty | Unit | Ext | Price | Note |
 |---|---:|---|---:|---|---|
-| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $442.42 | **verified** |  |
+| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $444.40 | **verified** |  |
 | Gong shipping to Idaho, ONE order, both foils | 1 | order | $268.63 | **verified** | quoted at checkout for 2 x XL Alu setups. PER ORDER, not per foil - ordering the two separately would roughly  |
 | Shipping - Divinycell, 6061 plate, VR20 | 1 | allow | $120.00 | estimate | STILL THE BIGGEST UNVERIFIED LINE - it wants three real carts to settle. Was $220 when it covered G10 sheet an |
 

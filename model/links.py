@@ -90,6 +90,8 @@ LINKS = {
         ("B0CQY5KX84", 19.99, "2 Packs 6 oz 12ft x 50in Fiberglass Cloth E-Glass Plain Weave"),
     "EPDM/neoprene sheet 1/2in, conduit bungs":
         ("B00P5VFKCC", 15.77, "General Purpose Rubber Sheet 50A 1/2in x 12 x 12"),
+    "Hollow punch set 3/16-1-3/8in, for the O31.75 bung":
+        ("B07PQYRG9K", 32.99, "ABN Hollow Punch Kit Leather Punches Tools Hole Punch Set Gasket Punch Set Gasket Cutter 3/16 to 1-3/8in (5-35mm)"),
     "EPS rigid foam 2in x 48in x 8ft (HD 202532856)":
         ("https://www.homedepot.com/p/Henry-2-in-x-48-in-x-8-ft-R-7-7-EPS-Rigid-Foam-Board-Insulation-320825/202532856", 27.68, "Henry 2 in x 48 in x 8 ft R-7.7 EPS Rigid Foam Board Insulation"),
     "FOCEAN EVA deck sheet 2400 x 600 x 5.8":
@@ -304,6 +306,7 @@ LINK_VENDOR = {
     "Dowel pins + drill, two-sided registration": "Amazon",
     "E-glass 6 oz, 50in x 12ft, 2-pack": "Amazon",
     "EPDM/neoprene sheet 1/2in, conduit bungs": "Amazon",
+    "Hollow punch set 3/16-1-3/8in, for the O31.75 bung": "Amazon",
     "EPS rigid foam 2in x 48in x 8ft (HD 202532856)": "Home Depot / hardware",
     "FOCEAN EVA deck sheet 2400 x 600 x 5.8": "Amazon",
     "Fish tape / pull cord for the mast conduit": "Amazon",

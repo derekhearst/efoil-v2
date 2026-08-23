@@ -351,12 +351,26 @@ def build(p):
     # Radial slop in Gong's own clearance hole - the entire positional budget
     # these four tapped holes get. Derived from the model so it tracks
     # MAST_CLEAR_D rather than being retyped here.
+    # The conduit and its BUNG COUNTERBORE. Neither was on this drawing, so
+    # the one part that has to be machined anyway was going to a shop with
+    # its most awkward feature missing. The counterbore floor is the ledge
+    # that squeezes the bung when the plate is pulled up to the hull.
+    _cx = gl / 2 + p["CONDUIT_X_OFF"]
+    d.circle(_cx, gw / 2, (p["CONDUIT_D"] + 0.8) / 2)
+    if p.get("BUNG"):
+        d.circle(_cx, gw / 2, p["BUNG_D"] / 2)
     _slop = (p["MAST_CLEAR_D"] - 8.0) / 2.0
     add("12_mast_plate", "6061-T651 aluminium", p["G10_T"], 1, d, gl, gw,
         f"1/2in 6061-T651, NOT 3/4in G10, and NOT bushed. "
         f"4 x M8 TAPPED {p['INSERT_L']:.0f} mm BLIND from the PAD FACE "
         f"(the wetted underside), leaving {p['INSERT_BLIND']:.1f} mm of solid "
         f"aluminium above so the plate stays watertight. Tap drill 6.8 mm. "
+        f"CONDUIT: O{p['CONDUIT_D'] + 0.8:.1f} through on centre, "
+        f"counterbored O{p['BUNG_D']:.2f} x {p['BUNG_IN_PLATE']:.1f} deep "
+        f"FROM THE TOP FACE (the dry side). That counterbore is not "
+        f"clearance - its floor is the ledge that pushes the wire bung up "
+        f"against the step in the foam as the plate is drawn face to face "
+        f"with the hull, so the depth is a real dimension, not a >= . "
         f"*** MACHINE THIS ONE. DO NOT HAND-DRILL IT. *** An earlier version "
         f"of this note called it bandsaw and drill-press work. That was "
         f"wrong, and it was wrong because it reasoned from V1 - where the "

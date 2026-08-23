@@ -450,17 +450,47 @@ not up on the pack.
 it answers where P+ splits, what the fuse protects, and the two mistakes
 that kill a BMS.
 
-### Step 18. Run the mast conduit
+### Step 18. Run the mast conduit and fit the wire bung
 
 **Blocks on:** steps 7, 17
 **Uses:** `Fish tape / pull cord for the mast conduit` ·
 `IP68 M25 inline housing, 5 pk` · `EPDM/neoprene sheet 1/2in, conduit bungs` ·
+`Hollow punch set 3/16-1-3/8in, for the O31.75 bung` ·
 `3M 4200 FC 3 oz tube, fillet over the bung`
 
 Motor leads part **in the cavity**, one housing per phase — without that the
-mast is bolted on for life. Cut Ø33 bungs for the Ø32 bore, punch three Ø5
-holes, soap them through, then fillet over with 4200. **4200 not 5200** —
-5200 never comes out.
+mast is bolted on for life.
+
+**The bung's first job is not sealing, it is spreading.** The three phase
+leads come out of the mast *touching*, in a line along the chord — an alu
+mast's internal cavity is only about 12–14 mm across, so 6.5 mm leads cannot
+lie any other way in there. Three touching jackets are three capillary paths:
+sealant bridges the gaps between them instead of going round each lead. The
+bung pulls the line apart into a triangle with 2 mm of rubber between every
+pair, and *that* is what makes the seal possible.
+
+| | |
+|---|---|
+| Disc | Ø31.75, punched from the 1/2 in 50A sheet — its thickness **is** the length, 12.7 |
+| Lead holes | 3 × Ø5.5 on a Ø9.8 triangle — 15% under the 6.5 mm lead |
+| Pocket | Ø34.0: 7.0 mm counterbored into the plate, 4.7 mm bored up into the H-80 |
+| Squeeze | 1.0 mm, taken up as the plate is bolted face to face with the hull |
+
+Punch the disc, mark and drill the three holes — two on the chord line where
+the outer leads already sit, the third pushed to one side, so only one lead
+has to bend at all. Soap the leads through; 15% is meant to be a fight.
+
+Feed it up the bore until it stops against the step at the top of the pocket,
+then bolt the plate on. The counterbore floor, 7 mm down in the plate, comes
+up behind the bung and squeezes it that last millimetre against the step.
+Fillet 4200 over the underside. **4200 not 5200** — 5200 never comes out.
+
+> **Why the pocket is 2.25 mm bigger than the disc.** Rubber does not
+> compress, it *moves*. A bung squeezed in a bore it exactly fills cannot be
+> squeezed at all — it becomes a solid spacer and the four M8s fight it for
+> nothing. The clearance annulus is the only place the displaced rubber can
+> go, so it is relief, not slop, and it is sized to swallow the 1 mm squeeze
+> *plus* a hand-punched disc coming out a millimetre over.
 
 ---
 
@@ -547,9 +577,11 @@ cavity — that is the whole galvanic mitigation and it is not optional.
 
 **V1 had one, and it was doing a job V2 does somewhere else.** On V1 that
 gasket was the waterproofing for the mast penetration. V2 seals the hole the
-wires actually run up instead — the Ø32 conduit gets EPDM bungs and a 4200
-fillet in [step 18](#step-18-run-the-mast-conduit) — so the barrier sits at
-the bore, not under the plate. Sealing both would be sealing it twice.
+wires actually run up instead — the Ø26 conduit gets a punched EPDM bung and
+a 4200 fillet in
+[step 18](#step-18-run-the-mast-conduit-and-fit-the-wire-bung) — so the
+barrier sits at the bore, not under the plate. Sealing both would be sealing
+it twice.
 
 Which leaves nothing for a gasket here to do: the mast bolt holes are
 **blind**, so there is no path into the board through them, and the faying
