@@ -187,7 +187,13 @@ CAV_CORNER_R = 22.0
 # not what the parts have to go into.
 CAV_LAM = 1.5                      # cured laminate inside the cavity/recess
 GLASS_R = 10.0
-CAV_FILLET_R = 12.0                # floor-to-wall fillet, milled not troweled
+# 10, was 12. The module floor is a FLAT plate sitting on the cavity floor,
+# so its edge has to stay inside where the fillet leaves that floor - one
+# radius in from the finished wall. At 12 it did not: the floor's edge sat
+# 3.0 mm out over the fillet and rode up on it. 10 is GLASS_R, the tightest
+# radius the laminate will turn without bridging, so this is the smallest
+# this fillet can be.
+CAV_FILLET_R = 10.0                # floor-to-wall fillet, milled not troweled
 
 FLOOR_Z = 30.0                     # flat cavity floor height above hull bottom
 HULL_SKIN = 2.0
@@ -564,7 +570,10 @@ MOD_TO_LID_CLR = 4.0
 # fillet against on the OUTSIDE as well as the inside. On a flexible joint the
 # fillets are most of the strength - they are what stops it peeling.
 JOINT_GROOVE_D = 0.0               # no groove: the floor is aluminium now
-MOD_FLOOR_LEDGE = 5.0              # floor oversize, for an external fillet
+# 3, was 5. The other half of the same problem - see CAV_FILLET_R. Even at a
+# 10 mm fillet a 5 mm ledge still overhangs by 1. 3 leaves 1.0 mm of daylight
+# and is still a land to fillet onto, just a smaller one.
+MOD_FLOOR_LEDGE = 3.0              # floor oversize, for an external fillet
 MOD_FLOOR_BOND = 2.0               # deliberate bond line, set by printed nubs
 # No corner posts. They existed to turn a butted 3.175 mm G10 corner into a
 # bonded joint; a printed shell has no butted corners to fix. The 4-piece
@@ -5006,11 +5015,23 @@ def build():
             for p in range(PACK_P):
                 cx = px0 + PACK_EDGE + (row + 0.5) * PITCH_ROW
                 cy = pack_y0 + PACK_EDGE + (p + 0.5) * PITCH_CELL
-                _tube((cx, cy, iz0), (cx, cy, iz0 + pack_h), 2)
+                # CELL_H, not pack_h. pack_h is CELL_H + PACK_TERM_H, so
+                # drawing the cell bodies to it made every cell 7.3 mm too
+                # tall - the height of the nickel and Kapton that goes ON
+                # them. The bracket really was flush with the cell top; the
+                # CELLS were wrong, which is why it looked low.
+                _tube((cx, cy, iz0), (cx, cy, iz0 + CELL_H), 2)
     new_object("V2_Pack_Cells", verts, faces, coll, m_cell)
     if not CELLS_LYING:
         build_cell_holders(coll, px0, pack_x1, pack_y0, pack_y1,
                            iz0, pack_h, rep)
+    if not CELLS_LYING:
+        # PACK_TERM_H made visible. With the cells drawn to CELL_H there was
+        # a 7.3 mm void between their tops and the wrap, which is the nickel,
+        # the weld bumps and the Kapton - real height, just not drawn, and an
+        # undrawn 7.3 mm gap is exactly the kind of thing that reads as a bug.
+        box("V2_Pack_Terminals", px0, pack_x1, pack_y0, pack_y1,
+            iz0 + CELL_H, iz0 + pack_h, coll, bom_mat("nickel"))
     box("V2_Pack_Wrap", px0, pack_x1, pack_y0, pack_y1,
         iz0 + pack_h, iz0 + pack_h + WRAP_T, coll, bom_mat("wrap"))
     rep["pack_layers"] = PACK_LAYERS if CELLS_LYING else 1
@@ -6056,10 +6077,26 @@ def build():
     if rep["mast_insert_g10_above_mm"] < 2.0:
         fails.append("mast insert bore breaks into the cavity floor: only "
                      f"{rep['mast_insert_g10_above_mm']} mm of G10 above it")
-    rep["mod_to_floor_fillet_clear_mm"] = round(ENC_GAP - CAV_LAM - GLASS_R, 1)
+    # THE OLD CHECK NEVER LOOKED AT THE FILLET. It was ENC_GAP - CAV_LAM -
+    # GLASS_R, which compares a side gap against a radius and answers a
+    # different question entirely - it passed at 4.0 mm while the module
+    # floor was riding up the fillet.
+    #
+    # What actually matters: the floor is a FLAT plate. To sit down on the
+    # cavity floor its edge has to stay inside the point where the fillet
+    # leaves that floor, which is one radius in from the finished wall.
+    _R = max(CAV_FILLET_R, GLASS_R)          # laminate cannot turn tighter
+    _wall_finished = CAV_WIDTH / 2 - CAV_LAM
+    _floor_half = (L["ext_w"] / 2 + MOD_FLOOR_LEDGE)
+    rep["cav_floor_fillet_R_mm"] = _R
+    rep["mod_floor_half_width_mm"] = round(_floor_half, 1)
+    rep["mod_floor_flat_half_width_mm"] = round(_wall_finished - _R, 1)
+    rep["mod_to_floor_fillet_clear_mm"] = round(
+        (_wall_finished - _R) - _floor_half, 1)
     if rep["mod_to_floor_fillet_clear_mm"] < 1.0:
-        fails.append("module clips the cavity floor fillet: "
-                     f"{rep['mod_to_floor_fillet_clear_mm']} mm clearance")
+        fails.append("the module floor rides up the cavity floor fillet: "
+                     f"its edge is at {_floor_half:.1f} mm and the flat only "
+                     f"reaches {_wall_finished - _R:.1f}")
     if rep["handle_plate_g10_below_insert_mm"] < 1.5:
         fails.append("handle strap insert bottoms out the G10 strip: "
                      f"{rep['handle_plate_g10_below_insert_mm']} mm left")

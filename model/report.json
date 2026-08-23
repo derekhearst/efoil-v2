@@ -46,6 +46,7 @@
  "button_to_conduit_mm": 59.8,
  "button_to_pack_mm": 14.2,
  "button_to_port_mm": 28.2,
+ "cav_floor_fillet_R_mm": 10.0,
  "cav_laminate_mm": 1.5,
  "cavity_air_L": 14.33,
  "cavity_floor_penetrations": 1,
@@ -357,11 +358,13 @@
   "module shell": "PRINTED ASA, 4 mm walls, 4 L-pieces split at wall midpoints / 3.2 mm 5052 aluminium floor, no divider"
  },
  "min_floor_thickness_mm": 23.2,
+ "mod_floor_flat_half_width_mm": 150.2,
+ "mod_floor_half_width_mm": 149.2,
  "mod_opening_mm": [
   427,
   284
  ],
- "mod_to_floor_fillet_clear_mm": 4.0,
+ "mod_to_floor_fillet_clear_mm": 1.0,
  "module_bolt_from_interior_mm": 8.5,
  "module_bond_area_mm2": 5688,
  "module_bond_area_with_foot_mm2": 17064,
@@ -373,8 +376,8 @@
  "module_flange_bend_MPa": 0.54,
  "module_flange_through_rim_mm": 3.0,
  "module_flange_to_cavity_mm": 3.0,
- "module_floor_joint": "ASA wall bonded to the 5052 floor on a 2 mm controlled bond line, filleted BOTH sides - inside, and outside onto the 5 mm ledge the floor is oversized by. Structural POLYURETHANE, not epoxy: the two materials differ by 66 um/m/K, which is 0.60 mm from the centre over 40 C, and a rigid bond line would see 299% shear strain",
- "module_floor_ledge_clear_mm": 9.0,
+ "module_floor_joint": "ASA wall bonded to the 5052 floor on a 2 mm controlled bond line, filleted BOTH sides - inside, and outside onto the 3 mm ledge the floor is oversized by. Structural POLYURETHANE, not epoxy: the two materials differ by 66 um/m/K, which is 0.60 mm from the centre over 40 C, and a rigid bond line would see 299% shear strain",
+ "module_floor_ledge_clear_mm": 11.0,
  "module_foot_would_add_g": 49,
  "module_gasket_squeeze_pct": 33,
  "module_gasket_to_bolt_mm": 5.5,
