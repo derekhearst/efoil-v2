@@ -1411,6 +1411,7 @@ EPOXY_COMP_MPA = 50.0              # thickened laminating epoxy, conservative
 # 6.8. Same part as the one under the nut, so it is one line on the BOM and
 # one size in the drawer.
 HATCH_HEAD_WASHER_D = NUT_WASHER_D
+HATCH_HEAD_H = 5.0                 # M5 DIN 912 socket cap head height
 # --- V1's plywood, for comparison ------------------------------------------
 # V1's lid AND its mast base plate were 3/4 in birch ply, so one set of
 # figures serves both. Flatwise (through-thickness) bearing is what a washer
@@ -3949,9 +3950,11 @@ def build():
             sp = cyl(f"V2_LidPlug_{i}", bx_, by_,
                      z0 + LID_SKIN, z0 + LID_SKIN + LID_CORE,
                      HATCH_SPREADER_D, coll, bom_mat("g10"), seg=32)
-            boolean(sp, cyl(f"V2_LidPlugBore_{i}", bx_, by_,
-                            z0 - 1.0, z0 + LID_T + 1.0,
-                            HATCH_BOLT_D + 0.6, coll))
+            _pb = cyl(f"V2_LidPlugBore_{i}", bx_, by_,
+                      z0 - 1.0, z0 + LID_T + 1.0, HATCH_BOLT_D + 0.6, coll)
+            boolean(sp, _pb)
+            _pb.hide_set(True)
+            _pb.hide_render = True
         # ...and the countersink, cut into the potted boss from the top face.
         # A cone, not a counterbore: a counterbored cap head still has to be
         # capped afterwards, and a cap you dig out every ride is worse than a
@@ -3986,6 +3989,16 @@ def build():
         cyl(f"V2_HatchBolt_{i}", bx_, by_,
             ledge_z + RIM_T - NUT_Z - NUT_T, ledge_z + RIM_T,
             HATCH_BOLT_D, coll, m_metal)
+        # ...and what sits ON TOP of the lid, which was never drawn. The bolt
+        # used to stop at the seal face, so the washer and the head - the only
+        # hardware on this board that stands proud of the deck - existed in
+        # the BOM and nowhere else. Twelve of them in the one bare band.
+        _wz = z0 + LID_T
+        cyl(f"V2_HatchHeadWasher_{i}", bx_, by_, _wz, _wz + NUT_WASHER_T,
+            HATCH_HEAD_WASHER_D, coll, m_metal, seg=28)
+        cyl(f"V2_HatchHead_{i}", bx_, by_, _wz + NUT_WASHER_T,
+            _wz + NUT_WASHER_T + HATCH_HEAD_H, HATCH_BOLT_HEAD_D, coll,
+            m_metal, seg=28)
     # Pull-out is a plug of ASA punched through the NUT_Z of material between
     # the nut's top face and the seal face: pi x across-corners x NUT_Z.
     _plug = math.pi * NUT_WASHER_D * NUT_Z
@@ -4311,6 +4324,12 @@ def build():
         "bare head": round(
             100.0 * (_bolt_N / _seat(HATCH_BOLT_HEAD_D)) / EPOXY_COMP_MPA)}
     rep["hatch_epoxy_creep_threshold_pct"] = 25
+    # The deck pad is the thing to compare against, not zero: the pad is
+    # 5.8 mm of EVA and it stops short of the rim, so the heads are standing
+    # in a bare band NEXT to it rather than out on their own.
+    rep["hatch_hardware_proud_mm"] = round(NUT_WASHER_T + HATCH_HEAD_H, 1)
+    rep["hatch_hardware_vs_deck_pad_mm"] = round(
+        NUT_WASHER_T + HATCH_HEAD_H - PAD_T, 1)
     rep["hatch_head_washer_required"] = (
         rep["hatch_head_seat_pct_of_epoxy"]["bare head"]
         > rep["hatch_epoxy_creep_threshold_pct"])
@@ -7045,7 +7064,8 @@ GROUPS = [
     ("Electrical",   lambda n: n.startswith(("Pack_", "CellHolder_", "BMS",
                                              "ESC", "Fuse",
                                              "PowerButton", "ChargePort",
-                                             "BayGland", "Conduit", "Nickel"))),
+                                             "BayGland", "Conduit", "Nickel",
+                                             "WireBung"))),
     ("Deck pad",     lambda n: n.startswith("DeckPad")),
     ("Hardpoints",   lambda n: n.startswith(("MastPlate", "MastBolt",
                                              "MastInsert", "Handle", "Leash",

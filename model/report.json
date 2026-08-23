@@ -279,6 +279,8 @@
  "hatch_groove_corner_R": 32.0,
  "hatch_groove_fill_pct": 74,
  "hatch_hand_tight_Nm": 5.0,
+ "hatch_hardware_proud_mm": 6.6,
+ "hatch_hardware_vs_deck_pad_mm": 2.6,
  "hatch_head_seat_pct_of_epoxy": {
   "bare head": 75,
   "with washer": 14
