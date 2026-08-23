@@ -1536,14 +1536,36 @@ LEASH_PAD, LEASH_T = 70.0, 18.0                # G10 block, milled flat
 HANDLE_X = 645.0                   # hatch station, both sides
 HANDLE_Y = 223.0                   # handle centreline: 30 mm outboard of the
                                    # rim ring, local slope ~25 deg
-# Strip is 6061 now, cut from the mast plate sheet's offcut - two plates use
-# 135.6 of 216 in2 and leave a contiguous 12 x 4.22 in strip, which holds all
-# four handle strips in two rows. So they cost nothing and need no G10.
+# Strip is 6061, cut from the mast plate sheet's offcut - two plates use
+# 135.6 of 216 in2 and leave a contiguous 12 x 4.22 in piece. At the derived
+# length the four strips lie in FOUR rows of one rather than two rows of two:
+# 4 x 22 = 88 mm of the 107 mm height, each strip 193 of the 305 mm length.
+# Still free, still no G10, but it is no longer two-up - re-check this if the
+# strap ever gets longer.
 # TAPPED M6 straight in: 90 mm2 x 207 MPa = 18.7 kN, on a carry handle. The
 # O8 inserts go with the G10.
 HANDLE_BOLT_D, HANDLE_INS_D, HANDLE_INS_L = 6.0, 6.0, 8.0   # M6
-HANDLE_BOLT_DX = 110.0             # handle bolt centres, along the board -
-                                   # the bought handle is drilled to suit
+# THE STRAP SETS THE SPAN. It used to be the other way round - 110 mm centres
+# with a note that the handle "gets drilled to suit" - and that does not
+# survive contact with a real one, because a strap is a FIXED LENGTH. The
+# leftover between its ends and the bolts has nowhere to go but up, as the
+# arch your fingers pass through, and the arithmetic is not optional:
+#
+#     L = S + 8h^2 / 3S          shallow arc, strap length L over span S
+#
+# 110 mm centres with a 25 mm arch implies a 125 mm strap. Derek's handle is
+# 7 in - 177.8 - and on 110 mm centres that same equation gives a 53 mm loop
+# standing off the rail, twice what was drawn and a snag hazard on a board
+# you swim next to. So the span is DERIVED from the strap and the finger room
+# wanted, and the strip length follows the span.
+HANDLE_STRAP_L = 177.8             # 7 in, Derek's part. MEASURE a different
+                                   # one before swapping it in - this number
+                                   # moves everything downstream.
+HANDLE_FINGER_H = 38.0             # arch at mid-span: what a gloved hand needs
+HANDLE_BOLT_DX = round(
+    (HANDLE_STRAP_L
+     + math.sqrt(max(0.0, HANDLE_STRAP_L ** 2
+                     - 4 * (8 * HANDLE_FINGER_H ** 2 / 3)))) / 2, 1)
 # The G10 strip runs ALONG the board, which is the flat direction. Keep it
 # NARROW in y: the surface sags ~1.5 mm across 22 mm here, so the strip beds
 # into a shallow milled facet and the laminate lies over it without a visible
@@ -1551,7 +1573,11 @@ HANDLE_BOLT_DX = 110.0             # handle bolt centres, along the board -
 # 12.7 = 1/2" stock, and deliberately: the rim ring already buys a 1/2" sheet
 # and these four strips nest in its offcut. At 8 mm an M6 x 8 insert bottomed
 # out with 0.0 mm of G10 under it; 12.7 leaves 4.7 mm.
-HANDLE_PLATE_L, HANDLE_PLATE_W, HANDLE_PLATE_T = 150.0, 22.0, 12.7
+# Follows the span rather than being set beside it - 20 mm of strip outboard
+# of each bolt for edge distance and the bond.
+HANDLE_PLATE_EDGE = 20.0
+HANDLE_PLATE_L = round(HANDLE_BOLT_DX + 2 * HANDLE_PLATE_EDGE, 1)
+HANDLE_PLATE_W, HANDLE_PLATE_T = 22.0, 12.7
 HANDLE_POCKET_CLR = 0.5            # bond gap round the strip, per face
 # Keep the dense block OUT of the cavity wall. Without this the pad ran inboard
 # to y=192 and butted straight into the rim ring at 192.9 - so the dense foam
@@ -1564,11 +1590,10 @@ HANDLE_POCKET_CLR = 0.5            # bond gap round the strip, per face
 # tenths. This is the epoxy line the strip actually beds into - it sinks the
 # strip just under the surface and makes the seating unambiguous.
 HANDLE_PLATE_BOND = 0.5            # glue line under the strip
-HANDLE_STRAP_SLACK = 25.0          # standoff at mid-span - this is what your
-                                   # fingers go into now that there is no
-                                   # recess. It is the bought handle's own
-                                   # arch, so it is a number to CHECK on the
-                                   # part, not one to set when making a strap.
+# Derived from the strap and the span, not asserted. This is the number that
+# was wrong: 25 mm was written as "the bought handle's own arch" when no
+# bought handle can make an arch that small over 110 mm.
+HANDLE_STRAP_SLACK = round(HANDLE_FINGER_H, 1)
 SEAM_X = 1030.0                    # halves of 1030 + 370, both under the bed
 # THE REAL MACHINE, not a round 48 in. Maker Shop Boise runs an Axiom AR8
 # Pro V5 and its published work area is 24 x 47.63 x 5.9 in:
@@ -4299,6 +4324,15 @@ def build():
                            f"{HANDLE_STRAP_SLACK:.0f} mm the handle stands "
                            "proud at mid-span is the whole finger clearance")
     rep["rail_handle_bolt_pattern_mm"] = HANDLE_BOLT_DX
+    rep["handle_strap_len_mm"] = HANDLE_STRAP_L
+    rep["handle_arch_on_rail_mm"] = HANDLE_FINGER_H
+    # The module's span cannot move - outboard of those pads is 5 mm to the
+    # gland nuts - so there the SAME strap makes whatever loop it makes.
+    _s = 2 * MOD_HANDLE_Y
+    rep["handle_arch_on_module_mm"] = round(
+        math.sqrt(max(0.0, 3 * _s * (HANDLE_STRAP_L - _s) / 8)), 1)
+    rep["module_handle_span_mm"] = _s
+
     rep["handles"] = ("2 x surface-mounted rail handle, port and starboard "
                       "beside the hatch, + 1 on the module - one bought part "
                       "in all three places")
@@ -4774,6 +4808,25 @@ def build():
     _mod_kg = 14.0
     rep["module_bond_shear_MPa"] = round(
         (_mod_kg * 9.81 * 2.0) / (0.25 * _peri_w * ENC_WALL), 4)
+    # ---- CAN THE HANDLE LIFT THE WHOLE MODULE? Derek's requirement.
+    # Mass from the parts, not a guess: pack, floor, walls, flange, lid and
+    # the electronics that ride in it.
+    _asa = 1.07e-3
+    _mod_kg = (rep["pack"]["mass_kg"]
+               + (ix1 - ix0) * (iy1 - iy0) * ENC_FLOOR * 2.68e-3 / 1000.0
+               + 2 * ((ix1 - ix0) + (iy1 - iy0)) * ENC_WALL * int_h
+               * _asa / 1000.0
+               + 2 * ((ix1 - ix0) + (iy1 - iy0)) * MOD_FLANGE_W_OUT
+               * MOD_FLANGE_H * _asa / 1000.0
+               + (ix1 - ix0) * (iy1 - iy0) * ENC_LID_T * _asa / 1000.0
+               + 1.2)                       # ESC, BMS, fuse, wiring
+    rep["module_mass_kg"] = round(_mod_kg, 2)
+    _bolts = 4                              # 2 pads x 2 bolts
+    _shock = 2.0                            # snatched out of a wet cavity
+    rep["module_handle_bolt_N"] = round(_mod_kg * 9.81 * _shock / _bolts)
+    # M5 brass heat-set in printed ASA, conservative published figure
+    rep["module_handle_insert_margin"] = round(
+        800.0 / max(1.0, rep["module_handle_bolt_N"]), 1)
     rep["module_lid_bolts"] = len(mb)
     # --- BOM COUNTS. bom.py used to hold its own hand-typed copies of these,
     # which is the same failure as fleet_cost: nothing breaks when they drift,

@@ -121,7 +121,7 @@ https://www.amazon.com
 | [M8 x 1.25 BOTTOMING tap, 4-flute](https://www.amazon.com/dp/B00DLCTUDM) | 1 | ea | $8.78 | **verified** | the one that actually matters - blind at 10 mm in a 12.7 plate, and the taper tap in the set above cannot reac |
 | [M8 x 1.25 tap + 6.8 mm drill set](https://www.amazon.com/dp/B0GD1YF5PL) | 1 | set | $8.63 | **verified** | 8 blind holes |
 | [Kapton tape, pack insulation](https://www.amazon.com/dp/B006ZFQNT6) | 1 | roll | $8.25 | estimate |  |
-| [M6 x 16 A4 button head, 10 pk](https://www.amazon.com/dp/B07DVRLQTK) | 1 | pk | $8.06 | **verified** | 8 needed - 2 per rail handle, tapped straight into the 6061 strip |
+| [M6 x 16 A4 button head, 10 pk](https://www.amazon.com/dp/B07DVRLQTK) | 1 | pk | $8.06 | **verified** | 8 needed - 2 per rail handle, tapped straight into the 6061 strip. Fender washer under every one: the load lan |
 | [2.5 mm straight cutter - fallback](https://www.amazon.com/dp/B0GWSZ2KV2) | 1 | ea | $7.99 | estimate | only if you would rather cut the groove open than sand down to a proud filler strip. Undersize in a 4 mm groov |
 | [M5 penny washer O15 DIN9021, 150 pk](https://www.amazon.com/dp/B0G58KQN6L) | 1 | pk | $7.99 | **verified** | 34 needed. DIN9021 is what confirms the large 15 mm OD. Goes in at the SAME print pause as the nut, underneath |
 | [M8 316 washer, prop nut](https://www.amazon.com/dp/B0DDGRXHT7) | 1 | pk | $7.69 | **verified** | only 2 needed; sold in 10s |

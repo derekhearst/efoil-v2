@@ -146,9 +146,10 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | [Coiled ankle leash](https://www.amazon.com/dp/B096VL3DHV) | 2 | ea | $14.99 | $29.98 | verified | you trust the remote failsafe; this is so the board stays with you |
 | [Leash plug 30 x 12.5, stainless pin, 2 pk](https://www.amazon.com/dp/B0C6XLK8L9) | 1 | pk | $6.99 | $6.99 | verified | the pack does both boards |
 | [Kayak/board grab handle, 2 pk + screws](https://www.amazon.com/dp/B0FBW3XT5D) | 3 | pk | $9.99 | $29.97 | verified | 3 a board: 2 on the rails into the 6061 strip, 1 on the module. Two reinforcing holes each end - drill the tabs to OUR pattern, M6 on the rails and M5 on the module, rather than using the supplied screws |
-| [M6 x 16 A4 button head, 10 pk](https://www.amazon.com/dp/B07DVRLQTK) | 1 | pk | $8.06 | $8.06 | verified | 8 needed - 2 per rail handle, tapped straight into the 6061 strip |
+| [M6 x 16 A4 button head, 10 pk](https://www.amazon.com/dp/B07DVRLQTK) | 1 | pk | $8.06 | $8.06 | verified | 8 needed - 2 per rail handle, tapped straight into the 6061 strip. Fender washer under every one: the load lands on WEBBING, and a button head's edge is what tears it |
+| M6 washers for the rail handles | 0 | off | $0.00 | $0.00 | on hand | 8 off the M6 x 20 fender washer pack in section 10b, not a second purchase |
 | M5 x 10 brass heat-set insert, 50 pc | 1 | pk | $11.00 | $11.00 | estimate | 8 needed, module handle pads; 6.4 mm printed pilot, same as the model's cut |
-| M5 x 10 A4 button head, 20 pk | 1 | pk | $9.00 | $9.00 | estimate | 8 needed. 10 mm: 8 mm of pad plus the handle tab, and the insert is 10 deep - do not reach for the M5 x 25s in section 6, they bottom out |
+| M5 x 10 A4 button head, 20 pk | 1 | pk | $9.00 | $9.00 | estimate | 8 needed. 10 mm: 8 mm of pad plus the handle tab, and the insert is 10 deep - do not reach for the M5 x 25s in section 6, they bottom out. Penny washer under each, off the section 6 pack - same reason as the rails |
 | **subtotal** | | | | **$160.16** | | |
 
 ## 9c Pack wiring

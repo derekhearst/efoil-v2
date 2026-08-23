@@ -320,13 +320,13 @@
 <circle cx="118.98" cy="306.34" r="1.40" fill="none" stroke="#c0392b" stroke-width="1.1"/>
 <circle cx="178.31" cy="306.34" r="1.40" fill="none" stroke="#c0392b" stroke-width="1.1"/>
 <text x="356" y="94" font-size="12.5" font-weight="600">2.  handle strip</text>
-<text x="356" y="110" font-size="10.5" fill="#666">6061-T651 aluminium · 13 mm · x2 · 150 x 22</text>
-<line x1="356.00" y1="250.16" x2="590.00" y2="250.16" stroke="#1a1a1a" stroke-width="1.1"/>
-<line x1="590.00" y1="250.16" x2="590.00" y2="215.84" stroke="#1a1a1a" stroke-width="1.1"/>
-<line x1="590.00" y1="215.84" x2="356.00" y2="215.84" stroke="#1a1a1a" stroke-width="1.1"/>
-<line x1="356.00" y1="215.84" x2="356.00" y2="250.16" stroke="#1a1a1a" stroke-width="1.1"/>
-<circle cx="387.20" cy="233.00" r="4.68" fill="none" stroke="#c0392b" stroke-width="1.1"/>
-<circle cx="558.80" cy="233.00" r="4.68" fill="none" stroke="#c0392b" stroke-width="1.1"/>
+<text x="356" y="110" font-size="10.5" fill="#666">6061-T651 aluminium · 13 mm · x2 · 193 x 22</text>
+<line x1="356.00" y1="246.36" x2="590.00" y2="246.36" stroke="#1a1a1a" stroke-width="1.1"/>
+<line x1="590.00" y1="246.36" x2="590.00" y2="219.64" stroke="#1a1a1a" stroke-width="1.1"/>
+<line x1="590.00" y1="219.64" x2="356.00" y2="219.64" stroke="#1a1a1a" stroke-width="1.1"/>
+<line x1="356.00" y1="219.64" x2="356.00" y2="246.36" stroke="#1a1a1a" stroke-width="1.1"/>
+<circle cx="380.30" cy="233.00" r="3.64" fill="none" stroke="#c0392b" stroke-width="1.1"/>
+<circle cx="565.70" cy="233.00" r="3.64" fill="none" stroke="#c0392b" stroke-width="1.1"/>
 <text x="686" y="94" font-size="12.5" font-weight="600">3. hatch lid</text>
 <text x="686" y="110" font-size="10.5" fill="#666">glass/H80/glass 14mm · 14 mm · x1 · 583 x 388</text>
 <line x1="898.13" y1="310.93" x2="900.04" y2="310.85" stroke="#1a1a1a" stroke-width="1.1"/>

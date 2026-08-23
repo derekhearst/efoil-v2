@@ -1044,14 +1044,20 @@ def build():
     # This also retires the separate "module lift loop" made from webbing:
     # one bought part with a moulded grip beats a loop of strap you have to
     # sew or fold, and it is the same part in both places.
-    # THE MODEL SETS THE HOLE PATTERN, NOT THE HANDLE. rail_handle_bolt_
-    # pattern_mm and module_handle_bolt_pattern_mm in report.json: 110 mm
-    # centres on the rails, and on the module 2 bolts 18 mm apart per pad
-    # with 70 mm between the pads. The module number is the tight one and it
-    # cannot move - outboard of those pads is 5 mm of clearance to the gland
-    # nuts. MEASURE THE HANDLE'S TABS AGAINST 70 MM when it arrives. If they
-    # are much wider, the module gets a webbing loop through the same two
-    # pads and this line drops to 2 packs, which is $10, not a redesign.
+    # THE STRAP SETS THE SPAN, not the other way round. That was backwards
+    # here until Derek pointed at a real handle: a strap is a FIXED LENGTH,
+    # so whatever is left over between its ends and the bolts becomes the
+    # arch, and L = S + 8h^2/3S is not negotiable. The old 110 mm centres
+    # with a 25 mm arch implied a 125 mm strap - shorter than anything sold.
+    # A 7 in handle on those centres makes a 53 mm loop standing off the
+    # rail, twice what was drawn.
+    # Rails are 152.6 mm centres now, for a 38 mm arch.
+    # THE MODULE'S SPAN CANNOT MOVE - outboard of those pads is 5 mm to the
+    # gland nuts - so the same strap makes a 53 mm loop there. That is fine
+    # for hauling a module out of a hole; it was the rail that needed the
+    # shorter one. Same part, two spans, one number measured.
+    # IF YOU CHANGE HANDLE, strap length is the ONE number to measure -
+    # rail_handle_bolt_pattern_mm and the 6061 strip both derive from it.
     add("9b Small but essential", "Kayak/board grab handle, 2 pk + screws",
         math.ceil(3 * N / 2), "pk", 9.99, OK,
         "3 a board: 2 on the rails into the 6061 strip, 1 on the module. "
@@ -1065,7 +1071,15 @@ def build():
     # plastic here. Deleted, and this note no longer sends you looking for it.
     add("9b Small but essential", "M6 x 16 A4 button head, 10 pk",
         1, "pk", 8.06, OK, str(4 * N) + " needed - 2 per rail handle, tapped "
-        "straight into the 6061 strip")
+        "straight into the 6061 strip. Fender washer under every one: the "
+        "load lands on WEBBING, and a button head's edge is what tears it")
+    # Derek asked for washers. They were already on the list - in the
+    # drivetrain section - and they are the right part here: a wide face on a
+    # strap rather than a small head cutting into it.
+    add("9b Small but essential", "M6 washers for the rail handles", 0, "off",
+        0.00, OWNED,
+        str(4 * N) + " off the M6 x 20 fender washer pack in section 10b, "
+        "not a second purchase")
     # THE MODULE PADS HAD NO FASTENERS ON THIS LIST AT ALL. The shell prints
     # two 8 mm-proud pads with 2 x M5 heat-set each (MOD_HANDLE_INS_D/_L),
     # which is 4 inserts and 4 screws a module - and the BOM bought neither,
@@ -1078,7 +1092,8 @@ def build():
     add("9b Small but essential", "M5 x 10 A4 button head, 20 pk",
         1, "pk", 9.00, EST, str(4 * N) + " needed. 10 mm: 8 mm of pad plus "
         "the handle tab, and the insert is 10 deep - do not reach for the "
-        "M5 x 25s in section 6, they bottom out")
+        "M5 x 25s in section 6, they bottom out. Penny washer under each, "
+        "off the section 6 pack - same reason as the rails")
 
 
     # ---------------------------------------------- 9c every joint in the pack
