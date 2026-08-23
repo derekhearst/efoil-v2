@@ -6,17 +6,17 @@ Grouped by where you buy it rather than by what it does, because that is the ord
 
 | Supplier | Lines | $ |
 |---|---:|---:|
-| Amazon | 114 | $3,652.20 |
+| Amazon | 113 | $3,615.10 |
 | Gong | 1 | $1,404.00 |
 | Flipsky | 3 | $1,038.00 |
-| Not a purchase - tax and freight | 3 | $838.26 |
+| Not a purchase - tax and freight | 3 | $836.03 |
 | BatteryHookup | 2 | $297.50 |
 | Fiberglass Supply | 3 | $253.38 |
 | Home Depot / hardware | 4 | $169.16 |
 | Maker Shop Boise | 1 | $150.00 |
 | Speedy Metals | 1 | $88.92 |
 | Easy Composites | 1 | $52.00 |
-| **TOTAL** | | **$7,943.42** |
+| **TOTAL** | | **$7,904.09** |
 
 ## Amazon
 
@@ -51,7 +51,6 @@ https://www.amazon.com
 | [Sealant tape, 50 ft roll](https://www.amazon.com/dp/B0GF25BPN6) | 2 | roll | $39.98 | **verified** | 31 m of bag perimeter across the project. 2 x 50 ft at $19.99 replaced 4 x 25 ft at $12 - same tape, fewer joi |
 | [Bag connector w/ ball valve, 1/4 in QD](https://www.amazon.com/dp/B0FSKGGL8H) | 2 | ea | $39.18 | **verified** | THE BALL VALVE IS THE POINT: shut it and the bag is isolated from the pump, so leak-down is a real measurement |
 | [Ultra Tef-Gel, galvanic barrier](https://www.amazon.com/dp/B01606TCAG) | 1 | ea | $39.00 | **verified** | every mast bolt, every time it goes back in. DEARER than the $22 this was carried at - and do not reach for th |
-| [G-10/FR4 rod 5/8in x 1ft, lid hardpoints](https://www.amazon.com/dp/B084H1M6XB) | 2 | ea | $37.10 | estimate | 24 plugs needed, ~20 to a rod. Sliced to core thickness, bonded into the core's 12 through holes and sanded fl |
 | [3M 60923 organic vapour / acid gas P100, pair](https://www.amazon.com/dp/B00AEFCKKY) | 2 | pr | $35.98 | **verified** | $18.39/pr on Amazon against $31.49 at envirosafetyproducts. Cartridges EXPIRE - buy these near the layup, not  |
 | [Solid silicone cord, 3 mm round - BOTH seals](https://www.amazon.com/dp/B096N67R2D) | 2 | pc | $35.18 | **verified** | 10 ft (3.05 m) pieces, 70A. Buy long - splice on a straight run, never a corner |
 | [Hollow punch set 3/16-1-3/8in, for the O31.75 bung](https://www.amazon.com/dp/B07PQYRG9K) | 1 | set | $32.99 | estimate | the existing set stops at 1/2 in. Skip it if a 1-3/8 in hole saw is already in the drawer - the plug it leaves |
@@ -126,7 +125,7 @@ https://www.amazon.com
 | [Kapton tape, pack insulation](https://www.amazon.com/dp/B006ZFQNT6) | 1 | roll | $8.25 | estimate |  |
 | [M6 x 16 A4 button head, 10 pk](https://www.amazon.com/dp/B07DVRLQTK) | 1 | pk | $8.06 | **verified** | 12 needed - 2 per rail handle into the 6061 strip, 2 into the module pads. Fender washer under every one: the  |
 | [2.5 mm straight cutter - fallback](https://www.amazon.com/dp/B0GWSZ2KV2) | 1 | ea | $7.99 | estimate | only if you would rather cut the groove open than sand down to a proud filler strip. Undersize in a 4 mm groov |
-| [M5 penny washer O15 DIN9021, 150 pk](https://www.amazon.com/dp/B0G58KQN6L) | 1 | pk | $7.99 | **verified** | 34 needed. DIN9021 is what confirms the large 15 mm OD. Goes in at the SAME print pause as the nut, underneath |
+| [M5 penny washer O15 DIN9021, 150 pk](https://www.amazon.com/dp/B0G58KQN6L) | 1 | pk | $7.99 | **verified** | 58 needed - TWO PER BOLT now, one captive under the nut and one UNDER THE HEAD. DIN9021 is what confirms the l |
 | [M8 316 washer, prop nut](https://www.amazon.com/dp/B0DDGRXHT7) | 1 | pk | $7.69 | **verified** | only 2 needed; sold in 10s |
 | [Inline 10 A fuse + holder, charge lead](https://www.amazon.com/dp/B0F2YXV41Q) | 1 | pk | $7.59 | **verified** | at SPLIT A on the charge positive. The ANL is sized for the motor and cannot protect 16 AWG |
 | [Silicone adhesive, bonding the cord into groove](https://www.amazon.com/dp/B0002UEN1U) | 1 | tube | $7.56 | estimate | a thin continuous bead under the cord. It cannot then migrate, lift out, or be pinched under the lid in a dark |
@@ -165,7 +164,7 @@ Some Flipsky appears on Amazon but the range is thin and usually dearer. Buy dir
 
 | Item | Qty | Unit | Ext | Price | Note |
 |---|---:|---|---:|---|---|
-| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $449.63 | **verified** |  |
+| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $447.40 | **verified** |  |
 | Gong shipping to Idaho, ONE order, both foils | 1 | order | $268.63 | **verified** | quoted at checkout for 2 x XL Alu setups. PER ORDER, not per foil - ordering the two separately would roughly  |
 | Shipping - Divinycell, 6061 plate, VR20 | 1 | allow | $120.00 | estimate | STILL THE BIGGEST UNVERIFIED LINE - it wants three real carts to settle. Was $220 when it covered G10 sheet an |
 

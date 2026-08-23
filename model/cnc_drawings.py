@@ -235,8 +235,8 @@ def build(p):
         "the rim ring, so it must be flat. "
         f"DRILL ALL 12 O{p['HATCH_BOLT_D'] + 0.6:.1f} IN THIS SETUP, right "
         f"through. Under each one is a O{p['HATCH_SPREADER_D']:.3f} G10 plug "
-        f"already bonded into the core (03b), full depth, so the bit passes "
-        f"skin / G10 / skin in one pass. Nothing to pocket, nothing to pot, "
+        f"already cast into the core, full depth, so the bit passes skin / "
+        f"resin / skin in one pass. Nothing to pocket, nothing to pot here, "
         f"nothing to re-find afterwards. "
         f"CUTTING THEM ALL HERE IS THE POINT: twelve holes bored in one setup "
         f"are mutually accurate to the machine, so lining the lid up on the "
@@ -248,8 +248,10 @@ def build(p):
         f"{p['HATCH_TORQUE_NM']:.1f} Nm, not the {p['SEAL_N'] / 12:.0f} N the "
         f"cord needs - a bare M5 cap head puts about 2.7 MPa into H100 even "
         f"after the skin spreads it, against a core that crushes at 2.0. On "
-        f"the G10 plug the same head sits at 37 MPa against G10's ~380, and "
-        f"the foam carries none of it. "
+        f"the epoxy plug, on a O{p['HATCH_HEAD_WASHER_D']:.0f} penny washer, "
+        f"the same bolt sits at 7.9 MPa against epoxy's ~50 and the foam "
+        f"carries none of it. THE WASHER IS NOT DECORATION - a bare cap head "
+        f"on resin is 37 MPa, and epoxy cold-flows under permanent preload. "
         f"NO COUNTERSINK: the cone wants 2.1 mm of solid material and there "
         f"is 1.0 mm of skin over the plug. Cap heads, proud, as intended. "
         f"AND SEAL EVERY CUT EDGE WITH NEAT EPOXY - machined perimeter and "
@@ -273,25 +275,14 @@ def build(p):
         f"circle ends up {p['HATCH_BOLT_INSET'] - 1.5:.1f} mm from the "
         f"FINISHED edge, so a O{p['HATCH_SPREADER_D']:.3f} plug clears it by "
         f"{p['HATCH_BOLT_INSET'] - 1.5 - p['HATCH_SPREADER_D'] / 2:.1f} mm. "
-        f"THE 12 CIRCLES ARE THROUGH-HOLES for the G10 plugs in 03b - "
-        f"O{p['HATCH_SPREADER_D'] + 0.15:.2f}, a slip fit on 5/8 in rod. "
-        f"Bond the plugs in, sand BOTH faces flush with the core, and only "
-        f"then lay up: a plug standing proud prints through a 1 mm skin under "
-        f"vacuum and you get twelve bumps in the deck.")
-
-    d = Dxf()
-    for k in range(12):
-        d.circle(24.0 * (k % 6), 24.0 * (k // 6), p["HATCH_SPREADER_D"] / 2)
-    add("03b_lid_spreaders", "G-10/FR4 rod, 5/8 in", p["LID_CORE"], 12, d,
-        144, 48,
-        f"NOT A CNC PART - part these off a 5/8 in G10 rod on a chop saw or "
-        f"bandsaw, {p['LID_CORE']:.1f} mm each, then sand to the core's real "
-        f"thickness. 12 a board, 24 for two, about 20 to a 1 ft rod. They are "
-        f"the hatch lid's hardpoints: a bare cap head crushes H100, and these "
-        f"take the foam out of the load path entirely. Round is deliberate - "
-        f"the bolt lands wherever the machine puts it and the plug is "
-        f"{(p['HATCH_SPREADER_D'] - 8.5) / 2:.2f} mm bigger than the head all "
-        f"round, so the core can drift that far at layup and still be right.")
+        f"THE 12 CIRCLES ARE THROUGH-HOLES THAT GET FILLED WITH THICKENED "
+        f"EPOXY - O{p['HATCH_SPREADER_D']:.0f}, the hatch lid's hardpoints. "
+        f"Do it NOW, while this is a bare sheet on the bench with no skins on "
+        f"it: tape one face, pour, cure, sand BOTH faces flush. That is the "
+        f"whole reason it happens at this stage rather than after layup - no "
+        f"pocket milled to depth, no bolt hole filled in and re-drilled, and "
+        f"nothing to find under a cured skin later. A plug left proud prints "
+        f"through a 1 mm skin under vacuum: twelve bumps in the deck.")
 
     # 3 - module floor -----------------------------------------------------
     # A PLAIN RECTANGLE now. It used to carry a JOINT_GROOVE_D locating groove

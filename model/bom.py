@@ -627,14 +627,11 @@ def build():
         math.ceil(M["hatch_bolts"] * N / 20), "pk", 15.99, OK,
         str(M["hatch_bolts"] * N) + " needed. A4/316 - every cheaper listing "
         "is A2/304, which pits in salt water")
-    # The hardpoint itself. ROD, not discs cut from sheet: O15.875 is no hole
-    # saw anyone owns, and 5/8 in rod parts off on a chop saw 24 times in ten
-    # minutes. About 20 discs to a 1 ft rod.
-    add("6  Hatch and seal", "G-10/FR4 rod 5/8in x 1ft, lid hardpoints", 2,
-        "ea", 18.55, EST, str(M["hatch_bolts"] * N) + " plugs needed, ~20 to "
-        "a rod. Sliced to core thickness, bonded into the core's 12 through "
-        "holes and sanded flush BOTH faces before layup - a plug standing "
-        "proud prints through a 1 mm skin under vacuum", vendor="Amazon")
+    # NO LINE FOR THE LID HARDPOINTS. They are twelve O16 holes in the bare
+    # core filled with thickened epoxy off the TotalBoat 5:1 kit already on
+    # this list - poured while the core is still a flat sheet on the bench.
+    # A G10 rod was specced here for one turn and it was, in Derek's words,
+    # "the epoxy plug with extra steps and material". He was right.
     # NOT the $0.14 self-tapping brass insert that was here: driving a coarse
     # thread into a brittle laminate wedges it between plies, which is exactly
     # why the mast plate uses bonded bushings. A wire-thread insert is tapped
@@ -649,9 +646,12 @@ def build():
     # trying. On a O15 penny washer that becomes 8.5 Nm, 7.1x.
     add("6  Hatch and seal", "M5 penny washer O15 DIN9021, 150 pk",
         1, "pk", 7.99, OK,
-        str(M["hatch_bolts"] * N + 10) + " needed. DIN9021 is what confirms "
-        "the large 15 mm OD. Goes in at the SAME print pause as the nut, "
-        "underneath it")
+        str(M["hatch_bolts"] * N * 2 + 10) + " needed - TWO PER BOLT now, one "
+        "captive under the nut and one UNDER THE HEAD. DIN9021 is what "
+        "confirms the large 15 mm OD. The head one is not decoration: a bare "
+        "M5 cap head on the epoxy plug is 37 MPa and resin cold-flows under "
+        "permanent preload; on a O15 washer it is 7.9 against epoxy's ~50. "
+        "150 in the pack, so one pack still does both boards")
     add("6  Hatch and seal",
         "M5 A4 hex nut DIN934, 50 pk - CAPTIVE in the ring",
         1, "pk", 9.19, OK,

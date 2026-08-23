@@ -94,8 +94,6 @@ LINKS = {
         ("B01IUBRSLO", 24.99, "HHIP 3601-0516 28 Piece Transfer Screw Set, M3 X .5, M4 X .7, M5 X .8, M6 X 1"),
     "M5 x 25 A4 socket cap, 20 pk":
         ("B0CJFMMF58", 15.99, "M5 x 25mm Full Thread Cap Head Screws DIN 912 A4 Pack of 20"),
-    "G-10/FR4 rod 5/8in x 1ft, lid hardpoints":
-        ("B084H1M6XB", 18.55, "USA Sealing BULK-CR-GFR4-33 G-10/FR4 Garolite Rod, 5/8in Diameter, 1ft Length"),
     "EPDM/neoprene sheet 1/2in, conduit bungs":
         ("B00P5VFKCC", 15.77, "General Purpose Rubber Sheet 50A 1/2in x 12 x 12"),
     "Hollow punch set 3/16-1-3/8in, for the O31.75 bung":
@@ -314,7 +312,6 @@ LINK_VENDOR = {
     "Transfer punch set, metric 1-13 mm": "Amazon",
     "Transfer screw set M3-M6": "Amazon",
     "M5 x 25 A4 socket cap, 20 pk": "Amazon",
-    "G-10/FR4 rod 5/8in x 1ft, lid hardpoints": "Amazon",
     "EPDM/neoprene sheet 1/2in, conduit bungs": "Amazon",
     "Hollow punch set 3/16-1-3/8in, for the O31.75 bung": "Amazon",
     "EPS rigid foam 2in x 48in x 8ft (HD 202532856)": "Home Depot / hardware",

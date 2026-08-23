@@ -1384,11 +1384,21 @@ HATCH_BOLT_INSET = 12.0            # from the rim's outer edge, outboard of the 
 # G10, not printed ASA: the head bears on the plug through 1 mm of skin at
 # 37 MPa, which is 10x under G10 and only 1.5x under ASA - and ASA creeps.
 HATCH_SPREADER = True
-HATCH_SPREADER_D = 15.875          # 5/8 in G10 ROD, sliced. Not a disc
-                                   # cut from sheet - O17 is no hole saw
-                                   # anyone owns, and 5/8 rod parts off on
-                                   # a chop saw 24 times in ten minutes.
-G10_COMP_MPA = 380.0               # flatwise compressive, conservative
+HATCH_SPREADER_D = 16.0            # poured, so any diameter is free
+# EPOXY POURED INTO THE BARE CORE, not a G10 rod parted into discs. The rod
+# was "the epoxy plug with extra steps and material" and that is exactly what
+# it was - a bought part, cut and sanded, doing what resin does for nothing.
+# What makes this cheap is WHEN it happens: the core is a flat sheet on the
+# bench with no skins on it yet, so filling twelve through-holes is pour,
+# cure, sand. No pocket milled to depth, no hole to re-drill, no hole to find
+# under a cured skin, and the CNC still drills all twelve for real afterwards.
+EPOXY_COMP_MPA = 50.0              # thickened laminating epoxy, conservative
+# ...and a plain penny washer under each head, because the one number that
+# does not work is a bare cap head on resin: 32 mm2 at 1200 N is 37 MPa, and
+# epoxy at 37 MPa under permanent preload cold-flows. On a O15 washer it is
+# 7.9. They are already on the list - 150 in the pack, 34 used - and Derek
+# said washers were acceptable if they had to be.
+HATCH_HEAD_WASHER_D = 15.0         # M5 penny, DIN 9021
 # NO COUNTERSINK. It needs 2.1 mm of solid material under the top face and
 # there is 1.0 mm of skin over the plug, so flush heads and a buried spreader
 # do not combine. Cap heads it is - which is what Derek asked for anyway.
@@ -1399,8 +1409,7 @@ HATCH_BOLT_CSK_ANG = 90.0          # included angle
 # dragged up a beach, so the socket is a grit trap by design and it gets
 # undone every ride. A hex key in a packed socket cams out and rounds it;
 # Torx does not, and it is the only reason the head style is called out.
-HATCH_POT_D = 16.0                 # epoxy boss - leaves 3.1 mm of resin wall
-EPOXY_COMP_MPA = 50.0              # thickened laminating epoxy, conservative
+HATCH_POT_D = 16.0                 # the module lid still pots the old way
 
 
 def derive_layout():
@@ -3916,10 +3925,10 @@ def build():
         # ...the buried spreader, full core depth, drilled through with the
         # bolt after the panel is laid up.
         if HATCH_SPREADER:
-            sp = cyl(f"V2_LidSpreader_{i}", bx_, by_,
+            sp = cyl(f"V2_LidPlug_{i}", bx_, by_,
                      z0 + LID_SKIN, z0 + LID_SKIN + LID_CORE,
                      HATCH_SPREADER_D, coll, bom_mat("g10"), seg=32)
-            boolean(sp, cyl(f"V2_LidSpreaderBore_{i}", bx_, by_,
+            boolean(sp, cyl(f"V2_LidPlugBore_{i}", bx_, by_,
                             z0 - 1.0, z0 + LID_T + 1.0,
                             HATCH_BOLT_D + 0.6, coll))
         # ...and the countersink, cut into the potted boss from the top face.
@@ -4247,24 +4256,29 @@ def build():
         % (NUT_WASHER_D, rep["hatch_penny_washer_margin"],
            EPOXY_COMP_MPA / (_bolt_N / _seat(HATCH_BOLT_HEAD_D))))
     rep["hatch_seat_is"] = (
-        "a O%.0f G10 disc buried FULL DEPTH in the core at every bolt, cut in "
-        "at layup and drilled through with the panel" % HATCH_SPREADER_D
+        "a O%.0f epoxy plug poured through the BARE CORE at every bolt, before "
+        "the skins go on, plus a O%.0f penny washer under the head"
+        % (HATCH_SPREADER_D, HATCH_HEAD_WASHER_D)
         if HATCH_SPREADER else "a potted epoxy boss")
-    rep["hatch_spreader_d_mm"] = HATCH_SPREADER_D
-    # the head bears on the plug through 1 mm of skin - direct, no spreading,
-    # because G10 is not a skin on a foundation
-    rep["hatch_seat_on_spreader_MPa"] = round(
+    rep["hatch_plug_d_mm"] = HATCH_SPREADER_D
+    rep["hatch_head_washer_d_mm"] = HATCH_HEAD_WASHER_D
+    # A BARE CAP HEAD ON RESIN IS THE ONE THING THAT DOES NOT WORK. Epoxy at
+    # 37 MPa under permanent preload cold-flows; the washer is not decoration.
+    rep["hatch_bare_head_on_epoxy_MPa"] = round(
         _bolt_N / _seat(HATCH_BOLT_HEAD_D), 1)
-    rep["hatch_seat_on_spreader_margin"] = round(
-        G10_COMP_MPA / (_bolt_N / _seat(HATCH_BOLT_HEAD_D)), 1)
+    rep["hatch_seat_on_plug_MPa"] = round(
+        _bolt_N / _seat(HATCH_HEAD_WASHER_D), 1)
+    rep["hatch_seat_on_plug_margin"] = round(
+        EPOXY_COMP_MPA / (_bolt_N / _seat(HATCH_HEAD_WASHER_D)), 1)
     # ...and the plug hands it to the bottom skin and the rim's ASA land
-    rep["hatch_spreader_on_rim_MPa"] = round(
+    rep["hatch_plug_on_rim_MPa"] = round(
         _bolt_N / _seat(HATCH_SPREADER_D), 1)
-    # HOW FAR THE CORE CAN DRIFT AT LAYUP. The plug is placed by hand; the
-    # hole is drilled by machine. The head has to land wholly on the plug.
-    rep["hatch_spreader_drift_budget_mm"] = round(
-        (HATCH_SPREADER_D - HATCH_BOLT_HEAD_D) / 2.0, 2)
-    rep["hatch_spreader_to_lid_edge_mm"] = round(
+    # HOW FAR THE CORE CAN DRIFT AT LAYUP. The plug is poured by hand into a
+    # machined hole; the bolt hole is drilled by machine after the skins are
+    # on. The bolt has to land inside the plug with resin left round it.
+    rep["hatch_plug_drift_budget_mm"] = round(
+        (HATCH_SPREADER_D - _hole) / 2.0 - 1.0, 2)
+    rep["hatch_plug_to_lid_edge_mm"] = round(
         _edge - HATCH_SPREADER_D / 2.0, 1)
     rep["hatch_no_foam_in_load_path"] = True
     rep["hatch_pot_boss_d_mm"] = HATCH_POT_D

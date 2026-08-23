@@ -339,7 +339,6 @@ fibre ends at the cavity ledge.
 `Silicone adhesive, bonding the cord into groove` ·
 `Cyanoacrylate for the cord splice` · `2.5 mm straight cutter - fallback` ·
 `M5 x 25 A4 socket cap, 20 pk` · `Transfer screw set M3-M6` ·
-`G-10/FR4 rod 5/8in x 1ft, lid hardpoints` ·
 `Solid silicone cord, 1/8 in (3.175 mm) - the spare size`
 
 The ring went in at step 10a and has been glassed over since. Now sand the
@@ -378,60 +377,54 @@ that:
 |---|---|---|
 | Bare M5 cap head | 2.67 MPa | fails |
 | Ø15 penny washer | 1.63 MPa | passes, 1.2× |
-| **On the G10 plug** | **37 MPa vs G10's ~380** | **10.2×, and the foam carries none** |
+| **On the epoxy plug, Ø15 washer** | **7.9 MPa vs epoxy's ~50** | **6.3×, and the foam carries none** |
 
 > **Why the lid needs a hardpoint at all.** It is glass / H100 foam / glass,
 > and a bolt clamped straight onto that crushes the foam. So at every bolt the
-> core is replaced by a solid plug, and the lid reads glass / **solid G10** /
-> glass instead of glass / foam / glass. Same trick every deck fitting on a
-> boat or a surfboard uses. The usual version is an oversized hole filled with
-> thickened epoxy — a *potted boss* — and the module lid still does it that
-> way. The hatch lid gets a machined plug instead, because potting fills the
-> bolt hole and it then has to be re-drilled. V1 never needed any of this:
-> that lid was solid plywood all the way through.
+> core is replaced by a plug of solid resin, and the lid reads glass / **solid
+> epoxy** / glass instead of glass / foam / glass. Same trick every deck
+> fitting on a boat or a surfboard uses. V1 never needed it: that lid was
+> solid plywood all the way through.
 
-#### The hardpoint is a G10 plug, buried at layup
+#### The plugs are cast into the bare core, before the skins go on
 
-A **Ø15.875 (5/8 in) G10 plug** goes through the core at every bolt, **full
-depth**, bonded in and sanded flush before the skins go on. Then the CNC
-drills all twelve Ø5.6 holes through skin / plug / skin in one pass.
+That timing is the whole trick. The core is a flat sheet on the bench with
+nothing laminated to it yet, so making twelve hardpoints is **pour, cure,
+sand** — no pocket milled to depth in a finished panel, no bolt hole filled in
+and re-drilled, and nothing to hunt for under a cured skin afterwards.
 
-That is the whole point of doing it this way: **there is nothing to re-find
-afterwards.** No pocket, no potting, no hole that gets filled and has to be
-drilled out again — which would turn each of the twelve into its own precision
-job at the bench. And twelve holes bored in one setup are mutually accurate to
-the machine, so lining the lid up on the ring is a single **rigid-body fit**:
-get two to pick up and the rest already are.
-
-1. **CNC the core** oversize, with twelve Ø16.03 through-holes.
-2. **Part the plugs** off the 5/8 in rod — chop saw or bandsaw, about 20 to a
-   foot. Bond them in and **sand both faces flush with the core.** A plug
-   standing proud prints through a 1 mm skin under vacuum and you get twelve
-   bumps in the deck.
+1. **CNC the core** oversize, with twelve Ø16 through-holes.
+2. **Tape one face, fill them with thickened epoxy**, cure, and **sand both
+   faces flush.** A plug left proud prints through a 1 mm skin under vacuum
+   and you get twelve bumps in the deck.
 3. **Lay up** glass / core / glass and bag it. The plugs are invisible now and
    it does not matter.
-4. **Machine the profile and drill all twelve Ø5.6**, one setup.
+4. **Machine the profile and drill all twelve Ø5.6**, one setup — straight
+   through skin / resin / skin.
 
-**Full depth, not a shallow washer in a recess** — two reasons and both bite.
-A 3 mm disc in a 3 mm pocket has to finish flush to about 0.2 mm on milled
-foam or it prints through; and it still stacks 9 mm of H100 under it in
-compression. A through-plug has neither problem.
+Twelve holes bored in one setup are mutually accurate to the machine, so
+lining the lid up on the ring is a single **rigid-body fit**: get two to pick
+up and the rest already are.
 
-**The core can drift 4.25 mm at layup** and the bolt still lands wholly on its
-plug — the plug is that much bigger than the head all round. That is what buys
-you the freedom to place the core by hand.
+**The core can drift 4.2 mm at layup** and the bolt still lands inside its
+plug with resin all round it. That is what buys you the freedom to place the
+core by hand.
+
+**A penny washer goes under each head, and it is not decoration.** A bare M5
+cap head on resin is 37 MPa, and epoxy cold-flows under permanent preload. On
+a Ø15 washer it is 7.9. They are already on the list — 150 in the pack, and
+this uses two per bolt instead of one.
 
 **No countersink.** The cone wants 2.1 mm of solid material under the top face
 and there is 1.0 mm of skin over the plug, so flush heads and a buried
-hardpoint do not combine. Cap heads, proud, no washers.
+hardpoint do not combine. Cap heads, proud, on washers.
 
 **If one hole still will not pick up**, that is what the transfer screws are
 for: mark the real nut, open that hole, and leave the other eleven alone. The
-plug is 5.1 mm bigger than the bolt all round, so there is room to move it.
+plug is 5.2 mm bigger than the bolt all round, so there is room to move it.
 
 **Seal the bores** with neat epoxy as [step 12](#step-12-seal-every-cut-edge)
-did for the rest — the drill cuts both skins and the plug's glass, and those
-are fresh fibre ends.
+did for the rest — the drill cuts both skins, and those are fresh fibre ends.
 
 ### Step 14. Build the module
 

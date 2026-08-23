@@ -69,11 +69,10 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | [2.5 mm straight cutter - fallback](https://www.amazon.com/dp/B0GWSZ2KV2) | 1 | ea | $7.99 | $7.99 | estimate | only if you would rather cut the groove open than sand down to a proud filler strip. Undersize in a 4 mm groove on purpose |
 | [Silicone adhesive, bonding the cord into groove](https://www.amazon.com/dp/B0002UEN1U) | 1 | tube | $7.56 | $7.56 | estimate | a thin continuous bead under the cord. It cannot then migrate, lift out, or be pinched under the lid in a dark car park |
 | [M5 x 25 A4 socket cap, 20 pk](https://www.amazon.com/dp/B0CJFMMF58) | 2 | pk | $15.99 | $31.98 | verified | 24 needed. A4/316 - every cheaper listing is A2/304, which pits in salt water |
-| [G-10/FR4 rod 5/8in x 1ft, lid hardpoints](https://www.amazon.com/dp/B084H1M6XB) | 2 | ea | $18.55 | $37.10 | estimate | 24 plugs needed, ~20 to a rod. Sliced to core thickness, bonded into the core's 12 through holes and sanded flush BOTH faces before layup - a plug standing proud prints through a 1 mm skin under vacuum |
-| [M5 penny washer O15 DIN9021, 150 pk](https://www.amazon.com/dp/B0G58KQN6L) | 1 | pk | $7.99 | $7.99 | verified | 34 needed. DIN9021 is what confirms the large 15 mm OD. Goes in at the SAME print pause as the nut, underneath it |
+| [M5 penny washer O15 DIN9021, 150 pk](https://www.amazon.com/dp/B0G58KQN6L) | 1 | pk | $7.99 | $7.99 | verified | 58 needed - TWO PER BOLT now, one captive under the nut and one UNDER THE HEAD. DIN9021 is what confirms the large 15 mm OD. The head one is not decoration: a bare M5 cap head on the epoxy plug is 37 MPa and resin cold-flows under permanent preload; on a O15 washer it is 7.9 against epoxy's ~50. 150 in the pack, so one pack still does both boards |
 | [M5 A4 hex nut DIN934, 50 pk - CAPTIVE in the ring](https://www.amazon.com/dp/B084HLMN7B) | 1 | pk | $9.19 | $9.19 | verified | 34 needed. Dropped in at a print pause at Z=6.0; steel thread, so a hatch that comes off every ride never wears anything out |
 | [MDF 12 mm, 4 check gauges](https://www.homedepot.com/p/ProWood-1-2-in-x-2-ft-x-4-ft-Medium-Density-Fiberboard-Project-Panel-109097/202093821) | 1 | sheet | $30.73 | $30.73 | estimate | 3 station sections + the rocker/deck profile. Was a 14-template set at $70 - the router templates go with the CNC pass. The caul is an EPS offcut and the groove guide is fallback-only, so this sheet is now the whole MDF requirement |
-| **subtotal** | | | | **$200.10** | | |
+| **subtotal** | | | | **$163.00** | | |
 
 ## 7  Module
 
@@ -248,31 +247,31 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | Item | Qty | Unit | Unit $ | Ext $ | | Note |
 |---|---:|---|---:|---:|---|---|
 | Shipping - Divinycell, 6061 plate, VR20 | 1 | allow | $120.00 | $120.00 | estimate | STILL THE BIGGEST UNVERIFIED LINE - it wants three real carts to settle. Was $220 when it covered G10 sheet and hazmat epoxy, both of which are now out of the build entirely |
-| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $449.63 | $449.63 | verified |  |
-| **subtotal** | | | | **$569.63** | | |
+| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $447.40 | $447.40 | verified |  |
+| **subtotal** | | | | **$567.40** | | |
 
 ## Totals
 
 | | |
 |---|---:|
-| **Grand total, 2 boards** | **$7,943.42** |
-| Per board | $3,971.71 |
-| Of which verified | $7,306.15  (92%) |
-| Of which estimated | $637.27 |
-| Linked to a real listing | 129 lines |
+| **Grand total, 2 boards** | **$7,904.09** |
+| Per board | $3,952.04 |
+| Of which verified | $7,303.92  (92%) |
+| Of which estimated | $600.17 |
+| Linked to a real listing | 128 lines |
 | Priced but NOT linked | 1 lines, $12.00 |
-| Not linkable, but MEASURED (freight quotes) | 2 lines, $718.26 |
+| Not linkable, but MEASURED (freight quotes) | 2 lines, $716.03 |
 | Not linkable and still estimated | 1 lines, $120.00 |
 
 ## What is a board, and what is a shop
 
-Some of the total above is not the cost of a board at all - it is tools, jigs and templates that exist afterwards and do not repeat. Splitting them out is the difference between "a board costs $3,972" and "a board costs $3,537 and I now own a vacuum rig, a crimper and a full template set".
+Some of the total above is not the cost of a board at all - it is tools, jigs and templates that exist afterwards and do not repeat. Splitting them out is the difference between "a board costs $3,952" and "a board costs $3,517 and I now own a vacuum rig, a crimper and a full template set".
 
 | | |
 |---|---:|
 | One-time tooling (incl. its share of tax) | $869.36 |
-| **Marginal cost of a board** | **$3,537.03** |
-| Cost of the NEXT board after these 2 | $3,537.03 |
+| **Marginal cost of a board** | **$3,517.37** |
+| Cost of the NEXT board after these 2 | $3,517.37 |
 
 | One-time item | $ |
 |---|---:|
