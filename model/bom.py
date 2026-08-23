@@ -787,14 +787,27 @@ def build():
     # Was a 25 mm cable gland - nothing to mount one to. See the GLAND_D note
     # in blender_board.py. Undersized rubber is the seal; 4200 is the fillet.
     #
+    # NEOPRENE SPECIFICALLY, and it is the one rubber on this list that must
+    # NOT follow the module gasket to EPDM. 3M 4200 is a POLYURETHANE, and
+    # EPDM is about the hardest rubber there is to bond - non-polar, low
+    # surface energy, wants a primer or a chlorination step. A fillet that
+    # does not wet the bung leaves a capillary path along the exact interface
+    # it was put there to close. Neoprene is polar and takes polyurethane.
+    #
+    # AND THE OLD LISTING WAS NEITHER. It said "EPDM/neoprene" and pointed at
+    # a General Purpose sheet that is SBR - the cheap one, and the worst of
+    # the three in water and UV, on a part that lives permanently wet at the
+    # bottom of the board. Nobody would have caught that from the line name.
+    #
     # THE SHEET'S THICKNESS IS THE BUNG'S LENGTH. 1/2 in of 50A is better
     # rubber for this than anything sold as 1-1/4 in rod - the only rod on
     # Amazon in that diameter is 75A, which is wear-pad hard: it will not
     # conform to a stranded jacket and it turns pushing 6.5 mm cable through
     # 5.5 mm holes into a fight. So the bung is a punched DISC, not a slug of
     # rod, and blender_board.py takes BUNG_L straight off the stock.
-    add("7  Module", "EPDM/neoprene sheet 1/2in, conduit bungs", 1, "sheet",
-        14.00, EST, "50A. Punch O31.75 discs, 12.7 thick, and drill 3 x O5.5 "
+    add("7  Module", "Neoprene sheet 1/2in 50A, wire bung", 1, "sheet",
+        16.00, EST, "CONFIRM THE DUROMETER - 40-60A is fine, harder is a "
+        "fight to push cable through. Punch O31.75 discs, 12.7 thick, and drill 3 x O5.5 "
         "on a O9.8 triangle for the 6.5 mm leads - 15% interference, soap "
         "them through. One sheet is a lifetime of bungs for both boards")
     # Derek's existing punch set stops at 1/2 in and the bung is 1-1/4 in.

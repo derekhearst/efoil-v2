@@ -6,17 +6,17 @@ Grouped by where you buy it rather than by what it does, because that is the ord
 
 | Supplier | Lines | $ |
 |---|---:|---:|
-| Amazon | 113 | $3,620.10 |
+| Amazon | 113 | $3,620.33 |
 | Gong | 1 | $1,404.00 |
 | Flipsky | 3 | $1,038.00 |
-| Not a purchase - tax and freight | 3 | $836.33 |
+| Not a purchase - tax and freight | 3 | $836.35 |
 | BatteryHookup | 2 | $297.50 |
 | Fiberglass Supply | 3 | $253.38 |
 | Home Depot / hardware | 4 | $169.16 |
 | Maker Shop Boise | 1 | $150.00 |
 | Speedy Metals | 1 | $88.92 |
 | Easy Composites | 1 | $52.00 |
-| **TOTAL** | | **$7,909.39** |
+| **TOTAL** | | **$7,909.64** |
 
 ## Amazon
 
@@ -88,9 +88,9 @@ https://www.amazon.com
 | [Chip brushes 2 in, 36 pk](https://www.amazon.com/dp/B078XJ2DCJ) | 1 | pk | $17.99 | **verified** | disposable, 2-4 a session across 6 sessions. The 12 pk at $7.19 is dearer per brush and runs out mid-build |
 | [Laminating bubble roller kit, 4 pc](https://www.amazon.com/dp/B07FCLTHY6) | 1 | kit | $17.99 | **verified** |  |
 | [Paste wax, releasing the groove filler](https://www.amazon.com/dp/B0GVCGHZFR) | 1 | ea | $16.99 | estimate | the filler must NOT bond - it comes back out after the glass goes over it |
+| [Neoprene sheet 1/2in 50A, wire bung](https://www.amazon.com/dp/B01LX83X9H) | 1 | sheet | $16.00 | estimate | CONFIRM THE DUROMETER - 40-60A is fine, harder is a fight to push cable through. Punch O31.75 discs, 12.7 thic |
 | [Adjustable hand sanding block](https://www.amazon.com/dp/B0D4LNDYXD) | 1 | ea | $15.99 | **verified** | rails, nose, tail and anywhere the longboard will not reach |
 | [Longboard PSA sandpaper 80 grit, 20 yd roll](https://www.amazon.com/dp/B0CQ7CVGK6) | 1 | roll | $15.99 | **verified** | 2-3/4 in, self-adhesive, fits the longboard above. 80 is the fairing grit - it cuts fair, it does not finish |
-| [EPDM/neoprene sheet 1/2in, conduit bungs](https://www.amazon.com/dp/B00P5VFKCC) | 1 | sheet | $15.77 | estimate | 50A. Punch O31.75 discs, 12.7 thick, and drill 3 x O5.5 on a O9.8 triangle for the 6.5 mm leads - 15% interfer |
 | [Solid silicone cord, 1/8 in (3.175 mm) - the spare size](https://www.amazon.com/dp/B00QVB0KE8) | 1 | pc | $15.39 | **verified** | 10 ft piece, 70A. Fitted ONLY if the routed groove measures deep. Gives 24% squeeze at the nominal 2.4 depth a |
 | [16 AWG silicone, 6 colours x 5 ft](https://www.amazon.com/dp/B089CPH72F) | 1 | kit | $14.49 | **verified** | charge port and power button runs are short; one kit does both boards and the colours keep them straight |
 | [Silica gel, indicating, 50 g per module](https://www.amazon.com/dp/B0DSBCXHT3) | 1 | pk | $13.99 | estimate | ~40 g is a season at 50 breathing cycles; a token sachet is worth about six. Bake it dry when the indicator tu |
@@ -164,7 +164,7 @@ Some Flipsky appears on Amazon but the range is thin and usually dearer. Buy dir
 
 | Item | Qty | Unit | Ext | Price | Note |
 |---|---:|---|---:|---|---|
-| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $447.70 | **verified** |  |
+| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $447.72 | **verified** |  |
 | Gong shipping to Idaho, ONE order, both foils | 1 | order | $268.63 | **verified** | quoted at checkout for 2 x XL Alu setups. PER ORDER, not per foil - ordering the two separately would roughly  |
 | Shipping - Divinycell, 6061 plate, VR20 | 1 | allow | $120.00 | estimate | STILL THE BIGGEST UNVERIFIED LINE - it wants three real carts to settle. Was $220 when it covered G10 sheet an |
 

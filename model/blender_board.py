@@ -637,7 +637,7 @@ WIRE_CH_W = 20.0                   # raceway beside the ESC, for 8 AWG + balance
 #   - Potting seals it permanently, which BOLTS THE MAST TO THE BOARD. The
 #     motor's pigtails run up the mast and through this bore, so anything that
 #     grips them for keeps means the mast can never come off for transport.
-# It is a REMOVABLE BUNG: a neoprene/EPDM plug, interference fit in the bore,
+# It is a REMOVABLE BUNG: a NEOPRENE plug, interference fit in the bore,
 # with three undersized holes the 6.5 mm phase leads squeeze through, skimmed
 # with 3M 4200 on the cavity face. Undersized rubber is the seal; the 4200 is
 # a fillet over it and cuts away with a knife.
@@ -939,6 +939,12 @@ BUNG = True
 # too hard to conform to a stranded jacket and a fight to push 6.5 mm cable
 # through 5.5 mm holes. The sheet is 50A, already linked and already bought
 # for this exact job. So the sheet's thickness IS the bung's length: 12.7.
+# NEOPRENE, not the EPDM the module gasket uses, and the two are different on
+# purpose: that gasket seals by compression alone and is chosen for its
+# compression SET, this one gets a 3M 4200 fillet worked over it and is chosen
+# for what will BOND. 4200 is a polyurethane and EPDM is about the hardest
+# rubber to bond - non-polar, low surface energy. A fillet that does not wet
+# the bung leaves a capillary path along the interface it was meant to close.
 BUNG_L = 12.7                      # 1/2 in sheet - the stock sets this
 BUNG_ROD_D = 31.75                 # 1-1/4 in disc, arch punch or 1-3/8 hole saw
 # The pocket is deliberately SLOPPY on diameter, which reads wrong until you
@@ -2216,7 +2222,7 @@ PALETTE = {
     "alu_anod":      ((0.28, 0.30, 0.33), 0.35, 1.0, 1.00),  # anodised alu foil
     "carbon":        ((0.07, 0.07, 0.08), 0.28, 0.1, 1.00),  # carbon wing
     "seal":          ((0.85, 0.15, 0.35), 0.60, 0.0, 1.00),  # EPDM sponge gasket
-    "rubber":        ((0.12, 0.12, 0.14), 0.80, 0.0, 1.00),  # solid neoprene rod
+    "rubber":        ((0.12, 0.12, 0.14), 0.80, 0.0, 1.00),  # solid neoprene
     # TRANSPARENT, like the hull and the lids. An opaque pad hides the
     # thing you are checking it against - the rim, the bolt circle, the
     # rail line - which is the whole reason it is in the model.
@@ -2276,7 +2282,7 @@ PALETTE_LEGEND = {
     "alu_anod":   "anodised aluminium - foil mast and fuselage",
     "carbon":     "carbon - front wing, stabiliser, prop",
     "seal":       "O3 silicone cord, bonded into a 4 x 2.4 groove",
-    "rubber":     "solid neoprene rod, 1-1/4 in - the mast wire bung",
+    "rubber":     "solid neoprene, O31.75 disc punched from 1/2 in sheet - the mast wire bung",
     "mach_al":    "core piece AFT-LOWER  - layers 1+2, rocker and mast pocket under, lower cavity on top",
     "mach_au":    "core piece AFT-UPPER  - layers 3+4, deck crown on top, upper cavity cut through",
     "mach_fl":    "core piece FWD-LOWER  - layers 1+2",
