@@ -286,7 +286,8 @@ def build(p):
 
     d = Dxf()
     d.poly(rrect(2.0, lw - 2.0, 2.0, lh - 2.0, R + RIM_W - 3.5))
-    add("03_hatch_lid_core", "Divinycell H80", p["LID_CORE"], 1, d,
+    add("03_hatch_lid_core", "Divinycell " + p["LID_CORE_GRADE"],
+        p["LID_CORE"], 1, d,
         lw - 4, lh - 4, "Inset 2 mm so the skins wrap the edge - no exposed core.")
 
     # 3 - module floor -----------------------------------------------------

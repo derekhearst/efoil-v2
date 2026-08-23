@@ -4223,6 +4223,37 @@ def build():
         "primary method - re-pot and re-drill that one on a transfer mark")
     rep["hatch_lid_clearance_radial_mm"] = round(0.6 / 2.0, 2)
 
+    # --- WHY NOT A BIG WASHER BURIED UNDER THE TOP SKIN --------------------
+    # The obvious one-step alternative: machine a shallow wide recess into the
+    # core, drop a big washer in it, and glass over the lot when the lid is
+    # laid up. No pot, no second cure, no re-drill. It is a real technique and
+    # it is how a proper cored panel gets a hardpoint.
+    #
+    # It does not fit HERE, and the reason is edge distance, not principle.
+    # A washer SPREADS load INTO the core, so its size is set by the core's
+    # 2.0 MPa. The potted boss does not spread anything - it carries the load
+    # straight THROUGH to the bottom skin and onto the rim's ASA land - so its
+    # size is not set by foam at all. That is the whole difference, and it is
+    # why one needs to be O25 and the other works at O16.
+    _edge = HATCH_BOLT_INSET - 1.5              # lid is inset 1.5 from the rim
+    rep["hatch_bolt_to_lid_edge_mm"] = round(_edge, 1)
+    # leave 2 mm of laminate outboard of it or the pocket breaks out
+    rep["hatch_max_spreader_d_mm"] = round(2.0 * (_edge - 2.0), 1)
+    _sp = _seat(rep["hatch_max_spreader_d_mm"])
+    rep["hatch_buried_washer_MPa"] = round(_bolt_N / _sp, 2)
+    rep["hatch_buried_washer_works"] = (
+        rep["hatch_buried_washer_MPa"] <= CORE_COMP_MPA)
+    rep["hatch_spreader_d_needed_mm"] = rep["hatch_washer_d_for_bare_core_mm"]
+    rep["hatch_why_not_buried_washer"] = (
+        "a washer spreads load INTO the core, so it needs O%.1f to reach the "
+        "2.0 MPa limit - but the bolt is only %.1f mm from the lid edge, so "
+        "the biggest one that fits is O%.1f, which lands at %.2f MPa. The "
+        "potted boss carries the load THROUGH to the bottom skin instead of "
+        "into the foam, so O%.0f is enough"
+        % (rep["hatch_washer_d_for_bare_core_mm"], _edge,
+           rep["hatch_max_spreader_d_mm"], rep["hatch_buried_washer_MPa"],
+           HATCH_POT_D))
+
     # --- mast hardpoint ---------------------------------------------------
     # The plate and the dense ring sit in a POCKET machined into the underside
     # of the blank, flush with the surrounding foam, so the whole bottom is one

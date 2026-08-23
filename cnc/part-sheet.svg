@@ -430,7 +430,7 @@
 <circle cx="838.02" cy="307.54" r="3.25" fill="none" stroke="#c0392b" stroke-width="1.1"/>
 <circle cx="838.02" cy="307.54" r="1.40" fill="none" stroke="#c0392b" stroke-width="1.1"/>
 <text x="1016" y="94" font-size="12.5" font-weight="600">4. hatch lid core</text>
-<text x="1016" y="110" font-size="10.5" fill="#666">Divinycell H80 · 12 mm · x1 · 573 x 384</text>
+<text x="1016" y="110" font-size="10.5" fill="#666">Divinycell H100 (2 x 1/4in bonded - no 1/2in H100 exists) · 12 mm · x1 · 573 x 384</text>
 <line x1="1229.37" y1="310.71" x2="1231.24" y2="310.63" stroke="#1a1a1a" stroke-width="1.1"/>
 <line x1="1231.24" y1="310.63" x2="1233.09" y2="310.39" stroke="#1a1a1a" stroke-width="1.1"/>
 <line x1="1233.09" y1="310.39" x2="1234.92" y2="309.98" stroke="#1a1a1a" stroke-width="1.1"/>
