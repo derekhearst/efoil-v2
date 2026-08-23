@@ -139,7 +139,7 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | Item | Qty | Unit | Unit $ | Ext $ | | Note |
 |---|---:|---|---:|---:|---|---|
 | Capacitor spot welder | 1 | ea | $0.00 | $0.00 | on hand | used on V1 |
-| [Transfer screw set M3-M6](https://www.amazon.com/dp/B01IUBRSLO) | 1 | set | $24.99 | $24.99 | estimate | M5 for the 12 hatch nuts, M4 for the 18 module lid inserts, M6 for the handle strips. 6 of each size, so the hatch goes in two passes with the lid clamped - drill and bolt the first six, then move the screws round |
+| [Transfer screw set M3-M6](https://www.amazon.com/dp/B01IUBRSLO) | 1 | set | $24.99 | $24.99 | estimate | RECOVERY, not method - the CNC cuts all 12 hatch holes in one setup and the pattern aligns as one rigid body. This is for the one hole that does not pick up: mark the real nut, drill it out of the resin boss, re-pot, re-drill. M5 hatch, M4 module lid, M6 handle strips |
 | [Transfer punch set, metric 1-13 mm](https://www.amazon.com/dp/B005379HJA) | 1 | set | $24.99 | $24.99 | estimate | the 9 mm punch is a slip fit in Gong's own clearance holes and marks true centre within a few hundredths. A 6.8 tap drill rattling in that same 9 mm hole does not - and the mast plate's whole positional budget is 0.25 mm |
 | [M8 x 30 A4 mast bolts, 10 pk - spares](https://www.amazon.com/dp/B07HZKSP72) | 1 | pk | $10.82 | $10.82 | verified | Gong supplies its own; these are spares. Only listing confirming marine A4/316; head is ISO 7380 button, not socket cap - check that suits the counterbore |
 | [Silicone grease for the seal cord](https://www.amazon.com/dp/B0BN82MJVK) | 1 | tube | $9.99 | $9.99 | estimate | stops the cord bonding to the lid in storage |

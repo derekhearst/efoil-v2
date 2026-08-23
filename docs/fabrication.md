@@ -382,38 +382,42 @@ flush with the deck, no hardware showing.
 **Torx, not hex.** This socket is flush with a deck that gets dragged up a
 beach and undone every ride. A packed hex socket cams out and rounds off.
 
-#### The ring is the master. The lid gets drilled off it, not off the drawing.
+#### The CNC cuts all twelve, and the potting must not destroy that
 
-This is the one that cost V1 a day. The ring is **six printed pieces**,
-dovetailed, acetone-welded and glassed into a machined rebate. Each piece's
-holes are printer-accurate to its own dovetails — but where they end up after
-the bond-up is not something the drawing knows. Drill the lid to nominal and
-you are matching twelve holes to a pattern that no longer exists.
+This is the one that cost V1 a day, and the fix is **more machining, not
+less**. Twelve holes bored in one setup are mutually accurate to the machine,
+so lining the lid up on the ring is a single **rigid-body fit** — get two to
+pick up and the other ten are already right. Transferring each hole
+individually would throw that away and turn one alignment problem into twelve.
 
-**And the countersink makes that worse, which is the part to notice.** A cap
-head over a clearance hole does not care where the hole is — the head covers
-it. A flat head cannot: the cone centres itself in its own countersink, so
-twelve cones on a drifted pattern fight each other and the lid never seats
-flat. Opening the clearance does nothing about it.
+So `02_hatch_lid.dxf` carries **two concentric circles at every station** and
+both get cut in the same setup: the Ø16 potting boss, and the Ø5.6 bolt hole
+straight through the middle of it.
 
-The potted boss is the way out, and it is already there:
+**The order matters, and this is the step that is easy to get wrong:**
 
-1. **CNC cuts twelve Ø16 bosses at nominal**, 13 mm deep — top skin and core
-   only, leave the bottom skin. Set Z off the *measured* thickness of the
-   bagged panel. A Ø16 pocket does not care about half a millimetre.
-2. **Pot them** with thickened epoxy and cure. Still no bolt holes.
-3. **Ring goes in and gets glassed** (step 10a) — it is now wherever it is.
-4. **Transfer screws into six of the captive nuts**, points proud. Drop the
-   lid on, register it on its perimeter, press. Six exact marks.
-5. **Drill Ø5.6 and countersink** on those marks, bolt those six down, then
-   move the screws to the other six and repeat. The lid is held by the first
-   six while you do it, so nothing can shift.
+1. **CNC**: pocket the twelve Ø16 bosses 13 mm deep — top skin and core only,
+   leave the bottom skin — and drill Ø5.6 through the centre of each. Set the
+   pocket Z off the *measured* thickness of the bagged panel, not the nominal
+   14.
+2. **Grease an M5 bolt and drop it through each finished hole.** The bottom
+   skin holds it centred.
+3. **Fill the pocket around it** with thickened epoxy. Cure.
+4. **Back the bolts out.** The machined position survived the pot.
+5. **Countersink** each one 90° to Ø9.8, about 2.1 mm deep, to the head you
+   actually bought.
 
-The boss gives the small hole **3.1 mm of radial freedom** to land in,
-against a bond-up drift of well under 1 mm. No fine-tuning, no reaming, no
-holes ovalled out by hand.
+Fill the pockets bare and you have thrown away the setup you just paid for —
+you would be re-drilling by eye through solid resin.
 
-**Seal the new bores** with neat epoxy as [step 12](#step-12-seal-every-cut-edge)
+**If one or two still will not pick up.** The ring is six printed pieces,
+dovetailed, welded and glassed into a rebate, so a little drift is possible.
+That is what the boss is really insurance for: **3.1 mm of solid resin all
+round every hole.** Drill the stray one out, re-pot it, and re-drill it on a
+transfer-screw mark — without touching the other eleven. Five minutes, not a
+scrapped lid. That is the only job the transfer screws have here.
+
+**Seal the bores** with neat epoxy as [step 12](#step-12-seal-every-cut-edge)
 did for the rest — the boss itself is resin, but the countersink cuts the top
 skin and the through hole cuts the bottom one, and those are fresh fibre ends.
 

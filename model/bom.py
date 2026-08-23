@@ -1036,10 +1036,11 @@ def build():
     # punches for CLEARANCE holes (the mast). They are different tools and
     # there is no one set that does both.
     add("9b Small but essential", "Transfer screw set M3-M6", 1, "set",
-        24.99, EST, "M5 for the 12 hatch nuts, M4 for the 18 module lid "
-        "inserts, M6 for the handle strips. 6 of each size, so the hatch "
-        "goes in two passes with the lid clamped - drill and bolt the first "
-        "six, then move the screws round", tool=True, vendor="Amazon")
+        24.99, EST, "RECOVERY, not method - the CNC cuts all 12 hatch holes "
+        "in one setup and the pattern aligns as one rigid body. This is for "
+        "the one hole that does not pick up: mark the real nut, drill it out "
+        "of the resin boss, re-pot, re-drill. M5 hatch, M4 module lid, M6 "
+        "handle strips", tool=True, vendor="Amazon")
     add("9b Small but essential", "Transfer punch set, metric 1-13 mm", 1,
         "set", 24.99, EST, "the 9 mm punch is a slip fit in Gong's own "
         "clearance holes and marks true centre within a few hundredths. A "

@@ -4193,18 +4193,31 @@ def build():
     # clearance does nothing. Going flush and drilling to nominal are not
     # compatible, and the flush head is the one worth keeping.
     #
-    # The potted boss is the way out, because it is already there. Cut the
-    # O16 bosses at nominal - a O16 hole does not care about half a
-    # millimetre - pot them, and only THEN transfer the real nut positions
-    # off the assembled ring and drill the O5.6 and its cone wherever they
-    # actually land. The boss gives the small hole this much room to move:
-    rep["hatch_holes_transferred_from_ring"] = True
+    # THE ANSWER IS NOT TO STOP MACHINING THEM. Twelve holes bored in one
+    # setup are mutually accurate to the machine, so lining the lid up on the
+    # ring is a single RIGID-BODY fit: get two to pick up and the other ten
+    # are already right. Transferring each hole individually throws that away
+    # and replaces one alignment problem with twelve.
+    #
+    # So the CNC cuts both circles at every station - boss and bolt hole,
+    # concentric, same setup - and the potting is sequenced so it does not
+    # destroy the position: a GREASED M5 bolt goes through the finished hole
+    # (the bottom skin holds it centred), the pocket is filled around it, and
+    # the bolt backs out of the cured resin.
+    #
+    # The boss is then INSURANCE rather than the method. If one hole will not
+    # pick up, it is surrounded by this much solid resin, so it can be drilled
+    # out, re-potted and re-drilled on a transfer-screw mark without touching
+    # the other eleven:
+    rep["hatch_holes_machined_in_one_setup"] = True
     rep["hatch_boss_positional_freedom_mm"] = round(
         (HATCH_POT_D - HATCH_BOLT_HEAD_D) / 2.0, 1)
-    rep["hatch_master_part"] = (
-        "the ASSEMBLED, GLASSED-IN ring. CNC cuts the O16 potting bosses at "
-        "nominal; the O5.6 and the countersink are transferred off the real "
-        "captive nuts with M5 transfer screws after the ring is in")
+    rep["hatch_alignment"] = (
+        "CNC cuts all 12 bosses AND all 12 bolt holes in one setup, so the "
+        "pattern is mutually accurate and the lid aligns as one rigid body. "
+        "The O16 resin boss is the recovery path for a stray hole, not the "
+        "primary method - re-pot and re-drill that one on a transfer mark")
+    rep["hatch_lid_clearance_radial_mm"] = round(0.6 / 2.0, 2)
 
     # --- mast hardpoint ---------------------------------------------------
     # The plate and the dense ring sit in a POCKET machined into the underside
