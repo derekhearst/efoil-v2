@@ -312,7 +312,23 @@ MOD_HANDLE_W, MOD_HANDLE_H = 28.0, 34.0
 # which is all this ever needed. Same answer as the board's rail handles.
 MOD_HANDLE_PROUD = 8.0             # pad + 4 mm wall = 12, enough for a M5 x 10
 MOD_HANDLE_INS_D, MOD_HANDLE_INS_L = 6.4, 10.0   # M5 heat-set, printed pilot
-MOD_HANDLE_BOLT_DZ = 18.0          # the two bolts, stacked up the pad
+# ONE BOLT PER PAD. The strap end only has one hole - Derek checked the part
+# - so the two-bolts-stacked-up-the-pad pattern could not be built. That is
+# not just a hole count, it changes the joint:
+#
+#   two bolts   the pair resists the strap's prying moment, one going into
+#               tension while the other takes compression
+#   one bolt    the pedestal is a PIN. It rotates until the strap's line of
+#               action passes through the bolt, so there IS no prying moment
+#               - the bolt sees almost pure SHEAR instead
+#
+# Shear is the better direction for a brass heat-set in ASA: the insert bears
+# against plastic over its whole flank rather than trying to pull out of the
+# end of a printed boss. Losing the second bolt costs less than it looks.
+#
+# What it does cost is REDUNDANCY. Two fasteners now carry the whole module
+# instead of four, so both get Loctite and both get looked at.
+MOD_HANDLE_BOLTS_PER_PAD = 1
 PRINT_BED = 256.0                  # Bambu A1
 # A real GROOVE, because a squashed strip has no hard stop and the seal load
 # then depends on how hard each of 13 bolts was done up. With a groove the lid
@@ -4544,12 +4560,11 @@ def build():
                  ex0 - MOD_HANDLE_PROUD, ex0, hy - MOD_HANDLE_W / 2,
                  hy + MOD_HANDLE_W / 2, hz - MOD_HANDLE_H / 2,
                  hz + MOD_HANDLE_H / 2, coll, m_rib)
-        # Two M5 heat-set inserts up the pad, 18 mm apart. The handle's end
-        # tab bolts flat to them; the handle itself spans the two pads, so
-        # the part that crosses the print seam is cloth and rubber and no
-        # rigid part ever does.
-        for sz in (-1, 1):
-            iz = hz + sz * MOD_HANDLE_BOLT_DZ / 2
+        # ONE M5 heat-set, on the pad's centreline. The handle spans the two
+        # pads, so the part that crosses the print seam is cloth and rubber
+        # and no rigid part ever does.
+        for sz in range(MOD_HANDLE_BOLTS_PER_PAD):
+            iz = hz
             ic = cyl_x(f"V2_Mod_HandleInsCut{sfx}{sz}", hy, iz,
                        ex0 - MOD_HANDLE_PROUD - 1.0,
                        ex0 - MOD_HANDLE_PROUD + MOD_HANDLE_INS_L,
@@ -4821,17 +4836,26 @@ def build():
                + (ix1 - ix0) * (iy1 - iy0) * ENC_LID_T * _asa / 1000.0
                + 1.2)                       # ESC, BMS, fuse, wiring
     rep["module_mass_kg"] = round(_mod_kg, 2)
-    _bolts = 4                              # 2 pads x 2 bolts
+    _bolts = 2 * MOD_HANDLE_BOLTS_PER_PAD
     _shock = 2.0                            # snatched out of a wet cavity
     rep["module_handle_bolt_N"] = round(_mod_kg * 9.81 * _shock / _bolts)
     # M5 brass heat-set in printed ASA, conservative published figure
     rep["module_handle_insert_margin"] = round(
         800.0 / max(1.0, rep["module_handle_bolt_N"]), 1)
+    rep["module_handle_load_is"] = (
+        "SHEAR, not pull-out - a single-hole strap end pins and rotates until "
+        "its line of action goes through the bolt, so there is no prying "
+        "moment for a second bolt to resist")
+    rep["module_handle_redundancy"] = (
+        f"{_bolts} fasteners carry the whole module. Loctite both, and they "
+        f"are on the pre-ride list")
     rep["module_lid_bolts"] = len(mb)
     # --- BOM COUNTS. bom.py used to hold its own hand-typed copies of these,
     # which is the same failure as fleet_cost: nothing breaks when they drift,
     # they just quietly bill for last month's board. Emitted here instead.
     rep["bom_mod_inserts"] = len(mb)
+    # so bom.py cannot keep its own copy of a number that just halved
+    rep["bom_mod_handle_bolts"] = 2 * MOD_HANDLE_BOLTS_PER_PAD
     rep["bom_bay_glands"] = BAY_GLAND_N
     rep["bom_mast_bolts"] = 4
     rep["bom_mod_cord_mm"] = 0        # flat gasket, no cord
@@ -5342,16 +5366,17 @@ def build():
     rep["module_dovetail_fits_rib"] = 2 * MOD_DT_DEPTH <= ENC_RIB_W
     rep["module_lift_handle"] = (
         f"2 printed pads on the AFT wall at y +/-{MOD_HANDLE_Y:.0f}, "
-        f"{MOD_HANDLE_PROUD:.0f} mm proud, 2 x M5 heat-set each at "
-        f"{MOD_HANDLE_BOLT_DZ:.0f} mm centres, for the bought kayak grab "
-        f"handle - drilled to suit, one pad per print piece, so only the "
+        f"{MOD_HANDLE_PROUD:.0f} mm proud, {MOD_HANDLE_BOLTS_PER_PAD} x M5 "
+        f"heat-set each on the pad centreline - the strap end has one hole, "
+        f"so the pedestal pins and the bolt works in SHEAR. One pad per "
+        f"print piece, so only the "
         f"handle crosses the seam. Aft because the module butts the forward "
         f"cavity wall - this is the only reachable face")
     # The pattern the handle has to be drilled to, in one place, because two
     # different people are going to need it: whoever prints the shell and
     # whoever puts a drill through a $10 rubber handle. (per pad, between pads)
-    rep["module_handle_bolt_pattern_mm"] = (MOD_HANDLE_BOLT_DZ,
-                                            2 * MOD_HANDLE_Y)
+    rep["module_handle_bolts_per_pad"] = MOD_HANDLE_BOLTS_PER_PAD
+    rep["module_handle_bolt_pattern_mm"] = 2 * MOD_HANDLE_Y
     rep["module_handle_insert_backing_mm"] = round(
         MOD_HANDLE_PROUD + ENC_WALL - MOD_HANDLE_INS_L, 1)
     # It projects into the BAY now, not the side gap, so that is what to check.

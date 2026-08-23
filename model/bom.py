@@ -49,6 +49,7 @@ FREE_PACKS = 1                       # packs' worth of cells already on hand
 # Counts read straight out of blender_board.py's report.
 R = _report()
 M = dict(seal_blank=R["module_seal_blank_mm"],
+         mod_handle_bolts=R["bom_mod_handle_bolts"],
          hatch_bolts=R["bom_hatch_bolts"],
          mod_inserts=R["bom_mod_inserts"],
          mast_bushings=R["bom_mast_bolts"],
@@ -1061,9 +1062,9 @@ def build():
     add("9b Small but essential", "Kayak/board grab handle, 2 pk + screws",
         math.ceil(3 * N / 2), "pk", 9.99, OK,
         "3 a board: 2 on the rails into the 6061 strip, 1 on the module. "
-        "Two reinforcing holes each end - drill the tabs to OUR pattern, M6 "
-        "on the rails and M5 on the module, rather than using the supplied "
-        "screws", vendor="Amazon")
+        "ONE HOLE PER STRAP END - so one bolt per pad, M6 on the rails and "
+        "M5 on the module. Open the moulded hole out to suit; do not use the "
+        "supplied self-tappers, everything here is threaded", vendor="Amazon")
     # TAPPED, NOT INSERTED. The strip is 12.7 mm of 6061 and M6 goes straight
     # into it - 90 mm2 of thread at 207 MPa. There was a "M6 heat-set insert,
     # strap mounts" line under this one for $9.99, left over from when the
@@ -1086,11 +1087,17 @@ def build():
     # because the module handle was a webbing loop when this section was
     # written and a loop needs no fasteners. The M4 kit in section 7 is the
     # lid flange's and is the wrong size.
+    # HALVED when the strap turned out to have one hole an end, not two.
+    # Counted from the model rather than typed here, so it cannot drift back.
     add("9b Small but essential", "M5 x 10 brass heat-set insert, 50 pc",
-        1, "pk", 11.00, EST, str(4 * N) + " needed, module handle pads; "
+        1, "pk", 11.00, EST,
+        str(M["mod_handle_bolts"] * N) + " needed, module handle pads; "
         "6.4 mm printed pilot, same as the model's cut")
     add("9b Small but essential", "M5 x 10 A4 button head, 20 pk",
-        1, "pk", 9.00, EST, str(4 * N) + " needed. 10 mm: 8 mm of pad plus "
+        1, "pk", 9.00, EST,
+        str(M["mod_handle_bolts"] * N) + " needed. LOCTITE BOTH: with one "
+        "bolt an end, two fasteners carry the whole 13.2 kg module and the "
+        "pedestal pivots on them every time it is lifted. 10 mm: 8 mm of pad plus "
         "the handle tab, and the insert is 10 deep - do not reach for the "
         "M5 x 25s in section 6, they bottom out. Penny washer under each, "
         "off the section 6 pack - same reason as the rails")
