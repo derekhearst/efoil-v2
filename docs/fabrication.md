@@ -379,6 +379,15 @@ countersink is free: a Ø16 epoxy boss, a 90° cone to Ø9.8 about 2.1 mm deep,
 and the flat head lands on **17.9 MPa against epoxy at ~50** — 2.8× margin,
 flush with the deck, no hardware showing.
 
+> **"Boss" just means an oversized hole filled with epoxy.** Drill Ø16
+> through the top skin and the foam, leave the bottom skin as a floor, fill
+> it with thickened epoxy, cure. What is left is a plug of solid resin — a
+> local island through a panel that is otherwise foam in the middle. At every
+> bolt the lid then reads glass / **solid epoxy** / glass instead of glass /
+> foam / glass, and the head squeezes resin rather than crushing H100. Same
+> trick every deck fitting on a boat or a surfboard uses. V1 never needed it
+> because that lid was solid plywood all the way through.
+
 **Torx, not hex.** This socket is flush with a deck that gets dragged up a
 beach and undone every ride. A packed hex socket cams out and rounds off.
 
