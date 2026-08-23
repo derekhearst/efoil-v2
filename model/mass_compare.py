@@ -40,13 +40,11 @@ DENS = {
     "neoprene": 1250.0,
     "cell":     None,    # from V1's own doc, not from volume
 }
-# CALIBRATED, not guessed - and 0.55 was badly wrong. V1's four battery
-# enclosure walls measure 0.907 L in the export and its own doc weighs them
-# at 233 g a piece, 932 g the set. That is 1027 kg/m3 effective against ASA's
-# 1070: the walls are drawn as the shell that actually gets printed, so they
-# are very nearly SOLID and there is no infill discount to take. At 0.55 the
-# comparison was undercounting V1's printed parts by 0.66 kg.
-PRINT_INFILL = 0.96
+# SOLID. The STL walls ARE the printed shell - drawn at print thickness,
+# not as a block waiting to be infilled - so there is no discount to take.
+# 0.55 was a guess and it undercounted V1's printed parts by 0.66 kg. The
+# geometry says this on its own, so the number is 1.0, not a fitted value.
+PRINT_INFILL = 1.0
 
 # ------------------------------------------------------------------ laminate
 # V1's schedule, straight from efoil-1-board-design.md:
@@ -204,30 +202,77 @@ def main():
     print("  %-18s %8.2f  %8.2f  %+8.2f" % ("TOTAL", ta, tb, tb - ta))
     print("\n  model's own V2 figure       %8.2f kg  (agrees within %.2f)"
           % (R["board_mass_kg"], abs(tb - R["board_mass_kg"])))
-    print("  V1 doc says                 25-30 kg")
-    print("  MEASURED BY DEREK           22.68 kg (50 lb) - but that INCLUDES")
-    print("     the mast, mast mount and motor, and excludes the wings.")
-    print("  V1 mast stub in the export: %.2f L of alu, excluded above" %
-          vols.get("FOIL", 0.0))
-    print("\nWEIGH V1. If the total is out, the breakdown says which line to")
-    print("suspect - laminate and epoxy are the softest numbers here, being")
-    print("the only ones no STL can measure.")
+    print("  V1 mast stub in the export: %.2f L of alu, excluded above"
+          % vols.get("FOIL", 0.0))
+
+    # ---- V1 DISPLACEMENT, FROM THE CAD, not from the doc. The doc's own
+    # component figures do not survive the export: it claims 75.3 L of foam
+    # where the model measures 73.26, and a 660 x 280 cavity where the
+    # geometry gives 678 x 317. The lid gasket is a rectangular ring, so
+    # its outer size and its VOLUME - both CAD facts - hand over the
+    # opening it surrounds without anyone having to be taken at their word.
+    gk = next((v for n, v in parts.get("neoprene", [])
+               if "main lid" in n.lower()), None)
+    v1_disp = None
+    if gk:
+        ox, oy, t = 701.9, 340.7, 7.6
+        w = (2.0 * (ox + oy) - math.sqrt(4.0 * (ox + oy) ** 2
+                                         - 16.0 * gk * 1e6 / t)) / 8.0
+        opx, opy = ox - 2 * w, oy - 2 * w
+        depth = 134.0 - 19.0      # bottom plate top -> gasket underside
+        cav = opx * opy * depth / 1e6
+        foam = vols.get("xps", 0)
+        v1_disp = foam + cav
+        print("")
+        print("V1 DISPLACEMENT, FROM THE CAD")
+        print("  gasket ring %.1f mm wide -> opening %.0f x %.0f"
+              % (w, opx, opy))
+        print("  cavity %.0f x %.0f x %.0f              %6.2f L"
+              % (opx, opy, depth, cav))
+        print("  foam, measured                       %6.2f L" % foam)
+        print("  ENVELOPE                             %6.2f L" % v1_disp)
+        print("  (doc claimed 75.3 + 21.3 = 96.6 - near on the total,")
+        print("   wrong on both halves)")
+        print("")
+        print("  V1  %5.1f L, %5.2f kg -> 86 kg rider: %+6.1f kg"
+              % (v1_disp, ta, v1_disp - ta - 86.0))
+        print("  V2  %5.1f L, %5.2f kg -> 86 kg rider: %+6.1f kg"
+              % (R["sealed_displacement_L"], R["board_mass_kg"],
+                 R["sealed_displacement_L"] - R["board_mass_kg"] - 86.0))
     # ---- reconcile against the scale
+    # ---- against the one hard number in the whole file
     MOTOR, MAST, MOUNT, MEASURED = 2.6, 3.2, 0.4, 50 * 0.4536
+    dry = ta - v1["battery"]      # the pack was NOT in it when weighed
     print("")
-    print("RECONCILING WITH THE SCALE")
-    print("  estimate, board alone                    %6.2f" % ta)
-    print("  + motor %.1f, mast %.1f, mount %.1f          %6.2f"
-          % (MOTOR, MAST, MOUNT, ta + MOTOR + MAST + MOUNT))
-    print("  measured (50 lb)                         %6.2f" % MEASURED)
-    print("  GAP                                      %6.2f kg"
-          % (ta + MOTOR + MAST + MOUNT - MEASURED))
+    print("AGAINST THE SCALE  (50 lb; mast, mount, motor on, pack OUT)")
+    print("  estimate, board                       %6.2f" % ta)
+    print("  less the pack, confirmed not in it    %6.2f" % dry)
+    print("  + motor %.1f, mast %.1f, mount %.1f       %6.2f"
+          % (MOTOR, MAST, MOUNT, dry + MOTOR + MAST + MOUNT))
+    print("  measured                              %6.2f" % MEASURED)
+    print("  GAP                                   %6.2f kg"
+          % (dry + MOTOR + MAST + MOUNT - MEASURED))
     print("")
-    print("  The gap is bigger than every soft number in this file put")
-    print("  together, so it is not a density being slightly wrong.")
-    print("  Removing the pack accounts for 8.8 of it in ONE line, which is")
-    print("  the first thing to check: was the battery in the board when it")
-    print("  was weighed? The rest is arguable by a kilo or two, not fifteen.")
+    print("  WHAT COULD ACCOUNT FOR IT, biggest lever first. Every one is")
+    print("  a density or an allowance - none of them is geometry:")
+    ply_v = vols.get("plywood", 0)
+    lam_m2 = sum(n * a for _w, n, a in LAMINATE)
+    for nm, d in (("plywood at 500 not 680 kg/m3",
+                   ply_v * (DENS["plywood"] - 500) / 1000.0),
+                  ("hardware + wiring allowance halved",
+                   (HARDWARE_KG + WIRING_KG) / 2),
+                  ("wetout 1.5x not 2.0x",
+                   lam_m2 * GLASS_6OZ_GSM * 0.5 / 1000.0),
+                  ("mast + motor lighter than assumed", 1.0),
+                  ("XPS at 25 not 35 kg/m3",
+                   vols.get("xps", 0) * 10 / 1000.0)):
+        print("    %5.2f kg   %s" % (d, nm))
+    print("")
+    print("  THE ONE MEASUREMENT THAT WOULD SETTLE MOST OF IT: put the")
+    print("  hatch lid on the scale. One slab of 3/4 in ply, it unbolts,")
+    print("  and this file predicts %.2f kg. Whatever it really weighs"
+          % v1["hatch lid"])
+    print("  calibrates plywood density - the largest assumption here.")
     return 0
 
 
