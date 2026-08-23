@@ -985,6 +985,40 @@ MOD_BOLT_PITCH = 80.0              # target spacing; actual is evened out
 # nothing else. 20 mm fits both: groove at 4 mm in from the inner edge, insert
 # at 13 mm, 4.2 mm of G10 between them and 4.2 mm to the outer edge.
 MOD_FLANGE_W, MOD_FLANGE_H = 20.0, 9.525    # 3/8" stock
+# THE FLANGE FACES OUTWARD. Derek's call, and it is the one change that
+# unlocks the 9.5 mm the pack was spending on assembly clearance: with
+# nothing overhanging inboard, the pack is simply lowered in, and int_h stops
+# needing pack + flange + clearance and needs only pack + clearance.
+#
+# IT HAS TO FIT IN THE GAP THAT IS ALREADY THERE. The module already carries
+# 10 mm seam ribs proud of its walls, and the cavity already clears them with
+# 4 mm to spare - so a flange that projects the same 10 mm costs nothing. Any
+# more and it eats the fit clearance, and the rim ledge is 0.8 mm from
+# running onto the rail, which is 1.6 mm of cavity width. There is no room to
+# buy.
+#
+# The price is paid in the gasket. Land goes from 20 mm to ENC_WALL + 10 =
+# 14, and the insert still wants its 3.7 mm of edge material, so the sealing
+# band narrows. It lands mostly on the WALL TOP now rather than out on a
+# printed ledge, which is the stiffest place on the box to squeeze a gasket -
+# so a narrower band there is not the downgrade the number suggests.
+MOD_FLANGE_OUT = True
+# 11, one more than the seam ribs. At 10 the band came out 3.2 mm wide once
+# the insert had taken its edge material, and a 3.2 mm closed loop of 3 mm
+# neoprene is not something to cut by hand and trust to stay put. One extra
+# millimetre buys the insert its full 3.7 mm of edge - the same as today - and
+# costs fit clearance, not structure: the flange sits 3 mm off the cavity wall
+# where the ribs sit at 4. Structural margin over ease of assembly.
+MOD_FLANGE_W_OUT = 11.0
+# THE BAND SITS ON THE WALL TOP, not out on the printed ledge. It is the
+# stiffest line on the box and it puts the gasket load straight down the wall
+# in compression, instead of bending a 9.5 mm cantilever. Narrower than the
+# old 7 mm band and better supported than it was.
+MOD_GASKET_START = 0.0             # band inner edge, outboard from the wall
+MOD_BOLT_EDGE = 6.5                # insert centre to the flange's outer edge
+# nothing overhangs inboard any more, so the pack has the full interior
+MOD_FLANGE_IN = 0.0 if MOD_FLANGE_OUT else MOD_FLANGE_W
+MOD_FLANGE_LAND = ENC_WALL + MOD_FLANGE_W_OUT
 MOD_CORD_D = 3.0                   # O-ring cord for the module lid
 MOD_SEAL_W, MOD_SEAL_D = 4.0, 2.4  # groove: 74% fill at 20% squeeze
 # Routed into the ASSEMBLED flange ring, not machined into the four loose
@@ -1027,6 +1061,13 @@ PACK_THRU_CLR = 6.0
 # STI tap, install. So nothing here forecloses that; it just is not needed on
 # day one, and it saves an M4 STI tap and install tool.
 MOD_INSERT_D = 5.6                 # M4 x 8 heat-set printed pilot
+MOD_GASKET_W_OUT = ENC_WALL        # exactly the wall top
+# How much daylight is left between the band and the insert bore. Derived, so
+# it cannot quietly disagree with the flange width, the bolt edge or the
+# insert - and checked, so if any of them moves the build says so.
+MOD_GASKET_TO_INSERT = round(
+    (MOD_FLANGE_LAND - MOD_BOLT_EDGE - MOD_INSERT_D / 2)
+    - (MOD_GASKET_START + MOD_GASKET_W_OUT), 2)
 # Hatch lid: M5 into STAINLESS WIRE-THREAD INSERTS (tangless Helicoil type) in
 # the bonded G10 rim ring.
 #
@@ -1143,9 +1184,11 @@ def derive_layout():
     # module, which pushed the rim ledge off the flat deck and onto the rail.
     # Same trade the panel rows already made: width is the scarce axis.
     under_flange = stack + MOD_FLANGE_H + PACK_UNDER_FLANGE_CLR
-    # ...unless it never goes under the flange at all - see PACK_DROP_IN.
+    # ...unless nothing overhangs it. An outward flange deletes this term
+    # outright - it is 9.5 mm of board that existed only to slide the pack
+    # sideways under a ledge that is no longer there.
     int_h = max(stack + TOP_CLEAR,
-                0.0 if PACK_DROP_IN else under_flange,
+                0.0 if (PACK_DROP_IN or MOD_FLANGE_OUT) else under_flange,
                 (BMS_E_H + 6.0) if BMS_HOME == "on_edge" else 0.0,
                 (BMS_E_T + 6.0) if BMS_HOME == "flat_beside" else 0.0,
                 panel_h)
@@ -1157,7 +1200,7 @@ def derive_layout():
     if BMS_HOME == "at_end":
         int_l += BMS_W + 16.0
     # ...and it must clear the lid opening, not just the corner posts.
-    int_l = max(int_l, pack_l + PACK_THRU_CLR + 2 * MOD_FLANGE_W)
+    int_l = max(int_l, pack_l + PACK_THRU_CLR + 2 * MOD_FLANGE_IN)
     # ESC bay and a dedicated wire raceway outboard of it. No divider - the
     # bay and the raceway are one open volume the wiring can actually use.
     # This strip is the ONLY slack in the box.
@@ -1177,8 +1220,8 @@ def derive_layout():
     elif BMS_HOME == "flat_beside":
         esc_bay = max(esc_bay, BMS_E_H + 8.0)
     # Clear of the flange in Y, the same way it already is in X.
-    pack_side = ((MOD_FLANGE_W + PACK_THRU_CLR / 2) if PACK_DROP_IN
-                 else PACK_SIDE_CLR)
+    pack_side = ((MOD_FLANGE_IN + PACK_THRU_CLR / 2) if PACK_DROP_IN
+                 else max(PACK_SIDE_CLR, MOD_FLANGE_IN + 1.0))
     int_w = pack_w + pack_side + esc_bay
     ext_l, ext_w = int_l + 2 * ENC_WALL, int_w + 2 * ENC_WALL
     ext_h = int_h + ENC_FLOOR + ENC_LID_T
@@ -4473,11 +4516,25 @@ def build():
     # simply be thicker where it needs to be, which is the whole advantage.
     fz0 = wall_top - MOD_FLANGE_H
     m_fl = bom_mat("enclosure")
-    for nm, a, b, c, d in (
-            ("P", ix0, ix1, iy1 - MOD_FLANGE_W, iy1),
-            ("S", ix0, ix1, iy0, iy0 + MOD_FLANGE_W),
-            ("A", ix0, ix0 + MOD_FLANGE_W, iy0 + MOD_FLANGE_W, iy1 - MOD_FLANGE_W),
-            ("F", ix1 - MOD_FLANGE_W, ix1, iy0 + MOD_FLANGE_W, iy1 - MOD_FLANGE_W)):
+    # OUTWARD: a ring hung off the outside of the walls, tiled as four boxes
+    # that meet exactly. Inboard it stops at the interior face, so there is
+    # nothing over the pack at all.
+    fx0, fx1 = ex0 - MOD_FLANGE_W_OUT, ex1 + MOD_FLANGE_W_OUT
+    fy0, fy1 = ey0 - MOD_FLANGE_W_OUT, ey1 + MOD_FLANGE_W_OUT
+    if MOD_FLANGE_OUT:
+        ring = (("P", fx0, fx1, iy1, fy1),
+                ("S", fx0, fx1, fy0, iy0),
+                ("A", fx0, ix0, iy0, iy1),
+                ("F", ix1, fx1, iy0, iy1))
+    else:
+        fx0, fx1, fy0, fy1 = ex0, ex1, ey0, ey1
+        ring = (("P", ix0, ix1, iy1 - MOD_FLANGE_W, iy1),
+                ("S", ix0, ix1, iy0, iy0 + MOD_FLANGE_W),
+                ("A", ix0, ix0 + MOD_FLANGE_W,
+                 iy0 + MOD_FLANGE_W, iy1 - MOD_FLANGE_W),
+                ("F", ix1 - MOD_FLANGE_W, ix1,
+                 iy0 + MOD_FLANGE_W, iy1 - MOD_FLANGE_W))
+    for nm, a, b, c, d in ring:
         box(f"V2_Mod_Flange{nm}", a, b, c, d, fz0, wall_top, coll, m_fl)
 
     # FLAT NEOPRENE GASKET on the flange face - no groove, no cord.
@@ -4488,13 +4545,19 @@ def build():
     # care what the surface did: it takes up the irregularity itself, which is
     # exactly why V1 gasketed both its printed enclosures and why they seal.
     # Cut it from the same 1/8" neoprene sheet as the mast gasket.
+    if MOD_FLANGE_OUT:
+        # straight onto the wall top: outer edge at the wall's outer face,
+        # inner edge at its inner face
+        gk_a, gk_b = -(MOD_GASKET_START + MOD_GASKET_W_OUT), -MOD_GASKET_START
+    else:
+        gk_a, gk_b = MOD_GASKET_OUT, MOD_GASKET_IN
     gk_o = prism("V2_ModGasket_o",
-                 rounded_rect(ix0 + MOD_GASKET_OUT, ix1 - MOD_GASKET_OUT,
-                              iy0 + MOD_GASKET_OUT, iy1 - MOD_GASKET_OUT, 6.0),
+                 rounded_rect(ix0 + gk_a, ix1 - gk_a,
+                              iy0 + gk_a, iy1 - gk_a, 6.0),
                  wall_top, wall_top + FIT_LID, coll, bom_mat("seal"))
     gk_i = prism("V2_ModGasket_i_cut",
-                 rounded_rect(ix0 + MOD_GASKET_IN, ix1 - MOD_GASKET_IN,
-                              iy0 + MOD_GASKET_IN, iy1 - MOD_GASKET_IN, 2.0),
+                 rounded_rect(ix0 + gk_b, ix1 - gk_b,
+                              iy0 + gk_b, iy1 - gk_b, 2.0),
                  wall_top - 2.0, wall_top + FIT_LID + 2.0, coll)
     boolean(gk_o, gk_i)
     gk_o.name = "V2_Mod_Seal"
@@ -4547,8 +4610,24 @@ def build():
     # The one that matters: distance from the SEALED interior, outward. The
     # seal has to be the smaller of the two on both lids, or a bolt hole opens
     # straight into the sealed volume.
-    rep["module_seal_from_interior_mm"] = round(MOD_FLANGE_W - MOD_GASKET_IN, 1)
-    rep["module_bolt_from_interior_mm"] = round(MOD_FLANGE_W - MOD_BOLT_INSET, 1)
+    if MOD_FLANGE_OUT:
+        rep["module_flange"] = (
+            f"OUTWARD {MOD_FLANGE_W_OUT:.0f} mm, {MOD_FLANGE_H:.1f} thick - "
+            f"{MOD_FLANGE_LAND:.0f} mm of land, band on the wall top")
+        rep["module_seal_band_mm"] = MOD_GASKET_W_OUT
+        rep["module_seal_to_insert_bore_mm"] = MOD_GASKET_TO_INSERT
+        rep["module_insert_edge_material_mm"] = round(
+            MOD_BOLT_EDGE - MOD_INSERT_D / 2, 2)
+        rep["module_flange_to_cavity_mm"] = round(
+            ENC_GAP - CAV_LAM - MOD_FLANGE_W_OUT, 1)
+        rep["module_seal_from_interior_mm"] = 0.0
+        rep["module_bolt_from_interior_mm"] = round(
+            MOD_FLANGE_LAND - MOD_BOLT_EDGE, 1)
+    else:
+        rep["module_seal_from_interior_mm"] = round(
+            MOD_FLANGE_W - MOD_GASKET_IN, 1)
+        rep["module_bolt_from_interior_mm"] = round(
+            MOD_FLANGE_W - MOD_BOLT_INSET, 1)
     rep["hatch_seal_from_interior_mm"] = round(CHAN_INSET, 1)
     rep["hatch_bolt_from_interior_mm"] = round(RIM_W - HATCH_BOLT_INSET, 1)
     rep["seal_inboard_of_bolts"] = (
@@ -4556,22 +4635,28 @@ def build():
         and rep["hatch_seal_from_interior_mm"] < rep["hatch_bolt_from_interior_mm"])
     rep["hatch_groove_corner_R"] = round(CAV_CORNER_R + CHAN_INSET, 1)
     rep["hatch_cord_min_bend_R"] = round(CORD_BEND_F * CORD_D, 1)
-    rep["mod_opening_mm"] = (round(ix1 - ix0 - 2 * MOD_FLANGE_W),
-                             round(iy1 - iy0 - 2 * MOD_FLANGE_W))
+    rep["mod_opening_mm"] = (round(ix1 - ix0 - 2 * MOD_FLANGE_IN),
+                             round(iy1 - iy0 - 2 * MOD_FLANGE_IN))
     rep["pack_through_opening_mm"] = round(
-        (ix1 - ix0 - 2 * MOD_FLANGE_W) - L["pack_l"], 1)
+        (ix1 - ix0 - 2 * MOD_FLANGE_IN) - L["pack_l"], 1)
 
     # Sandwich, not solid: glass / H80 PVC foam / glass. The skins carry the
     # bending, the foam only holds them apart. Solid G10 of the same weight
     # would be far floppier, and a lid that bows between bolts breaks gasket
     # compression mid-span - which no amount of seal tuning fixes.
-    box("V2_Mod_Lid", ex0, ex1, ey0, ey1, lid_z0, ez1, coll, m_lid)
+    # the lid has to reach the flange's outer edge, wherever that now is
+    box("V2_Mod_Lid", fx0, fx1, fy0, fy1, lid_z0, ez1, coll, m_lid)
 
     # Thru holes in each ply and the insert in the flange rail - the two
     # machined features. The bolt is hardware; drawing it hid both.
-    mb = bolt_ring(ix0 + MOD_BOLT_INSET, ix1 - MOD_BOLT_INSET,
-                   iy0 + MOD_BOLT_INSET, iy1 - MOD_BOLT_INSET,
-                   MOD_BOLT_PITCH)
+    if MOD_FLANGE_OUT:
+        mb = bolt_ring(fx0 + MOD_BOLT_EDGE, fx1 - MOD_BOLT_EDGE,
+                       fy0 + MOD_BOLT_EDGE, fy1 - MOD_BOLT_EDGE,
+                       MOD_BOLT_PITCH)
+    else:
+        mb = bolt_ring(ix0 + MOD_BOLT_INSET, ix1 - MOD_BOLT_INSET,
+                       iy0 + MOD_BOLT_INSET, iy1 - MOD_BOLT_INSET,
+                       MOD_BOLT_PITCH)
     for i, (bx_, by_) in enumerate(mb):
         h = cyl(f"V2_ModBoltHole_cut_{i}", bx_, by_, lid_z0 - 1.0,
                 ez1 + 1.0, MOD_BOLT_D + 0.5, coll)
@@ -4983,17 +5068,21 @@ def build():
     # a pack that could never be lowered past the flange.
     rep["pack_drops_in"] = PACK_DROP_IN
     rep["pack_opening_clear_mm"] = [
-        round(min(px0 - (ix0 + MOD_FLANGE_W),
-                  (ix1 - MOD_FLANGE_W) - (px0 + pack_l)), 1),
-        round(min(pack_y0 - (iy0 + MOD_FLANGE_W),
-                  (iy1 - MOD_FLANGE_W) - pack_y1), 1)]
+        round(min(px0 - (ix0 + MOD_FLANGE_IN),
+                  (ix1 - MOD_FLANGE_IN) - (px0 + pack_l)), 1),
+        round(min(pack_y0 - (iy0 + MOD_FLANGE_IN),
+                  (iy1 - MOD_FLANGE_IN) - pack_y1), 1)]
     rep["pack_under_flange_clr_mm"] = round(
         (int_h - MOD_FLANGE_H) - L["stack"], 1)
-    rep["pack_clears_flange"] = (min(rep["pack_opening_clear_mm"]) >= 0.0
-                                 if PACK_DROP_IN
-                                 else rep["pack_under_flange_clr_mm"] >= 0.0)
+    # With the flange OUTWARD there is nothing over the pack to clear, and
+    # the meaningful test is pack_through_opening_mm, which is checked
+    # separately. Leaving the old one armed would fail a board that is fine.
+    rep["pack_clears_flange"] = (
+        True if MOD_FLANGE_OUT
+        else (min(rep["pack_opening_clear_mm"]) >= 0.0 if PACK_DROP_IN
+              else rep["pack_under_flange_clr_mm"] >= 0.0))
     rep["pack_slides_under_flange_by_mm"] = round(
-        max(0.0, (iy0 + MOD_FLANGE_W) - pack_y0), 1)
+        max(0.0, (iy0 + MOD_FLANGE_IN) - pack_y0), 1)
     rep["end_zone_mm"] = round(end_zone, 1)
 
     # --- split the shell into the 4 L-pieces it actually prints as --------
@@ -5252,7 +5341,8 @@ def build():
     PETG_WALL_KGM2 = 7.4
     RHO_PETG, FLANGE_INFILL = 1270.0, 0.85   # the flange prints near solid
     wall_area = 2 * ((ex1 - ex0) + (ey1 - ey0)) * (wall_top - wall_z0)
-    flange_cm3 = 2 * ((ix1 - ix0) + (iy1 - iy0)) * MOD_FLANGE_W * MOD_FLANGE_H
+    flange_cm3 = 2 * ((ix1 - ix0) + (iy1 - iy0)) * (
+        MOD_FLANGE_W_OUT if MOD_FLANGE_OUT else MOD_FLANGE_W) * MOD_FLANGE_H
     m["printed shell"] = (wall_area * 1e-6 * PETG_WALL_KGM2
                           + flange_cm3 * 1e-9 * RHO_PETG * FLANGE_INFILL)
     # Rim ring, printed ASA at 90% - a seal land wants to be near solid.
@@ -5552,6 +5642,16 @@ def build():
     if rep["pack_through_opening_mm"] < 3.0:
         fails.append("pack will not pass through the module lid opening: "
                      f"{rep['pack_through_opening_mm']} mm")
+    if MOD_FLANGE_OUT:
+        if rep["module_seal_to_insert_bore_mm"] < 1.0:
+            fails.append("the module gasket band runs into the insert bores: "
+                         f"{rep['module_seal_to_insert_bore_mm']} mm clear")
+        if rep["module_insert_edge_material_mm"] < 2.5:
+            fails.append("too little ASA outboard of the lid inserts: "
+                         f"{rep['module_insert_edge_material_mm']} mm")
+        if rep["module_flange_to_cavity_mm"] < 2.5:
+            fails.append("the outward flange fouls the cavity wall: "
+                         f"{rep['module_flange_to_cavity_mm']} mm clear")
     if not rep["seal_inboard_of_bolts"]:
         fails.append("a seal sits OUTBOARD of its bolt circle - bolt holes "
                      "open into the sealed volume")

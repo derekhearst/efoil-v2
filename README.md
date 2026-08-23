@@ -115,14 +115,14 @@ The build guide quotes BOM item names verbatim, and
 
 | | V1 (built) | V2 (current model) |
 |---|---|---|
-| Dimensions | 1600 × 600 × 153 mm | 1400 × 560 × 165 mm |
-| Sealed displacement | 96.6 L | 90.7 L |
-| Board mass | 25–30 kg | 24.2 kg |
-| Board reserve, alone | — | +67.6 kg |
-| With an 86 kg rider | — | **−19.5 kg — a sinker at rest** |
+| Dimensions | 1600 × 600 × 153 mm | 1400 × 560 × 155 mm |
+| Sealed displacement | 96.6 L | 85.4 L |
+| Board mass | 25–30 kg | 23.7 kg |
+| Board reserve, alone | — | +61.7 kg |
+| With an 86 kg rider | — | **−24.3 kg — a sinker at rest** |
 | Pack | 14S9P, 2,268 Wh | 16S8P, 2,304 Wh, 9.22 kg, 397 × 188 × 78 |
-| Cavity | 660 × 280 × 115 mm | 535 × 323 × 108 mm |
-| Electronics | 2 sealed boxes | 1 removable module: printed ASA walls on a 5052 floor |
+| Cavity | 660 × 280 × 115 mm | 518 × 323 × 99 mm |
+| Electronics | 2 sealed boxes | 1 removable module: printed ASA walls on a 5052 floor, **outward** lid flange |
 | Mast plate | — | 6061-**T651**, 12.7 mm, M8 tapped, 2.6× margin |
 | Hatch | — | 12 × M5 into captive nuts printed into an ASA rim ring |
 | Core splits | — | vertical at 1030 mm (bed length), horizontal at 101.6 mm (gantry) |
@@ -130,7 +130,7 @@ The build guide quotes BOM item names verbatim, and
 | Deck pad | — | 3 pieces of 5.8 mm EVA, one sheet does both boards |
 | Cost | ~$3,900 spent | **$3,917/board**, 93% verified |
 
-The board is a **sinker** — 90.7 L will not float a rider standing still.
+The board is a **sinker** — 85.4 L will not float a rider standing still.
 That is a consequence of narrowing to 560 mm, but note it has moved twice:
 an earlier revision of this README claimed "+12.0 kg — it floats the rider"
 from when displacement was 114 L, and the pack-height correction has since
