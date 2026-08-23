@@ -69,6 +69,9 @@ LINKS = {
         ("B078XJ2DCJ", 17.99, "Pro Grade 2in Chip Brushes Disposable 36 Pack"),
     "Coiled ankle leash":
         ("B096VL3DHV", 14.99, "Coiled SUP Leash Premium Paddle Board Ankle Leash"),
+    "Leash plug 30 x 12.5, stainless pin, 2 pk":
+        ("B0C6XLK8L9", 6.99, "E-outstanding Surf Leash Plug 2PCS 30x12.5mm "
+                             "Surfboard Longboard Leash Plug Round Board Cup"),
     "Cyanoacrylate for the cord splice":
         ("B0DKP4TVSF", 5.39, "Thin CA Glue 20g Cyanoacrylate Super Glue with 3 Droppers"),
     "DALY Smart BMS Li-ion 16S 60V 150A":
@@ -89,8 +92,6 @@ LINKS = {
         ("B00P5VFKCC", 15.77, "General Purpose Rubber Sheet 50A 1/2in x 12 x 12"),
     "EPS rigid foam 2in x 48in x 8ft (HD 202532856)":
         ("https://www.homedepot.com/p/Henry-2-in-x-48-in-x-8-ft-R-7-7-EPS-Rigid-Foam-Board-Insulation-320825/202532856", 27.68, "Henry 2 in x 48 in x 8 ft R-7.7 EPS Rigid Foam Board Insulation"),
-    "FCS-pattern leash plug":
-        ("B0F1F97R4D", 8.59, "Round Cup Surfboard Leash Plug 30x12mm with Rope Bar"),
     "FOCEAN EVA deck sheet 2400 x 600 x 5.8":
         ("https://www.amazon.com/dp/B0BTLW75FL", 54.14, "FOCEAN EVA Foam Deck Sheet Camo Lake 94.5 x 23.6 x 0.23 in self-adhesive"),
     "Fish tape / pull cord for the mast conduit":
@@ -292,6 +293,7 @@ LINK_VENDOR = {
     "Charger 67.2 V 5 A, 16S  (NOT 58.8 V)": "Amazon",
     "Chip brushes 2 in, 36 pk": "Amazon",
     "Coiled ankle leash": "Amazon",
+    "Leash plug 30 x 12.5, stainless pin, 2 pk": "Amazon",
     "Cyanoacrylate for the cord splice": "Amazon",
     "DALY Smart BMS Li-ion 16S 60V 150A": "Amazon",
     "Dielectric grease, terminals": "Amazon",
@@ -302,7 +304,6 @@ LINK_VENDOR = {
     "E-glass 6 oz, 50in x 12ft, 2-pack": "Amazon",
     "EPDM/neoprene sheet 1/2in, conduit bungs": "Amazon",
     "EPS rigid foam 2in x 48in x 8ft (HD 202532856)": "Home Depot / hardware",
-    "FCS-pattern leash plug": "Amazon",
     "FOCEAN EVA deck sheet 2400 x 600 x 5.8": "Amazon",
     "Fish tape / pull cord for the mast conduit": "Amazon",
     "Flex longboard sander, 16-1/2 x 2-3/4": "Amazon",

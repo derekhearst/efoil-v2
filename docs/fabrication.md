@@ -510,7 +510,7 @@ give back.
 **Blocks on:** steps 18, 21
 **Uses:** `Kayak/board grab handle, 2 pk + screws` · `M6 x 16 A4 button head, 10 pk` ·
 `M5 x 10 A4 button head, 20 pk` ·
-`FCS-pattern leash plug` · `Coiled ankle leash` ·
+`Leash plug 30 x 12.5, stainless pin, 2 pk` · `Coiled ankle leash` ·
 `M4 x 12 A4 socket cap DIN912, 10 pk` · `M4 A4 washer, 316, 100 pk`
 
 **Three handles a board, all the same part:** two on the rails into the 6061

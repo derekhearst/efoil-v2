@@ -6,17 +6,17 @@ Grouped by where you buy it rather than by what it does, because that is the ord
 
 | Supplier | Lines | $ |
 |---|---:|---:|
-| Amazon | 111 | $3,558.98 |
+| Amazon | 111 | $3,548.79 |
 | Gong | 1 | $1,404.00 |
 | Flipsky | 3 | $1,038.00 |
-| Not a purchase - tax and freight | 3 | $832.66 |
+| Not a purchase - tax and freight | 3 | $832.05 |
 | BatteryHookup | 2 | $297.50 |
 | Fiberglass Supply | 3 | $253.38 |
 | Home Depot / hardware | 4 | $169.16 |
 | Maker Shop Boise | 1 | $150.00 |
 | Speedy Metals | 1 | $88.92 |
 | Easy Composites | 1 | $52.00 |
-| **TOTAL** | | **$7,844.60** |
+| **TOTAL** | | **$7,833.80** |
 
 ## Amazon
 
@@ -85,7 +85,6 @@ https://www.amazon.com
 | [Thermometer / hygrometer, 2 pk](https://www.amazon.com/dp/B086PC5962) | 1 | pk | $17.99 | estimate | one in the shop, one by the part. Slow needs 60 F, fast needs 40-45, and below ~35 nothing cures at all |
 | [Chip brushes 2 in, 36 pk](https://www.amazon.com/dp/B078XJ2DCJ) | 1 | pk | $17.99 | **verified** | disposable, 2-4 a session across 6 sessions. The 12 pk at $7.19 is dearer per brush and runs out mid-build |
 | [Laminating bubble roller kit, 4 pc](https://www.amazon.com/dp/B07FCLTHY6) | 1 | kit | $17.99 | **verified** |  |
-| [FCS-pattern leash plug](https://www.amazon.com/dp/B0F1F97R4D) | 2 | ea | $17.18 | estimate |  |
 | [Paste wax, releasing the groove filler](https://www.amazon.com/dp/B0GVCGHZFR) | 1 | ea | $16.99 | estimate | the filler must NOT bond - it comes back out after the glass goes over it |
 | [Adjustable hand sanding block](https://www.amazon.com/dp/B0D4LNDYXD) | 1 | ea | $15.99 | **verified** | rails, nose, tail and anywhere the longboard will not reach |
 | [Longboard PSA sandpaper 80 grit, 20 yd roll](https://www.amazon.com/dp/B0CQ7CVGK6) | 1 | roll | $15.99 | **verified** | 2-3/4 in, self-adhesive, fits the longboard above. 80 is the fairing grit - it cuts fair, it does not finish |
@@ -130,6 +129,7 @@ https://www.amazon.com
 | [Silicone adhesive, bonding the cord into groove](https://www.amazon.com/dp/B0002UEN1U) | 1 | tube | $7.56 | estimate | a thin continuous bead under the cord. It cannot then migrate, lift out, or be pinched under the lid in a dark |
 | [Silicone sealant, BMS anti-vibration dabs](https://www.amazon.com/dp/B0F4MT4FW6) | 1 | tube | $7.49 | estimate | V1 did this; stops the BMS walking |
 | [2 mm glass beads or shim wire, bond-line control](https://www.amazon.com/dp/B0FVSHYP99) | 1 | ea | $7.19 | estimate | clamping a PU joint metal-to-plastic squeezes the line out and puts you back to a rigid joint that will fail |
+| [Leash plug 30 x 12.5, stainless pin, 2 pk](https://www.amazon.com/dp/B0C6XLK8L9) | 1 | pk | $6.99 | **verified** | the pack does both boards |
 | [Loctite 242](https://www.amazon.com/dp/B000I1RSNS) | 1 | ea | $6.98 | estimate | rod ends into the motor only - nyloc end does not need it |
 | [M4 A4 washer, 316, 100 pk](https://www.amazon.com/dp/B0DZ5BVLP5) | 1 | pk | $6.79 | **verified** | 36 needed, under every lid bolt. NOTE the OD is 12 mm, not the 9 mm this line specced - the only 9 mm-OD listi |
 | [M3 x 8 A4 stainless, 10 pk](https://www.amazon.com/dp/B07DVMFMJZ) | 1 | pk | $6.76 | **verified** | the kit's screws are not stainless and this joint is submerged |
@@ -162,7 +162,7 @@ Some Flipsky appears on Amazon but the range is thin and usually dearer. Buy dir
 
 | Item | Qty | Unit | Ext | Price | Note |
 |---|---:|---|---:|---|---|
-| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $444.03 | **verified** |  |
+| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $443.42 | **verified** |  |
 | Gong shipping to Idaho, ONE order, both foils | 1 | order | $268.63 | **verified** | quoted at checkout for 2 x XL Alu setups. PER ORDER, not per foil - ordering the two separately would roughly  |
 | Shipping - Divinycell, 6061 plate, VR20 | 1 | allow | $120.00 | estimate | STILL THE BIGGEST UNVERIFIED LINE - it wants three real carts to settle. Was $220 when it covered G10 sheet an |
 

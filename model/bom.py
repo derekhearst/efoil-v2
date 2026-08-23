@@ -998,7 +998,14 @@ def build():
         tool=True, vendor="Amazon")
     add("9b Small but essential", "Coiled ankle leash", N, "ea", 14.99, OK,
         "you trust the remote failsafe; this is so the board stays with you")
-    add("9b Small but essential", "FCS-pattern leash plug", N, "ea", 9.00, EST)
+    # SOURCED AND MODELLED NOW, not an estimate. 30 x 12.5 mm plastic cup with
+    # a stainless pin, against a O30.16 x 12.7 bore - 0.16 mm of bond gap on
+    # the diameter. That is a CLOSE fit, so it wants a structural adhesive
+    # that tolerates a thin bond line rather than a gap-filling one.
+    # Two per pack, which is exactly two boards - so this is one pack, not N.
+    add("9b Small but essential", "Leash plug 30 x 12.5, stainless pin, 2 pk",
+        1, "pk", 6.99, OK,
+        "the pack does both boards")
     # A cloth handle, bolted on. That is all this ever needed to be - the
     # dense-foam surround that used to wrap the strip is gone.
     # ONE HANDLE PART FOR BOTH JOBS - Derek's call. Rubber/webbing kayak

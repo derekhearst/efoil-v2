@@ -488,7 +488,11 @@ ENC_LID_SKIN, ENC_LID_CORE = 1.0, 6.0
 ENC_LID_T = ENC_LID_SKIN * 2 + ENC_LID_CORE
 # Also +2 -> +5. Costs 3 mm of board thickness and buys headroom over the
 # tallest thing in the module.
-ENC_TOP_GAP = CAV_LAM + 5.0        # +CAV_LAM: the cavity floor is laminated too
+# 3.0, was 5.0. The module sits on the cavity floor and nothing bears on its
+# lid, so this gap is pure clearance between two lids - and 3 mm of it is
+# plenty for a part that drops in with nothing to align to. Worth 2 mm of
+# board. If the module ever gets a hold-down, this is the first number it eats.
+ENC_TOP_GAP = CAV_LAM + 3.0        # +CAV_LAM: the cavity floor is laminated too
 
 # No internal divider. It was justified as a thermal break and a stiffening
 # rib, but it bought neither cheaply: power had to cross it through glands
@@ -674,6 +678,43 @@ EQUIP_T = 4.0                      # G10 equipment plate on the module floor
 TAB_T, TAB_H = 5.0, 26.0           # G10 strap tab
 PACK_END_CLR = 14.7                # unchanged; was CORNER_POST + 2
 PACK_SIDE_CLR = 2.0
+# THE PACK DROPS STRAIGHT IN rather than going in through the opening and
+# then sliding sideways underneath the lid flange.
+#
+# The old way set the module's whole internal height: it needed pack + flange
+# + clearance stacked up, when the pack itself only needs pack + clearance.
+# That is 9.5 mm of board thickness spent on an assembly move.
+#
+# Dropping in instead means clearing the flange in BOTH axes, so the pack
+# stands MOD_FLANGE_W + a little off the side wall instead of datuming hard
+# against it. In X it already did - int_l has been sized for the opening all
+# along. The bill is width, and the code used to say that trade was
+# unaffordable because +21 mm pushed the rim ledge off the flat deck onto the
+# rail. That was true when it was written; the board has changed shape since,
+# and rim_edge_to_rail is now 34.2 mm. Measured, not assumed - if this ever
+# stops fitting, the checks say so.
+# MEASURED, AND IT DOES NOT PAY. Worth 9.5 mm of board - int_h goes 92.5 to
+# 83 - and it costs 21 mm of module width, which the board does not have: the
+# rim ledge ends up 4.7 mm off the flat deck and onto the rail.
+#
+# Standing the ESC on its side looks like it covers that, and it does not.
+# It only appears to free 27 mm of the service strip. The strip is actually
+# set by whichever of three things is widest, and with the ESC out of the way
+# the CONNECTOR PANEL is next at 89.5 mm - three PG11 glands in a row, nut
+# flats and spanner room. So the real return is 94 - 89.5 = 4.5 mm against a
+# 21 mm bill.
+#
+# And the two changes fight each other. Dropping in makes the module 9.5 mm
+# shorter, so the aft wall is 9.5 mm shorter, and the panel can no longer go
+# to three rows to get narrow: three rows need 87 mm of wall and drop-in
+# leaves 83. The height this saves is height the connector panel was using.
+#
+# THE ONE THING THAT WOULD UNLOCK IT is an OUTWARD flange. Every millimetre
+# here is the lid flange overhanging INBOARD; turn it outboard and the pack
+# clears with PACK_SIDE_CLR, the strip keeps its width, and the 9.5 mm is
+# free. That is a real redesign of the lid, gasket, bolt circle and print
+# splits, so it is not being done on the quiet.
+PACK_DROP_IN = False
 # The pack CANNOT datum to the side wall, and this cost a real collision:
 # the flange overhangs MOD_FLANGE_W inboard at the top of the wall, and the
 # pack is 71 mm in a 76 mm interior, so there is only 66.5 mm of clear height
@@ -814,10 +855,10 @@ HOLD_BED = 250.0                   # usable Bambu A1 bed
 # real discrepancy lives - see PITCH_Y.
 HOLDER_T = 10.0                    # brick height
 HOLDER_BORE_CLR = 0.4              # on the cell diameter, so it slides
-# The top brick has to sit DOWN the cell, not flush with its top, or the
-# terminal is buried and there is nowhere to land a weld. Modelling it flush
-# is what made that obvious.
-HOLDER_TERM_CLR = 4.0              # cell top proud of the top brick
+# FLUSH with the cell top. The nickel then lies across the terminals and the
+# bracket web together, which is how a spot-welded pack actually goes; the
+# bracket supports the strip instead of leaving it spanning air.
+HOLDER_TERM_CLR = 0.0              # cell top proud of the top brick
 
 # --- LYING pack, 16S8P ----------------------------------------------------
 # MEASURED, not assumed: lying the cells down is not worth it here.
@@ -905,6 +946,26 @@ PEAK_W = 5300.0                    # design peak, from V1's measured limits
 # so the legacy "at_end" branch still resolves.
 BMS_L, BMS_W, BMS_H = 162.0, 102.0, 22.0
 ESC_L, ESC_W, ESC_H = 130.0, 68.0, 41.0
+# ON ITS SIDE. Standing the ESC on its long edge turns a 68 mm bite out of
+# the service strip into 41, and the strip is the only slack in the box - it
+# gives back 20 mm of module width, which is very nearly the 21 the pack
+# costs by dropping straight in. Without it the two changes together push the
+# rim ledge 4.7 mm off the flat deck and onto the rail, and the build fails.
+#
+# WHAT IT COSTS, stated plainly: the 5052 floor exists to be the ESC's heat
+# sink - that is the reason it is aluminium and not G10, a factor of 500 in
+# conductivity - and on its side the contact patch drops from 130x68 to
+# 130x41, about 60% of the area. V1 measured "enormous headroom to the 80 C
+# cutoff" with passive cooling, so 60% of a large margin is still a large
+# margin, but that measurement was on V1's duty cycle and V1's own notes ask
+# for a re-check under repeated water starts. Set this False to put it back
+# on its face; the board goes 20 mm wider and the ledge check will say so.
+# False. It buys 4.5 mm of strip, not the 27 it looks like - see PACK_DROP_IN
+# - and 4.5 mm is not worth 40% of the ESC's only conduction path out of a
+# sealed box. Flip it if the strip ever needs that last few millimetres.
+ESC_ON_SIDE = False
+ESC_BAY_W = ESC_H if ESC_ON_SIDE else ESC_W      # across the service strip
+ESC_STAND_H = ESC_W if ESC_ON_SIDE else ESC_H    # how tall it stands
 FUSE_L, FUSE_W, FUSE_H = 123.0, 37.0, 40.0
 
 # --- fasteners ------------------------------------------------------------
@@ -1082,8 +1143,9 @@ def derive_layout():
     # module, which pushed the rim ledge off the flat deck and onto the rail.
     # Same trade the panel rows already made: width is the scarce axis.
     under_flange = stack + MOD_FLANGE_H + PACK_UNDER_FLANGE_CLR
+    # ...unless it never goes under the flange at all - see PACK_DROP_IN.
     int_h = max(stack + TOP_CLEAR,
-                under_flange,
+                0.0 if PACK_DROP_IN else under_flange,
                 (BMS_E_H + 6.0) if BMS_HOME == "on_edge" else 0.0,
                 (BMS_E_T + 6.0) if BMS_HOME == "flat_beside" else 0.0,
                 panel_h)
@@ -1101,7 +1163,7 @@ def derive_layout():
     # This strip is the ONLY slack in the box.
     # ON EDGE the BMS is only 21 mm across, so the strip is set by the ESC
     # path alone. Laying it flat needed 66 mm and pushed the strip to 115.
-    esc_bay = max(ESC_W + 6.0 + WIRE_CH_W,
+    esc_bay = max(ESC_BAY_W + 6.0 + WIRE_CH_W,
                   2.0 + BMS_D_T + 6.0 + FUSE_W + 8.0)
     # The aft wall is the connector panel and everything on it has to sit in
     # the service strip. Five fittings in ONE row need ~150 mm of strip, which
@@ -1114,7 +1176,10 @@ def derive_layout():
         esc_bay += BMS_E_T + BMS_LUG_STACK + 4.0
     elif BMS_HOME == "flat_beside":
         esc_bay = max(esc_bay, BMS_E_H + 8.0)
-    int_w = pack_w + PACK_SIDE_CLR + esc_bay
+    # Clear of the flange in Y, the same way it already is in X.
+    pack_side = ((MOD_FLANGE_W + PACK_THRU_CLR / 2) if PACK_DROP_IN
+                 else PACK_SIDE_CLR)
+    int_w = pack_w + pack_side + esc_bay
     ext_l, ext_w = int_l + 2 * ENC_WALL, int_w + 2 * ENC_WALL
     ext_h = int_h + ENC_FLOOR + ENC_LID_T
     # Aft wire bay: the cavity starts far enough aft of the conduit to clear
@@ -1134,7 +1199,8 @@ def derive_layout():
     CAV_WIDTH = ext_w + 2 * ENC_GAP
     cav_depth = ext_h + ENC_TOP_GAP
     THICK = FLOOR_Z + cav_depth + RIM_T + LID_T
-    return dict(pack_l=pack_l, pack_w=pack_w, pack_h=pack_h, stack=stack,
+    return dict(pack_side=pack_side,
+                pack_l=pack_l, pack_w=pack_w, pack_h=pack_h, stack=stack,
                 int_l=int_l, int_w=int_w, int_h=int_h,
                 ext_l=ext_l, ext_w=ext_w, ext_h=ext_h, esc_bay=esc_bay)
 
@@ -1374,6 +1440,13 @@ LEASH_X = 180.0
 # saw. The bore is what the plug drops into; the pad only has to be bigger
 # than the bore and flat enough to seat it.
 LEASH_BORE_D, LEASH_BORE_DEEP = 30.16, 12.7    # 1-3/16 in, 1/2 in
+# The plug that goes IN the bore, as bought: 30 x 12.5, plastic cup with a
+# stainless pin. The 0.16 mm on the diameter is the bond gap, which is thin -
+# it is a bonded joint carrying leash loads, so it wants a structural
+# adhesive that tolerates a close fit, not a gap-filling one.
+LEASH_PLUG_D, LEASH_PLUG_DEEP = 30.0, 12.5
+LEASH_PLUG_WALL, LEASH_PLUG_FLOOR = 3.0, 2.5
+LEASH_PIN_D, LEASH_PIN_DOWN = 4.0, 6.0         # stainless bar, below the rim
 LEASH_PAD, LEASH_T = 70.0, 18.0                # G10 block, milled flat
 
 # Handles: a WEBBING STRAP BOLTED TO THE RAIL SURFACE, port and starboard.
@@ -2466,8 +2539,12 @@ def build_cell_holders(coll, px0, pack_x1, pack_y0, pack_y1,
     bores.hide_set(True)
     bores.hide_render = True
 
+    # DATUM FROM THE CELL, NOT THE PACK. pack_h is CELL_H + PACK_TERM_H, so
+    # measuring the top bracket down from it put the bracket 3.3 mm ABOVE the
+    # cell tops - floating in the nickel-and-Kapton stack, holding nothing,
+    # and fouling every weld. The bracket locates CELLS; its datum is the cell.
     for nm, z0 in (("Btm", iz0),
-                   ("Top", iz0 + pack_h - HOLDER_T - HOLDER_TERM_CLR)):
+                   ("Top", iz0 + CELL_H - HOLDER_T - HOLDER_TERM_CLR)):
         plate = box(f"V2_CellHolder_{nm}", px0, pack_x1, pack_y0, pack_y1,
                     z0, z0 + HOLDER_T, coll, mat)
         boolean(plate, bores, op='DIFFERENCE')
@@ -3845,6 +3922,25 @@ def build():
     lbore = cyl("V2_LeashBore_cut", LEASH_X, 0.0,
                 _lz - LEASH_BORE_DEEP, _lz + 4.0, LEASH_BORE_D, coll)
     boolean(lb, lbore); lbore.hide_set(True); lbore.hide_render = True
+    # THE BOUGHT PLUG, MODELLED. E-outstanding 30 x 12.5 mm cup, plastic with
+    # a stainless pin, 2 per pack - which is exactly two boards. Nothing
+    # threads into it: it is bonded into the bore, and the pin is what the
+    # leash cord loops through.
+    lpc = cyl("V2_LeashPlug", LEASH_X, 0.0, _lz - LEASH_PLUG_DEEP, _lz,
+              LEASH_PLUG_D, coll, bom_mat("asa"), seg=32)
+    lpc_i = cyl("V2_LeashPlugCup_cut", LEASH_X, 0.0,
+                _lz - LEASH_PLUG_DEEP + LEASH_PLUG_FLOOR, _lz + 2.0,
+                LEASH_PLUG_D - 2 * LEASH_PLUG_WALL, coll, seg=32)
+    boolean(lpc, lpc_i)
+    lpc_i.hide_set(True); lpc_i.hide_render = True
+    cyl_y("V2_LeashPin", LEASH_X, _lz - LEASH_PIN_DOWN,
+          -LEASH_PLUG_D / 2, LEASH_PLUG_D / 2, LEASH_PIN_D, coll,
+          bom_mat("steel"), seg=12)
+    rep["leash_plug_part"] = (f"bought cup, O{LEASH_PLUG_D:.0f} x "
+                              f"{LEASH_PLUG_DEEP:.1f} deep, stainless pin - "
+                              f"{LEASH_BORE_D - LEASH_PLUG_D:.2f} mm of bond "
+                              "gap on the diameter")
+    rep["leash_plug_bond_gap_mm"] = round(LEASH_BORE_D - LEASH_PLUG_D, 2)
     rep["leash_plug"] = (f"FCS pattern, O{LEASH_BORE_D:.1f} x "
                          f"{LEASH_BORE_DEEP:.1f} deep bore in a "
                          f"{LEASH_PAD:.0f} mm H200 pad, milled flat")
@@ -4500,8 +4596,8 @@ def build():
     # enough for the ESC rather than two useless ones. ~9 kg offset ~50 mm
     # moves the rider+board centroid about 3 mm - irrelevant.
     pack_l, pack_w = L["pack_l"], L["pack_w"]
-    px0 = ix0 + PACK_END_CLR
-    pack_y0 = iy0 + PACK_SIDE_CLR
+    px0 = ix0 + (L["pack_side"] if PACK_DROP_IN else PACK_END_CLR)
+    pack_y0 = iy0 + L["pack_side"]
     pack_y1 = pack_y0 + pack_w
     iy_c = (pack_y0 + pack_y1) / 2
     pack_x1 = px0 + pack_l
@@ -4602,7 +4698,7 @@ def build():
         # box - putting the 16 mm BMS there costs nothing and is the one place
         # in this box that was pure wasted volume. Side by side, the two also
         # simply did not fit once the box went back to 425 long.
-        bz0 = iz0 + ESC_H + 4.0
+        bz0 = iz0 + ESC_STAND_H + 4.0
         by0 = pack_y1 + 2.0
         bx_ = ix0 + 20.0
         box("V2_BMS", bx_, bx_ + BMS_E_L, by0, by0 + BMS_E_H,
@@ -4623,7 +4719,7 @@ def build():
             iz0 + 3.0, iz0 + 3.0 + 30.0, coll, m_metal)
         rep["bms_standing_top_mm"] = round(3.0 + BMS_E_H, 1)
         rep["bms_headroom_mm"] = round(int_h - (3.0 + BMS_E_H), 1)
-        rep["bms_to_esc_mm"] = round(by0 - BMS_LUG_STACK - (pack_y1 + ESC_W), 1)
+        rep["bms_to_esc_mm"] = round(by0 - BMS_LUG_STACK - (pack_y1 + ESC_BAY_W), 1)
     else:
         bms_z0 = iz0 + pack_h + WRAP_T if BMS_ON_PACK else iz0
         bx0 = px0 + (pack_l - BMS_E_L) / 2
@@ -4653,15 +4749,17 @@ def build():
         esc_y1 = iy1 - ESC_CLR
         esc_x0 = ix0 + ESC_CLR + 8.0
         box("V2_ESC", esc_x0, esc_x0 + ESC_L,
-            esc_y1 - ESC_W, esc_y1, iz0, iz0 + ESC_H, coll, bom_mat("esc"))
+            esc_y1 - ESC_BAY_W, esc_y1, iz0, iz0 + ESC_STAND_H, coll,
+            bom_mat("esc"))
         rep["esc_to_wall_mm"] = ESC_CLR
-        rep["esc_to_cells_mm"] = round((esc_y1 - ESC_W) - pack_y1, 1)
+        rep["esc_to_cells_mm"] = round((esc_y1 - ESC_BAY_W) - pack_y1, 1)
         rep["esc_to_aft_wall_mm"] = round(esc_x0 - ix0, 1)
         rep["esc_clear_min_mm"] = round(min(
-            ESC_CLR, (esc_y1 - ESC_W) - pack_y1, esc_x0 - ix0), 1)
+            ESC_CLR, (esc_y1 - ESC_BAY_W) - pack_y1, esc_x0 - ix0), 1)
     else:
-        box("V2_ESC", ix0 + 20.0, ix0 + 20.0 + ESC_L, strip_y0, strip_y0 + ESC_W,
-            iz0, iz0 + ESC_H, coll, bom_mat("esc"))
+        box("V2_ESC", ix0 + 20.0, ix0 + 20.0 + ESC_L,
+            strip_y0, strip_y0 + ESC_BAY_W,
+            iz0, iz0 + ESC_STAND_H, coll, bom_mat("esc"))
     if BMS_HOME == "beside":
         # Next to the BMS, outboard of it, same station.
         f_y0 = pack_y1 + 2.0 + BMS_D_T + 6.0
@@ -4747,7 +4845,7 @@ def build():
             "carrying M4 inserts for the ESC and fuse; pack held by 2 x "
             f"{STRAP_W:.0f} mm straps across G10 tabs. The 3 mm floor holds no "
             "fastener directly.")
-    rep["wire_raceway_w_mm"] = round(strip - 4.0 - ESC_W, 1)
+    rep["wire_raceway_w_mm"] = round(strip - 4.0 - ESC_BAY_W, 1)
 
     # --- aft service bay: glands, power button, charge port ---------------
     # All of it lives in the bay the conduit already forced into existence,
@@ -4879,11 +4977,21 @@ def build():
                                   and 62.0 + CHG_W < CAV_WIDTH / 2)
     rep["bay_items_fit_length"] = max(BTN_D, CHG_L) + 8.0 < bay_l
     rep["pack_offset_mm"] = round(iy_c, 1)
-    # It goes in through the opening and slides under the flange, so what has
-    # to be true is HEIGHT under the flange - not that it fits the opening in Y.
+    # It DROPS IN now, so what has to be true is that it fits the opening in
+    # BOTH axes - not that there is height under the flange to slide it
+    # sideways. Those are different checks, and the old one would happily pass
+    # a pack that could never be lowered past the flange.
+    rep["pack_drops_in"] = PACK_DROP_IN
+    rep["pack_opening_clear_mm"] = [
+        round(min(px0 - (ix0 + MOD_FLANGE_W),
+                  (ix1 - MOD_FLANGE_W) - (px0 + pack_l)), 1),
+        round(min(pack_y0 - (iy0 + MOD_FLANGE_W),
+                  (iy1 - MOD_FLANGE_W) - pack_y1), 1)]
     rep["pack_under_flange_clr_mm"] = round(
         (int_h - MOD_FLANGE_H) - L["stack"], 1)
-    rep["pack_clears_flange"] = rep["pack_under_flange_clr_mm"] >= 0.0
+    rep["pack_clears_flange"] = (min(rep["pack_opening_clear_mm"]) >= 0.0
+                                 if PACK_DROP_IN
+                                 else rep["pack_under_flange_clr_mm"] >= 0.0)
     rep["pack_slides_under_flange_by_mm"] = round(
         max(0.0, (iy0 + MOD_FLANGE_W) - pack_y0), 1)
     rep["end_zone_mm"] = round(end_zone, 1)
@@ -5012,14 +5120,17 @@ def build():
     rep["module_piece_sum_pct"] = round(
         100.0 * _ps / max(1e-9, volume_litres(shell)), 2)
     rep["module_seam_joint"] = RIM_JOINT
-    rep["esc_fits_strip"] = ESC_W <= strip - 4.0
-    rep["esc_strip_clear_mm"] = round(strip - 4.0 - ESC_W, 1)
+    rep["esc_fits_strip"] = ESC_BAY_W <= strip - 4.0
+    rep["esc_strip_clear_mm"] = round(strip - 4.0 - ESC_BAY_W, 1)
     rep["fuse_fits_strip"] = FUSE_W <= strip - 4.0
     rep["esc_fuse_run_mm"] = round(ESC_L + 25.0 + FUSE_L, 1)
     rep["strip_length_avail_mm"] = round(ix1 - ix0, 1)
     rep["bms_home"] = BMS_HOME
     rep["bms_placed_ok"] = True
-    rep["esc_headroom_mm"] = round(int_h - ESC_H, 1)
+    rep["esc_headroom_mm"] = round(int_h - ESC_STAND_H, 1)
+    rep["esc_on_side"] = ESC_ON_SIDE
+    rep["esc_floor_contact_mm2"] = round(ESC_L * ESC_BAY_W)
+    rep["esc_floor_contact_pct_of_flat"] = round(100 * ESC_BAY_W / ESC_W)
 
     # --- fit checks -------------------------------------------------------
     # lift-out: the module must pass through the rim opening
@@ -5461,8 +5572,14 @@ def build():
         fails.append(f"a core half is longer than the bed: "
                      f"{rep['core_halves_mm']} vs {CNC_BED_X:.0f}")
     if not rep["pack_clears_flange"]:
-        fails.append("the pack fouls the lid flange - it cannot be installed: "
-                     f"{rep['pack_under_flange_clr_mm']} mm under the flange")
+        if PACK_DROP_IN:
+            fails.append("the pack fouls the lid flange on the way down: "
+                         f"{rep['pack_opening_clear_mm']} mm clear of the "
+                         "opening in x, y")
+        else:
+            fails.append("the pack fouls the lid flange - it cannot be "
+                         f"installed: {rep['pack_under_flange_clr_mm']} mm "
+                         "under the flange")
     if rep["handle_clear_of_cavity_mm"] < 0:
         fails.append("the module lift handle fouls the cavity wall: "
                      f"{rep['handle_clear_of_cavity_mm']} mm")
