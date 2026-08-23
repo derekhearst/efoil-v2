@@ -69,10 +69,10 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | [2.5 mm straight cutter - fallback](https://www.amazon.com/dp/B0GWSZ2KV2) | 1 | ea | $7.99 | $7.99 | estimate | only if you would rather cut the groove open than sand down to a proud filler strip. Undersize in a 4 mm groove on purpose |
 | [Silicone adhesive, bonding the cord into groove](https://www.amazon.com/dp/B0002UEN1U) | 1 | tube | $7.56 | $7.56 | estimate | a thin continuous bead under the cord. It cannot then migrate, lift out, or be pinched under the lid in a dark car park |
 | [M5 x 25 A4 socket cap, 20 pk](https://www.amazon.com/dp/B0CJFMMF58) | 2 | pk | $15.99 | $31.98 | verified | 24 needed. A4/316 - every cheaper listing is A2/304, which pits in salt water |
-| [M6 penny washer O18 DIN9021, 100 pk](https://www.amazon.com/dp/B0FDVGZDWY) | 1 | pk | $9.99 | $9.99 | estimate | 58 needed - TWO PER BOLT, one captive under the nut and one UNDER THE HEAD. M6 size on an M5 bolt: the 0.7 mm of slop is irrelevant on a washer and the 3 extra mm of OD is not. One pack does both boards |
+| [M6 penny washer O18 A4 DIN9021](https://www.amazon.com/dp/B0DB8RBY3N) | 1 | pk | $12.99 | $12.99 | estimate | 58 needed - TWO PER BOLT, one captive under the nut and one UNDER THE HEAD. M6 size on an M5 bolt: the 0.7 mm of slop is irrelevant on a washer and the 3 extra mm of OD is not |
 | [M5 A4 hex nut DIN934, 50 pk - CAPTIVE in the ring](https://www.amazon.com/dp/B084HLMN7B) | 1 | pk | $9.19 | $9.19 | verified | 34 needed. Dropped in at a print pause at Z=6.0; steel thread, so a hatch that comes off every ride never wears anything out |
 | [MDF 12 mm, 4 check gauges](https://www.homedepot.com/p/ProWood-1-2-in-x-2-ft-x-4-ft-Medium-Density-Fiberboard-Project-Panel-109097/202093821) | 1 | sheet | $30.73 | $30.73 | estimate | 3 station sections + the rocker/deck profile. Was a 14-template set at $70 - the router templates go with the CNC pass. The caul is an EPS offcut and the groove guide is fallback-only, so this sheet is now the whole MDF requirement |
-| **subtotal** | | | | **$165.00** | | |
+| **subtotal** | | | | **$168.00** | | |
 
 ## 7  Module
 
@@ -89,7 +89,7 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | [Sika Aktivator-PRO 250 ml + daubers](https://www.amazon.com/dp/B0D9KTLC1M) | 1 | ea | $28.95 | $28.95 | verified | abrade + solvent wipe + activate the 5052; scuff the ASA. Aktivator-205 is DISCONTINUED - Aktivator-PRO replaces it. UPGRADE PATH: full Primer-206 G+P is the belt-and-braces answer for immersed PU on metal but is $67/250 ml on Amazon. Skipping it is defensible HERE only because the bond line is mechanically backed by the flange bolts and the gasket - not the PU - is the water barrier |
 | [2 mm glass beads or shim wire, bond-line control](https://www.amazon.com/dp/B0FVSHYP99) | 1 | ea | $7.19 | $7.19 | estimate | clamping a PU joint metal-to-plastic squeezes the line out and puts you back to a rigid joint that will fail |
 | Hollow punch set 1/8-1/2in + cutting mat | 0 | off | $0.00 | $0.00 | on hand | 7/32 in (5.556) is the size for M4 - the model sizes the gasket holes off it, not the other way round. Punch onto a mat: a hard bench rolls the edge on the first hit |
-| [Closed-cell sponge neoprene 1/8in, module lid gasket](https://www.amazon.com/dp/B089T6TYXC) | 1 | roll | $13.99 | $13.99 | verified | blank is 443 x 314 mm a board; the roll is 432 wide so it nests across, and 2032 long does both with room over |
+| [Closed-cell sponge EPDM 1/8in, module lid gasket](https://www.amazon.com/dp/B07FWQM34V) | 1 | roll | $13.99 | $13.99 | verified | blank is 443 x 314 mm a board; the roll is 432 wide so it nests across, and 2032 long does both with room over |
 | [Gebildet PG11 gland, M18x1.5, 30 pk](https://www.amazon.com/dp/B0B8NJR62L) | 1 | pk | $9.99 | $9.99 | verified | your listing: M18x1.5 thread (matches the 18.5 hole) and 5-10 mm cable, against our 6.5 mm 8 AWG. 6 needed of 30 - one wire per gland; three in one gland deforms the insert into a clover and leaks between them |
 | [EPDM/neoprene sheet 1/2in, conduit bungs](https://www.amazon.com/dp/B00P5VFKCC) | 1 | sheet | $15.77 | $15.77 | estimate | 50A. Punch O31.75 discs, 12.7 thick, and drill 3 x O5.5 on a O9.8 triangle for the 6.5 mm leads - 15% interference, soap them through. One sheet is a lifetime of bungs for both boards |
 | [Hollow punch set 3/16-1-3/8in, for the O31.75 bung](https://www.amazon.com/dp/B07PQYRG9K) | 1 | set | $32.99 | $32.99 | estimate | the existing set stops at 1/2 in. Skip it if a 1-3/8 in hole saw is already in the drawer - the plug it leaves is about 32 mm, which is the disc we want |
@@ -247,31 +247,31 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | Item | Qty | Unit | Unit $ | Ext $ | | Note |
 |---|---:|---|---:|---:|---|---|
 | Shipping - Divinycell, 6061 plate, VR20 | 1 | allow | $120.00 | $120.00 | estimate | STILL THE BIGGEST UNVERIFIED LINE - it wants three real carts to settle. Was $220 when it covered G10 sheet and hazmat epoxy, both of which are now out of the build entirely |
-| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $447.52 | $447.52 | verified |  |
-| **subtotal** | | | | **$567.52** | | |
+| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $447.70 | $447.70 | verified |  |
+| **subtotal** | | | | **$567.70** | | |
 
 ## Totals
 
 | | |
 |---|---:|
-| **Grand total, 2 boards** | **$7,906.21** |
-| Per board | $3,953.10 |
-| Of which verified | $7,296.05  (92%) |
-| Of which estimated | $610.16 |
+| **Grand total, 2 boards** | **$7,909.39** |
+| Per board | $3,954.69 |
+| Of which verified | $7,296.23  (92%) |
+| Of which estimated | $613.16 |
 | Linked to a real listing | 128 lines |
 | Priced but NOT linked | 1 lines, $12.00 |
-| Not linkable, but MEASURED (freight quotes) | 2 lines, $716.15 |
+| Not linkable, but MEASURED (freight quotes) | 2 lines, $716.33 |
 | Not linkable and still estimated | 1 lines, $120.00 |
 
 ## What is a board, and what is a shop
 
-Some of the total above is not the cost of a board at all - it is tools, jigs and templates that exist afterwards and do not repeat. Splitting them out is the difference between "a board costs $3,953" and "a board costs $3,518 and I now own a vacuum rig, a crimper and a full template set".
+Some of the total above is not the cost of a board at all - it is tools, jigs and templates that exist afterwards and do not repeat. Splitting them out is the difference between "a board costs $3,955" and "a board costs $3,520 and I now own a vacuum rig, a crimper and a full template set".
 
 | | |
 |---|---:|
 | One-time tooling (incl. its share of tax) | $869.36 |
-| **Marginal cost of a board** | **$3,518.43** |
-| Cost of the NEXT board after these 2 | $3,518.43 |
+| **Marginal cost of a board** | **$3,520.02** |
+| Cost of the NEXT board after these 2 | $3,520.02 |
 
 | One-time item | $ |
 |---|---:|

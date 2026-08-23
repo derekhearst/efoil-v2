@@ -86,7 +86,7 @@ for; start in week six and it is the only thing you are waiting for.
 **Uses:** `ASA filament, printed rim ring` · `ASA filament, printed module shell` ·
 `PETG filament 1 kg, mast clamp set` · `PETG for props, 4-5 spares per board` ·
 `M5 A4 hex nut DIN934, 50 pk - CAPTIVE in the ring` ·
-`M6 penny washer O18 DIN9021, 100 pk`
+`M6 penny washer O18 A4 DIN9021`
 
 Print order, longest first: module shells → rim rings → props → clamps.
 
@@ -433,7 +433,7 @@ did for the rest — the drill cuts both skins, and those are fresh fibre ends.
 `Sikaflex-292 marine structural PU` · `Sika Aktivator-PRO 250 ml + daubers` ·
 `2 mm glass beads or shim wire, bond-line control` ·
 `M4 x 8 brass heat-set insert, 100 pc` · `M6 x 12.7 brass heat-set insert, 50 pc` ·
-`Closed-cell sponge neoprene 1/8in, module lid gasket` · `Hollow punch set 1/8-1/2in + cutting mat` ·
+`Closed-cell sponge EPDM 1/8in, module lid gasket` · `Hollow punch set 1/8-1/2in + cutting mat` ·
 `Gebildet PG11 gland, M18x1.5, 30 pk` · `M12 IP68 membrane vent plug` ·
 `M12 IP68 momentary panel button` · `JST GH 1.25 mm pigtail pair, BMS switch` · `SP17 2-pin IP68 flange receptacle` ·
 `M3 heat-set insert kit, 361 pc` · `M3 x 8 A4 stainless, 10 pk`

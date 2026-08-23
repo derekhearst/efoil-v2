@@ -650,19 +650,17 @@ def build():
     # a 5 Nm hand-tight at a pessimistic printed-ASA shear. Under the HEAD it
     # keeps the epoxy plug at 14% of ultimate instead of 75%, which is the
     # difference between a seat that holds and one that cold-flows.
-    # NOTE THE GRADE: 304, not the A4 this list insists on elsewhere - and the
-    # O15 line it replaces was 304 too, so this is not a new compromise. A4
-    # M6 fender washers are not an Amazon part. 304 against A4 bolts is a
-    # negligible galvanic couple (both austenitic); what 304 does in salt is
-    # tea-stain and surface-pit, which is cosmetic on a washer and structural
-    # on nothing. Worth upgrading if a marine supplier is being ordered from
-    # anyway.
-    add("6  Hatch and seal", "M6 penny washer O18 DIN9021, 100 pk",
-        1, "pk", 9.99, EST,
+    # A4, and it took a third search to find - the first two rounds only
+    # turned up 304 and zinc. The O15 line this replaces was 304, so the whole
+    # list is finally consistent: every fastener in the wet is A4/316.
+    # CHECK THE PACK COUNT AT CHECKOUT - the listing is by size, not by a
+    # fixed quantity, and 58 are needed for two boards.
+    add("6  Hatch and seal", "M6 penny washer O18 A4 DIN9021",
+        1, "pk", 12.99, EST,
         str(M["hatch_bolts"] * N * 2 + 10) + " needed - TWO PER BOLT, one "
         "captive under the nut and one UNDER THE HEAD. M6 size on an M5 bolt: "
         "the 0.7 mm of slop is irrelevant on a washer and the 3 extra mm of "
-        "OD is not. One pack does both boards")
+        "OD is not")
     add("6  Hatch and seal",
         "M5 A4 hex nut DIN934, 50 pk - CAPTIVE in the ring",
         1, "pk", 9.19, OK,
@@ -763,7 +761,16 @@ def build():
         "7/32 in (5.556) is the size for M4 - the model sizes the gasket "
         "holes off it, not the other way round. Punch onto a mat: a hard "
         "bench rolls the edge on the first hit", tool=True)
-    add("7  Module", "Closed-cell sponge neoprene 1/8in, module lid gasket",
+    # EPDM, NOT NEOPRENE, and the reason is ageing rather than sealing. This
+    # lid is rarely opened, so the gasket lives permanently at 33% squeeze and
+    # takes a compression set - part of that deflection stops coming back. On
+    # a hard-stop joint the gap cannot follow it down, so the loss lands
+    # straight on contact stress. CR sets 25-40% of deflection, EPDM 10-20%,
+    # for the same money and the same sheet size, and EPDM is better in
+    # standing water and UV besides. NOT silicone: best set resistance of the
+    # three but the worst water-vapour transmission, and this is the box that
+    # has to stay dry inside.
+    add("7  Module", "Closed-cell sponge EPDM 1/8in, module lid gasket",
         1, "roll", 13.99, OK,
         "blank is " + " x ".join(str(v) for v in M["seal_blank"])
         + " mm a board; the roll is 432 wide so it nests across, and 2032 "

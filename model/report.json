@@ -493,7 +493,23 @@
  "module_floor_joint": "ASA wall bonded to the 5052 floor on a 2 mm controlled bond line, filleted BOTH sides - inside, and outside onto the 3 mm ledge the floor is oversized by. Structural POLYURETHANE, not epoxy: the two materials differ by 66 um/m/K, which is 0.60 mm from the centre over 40 C, and a rigid bond line would see 299% shear strain",
  "module_floor_ledge_clear_mm": 11.0,
  "module_foot_would_add_g": 48,
+ "module_gasket_aged": {
+  "CR neoprene": {
+   "contact MPa": 0.084,
+   "residual squeeze %": 26
+  },
+  "EPDM": {
+   "contact MPa": 0.102,
+   "residual squeeze %": 30
+  }
+ },
+ "module_gasket_min_squeeze_pct": 25,
+ "module_gasket_set_pct": {
+  "CR neoprene": 30,
+  "EPDM": 15
+ },
  "module_gasket_squeeze_pct": 33,
+ "module_gasket_survives_set": true,
  "module_gasket_to_bolt_mm": 5.5,
  "module_handle_bolt_N": 128,
  "module_handle_bolt_pattern_mm": 152.6,
@@ -531,7 +547,7 @@
  "module_piece_sum_pct": 99.87,
  "module_print_pieces": 4,
  "module_ribs_would_add_g": 43,
- "module_seal": "closed-cell sponge neoprene, 3 mm uncompressed -> 2.0 at 33% squeeze. FULL FACE, one piece over the whole 15 mm land, punched for the bolts - V1's method",
+ "module_seal": "closed-cell sponge EPDM, 3 mm uncompressed -> 2.0 at 33% squeeze. FULL FACE, one piece over the whole 15 mm land, punched for the bolts - V1's method",
  "module_seal_annulus_mm": 3.22,
  "module_seal_area_mm2": 22728,
  "module_seal_band_mm": 15.0,

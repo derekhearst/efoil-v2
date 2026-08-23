@@ -156,8 +156,8 @@ LINKS = {
         ("B084HLMN7B", 9.19, "M5 Hex Nuts DIN 934 Marine Grade Stainless 50 Pack"),
     "M5 nyloc nut 316, 150 pk":
         ("B0BP2T6Z4Q", 8.99, "M5 Stainless Lock Nuts 150pcs 316 Hex Nylon Insert"),
-    "M6 penny washer O18 DIN9021, 100 pk":
-        ("B0FDVGZDWY", 9.99, "M6 x 18mm OD Flat Washers 100 pcs, 18-8 (304) Stainless Steel, DIN 9021, 6.4mm ID x 18mm OD"),
+    "M6 penny washer O18 A4 DIN9021":
+        ("B0DB8RBY3N", 12.99, "M6X18 Metric Din 9021 Large OD Washer A4 Stainless Steel - ECS-M6D9021A4"),
     "M5 x 250 threaded rod, 4 pk (cut to ~171 mm)":
         ("B0CMZR9L1Y", 9.99, "4pcs M5 x 250mm Fully Threaded Rod 304 Stainless"),
     "M6 x 16 A4 button head, 10 pk":
@@ -178,9 +178,9 @@ LINKS = {
         ("https://www.homedepot.com/p/ProWood-1-2-in-x-2-ft-x-4-ft-Medium-Density-Fiberboard-Project-Panel-109097/202093821", 30.73, "ProWood 1/2 in x 2 ft x 4 ft MDF Project Panel"),
     "Maker Shop Boise Basic month":
         ("https://www.makershopboise.com/membership", 150.00, "Maker Shop Boise Membership - Basic"),
-    "Closed-cell sponge neoprene 1/8in, module lid gasket":
-        ("B089T6TYXC", 13.99, "NATGAI Neoprene Closed Cell Foam Roll, 1/8in "
-                              "Thick, 17in W x 80in L"),
+    "Closed-cell sponge EPDM 1/8in, module lid gasket":
+        ("B07FWQM34V", 13.99, "XCEL Pure EPDM Sponge Rubber Sheet 60in x 17in "
+                              "x 1/8in Thick, closed cell"),
     "Nitrile gloves 6 mil, 100 pk":
         ("B0C3SSXL4K", 14.44, "Inspire Black Nitrile Gloves HEAVY DUTY 6 Mil Chemical Resistant"),
     "PETG filament 1 kg, mast clamp set":
@@ -343,7 +343,7 @@ LINK_VENDOR = {
     "M4 x 8 brass heat-set insert, 100 pc": "Amazon",
     "M5 A4 hex nut DIN934, 50 pk - CAPTIVE in the ring": "Amazon",
     "M5 nyloc nut 316, 150 pk": "Amazon",
-    "M6 penny washer O18 DIN9021, 100 pk": "Amazon",
+    "M6 penny washer O18 A4 DIN9021": "Amazon",
     "M5 x 250 threaded rod, 4 pk (cut to ~171 mm)": "Amazon",
     "M6 x 16 A4 button head, 10 pk": "Amazon",
     "M6 x 20 fender washer, 100 pk": "Amazon",
@@ -354,7 +354,7 @@ LINK_VENDOR = {
     "M8 x 30 A4 mast bolts, 10 pk - spares": "Amazon",
     "MDF 12 mm, 4 check gauges": "Home Depot / hardware",
     "Maker Shop Boise Basic month": "Maker Shop Boise",
-    "Closed-cell sponge neoprene 1/8in, module lid gasket": "Amazon",
+    "Closed-cell sponge EPDM 1/8in, module lid gasket": "Amazon",
     "Nitrile gloves 6 mil, 100 pk": "Amazon",
     "PETG filament 1 kg, mast clamp set": "Amazon",
     "PETG for props, 4-5 spares per board": "Amazon",

@@ -515,9 +515,9 @@ DENSE_FLOOR_CLR = 1.5              # mast block top BELOW the cavity void, so
                                    # the note at V2_MastBlock_cut
 FIT_RIM = 0.3                      # rim ring to ledge (thickened epoxy bond)
 # 2.0, not 0.4: the lid now stands off on a COMPRESSED FLAT GASKET, not on
-# the flange with a cord in a groove. 3 mm neoprene at 33% squeeze = 2.0.
+# the flange with a cord in a groove. 3 mm EPDM sponge at 33% squeeze = 2.0.
 FIT_LID = 2.0                      # compressed gasket thickness
-MOD_GASKET_T = 3.0                 # uncompressed neoprene sheet
+MOD_GASKET_T = 3.0                 # uncompressed EPDM sponge sheet
 # Inboard of the bolt circle, same rule as everywhere else on this board: the
 # lid bolts are through-holes onto a surface that gets wet, so whatever runs
 # down a bolt must land on the WET side of the seal.
@@ -5456,7 +5456,7 @@ def build():
     if MOD_FLANGE_OUT and MOD_GASKET_FULL_FACE:
         rep["module_seal"] = (
             f"{'closed-cell sponge' if MOD_GASKET_SPONGE else 'solid'} "
-            f"neoprene, {MOD_GASKET_T:.0f} mm uncompressed -> {FIT_LID:.1f} at "
+            f"EPDM, {MOD_GASKET_T:.0f} mm uncompressed -> {FIT_LID:.1f} at "
             f"{100 * (1 - FIT_LID / MOD_GASKET_T):.0f}% squeeze. FULL FACE, "
             f"one piece over the whole {MOD_FLANGE_LAND:.0f} mm land, punched "
             f"for the bolts - V1's method")
@@ -5466,13 +5466,44 @@ def build():
         rep["module_seal_blank_mm"] = (round(fx1 - fx0), round(fy1 - fy0))
     else:
         rep["module_seal"] = (
-            f"flat neoprene gasket {MOD_GASKET_T:.0f} mm uncompressed -> "
+            f"flat EPDM gasket {MOD_GASKET_T:.0f} mm uncompressed -> "
             f"{FIT_LID:.1f} at "
             f"{100 * (1 - FIT_LID / MOD_GASKET_T):.0f}% squeeze, "
             f"{MOD_GASKET_IN - MOD_GASKET_OUT:.0f} mm wide band on the "
             f"printed flange, inboard of the bolt circle")
     rep["module_gasket_to_bolt_mm"] = round(MOD_GASKET_OUT - MOD_BOLT_INSET, 1)
     rep["module_gasket_squeeze_pct"] = round(100 * (1 - FIT_LID / MOD_GASKET_T))
+
+    # --- WILL IT STILL BE SEALING IN THREE YEARS --------------------------
+    # Nothing here modelled AGEING, and this is the gasket where it matters:
+    # the module lid is rarely opened, so its sponge lives permanently at 33%
+    # and takes a COMPRESSION SET - a fraction of that deflection simply stops
+    # coming back. On a HARD-STOP joint the gap cannot close up to follow it,
+    # so the loss shows up directly as contact stress falling away, and the
+    # first anyone knows is water inside.
+    #
+    # This is the one place the MATERIAL choice earns its keep. Closed-cell CR
+    # (neoprene) is the cheap default and sets 25-40% of its deflection; EPDM
+    # sets 10-20% and is better in standing water and UV besides. Same sheet
+    # size, same money.
+    # NOT silicone, for once - silicone has the best set resistance of the
+    # three but the worst water-VAPOUR transmission, and this is the box that
+    # has to stay dry INSIDE. Silicone is right for the hatch cord, which is
+    # sealing a compartment, and wrong here.
+    _defl = MOD_GASKET_T - FIT_LID
+    rep["module_gasket_set_pct"] = {"CR neoprene": 30, "EPDM": 15}
+    rep["module_gasket_aged"] = {}
+    for _mat, _set in (("CR neoprene", 0.30), ("EPDM", 0.15)):
+        _free = MOD_GASKET_T - _set * _defl
+        _res = _free - FIT_LID
+        rep["module_gasket_aged"][_mat] = {
+            "residual squeeze %": round(100.0 * _res / _free),
+            "contact MPa": round(MOD_GASKET_STRESS_MPA * _res / _defl, 3)}
+    # a closed-cell sponge wants roughly 25% squeeze to seal at all
+    rep["module_gasket_min_squeeze_pct"] = 25
+    rep["module_gasket_survives_set"] = all(
+        v["residual squeeze %"] >= 25
+        for v in rep["module_gasket_aged"].values())
 
     # A SEALED lithium box must be able to breathe, or it pumps its own seal
     # every time the sun comes out - and if a cell ever vents, a closed box is
