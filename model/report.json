@@ -343,10 +343,26 @@
  "ledge_to_deck_edge_mm": 5.7,
  "lid_core_limit_MPa": 2.0,
  "lid_crush_MPa": 1.06,
+ "lid_crush_compare_MPa": {
+  "V1 3/4in ply, bare": 7.89,
+  "V2 H100 + 1mm skin": 1.63,
+  "V2 epoxy plug": 7.89
+ },
+ "lid_crush_compare_margin": {
+  "V1 3/4in ply, dry": 0.76,
+  "V1 3/4in ply, wet": 0.51,
+  "V2 H100 + 1mm skin": 1.22,
+  "V2 epoxy plug": 6.34
+ },
  "lid_crush_margin": 1.89,
  "lid_deflection_mm": 1.0,
  "lid_flush_error_mm": 0.39,
  "lid_proud_at_edge_mm": 0.0,
+ "lid_seat_area_gain": 4.83,
+ "lid_seat_area_mm2": {
+  "V1 bare ply, washer bears direct": 152,
+  "V2 sandwich, skin spreads it": 734
+ },
  "lid_side_clearance_finished_mm": 1.5,
  "lid_top_vs_deck_mm": [
   0.14,
@@ -670,6 +686,12 @@
  "strip_length_avail_mm": 413.2,
  "strip_set_by": "ESC lying flat + raceway",
  "thickness_if_bms_moved_mm": 164.2,
+ "v1_ply_fc_MPa": {
+  "dry": 6.0,
+  "wet": 4.0
+ },
+ "v1_ply_lid_crushed_in_service": true,
+ "v1_ply_lid_had_no_glass": true,
  "v1_ply_thickness_mm": 19.05,
  "v1_ply_washer_N": {
   "M8 fender DIN9021": [
@@ -687,6 +709,10 @@
    874,
    583
   ]
+ },
+ "v1_ply_washer_d_needed_mm": {
+  "dry": 16.9,
+  "wet": 20.3
  },
  "v1_side_load_capacity_N": 504,
  "v1_side_load_g": 0.44,

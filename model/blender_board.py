@@ -1399,6 +1399,15 @@ EPOXY_COMP_MPA = 50.0              # thickened laminating epoxy, conservative
 # 7.9. They are already on the list - 150 in the pack, 34 used - and Derek
 # said washers were acceptable if they had to be.
 HATCH_HEAD_WASHER_D = 15.0         # M5 penny, DIN 9021
+# --- V1's plywood, for comparison ------------------------------------------
+# V1's lid AND its mast base plate were 3/4 in birch ply, so one set of
+# figures serves both. Flatwise (through-thickness) bearing is what a washer
+# crushes, and it is governed by the veneers' perpendicular-to-grain
+# compression. 6.0 is conservative for birch; the WET figure is the one that
+# matters, because V1's lid was epoxy hot-coat only - the glass layup was
+# skipped - so the hot coat was the sole barrier and any breach soaks it.
+PLY_T = 19.05                      # 3/4 inch
+PLY_FC_DRY, PLY_FC_WET = 6.0, 4.0  # MPa ultimate flatwise bearing
 # NO COUNTERSINK. It needs 2.1 mm of solid material under the top face and
 # there is 1.0 mm of skin over the plug, so flush heads and a buried spreader
 # do not combine. Cap heads it is - which is what Derek asked for anyway.
@@ -4280,6 +4289,44 @@ def build():
         (HATCH_SPREADER_D - _hole) / 2.0 - 1.0, 2)
     rep["hatch_plug_to_lid_edge_mm"] = round(
         _edge - HATCH_SPREADER_D / 2.0, 1)
+
+    # --- H100 SANDWICH vs V1'S 3/4 in BIRCH PLY, SAME BOLT, SAME WASHER ----
+    # The material comparison says plywood wins 3:1 and it is the wrong
+    # comparison. V1's lid was BARE ply - the glass layup was skipped, hot
+    # coat only - so a washer bears on it directly. V2's washer bears on a
+    # 1 mm glass skin, and a stiff skin on a soft core carries load sideways
+    # for 4 characteristic lengths before it ever reaches the core.
+    # The skin is worth more than the material is: 3x on strength against
+    # 4.8x on area.
+    _w = HATCH_HEAD_WASHER_D
+    _a_direct = _seat(_w)
+    _a_spread = _seat_spread(_w)
+    rep["v1_ply_fc_MPa"] = {"dry": PLY_FC_DRY, "wet": PLY_FC_WET}
+    rep["v1_ply_lid_had_no_glass"] = True
+    rep["lid_seat_area_mm2"] = {
+        "V1 bare ply, washer bears direct": round(_a_direct),
+        "V2 sandwich, skin spreads it": round(_a_spread)}
+    rep["lid_seat_area_gain"] = round(_a_spread / _a_direct, 2)
+    rep["lid_crush_compare_MPa"] = {
+        "V1 3/4in ply, bare": round(_bolt_N / _a_direct, 2),
+        "V2 H100 + 1mm skin": round(_bolt_N / _a_spread, 2),
+        "V2 epoxy plug": round(_bolt_N / _a_direct, 2)}
+    rep["lid_crush_compare_margin"] = {
+        "V1 3/4in ply, dry": round(PLY_FC_DRY / (_bolt_N / _a_direct), 2),
+        "V1 3/4in ply, wet": round(PLY_FC_WET / (_bolt_N / _a_direct), 2),
+        "V2 H100 + 1mm skin": round(CORE_COMP_MPA / (_bolt_N / _a_spread), 2),
+        "V2 epoxy plug": round(EPOXY_COMP_MPA / (_bolt_N / _a_direct), 2)}
+    # what V1 would have needed to stay off its own limit at this bolt load
+    rep["v1_ply_washer_d_needed_mm"] = {
+        "dry": round(math.sqrt(4 / math.pi * _bolt_N / PLY_FC_DRY
+                               + _hole ** 2), 1),
+        "wet": round(math.sqrt(4 / math.pi * _bolt_N / PLY_FC_WET
+                               + _hole ** 2), 1)}
+    # AND IT IS NOT HYPOTHETICAL. Two crush events are already recorded up in
+    # the HATCH_BOLT_PITCH note: the lid "crushed under the heads" at 6 bolts
+    # on 313 mm of pitch, and Test 1 over-torqued a tilted lid until the ply
+    # crushed and pulled an insert out. This is the failure V2 is answering.
+    rep["v1_ply_lid_crushed_in_service"] = True
     rep["hatch_no_foam_in_load_path"] = True
     rep["hatch_pot_boss_d_mm"] = HATCH_POT_D
     rep["hatch_csk_depth_mm"] = round(_csk_z, 2)
@@ -6399,8 +6446,9 @@ def build():
     # shows up as bolts that keep needing re-torquing long before anything
     # lets go. So capacity is washer bearing area x plywood flatwise
     # compression, and it scales directly with washer OD.
-    PLY_T = 19.05                       # 3/4 inch
-    PLY_FC_DRY, PLY_FC_WET = 6.0, 4.0   # MPa ultimate flatwise bearing
+    # PLY_T / PLY_FC_* are module-level now - the lid comparison needs them
+    # too, and two copies of one material property is how CORD_N_PER_MM ended
+    # up 5x wrong for a year.
     v1 = {}
     for label, od in (("M8 standard DIN125", 16.0),
                       ("M8 fender DIN9021", 24.0),
