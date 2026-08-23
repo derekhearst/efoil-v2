@@ -614,10 +614,23 @@ def build():
     # packs, and the A4/316 the salt water demands is several times the price
     # of the A2/304 those per-piece figures were really quoting. Every line
     # below is now (packs needed) x (real pack price).
-    add("6  Hatch and seal", "M5 x 25 A4 socket cap, 20 pk",
-        math.ceil(M["hatch_bolts"] * N / 20), "pk", 15.99, OK,
+    # COUNTERSUNK TORX, not socket cap. Two reasons and the second is the
+    # real one. (1) These twelve heads sit in the only bare band on the deck -
+    # the deck pad stops short of the rim and the lid's own pad sits inboard
+    # of them - so proud caps are the most visible hardware on the board.
+    # (2) A cap head bears on 32 mm2 and each bolt pulls 910 N, which is 28
+    # MPa onto a cored panel whose H100 crushes at 2.0. A O15 penny washer
+    # only gets that to 6.0; it takes a O25 fender washer to pass. The bolt
+    # holes were already being potted, so a countersink in solid resin fixes
+    # BOTH: flush finish, and 17.9 MPa onto epoxy at ~50 instead of foam at 2.
+    # TORX because this head is flush with a deck that gets dragged up a
+    # beach and undone every ride - a packed hex socket cams out and rounds.
+    add("6  Hatch and seal", "M5 x 25 A4 countersunk TORX, 10 pk",
+        math.ceil(M["hatch_bolts"] * N / 10), "pk", 8.99, OK,
         str(M["hatch_bolts"] * N) + " needed. A4/316 - every cheaper listing "
-        "is A2/304, which pits in salt water")
+        "is A2/304, which pits in salt water. Head measures O9.0 against the "
+        "O9.8 ISO 10642 cone, so cut the countersink to the screw in hand; "
+        "NO WASHER ON TOP OF THE LID - the potted boss is the bearing")
     # NOT the $0.14 self-tapping brass insert that was here: driving a coarse
     # thread into a brittle laminate wedges it between plies, which is exactly
     # why the mast plate uses bonded bushings. A wire-thread insert is tapped

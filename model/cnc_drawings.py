@@ -230,14 +230,24 @@ def build(p):
         "Bag oversize flat, then machine to this profile. Face the underside "
         "flat in the same setup - it is the sealing face and it lands hard on "
         "the rim ring, so it must be flat. "
-        "POT EVERY BOLT HOLE. NOT a V1 problem - V1's lid was solid plywood "
-        "and never crushed - but this one is a cored sandwich, and at 910 N a "
-        "bolt an M5 washer puts 16.6 MPa on H100, which crushes at 2.0. Eight "
-        "times over. Drill O14 through the TOP skin and core only, leave the "
-        "bottom skin, fill with thickened epoxy, cure, then drill O5.5. "
-        "AND SEAL EVERY CUT EDGE WITH NEAT EPOXY - machined perimeter and the "
-        "inside of all 12 bores. THAT part is V1's Test 2 verbatim: water "
-        "wicking in through unsealed fibre ends at the cavity ledge.")
+        f"POT EVERY BOLT HOLE, THEN COUNTERSINK IT. NOT a V1 problem - V1's "
+        f"lid was solid plywood and never crushed - but this one is a cored "
+        f"sandwich. At 910 N a bolt, an M5 cap head puts 28 MPa on H100 and "
+        f"even a O15 penny washer puts 6.0, against a core that crushes at "
+        f"2.0. It takes a O25 fender washer to get under the limit, twelve "
+        f"times round the hatch, which is why the answer is resin and not "
+        f"hardware. Drill O{p['HATCH_POT_D']:.0f} through the TOP skin and "
+        f"core only, leave the bottom skin, fill with thickened epoxy, cure, "
+        f"then drill O{p['HATCH_BOLT_D'] + 0.6:.1f} and countersink 90 deg to "
+        f"O{p['HATCH_BOLT_HEAD_D']:.1f} - about "
+        f"{(p['HATCH_BOLT_HEAD_D'] - p['HATCH_BOLT_D'] - 0.6) / 2:.1f} mm "
+        f"deep - so the flat head finishes FLUSH WITH THE DECK. Cut the cone "
+        f"to the head you actually bought: the sourced screw measures O9.0, "
+        f"which sits ~0.4 mm sub-flush in a full-spec O9.8 cone. NO WASHER "
+        f"GOES ON TOP OF THIS LID. "
+        f"AND SEAL EVERY CUT EDGE WITH NEAT EPOXY - machined perimeter and "
+        f"the inside of all 12 bores. THAT part is V1's Test 2 verbatim: "
+        f"water wicking in through unsealed fibre ends at the cavity ledge.")
 
     d = Dxf()
     d.poly(rrect(2.0, lw - 2.0, 2.0, lh - 2.0, R + RIM_W - 3.5))

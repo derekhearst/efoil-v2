@@ -1326,6 +1326,34 @@ ASA_TAU = 30.0                     # MPa design shear
 SEAL_N = 6.0 * 1820.0
 HATCH_BOLT_INSET = 12.0            # from the rim's outer edge, outboard of the seal
 
+# --- the bolt HEAD, which was never specified -----------------------------
+# Twelve M5 socket caps standing proud in the one bare band on the whole deck
+# - the deck pad stops 20 mm outboard of the rim and the lid's own pad sits
+# inboard of them, so the bolt ring is the one thing on the board with
+# nothing over it. That was the LOOK problem. The one underneath it was worse
+# and nobody had checked it, because lid_crush_MPa only ever asked about a
+# HEEL on the lid, never about the twelve fasteners holding it down:
+#
+#   an M5 cap head bears on pi/4 x (8.5^2 - 5.6^2) = 32 mm2. Each bolt has to
+#   hold 910 N to squeeze the cord, so that is 28 MPa - onto a 1 mm skin over
+#   H100, which gives up at 2. The head does not sit on the lid, it sinks in.
+#
+# NO WASHER FIXES THAT. Getting under 2 MPa takes a O25 washer, and O25
+# washers twelve times round the hatch look worse than the caps did.
+# So POTTING IS NOT OPTIONAL here, and once it is compulsory it may as well
+# pay for the finish too: a O16 epoxy boss through skin and core takes a
+# countersink in solid resin, the head goes FLUSH, and the bearing stress
+# lands on epoxy at ~50 MPa instead of on foam at 2.
+HATCH_BOLT_CSK = True
+HATCH_BOLT_HEAD_D = 9.8            # ISO 10642 M5 flat head, max head dia
+HATCH_BOLT_CSK_ANG = 90.0          # included angle
+# TORX, not hex. This head finishes FLUSH WITH THE DECK on a board that gets
+# dragged up a beach, so the socket is a grit trap by design and it gets
+# undone every ride. A hex key in a packed socket cams out and rounds it;
+# Torx does not, and it is the only reason the head style is called out.
+HATCH_POT_D = 16.0                 # epoxy boss - leaves 3.1 mm of resin wall
+EPOXY_COMP_MPA = 50.0              # thickened laminating epoxy, conservative
+
 
 def derive_layout():
     """Pack -> module -> cavity -> board thickness. Sets the cavity globals."""
@@ -2544,6 +2572,22 @@ def cyl(name, cx, cy, z0, z1, d, coll, mat=None, seg=20):
     return prism(name, [(cx + r * math.cos(2 * math.pi * i / seg),
                          cy + r * math.sin(2 * math.pi * i / seg))
                         for i in range(seg)], z0, z1, coll, mat)
+
+
+def frustum(name, cx, cy, z0, z1, d0, d1, coll, mat=None, seg=24):
+    """Tapered cylinder, d0 at z0 to d1 at z1 - countersinks and chamfers."""
+    verts, faces = [], []
+    for k, (z, d) in enumerate(((z0, d0), (z1, d1))):
+        r = d * 0.5
+        for i in range(seg):
+            a = 2 * math.pi * i / seg
+            verts.append((cx + r * math.cos(a), cy + r * math.sin(a), z))
+        base = k * seg
+        faces.append(list(range(base, base + seg))[::1 if k else -1])
+    for i in range(seg):
+        j = (i + 1) % seg
+        faces.append([i, j, seg + j, seg + i])
+    return new_object(name, verts, faces, coll, mat)
 
 
 def cyl_x(name, cy, cz, x0, x1, d, coll, mat=None, seg=20):
@@ -3814,12 +3858,26 @@ def build():
     # ply of the lid and the threaded insert sitting in the rim. The bolt
     # itself is hardware, and drawing it just hid the two features that
     # actually have to be machined.
+    _csk_z = 0.0
     for i, (bx_, by_) in enumerate(hb):
         h = cyl(f"V2_HatchHole_cut_{i}", bx_, by_, z0 - 1.0,
                 z0 + LID_T + 1.0, HATCH_BOLT_D + 0.6, coll)
         boolean(bpy.data.objects["V2_Lid"], h)
         h.hide_set(True)
         h.hide_render = True
+        # ...and the countersink, cut into the potted boss from the top face.
+        # A cone, not a counterbore: a counterbored cap head still has to be
+        # capped afterwards, and a cap you dig out every ride is worse than a
+        # head you can see.
+        if HATCH_BOLT_CSK:
+            _csk_z = ((HATCH_BOLT_HEAD_D - (HATCH_BOLT_D + 0.6)) / 2.0
+                      / math.tan(math.radians(HATCH_BOLT_CSK_ANG / 2.0)))
+            c = frustum(f"V2_HatchCsk_cut_{i}", bx_, by_,
+                        z0 + LID_T - _csk_z, z0 + LID_T + 0.2,
+                        HATCH_BOLT_D + 0.6, HATCH_BOLT_HEAD_D + 0.4, coll)
+            boolean(bpy.data.objects["V2_Lid"], c)
+            c.hide_set(True)
+            c.hide_render = True
         # Clearance hole from the seal face down to the nut pocket...
         boolean(rim, cyl(f"V2_HatchBoltHole_cut_{i}", bx_, by_,
                          ledge_z + RIM_T - NUT_Z - 0.1,
@@ -4067,6 +4125,56 @@ def build():
     rep["lid_core_limit_MPa"] = CORE_COMP_MPA
     rep["lid_crush_margin"] = round(CORE_COMP_MPA / rep["lid_crush_MPa"], 2)
     rep["bolts_clear_channel"] = gap > 2.0
+
+    # --- WHAT THE TWELVE HEADS BEAR ON ------------------------------------
+    # lid_crush above is a HEEL on the lid. This is the other contact nobody
+    # had costed: the fastener heads, which are the only thing on the board
+    # sitting on bare cored panel with a hard number pulling them down.
+    _bolt_N = SEAL_N / max(1, _n_hb)
+    _hole = HATCH_BOLT_D + 0.6
+    def _seat(d):
+        return math.pi / 4.0 * (d ** 2 - _hole ** 2)
+    rep["hatch_bolt_preload_N"] = round(_bolt_N)
+    rep["hatch_head_style"] = (
+        "ISO 10642 flat head, TORX, FLUSH" if HATCH_BOLT_CSK
+        else "socket cap, proud")
+    # bare cored panel, for the three heads you could put on it
+    rep["hatch_seat_MPa_bare"] = {
+        "M5 socket cap O8.5": round(_bolt_N / _seat(8.5), 1),
+        "M5 button O9.5": round(_bolt_N / _seat(9.5), 1),
+        "O15 penny washer": round(_bolt_N / _seat(15.0), 1),
+        "O25 fender washer": round(_bolt_N / _seat(25.0), 1)}
+    rep["hatch_core_limit_MPa"] = CORE_COMP_MPA
+    # ...none of which work, which is what forces the boss
+    rep["hatch_washer_d_for_bare_core_mm"] = round(math.sqrt(
+        4.0 / math.pi * _bolt_N / CORE_COMP_MPA + _hole ** 2), 1)
+    rep["hatch_pot_boss_d_mm"] = HATCH_POT_D
+    rep["hatch_csk_depth_mm"] = round(_csk_z, 2)
+    rep["hatch_csk_resin_wall_mm"] = round(
+        (HATCH_POT_D - HATCH_BOLT_HEAD_D) / 2.0, 2)
+    rep["hatch_seat_MPa_potted"] = round(
+        _bolt_N / _seat(HATCH_BOLT_HEAD_D), 1)
+    rep["hatch_seat_margin_potted"] = round(
+        EPOXY_COMP_MPA / (_bolt_N / _seat(HATCH_BOLT_HEAD_D)), 1)
+    # the boss then hands the load to the BOTTOM skin and the rim's seal land
+    rep["hatch_boss_on_rim_MPa"] = round(_bolt_N / _seat(HATCH_POT_D), 1)
+    rep["hatch_heads_flush"] = bool(HATCH_BOLT_CSK)
+    rep["hatch_heads_need_washers"] = not HATCH_BOLT_CSK
+    rep["hatch_csk_fits_boss"] = (
+        HATCH_POT_D - HATCH_BOLT_HEAD_D) / 2.0 >= 2.0
+    rep["hatch_csk_within_skin_and_core"] = _csk_z < LID_SKIN + LID_CORE
+    # A countersunk length is measured OVER the head and a cap-head length
+    # under it, and the head is now sunk into the lid by exactly the amount
+    # the measurement moved - so the tip lands in the same place either way
+    # and the 25 does not change. Worth pinning down rather than assuming:
+    # a bolt that bottoms out in the solid ASA under the washer pocket cannot
+    # be torqued, and it fails silently as a seal that never squeezed.
+    rep["hatch_bolt_tip_below_lid_top_mm"] = rep["hatch_bolt_len_mm"]
+    rep["hatch_ring_bottom_below_lid_top_mm"] = LID_T + RIM_T
+    rep["hatch_bolt_tip_to_ring_bottom_mm"] = round(
+        LID_T + RIM_T - rep["hatch_bolt_len_mm"], 1)
+    rep["hatch_bolt_bottoms_out"] = (
+        rep["hatch_bolt_len_mm"] > LID_T + RIM_T - 1.0)
 
     # --- mast hardpoint ---------------------------------------------------
     # The plate and the dense ring sit in a POCKET machined into the underside

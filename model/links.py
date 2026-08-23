@@ -88,6 +88,8 @@ LINKS = {
         ("B0GS2R3F5G", 12.99, "284Pcs 8-Size Wood Dowels Kit with 3 Drill Bits"),
     "E-glass 6 oz, 50in x 12ft, 2-pack":
         ("B0CQY5KX84", 19.99, "2 Packs 6 oz 12ft x 50in Fiberglass Cloth E-Glass Plain Weave"),
+    "M5 x 25 A4 countersunk TORX, 10 pk":
+        ("B01MRIRHZG", 8.99, "uxcell M5 x 25mm 316 Stainless Steel Flat Torx Head Machine Screw Silver Tone 10pcs"),
     "EPDM/neoprene sheet 1/2in, conduit bungs":
         ("B00P5VFKCC", 15.77, "General Purpose Rubber Sheet 50A 1/2in x 12 x 12"),
     "Hollow punch set 3/16-1-3/8in, for the O31.75 bung":
@@ -152,8 +154,6 @@ LINKS = {
         ("B0BP2T6Z4Q", 8.99, "M5 Stainless Lock Nuts 150pcs 316 Hex Nylon Insert"),
     "M5 penny washer O15 DIN9021, 150 pk":
         ("B0G58KQN6L", 7.99, "150 pcs M5 x 15mm Stainless Flat Washers DIN9021 304"),
-    "M5 x 25 A4 socket cap, 20 pk":
-        ("B0CJFMMF58", 15.99, "M5 x 25mm Full Thread Cap Head Screws DIN 912 A4 Pack of 20"),
     "M5 x 250 threaded rod, 4 pk (cut to ~171 mm)":
         ("B0CMZR9L1Y", 9.99, "4pcs M5 x 250mm Fully Threaded Rod 304 Stainless"),
     "M6 x 16 A4 button head, 10 pk":
@@ -305,6 +305,7 @@ LINK_VENDOR = {
     "Divinycell H-80 3/4in quarter sheet 24x48, mast block + leash pad": "Fiberglass Supply",
     "Dowel pins + drill, two-sided registration": "Amazon",
     "E-glass 6 oz, 50in x 12ft, 2-pack": "Amazon",
+    "M5 x 25 A4 countersunk TORX, 10 pk": "Amazon",
     "EPDM/neoprene sheet 1/2in, conduit bungs": "Amazon",
     "Hollow punch set 3/16-1-3/8in, for the O31.75 bung": "Amazon",
     "EPS rigid foam 2in x 48in x 8ft (HD 202532856)": "Home Depot / hardware",
@@ -337,7 +338,6 @@ LINK_VENDOR = {
     "M5 A4 hex nut DIN934, 50 pk - CAPTIVE in the ring": "Amazon",
     "M5 nyloc nut 316, 150 pk": "Amazon",
     "M5 penny washer O15 DIN9021, 150 pk": "Amazon",
-    "M5 x 25 A4 socket cap, 20 pk": "Amazon",
     "M5 x 250 threaded rod, 4 pk (cut to ~171 mm)": "Amazon",
     "M6 x 16 A4 button head, 10 pk": "Amazon",
     "M6 x 20 fender washer, 100 pk": "Amazon",

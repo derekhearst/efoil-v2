@@ -326,7 +326,7 @@ fibre ends at the cavity ledge.
 `Solid silicone cord, 3 mm round - BOTH seals` ·
 `Silicone adhesive, bonding the cord into groove` ·
 `Cyanoacrylate for the cord splice` · `2.5 mm straight cutter - fallback` ·
-`M5 x 25 A4 socket cap, 20 pk` ·
+`M5 x 25 A4 countersunk TORX, 10 pk` ·
 `Solid silicone cord, 1/8 in (3.175 mm) - the spare size`
 
 The ring went in at step 10a and has been glassed over since. Now sand the
@@ -345,6 +345,30 @@ corner.
 which the 3 mm cord squeezes 20%. If it routs deep the 3 mm only reaches 10%
 and you want the 1/8 in spare instead — that is what it is for. Guessing the
 cord before the groove exists is how you end up at 10%.
+
+**The twelve heads finish flush, and nothing goes on top of the lid.** The
+bolt ring sits in the only bare band on the whole deck — the deck pad stops
+20 mm outboard of the rim, the lid's own pad sits inboard — so it is the most
+visible hardware on the board. It is also the most loaded: each bolt pulls
+910 N to squeeze the cord, and a cap head bears that on 32 mm².
+
+| Seat | Pressure at 910 N |
+|---|---|
+| M5 socket cap Ø8.5 | 28.3 MPa |
+| M5 button Ø9.5 | 19.7 MPa |
+| Ø15 penny washer | 6.0 MPa |
+| Ø25 fender washer | 2.0 MPa |
+| **H100 core gives up at** | **2.0 MPa** |
+
+So no washer you would want to look at actually passes — it takes a Ø25
+fender washer twelve times round the hatch to reach the limit, not clear it.
+The holes were already being potted for exactly this reason, so the
+countersink is free: a Ø16 epoxy boss, a 90° cone to Ø9.8 about 2.1 mm deep,
+and the flat head lands on **17.9 MPa against epoxy at ~50** — 2.8× margin,
+flush with the deck, no hardware showing.
+
+**Torx, not hex.** This socket is flush with a deck that gets dragged up a
+beach and undone every ride. A packed hex socket cams out and rounds off.
 
 ### Step 14. Build the module
 
