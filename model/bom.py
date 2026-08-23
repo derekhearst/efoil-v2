@@ -644,14 +644,25 @@ def build():
     # bears on its own 9.24 mm across-corners circle and tears out of 6 mm of
     # ASA at 5.2 Nm - 4.3x the 1.2 Nm spec, and a hand on a key hits 5 without
     # trying. On a O15 penny washer that becomes 8.5 Nm, 7.1x.
-    add("6  Hatch and seal", "M5 penny washer O15 DIN9021, 150 pk",
-        1, "pk", 7.99, OK,
-        str(M["hatch_bolts"] * N * 2 + 10) + " needed - TWO PER BOLT now, one "
-        "captive under the nut and one UNDER THE HEAD. DIN9021 is what "
-        "confirms the large 15 mm OD. The head one is not decoration: a bare "
-        "M5 cap head on the epoxy plug is 37 MPa and resin cold-flows under "
-        "permanent preload; on a O15 washer it is 7.9 against epoxy's ~50. "
-        "150 in the pack, so one pack still does both boards")
+    # O18, not the O15 that was here. Same washer both ends of every bolt.
+    # Under the NUT it is what a pull-out has to shear around, so capacity
+    # scales with its diameter: 7.1x -> 8.5x at spec, and 1.1x -> 1.4x against
+    # a 5 Nm hand-tight at a pessimistic printed-ASA shear. Under the HEAD it
+    # keeps the epoxy plug at 14% of ultimate instead of 75%, which is the
+    # difference between a seat that holds and one that cold-flows.
+    # NOTE THE GRADE: 304, not the A4 this list insists on elsewhere - and the
+    # O15 line it replaces was 304 too, so this is not a new compromise. A4
+    # M6 fender washers are not an Amazon part. 304 against A4 bolts is a
+    # negligible galvanic couple (both austenitic); what 304 does in salt is
+    # tea-stain and surface-pit, which is cosmetic on a washer and structural
+    # on nothing. Worth upgrading if a marine supplier is being ordered from
+    # anyway.
+    add("6  Hatch and seal", "M6 penny washer O18 DIN9021, 100 pk",
+        1, "pk", 9.99, EST,
+        str(M["hatch_bolts"] * N * 2 + 10) + " needed - TWO PER BOLT, one "
+        "captive under the nut and one UNDER THE HEAD. M6 size on an M5 bolt: "
+        "the 0.7 mm of slop is irrelevant on a washer and the 3 extra mm of "
+        "OD is not. One pack does both boards")
     add("6  Hatch and seal",
         "M5 A4 hex nut DIN934, 50 pk - CAPTIVE in the ring",
         1, "pk", 9.19, OK,

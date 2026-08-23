@@ -6,17 +6,17 @@ Grouped by where you buy it rather than by what it does, because that is the ord
 
 | Supplier | Lines | $ |
 |---|---:|---:|
-| Amazon | 113 | $3,615.10 |
+| Amazon | 113 | $3,617.10 |
 | Gong | 1 | $1,404.00 |
 | Flipsky | 3 | $1,038.00 |
-| Not a purchase - tax and freight | 3 | $836.03 |
+| Not a purchase - tax and freight | 3 | $836.15 |
 | BatteryHookup | 2 | $297.50 |
 | Fiberglass Supply | 3 | $253.38 |
 | Home Depot / hardware | 4 | $169.16 |
 | Maker Shop Boise | 1 | $150.00 |
 | Speedy Metals | 1 | $88.92 |
 | Easy Composites | 1 | $52.00 |
-| **TOTAL** | | **$7,904.09** |
+| **TOTAL** | | **$7,906.21** |
 
 ## Amazon
 
@@ -107,6 +107,7 @@ https://www.amazon.com
 | [Vacuum hose + hose clamps](https://www.amazon.com/dp/B0FH52FT4G) | 1 | set | $11.61 | estimate | 1/2 in tubing pump-to-bag plus clamps; the other half of what the deleted kit was actually carrying |
 | [M8 x 30 A4 mast bolts, 10 pk - spares](https://www.amazon.com/dp/B07HZKSP72) | 1 | pk | $10.82 | **verified** | Gong supplies its own; these are spares. Only listing confirming marine A4/316; head is ISO 7380 button, not s |
 | [Vacuum gauge, -30 inHg, 1/4 NPT, glycerin](https://www.amazon.com/dp/B00VQSOZFQ) | 1 | ea | $10.50 | **verified** | reads the BAG, not the pump - tee it in at the bag end. The regulator sets the level; this is how you know it  |
+| [M6 penny washer O18 DIN9021, 100 pk](https://www.amazon.com/dp/B0FDVGZDWY) | 1 | pk | $9.99 | estimate | 58 needed - TWO PER BOLT, one captive under the nut and one UNDER THE HEAD. M6 size on an M5 bolt: the 0.7 mm  |
 | [M4 x 8 brass heat-set insert, 100 pc](https://www.amazon.com/dp/B0D9QHBG6G) | 1 | pack | $9.99 | estimate | 36 needed; 5.6 mm printed pilot |
 | [Gebildet PG11 gland, M18x1.5, 30 pk](https://www.amazon.com/dp/B0B8NJR62L) | 1 | pk | $9.99 | **verified** | your listing: M18x1.5 thread (matches the 18.5 hole) and 5-10 mm cable, against our 6.5 mm 8 AWG. 6 needed of  |
 | [Thermal pad 1 mm non-conductive, 100 x 100](https://www.amazon.com/dp/B0GTLRJJGT) | 1 | ea | $9.99 | **verified** | 15.8 W/mK. One 100 x 100 sheet cuts both boards' baseplates. The ESC PCB face goes DOWN onto the floor, same a |
@@ -125,7 +126,6 @@ https://www.amazon.com
 | [Kapton tape, pack insulation](https://www.amazon.com/dp/B006ZFQNT6) | 1 | roll | $8.25 | estimate |  |
 | [M6 x 16 A4 button head, 10 pk](https://www.amazon.com/dp/B07DVRLQTK) | 1 | pk | $8.06 | **verified** | 12 needed - 2 per rail handle into the 6061 strip, 2 into the module pads. Fender washer under every one: the  |
 | [2.5 mm straight cutter - fallback](https://www.amazon.com/dp/B0GWSZ2KV2) | 1 | ea | $7.99 | estimate | only if you would rather cut the groove open than sand down to a proud filler strip. Undersize in a 4 mm groov |
-| [M5 penny washer O15 DIN9021, 150 pk](https://www.amazon.com/dp/B0G58KQN6L) | 1 | pk | $7.99 | **verified** | 58 needed - TWO PER BOLT now, one captive under the nut and one UNDER THE HEAD. DIN9021 is what confirms the l |
 | [M8 316 washer, prop nut](https://www.amazon.com/dp/B0DDGRXHT7) | 1 | pk | $7.69 | **verified** | only 2 needed; sold in 10s |
 | [Inline 10 A fuse + holder, charge lead](https://www.amazon.com/dp/B0F2YXV41Q) | 1 | pk | $7.59 | **verified** | at SPLIT A on the charge positive. The ANL is sized for the motor and cannot protect 16 AWG |
 | [Silicone adhesive, bonding the cord into groove](https://www.amazon.com/dp/B0002UEN1U) | 1 | tube | $7.56 | estimate | a thin continuous bead under the cord. It cannot then migrate, lift out, or be pinched under the lid in a dark |
@@ -164,7 +164,7 @@ Some Flipsky appears on Amazon but the range is thin and usually dearer. Buy dir
 
 | Item | Qty | Unit | Ext | Price | Note |
 |---|---:|---|---:|---|---|
-| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $447.40 | **verified** |  |
+| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $447.52 | **verified** |  |
 | Gong shipping to Idaho, ONE order, both foils | 1 | order | $268.63 | **verified** | quoted at checkout for 2 x XL Alu setups. PER ORDER, not per foil - ordering the two separately would roughly  |
 | Shipping - Divinycell, 6061 plate, VR20 | 1 | allow | $120.00 | estimate | STILL THE BIGGEST UNVERIFIED LINE - it wants three real carts to settle. Was $220 when it covered G10 sheet an |
 

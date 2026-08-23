@@ -156,8 +156,8 @@ LINKS = {
         ("B084HLMN7B", 9.19, "M5 Hex Nuts DIN 934 Marine Grade Stainless 50 Pack"),
     "M5 nyloc nut 316, 150 pk":
         ("B0BP2T6Z4Q", 8.99, "M5 Stainless Lock Nuts 150pcs 316 Hex Nylon Insert"),
-    "M5 penny washer O15 DIN9021, 150 pk":
-        ("B0G58KQN6L", 7.99, "150 pcs M5 x 15mm Stainless Flat Washers DIN9021 304"),
+    "M6 penny washer O18 DIN9021, 100 pk":
+        ("B0FDVGZDWY", 9.99, "M6 x 18mm OD Flat Washers 100 pcs, 18-8 (304) Stainless Steel, DIN 9021, 6.4mm ID x 18mm OD"),
     "M5 x 250 threaded rod, 4 pk (cut to ~171 mm)":
         ("B0CMZR9L1Y", 9.99, "4pcs M5 x 250mm Fully Threaded Rod 304 Stainless"),
     "M6 x 16 A4 button head, 10 pk":
@@ -343,7 +343,7 @@ LINK_VENDOR = {
     "M4 x 8 brass heat-set insert, 100 pc": "Amazon",
     "M5 A4 hex nut DIN934, 50 pk - CAPTIVE in the ring": "Amazon",
     "M5 nyloc nut 316, 150 pk": "Amazon",
-    "M5 penny washer O15 DIN9021, 150 pk": "Amazon",
+    "M6 penny washer O18 DIN9021, 100 pk": "Amazon",
     "M5 x 250 threaded rod, 4 pk (cut to ~171 mm)": "Amazon",
     "M6 x 16 A4 button head, 10 pk": "Amazon",
     "M6 x 20 fender washer, 100 pk": "Amazon",

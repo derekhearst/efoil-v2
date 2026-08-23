@@ -86,7 +86,7 @@ for; start in week six and it is the only thing you are waiting for.
 **Uses:** `ASA filament, printed rim ring` · `ASA filament, printed module shell` ·
 `PETG filament 1 kg, mast clamp set` · `PETG for props, 4-5 spares per board` ·
 `M5 A4 hex nut DIN934, 50 pk - CAPTIVE in the ring` ·
-`M5 penny washer O15 DIN9021, 150 pk`
+`M6 penny washer O18 DIN9021, 100 pk`
 
 Print order, longest first: module shells → rim rings → props → clamps.
 
@@ -376,8 +376,8 @@ that:
 | Seat | Pressure | vs H100's 2.0 MPa |
 |---|---|---|
 | Bare M5 cap head | 2.67 MPa | fails |
-| Ø15 penny washer | 1.63 MPa | passes, 1.2× |
-| **On the epoxy plug, Ø15 washer** | **7.9 MPa vs epoxy's ~50** | **6.3×, and the foam carries none** |
+| Ø18 penny washer | 1.35 MPa | passes, 1.5× |
+| **On the epoxy plug, Ø18 washer** | **6.8 MPa vs epoxy's ~50** | **7.4×, and the foam carries none** |
 
 > **Why the lid needs a hardpoint at all.** It is glass / H100 foam / glass,
 > and a bolt clamped straight onto that crushes the foam. So at every bolt the
@@ -410,10 +410,10 @@ up and the rest already are.
 plug with resin all round it. That is what buys you the freedom to place the
 core by hand.
 
-**A penny washer goes under each head, and it is not decoration.** A bare M5
-cap head on resin is 37 MPa, and epoxy cold-flows under permanent preload. On
-a Ø15 washer it is 7.9. They are already on the list — 150 in the pack, and
-this uses two per bolt instead of one.
+**A Ø18 penny washer goes under each head, and it is not decoration.** A bare
+M5 cap head on resin is 37 MPa — 75% of ultimate — and epoxy cold-flows under
+permanent preload. On the washer it is 6.8, or 14%. Same washer as the one
+captive under the nut, so it is one size in the drawer and two per bolt.
 
 **No countersink.** The cone wants 2.1 mm of solid material under the top face
 and there is 1.0 mm of skin over the plug, so flush heads and a buried

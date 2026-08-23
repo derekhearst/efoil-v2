@@ -1315,9 +1315,15 @@ NUT_AF, NUT_T = 8.0, 4.0           # M5 A4 hex nut, across flats x thickness
 # across-corners circle, 9.24 mm, and pulls out of 6 mm of ASA at 5.2 kN =
 # 5.2 Nm - only 2.6x a 2 Nm spec, and a hand on a hex key reaches 5 Nm
 # without trying. A O15 washer spreads it to 8.5 kN = 8.5 Nm, 4.2x.
-# O15 and not O18: at t=12 in the band a O18 leaves 1.0 mm to the groove,
-# a O15 leaves 2.5.
-NUT_WASHER_D, NUT_WASHER_T = 15.0, 1.2
+# O18, and the O15 that used to be here was over-cautious. The note said
+# "O18 leaves 1.0 mm to the groove" - true, but that 1.0 mm is a PLAN
+# distance between two features at different DEPTHS. The groove floor sits
+# 2.4 mm below the seal face; the washer pocket's top is 10.0 below it. There
+# is 7.6 mm of solid ASA between them wherever they overlap in plan, so they
+# were never fighting for the same material.
+# It is worth the 3 mm: what holds a captive nut in is a plug of ASA sheared
+# out around this washer, so pull-out scales with its diameter directly.
+NUT_WASHER_D, NUT_WASHER_T = 18.0, 1.6
 # 1.2 Nm, not 2.0. The old figure was set against a seal load that turns out
 # to be 5x too high (see CORD_N_PER_MM), so it was asking for 2000 N a bolt
 # to do a job that needs 182 - and every one of those 2000 N lands on the lid.
@@ -1395,10 +1401,10 @@ HATCH_SPREADER_D = 16.0            # poured, so any diameter is free
 EPOXY_COMP_MPA = 50.0              # thickened laminating epoxy, conservative
 # ...and a plain penny washer under each head, because the one number that
 # does not work is a bare cap head on resin: 32 mm2 at 1200 N is 37 MPa, and
-# epoxy at 37 MPa under permanent preload cold-flows. On a O15 washer it is
-# 7.9. They are already on the list - 150 in the pack, 34 used - and Derek
-# said washers were acceptable if they had to be.
-HATCH_HEAD_WASHER_D = 15.0         # M5 penny, DIN 9021
+# epoxy at 37 MPa under permanent preload cold-flows. On the washer it is
+# 6.8. Same part as the one under the nut, so it is one line on the BOM and
+# one size in the drawer.
+HATCH_HEAD_WASHER_D = NUT_WASHER_D
 # --- V1's plywood, for comparison ------------------------------------------
 # V1's lid AND its mast base plate were 3/4 in birch ply, so one set of
 # figures serves both. Flatwise (through-thickness) bearing is what a washer
@@ -4275,10 +4281,15 @@ def build():
     # 37 MPa under permanent preload cold-flows; the washer is not decoration.
     rep["hatch_bare_head_on_epoxy_MPa"] = round(
         _bolt_N / _seat(HATCH_BOLT_HEAD_D), 1)
-    rep["hatch_seat_on_plug_MPa"] = round(
-        _bolt_N / _seat(HATCH_HEAD_WASHER_D), 1)
+    # The washer is WIDER than the plug now, so it cannot all bear on resin -
+    # whatever overhangs sits on skin-over-foam and carries almost nothing
+    # next to the plug beside it. The seat is the SMALLER of the two, or the
+    # margin is a third too flattering.
+    _seat_d = min(HATCH_HEAD_WASHER_D, HATCH_SPREADER_D)
+    rep["hatch_seat_d_mm"] = _seat_d
+    rep["hatch_seat_on_plug_MPa"] = round(_bolt_N / _seat(_seat_d), 1)
     rep["hatch_seat_on_plug_margin"] = round(
-        EPOXY_COMP_MPA / (_bolt_N / _seat(HATCH_HEAD_WASHER_D)), 1)
+        EPOXY_COMP_MPA / (_bolt_N / _seat(_seat_d)), 1)
     # --- CAN THE WASHER GO, GIVEN 6x -------------------------------------
     # No, and the 6x is the reason it cannot: that number IS the washer.
     # Take it away and the same bolt is at 37.4 MPa, which is 1.3x, not 6.3.
@@ -4290,7 +4301,7 @@ def build():
     # up at a squeeze nobody designed.
     rep["hatch_head_seat_pct_of_epoxy"] = {
         "with washer": round(
-            100.0 * (_bolt_N / _seat(HATCH_HEAD_WASHER_D)) / EPOXY_COMP_MPA),
+            100.0 * (_bolt_N / _seat(_seat_d)) / EPOXY_COMP_MPA),
         "bare head": round(
             100.0 * (_bolt_N / _seat(HATCH_BOLT_HEAD_D)) / EPOXY_COMP_MPA)}
     rep["hatch_epoxy_creep_threshold_pct"] = 25
@@ -4322,7 +4333,7 @@ def build():
         "nut pull-out margin": round(_plug * ASA_TAU / _hand_N, 1),
         "nut pull-out at tau20": round(_plug * ASA_TAU_LOW / _hand_N, 1),
         "epoxy plug under washer": round(
-            EPOXY_COMP_MPA / (_hand_N / _seat(HATCH_HEAD_WASHER_D)), 1),
+            EPOXY_COMP_MPA / (_hand_N / _seat(_seat_d)), 1),
         "epoxy plug under BARE head": round(
             EPOXY_COMP_MPA / (_hand_N / _seat(HATCH_BOLT_HEAD_D)), 1)}
 
