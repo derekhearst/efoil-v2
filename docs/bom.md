@@ -92,7 +92,6 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | [Gebildet PG11 gland, M18x1.5, 30 pk](https://www.amazon.com/dp/B0B8NJR62L) | 1 | pk | $9.99 | $9.99 | verified | your listing: M18x1.5 thread (matches the 18.5 hole) and 5-10 mm cable, against our 6.5 mm 8 AWG. 6 needed of 30 - one wire per gland; three in one gland deforms the insert into a clover and leaks between them |
 | [EPDM/neoprene sheet 1/2in, conduit bungs](https://www.amazon.com/dp/B00P5VFKCC) | 1 | sheet | $15.77 | $15.77 | estimate | cut O33 plugs for a O32 bore, punch 3 x O5 for 6.5 mm lead - interference fit, soap them through |
 | [3M 4200 FC 3 oz tube, fillet over the bung](https://www.amazon.com/dp/B00MJ9K78A) | 1 | tube | $17.99 | $17.99 | verified | does both boards; 4200 NOT 5200 - 5200 never comes out |
-| 25 mm webbing loop, module lift handle | 0 | ea | $0.00 | $0.00 | on hand | cut from the 6 yd webbing pack in 10c - it is the same 1 in strap. Through the two printed bosses on the forward wall; the module is ~14 kg in a cavity with 12 mm of side clearance, so there is no way to get a hand beside it |
 | [M12 IP68 membrane vent plug](https://www.amazon.com/dp/B0FXSNDGTV) | 2 | ea | $9.95 | $19.90 | verified | NOT optional on a sealed lithium box |
 | [M12 IP68 momentary panel button](https://www.amazon.com/dp/B0FPQP7CP9) | 1 | ea | $32.65 | $32.65 | verified | 1 on hand; this line buys the second board's |
 | [JST GH 1.25 mm pigtail pair, BMS switch](https://www.amazon.com/dp/B07FP2FCYC) | 1 | pk | $5.99 | $5.99 | verified | connects the panel button to the BMS key-switch input. CHECK THE BOX FIRST - DALY ship a ready-made key switch with some units |
@@ -130,7 +129,6 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 |---|---:|---|---:|---:|---|---|
 | [M8 x 1.25 tap + 6.8 mm drill set](https://www.amazon.com/dp/B0GD1YF5PL) | 1 | set | $8.63 | $8.63 | verified | 8 blind holes |
 | [M8 x 1.25 BOTTOMING tap, 4-flute](https://www.amazon.com/dp/B00DLCTUDM) | 1 | ea | $8.78 | $8.78 | verified | the one that actually matters - blind at 10 mm in a 12.7 plate, and the taper tap in the set above cannot reach the bottom |
-| [M8 thread repair kit (Time-Sert / helicoil)](https://www.amazon.com/dp/B09WN4QTNL) | 0 | kit | $14.59 | $0.00 | on hand | NOT NEEDED for the build - the plate is machined. Buy it only if a thread ever galls in service. B09WN4QTNL, $14.59 |
 | [Ultra Tef-Gel, galvanic barrier](https://www.amazon.com/dp/B01606TCAG) | 1 | ea | $39.00 | $39.00 | verified | every mast bolt, every time it goes back in. DEARER than the $22 this was carried at - and do not reach for the small tube to save it: the 3cc syringe is $31.51, so it is 80% of the price for a fraction of the gel |
 | **subtotal** | | | | **$56.41** | | |
 
@@ -190,19 +188,9 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | [M8 nyloc nut 316, 30 pk - prop nut](https://www.amazon.com/dp/B0BP2R3YHY) | 1 | pk | $8.99 | $8.99 | verified | 2 needed. 316 not 304 - this one is permanently submerged. WASHER NOT INCLUDED, see below |
 | [M8 316 washer, prop nut](https://www.amazon.com/dp/B0DDGRXHT7) | 1 | pk | $7.69 | $7.69 | verified | only 2 needed; sold in 10s |
 | [8 AWG marine ring lugs, 20 pk](https://www.amazon.com/dp/B0CWGXB4NB) | 2 | pk | $9.99 | $19.98 | verified | 28 needed; on M6 studs - nothing to solder |
-| [M6 stainless stud/busbar hardware](https://www.amazon.com/dp/B0DP79B987) | 0 | set | $11.99 | $0.00 | on hand | DELETED - the fuse holder's input stud is the positive node and the BMS's P- is the negative one. See Appendix D in fabrication.md |
 | [Hydraulic lug crimper, 10 ton, 12-2/0 AWG](https://www.amazon.com/dp/B0CFV249X3) | 1 | ea | $39.99 | $39.99 | verified | one-time; this is what replaces soldering XT150s |
 | [Adhesive-lined heat shrink 3:1, 400 pc kit](https://www.amazon.com/dp/B0BVVMCY86) | 1 | kit | $13.99 | $13.99 | verified | marine grade, glue-lined - plain heat shrink over a joint in a wet cavity is decoration |
 | **subtotal** | | | | **$201.03** | | |
-
-## 10c Restraint & fitout
-
-| Item | Qty | Unit | Unit $ | Ext $ | | Note |
-|---|---:|---|---:|---:|---|---|
-| G10 chocks, equipment plate, pack tabs | 0 | off | $0.00 | $0.00 | on hand | cut from 1/8 and 1/2 in offcuts |
-| [1 in polyester webbing 6 yd + 6 buckles](https://www.amazon.com/dp/B0FBRMSRLK) | 0 | kit | $5.99 | $0.00 | on hand | DELETED - no defined job. The module lift is a bought handle now |
-| [EVA bedding pads](https://www.amazon.com/dp/B0GG9H6VS2) | 0 | set | $16.99 | $0.00 | on hand | DELETED - no defined job. Deck-pad offcut covers it if one is wanted |
-| **subtotal** | | | | **$0.00** | | |
 
 ## 10d Shop consumables
 
@@ -228,7 +216,6 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | [Nitrile gloves 6 mil, 100 pk](https://www.amazon.com/dp/B0C3SSXL4K) | 2 | box | $14.44 | $28.88 | verified |  |
 | Respirator | 1 | ea | $0.00 | $0.00 | on hand |  |
 | [3M 60923 organic vapour / acid gas P100, pair](https://www.amazon.com/dp/B00AEFCKKY) | 2 | pr | $17.99 | $35.98 | verified | $18.39/pr on Amazon against $31.49 at envirosafetyproducts. Cartridges EXPIRE - buy these near the layup, not with the rest of the order |
-| [Acetone, 1 gal, cleanup](https://www.homedepot.com/p/Klean-Strip-1-Gal-Acetone-Flammable-Paint-Solvent-GAC18/100141096) | 0 | gal | $20.98 | $0.00 | on hand | DELETED - see comment. The quart in section 7 covers the real uses |
 | [Rosin paper roll, floor and bench](https://www.amazon.com/dp/B0FXJDFW2B) | 1 | roll | $27.95 | $27.95 | estimate | absorbs instead of pooling. This is the actual upgrade over a tarp, and it is $24 |
 | [Folding sawhorses, pair, 700 lb](https://www.amazon.com/dp/B0G4CH7SKB) | 1 | pair | $39.99 | $39.99 | verified | ~30 in high. Racks buy height for planing, and this core comes machined - so they buy nothing here |
 | [Pipe lagging or carpet, sawhorse padding](https://www.amazon.com/dp/B0CBYST37N) | 1 | set | $8.99 | $8.99 | estimate | bare sawhorse tops mark foam and wet laminate |
@@ -266,7 +253,7 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | Per board | $3,916.99 |
 | Of which verified | $7,288.96  (93%) |
 | Of which estimated | $545.03 |
-| Linked to a real listing | 131 lines |
+| Linked to a real listing | 126 lines |
 | Priced but NOT linked | 0 lines, $0.00 |
 | Not linkable, but MEASURED (freight quotes) | 2 lines, $712.06 |
 | Not linkable and still estimated | 1 lines, $120.00 |

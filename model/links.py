@@ -7,8 +7,6 @@ entry here as "verified but NOT yet linked".
 """
 
 LINKS = {
-    "1 in polyester webbing 6 yd + 6 buckles":
-        ("B0FBRMSRLK", 5.99, "1-Inch Buckle and Strap Kit 6-Yard Polyester Webbing 6 Buckles"),
     "1/2 in O-flute up-spiral, foam roughing":
         ("B001J9I6D4", 66.05, "Freud 73-214 1/2in Dia O-Flute Up Spiral Bit 1/2in Shank"),
     "1/2 in ball nose, finishing pass":
@@ -49,8 +47,6 @@ LINKS = {
         ("B09DKPYYBP", 24.49, "Polymaker ASA Filament 1.75mm Black 1KG UV Resistant"),
     "ASA filament, printed rim ring":
         ("B09DKPYYBP", 24.49, "Polymaker ASA Filament 1.75mm Black 1KG"),
-    "Acetone, 1 gal, cleanup":
-        ("https://www.homedepot.com/p/Klean-Strip-1-Gal-Acetone-Flammable-Paint-Solvent-GAC18/100141096", 20.98, "Klean-Strip 1 Gal Acetone Flammable Paint Solvent"),
     "Acetone, solvent-welding the printed joints":
         ("https://www.homedepot.com/p/Klean-Strip-1-qt-Acetone-Thins-Fiberglass-Resins-Epoxy-and-Adhesives-QAC18/100144922", 11.48, "Klean-Strip 1 qt Acetone Thins Fiberglass Resins Epoxy and Adhesives"),
     "Adhesive-lined heat shrink 3:1, 400 pc kit":
@@ -93,8 +89,6 @@ LINKS = {
         ("B00P5VFKCC", 15.77, "General Purpose Rubber Sheet 50A 1/2in x 12 x 12"),
     "EPS rigid foam 2in x 48in x 8ft (HD 202532856)":
         ("https://www.homedepot.com/p/Henry-2-in-x-48-in-x-8-ft-R-7-7-EPS-Rigid-Foam-Board-Insulation-320825/202532856", 27.68, "Henry 2 in x 48 in x 8 ft R-7.7 EPS Rigid Foam Board Insulation"),
-    "EVA bedding pads":
-        ("B0GG9H6VS2", 16.99, "Adhesive Foam Padding Closed Cell EVA Sheets Sticky Back"),
     "FCS-pattern leash plug":
         ("B0F1F97R4D", 8.59, "Round Cup Surfboard Leash Plug 30x12mm with Rope Bar"),
     "FOCEAN EVA deck sheet 2400 x 600 x 5.8":
@@ -161,8 +155,6 @@ LINKS = {
         ("B0CMZR9L1Y", 9.99, "4pcs M5 x 250mm Fully Threaded Rod 304 Stainless"),
     "M6 heat-set insert, strap mounts":
         ("B0DNJNLP95", 9.99, "Yaocom 100 Pcs M6 Threaded Inserts M6 x D8 x L8 Heat Set"),
-    "M6 stainless stud/busbar hardware":
-        ("B0DP79B987", 11.99, "RED WOLF 12V 100A Power Distribution Block Dual Stud M6 Bus Bar"),
     "M6 x 16 A4 button head, 10 pk":
         ("B07DVRLQTK", 8.06, "M6 x 16mm Button Head Screws ISO 7380 Marine Grade SS 10 Pack"),
     "M6 x 20 fender washer, 100 pk":
@@ -171,8 +163,6 @@ LINKS = {
         ("B0DDGRXHT7", 7.69, "uxcell 10Pcs M8 Flat Washer 316 Stainless 8.4 ID x 24 OD x 2mm"),
     "M8 nyloc nut 316, 30 pk - prop nut":
         ("B0BP2R3YHY", 8.99, "M8 Stainless Lock Nuts 30pcs 316 Hex Nylon Insert"),
-    "M8 thread repair kit (Time-Sert / helicoil)":
-        ("B09WN4QTNL", 14.59, "BILITOOLS M8x1.25 Thread Repair Kit with HSS Drill, Helicoil, Metric"),
     "M8 x 1.25 BOTTOMING tap, 4-flute":
         ("B00DLCTUDM", 8.78, "Drill America DWTB8X1.25 M8 x 1.25 HSS 4-Flute Bottoming Tap"),
     "M8 x 1.25 tap + 6.8 mm drill set":
@@ -275,7 +265,6 @@ LINKS = {
 # guessed from the item name - that guess is what once filed
 # Amazon-priced peel ply under Fibre Glast.
 LINK_VENDOR = {
-    "1 in polyester webbing 6 yd + 6 buckles": "Amazon",
     "1/2 in O-flute up-spiral, foam roughing": "Amazon",
     "1/2 in ball nose, finishing pass": "Amazon",
     "1/2 in spiral, 3 in cutting length - cavity wall": "Amazon",
@@ -296,7 +285,6 @@ LINK_VENDOR = {
     "ANL 150 A fuse + holder": "Amazon",
     "ASA filament, printed module shell": "Amazon",
     "ASA filament, printed rim ring": "Amazon",
-    "Acetone, 1 gal, cleanup": "Home Depot / hardware",
     "Acetone, solvent-welding the printed joints": "Home Depot / hardware",
     "Adhesive-lined heat shrink 3:1, 400 pc kit": "Amazon",
     "Adjustable hand sanding block": "Amazon",
@@ -316,7 +304,6 @@ LINK_VENDOR = {
     "E-glass 6 oz, 50in x 12ft, 2-pack": "Amazon",
     "EPDM/neoprene sheet 1/2in, conduit bungs": "Amazon",
     "EPS rigid foam 2in x 48in x 8ft (HD 202532856)": "Home Depot / hardware",
-    "EVA bedding pads": "Amazon",
     "FCS-pattern leash plug": "Amazon",
     "FOCEAN EVA deck sheet 2400 x 600 x 5.8": "Amazon",
     "Fish tape / pull cord for the mast conduit": "Amazon",
@@ -350,12 +337,10 @@ LINK_VENDOR = {
     "M5 x 25 A4 socket cap, 20 pk": "Amazon",
     "M5 x 250 threaded rod, 4 pk (cut to ~171 mm)": "Amazon",
     "M6 heat-set insert, strap mounts": "Amazon",
-    "M6 stainless stud/busbar hardware": "Amazon",
     "M6 x 16 A4 button head, 10 pk": "Amazon",
     "M6 x 20 fender washer, 100 pk": "Amazon",
     "M8 316 washer, prop nut": "Amazon",
     "M8 nyloc nut 316, 30 pk - prop nut": "Amazon",
-    "M8 thread repair kit (Time-Sert / helicoil)": "Amazon",
     "M8 x 1.25 BOTTOMING tap, 4-flute": "Amazon",
     "M8 x 1.25 tap + 6.8 mm drill set": "Amazon",
     "M8 x 30 A4 mast bolts, 10 pk - spares": "Amazon",
