@@ -13,6 +13,10 @@ model, re-run this, and the animation shows the new board.
     --shot NAME   render one shot only (see the shot list it prints)
     --stills      one PNG per shot instead of the animation - the fastest way
                   to check choreography, ~15 s for the lot
+    --png         write a PNG sequence too, and encode from that. Slower: PNG
+                  compression costs about as much as the render itself
+    --samples N   EEVEE TAA samples (default 12; there is no motion blur or
+                  depth of field here, so they only buy edge antialiasing)
     --dry         build the timeline and print the shot list, render nothing
 
 Output lands in renders/build/ as a PNG sequence, plus build.mp4 if ffmpeg is
@@ -29,6 +33,7 @@ Everything after that is honest geometry that renders the same every time.
 import bpy
 import bmesh
 import math
+import io
 import os
 import subprocess
 import sys
@@ -51,7 +56,10 @@ def _arg(flag, default):
 
 
 RES = int(_arg("--res", "640" if PREVIEW else "1600"))
-FPS = int(_arg("--fps", "30"))
+FPS = int(_arg("--fps", "24"))          # 24 is plenty for this, and 20%
+                                       # fewer frames than 30
+SAMPLES = int(_arg("--samples", "12"))
+PNGS = "--png" in argv
 ONLY = _arg("--shot", None)
 
 scene = bpy.context.scene
@@ -394,6 +402,11 @@ def caption(f0, f1, title, sub=""):
 # ============================================================ scene set-up
 print("baking...")
 bake_all()
+exec(io.open(os.path.join(os.path.dirname(BLEND or "."), "anim_materials.py"),
+             encoding="utf-8").read())
+build_materials()
+exec(io.open(os.path.join(os.path.dirname(BLEND or "."), "anim_machining.py"),
+             encoding="utf-8").read())
 
 # --- everything starts hidden; each shot turns on what it needs
 ALL_PARTS = [o for o in bpy.data.objects if o.type == 'MESH']
@@ -423,7 +436,8 @@ world = bpy.data.worlds.new("BuildWorld")
 scene.world = world
 world.use_nodes = True
 world.node_tree.nodes["Background"].inputs[0].default_value = (0.045, 0.050, 0.060, 1)
-world.node_tree.nodes["Background"].inputs[1].default_value = 1.0
+# carries the ambient fill that use_fast_gi used to provide, for nothing
+world.node_tree.nodes["Background"].inputs[1].default_value = 2.6
 
 
 def add_light(name, kind, energy, loc, size=3.0, rot=(0, 0, 0)):
@@ -459,14 +473,55 @@ UNDER.rotation_quaternion = look_at(UNDER.location, (0.35, 0, 0.0))
 # --- render settings
 scene.render.engine = 'BLENDER_EEVEE'
 scene.render.film_transparent = False
-scene.render.image_settings.file_format = 'PNG'
-scene.render.filepath = os.path.join(OUT, "f_")
-try:
-    scene.eevee.taa_render_samples = 8 if PREVIEW else 32
-    scene.eevee.use_gtao = True
-    scene.eevee.use_bloom = False
-except AttributeError:
-    pass
+# Keeps the engine's synced scene alive between frames instead of tearing it
+# down and rebuilding it 2905 times. An EMPTY scene still cost 0.284 s a frame
+# without this - almost the entire per-frame budget was setup, not drawing.
+scene.render.use_persistent_data = True
+# STRAIGHT TO VIDEO. The first pass wrote 2905 PNGs at 1920x1080 and then ran
+# ffmpeg over them, and the profiling was unambiguous: a warm frame RENDERS in
+# 0.45 s and took 0.95 s to render-and-write. Half the wall clock was PNG
+# compression, for an intermediate that gets deleted. Encoding H.264 inline
+# costs almost nothing by comparison. --png restores the frame sequence when
+# you actually want to inspect or re-cut frames.
+if PNGS:
+    scene.render.image_settings.file_format = 'PNG'
+    scene.render.image_settings.compression = 15    # was effectively maximum
+    scene.render.filepath = os.path.join(OUT, "f_")
+else:
+    # Blender 5 gates the video formats behind media_type - file_format on
+    # its own only offers stills, and setting FFMPEG without this raises.
+    scene.render.image_settings.media_type = 'VIDEO'
+    scene.render.image_settings.file_format = 'FFMPEG'
+    ff = scene.render.ffmpeg
+    ff.format = 'MPEG4'
+    ff.codec = 'H264'
+    ff.constant_rate_factor = 'HIGH'
+    ff.ffmpeg_preset = 'GOOD'
+    ff.gopsize = 12
+    scene.render.use_file_extension = False
+    scene.render.filepath = os.path.join(ROOT, "renders", "build.mp4")
+# RENDER COST. The first pass took 57 minutes for 121 seconds on a 4070 Ti,
+# which is far too slow for what is on screen. GPU was never the problem -
+# gpu.platform.renderer_get() reports the 4070 Ti - it was EEVEE Next
+# settings: the .blend ships 64 TAA samples and screen-space fast GI on, and
+# every sample is a full raster pass that re-resolves shadows.
+#
+# There is no motion blur and no depth of field here, so TAA samples buy
+# nothing but edge antialiasing and soft-shadow convergence. A dozen is
+# plenty. Fast GI is replaced by an ambient world level, which for flat
+# technical shading is indistinguishable and free.
+for _a, _v in (("taa_render_samples", 4 if PREVIEW else SAMPLES),
+               ("use_fast_gi", False),
+               ("use_raytracing", False),
+               ("use_shadows", True),
+               ("shadow_ray_count", 1),
+               ("shadow_step_count", 4),
+               ("use_gtao", True),
+               ("use_bloom", False)):
+    try:
+        setattr(scene.eevee, _a, _v)
+    except (AttributeError, TypeError):
+        pass
 scene.view_settings.look = 'None'
 for _vt in ('Khronos PBR Neutral', 'Standard'):
     try:
@@ -517,6 +572,13 @@ BOARD_DONE = ([HULL] + HARD + [DENSE] + RIMSEG + [LID, SEAL] + HBOLT + HNUT
               + PADS)
 BOARD_DONE = [o for o in BOARD_DONE if o]
 
+# Buried parts. Once the hull is on they are inside it, and leaving them
+# switched on put a tan H-80 patch through the deck at the tail - the leash
+# hardpoint, poking out of a board it is supposed to be laminated inside.
+BURIED = [o for o in ([DENSE, obj("LeashHardpoint")]
+                      + by_prefix("MastInsert_", "HandleIns")) if o]
+BOARD_FINISHED = [o for o in BOARD_DONE if o not in BURIED]
+
 # board framing target
 _lo, _hi = world_bounds([HULL] if HULL else MACH)
 CTR = ((_lo + _hi) / 2)
@@ -525,136 +587,6 @@ print("  board centre", tuple(round(v, 3) for v in CTR_T))
 
 
 # =================================================== machining rig (built)
-def build_machining_rig():
-    """Slab, waste and cutter for the CNC shots.
-
-    The reveal is a boolean, not a trick: WASTE = slab minus the finished
-    pieces, so it IS the material the router removes. A box that grows in X
-    behind the cutter subtracts from that waste, so material disappears
-    exactly where the tool has already been, and the finished surface sitting
-    underneath is simply uncovered.
-    """
-    lo, hi = world_bounds(MACH)
-    pad = 0.012
-    x0, x1 = lo.x - pad, hi.x + pad
-    y0, y1 = lo.y - pad, hi.y + pad
-    zl0, zl1 = lo.z, world_bounds(LOWERS)[1].z
-    zu0, zu1 = zl1, hi.z
-
-    rig = {}
-    rig["x0"], rig["x1"] = x0, x1
-    rig["y0"], rig["y1"] = y0, y1
-
-    # spoilboard
-    tbl = box("CNC_Table", (x0 - .25, y0 - .18, zl0 - 0.019),
-              (x1 + .25, y1 + .18, zl0 - 0.001), M_TABLE)
-    rig["table"] = tbl
-
-    # the cavity floor is the boundary between what setup 1 reaches from
-    # above and what setup 2 reaches after the flip
-    cav = obj("Cavity_Void_cut")
-    z_split = world_bounds([cav])[0].z if cav else (zl0 + zl1) / 2
-    rig["z_split"] = z_split
-
-    def waste(name, zlo, zhi, pieces):
-        """A SOLID block of stock that the router eats into.
-
-        The obvious construction - waste = slab minus the finished pieces -
-        is wrong, and the first render showed why: the finished planform was
-        already on screen before the tool had touched anything, because the
-        waste only ever covered the parts that get removed. The block has to
-        start solid.
-
-            removed = (slab - pieces) INTERSECT swept    material cut so far
-            waste   = slab - removed                     what is still there
-
-        So the stock is uncut ahead of the tool and the finished surface is
-        uncovered behind it, which is what actually happens.
-        """
-        # 0.3 mm proud all round: stock IS oversize, and it keeps the block's
-        # faces off the finished part's faces, which would otherwise be
-        # coplanar and z-fight
-        lo3 = (x0, y0, zlo - 0.0003)
-        hi3 = (x1, y1, zhi + 0.0003)
-
-        swept = box(name + "_swept", (x0 - 4.0, y0 - .05, zlo - .05),
-                    (x0, y1 + .05, zhi + .05))
-        swept.hide_render = True
-
-        # slab - pieces, baked to a static mesh once. Leaving it live would
-        # re-run two EXACT booleans over the whole slab on every frame.
-        removed = box(name + "_removed", lo3, hi3)
-        removed.hide_render = True
-        for p in pieces:
-            m = removed.modifiers.new(p.name, 'BOOLEAN')
-            m.operation = 'DIFFERENCE'
-            m.object = p
-            m.solver = 'EXACT'
-        was = [(p, p.hide_viewport) for p in pieces]
-        for p, _ in was:
-            p.hide_viewport = False          # hidden objects have no eval mesh
-        dg = bpy.context.evaluated_depsgraph_get()
-        dg.update()
-        removed.data = bpy.data.meshes.new_from_object(removed.evaluated_get(dg))
-        removed.modifiers.clear()
-        for p, h in was:
-            p.hide_viewport = h
-        m = removed.modifiers.new("swept", 'BOOLEAN')
-        m.operation = 'INTERSECT'
-        m.object = swept
-        m.solver = 'EXACT'
-
-        w = box(name, lo3, hi3, M_WASTE)
-        m = w.modifiers.new("removed", 'BOOLEAN')
-        m.operation = 'DIFFERENCE'
-        m.object = removed
-        m.solver = 'EXACT'
-        m.material_mode = 'INDEX'
-        rig.setdefault("hidden_helpers", []).extend((swept, removed))
-        # The swept box stays in WORLD space. A world-space cutter against a
-        # flipped, parented waste is exactly right - booleans resolve through
-        # world transforms - so only the lower slab's helper turns over.
-        if name.startswith("Waste_Lower"):
-            rig["flip_helpers"].append(removed)
-        return w, swept
-
-    rig["flip_helpers"] = []
-    rig["w_top"], rig["s_top"] = waste("Waste_Lower_Top", z_split, zl1, LOWERS)
-    rig["w_btm"], rig["s_btm"] = waste("Waste_Lower_Btm", zl0, z_split, LOWERS)
-    rig["w_upr"], rig["s_upr"] = waste("Waste_Upper", zu0, zu1, UPPERS)
-
-    # ---- the tool: 1/2in cutter, collet, spindle nose
-    tool = bpy.data.objects.new("Tool", None)
-    scene.collection.objects.link(tool)
-    tool.empty_display_size = 0.01
-    flute = cyl("Tool_Flute", 6.35 * MM, 0, 0.0762, M_FLUTE)
-    shank = cyl("Tool_Shank", 6.35 * MM, 0.0762, 0.115, M_TOOL)
-    collet = cyl("Tool_Collet", 0.022, 0.113, 0.155, M_TOOL, segments=24)
-    spindle = cyl("Tool_Spindle", 0.058, 0.155, 0.560, M_TOOL, segments=32)
-    for p in (flute, shank, collet, spindle):
-        p.parent = tool
-        rig.setdefault("tool_parts", []).append(p)
-    rig["tool"] = tool
-
-    # flip pivot for setup 2
-    piv = bpy.data.objects.new("FlipPivot", None)
-    scene.collection.objects.link(piv)
-    piv.location = ((x0 + x1) / 2, (y0 + y1) / 2, (zl0 + zl1) / 2)
-    piv.rotation_mode = 'QUATERNION'
-    # Only the LOWER slab turns over. Read from piv.location directly rather
-    # than piv.matrix_world - the location was set two lines ago and the
-    # depsgraph has not run since, so matrix_world is still identity and every
-    # child ends up shifted by the pivot's own offset.
-    for p in (LOWERS + [rig["w_top"], rig["w_btm"]] + rig["flip_helpers"]):
-        p.parent = piv
-        p.matrix_parent_inverse = Matrix.Translation(-piv.location)
-    rig["pivot"] = piv
-
-    rig["slab_lo"] = box("Slab_Lower", (x0, y0, zl0), (x1, y1, zl1), M_WASTE)
-    rig["slab_up"] = box("Slab_Upper", (x0, y0, zu0), (x1, y1, zu1), M_WASTE)
-    return rig
-
-
 def world_bvh(p):
     """A BVH of the part's REAL mesh, in world space.
 
@@ -679,48 +611,6 @@ def surface_z(bvhs, x, y, z_from, default):
     return default if best is None else best
 
 
-def raster(rig, f0, f1, pieces, sweep, z_top, waste_obj, passes=7,
-           flipped=False):
-    """Fly the cutter over the work in a raster, dragging the sweep box behind
-    it, so material disappears exactly where the tool has already been.
-
-    Cutter Z rides the FINISHED surface, found by raycasting the machined
-    piece - the tool follows real geometry rather than a guessed height.
-    """
-    tool = rig["tool"]
-    piv = rig["pivot"]
-    x0, x1 = rig["x0"], rig["x1"]
-    y0, y1 = rig["y0"], rig["y1"]
-
-    # The raycast reads matrix_world, which is whatever the pivot happens to
-    # be RIGHT NOW - keyframes do not exist yet at authoring time. So put the
-    # pivot in the pose this pass is cut in, and hand it back afterwards.
-    was = Quaternion(piv.rotation_quaternion)
-    piv.rotation_quaternion = (Quaternion((0, 1, 0), math.pi) if flipped
-                               else Quaternion((1, 0, 0, 0)))
-    bpy.context.view_layer.update()
-    bvhs = [world_bvh(p) for p in pieces]
-
-    steps = passes * 8
-    key_vis(tool, f0, True)
-    for part in rig["tool_parts"]:
-        key_vis(part, f0, True)
-        key_vis(part, f1, False)
-    for i in range(steps + 1):
-        u = i / steps
-        f = round(f0 + (f1 - f0) * u)
-        x = x0 + (x1 - x0) * u
-        t = (u * passes) % 1.0                      # serpentine across Y
-        yy = y0 + (y1 - y0) * (t if int(u * passes) % 2 == 0 else 1 - t)
-        key_loc(tool, f, (x, yy, surface_z(bvhs, x, yy, z_top + 0.4, z_top)))
-        key_loc(sweep, f, (x - x0, 0, 0))
-    key_vis(tool, f1, False)
-    key_vis(waste_obj, f1, False)   # by now it IS the piece, to the last vertex
-
-    piv.rotation_quaternion = was
-    bpy.context.view_layer.update()
-
-
 # ================================================================== shots
 F = 1
 SHOT_MARKS = []
@@ -742,11 +632,16 @@ def pin_home(objs):
     the start of its fly-in, off in space - extends backwards over everything
     before it, and the finished board in the opening shot is exploded."""
     for o in objs:
-        if o is None or o.type not in ('MESH', 'FONT'):
+        if o is None or o.type not in ('MESH', 'FONT', 'EMPTY'):
             continue
         key_loc(o, 1, home_of(o))
+        if o.type == 'EMPTY':
+            # the blank pivots carry the flips; without a pinned identity at
+            # frame 1 the first flip keyframe reaches back over every shot
+            # before it and the blanks start the film half turned over
+            key_rot(o, 1, Quaternion((1, 0, 0, 0)))
         for fc in fcurves_of(o):
-            if fc.data_path == "location":
+            if fc.data_path in ("location", "rotation_quaternion"):
                 for kp in fc.keyframe_points:
                     if kp.co.x <= 1.5:
                         kp.interpolation = 'CONSTANT'
@@ -754,101 +649,19 @@ def pin_home(objs):
 
 def build_timeline():
     caption_backing()
-    RIG = build_machining_rig()
+    RIG = build_blanks()
     pin_home(bpy.data.objects)
-    for o in ([RIG["table"], RIG["w_top"], RIG["w_btm"], RIG["w_upr"],
-               RIG["slab_lo"], RIG["slab_up"], RIG["tool"]] + RIG["tool_parts"]):
-        key_vis(o, 1, False)
-    ZL1 = world_bounds(LOWERS)[1].z          # top of the lower slab
-    ZTOP = world_bounds(MACH)[1].z           # top of the upper slab
 
-    # ---------------------------------------------------------- 1. intro
+    # ---------------------------------------------------------- intro
     f0, f1 = shot("intro", 6)
-    vis_all(BOARD_DONE, f0, True)
+    vis_all(BOARD_FINISHED, f0, True)
     cam_move(f0, f1, CTR_T, -55, 22, 2.5, CTR_T, -18, 30, 2.2)
     caption(f0, f1, "eFoil V2", "1400 x 560 x 167 mm  -  16S8P, 2304 Wh  -  two boards")
-    vis_all(BOARD_DONE, f1, False)
+    vis_all(BOARD_FINISHED, f1, False)
 
-    # ------------------------------------------------ 2. blank glue-up
-    f0, f1 = shot("blank", 7)
-    key_vis(RIG["table"], f0, True)
-    cam_hold(f0, f1, CTR_T, -62, 18, 2.6)
-    caption(f0, f1, "Step 4  -  glue up two sub-stacks",
-            "four 2in EPS layers become two 101.6 mm slabs, not one 203 mm stack")
-    for w, t in ((RIG["slab_lo"], 0.2), (RIG["slab_up"], 1.4)):
-        a, b = f0 + int(t * FPS), f0 + int((t + 2.2) * FPS)
-        key_vis(w, a, True)
-        key_loc(w, a, (0, 0, 1.1))
-        key_loc(w, b, (0, 0, 0))
-        ease(w)
+    machining_shots(RIG)
 
-    # ------------------------------------- 3. setup 1: cavity from above
-    f0, f1 = shot("machine_cavity", 11)
-    # waste + finished piece IS the slab, exactly - so showing both reads as
-    # an uncut block, and the piece is simply uncovered as the waste goes
-    vis_all([RIG["w_btm"], RIG["w_top"]] + LOWERS, f0, True)
-    vis_all([RIG["slab_lo"], RIG["slab_up"]], f0, False)
-    cam_move(f0, f1, CTR_T, -70, 32, 2.3, CTR_T, -100, 26, 2.0)
-    caption(f0, f1, "Step 5  -  setup 1, cavity from above",
-            "1/2in O-flute. The deepest pocket is 71.6 mm - buy the long-reach bit")
-    raster(RIG, f0 + int(0.5 * FPS), f1 - int(0.5 * FPS), LOWERS,
-           RIG["s_top"], ZL1, RIG["w_top"], passes=7)
-
-    # ----------------------------------------------------- 4. the flip
-    f0, f1 = shot("flip", 3)
-    for w in (RIG["w_btm"],):
-        key_vis(w, f0, True)
-    vis_all(LOWERS, f0, True)
-    key_vis(RIG["w_top"], f0, False)
-    _t, _d = fit(LOWERS + [RIG["w_btm"]], spin=True, margin=1.45)
-    cam_hold(f0, f1, _t, -100, 20, _d)
-    caption(f0, f1, "the one flip", "5 setups across 4 pieces, and only this one turns over")
-    piv = RIG["pivot"]
-    key_rot(piv, f0 + int(0.3 * FPS), Quaternion((1, 0, 0, 0)))
-    key_rot(piv, f1 - int(0.3 * FPS), Quaternion((0, 1, 0), math.pi))
-    ease(piv, "rotation_quaternion")
-
-    # --------------------------------- 5. setup 2: rocker + mast pocket
-    f0, f1 = shot("machine_rocker", 8)
-    vis_all(LOWERS, f0, True)
-    key_vis(RIG["w_btm"], f0, True)
-    key_rot(piv, f0, Quaternion((0, 1, 0), math.pi))
-    cam_move(f0, f1, CTR_T, -110, 30, 2.1, CTR_T, -140, 24, 2.0)
-    caption(f0, f1, "setup 2  -  rocker and mast pocket",
-            "beds on a flat face - tape or vacuum down, never clamp the 24.8 mm rail")
-    # hold the flip through its own shot - a single key at the start creeps
-    # back towards level over the next 8 seconds
-    key_rot(piv, f1 - 1, Quaternion((0, 1, 0), math.pi))
-    raster(RIG, f0 + int(0.4 * FPS), f1 - int(0.4 * FPS), LOWERS,
-           RIG["s_btm"], ZL1, RIG["w_btm"], passes=5, flipped=True)
-
-    # --------------------------------------------- 6. upper slab, decks
-    f0, f1 = shot("machine_deck", 9)
-    key_rot(piv, f0, Quaternion((1, 0, 0, 0)))
-    vis_all(LOWERS + UPPERS, f0, True)
-    key_vis(RIG["w_btm"], f0, False)
-    key_vis(RIG["w_upr"], f0, True)
-    cam_move(f0, f1, CTR_T, -60, 34, 2.3, CTR_T, -30, 40, 2.1)
-    caption(f0, f1, "deck crown, cavity through, rim ledge",
-            "upper slab - one setup each, no flip")
-    raster(RIG, f0 + int(0.4 * FPS), f1 - int(0.4 * FPS), UPPERS,
-           RIG["s_upr"], ZTOP, RIG["w_upr"], passes=6)
-
-    # ------------------------------------------------- 7. bond the core
-    f0, f1 = shot("bond", 7)
-    key_vis(RIG["w_upr"], f0, False)
-    key_vis(RIG["table"], f0, False)
-    vis_all(MACH, f0, True)
-    cam_move(f0, f1, CTR_T, -35, 26, 2.4, CTR_T, 20, 20, 2.2)
-    caption(f0, f1, "Step 6  -  bond the core solid",
-            "mid-plane first, then the vertical seam at 1030 mm")
-    for o, off in ((obj("MachStack_Aft_Upper"), (0, 0, 0.30)),
-                   (obj("MachStack_Fwd_Upper"), (0.28, 0, 0.30)),
-                   (obj("MachStack_Fwd_Lower"), (0.28, 0, 0))):
-        fly_in(o, f0, f0 + int(4.0 * FPS), off)
-    key_loc(obj("MachStack_Aft_Lower"), f0, home_of(obj("MachStack_Aft_Lower")))
-
-    # ------------------------------------------------- 8. the hardpoints
+    # ------------------------------------------------- the hardpoints
     f0, f1 = shot("hardpoints", 7)
     vis_all(MACH, f0, True)
     cam_move(f0, f1, (0.34, 0, 0.01), -120, -34, 1.05, (0.34, 0, 0.03), -55, 6, 1.30)
@@ -868,20 +681,23 @@ def build_timeline():
         else:
             fly_in(o, f0 + int(4.6 * FPS), f0 + int(6.2 * FPS), (0, 0, 0.16))
 
-    # --------------------------------------------------- 9. the laminate
+    # --------------------------------------------------- the laminate
     f0, f1 = shot("laminate", 6)
+    LAMINATE_F0 = f0
     vis_all(MACH + HARD + [DENSE], f0, True)
     cam_move(f0, f1, CTR_T, -45, 24, 2.4, CTR_T, -85, 30, 2.2)
     caption(f0, f1, "Phase 2  -  laminate",
             "biaxial carbon over the deck, glass below, bagged at 5-10 inHg")
     mid = f0 + int(3.0 * FPS)
     vis_all(MACH, mid, False)
+    vis_all(BURIED, mid, False)
     key_vis(HULL, mid, True)
 
-    # ------------------------------------------------ 10. the rim ring
+    # ------------------------------------------------ the rim ring
     f0, f1 = shot("rim", 7)
     key_vis(HULL, f0, True)
-    vis_all(HARD + [DENSE], f0, True)
+    vis_all(HARD, f0, True)
+    vis_all(BURIED, f0, False)
     cam_move(f0, f1, (0.64, 0, 0.15), -70, 40, 1.35, (0.64, 0, 0.15), -20, 55, 1.15)
     caption(f0, f1, "the rim ring goes in DURING the cavity layup",
             "6 printed segments, dovetailed - captive M5 nuts already inside")
@@ -892,7 +708,7 @@ def build_timeline():
         fly_in(s, f0 + int((0.3 + 0.25 * i) * FPS),
                f0 + int((2.6 + 0.25 * i) * FPS), (dx, dy, 0.22))
 
-    # ----------------------------------------------------- 11. the pack
+    # ----------------------------------------------------- the pack
     f0, f1 = shot("pack", 10)
     key_vis(HULL, f0, False)
     vis_all(HARD + [DENSE] + RIMSEG, f0, False)
@@ -907,7 +723,7 @@ def build_timeline():
     fly_in(HOLD_T, f0 + int(4.4 * FPS), f0 + int(6.0 * FPS), (0, 0, 0.26))
     fly_in(WRAP, f0 + int(6.4 * FPS), f0 + int(8.0 * FPS), (0, 0, 0.22))
 
-    # --------------------------------------------------- 12. the module
+    # --------------------------------------------------- the module
     f0, f1 = shot("module", 11)
     for o in (HOLD_B, CELLS, HOLD_T, WRAP):
         key_vis(o, f0, True)
@@ -933,7 +749,7 @@ def build_timeline():
     fly_in(MODVENT, f0 + int(7.8 * FPS), f0 + int(8.8 * FPS), (-0.12, 0, 0))
     fly_in(MODLID, f0 + int(8.6 * FPS), f0 + int(10.2 * FPS), (0, 0, 0.24))
 
-    # ---------------------------------------------- 13. module into board
+    # ---------------------------------------------- module into board
     f0, f1 = shot("install", 8)
     MODULE_ALL = ([o for o in [MODFLOOR, MODLID, MODSEAL, MODVENT] if o]
                   + MODPIECE + MODINS + [o for o in (BMS, ESC, FUSE, CELLS,
@@ -941,7 +757,8 @@ def build_timeline():
                   + ELEC_MISC)
     vis_all(MODULE_ALL, f0, True)
     key_vis(HULL, f0, True)
-    vis_all(HARD + [DENSE] + RIMSEG, f0, True)
+    vis_all(HARD + RIMSEG, f0, True)
+    vis_all(BURIED, f0, False)
     cam_move(f0, f1, (0.64, 0, 0.12), -75, 34, 1.7, (0.64, 0, 0.12), -25, 46, 1.5)
     caption(f0, f1, "Phase 5  -  install and close",
             "module drops in, 12 x M5 into the captive nuts, gasket compressed")
@@ -958,30 +775,45 @@ def build_timeline():
         fly_in(b, f0 + int((5.4 + 0.06 * i) * FPS),
                f0 + int((6.4 + 0.06 * i) * FPS), (0, 0, 0.12))
 
-    # -------------------------------------------------- 14. the deck pad
+    # -------------------------------------------------------- fair and paint
+    # The hull used to arrive already Whaler Blue at the laminate step, which
+    # is several weekends early. It comes out of the bag as bare laminate now
+    # and gets painted here, where the build guide puts it.
+    f0, f1 = shot("paint", 6)
+    vis_all(RIMSEG + [LID, SEAL] + HBOLT + HNUT + HARD, f0, True)
+    vis_all(BURIED, f0, False)
+    key_vis(HULL, f0, True)
+    cam_move(f0, f1, CTR_T, -70, 30, 2.3, CTR_T, -28, 38, 2.1)
+    caption(f0, f1, "fair, then paint",
+            "TotalBoat Wet Edge, Classic Whaler Blue - rolled and tipped, "
+            "above the waterline only")
+    paint_keys(LAMINATE_F0, f0 + int(1.4 * FPS), f0 + int(3.4 * FPS))
+
+    # -------------------------------------------------- the deck pad
     f0, f1 = shot("deckpad", 5)
     key_vis(HULL, f0, True)
-    vis_all(HARD + [DENSE] + RIMSEG + [LID, SEAL] + HBOLT + HNUT, f0, True)
+    vis_all(RIMSEG + [LID, SEAL] + HBOLT + HNUT + HARD, f0, True)
+    vis_all(BURIED, f0, False)
     cam_move(f0, f1, CTR_T, -40, 44, 2.2, CTR_T, -10, 60, 2.0)
     caption(f0, f1, "deck pad", "5.8 mm EVA, 3 pieces - one sheet does both boards")
     for i, p in enumerate(PADS):
         fly_in(p, f0 + int((0.4 + 0.5 * i) * FPS),
                f0 + int((2.2 + 0.5 * i) * FPS), (0, 0, 0.18))
 
-    # ------------------------------------------------------- 15. the foil
+    # ------------------------------------------------------- the foil
     f0, f1 = shot("foil", 7)
-    vis_all(BOARD_DONE, f0, True)
-    _t, _d = fit(BOARD_DONE + FOIL)
+    vis_all(BOARD_FINISHED, f0, True)
+    _t, _d = fit(BOARD_FINISHED + FOIL)
     cam_move(f0, f1, _t, -60, 4, _d, _t, -15, 16, _d * 0.94)
     caption(f0, f1, "the foil", "Gong X-Over V3, 85 alu mast  -  Flipsky 65161 on a 120KV")
     for i, p in enumerate(FOIL):
         fly_in(p, f0 + int((0.3 + 0.35 * i) * FPS),
                f0 + int((2.4 + 0.35 * i) * FPS), (0, 0, -0.45))
 
-    # ------------------------------------------------------ 16. finished
+    # ------------------------------------------------------ finished
     f0, f1 = shot("final", 9)
-    vis_all(BOARD_DONE + FOIL, f0, True)
-    _t, _d = fit(BOARD_DONE + FOIL, margin=1.38)
+    vis_all(BOARD_FINISHED + FOIL, f0, True)
+    _t, _d = fit(BOARD_FINISHED + FOIL, margin=1.38)
     cam_move(f0, f1, _t, -20, 16, _d, _t, 320, 26, _d, steps=16)
     caption(f0, f1, "eFoil V2", "24.3 kg  -  91.8 L  -  $3,917 a board")
 
@@ -1007,17 +839,26 @@ def render():
     if STILLS:
         d = os.path.join(ROOT, "renders", "stills")
         os.makedirs(d, exist_ok=True)
-        for n, a, b in SHOT_MARKS:
+        # video is the default output now, and a still is not a video
+        scene.render.image_settings.media_type = 'IMAGE'
+        scene.render.image_settings.file_format = 'PNG'
+        scene.render.image_settings.compression = 15
+        scene.render.use_file_extension = True
+        for n, a, b in ([x for x in SHOT_MARKS if x[0] == ONLY] if ONLY
+                        else SHOT_MARKS):
             scene.frame_set(a + (b - a) // 2)
             scene.render.filepath = os.path.join(d, "shot_%s_" % n)
             bpy.ops.render.render(write_still=True)
             print("  still:", n)
         return
-    os.makedirs(OUT, exist_ok=True)
-    scene.render.filepath = os.path.join(OUT, "f_")
     scene.frame_step = 3 if PREVIEW else 1
+    if PNGS:
+        os.makedirs(OUT, exist_ok=True)
     bpy.ops.render.render(animation=True)
-    encode()
+    if PNGS:
+        encode()
+    else:
+        print("  wrote", scene.render.filepath)
 
 
 def encode():
