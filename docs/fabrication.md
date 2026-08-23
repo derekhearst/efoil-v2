@@ -368,20 +368,29 @@ only wants **182 N** a bolt. At the 1.2 Nm spec each bolt actually delivers
 **1200 N**, and the surplus does not evaporate — it goes straight into the lid
 under the head, on 32 mm².
 
-| Seat | Pressure at 1200 N |
-|---|---|
-| M5 socket cap Ø8.5 | 37.4 MPa |
-| M5 button Ø9.5 | 25.9 MPa |
-| Ø15 penny washer | 7.9 MPa |
-| Ø28 fender washer | 2.0 MPa |
-| **H100 core gives up at** | **2.0 MPa** |
+The 1 mm skin does not just pass that load straight down — it carries it
+sideways into the core for about **16 mm past the edge** of whatever is
+pressing on it. That is the same beam-on-elastic-foundation model the heel
+check uses, and it is worth crediting:
 
-So no washer you would want to look at passes, and the Ø28 that would does
-not fit — the bolt is only 10.5 mm from the lid edge. The holes were already
-being potted for exactly this reason, so the countersink is free: a Ø16 epoxy
-boss, a 90° cone to Ø9.8 about 2.1 mm deep, and the flat head lands on **23.6
-MPa against epoxy at ~50** — 2.1× margin, flush with the deck, no hardware
-showing.
+| Seat | Direct bearing | With the skin spreading | vs core's 2.0 MPa |
+|---|---|---|---|
+| M5 socket cap Ø8.5, bare | 37.4 MPa | 2.67 MPa | fails |
+| M5 button Ø9.5, bare | 25.9 MPa | 2.45 MPa | fails |
+| **Ø15 penny washer** | 7.9 MPa | **1.63 MPa** | **passes, 1.2×** |
+| Ø18 washer | 5.5 MPa | 1.35 MPa | passes, 1.5× |
+
+So a penny washer does work at the corrected preload. A bare head still does
+not. What settles it is **what is under the load**: both washers spread into
+**foam**, which takes a *permanent set* past 2.0 MPa — and on a hard-stop
+joint a seat that sets means the lid drops and the cord ends up at a squeeze
+it was never designed for.
+
+The potted boss has no such mode. It carries the load straight **through** to
+the bottom skin and onto the rim's ASA land, never loading the core at all:
+a 90° cone to Ø9.8 in a Ø16 epoxy boss lands on **23.6 MPa against epoxy at
+~50 — 2.1× margin**, and the head finishes flush. It stays because it is the
+only option with no foam in the load path, not because the others fail.
 
 **The number that answers "is the lid strong enough":** the head starts
 crushing its own boss at **2.5 Nm**. The spec is 1.2. You would have to more

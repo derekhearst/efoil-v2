@@ -4165,16 +4165,51 @@ def build():
     rep["hatch_head_style"] = (
         "ISO 10642 flat head, TORX, FLUSH" if HATCH_BOLT_CSK
         else "socket cap, proud")
-    # bare cored panel, for the three heads you could put on it
-    rep["hatch_seat_MPa_bare"] = {
+    # THE SKIN SPREADS THE LOAD, and this used to give it no credit for that -
+    # which is inconsistent, because the heel calculation twenty lines up
+    # already models exactly this: a skin on an elastic foundation carries
+    # load out sideways past the edge of whatever is pressing on it, by about
+    # 4 characteristic lengths. Ignoring it for a washer and using it for a
+    # boot was picking whichever theory made the current answer look right.
+    # It is worth 16 mm on the effective diameter, which is the difference
+    # between a penny washer passing and failing.
+    _spread = 4.0 * _l
+
+    def _seat_spread(d):
+        return math.pi / 4.0 * ((d + _spread) ** 2 - _hole ** 2)
+
+    rep["hatch_skin_spread_mm"] = round(_spread, 1)
+    # DIRECT bearing - no credit for the skin at all. The pessimistic bound.
+    rep["hatch_seat_MPa_bare_direct"] = {
         "M5 socket cap O8.5": round(_bolt_N / _seat(8.5), 1),
         "M5 button O9.5": round(_bolt_N / _seat(9.5), 1),
-        "O15 penny washer": round(_bolt_N / _seat(15.0), 1),
-        "O25 fender washer": round(_bolt_N / _seat(25.0), 1)}
+        "O15 penny washer": round(_bolt_N / _seat(15.0), 1)}
+    # ...and with the skin doing what the heel calculation says it does
+    rep["hatch_seat_MPa_bare_spread"] = {
+        "M5 socket cap O8.5": round(_bolt_N / _seat_spread(8.5), 2),
+        "M5 button O9.5": round(_bolt_N / _seat_spread(9.5), 2),
+        "O15 penny washer": round(_bolt_N / _seat_spread(15.0), 2),
+        "O18 washer": round(_bolt_N / _seat_spread(18.0), 2)}
     rep["hatch_core_limit_MPa"] = CORE_COMP_MPA
-    # ...none of which work, which is what forces the boss
-    rep["hatch_washer_d_for_bare_core_mm"] = round(math.sqrt(
-        4.0 / math.pi * _bolt_N / CORE_COMP_MPA + _hole ** 2), 1)
+    rep["hatch_washer_d_for_bare_core_mm"] = round(max(0.0, math.sqrt(
+        4.0 / math.pi * _bolt_N / CORE_COMP_MPA + _hole ** 2) - _spread), 1)
+    rep["hatch_penny_washer_margin"] = round(
+        CORE_COMP_MPA / (_bolt_N / _seat_spread(NUT_WASHER_D)), 2)
+    # ...but it is a margin ON FOAM, and foam that goes past 2.0 MPa takes a
+    # PERMANENT set. The lid then sits lower on a hard-stop joint, so the
+    # squeeze the cord sees is no longer the squeeze it was designed for.
+    # The boss does not have that failure mode at all - it never loads the
+    # core - which is why it stays even though the washer now passes.
+    rep["hatch_washer_is_viable"] = (
+        rep["hatch_penny_washer_margin"] >= 1.0)
+    rep["hatch_washer_vs_boss"] = (
+        "a O%.0f penny washer now passes at %.2fx on FOAM, where the potted "
+        "boss runs %.1fx on EPOXY and never loads the core at all. Foam past "
+        "2.0 MPa sets permanently and a hard-stop joint then seals at the "
+        "wrong squeeze; epoxy at 24 MPa does not move. The boss also keeps "
+        "the heads flush, which the washer cannot"
+        % (NUT_WASHER_D, rep["hatch_penny_washer_margin"],
+           EPOXY_COMP_MPA / (_bolt_N / _seat(HATCH_BOLT_HEAD_D))))
     rep["hatch_pot_boss_d_mm"] = HATCH_POT_D
     rep["hatch_csk_depth_mm"] = round(_csk_z, 2)
     rep["hatch_csk_resin_wall_mm"] = round(
@@ -4262,36 +4297,40 @@ def build():
         "primary method - re-pot and re-drill that one on a transfer mark")
     rep["hatch_lid_clearance_radial_mm"] = round(0.6 / 2.0, 2)
 
-    # --- WHY NOT A BIG WASHER BURIED UNDER THE TOP SKIN --------------------
-    # The obvious one-step alternative: machine a shallow wide recess into the
-    # core, drop a big washer in it, and glass over the lot when the lid is
-    # laid up. No pot, no second cure, no re-drill. It is a real technique and
-    # it is how a proper cored panel gets a hardpoint.
+    # --- A BIG WASHER BURIED UNDER THE TOP SKIN ---------------------------
+    # Machine a shallow wide recess into the core, drop a washer in it, glass
+    # over the lot at layup. No pot, no second cure, no re-drill.
     #
-    # It does not fit HERE, and the reason is edge distance, not principle.
-    # A washer SPREADS load INTO the core, so its size is set by the core's
-    # 2.0 MPa. The potted boss does not spread anything - it carries the load
-    # straight THROUGH to the bottom skin and onto the rim's ASA land - so its
-    # size is not set by foam at all. That is the whole difference, and it is
-    # why one needs to be O25 and the other works at O16.
+    # THIS WAS REPORTED AS NOT FITTING AND THAT WAS WRONG - it was computed
+    # with no credit for the skin spreading the load, while the heel check
+    # twenty lines up gave the same skin full credit. Corrected, it fits with
+    # room. So does a plain penny washer on TOP of the lid.
+    #
+    # The distinction that survives is not "works / does not work", it is
+    # WHAT IS UNDER THE LOAD. Both washers spread into the CORE, so their
+    # margin is against foam that takes a permanent set past 2.0 MPa - and on
+    # a hard-stop joint a seat that sets means the lid drops and the cord
+    # ends up at a squeeze it was not designed for. The potted boss carries
+    # the load straight THROUGH to the bottom skin and the rim's ASA land and
+    # never touches the core, so it has no such mode. That, plus the flush
+    # head, is why it stays - not because the alternatives fail.
     _edge = HATCH_BOLT_INSET - 1.5              # lid is inset 1.5 from the rim
     rep["hatch_bolt_to_lid_edge_mm"] = round(_edge, 1)
     # leave 2 mm of laminate outboard of it or the pocket breaks out
     rep["hatch_max_spreader_d_mm"] = round(2.0 * (_edge - 2.0), 1)
-    _sp = _seat(rep["hatch_max_spreader_d_mm"])
+    _sp = _seat_spread(rep["hatch_max_spreader_d_mm"])
     rep["hatch_buried_washer_MPa"] = round(_bolt_N / _sp, 2)
     rep["hatch_buried_washer_works"] = (
         rep["hatch_buried_washer_MPa"] <= CORE_COMP_MPA)
     rep["hatch_spreader_d_needed_mm"] = rep["hatch_washer_d_for_bare_core_mm"]
-    rep["hatch_why_not_buried_washer"] = (
-        "a washer spreads load INTO the core, so it needs O%.1f to reach the "
-        "2.0 MPa limit - but the bolt is only %.1f mm from the lid edge, so "
-        "the biggest one that fits is O%.1f, which lands at %.2f MPa. The "
-        "potted boss carries the load THROUGH to the bottom skin instead of "
-        "into the foam, so O%.0f is enough"
-        % (rep["hatch_washer_d_for_bare_core_mm"], _edge,
-           rep["hatch_max_spreader_d_mm"], rep["hatch_buried_washer_MPa"],
-           HATCH_POT_D))
+    rep["hatch_buried_washer_note"] = (
+        "FITS, at O%.1f - the most the %.1f mm edge distance allows - landing "
+        "at %.2f MPa against the core's 2.0. But it spreads into FOAM, it is "
+        "buried at layup so a bad hole cannot be recovered, and it cannot be "
+        "countersunk: the cone wants %.1f mm of solid material and the skin "
+        "over it is %.1f"
+        % (rep["hatch_max_spreader_d_mm"], _edge,
+           rep["hatch_buried_washer_MPa"], _csk_z, LID_SKIN))
 
     # --- mast hardpoint ---------------------------------------------------
     # The plate and the dense ring sit in a POCKET machined into the underside
