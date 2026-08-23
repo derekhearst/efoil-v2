@@ -4201,9 +4201,13 @@ def build():
     #
     # So the CNC cuts both circles at every station - boss and bolt hole,
     # concentric, same setup - and the potting is sequenced so it does not
-    # destroy the position: a GREASED M5 bolt goes through the finished hole
-    # (the bottom skin holds it centred), the pocket is filled around it, and
-    # the bolt backs out of the cured resin.
+    # destroy the position. The bolt hole goes RIGHT THROUGH, bottom skin
+    # included; the underside is taped, the pocket filled from the top, and
+    # once it is cured the machined hole is still sitting there in the bottom
+    # skin to guide the re-drill.
+    # NOT a greased bolt used as a plug, which was the first idea here: epoxy
+    # grabs steel, twelve chances for a release to fail, and one that does not
+    # come out is a scrapped lid. The panel already holds its own datum.
     #
     # The boss is then INSURANCE rather than the method. If one hole will not
     # pick up, it is surrounded by this much solid resin, so it can be drilled

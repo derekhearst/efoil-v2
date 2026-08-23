@@ -400,15 +400,23 @@ straight through the middle of it.
    leave the bottom skin — and drill Ø5.6 through the centre of each. Set the
    pocket Z off the *measured* thickness of the bagged panel, not the nominal
    14.
-2. **Grease an M5 bolt and drop it through each finished hole.** The bottom
-   skin holds it centred.
-3. **Fill the pocket around it** with thickened epoxy. Cure.
-4. **Back the bolts out.** The machined position survived the pot.
-5. **Countersink** each one 90° to Ø9.8, about 2.1 mm deep, to the head you
-   actually bought.
+2. **Tape over the Ø5.6 holes on the underside.** Ordinary packing tape.
+3. **Fill the pockets from the top** with thickened epoxy. Cure. Peel the
+   tape — the machined Ø5.6 is still there in the bottom skin, untouched.
+4. **Flip the panel sealing-face-up and re-drill Ø5.6 down through the cured
+   resin**, using that hole as the guide. The machine kept the position; you
+   are only following it. Exit tear-out lands on the top skin, where the
+   countersink cuts it away anyway.
+5. **Flip back and countersink** each one 90° to Ø9.8, about 2.1 mm deep, to
+   the head you actually bought.
 
-Fill the pockets bare and you have thrown away the setup you just paid for —
-you would be re-drilling by eye through solid resin.
+**Nothing steel ever sits in curing epoxy.** A greased bolt used as a plug
+would also hold the position, and it works right up until one of the twelve
+does not release — and then the lid is scrap. The panel already holds its own
+datum, so there is no reason to take that bet.
+
+Skip the through-hole and fill the pockets blind and you have thrown away the
+setup you just paid for — you would be re-drilling by eye through solid resin.
 
 **If one or two still will not pick up.** The ring is six printed pieces,
 dovetailed, welded and glassed into a rebate, so a little drift is possible.
