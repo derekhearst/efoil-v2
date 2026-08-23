@@ -726,11 +726,14 @@ def build():
     # Tef-Gel in step 23 is for. Bedding it on a compressible gasket would
     # actively hurt: it is the highest-loaded joint on the board, and rubber
     # under 4 x M8 creeps, loses preload and lets the plate rock.
-    add("7  Module", "Hollow punch set 1/8-1/2in + cutting mat", 1, "set",
-        17.99, OK,
-        "7/32 in is the one you want for M4 - the model sizes the gasket "
-        "holes off it. The mat matters: punching onto a hard bench rolls "
-        "the edge on the first hit", tool=True)
+    # Derek has punches. NOT LINKED, deliberately: a listing price overrides
+    # the literal, so leaving a link on a $0 on-hand line would reprice it to
+    # $17.99 and quietly bill for a tool that is already in the drawer.
+    add("7  Module", "Hollow punch set 1/8-1/2in + cutting mat", 0, "off",
+        0.00, OWNED,
+        "7/32 in (5.556) is the size for M4 - the model sizes the gasket "
+        "holes off it, not the other way round. Punch onto a mat: a hard "
+        "bench rolls the edge on the first hit", tool=True)
     add("7  Module", "Closed-cell sponge neoprene 1/8in, module lid gasket",
         1, "roll", 13.99, OK,
         "blank is " + " x ".join(str(v) for v in M["seal_blank"])

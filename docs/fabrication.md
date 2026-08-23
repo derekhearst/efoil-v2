@@ -543,12 +543,24 @@ the same two pads on the module and keep the bought handles for the rails.
 **Tef-Gel every mast bolt, every time.** Aluminium plate, A4 bolts, wet
 cavity — that is the whole galvanic mitigation and it is not optional.
 
-**No gasket goes under the mast base**, and there is none in the BOM. The
-bolt holes are blind, so there is no path into the board to seal, and the
-faying faces are aluminium on aluminium — the galvanic couple is the A4
-bolts. Smear Tef-Gel across the mating faces as well as the threads, then
-pull the plate down metal to metal. Bedding the highest-loaded joint on the
-board on something compressible would let it creep, lose preload and rock.
+**No gasket goes under the mast base**, and there is none in the BOM.
+
+**V1 had one, and it was doing a job V2 does somewhere else.** On V1 that
+gasket was the waterproofing for the mast penetration. V2 seals the hole the
+wires actually run up instead — the Ø32 conduit gets EPDM bungs and a 4200
+fillet in [step 18](#step-18-run-the-mast-conduit) — so the barrier sits at
+the bore, not under the plate. Sealing both would be sealing it twice.
+
+Which leaves nothing for a gasket here to do: the mast bolt holes are
+**blind**, so there is no path into the board through them, and the faying
+faces are aluminium on aluminium — the galvanic couple is the A4 bolts.
+Smear Tef-Gel across the mating faces as well as the threads and pull the
+plate down metal to metal.
+
+And a gasket would cost something real. This is the highest-loaded joint on
+the board — an 850 mm lever with rider weight and foil lift at the end.
+Rubber under 4 × M8 creeps, the bolts lose preload, and the plate starts to
+rock. Compressible is the wrong property here in either material.
 
 **Measure** the prop shaft cross-hole rather than trusting the 4 mm figure;
 that is why the roll pin line is an assortment.
