@@ -1366,8 +1366,34 @@ HATCH_BOLT_INSET = 12.0            # from the rim's outer edge, outboard of the 
 # pay for the finish too: a O16 epoxy boss through skin and core takes a
 # countersink in solid resin, the head goes FLUSH, and the bearing stress
 # lands on epoxy at ~50 MPa instead of on foam at 2.
-HATCH_BOLT_CSK = True
-HATCH_BOLT_HEAD_D = 9.8            # ISO 10642 M5 flat head, max head dia
+# BURIED SPREADER, NOT A POTTED BOSS - and Derek's reasoning is the good kind:
+# potting means the machined hole gets filled and re-drilled, so every one of
+# the twelve becomes a precision job at the bench. A disc buried at layup
+# leaves NOTHING to re-find. The core is cut oversize and machined to profile
+# with the skins, so the disc clears the finished edge, and the CNC drills all
+# twelve holes through the lot afterwards in one setup - which is the rigid-
+# body alignment he wanted three turns ago, finally with nothing fighting it.
+#
+# FULL DEPTH, not a shallow washer in a pocket, for two reasons that both bit:
+#   - a 3 mm disc in a 3 mm pocket has to finish FLUSH with the core face or
+#     it prints through a 1 mm skin under vacuum. Twelve visible bumps on the
+#     deck, and the tolerance to avoid them is 0.2 mm on a milled foam pocket.
+#     A through-hole plug gets sanded flush with the core and cannot print.
+#   - it takes the foam out of the load path completely. A shallow disc still
+#     stacks 9 mm of H100 under it in compression.
+# G10, not printed ASA: the head bears on the plug through 1 mm of skin at
+# 37 MPa, which is 10x under G10 and only 1.5x under ASA - and ASA creeps.
+HATCH_SPREADER = True
+HATCH_SPREADER_D = 15.875          # 5/8 in G10 ROD, sliced. Not a disc
+                                   # cut from sheet - O17 is no hole saw
+                                   # anyone owns, and 5/8 rod parts off on
+                                   # a chop saw 24 times in ten minutes.
+G10_COMP_MPA = 380.0               # flatwise compressive, conservative
+# NO COUNTERSINK. It needs 2.1 mm of solid material under the top face and
+# there is 1.0 mm of skin over the plug, so flush heads and a buried spreader
+# do not combine. Cap heads it is - which is what Derek asked for anyway.
+HATCH_BOLT_CSK = False
+HATCH_BOLT_HEAD_D = 8.5            # M5 socket cap, DIN 912 head dia
 HATCH_BOLT_CSK_ANG = 90.0          # included angle
 # TORX, not hex. This head finishes FLUSH WITH THE DECK on a board that gets
 # dragged up a beach, so the socket is a grit trap by design and it gets
@@ -3887,6 +3913,15 @@ def build():
         boolean(bpy.data.objects["V2_Lid"], h)
         h.hide_set(True)
         h.hide_render = True
+        # ...the buried spreader, full core depth, drilled through with the
+        # bolt after the panel is laid up.
+        if HATCH_SPREADER:
+            sp = cyl(f"V2_LidSpreader_{i}", bx_, by_,
+                     z0 + LID_SKIN, z0 + LID_SKIN + LID_CORE,
+                     HATCH_SPREADER_D, coll, bom_mat("g10"), seg=32)
+            boolean(sp, cyl(f"V2_LidSpreaderBore_{i}", bx_, by_,
+                            z0 - 1.0, z0 + LID_T + 1.0,
+                            HATCH_BOLT_D + 0.6, coll))
         # ...and the countersink, cut into the potted boss from the top face.
         # A cone, not a counterbore: a counterbored cap head still has to be
         # capped afterwards, and a cap you dig out every ride is worse than a
@@ -4156,6 +4191,7 @@ def build():
     # is needed, it delivers what the torque wrench puts in, and the surplus
     # goes straight into the lid under the head.
     _bolt_N = BOLT_PRELOAD_N
+    _edge = HATCH_BOLT_INSET - 1.5             # lid is inset 1.5 from the rim
     rep["hatch_seal_demand_per_bolt_N"] = round(SEAL_N / max(1, _n_hb))
     _hole = HATCH_BOLT_D + 0.6
     def _seat(d):
@@ -4210,6 +4246,27 @@ def build():
         "the heads flush, which the washer cannot"
         % (NUT_WASHER_D, rep["hatch_penny_washer_margin"],
            EPOXY_COMP_MPA / (_bolt_N / _seat(HATCH_BOLT_HEAD_D))))
+    rep["hatch_seat_is"] = (
+        "a O%.0f G10 disc buried FULL DEPTH in the core at every bolt, cut in "
+        "at layup and drilled through with the panel" % HATCH_SPREADER_D
+        if HATCH_SPREADER else "a potted epoxy boss")
+    rep["hatch_spreader_d_mm"] = HATCH_SPREADER_D
+    # the head bears on the plug through 1 mm of skin - direct, no spreading,
+    # because G10 is not a skin on a foundation
+    rep["hatch_seat_on_spreader_MPa"] = round(
+        _bolt_N / _seat(HATCH_BOLT_HEAD_D), 1)
+    rep["hatch_seat_on_spreader_margin"] = round(
+        G10_COMP_MPA / (_bolt_N / _seat(HATCH_BOLT_HEAD_D)), 1)
+    # ...and the plug hands it to the bottom skin and the rim's ASA land
+    rep["hatch_spreader_on_rim_MPa"] = round(
+        _bolt_N / _seat(HATCH_SPREADER_D), 1)
+    # HOW FAR THE CORE CAN DRIFT AT LAYUP. The plug is placed by hand; the
+    # hole is drilled by machine. The head has to land wholly on the plug.
+    rep["hatch_spreader_drift_budget_mm"] = round(
+        (HATCH_SPREADER_D - HATCH_BOLT_HEAD_D) / 2.0, 2)
+    rep["hatch_spreader_to_lid_edge_mm"] = round(
+        _edge - HATCH_SPREADER_D / 2.0, 1)
+    rep["hatch_no_foam_in_load_path"] = True
     rep["hatch_pot_boss_d_mm"] = HATCH_POT_D
     rep["hatch_csk_depth_mm"] = round(_csk_z, 2)
     rep["hatch_csk_resin_wall_mm"] = round(
@@ -4314,7 +4371,6 @@ def build():
     # the load straight THROUGH to the bottom skin and the rim's ASA land and
     # never touches the core, so it has no such mode. That, plus the flush
     # head, is why it stays - not because the alternatives fail.
-    _edge = HATCH_BOLT_INSET - 1.5              # lid is inset 1.5 from the rim
     rep["hatch_bolt_to_lid_edge_mm"] = round(_edge, 1)
     # leave 2 mm of laminate outboard of it or the pocket breaks out
     rep["hatch_max_spreader_d_mm"] = round(2.0 * (_edge - 2.0), 1)

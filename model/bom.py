@@ -614,25 +614,27 @@ def build():
     # packs, and the A4/316 the salt water demands is several times the price
     # of the A2/304 those per-piece figures were really quoting. Every line
     # below is now (packs needed) x (real pack price).
-    # COUNTERSUNK TORX, not socket cap. Two reasons and the second is the
-    # real one. (1) These twelve heads sit in the only bare band on the deck -
-    # the deck pad stops short of the rim and the lid's own pad sits inboard
-    # of them - so proud caps are the most visible hardware on the board.
-    # (2) A cap head bears on 32 mm2 and each bolt delivers 1200 N at the
-    # 1.2 Nm spec - the PRELOAD, not the 182 N the cord needs - which is 37
-    # MPa onto a cored panel whose H100 crushes at 2.0. A O15 penny washer
-    # only gets that to 7.9; it takes a O28 fender washer to pass, and the
-    # bolt is 10.5 mm from the lid edge so one does not fit. The holes were
-    # already being potted, so a countersink in solid resin fixes BOTH: flush
-    # finish, and 23.6 MPa onto epoxy at ~50 instead of foam at 2.
-    # TORX because this head is flush with a deck that gets dragged up a
-    # beach and undone every ride - a packed hex socket cams out and rounds.
-    add("6  Hatch and seal", "M5 x 25 A4 countersunk TORX, 10 pk",
-        math.ceil(M["hatch_bolts"] * N / 10), "pk", 8.99, OK,
+    # SOCKET CAP, proud, no washer, no countersink. The head bears on a G10
+    # plug buried in the core, not on the panel: at 1200 N - the PRELOAD at
+    # the 1.2 Nm spec, not the 182 N the cord needs - a bare cap head puts
+    # ~2.7 MPa into H100 even after the skin spreads it, against a core that
+    # crushes at 2.0. On the plug the same head sits at 37 MPa against G10's
+    # ~380, 10x, and the foam carries none of it.
+    # A countersink would have hidden the head, but it needs 2.1 mm of solid
+    # material under the top face and there is 1.0 mm of skin over the plug -
+    # flush heads and a buried hardpoint do not combine. Caps it is.
+    add("6  Hatch and seal", "M5 x 25 A4 socket cap, 20 pk",
+        math.ceil(M["hatch_bolts"] * N / 20), "pk", 15.99, OK,
         str(M["hatch_bolts"] * N) + " needed. A4/316 - every cheaper listing "
-        "is A2/304, which pits in salt water. Head measures O9.0 against the "
-        "O9.8 ISO 10642 cone, so cut the countersink to the screw in hand; "
-        "NO WASHER ON TOP OF THE LID - the potted boss is the bearing")
+        "is A2/304, which pits in salt water")
+    # The hardpoint itself. ROD, not discs cut from sheet: O15.875 is no hole
+    # saw anyone owns, and 5/8 in rod parts off on a chop saw 24 times in ten
+    # minutes. About 20 discs to a 1 ft rod.
+    add("6  Hatch and seal", "G-10/FR4 rod 5/8in x 1ft, lid hardpoints", 2,
+        "ea", 18.55, EST, str(M["hatch_bolts"] * N) + " plugs needed, ~20 to "
+        "a rod. Sliced to core thickness, bonded into the core's 12 through "
+        "holes and sanded flush BOTH faces before layup - a plug standing "
+        "proud prints through a 1 mm skin under vacuum", vendor="Amazon")
     # NOT the $0.14 self-tapping brass insert that was here: driving a coarse
     # thread into a brittle laminate wedges it between plies, which is exactly
     # why the mast plate uses bonded bushings. A wire-thread insert is tapped

@@ -338,7 +338,8 @@ fibre ends at the cavity ledge.
 `Solid silicone cord, 3 mm round - BOTH seals` ·
 `Silicone adhesive, bonding the cord into groove` ·
 `Cyanoacrylate for the cord splice` · `2.5 mm straight cutter - fallback` ·
-`M5 x 25 A4 countersunk TORX, 10 pk` · `Transfer screw set M3-M6` ·
+`M5 x 25 A4 socket cap, 20 pk` · `Transfer screw set M3-M6` ·
+`G-10/FR4 rod 5/8in x 1ft, lid hardpoints` ·
 `Solid silicone cord, 1/8 in (3.175 mm) - the spare size`
 
 The ring went in at step 10a and has been glassed over since. Now sand the
@@ -358,103 +359,79 @@ which the 3 mm cord squeezes 20%. If it routs deep the 3 mm only reaches 10%
 and you want the 1/8 in spare instead — that is what it is for. Guessing the
 cord before the groove exists is how you end up at 10%.
 
-**The twelve heads finish flush, and nothing goes on top of the lid.** The
-bolt ring sits in the only bare band on the whole deck — the deck pad stops
+**The twelve heads sit proud, and there is nothing under them but a plug.**
+The bolt ring is in the only bare band on the whole deck — the deck pad stops
 20 mm outboard of the rim, the lid's own pad sits inboard — so it is the most
 visible hardware on the board. It is also the most loaded.
 
 **The load under the head is the PRELOAD, not what the seal needs.** The cord
 only wants **182 N** a bolt. At the 1.2 Nm spec each bolt actually delivers
-**1200 N**, and the surplus does not evaporate — it goes straight into the lid
-under the head, on 32 mm².
+**1200 N**, and the surplus does not evaporate — it goes into the lid under
+the head, on 32 mm².
 
-The 1 mm skin does not just pass that load straight down — it carries it
-sideways into the core for about **16 mm past the edge** of whatever is
-pressing on it. That is the same beam-on-elastic-foundation model the heel
-check uses, and it is worth crediting:
+The 1 mm skin does not pass that straight down; it carries it sideways into
+the core for about **16 mm past the edge** of whatever presses on it — the
+same beam-on-elastic-foundation model the heel check uses. Even crediting
+that:
 
-| Seat | Direct bearing | With the skin spreading | vs core's 2.0 MPa |
-|---|---|---|---|
-| M5 socket cap Ø8.5, bare | 37.4 MPa | 2.67 MPa | fails |
-| M5 button Ø9.5, bare | 25.9 MPa | 2.45 MPa | fails |
-| **Ø15 penny washer** | 7.9 MPa | **1.63 MPa** | **passes, 1.2×** |
-| Ø18 washer | 5.5 MPa | 1.35 MPa | passes, 1.5× |
+| Seat | Pressure | vs H100's 2.0 MPa |
+|---|---|---|
+| Bare M5 cap head | 2.67 MPa | fails |
+| Ø15 penny washer | 1.63 MPa | passes, 1.2× |
+| **On the G10 plug** | **37 MPa vs G10's ~380** | **10.2×, and the foam carries none** |
 
-So a penny washer does work at the corrected preload. A bare head still does
-not. What settles it is **what is under the load**: both washers spread into
-**foam**, which takes a *permanent set* past 2.0 MPa — and on a hard-stop
-joint a seat that sets means the lid drops and the cord ends up at a squeeze
-it was never designed for.
+> **Why the lid needs a hardpoint at all.** It is glass / H100 foam / glass,
+> and a bolt clamped straight onto that crushes the foam. So at every bolt the
+> core is replaced by a solid plug, and the lid reads glass / **solid G10** /
+> glass instead of glass / foam / glass. Same trick every deck fitting on a
+> boat or a surfboard uses. The usual version is an oversized hole filled with
+> thickened epoxy — a *potted boss* — and the module lid still does it that
+> way. The hatch lid gets a machined plug instead, because potting fills the
+> bolt hole and it then has to be re-drilled. V1 never needed any of this:
+> that lid was solid plywood all the way through.
 
-The potted boss has no such mode. It carries the load straight **through** to
-the bottom skin and onto the rim's ASA land, never loading the core at all:
-a 90° cone to Ø9.8 in a Ø16 epoxy boss lands on **23.6 MPa against epoxy at
-~50 — 2.1× margin**, and the head finishes flush. It stays because it is the
-only option with no foam in the load path, not because the others fail.
+#### The hardpoint is a G10 plug, buried at layup
 
-**The number that answers "is the lid strong enough":** the head starts
-crushing its own boss at **2.5 Nm**. The spec is 1.2. You would have to more
-than double it before anything is in trouble — and past the hard stop, extra
-torque buys no extra squeeze anyway.
+A **Ø15.875 (5/8 in) G10 plug** goes through the core at every bolt, **full
+depth**, bonded in and sanded flush before the skins go on. Then the CNC
+drills all twelve Ø5.6 holes through skin / plug / skin in one pass.
 
-> **"Boss" just means an oversized hole filled with epoxy.** Drill Ø16
-> through the top skin and the foam, leave the bottom skin as a floor, fill
-> it with thickened epoxy, cure. What is left is a plug of solid resin — a
-> local island through a panel that is otherwise foam in the middle. At every
-> bolt the lid then reads glass / **solid epoxy** / glass instead of glass /
-> foam / glass, and the head squeezes resin rather than crushing H100. Same
-> trick every deck fitting on a boat or a surfboard uses. V1 never needed it
-> because that lid was solid plywood all the way through.
+That is the whole point of doing it this way: **there is nothing to re-find
+afterwards.** No pocket, no potting, no hole that gets filled and has to be
+drilled out again — which would turn each of the twelve into its own precision
+job at the bench. And twelve holes bored in one setup are mutually accurate to
+the machine, so lining the lid up on the ring is a single **rigid-body fit**:
+get two to pick up and the rest already are.
 
-**Torx, not hex.** This socket is flush with a deck that gets dragged up a
-beach and undone every ride. A packed hex socket cams out and rounds off.
+1. **CNC the core** oversize, with twelve Ø16.03 through-holes.
+2. **Part the plugs** off the 5/8 in rod — chop saw or bandsaw, about 20 to a
+   foot. Bond them in and **sand both faces flush with the core.** A plug
+   standing proud prints through a 1 mm skin under vacuum and you get twelve
+   bumps in the deck.
+3. **Lay up** glass / core / glass and bag it. The plugs are invisible now and
+   it does not matter.
+4. **Machine the profile and drill all twelve Ø5.6**, one setup.
 
-#### The CNC cuts all twelve, and the potting must not destroy that
+**Full depth, not a shallow washer in a recess** — two reasons and both bite.
+A 3 mm disc in a 3 mm pocket has to finish flush to about 0.2 mm on milled
+foam or it prints through; and it still stacks 9 mm of H100 under it in
+compression. A through-plug has neither problem.
 
-This is the one that cost V1 a day, and the fix is **more machining, not
-less**. Twelve holes bored in one setup are mutually accurate to the machine,
-so lining the lid up on the ring is a single **rigid-body fit** — get two to
-pick up and the other ten are already right. Transferring each hole
-individually would throw that away and turn one alignment problem into twelve.
+**The core can drift 4.25 mm at layup** and the bolt still lands wholly on its
+plug — the plug is that much bigger than the head all round. That is what buys
+you the freedom to place the core by hand.
 
-So `02_hatch_lid.dxf` carries **two concentric circles at every station** and
-both get cut in the same setup: the Ø16 potting boss, and the Ø5.6 bolt hole
-straight through the middle of it.
+**No countersink.** The cone wants 2.1 mm of solid material under the top face
+and there is 1.0 mm of skin over the plug, so flush heads and a buried
+hardpoint do not combine. Cap heads, proud, no washers.
 
-**The order matters, and this is the step that is easy to get wrong:**
-
-1. **CNC**: pocket the twelve Ø16 bosses 13 mm deep — top skin and core only,
-   leave the bottom skin — and drill Ø5.6 through the centre of each. Set the
-   pocket Z off the *measured* thickness of the bagged panel, not the nominal
-   14.
-2. **Tape over the Ø5.6 holes on the underside.** Ordinary packing tape.
-3. **Fill the pockets from the top** with thickened epoxy. Cure. Peel the
-   tape — the machined Ø5.6 is still there in the bottom skin, untouched.
-4. **Flip the panel sealing-face-up and re-drill Ø5.6 down through the cured
-   resin**, using that hole as the guide. The machine kept the position; you
-   are only following it. Exit tear-out lands on the top skin, where the
-   countersink cuts it away anyway.
-5. **Flip back and countersink** each one 90° to Ø9.8, about 2.1 mm deep, to
-   the head you actually bought.
-
-**Nothing steel ever sits in curing epoxy.** A greased bolt used as a plug
-would also hold the position, and it works right up until one of the twelve
-does not release — and then the lid is scrap. The panel already holds its own
-datum, so there is no reason to take that bet.
-
-Skip the through-hole and fill the pockets blind and you have thrown away the
-setup you just paid for — you would be re-drilling by eye through solid resin.
-
-**If one or two still will not pick up.** The ring is six printed pieces,
-dovetailed, welded and glassed into a rebate, so a little drift is possible.
-That is what the boss is really insurance for: **3.1 mm of solid resin all
-round every hole.** Drill the stray one out, re-pot it, and re-drill it on a
-transfer-screw mark — without touching the other eleven. Five minutes, not a
-scrapped lid. That is the only job the transfer screws have here.
+**If one hole still will not pick up**, that is what the transfer screws are
+for: mark the real nut, open that hole, and leave the other eleven alone. The
+plug is 5.1 mm bigger than the bolt all round, so there is room to move it.
 
 **Seal the bores** with neat epoxy as [step 12](#step-12-seal-every-cut-edge)
-did for the rest — the boss itself is resin, but the countersink cuts the top
-skin and the through hole cuts the bottom one, and those are fresh fibre ends.
+did for the rest — the drill cuts both skins and the plug's glass, and those
+are fresh fibre ends.
 
 ### Step 14. Build the module
 

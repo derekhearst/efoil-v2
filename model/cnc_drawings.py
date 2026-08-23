@@ -223,76 +223,75 @@ def build(p):
     d = Dxf()
     lw, lh = ow - 3.0, oh - 3.0
     d.poly(rrect(0, lw, 0, lh, R + RIM_W - 1.5))
-    # BOTH circles, both cut, ONE SETUP. The boss and the bolt hole it
-    # surrounds are concentric by machine, and all twelve are mutually
-    # accurate for free - which is the whole reason to cut them here.
+    # Bolt holes only. The hardpoint is a G10 plug already buried in the core
+    # (03b), so there is nothing to pocket, pot or re-drill here - the bit
+    # goes through skin, plug and skin in one pass, all twelve in one setup.
     for (bx, by) in hb:
-        d.circle(bx - 1.5, by - 1.5, p["HATCH_POT_D"] / 2)
         d.circle(bx - 1.5, by - 1.5, (p["HATCH_BOLT_D"] + 0.6) / 2)
     add("02_hatch_lid", f"glass/H80/glass {p['LID_T']:.0f}mm", p["LID_T"], 1,
         d, lw, lh,
         "Bag oversize flat, then machine to this profile. Face the underside "
         "flat in the same setup - it is the sealing face and it lands hard on "
         "the rim ring, so it must be flat. "
-        f"TWO CONCENTRIC CIRCLES AT EACH OF THE 12, BOTH CUT IN THIS ONE "
-        f"SETUP: the O{p['HATCH_POT_D']:.0f} potting boss, pocketed "
-        f"{p['LID_SKIN'] + p['LID_CORE']:.0f} mm deep - top skin and core "
-        f"only, LEAVE THE BOTTOM SKIN - and the "
-        f"O{p['HATCH_BOLT_D'] + 0.6:.1f} bolt hole straight through the "
-        f"middle of it. Set the pocket Z off the MEASURED thickness of the "
-        f"bagged panel, not the nominal {p['LID_T']:.0f}. "
-        f"CUTTING BOTH HERE IS THE POINT: twelve holes bored in one setup "
+        f"DRILL ALL 12 O{p['HATCH_BOLT_D'] + 0.6:.1f} IN THIS SETUP, right "
+        f"through. Under each one is a O{p['HATCH_SPREADER_D']:.3f} G10 plug "
+        f"already bonded into the core (03b), full depth, so the bit passes "
+        f"skin / G10 / skin in one pass. Nothing to pocket, nothing to pot, "
+        f"nothing to re-find afterwards. "
+        f"CUTTING THEM ALL HERE IS THE POINT: twelve holes bored in one setup "
         f"are mutually accurate to the machine, so lining the lid up on the "
-        f"ring is a single rigid-body fit - get two right and the rest are "
-        f"right. Nothing about the potting changes that; the boss is a "
-        f"bearing surface, not a substitute for machining. "
-        f"POTTING SEQUENCE, and it matters: DRILL THE "
-        f"O{p['HATCH_BOLT_D'] + 0.6:.1f} RIGHT THROUGH, BOTTOM SKIN "
-        f"INCLUDED, in this setup. Then tape over it on the underside, fill "
-        f"the pocket from the top, cure, and peel the tape - the machined "
-        f"hole is still there in the bottom skin. Flip the panel sealing "
-        f"face up and re-drill down through the cured resin using that hole "
-        f"as the guide. The machine keeps the position and NOTHING STEEL "
-        f"EVER SITS IN CURING EPOXY - a greased bolt used as a plug works "
-        f"right up until one of the twelve does not release, and then the "
-        f"lid is scrap. Skip the through hole and fill the pocket blind and "
-        f"you have thrown away the setup you just paid for. "
-        f"IF ONE OR TWO STILL WILL NOT PICK UP: the ring is six printed "
-        f"pieces dovetailed, welded and glassed into a rebate, so a little "
-        f"drift is possible. That is what the boss is really insurance for - "
-        f"it is "
-        f"{(p['HATCH_POT_D'] - p['HATCH_BOLT_HEAD_D']) / 2:.1f} mm of solid "
-        f"resin all round every hole, so a stray one gets drilled out, "
-        f"re-potted and re-drilled on a transfer-screw mark WITHOUT touching "
-        f"the other eleven. A five-minute fix instead of a scrapped lid. "
-        f"POT EVERY BOLT HOLE, THEN COUNTERSINK IT. NOT a V1 problem - V1's "
-        f"lid was solid plywood and never crushed - but this one is a cored "
-        f"sandwich. At {p['BOLT_PRELOAD_N']:.0f} N a bolt - the PRELOAD at "
+        f"ring is a single rigid-body fit - get two to pick up and the rest "
+        f"already are. "
+        f"WHY THE PLUG IS THERE: this is a cored sandwich, and V1's lid was "
+        f"solid plywood so it never had this problem. At "
+        f"{p['BOLT_PRELOAD_N']:.0f} N a bolt - the PRELOAD at "
         f"{p['HATCH_TORQUE_NM']:.1f} Nm, not the {p['SEAL_N'] / 12:.0f} N the "
-        f"cord actually needs - an M5 cap head puts "
-        f"{p['BOLT_PRELOAD_N'] / (math.pi / 4 * (8.5 ** 2 - 5.6 ** 2)):.0f} "
-        f"MPa on H100 and even a O15 penny washer puts "
-        f"{p['BOLT_PRELOAD_N'] / (math.pi / 4 * (15.0 ** 2 - 5.6 ** 2)):.1f}, "
-        f"against a core that crushes at 2.0. It takes a O28 fender washer to "
-        f"get under the limit, twelve times round the hatch, which is why the "
-        f"answer is resin and not hardware. Drill O{p['HATCH_POT_D']:.0f} through the TOP skin and "
-        f"core only, leave the bottom skin, fill with thickened epoxy, cure, "
-        f"re-drill from the underside, then countersink 90 deg to "
-        f"O{p['HATCH_BOLT_HEAD_D']:.1f} - about "
-        f"{(p['HATCH_BOLT_HEAD_D'] - p['HATCH_BOLT_D'] - 0.6) / 2:.1f} mm "
-        f"deep - so the flat head finishes FLUSH WITH THE DECK. Cut the cone "
-        f"to the head you actually bought: the sourced screw measures O9.0, "
-        f"which sits ~0.4 mm sub-flush in a full-spec O9.8 cone. NO WASHER "
-        f"GOES ON TOP OF THIS LID. "
+        f"cord needs - a bare M5 cap head puts about 2.7 MPa into H100 even "
+        f"after the skin spreads it, against a core that crushes at 2.0. On "
+        f"the G10 plug the same head sits at 37 MPa against G10's ~380, and "
+        f"the foam carries none of it. "
+        f"NO COUNTERSINK: the cone wants 2.1 mm of solid material and there "
+        f"is 1.0 mm of skin over the plug. Cap heads, proud, as intended. "
         f"AND SEAL EVERY CUT EDGE WITH NEAT EPOXY - machined perimeter and "
         f"the inside of all 12 bores. THAT part is V1's Test 2 verbatim: "
         f"water wicking in through unsealed fibre ends at the cavity ledge.")
 
     d = Dxf()
-    d.poly(rrect(2.0, lw - 2.0, 2.0, lh - 2.0, R + RIM_W - 3.5))
+    d.poly(rrect(-6.0, lw + 6.0, -6.0, lh + 6.0, R + RIM_W + 4.5))
+    for (bx, by) in hb:
+        d.circle(bx - 1.5, by - 1.5, (p["HATCH_SPREADER_D"] + 0.15) / 2)
     add("03_hatch_lid_core", "Divinycell " + p["LID_CORE_GRADE"],
         p["LID_CORE"], 1, d,
-        lw - 4, lh - 4, "Inset 2 mm so the skins wrap the edge - no exposed core.")
+        lw + 12, lh + 12,
+        f"OVERSIZE BY 6 mm ALL ROUND, not inset. This drawing used to say "
+        f"'inset 2 mm so the skins wrap the edge', which contradicted the lid "
+        f"itself - 02 says bag oversize and machine to profile, and machining "
+        f"to profile cuts the wrap off. You cannot do both. Machining wins, so "
+        f"the core is cut oversize with the skins and the profile goes through "
+        f"all three at once; step 12's neat-epoxy edge seal is what protects "
+        f"the exposed core. It also buys the plug its edge distance: the bolt "
+        f"circle ends up {p['HATCH_BOLT_INSET'] - 1.5:.1f} mm from the "
+        f"FINISHED edge, so a O{p['HATCH_SPREADER_D']:.3f} plug clears it by "
+        f"{p['HATCH_BOLT_INSET'] - 1.5 - p['HATCH_SPREADER_D'] / 2:.1f} mm. "
+        f"THE 12 CIRCLES ARE THROUGH-HOLES for the G10 plugs in 03b - "
+        f"O{p['HATCH_SPREADER_D'] + 0.15:.2f}, a slip fit on 5/8 in rod. "
+        f"Bond the plugs in, sand BOTH faces flush with the core, and only "
+        f"then lay up: a plug standing proud prints through a 1 mm skin under "
+        f"vacuum and you get twelve bumps in the deck.")
+
+    d = Dxf()
+    for k in range(12):
+        d.circle(24.0 * (k % 6), 24.0 * (k // 6), p["HATCH_SPREADER_D"] / 2)
+    add("03b_lid_spreaders", "G-10/FR4 rod, 5/8 in", p["LID_CORE"], 12, d,
+        144, 48,
+        f"NOT A CNC PART - part these off a 5/8 in G10 rod on a chop saw or "
+        f"bandsaw, {p['LID_CORE']:.1f} mm each, then sand to the core's real "
+        f"thickness. 12 a board, 24 for two, about 20 to a 1 ft rod. They are "
+        f"the hatch lid's hardpoints: a bare cap head crushes H100, and these "
+        f"take the foam out of the load path entirely. Round is deliberate - "
+        f"the bolt lands wherever the machine puts it and the plug is "
+        f"{(p['HATCH_SPREADER_D'] - 8.5) / 2:.2f} mm bigger than the head all "
+        f"round, so the core can drift that far at layup and still be right.")
 
     # 3 - module floor -----------------------------------------------------
     # A PLAIN RECTANGLE now. It used to carry a JOINT_GROOVE_D locating groove
