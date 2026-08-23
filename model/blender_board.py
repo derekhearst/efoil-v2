@@ -4890,9 +4890,14 @@ def build():
         gk_b = -MOD_GASKET_START
     else:
         gk_a, gk_b = MOD_GASKET_OUT, MOD_GASKET_IN
+    # The band follows the FLANGE at its outer edge and the INTERIOR at its
+    # inner one, and those have different corners - 17 outside, square
+    # inside. It was cut with a hardcoded 6.0 either way, which is neither.
+    _gk_ro = (MOD_CORNER_R + MOD_FLANGE_W_OUT - MOD_GASKET_EDGE
+              if MOD_FLANGE_OUT else 6.0)
     gk_o = prism("V2_ModGasket_o",
                  rounded_rect(ix0 + gk_a, ix1 - gk_a,
-                              iy0 + gk_a, iy1 - gk_a, 6.0),
+                              iy0 + gk_a, iy1 - gk_a, _gk_ro),
                  wall_top, wall_top + FIT_LID, coll, bom_mat("seal"))
     gk_i = prism("V2_ModGasket_i_cut",
                  rounded_rect(ix0 + gk_b, ix1 - gk_b,
@@ -5024,9 +5029,16 @@ def build():
     # Thru holes in each ply and the insert in the flange rail - the two
     # machined features. The bolt is hardware; drawing it hid both.
     if MOD_FLANGE_OUT:
+        # PASS THE RADIUS. bolt_ring has taken one since the hatch lid hit
+        # exactly this - "placing them on a plain rectangle put the four
+        # corner bolts outside the lid's rounded corners" - and the module
+        # was still calling it with a square rectangle after its own corners
+        # were rounded. The corner bolts were not off the part, but they had
+        # 2.15 mm of edge material where the straight runs have 6.5.
+        _bolt_r = MOD_CORNER_R + MOD_FLANGE_W_OUT - MOD_BOLT_EDGE
         mb = bolt_ring(fx0 + MOD_BOLT_EDGE, fx1 - MOD_BOLT_EDGE,
                        fy0 + MOD_BOLT_EDGE, fy1 - MOD_BOLT_EDGE,
-                       MOD_BOLT_PITCH)
+                       MOD_BOLT_PITCH, r=_bolt_r)
     else:
         mb = bolt_ring(ix0 + MOD_BOLT_INSET, ix1 - MOD_BOLT_INSET,
                        iy0 + MOD_BOLT_INSET, iy1 - MOD_BOLT_INSET,
@@ -5137,6 +5149,20 @@ def build():
     rep["strip_set_by"] = max(rep["strip_demand_mm"],
                               key=lambda k: rep["strip_demand_mm"][k]
                               if "TWO" not in k and "side" not in k else -1)
+    # How close does the WORST bolt sit to the flange's edge? Straight runs
+    # are MOD_BOLT_EDGE by construction; the corners are the question, and
+    # they are only right if bolt_ring was handed the radius.
+    _cr = MOD_CORNER_R + MOD_FLANGE_W_OUT
+    _cc = [(fx0 + _cr, fy0 + _cr), (fx1 - _cr, fy0 + _cr),
+           (fx1 - _cr, fy1 - _cr), (fx0 + _cr, fy1 - _cr)]
+    _edges = []
+    for _bx, _by in mb:
+        _in_corner = min(math.hypot(_bx - cx, _by - cy) for cx, cy in _cc)
+        if (_bx < fx0 + _cr or _bx > fx1 - _cr) and                 (_by < fy0 + _cr or _by > fy1 - _cr):
+            _edges.append(_cr - _in_corner)
+        else:
+            _edges.append(min(_bx - fx0, fx1 - _bx, _by - fy0, fy1 - _by))
+    rep["module_bolt_edge_min_mm"] = round(min(_edges), 2)
     rep["module_lid_bolts"] = len(mb)
     # --- BOM COUNTS. bom.py used to hold its own hand-typed copies of these,
     # which is the same failure as fleet_cost: nothing breaks when they drift,
@@ -6155,6 +6181,13 @@ def build():
         elif rep["module_seal_to_insert_bore_mm"] < 1.0:
             fails.append("the module gasket band runs into the insert bores: "
                          f"{rep['module_seal_to_insert_bore_mm']} mm clear")
+        # MEASURE THE BOLTS THAT EXIST, not a formula for where they might
+        # have gone. The first version of this check computed the corner case
+        # from the rectangle and so kept reporting the bug after it was fixed.
+        if rep.get("module_bolt_edge_min_mm", 99) < MOD_BOLT_EDGE - 0.5:
+            fails.append("a lid bolt sits closer to the flange edge than the "
+                         f"straight runs: {rep['module_bolt_edge_min_mm']} mm "
+                         f"against {MOD_BOLT_EDGE}")
         if rep["module_insert_edge_material_mm"] < 2.5:
             fails.append("too little ASA outboard of the lid inserts: "
                          f"{rep['module_insert_edge_material_mm']} mm")
