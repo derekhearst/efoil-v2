@@ -22,6 +22,23 @@ Single-cavity layout modeled on Gustav's Danish eFoil V2 build (foil.zone). Shar
 
 At 86 kg rider weight + ~96.6L sealed displacement, reserve buoyancy is ~10.6 kg — classic "sinker" board. Rider will not float above the waterline while standing on the board. Water start required (lie on board, knee up, stand up as speed builds). This is standard for performance eFoil builds.
 
+> **CORRECTION — that +10.6 kg is wrong, and it is the number V2 has been
+> compared against all along.** It is `96.6 − 86`: displacement minus rider,
+> with the board's own 25–30 kg never subtracted. The board has to float
+> itself before it floats anybody. The real figure is
+> `96.6 − 86 − 27 = −16.4 kg`, which is why the same paragraph calls it a
+> sinker — the word was right and the arithmetic was not.
+>
+> V1's foam volume checks out independently: measuring the Onshape STL in
+> `stl/` gives **73.26 L** against the 75.3 L claimed here, and 73.3 + 21.3
+> of cavity lands within 3% of the 96.6 L envelope. It is the buoyancy sum
+> that was wrong, not the volume.
+>
+> Left in place rather than edited away because V2's targets were set from
+> it. If V1 in fact floats a standing rider, then something else in these
+> numbers is off — most likely the board's real mass — and the way to settle
+> it is a bathroom scale, not more arithmetic.
+
 ---
 
 ## Exterior Shape
