@@ -88,6 +88,10 @@ LINKS = {
         ("B0GS2R3F5G", 12.99, "284Pcs 8-Size Wood Dowels Kit with 3 Drill Bits"),
     "E-glass 6 oz, 50in x 12ft, 2-pack":
         ("B0CQY5KX84", 19.99, "2 Packs 6 oz 12ft x 50in Fiberglass Cloth E-Glass Plain Weave"),
+    "Transfer punch set, metric 1-13 mm":
+        ("B005379HJA", 24.99, "TP-03 1-13mm Metric Transfer Punch Set - 25 Pieces"),
+    "Transfer screw set M3-M6":
+        ("B01IUBRSLO", 24.99, "HHIP 3601-0516 28 Piece Transfer Screw Set, M3 X .5, M4 X .7, M5 X .8, M6 X 1"),
     "M5 x 25 A4 countersunk TORX, 10 pk":
         ("B01MRIRHZG", 8.99, "uxcell M5 x 25mm 316 Stainless Steel Flat Torx Head Machine Screw Silver Tone 10pcs"),
     "EPDM/neoprene sheet 1/2in, conduit bungs":
@@ -305,6 +309,8 @@ LINK_VENDOR = {
     "Divinycell H-80 3/4in quarter sheet 24x48, mast block + leash pad": "Fiberglass Supply",
     "Dowel pins + drill, two-sided registration": "Amazon",
     "E-glass 6 oz, 50in x 12ft, 2-pack": "Amazon",
+    "Transfer punch set, metric 1-13 mm": "Amazon",
+    "Transfer screw set M3-M6": "Amazon",
     "M5 x 25 A4 countersunk TORX, 10 pk": "Amazon",
     "EPDM/neoprene sheet 1/2in, conduit bungs": "Amazon",
     "Hollow punch set 3/16-1-3/8in, for the O31.75 bung": "Amazon",

@@ -158,7 +158,7 @@ vertical seam (1030 mm). Dowel pins keep the halves registered.
 **Blocks on:** step 6
 **Uses:** `Divinycell H-80 3/4in quarter sheet 24x48, mast block + leash pad` ·
 `6061-T651 1/2in x 12 x 18 - mast plates` · `M8 x 1.25 tap + 6.8 mm drill set` ·
-`M8 x 1.25 BOTTOMING tap, 4-flute`
+`M8 x 1.25 BOTTOMING tap, 4-flute` · `Transfer punch set, metric 1-13 mm`
 
 The CNC already cut the pockets. Bond the H-80 mast block and leash pad in,
 flush.
@@ -179,6 +179,18 @@ flush.
 >
 > A hand-held drill is routinely 3–5° off. The arithmetic rules it out; this
 > is not a matter of care.
+
+**Position comes off the real mast, not off the drawing.** The 165 × 90 in
+the CAD is unverified layout, and a perfectly machined plate on the wrong
+pattern is still scrap. Clamp the mast to the blank and spot all four holes
+with the **9 mm transfer punch** — it is a slip fit in Gong's own clearance
+holes, so it marks true centre within a few hundredths. A 6.8 mm tap drill
+rattling around inside that same 9 mm hole does not, and the whole positional
+budget here is 0.25 mm. Then indicate off the four punch marks and machine to
+them.
+
+That splits the job the way it wants splitting: **the mast owns position, the
+machine owns angle and depth**, and neither is asked to do the other's part.
 
 **Route, in order of preference:**
 
@@ -326,7 +338,7 @@ fibre ends at the cavity ledge.
 `Solid silicone cord, 3 mm round - BOTH seals` ·
 `Silicone adhesive, bonding the cord into groove` ·
 `Cyanoacrylate for the cord splice` · `2.5 mm straight cutter - fallback` ·
-`M5 x 25 A4 countersunk TORX, 10 pk` ·
+`M5 x 25 A4 countersunk TORX, 10 pk` · `Transfer screw set M3-M6` ·
 `Solid silicone cord, 1/8 in (3.175 mm) - the spare size`
 
 The ring went in at step 10a and has been glassed over since. Now sand the
@@ -369,6 +381,41 @@ flush with the deck, no hardware showing.
 
 **Torx, not hex.** This socket is flush with a deck that gets dragged up a
 beach and undone every ride. A packed hex socket cams out and rounds off.
+
+#### The ring is the master. The lid gets drilled off it, not off the drawing.
+
+This is the one that cost V1 a day. The ring is **six printed pieces**,
+dovetailed, acetone-welded and glassed into a machined rebate. Each piece's
+holes are printer-accurate to its own dovetails — but where they end up after
+the bond-up is not something the drawing knows. Drill the lid to nominal and
+you are matching twelve holes to a pattern that no longer exists.
+
+**And the countersink makes that worse, which is the part to notice.** A cap
+head over a clearance hole does not care where the hole is — the head covers
+it. A flat head cannot: the cone centres itself in its own countersink, so
+twelve cones on a drifted pattern fight each other and the lid never seats
+flat. Opening the clearance does nothing about it.
+
+The potted boss is the way out, and it is already there:
+
+1. **CNC cuts twelve Ø16 bosses at nominal**, 13 mm deep — top skin and core
+   only, leave the bottom skin. Set Z off the *measured* thickness of the
+   bagged panel. A Ø16 pocket does not care about half a millimetre.
+2. **Pot them** with thickened epoxy and cure. Still no bolt holes.
+3. **Ring goes in and gets glassed** (step 10a) — it is now wherever it is.
+4. **Transfer screws into six of the captive nuts**, points proud. Drop the
+   lid on, register it on its perimeter, press. Six exact marks.
+5. **Drill Ø5.6 and countersink** on those marks, bolt those six down, then
+   move the screws to the other six and repeat. The lid is held by the first
+   six while you do it, so nothing can shift.
+
+The boss gives the small hole **3.1 mm of radial freedom** to land in,
+against a bond-up drift of well under 1 mm. No fine-tuning, no reaming, no
+holes ovalled out by hand.
+
+**Seal the new bores** with neat epoxy as [step 12](#step-12-seal-every-cut-edge)
+did for the rest — the boss itself is resin, but the countersink cuts the top
+skin and the through hole cuts the bottom one, and those are fresh fibre ends.
 
 ### Step 14. Build the module
 

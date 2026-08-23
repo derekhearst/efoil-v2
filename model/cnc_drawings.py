@@ -223,13 +223,31 @@ def build(p):
     d = Dxf()
     lw, lh = ow - 3.0, oh - 3.0
     d.poly(rrect(0, lw, 0, lh, R + RIM_W - 1.5))
+    # THE POTTING BOSSES, NOT THE BOLT HOLES. The bolt holes are transferred
+    # off the assembled ring later and must not be cut here - see the note.
     for (bx, by) in hb:
-        d.circle(bx - 1.5, by - 1.5, (p["HATCH_BOLT_D"] + 0.6) / 2)
+        d.circle(bx - 1.5, by - 1.5, p["HATCH_POT_D"] / 2)
     add("02_hatch_lid", f"glass/H80/glass {p['LID_T']:.0f}mm", p["LID_T"], 1,
         d, lw, lh,
         "Bag oversize flat, then machine to this profile. Face the underside "
         "flat in the same setup - it is the sealing face and it lands hard on "
         "the rim ring, so it must be flat. "
+        f"*** THE 12 CIRCLES ARE O{p['HATCH_POT_D']:.0f} POTTING BOSSES, "
+        f"NOT BOLT HOLES. DO NOT DRILL O{p['HATCH_BOLT_D'] + 0.6:.1f} HERE. "
+        f"*** Pocket them {p['LID_SKIN'] + p['LID_CORE']:.0f} mm deep - top "
+        f"skin and core only, leave the bottom skin - and set Z off the "
+        f"MEASURED thickness of the bagged panel, not the nominal "
+        f"{p['LID_T']:.0f}. The bolt holes come later and they come off the "
+        f"RING, not off this drawing: the ring is six printed pieces "
+        f"dovetailed, welded and glassed into a rebate, so it is the part "
+        f"that moves, and matching twelve nominal holes to it by hand is the "
+        f"day V1 lost. A flat head makes that worse, not better - the cone "
+        f"centres itself, so clearance cannot absorb the offset the way it "
+        f"does under a cap head. Cut the bosses at nominal, pot them, then "
+        f"transfer the real nut positions with M5 transfer screws and drill "
+        f"each O{p['HATCH_BOLT_D'] + 0.6:.1f} where it actually lands - the "
+        f"boss leaves {(p['HATCH_POT_D'] - p['HATCH_BOLT_HEAD_D']) / 2:.1f} "
+        f"mm of radial freedom to do it in, against a drift of well under 1. "
         f"POT EVERY BOLT HOLE, THEN COUNTERSINK IT. NOT a V1 problem - V1's "
         f"lid was solid plywood and never crushed - but this one is a cored "
         f"sandwich. At 910 N a bolt, an M5 cap head puts 28 MPa on H100 and "
@@ -238,7 +256,8 @@ def build(p):
         f"times round the hatch, which is why the answer is resin and not "
         f"hardware. Drill O{p['HATCH_POT_D']:.0f} through the TOP skin and "
         f"core only, leave the bottom skin, fill with thickened epoxy, cure, "
-        f"then drill O{p['HATCH_BOLT_D'] + 0.6:.1f} and countersink 90 deg to "
+        f"then - ON THE TRANSFERRED MARK - drill "
+        f"O{p['HATCH_BOLT_D'] + 0.6:.1f} and countersink 90 deg to "
         f"O{p['HATCH_BOLT_HEAD_D']:.1f} - about "
         f"{(p['HATCH_BOLT_HEAD_D'] - p['HATCH_BOLT_D'] - 0.6) / 2:.1f} mm "
         f"deep - so the flat head finishes FLUSH WITH THE DECK. Cut the cone "
@@ -381,6 +400,16 @@ def build(p):
         f"clearance - its floor is the ledge that pushes the wire bung up "
         f"against the step in the foam as the plate is drawn face to face "
         f"with the hull, so the depth is a real dimension, not a >= . "
+        f"POSITION COMES OFF THE REAL MAST, NOT OFF THIS DRAWING. The "
+        f"{p['BOLT_SPACING_X']:.0f} x {p['BOLT_SPACING_Y']:.0f} here is "
+        f"UNVERIFIED layout. Clamp the mast to the blank and spot all four "
+        f"with a {p['MAST_CLEAR_D']:.0f} mm TRANSFER PUNCH - a slip fit in "
+        f"Gong's own clearance holes, so it marks the true centre within a "
+        f"few hundredths, where a tap drill rattling in the same hole does "
+        f"not. Then indicate off the four punch marks and machine to them. "
+        f"That splits the job the way it wants splitting: the mast owns "
+        f"POSITION, the machine owns ANGLE and DEPTH, and neither is being "
+        f"asked to do the other's part. "
         f"*** MACHINE THIS ONE. DO NOT HAND-DRILL IT. *** An earlier version "
         f"of this note called it bandsaw and drill-press work. That was "
         f"wrong, and it was wrong because it reasoned from V1 - where the "

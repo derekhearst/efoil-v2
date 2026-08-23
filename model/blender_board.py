@@ -4176,6 +4176,36 @@ def build():
     rep["hatch_bolt_bottoms_out"] = (
         rep["hatch_bolt_len_mm"] > LID_T + RIM_T - 1.0)
 
+    # --- WHICH PART IS THE MASTER -----------------------------------------
+    # The ring is SIX printed pieces, dovetailed, acetone-welded and glassed
+    # into a machined rebate. Each piece's holes are printer-accurate to its
+    # own dovetails; what nobody can predict is where they end up after the
+    # bond-up. So the ring is the part that MOVES and the lid is the part cut
+    # to nominal - drill the lid off the drawing and you are matching twelve
+    # holes to a pattern that no longer exists. That is hand-fitting, and it
+    # is what V1 cost a day of.
+    #
+    # AND THE COUNTERSINK MAKES IT WORSE, WHICH IS THE PART TO NOTICE. A cap
+    # head over a clearance hole does not care where the hole is - the head
+    # covers it and the joint takes the offset. A FLAT head cannot: the cone
+    # centres itself in its own countersink, so twelve cones on a drifted
+    # pattern fight each other and the lid never seats flat. Opening the
+    # clearance does nothing. Going flush and drilling to nominal are not
+    # compatible, and the flush head is the one worth keeping.
+    #
+    # The potted boss is the way out, because it is already there. Cut the
+    # O16 bosses at nominal - a O16 hole does not care about half a
+    # millimetre - pot them, and only THEN transfer the real nut positions
+    # off the assembled ring and drill the O5.6 and its cone wherever they
+    # actually land. The boss gives the small hole this much room to move:
+    rep["hatch_holes_transferred_from_ring"] = True
+    rep["hatch_boss_positional_freedom_mm"] = round(
+        (HATCH_POT_D - HATCH_BOLT_HEAD_D) / 2.0, 1)
+    rep["hatch_master_part"] = (
+        "the ASSEMBLED, GLASSED-IN ring. CNC cuts the O16 potting bosses at "
+        "nominal; the O5.6 and the countersink are transferred off the real "
+        "captive nuts with M5 transfer screws after the ring is in")
+
     # --- mast hardpoint ---------------------------------------------------
     # The plate and the dense ring sit in a POCKET machined into the underside
     # of the blank, flush with the surrounding foam, so the whole bottom is one

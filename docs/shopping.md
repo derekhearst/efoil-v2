@@ -6,17 +6,17 @@ Grouped by where you buy it rather than by what it does, because that is the ord
 
 | Supplier | Lines | $ |
 |---|---:|---:|
-| Amazon | 111 | $3,560.11 |
+| Amazon | 113 | $3,610.09 |
 | Gong | 1 | $1,404.00 |
 | Flipsky | 3 | $1,038.00 |
-| Not a purchase - tax and freight | 3 | $832.73 |
+| Not a purchase - tax and freight | 3 | $835.73 |
 | BatteryHookup | 2 | $297.50 |
 | Fiberglass Supply | 3 | $253.38 |
 | Home Depot / hardware | 4 | $169.16 |
 | Maker Shop Boise | 1 | $150.00 |
 | Speedy Metals | 1 | $88.92 |
 | Easy Composites | 1 | $52.00 |
-| **TOTAL** | | **$7,845.80** |
+| **TOTAL** | | **$7,898.78** |
 
 ## Amazon
 
@@ -70,6 +70,8 @@ https://www.amazon.com
 | [PETG filament 1 kg, mast clamp set](https://www.amazon.com/dp/B0D41Y3WWZ) | 2 | kg | $25.98 | **verified** | 4 STEP files; 0.6 nozzle, 5 perims, 40% infill |
 | [PETG for props, 4-5 spares per board](https://www.amazon.com/dp/B0D41Y3WWZ) | 2 | kg | $25.98 | **verified** | 0.4 nozzle, 100% infill; balance-check on a bolt, then epoxy-coat - V1 skipped the coat and layer lines cost d |
 | [1/4 in torque wrench, 10-50 in-lb](https://www.amazon.com/dp/B0D7PWP7YF) | 1 | ea | $25.97 | **verified** | 1.1-5.6 Nm. RANGE MATTERS: our hatch spec is 2 Nm = 17.7 in-lb, which is BELOW the 20 in-lb floor of the commo |
+| [Transfer screw set M3-M6](https://www.amazon.com/dp/B01IUBRSLO) | 1 | set | $24.99 | estimate | M5 for the 12 hatch nuts, M4 for the 18 module lid inserts, M6 for the handle strips. 6 of each size, so the h |
+| [Transfer punch set, metric 1-13 mm](https://www.amazon.com/dp/B005379HJA) | 1 | set | $24.99 | estimate | the 9 mm punch is a slip fit in Gong's own clearance holes and marks true centre within a few hundredths. A 6. |
 | [Rotary-tool router base + collets, if needed](https://www.amazon.com/dp/B0000DEZK4) | 1 | set | $24.63 | estimate | you have the tool; this is only if the base you have will not hold depth over the groove run |
 | [Test cap + tubing, module leak test](https://www.amazon.com/dp/B0DPWRP6FR) | 1 | set | $22.99 | estimate | PROVE THE MODULE BEFORE THE CELLS GO IN, and prove it the way the failure actually happens: run one of the kit |
 | [8 AWG silicone, 10 ft red + 10 ft black](https://www.amazon.com/dp/B0BYJRDT19) | 1 | pk | $21.99 | **verified** | one pack covers BOTH boards - the longest run in the module is the 278 mm ESC-to-fuse, so 10 ft a side is alre |
@@ -162,7 +164,7 @@ Some Flipsky appears on Amazon but the range is thin and usually dearer. Buy dir
 
 | Item | Qty | Unit | Ext | Price | Note |
 |---|---:|---|---:|---|---|
-| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $444.10 | **verified** |  |
+| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $447.10 | **verified** |  |
 | Gong shipping to Idaho, ONE order, both foils | 1 | order | $268.63 | **verified** | quoted at checkout for 2 x XL Alu setups. PER ORDER, not per foil - ordering the two separately would roughly  |
 | Shipping - Divinycell, 6061 plate, VR20 | 1 | allow | $120.00 | estimate | STILL THE BIGGEST UNVERIFIED LINE - it wants three real carts to settle. Was $220 when it covered G10 sheet an |
 

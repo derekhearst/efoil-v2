@@ -139,6 +139,8 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | Item | Qty | Unit | Unit $ | Ext $ | | Note |
 |---|---:|---|---:|---:|---|---|
 | Capacitor spot welder | 1 | ea | $0.00 | $0.00 | on hand | used on V1 |
+| [Transfer screw set M3-M6](https://www.amazon.com/dp/B01IUBRSLO) | 1 | set | $24.99 | $24.99 | estimate | M5 for the 12 hatch nuts, M4 for the 18 module lid inserts, M6 for the handle strips. 6 of each size, so the hatch goes in two passes with the lid clamped - drill and bolt the first six, then move the screws round |
+| [Transfer punch set, metric 1-13 mm](https://www.amazon.com/dp/B005379HJA) | 1 | set | $24.99 | $24.99 | estimate | the 9 mm punch is a slip fit in Gong's own clearance holes and marks true centre within a few hundredths. A 6.8 tap drill rattling in that same 9 mm hole does not - and the mast plate's whole positional budget is 0.25 mm |
 | [M8 x 30 A4 mast bolts, 10 pk - spares](https://www.amazon.com/dp/B07HZKSP72) | 1 | pk | $10.82 | $10.82 | verified | Gong supplies its own; these are spares. Only listing confirming marine A4/316; head is ISO 7380 button, not socket cap - check that suits the counterbore |
 | [Silicone grease for the seal cord](https://www.amazon.com/dp/B0BN82MJVK) | 1 | tube | $9.99 | $9.99 | estimate | stops the cord bonding to the lid in storage |
 | [Cyanoacrylate for the cord splice](https://www.amazon.com/dp/B0DKP4TVSF) | 1 | ea | $5.39 | $5.39 | estimate |  |
@@ -150,7 +152,7 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | [M6 x 16 A4 button head, 10 pk](https://www.amazon.com/dp/B07DVRLQTK) | 1 | pk | $8.06 | $8.06 | verified | 12 needed - 2 per rail handle into the 6061 strip, 2 into the module pads. Fender washer under every one: the load lands on WEBBING, and a button head's edge is what tears it |
 | M6 washers for the rail handles | 0 | off | $0.00 | $0.00 | on hand | 8 off the M6 x 20 fender washer pack in section 10b, not a second purchase |
 | M6 x 12.7 brass heat-set insert, 50 pc | 1 | pk | $12.00 | $12.00 | estimate | 4 needed, module handle pads; 8.2 mm printed pilot, same as the model's cut. LOCTITE the bolts - the pedestal pivots on them every time the module is lifted |
-| **subtotal** | | | | **$152.16** | | |
+| **subtotal** | | | | **$202.14** | | |
 
 ## 9c Pack wiring
 
@@ -245,29 +247,29 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | Item | Qty | Unit | Unit $ | Ext $ | | Note |
 |---|---:|---|---:|---:|---|---|
 | Shipping - Divinycell, 6061 plate, VR20 | 1 | allow | $120.00 | $120.00 | estimate | STILL THE BIGGEST UNVERIFIED LINE - it wants three real carts to settle. Was $220 when it covered G10 sheet and hazmat epoxy, both of which are now out of the build entirely |
-| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $444.10 | $444.10 | verified |  |
-| **subtotal** | | | | **$564.10** | | |
+| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $447.10 | $447.10 | verified |  |
+| **subtotal** | | | | **$567.10** | | |
 
 ## Totals
 
 | | |
 |---|---:|
-| **Grand total, 2 boards** | **$7,845.80** |
-| Per board | $3,922.90 |
-| Of which verified | $7,295.61  (93%) |
-| Of which estimated | $550.19 |
-| Linked to a real listing | 126 lines |
+| **Grand total, 2 boards** | **$7,898.78** |
+| Per board | $3,949.39 |
+| Of which verified | $7,298.61  (92%) |
+| Of which estimated | $600.17 |
+| Linked to a real listing | 128 lines |
 | Priced but NOT linked | 1 lines, $12.00 |
-| Not linkable, but MEASURED (freight quotes) | 2 lines, $712.73 |
+| Not linkable, but MEASURED (freight quotes) | 2 lines, $715.73 |
 | Not linkable and still estimated | 1 lines, $120.00 |
 
 ## What is a board, and what is a shop
 
-Some of the total above is not the cost of a board at all - it is tools, jigs and templates that exist afterwards and do not repeat. Splitting them out is the difference between "a board costs $3,923" and "a board costs $3,515 and I now own a vacuum rig, a crimper and a full template set".
+Some of the total above is not the cost of a board at all - it is tools, jigs and templates that exist afterwards and do not repeat. Splitting them out is the difference between "a board costs $3,949" and "a board costs $3,515 and I now own a vacuum rig, a crimper and a full template set".
 
 | | |
 |---|---:|
-| One-time tooling (incl. its share of tax) | $816.38 |
+| One-time tooling (incl. its share of tax) | $869.36 |
 | **Marginal cost of a board** | **$3,514.71** |
 | Cost of the NEXT board after these 2 | $3,514.71 |
 
@@ -283,6 +285,8 @@ Some of the total above is not the cost of a board at all - it is tools, jigs an
 | Hollow punch set 3/16-1-3/8in, for the O31.75 bung | $32.99 |
 | M8 x 1.25 tap + 6.8 mm drill set | $8.63 |
 | M8 x 1.25 BOTTOMING tap, 4-flute | $8.78 |
+| Transfer screw set M3-M6 | $24.99 |
+| Transfer punch set, metric 1-13 mm | $24.99 |
 | 1/4 in torque wrench, 10-50 in-lb | $25.97 |
 | Hydraulic lug crimper, 10 ton, 12-2/0 AWG | $39.99 |
 | Dowel pins + drill, two-sided registration | $12.99 |

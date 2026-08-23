@@ -1025,6 +1025,27 @@ def build():
     # Things that are easy to leave off a BOM and then stop a build dead.
     add("9b Small but essential", "Capacitor spot welder", 1, "ea", 0.00,
         OWNED, "used on V1")
+    # THE TWO TOOLS THAT DECIDE WHETHER THE HOLES LINE UP.
+    # Every hole pattern on this board mates to a part that was NOT machined
+    # from the same drawing: the hatch lid meets a ring printed in six pieces
+    # and glassed in, the mast plate meets a Gong extrusion. Drilling either
+    # to nominal means hand-fitting it afterwards, which is the day V1 lost -
+    # and the flush countersunk heads on the lid make it worse, because a
+    # cone centres itself and clearance stops absorbing the error.
+    # Transfer screws for THREADED holes (the ring's captive nuts), transfer
+    # punches for CLEARANCE holes (the mast). They are different tools and
+    # there is no one set that does both.
+    add("9b Small but essential", "Transfer screw set M3-M6", 1, "set",
+        24.99, EST, "M5 for the 12 hatch nuts, M4 for the 18 module lid "
+        "inserts, M6 for the handle strips. 6 of each size, so the hatch "
+        "goes in two passes with the lid clamped - drill and bolt the first "
+        "six, then move the screws round", tool=True, vendor="Amazon")
+    add("9b Small but essential", "Transfer punch set, metric 1-13 mm", 1,
+        "set", 24.99, EST, "the 9 mm punch is a slip fit in Gong's own "
+        "clearance holes and marks true centre within a few hundredths. A "
+        "6.8 tap drill rattling in that same 9 mm hole does not - and the "
+        "mast plate's whole positional budget is 0.25 mm", tool=True,
+        vendor="Amazon")
     add("9b Small but essential", "M8 x 30 A4 mast bolts, 10 pk - spares",
         1, "pk", 10.82, OK, "Gong supplies its own; these are spares. Only "
         "listing confirming marine A4/316; head is ISO 7380 button, not "
