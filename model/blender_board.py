@@ -840,7 +840,19 @@ CONDUIT_X_OFF = 0.0                # from MAST_X, on the mast's chord centreline
 # no account of the bend radius of three 8 AWG silicone leads plus their
 # barrel housings, which is what actually occupies this space. 75 gives the
 # leads somewhere to go that is not "pressed against the cavity wall".
-WIRE_BAY_LEN = 68.0                # module aft wall to cavity aft wall
+# 75, was 68 - and 68 was only ever there because a BROKEN CHECK said so.
+# Derek asked for 75 originally; it was refused by the rim-segment volume
+# test, the same in-build boolean measurement later shown to report 53% of a
+# ring that measures 99.96% in the saved file. That check is demoted now, so
+# the number it blocked can have its say again.
+#
+# It earns the 7 mm here on its own account. The module's handle is a 178 mm
+# strap on a 70 mm span, so it arches 53.2 mm, and the arch bulges AFT into
+# this bay - 12 mm of pad plus 53.2 of loop is 65.2. In a 68 mm bay that is
+# 2.8 mm of daylight behind a strap you have to get a hand through. At 75 it
+# is 9.8. The span cannot move to fix it: the conduit is 5 mm inboard of
+# those pads and the gland row 5.5 mm outboard.
+WIRE_BAY_LEN = 75.0                # module aft wall to cavity aft wall
 # 62, not 48. At 48 the tube's LOWER edge sat at z=32 - 2 mm above the cavity
 # floor and buried in the GLASS_R=10 floor fillet, so the gland had no flat to
 # seat on. Nothing caught it until the channel was actually modelled.
@@ -2452,6 +2464,45 @@ def cyl_x(name, cy, cz, x0, x1, d, coll, mat=None, seg=20):
     faces = [[i, (i + 1) % seg, seg + (i + 1) % seg, seg + i] for i in range(seg)]
     faces.append(list(range(seg - 1, -1, -1)))
     faces.append(list(range(seg, 2 * seg)))
+    return new_object(name, verts, faces, coll, mat)
+
+
+def strap(name, p0, p1, bulge, h, coll, mat=None, w=25.0, t=2.0, seg=18):
+    """The webbing itself, as a parabolic arc from bolt to bolt.
+
+    Worth drawing rather than implying. The model used to show two pads and
+    nothing between them, so a 70 mm module span looked like it disagreed
+    with a 178 mm strap - when what it actually does is arch. Drawn, the
+    finger room is something you can see and the loop is something the
+    interference checks can reach.
+
+        p(t) = p0 + (p1-p0)t + bulge * 4h*t(1-t)
+    """
+    import math as _m
+    ax = [p1[i] - p0[i] for i in range(3)]
+    L = _m.sqrt(sum(v * v for v in ax)) or 1.0
+    ax = [v / L for v in ax]
+    side = [ax[1] * bulge[2] - ax[2] * bulge[1],
+            ax[2] * bulge[0] - ax[0] * bulge[2],
+            ax[0] * bulge[1] - ax[1] * bulge[0]]
+    sl = _m.sqrt(sum(v * v for v in side)) or 1.0
+    side = [v / sl * w / 2 for v in side]
+    up = [v * t / 2 for v in bulge]
+    verts, faces = [], []
+    for k in range(seg + 1):
+        u = k / seg
+        c = [p0[i] + (p1[i] - p0[i]) * u + bulge[i] * 4 * h * u * (1 - u)
+             for i in range(3)]
+        for sx, sz in ((-1, -1), (1, -1), (1, 1), (-1, 1)):
+            verts.append(tuple(c[i] + side[i] * sx + up[i] * sz
+                               for i in range(3)))
+    for k in range(seg):
+        b0, b1 = 4 * k, 4 * (k + 1)
+        for q in range(4):
+            faces.append([b0 + q, b0 + (q + 1) % 4,
+                          b1 + (q + 1) % 4, b1 + q])
+    faces.append([0, 1, 2, 3])
+    faces.append([4 * seg + 3, 4 * seg + 2, 4 * seg + 1, 4 * seg])
     return new_object(name, verts, faces, coll, mat)
 
 
@@ -4660,6 +4711,21 @@ def build():
                        MOD_HANDLE_INS_D, coll)
             boolean(bs, ic)
             ic.hide_set(True); ic.hide_render = True
+    # THE STRAP, DRAWN. Same 7 in webbing as the rails, on a 70 mm span
+    # instead of 152.6 - so it arches further, and the arch has to live
+    # somewhere. It bulges AFT into the wire bay, which is the one direction
+    # nothing else is using, but it is not free: see the check below.
+    _arch = math.sqrt(max(0.0, 3 * (2 * MOD_HANDLE_Y)
+                          * (HANDLE_STRAP_L - 2 * MOD_HANDLE_Y) / 8))
+    strap("V2_Mod_HandleStrap",
+          (ex0 - MOD_HANDLE_PROUD, -MOD_HANDLE_Y, hz),
+          (ex0 - MOD_HANDLE_PROUD, MOD_HANDLE_Y, hz),
+          (-1.0, 0.0, 0.0), _arch, coll, bom_mat("seal"))
+    rep["module_strap_arch_mm"] = round(_arch, 1)
+    rep["module_strap_into_bay_mm"] = round(MOD_HANDLE_PROUD + _arch, 1)
+    rep["module_strap_bay_clear_mm"] = round(
+        WIRE_BAY_LEN - MOD_HANDLE_PROUD - _arch, 1)
+
     rib_area = ENC_RIB_N * 2 * ENC_RIB_W * (wall_top - wall_z0)
     rep["module_floor_joint"] = (
         f"ASA wall bonded to the 5052 floor on a {MOD_FLOOR_BOND:.0f} mm "
@@ -4941,6 +5007,21 @@ def build():
     rep["module_handle_redundancy"] = (
         f"{_bolts} fasteners carry the whole module. Loctite both, and they "
         f"are on the pre-ride list")
+    # WHAT SETS THE MODULE'S WIDTH. Three demands compete for the service
+    # strip and only the widest of them matters, so this is the list to look
+    # at before anyone tries to narrow the box.
+    _panel_row = (BAY_GLAND_N - 1) * (BAY_GLAND_NUT_AF + 4.0)         + (BAY_GLAND_D + 7.0) + 8.0
+    rep["strip_demand_mm"] = {
+        "ESC lying flat + raceway": round(ESC_W + 6.0 + WIRE_CH_W, 1),
+        "ESC on its side + raceway": round(ESC_H + 6.0 + WIRE_CH_W, 1),
+        "BMS + fuse side by side": round(2.0 + BMS_D_T + 6.0 + FUSE_W + 8.0, 1),
+        "connector panel, glands in ONE row": round(_panel_row, 1),
+        "connector panel, glands in TWO rows": round(
+            (BAY_GLAND_NUT_AF + 4.0) + (BAY_GLAND_D + 7.0) + 8.0, 1),
+    }
+    rep["strip_set_by"] = max(rep["strip_demand_mm"],
+                              key=lambda k: rep["strip_demand_mm"][k]
+                              if "TWO" not in k and "side" not in k else -1)
     rep["module_lid_bolts"] = len(mb)
     # --- BOM COUNTS. bom.py used to hold its own hand-typed copies of these,
     # which is the same failure as fleet_cost: nothing breaks when they drift,
@@ -6107,6 +6188,10 @@ def build():
         fails.append("rebate width != ring width - ring will not seat square")
     if not rep["module_corners_fit"]:
         fails.append("module corners foul the cavity radii")
+    if rep.get("module_strap_bay_clear_mm", 99) < 3.0:
+        fails.append("the module handle's loop fouls the back of the wire "
+                     f"bay: {rep['module_strap_into_bay_mm']} mm of pad plus "
+                     f"arch in a {WIRE_BAY_LEN:.0f} mm bay")
     if MOD_INTO_RIM and rep.get("module_through_rim_min_mm", 99) < 3.0:
         fails.append("the module will not pass through the rim ring opening: "
                      f"{rep['module_through_rim_clear_mm']} mm "
