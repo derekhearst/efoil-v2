@@ -32,8 +32,20 @@ NOT_A_STEP_ITEM = ("sales tax", "shipping", "customs", "import duty")
 
 
 def bom_items():
-    """Every item name in bom.md, with its markdown link stripped."""
-    out = set()
+    """Every item name in bom.md, with its markdown link stripped.
+
+    TWO SETS, because the file answers two different questions with them.
+
+    "Does this guide reference a line that exists?" has to count ON-HAND
+    lines: something you already own is still consumed by a step, and a $0
+    row is not an absent row. Skipping them made the first guide reference to
+    an on-hand item - the hollow punch - fail against a line sitting right
+    there in bom.md.
+
+    "Is there a BOM line no step claims?" should NOT count them, because that
+    report is about unaccounted SPEND, and an on-hand line is not spend.
+    """
+    out, spend = set(), set()
     for line in io.open(BOM, encoding="utf-8"):
         if not line.startswith("|") or line.startswith("| **"):
             continue
@@ -43,13 +55,13 @@ def bom_items():
         name = re.sub(r"\[(.*?)\]\(.*?\)", r"\1", cells[0])
         if set(name) <= set("- :"):            # table rules, not items
             continue
-        try:                                   # skip zero-quantity lines
-            if float(cells[4].replace("$", "").replace(",", "")) <= 0:
-                continue
-        except ValueError:
-            pass
         out.add(name)
-    return out
+        try:
+            if float(cells[4].replace("$", "").replace(",", "")) > 0:
+                spend.add(name)
+        except ValueError:
+            spend.add(name)                    # unparseable: treat as spend
+    return out, spend
 
 
 def guide_refs():
@@ -81,14 +93,15 @@ def guide_refs():
 
 
 def main():
-    items, refs = bom_items(), guide_refs()
+    (items, spend), refs = bom_items(), guide_refs()
     missing = [(i, s) for i, s in refs if i not in items]
     used = {i for i, _s in refs}
-    orphan = sorted(i for i in items - used
+    orphan = sorted(i for i in spend - used
                     if not any(k in i.lower() for k in NOT_A_STEP_ITEM))
 
     print(f"build guide references {len(refs)} BOM lines "
-          f"({len(used)} distinct) out of {len(items)}")
+          f"({len(used)} distinct) out of {len(items)}, "
+          f"{len(spend)} of which are spend")
     if orphan:
         print(f"\n{len(orphan)} BOM lines no step claims - tools, spares and "
               f"consumables mostly, but worth a glance:")
