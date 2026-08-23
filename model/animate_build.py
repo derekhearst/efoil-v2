@@ -257,6 +257,23 @@ def key_rot(o, f, q):
     o.keyframe_insert("rotation_quaternion", frame=f)
 
 
+def key_roty(o, f, degrees):
+    """Keyframe a rotation about Y as an EULER, not a quaternion.
+
+    Quaternion components animate on four independent f-curves, so a bezier
+    from identity (1,0,0,0) to a half turn (0,0,1,0) passes through
+    (0.5,0,0.5,0) - magnitude 0.707. Blender builds the matrix from the raw
+    quaternion, and a quaternion shorter than 1 IS a scale: the blank shrank
+    to half size in the middle of its own flip, and everything downstream that
+    read matrix_world got a garbage size out of it.
+    """
+    if o is None:
+        return
+    o.rotation_mode = 'XYZ'
+    o.rotation_euler = (0.0, math.radians(degrees), 0.0)
+    o.keyframe_insert("rotation_euler", frame=f)
+
+
 def ease(o, path="location"):
     for fc in fcurves_of(o):
         if fc.data_path == path:
@@ -344,7 +361,11 @@ def fit(objs, lens=50.0, margin=1.18, spin=False):
     hh = 10.125 / lens                       # half-height of a 16:9 frame
     hw = 18.0 / lens
     if spin:
-        return (ctr.x, ctr.y, ctr.z), d.length / 2 / hh * margin
+        # the LONGEST edge, not the diagonal. A 1040 x 584 x 102 slab has a
+        # 1.19 m diagonal but only ever presents 1.04 m as it turns, and
+        # framing the diagonal pushed the camera far enough back to make the
+        # blank a speck.
+        return (ctr.x, ctr.y, ctr.z), max(d.x, d.y, d.z) / 2 / hh * margin
     return (ctr.x, ctr.y, ctr.z), max(max(d.x, d.y) / 2 / hw,
                                       d.z / 2 / hh) * margin
 
@@ -636,12 +657,13 @@ def pin_home(objs):
             continue
         key_loc(o, 1, home_of(o))
         if o.type == 'EMPTY':
-            # the blank pivots carry the flips; without a pinned identity at
-            # frame 1 the first flip keyframe reaches back over every shot
-            # before it and the blanks start the film half turned over
-            key_rot(o, 1, Quaternion((1, 0, 0, 0)))
+            # the blank pivots carry the flips; without a pinned zero at frame
+            # 1 the first flip keyframe reaches back over every shot before it
+            # and the blanks start the film half turned over
+            key_roty(o, 1, 0.0)
         for fc in fcurves_of(o):
-            if fc.data_path in ("location", "rotation_quaternion"):
+            if fc.data_path in ("location", "rotation_euler",
+                                "rotation_quaternion"):
                 for kp in fc.keyframe_points:
                     if kp.co.x <= 1.5:
                         kp.interpolation = 'CONSTANT'

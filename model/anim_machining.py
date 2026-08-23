@@ -201,57 +201,79 @@ def build_blanks():
         b = dict(key=key, piece=piece, x0=bx0, x1=bx1, z0=bz0, z1=bz1,
                  y0=y0, y1=y1, setups=setups)
 
-        # the stock, 0.4 mm proud so its faces never land exactly on the
-        # part's and z-fight
+        # ---------------------------------------------------------------
+        # NO PER-FRAME BOOLEANS.
+        #
+        # The first version evaluated two EXACT booleans over 20k-vertex
+        # meshes on every frame. The machining shots came in at 1.9 s a frame
+        # against a 0.36 s floor for everything else - five times the cost of
+        # the entire rest of the film, and the reason a 2 minute video took
+        # an hour.
+        #
+        # It is also unnecessary. blank = piece + R1 + R2, disjoint, and with
+        # S the swept half-space behind the cutter:
+        #
+        #   blank - (R1 INT S1) - (R2 INT S2)
+        #     == piece + (R1 - S1) + (R2 - S2)
+        #     == piece + R2 + (blank INT {x > t1})     during setup 1
+        #     == piece + (R2 INT {x > t2})             during setup 2
+        #
+        # and `blank INT {x > t}` is A BOX. The piece is already on screen, so
+        # setup 1 needs no boolean whatsoever - just a box whose left face
+        # tracks the cutter, which is a scale keyframe. Only setup 2 keeps a
+        # boolean, and it is one FAST box clip on the one blank that has two
+        # setups.
         e = 0.0004
-        b["waste"] = box("Blank_" + key, (bx0, y0, bz0 - e), (bx1, y1, bz1 + e),
-                         M_WASTE)
-
-        # everything the router removes from this blank, exact
-        rem_all = box("Rem_" + key, (bx0, y0, bz0 - e), (bx1, y1, bz1 + e))
-        rem_all.hide_render = True
-        _bool(rem_all, "part", 'DIFFERENCE', piece)
-        _bake(rem_all)
+        span = bx1 - bx0
+        stock = box("Stock_" + key, (-span, y0, bz0 - e), (0.0, y1, bz1 + e),
+                    bpy.data.materials.get("V2_eps") or M_WASTE)
+        stock.location = (bx1, 0, 0)     # origin at the far end, so scaling X
+        b["stock"] = stock               # walks the near face towards it
+        b["span"] = span
+        # NOT parented to the pivot: the blank is an axis-aligned box centred
+        # on its own pivot, so a flip maps it onto itself, and the cutter
+        # travels in WORLD x either way.
 
         if setups == 2:
-            # AFT LOWER is the only blank cut from both sides. Split its waste
-            # by what a cutter reaches from above vs from below - the fix for
-            # the rocker appearing during setup 1.
+            # AFT LOWER is the only blank cut from both sides, so it is the
+            # only one that needs its below-waste as real geometry.
             hs = shadow_solid("HS_" + key, piece, bx0, bx1, y0, y1,
                               bz1 + e, bz0 - e)
-            above = rem_all
-            below = rem_all.copy()
-            below.data = rem_all.data.copy()
-            scene.collection.objects.link(below)
-            below.hide_render = True
-            below.name = "RemBelow_" + key
-            above.name = "RemAbove_" + key
-            _bool(above, "reach", 'DIFFERENCE', hs)
-            _bool(below, "reach", 'INTERSECT', hs)
-            _bake(above)
+            # TWO SEPARATE BAKES. Chaining DIFFERENCE(piece) and
+            # INTERSECT(shadow) in one stack and baking once collapsed the
+            # result to a 23k-vertex sheet of ZERO width - the right vertex
+            # count, no volume. Baking the subtraction to real geometry first
+            # and intersecting that gives EXACT a clean solid to work on.
+            below = box("Below_" + key, (bx0, y0, bz0 - e), (bx1, y1, bz1 + e))
+            _bool(below, "part", 'DIFFERENCE', piece)
             _bake(below)
-            parts = [("above", above), ("below", below)]
-        else:
-            rem_all.name = "Rem_" + key
-            parts = [("only", rem_all)]
-
-        b["cuts"] = []
-        for tag, rem in parts:
-            swept = box("Swept_%s_%s" % (key, tag),
-                        (bx0 - 4.0, y0 - .05, bz0 - .06),
+            _bool(below, "reach", 'INTERSECT', hs)
+            _bake(below)
+            print("    below_%s: %d verts, %.0f x %.0f x %.0f mm"
+                  % (key, len(below.data.vertices),
+                     below.dimensions.x * 1000, below.dimensions.y * 1000,
+                     below.dimensions.z * 1000))
+            below.data.materials.clear()
+            below.data.materials.append(
+                bpy.data.materials.get("V2_eps") or M_WASTE)
+            swept = box("Swept_" + key, (bx0 - 4.0, y0 - .05, bz0 - .06),
                         (bx0, y1 + .05, bz1 + .06))
             swept.hide_render = True
-            _bool(rem, "swept", 'INTERSECT', swept)
-            _bool(b["waste"], "cut_" + tag, 'DIFFERENCE', rem)
-            b["cuts"].append(dict(tag=tag, removed=rem, swept=swept))
+            # the REMNANT, so difference - not the intersect the old code
+            # took. FLOAT is Blender 5's name for the old fast solver; the
+            # operand is an axis-aligned box, which is the case it handles
+            # well, and it is several times cheaper than EXACT per frame.
+            _bool(below, "swept", 'DIFFERENCE', swept, solver='FLOAT')
+            b["below"] = below
+            b["below_swept"] = swept
 
         # one pivot per blank: carries the flip, and the slide-clear after the
         # cross-cut, for the piece and all of its machining scaffolding
         piv = bpy.data.objects.new("Piv_" + key, None)
         scene.collection.objects.link(piv)
         piv.location = ((bx0 + bx1) / 2, (y0 + y1) / 2, (bz0 + bz1) / 2)
-        piv.rotation_mode = 'QUATERNION'
-        kids = [piece, b["waste"]] + [c["removed"] for c in b["cuts"]]
+        piv.rotation_mode = 'XYZ'
+        kids = [piece] + ([b["below"]] if "below" in b else [])
         for p in kids:
             p.parent = piv
             # NOT piv.matrix_world - the location was just set and the
@@ -368,7 +390,7 @@ def build_blanks():
 
 
 # ------------------------------------------------------------------ passes
-def pass_over(rig, b, cut, f0, f1, z_stock, passes=6, flipped=False,
+def pass_over(rig, b, mode, f0, f1, z_stock, passes=6, flipped=False,
               bvh_of=None):
     """Fly the cutter over one blank, dragging the sweep behind it.
 
@@ -384,10 +406,9 @@ def pass_over(rig, b, cut, f0, f1, z_stock, passes=6, flipped=False,
 
     # the raycast reads matrix_world, and keyframes do not exist yet at
     # authoring time - so pose the pivot the way this pass is cut
-    was_q = Quaternion(piv.rotation_quaternion)
+    was_q = tuple(piv.rotation_euler)
     was_l = Vector(piv.location)
-    piv.rotation_quaternion = (Quaternion((0, 1, 0), math.pi) if flipped
-                               else Quaternion((1, 0, 0, 0)))
+    piv.rotation_euler = (0.0, math.pi if flipped else 0.0, 0.0)
     if b["key"].startswith("F"):
         piv.location = b["home"] + Vector((KERF_GAP, 0, 0))
     bpy.context.view_layer.update()
@@ -406,10 +427,15 @@ def pass_over(rig, b, cut, f0, f1, z_stock, passes=6, flipped=False,
         yy = y0 + (y1 - y0) * (t if int(u * passes) % 2 == 0 else 1 - t)
         key_loc(tool, f, (x, yy, surface_z(bvhs, x, yy, z_stock + 0.4,
                                            z_stock)))
-        key_loc(cut["swept"], f, (x - x0, 0, 0))
+        if mode == "stock":
+            sc = max(0.0, min(1.0, (b["x1"] - x) / b["span"]))
+            b["stock"].scale = (sc, 1.0, 1.0)
+            b["stock"].keyframe_insert("scale", frame=f)
+        else:
+            key_loc(b["below_swept"], f, (x - x0, 0, 0))
     key_vis(tool, f1, False)
 
-    piv.rotation_quaternion = was_q
+    piv.rotation_euler = was_q
     piv.location = was_l
     bpy.context.view_layer.update()
 
@@ -418,8 +444,10 @@ def only_show(rig, keep, f):
     """One blank on the table at a time. Everything else off."""
     for k, b in rig["blanks"].items():
         on = k in keep
-        key_vis(b["waste"], f, on)
+        key_vis(b["stock"], f, on)
         key_vis(b["piece"], f, on)
+        if "below" in b:
+            key_vis(b["below"], f, on)
     # the conduit plug belongs to the aft lower blank - left to its own
     # devices it hangs in mid air through the setups that blank sits out
     key_vis(rig["plug"], f, "AL" in keep)
@@ -451,7 +479,8 @@ def machining_shots(rig):
     """Phase 1: four sheets of EPS to four bonded pieces."""
     B = rig["blanks"]
     AL, FL, AU, FU = B["AL"], B["FL"], B["AU"], B["FU"]
-    ALL_W = [b["waste"] for b in B.values()]
+    ALL_W = ([b["stock"] for b in B.values()]
+             + [b["below"] for b in B.values() if "below" in b])
     ALL_P = [b["piece"] for b in B.values()]
     for o in (ALL_W + ALL_P + rig["layers"]
               + [rig["table"], rig["tool"], rig["saw"], rig["plug"]]
@@ -501,19 +530,19 @@ def machining_shots(rig):
         ease(b["pivot"])
 
     # ============================================= five setups, four blanks
-    def setup(tag, b, cut_i, secs, title, sub, passes, flipped=False,
+    def setup(tag, b, secs, title, sub, passes, flipped=False,
               az=(-72, -104), el=(30, 24)):
         g0, g1 = shot(tag, secs)
         only_show(rig, {b["key"]}, g0)
         key_vis(rig["table"], g0, True)
-        _t, _d = fit([b["waste"]], margin=1.25)
+        _t, _d = fit([b["stock"]], margin=1.25)
         cam_move(g0, g1, _t, az[0], el[0], _d, _t, az[1], el[1], _d * 0.94)
         caption(g0, g1, title, sub)
-        pass_over(rig, b, b["cuts"][cut_i], g0 + int(0.4 * FPS),
-                  g1 - int(0.4 * FPS), b["z1"], passes=passes, flipped=flipped)
+        pass_over(rig, b, "stock", g0 + int(0.4 * FPS), g1 - int(0.4 * FPS),
+                  b["z1"], passes=passes, flipped=flipped)
         return g0, g1
 
-    a0, a1 = setup("setup1_cavity", AL, 0, 9,
+    a0, a1 = setup("setup1_cavity", AL, 9,
                    "Setup 1  -  aft lower, cavity from above",
                    "1/2in O-flute. The deepest pocket is 71.6 mm - the bit in "
                    "the BOM reaches 31.8", 7)
@@ -524,51 +553,51 @@ def machining_shots(rig):
     only_show(rig, {"AL"}, f0)
     key_vis(rig["table"], f0, True)
     key_vis(rig["plug"], f0, True)
-    _t, _d = fit([AL["waste"]], spin=True, margin=1.30)
-    cam_hold(f0, f1, _t, -104, 20, _d)
+    _t = tuple(AL["home"])
+    cam_hold(f0, f1, _t, -104, 20, 2.45)
     caption(f0, f1, "the one flip",
             "5 setups across 4 blanks, and only this one turns over")
-    key_rot(AL["pivot"], f0 + int(0.3 * FPS), Quaternion((1, 0, 0, 0)))
-    key_rot(AL["pivot"], f1 - int(0.3 * FPS), Quaternion((0, 1, 0), math.pi))
+    key_roty(AL["pivot"], f0 + int(0.3 * FPS), 0)
+    key_roty(AL["pivot"], f1 - int(0.3 * FPS), 180)
     ease(AL["pivot"], "rotation_quaternion")
 
     f0, f1 = shot("setup2_rocker", 7)
     only_show(rig, {"AL"}, f0)
     key_vis(rig["table"], f0, True)
     key_vis(rig["plug"], f0, True)
-    key_rot(AL["pivot"], f0, Quaternion((0, 1, 0), math.pi))
-    key_rot(AL["pivot"], f1 - 2, Quaternion((0, 1, 0), math.pi))     # hold
-    _t, _d = fit([AL["waste"]], margin=1.25)
-    cam_move(f0, f1, _t, -110, 30, _d, _t, -142, 22, _d * 0.94)
+    key_roty(AL["pivot"], f0, 180)
+    key_roty(AL["pivot"], f1 - 2, 180)                # hold
+    _t = tuple(AL["home"])
+    cam_move(f0, f1, _t, -110, 30, 2.05, _t, -142, 22, 1.92)
     caption(f0, f1, "Setup 2  -  rocker and mast pocket",
             "beds on a flat face - tape or vacuum down, never clamp the "
             "24.8 mm rail")
-    pass_over(rig, AL, AL["cuts"][1], f0 + int(0.4 * FPS), f1 - int(0.4 * FPS),
+    pass_over(rig, AL, "below", f0 + int(0.4 * FPS), f1 - int(0.4 * FPS),
               AL["z1"], passes=5, flipped=True)
-    key_vis(AL["waste"], f1 - 3, False)
-    key_rot(AL["pivot"], f1, Quaternion((1, 0, 0, 0)))
+    key_vis(AL["below"], f1 - 3, False)
+    key_roty(AL["pivot"], f1, 0)
 
-    b0, b1 = setup("setup3_deck", AU, 0, 7,
+    b0, b1 = setup("setup3_deck", AU, 7,
                    "Setup 3  -  aft upper, from above",
                    "deck crown, cavity through, rim ledge, leash pocket", 6,
                    az=(-60, -28), el=(34, 40))
-    key_vis(AU["waste"], b1 - 3, False)
+    key_vis(AU["stock"], b1 - 3, False)
 
-    c0, c1 = setup("setup4_fwd_rocker", FL, 0, 5,
+    c0, c1 = setup("setup4_fwd_rocker", FL, 5,
                    "Setup 4  -  fwd lower, mounted upside down",
                    "rocker only. One setup - the mid-plane face is flat and "
                    "beds straight onto the spoilboard", 5, flipped=True,
                    az=(-100, -132), el=(28, 22))
-    key_rot(FL["pivot"], c0, Quaternion((0, 1, 0), math.pi))
-    key_rot(FL["pivot"], c1 - 2, Quaternion((0, 1, 0), math.pi))
-    key_vis(FL["waste"], c1 - 3, False)
-    key_rot(FL["pivot"], c1, Quaternion((1, 0, 0, 0)))
+    key_roty(FL["pivot"], c0, 180)
+    key_roty(FL["pivot"], c1 - 2, 180)
+    key_vis(FL["stock"], c1 - 3, False)
+    key_roty(FL["pivot"], c1, 0)
 
-    d0, d1 = setup("setup5_fwd_deck", FU, 0, 5,
+    d0, d1 = setup("setup5_fwd_deck", FU, 5,
                    "Setup 5  -  fwd upper, from above",
                    "deck crown. Five setups, four blanks, one flip", 5,
                    az=(-56, -24), el=(34, 42))
-    key_vis(FU["waste"], d1 - 3, False)
+    key_vis(FU["stock"], d1 - 3, False)
 
     # -------------------------------------------- the parts that are not foam
     caps = (("the mast plate  -  6061-T651",
