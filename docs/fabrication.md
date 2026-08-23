@@ -353,7 +353,7 @@ cord before the groove exists is how you end up at 10%.
 `Sikaflex-292 marine structural PU` · `Sika Aktivator-PRO 250 ml + daubers` ·
 `2 mm glass beads or shim wire, bond-line control` ·
 `M4 x 8 brass heat-set insert, 100 pc` · `M5 x 10 brass heat-set insert, 50 pc` ·
-`Neoprene sheet 1/8in, SOLID, mast gasket` · `Closed-cell sponge neoprene 1/8in, module lid gasket` ·
+`Closed-cell sponge neoprene 1/8in, module lid gasket` · `Hollow punch set 1/8-1/2in + cutting mat` ·
 `Gebildet PG11 gland, M18x1.5, 30 pk` · `M12 IP68 membrane vent plug` ·
 `M12 IP68 momentary panel button` · `JST GH 1.25 mm pigtail pair, BMS switch` · `SP17 2-pin IP68 flange receptacle` ·
 `M3 heat-set insert kit, 361 pc` · `M3 x 8 A4 stainless, 10 pk`
@@ -542,6 +542,13 @@ the same two pads on the module and keep the bought handles for the rails.
 
 **Tef-Gel every mast bolt, every time.** Aluminium plate, A4 bolts, wet
 cavity — that is the whole galvanic mitigation and it is not optional.
+
+**No gasket goes under the mast base**, and there is none in the BOM. The
+bolt holes are blind, so there is no path into the board to seal, and the
+faying faces are aluminium on aluminium — the galvanic couple is the A4
+bolts. Smear Tef-Gel across the mating faces as well as the threads, then
+pull the plate down metal to metal. Bedding the highest-loaded joint on the
+board on something compressible would let it creep, lose preload and rock.
 
 **Measure** the prop shaft cross-hole rather than trusting the 4 mm figure;
 that is why the roll pin line is an assortment.

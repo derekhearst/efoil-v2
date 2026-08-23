@@ -396,7 +396,7 @@
  "module_print_pieces": 4,
  "module_ribs_would_add_g": 43,
  "module_seal": "closed-cell sponge neoprene, 3 mm uncompressed -> 2.0 at 33% squeeze. FULL FACE, one piece over the whole 15 mm land, punched for the bolts - V1's method",
- "module_seal_annulus_mm": 3.4,
+ "module_seal_annulus_mm": 3.22,
  "module_seal_area_mm2": 23130,
  "module_seal_band_mm": 15.0,
  "module_seal_blank_mm": [
@@ -406,6 +406,7 @@
  "module_seal_clamp_N": 2776,
  "module_seal_from_interior_mm": 0.0,
  "module_seal_per_bolt_N": 146,
+ "module_seal_punch_mm": 5.556,
  "module_seal_to_insert_bore_mm": -9.3,
  "module_seal_to_insert_mm": 2.7,
  "module_seam_alignment": "dovetail + paired 10 x 10 ribs",

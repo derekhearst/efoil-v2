@@ -1077,7 +1077,13 @@ MOD_GASKET_W_OUT = (MOD_FLANGE_LAND if MOD_GASKET_FULL_FACE
 MOD_GASKET_EDGE = 0.5              # holds the cut edge off the flange edge
 # A full-face gasket is pierced by the bolts, so what matters is not that it
 # sits inboard of them but that there is enough annulus AROUND each one.
-MOD_GASKET_BOLT_CLR = 0.6          # punch clearance on the bolt
+# A REAL PUNCH SIZE, not a derived decimal. The holes get made with a hollow
+# punch and a mallet, and punches come in the sizes they come in - 7/32 in is
+# the one in the set that suits an M4 bolt. Sponge punches more cleanly than
+# solid rubber, being softer, but it also rebounds, so the hole finishes a
+# touch under the punch. Sized off the punch and checked for annulus.
+MOD_GASKET_PUNCH_D = 5.556         # 7/32 in
+MOD_GASKET_BOLT_CLR = round((MOD_GASKET_PUNCH_D - MOD_BOLT_D) / 2, 3)
 # CLOSED-CELL SPONGE, NOT SOLID RUBBER. Squeeze here is geometric, so the
 # bolts have to supply whatever stress the material needs at 33% - and over
 # the full land that is an area of 23,000 mm2. Solid ~50 Shore A neoprene
@@ -4572,7 +4578,7 @@ def build():
     # squeeze would then be a lottery across 18 bolts. A flat gasket does not
     # care what the surface did: it takes up the irregularity itself, which is
     # exactly why V1 gasketed both its printed enclosures and why they seal.
-    # Cut it from the same 1/8" neoprene sheet as the mast gasket.
+    # Cut from the closed-cell sponge sheet - see MOD_GASKET_SPONGE.
     if MOD_FLANGE_OUT:
         # full face: from just inside the flange's outer edge, all the way in
         # to the interior. Punched for the bolts further down.
@@ -4729,10 +4735,11 @@ def build():
         _peri = 2 * ((ix1 - ix0) + (iy1 - iy0)) + 8 * MOD_GASKET_W_OUT
         _area = _peri * MOD_GASKET_W_OUT
         rep["module_seal_area_mm2"] = round(_area)
+        rep["module_seal_punch_mm"] = MOD_GASKET_PUNCH_D
         rep["module_seal_annulus_mm"] = round(
             min(MOD_FLANGE_LAND - MOD_BOLT_EDGE - MOD_GASKET_START,
                 MOD_BOLT_EDGE - MOD_GASKET_EDGE)
-            - (MOD_BOLT_D / 2 + MOD_GASKET_BOLT_CLR), 2)
+            - MOD_GASKET_PUNCH_D / 2, 2)
         _F = MOD_GASKET_STRESS_MPA * _area
         rep["module_seal_clamp_N"] = round(_F)
         rep["module_seal_per_bolt_N"] = round(_F / max(1, len(mb)))

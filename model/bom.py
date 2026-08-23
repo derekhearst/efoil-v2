@@ -714,11 +714,23 @@ def build():
     # that is about 11.6 kN, 609 N a bolt, and 1.3x on M4 heat-set pull-out
     # in printed ASA - too thin. In closed-cell sponge it is 2.8 kN, 146 N a
     # bolt, 5.5x. So the lid gets sponge.
-    # The mast gasket stays SOLID: it is a bolted compression seal squeezed
-    # between aluminium and laminate, and sponge would extrude out of it.
-    add("7  Module", "Neoprene sheet 1/8in, SOLID, mast gasket", 1,
-        "sheet", 16.00, EST,
-        "TORRAMI 18x24 or similar - you kept a part sheet from V1")
+    # THE MAST GASKET DOES NOT EXIST, so it is not bought. Splitting the old
+    # "module + mast gaskets" line left a solid sheet whose only stated job
+    # was a part with no geometry in the model, no step in the build guide
+    # and no mention anywhere else - a $22.65 sheet for nothing. Searched
+    # before deleting: the hatch seals on a cord, the conduit bungs come off
+    # the 1/2 in sheet, and the module lid is sponge.
+    # The mast interface needs no gasket. Its bolt holes are BLIND, so there
+    # is no path into the board to seal, and the faying faces are aluminium
+    # to aluminium - the galvanic couple is the A4 bolts, which is what the
+    # Tef-Gel in step 23 is for. Bedding it on a compressible gasket would
+    # actively hurt: it is the highest-loaded joint on the board, and rubber
+    # under 4 x M8 creeps, loses preload and lets the plate rock.
+    add("7  Module", "Hollow punch set 1/8-1/2in + cutting mat", 1, "set",
+        17.99, OK,
+        "7/32 in is the one you want for M4 - the model sizes the gasket "
+        "holes off it. The mat matters: punching onto a hard bench rolls "
+        "the edge on the first hit", tool=True)
     add("7  Module", "Closed-cell sponge neoprene 1/8in, module lid gasket",
         1, "roll", 13.99, OK,
         "blank is " + " x ".join(str(v) for v in M["seal_blank"])
