@@ -4279,6 +4279,53 @@ def build():
         _bolt_N / _seat(HATCH_HEAD_WASHER_D), 1)
     rep["hatch_seat_on_plug_margin"] = round(
         EPOXY_COMP_MPA / (_bolt_N / _seat(HATCH_HEAD_WASHER_D)), 1)
+    # --- CAN THE WASHER GO, GIVEN 6x -------------------------------------
+    # No, and the 6x is the reason it cannot: that number IS the washer.
+    # Take it away and the same bolt is at 37.4 MPa, which is 1.3x, not 6.3.
+    # And static margin is the wrong test anyway. This is a PERMANENT preload
+    # on a thermoset, and epoxy creeps above roughly a quarter of ultimate -
+    # so what matters is the fraction, not the factor. On the washer it sits
+    # at 16% of ultimate; bare it sits at 75%, which cold-flows, and a seat
+    # that flows on a hard-stop joint means the lid settles and the cord ends
+    # up at a squeeze nobody designed.
+    rep["hatch_head_seat_pct_of_epoxy"] = {
+        "with washer": round(
+            100.0 * (_bolt_N / _seat(HATCH_HEAD_WASHER_D)) / EPOXY_COMP_MPA),
+        "bare head": round(
+            100.0 * (_bolt_N / _seat(HATCH_BOLT_HEAD_D)) / EPOXY_COMP_MPA)}
+    rep["hatch_epoxy_creep_threshold_pct"] = 25
+    rep["hatch_head_washer_required"] = (
+        rep["hatch_head_seat_pct_of_epoxy"]["bare head"]
+        > rep["hatch_epoxy_creep_threshold_pct"])
+    # --- IS ASA_TAU RIGHT, THOUGH -----------------------------------------
+    # 30 MPa is a BULK ASA number and this is not bulk ASA. The ring prints
+    # SEAL FACE DOWN, so its layers lie parallel to the seal face, and the
+    # plug that a pull-out shears is a VERTICAL cylinder - it tears through
+    # bead-to-bead and layer-to-layer interfaces the whole way, never through
+    # solid material. FDM interfaces run 60-80% of bulk on a good hot print,
+    # worse on a cold one. Not changing the constant on a guess, but the
+    # margin is worth seeing at a pessimistic tau as well as an optimistic
+    # one - if it only passes at 30, it does not really pass.
+    ASA_TAU_LOW = 20.0
+    rep["hatch_nut_pullout_margin_at_tau20"] = round(
+        _plug * ASA_TAU_LOW / BOLT_PRELOAD_N, 1)
+    rep["hatch_nut_pullout_holds_at_low_tau"] = (
+        _plug * ASA_TAU_LOW / BOLT_PRELOAD_N >= 3.0)
+    # THE CASE THAT ACTUALLY DECIDES IT: not the 1.2 Nm spec but the 5 Nm a
+    # hand on a hex key reaches without meaning to. Everything downstream of
+    # the head has to survive that, because it WILL happen at least once.
+    _hand = 5.0
+    _hand_N = _hand / (0.2 * HATCH_BOLT_D / 1000.0)
+    rep["hatch_hand_tight_Nm"] = _hand
+    rep["hatch_at_hand_tight"] = {
+        "preload_N": round(_hand_N),
+        "nut pull-out margin": round(_plug * ASA_TAU / _hand_N, 1),
+        "nut pull-out at tau20": round(_plug * ASA_TAU_LOW / _hand_N, 1),
+        "epoxy plug under washer": round(
+            EPOXY_COMP_MPA / (_hand_N / _seat(HATCH_HEAD_WASHER_D)), 1),
+        "epoxy plug under BARE head": round(
+            EPOXY_COMP_MPA / (_hand_N / _seat(HATCH_BOLT_HEAD_D)), 1)}
+
     # ...and the plug hands it to the bottom skin and the rim's ASA land
     rep["hatch_plug_on_rim_MPa"] = round(
         _bolt_N / _seat(HATCH_SPREADER_D), 1)

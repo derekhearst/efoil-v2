@@ -125,6 +125,17 @@ def build(p):
         d.circle(bx, by, p["HATCH_INSERT_D"] / 2)
     add("01_rim_ring", "printed ASA (reference only)", p["RIM_T"], 1, d, ow, oh,
         f"{len(hb)} x M5 STI tapped for stainless wire-thread inserts. "
+        f"PRINT IT HOT AND PRINT THE NUT ZONE SOLID. What holds a captive nut "
+        f"in is a plug of ASA {p['NUT_Z']:.0f} mm deep sheared out around the "
+        f"washer, and that shear surface is a VERTICAL cylinder - with the "
+        f"ring printed seal-face-down its layers lie across it, so the tear "
+        f"runs through bead-to-bead and layer-to-layer interfaces the whole "
+        f"way and never through solid material. At a bulk 30 MPa that is "
+        f"7.1x the 1.2 Nm spec; at a cold-print 20 it is 4.7x, and 1.1x "
+        f"against the 5 Nm a hand on a hex key reaches by accident. Chamber "
+        f"hot, no draughts, 100% infill for at least {p['NUT_Z'] + 6:.0f} mm "
+        f"around every nut pocket - that margin is a print-quality number, "
+        f"not a geometry one. "
         "ASSEMBLED REFERENCE ONLY - DO NOT CUT THIS OUTLINE. A one-piece G10 "
         "ring needs a blank 3.7x its own material. Cut parts 01a and 01b and "
         "bond them into this. Shown here to check the assembled ring against "
