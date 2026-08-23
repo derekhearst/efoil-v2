@@ -592,6 +592,22 @@ JOINT_GROOVE_D = 0.0               # no groove: the floor is aluminium now
 # 10 mm fillet a 5 mm ledge still overhangs by 1. 3 leaves 1.0 mm of daylight
 # and is still a land to fillet onto, just a smaller one.
 MOD_FLOOR_LEDGE = 3.0              # floor oversize, for an external fillet
+# ROUNDED CORNERS. Derek: those corners can be sharp, and glassing a lid over
+# a square one will not work. Both true, and the second is the same rule the
+# cavity fillet already obeys - laminate will not turn a corner tighter than
+# GLASS_R without bridging.
+#
+# 6 is a wall number, not a styling one. The wall's outer corner rounds while
+# its inner stays square, so the wall thins on the diagonal by
+# R - (R-ENC_WALL)*sqrt(2): 3.17 mm of the 4 at R6, 2.34 at R8, 1.51 at R10.
+# Rounding the INNER corner too would hold it at 4, but an inner radius of
+# R-4 eats the corner the pack sits in - the pack's corner is 2 mm off the
+# starboard wall and 8 off the end, 4.5 mm from an arc centre that wants 6.
+#
+# The parts OUTBOARD of the wall inherit this plus their own offset, and they
+# are the ones you actually touch: floor R9, and flange and lid R17 - which
+# is a corner glass will turn happily.
+MOD_CORNER_R = 6.0
 MOD_FLOOR_BOND = 2.0               # deliberate bond line, set by printed nubs
 # No corner posts. They existed to turn a butted 3.175 mm G10 corner into a
 # bonded joint; a printed shell has no butted corners to fix. The 4-piece
@@ -4706,9 +4722,12 @@ def build():
     wall_top = lid_z0 - FIT_LID
     floor_top = ez0 + ENC_FLOOR
     wall_z0 = floor_top - JOINT_GROOVE_D
-    floor = box("V2_Mod_Floor", ex0 - MOD_FLOOR_LEDGE, ex1 + MOD_FLOOR_LEDGE,
-                ey0 - MOD_FLOOR_LEDGE, ey1 + MOD_FLOOR_LEDGE, ez0, floor_top,
-                coll, bom_mat("alu"))   # 1/8" 5052, oversized for a fillet
+    floor = prism("V2_Mod_Floor",
+                  rounded_rect(ex0 - MOD_FLOOR_LEDGE, ex1 + MOD_FLOOR_LEDGE,
+                               ey0 - MOD_FLOOR_LEDGE, ey1 + MOD_FLOOR_LEDGE,
+                               MOD_CORNER_R + MOD_FLOOR_LEDGE),
+                  ez0, floor_top, coll,
+                  bom_mat("alu"))       # 1/8" 5052, oversized for a fillet
     # (the floor groove is gone - see JOINT_GROOVE_D)
     # Long walls run full length; end walls land BETWEEN them - a lap, so each
     # end wall's glue line is its 3 mm edge PLUS the long wall's inner face.
@@ -4716,6 +4735,24 @@ def build():
     box("V2_Mod_WallS", ex0, ex1, ey0, ey0 + ENC_WALL, wall_z0, wall_top, coll, m_enc)
     box("V2_Mod_WallAft", ex0, ex0 + ENC_WALL, iy0, iy1, wall_z0, wall_top, coll, m_enc)
     box("V2_Mod_WallFwd", ex1 - ENC_WALL, ex1, iy0, iy1, wall_z0, wall_top, coll, m_enc)
+    # Same trim on the walls, at their own radius. The long walls run the
+    # full length and the end walls land between them, so the corner belongs
+    # to the long ones - but trimming all four costs nothing and survives
+    # anyone changing which laps which.
+    _wprof = prism("V2_Mod_WallProfile_cut",
+                   rounded_rect(ex0, ex1, ey0, ey1, MOD_CORNER_R),
+                   wall_z0 - 1.0, wall_top + 1.0, coll)
+    for _w in ("P", "S", "Aft", "Fwd"):
+        boolean(bpy.data.objects[f"V2_Mod_Wall{_w}"], _wprof, 'INTERSECT')
+    _wprof.hide_set(True)
+    _wprof.hide_render = True
+    rep["module_corner_R_mm"] = {
+        "wall outer": MOD_CORNER_R,
+        "floor": MOD_CORNER_R + MOD_FLOOR_LEDGE,
+        "flange and lid": MOD_CORNER_R + MOD_FLANGE_W_OUT}
+    # what the rounding costs the wall on its diagonal
+    rep["module_wall_at_corner_mm"] = round(
+        MOD_CORNER_R - (MOD_CORNER_R - ENC_WALL) * math.sqrt(2.0), 2)
 
     # External ribs at the four print joints. The shell is 450 x 291 and the
     # A1 bed is 256, so it prints in four L-shaped pieces exactly as V1 did.
@@ -4826,6 +4863,17 @@ def build():
                  iy0 + MOD_FLANGE_W, iy1 - MOD_FLANGE_W))
     for nm, a, b, c, d in ring:
         box(f"V2_Mod_Flange{nm}", a, b, c, d, fz0, wall_top, coll, m_fl)
+    # TRIMMED to the rounded profile rather than rebuilt as a ring - the four
+    # pieces are what the shell splits along, and losing them to gain a
+    # radius would be a poor trade.
+    _prof = prism("V2_Mod_Profile_cut",
+                  rounded_rect(fx0, fx1, fy0, fy1,
+                               MOD_CORNER_R + MOD_FLANGE_W_OUT),
+                  fz0 - 1.0, wall_top + 1.0, coll)
+    for nm, _a, _b, _c, _d in ring:
+        boolean(bpy.data.objects[f"V2_Mod_Flange{nm}"], _prof, 'INTERSECT')
+    _prof.hide_set(True)
+    _prof.hide_render = True
 
     # FLAT NEOPRENE GASKET on the flange face - no groove, no cord.
     # The hatch keeps its O-ring because the hatch lands G10 on G10 and the
@@ -4968,7 +5016,10 @@ def build():
     # would be far floppier, and a lid that bows between bolts breaks gasket
     # compression mid-span - which no amount of seal tuning fixes.
     # the lid has to reach the flange's outer edge, wherever that now is
-    box("V2_Mod_Lid", fx0, fx1, fy0, fy1, lid_z0, ez1, coll, m_lid)
+    prism("V2_Mod_Lid",
+          rounded_rect(fx0, fx1, fy0, fy1,
+                       MOD_CORNER_R + MOD_FLANGE_W_OUT),
+          lid_z0, ez1, coll, m_lid)
 
     # Thru holes in each ply and the insert in the flange rail - the two
     # machined features. The bolt is hardware; drawing it hid both.

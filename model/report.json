@@ -370,6 +370,11 @@
  "module_bond_area_mm2": 5581,
  "module_bond_area_with_foot_mm2": 16742,
  "module_bond_shear_MPa": 0.1969,
+ "module_corner_R_mm": {
+  "flange and lid": 17.0,
+  "floor": 9.0,
+  "wall outer": 6.0
+ },
  "module_corners_fit": true,
  "module_dovetail_fits_rib": true,
  "module_ext_mm": "421 x 292 x 94",
@@ -453,6 +458,7 @@
  ],
  "module_through_rim_min_mm": 4.5,
  "module_vent": "M12 Gore-type membrane vent THROUGH the AFT wall, between the handle's far pad and the conduit - IP68 to water, open to gas both ways. Axis along X, like every other fitting in that wall",
+ "module_wall_at_corner_mm": 3.17,
  "motor_mount": "saddle clamp on the mast trailing edge",
  "net_float_kg": -31.3,
  "net_float_with_foil_kg": -38.6,
