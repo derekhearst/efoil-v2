@@ -534,7 +534,7 @@ that kill a BMS.
 
 **Blocks on:** steps 7, 17
 **Uses:** `Fish tape / pull cord for the mast conduit` ·
-`IP68 M25 inline housing, 5 pk` · `Neoprene sheet 3/8in 50A, wire bung` ·
+`IP68 M25 inline housing, 5 pk` · `Neoprene sheet 3/4in, wire bung` ·
 `Hollow punch set 3/16-1-3/8in, for the O31.75 bung` ·
 `3M 4200 FC 3 oz tube, fillet over the bung`
 

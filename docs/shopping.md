@@ -6,17 +6,17 @@ Grouped by where you buy it rather than by what it does, because that is the ord
 
 | Supplier | Lines | $ |
 |---|---:|---:|
-| Amazon | 113 | $3,622.33 |
+| Amazon | 113 | $3,630.33 |
 | Gong | 1 | $1,404.00 |
 | Flipsky | 3 | $1,038.00 |
-| Not a purchase - tax and freight | 3 | $836.47 |
+| Not a purchase - tax and freight | 3 | $836.95 |
 | BatteryHookup | 2 | $297.50 |
 | Fiberglass Supply | 3 | $253.38 |
 | Home Depot / hardware | 4 | $169.16 |
 | Maker Shop Boise | 1 | $150.00 |
 | Speedy Metals | 1 | $88.92 |
 | Easy Composites | 1 | $52.00 |
-| **TOTAL** | | **$7,911.76** |
+| **TOTAL** | | **$7,920.24** |
 
 ## Amazon
 
@@ -67,6 +67,7 @@ https://www.amazon.com
 | [Rosin paper roll, floor and bench](https://www.amazon.com/dp/B0FXJDFW2B) | 1 | roll | $27.95 | estimate | absorbs instead of pooling. This is the actual upgrade over a tarp, and it is $24 |
 | [SP17 2-pin IP68 flange receptacle](https://www.amazon.com/dp/B0CDH5R8P4) | 2 | ea | $26.40 | **verified** | 67.2 V 5 A charge; O17 panel hole, 2 x M3 flange screws. $2.49, not the $11 this carried. CHECK THE CAP IS INC |
 | [3M Fastbond 1077 water-based, CNC hold-down](https://www.amazon.com/dp/B0GRSV587N) | 1 | ea | $26.02 | **verified** | WATER-BASED because the blank is EPS - solvent sprays like Super 77 eat polystyrene. Foam is taped/tacked down |
+| [Neoprene sheet 3/4in, wire bung](https://www.amazon.com/dp/B07Y5K1VHK) | 1 | sheet | $26.00 | estimate | 3/4 in, and NOT the 5/8 the arithmetic wants - 5/8 is not a stock thickness and the board's plate is exactly 1 |
 | [PETG filament 1 kg, mast clamp set](https://www.amazon.com/dp/B0D41Y3WWZ) | 2 | kg | $25.98 | **verified** | 4 STEP files; 0.6 nozzle, 5 perims, 40% infill |
 | [PETG for props, 4-5 spares per board](https://www.amazon.com/dp/B0D41Y3WWZ) | 2 | kg | $25.98 | **verified** | 0.4 nozzle, 100% infill; balance-check on a bolt, then epoxy-coat - V1 skipped the coat and layer lines cost d |
 | [1/4 in torque wrench, 10-50 in-lb](https://www.amazon.com/dp/B0D7PWP7YF) | 1 | ea | $25.97 | **verified** | 1.1-5.6 Nm. RANGE MATTERS: our hatch spec is 1.2 Nm = 10.6 in-lb, which is BELOW the 20 in-lb floor of the com |
@@ -83,7 +84,6 @@ https://www.amazon.com
 | [8 AWG marine ring lugs, 20 pk](https://www.amazon.com/dp/B0CWGXB4NB) | 2 | pk | $19.98 | **verified** | 28 needed; on M6 studs - nothing to solder |
 | [M12 IP68 membrane vent plug](https://www.amazon.com/dp/B0FXSNDGTV) | 2 | ea | $19.90 | **verified** | NOT optional on a sealed lithium box |
 | [Release wax / PVA for the cavity caul](https://www.amazon.com/dp/B0HB5VXRY1) | 1 | set | $19.90 | estimate |  |
-| [Neoprene sheet 3/8in 50A, wire bung](https://www.amazon.com/dp/B01LX83VS9) | 1 | sheet | $18.00 | estimate | 3/8 in. Punch O26.0 discs and drill 3 x O5.8 in a row at 8.0 pitch. Drops into a O26.8 counterbore in the plat |
 | [3M 4200 FC 3 oz tube, fillet over the bung](https://www.amazon.com/dp/B00MJ9K78A) | 1 | tube | $17.99 | **verified** | does both boards; 4200 NOT 5200 - 5200 never comes out |
 | [Thermometer / hygrometer, 2 pk](https://www.amazon.com/dp/B086PC5962) | 1 | pk | $17.99 | estimate | one in the shop, one by the part. Slow needs 60 F, fast needs 40-45, and below ~35 nothing cures at all |
 | [Chip brushes 2 in, 36 pk](https://www.amazon.com/dp/B078XJ2DCJ) | 1 | pk | $17.99 | **verified** | disposable, 2-4 a session across 6 sessions. The 12 pk at $7.19 is dearer per brush and runs out mid-build |
@@ -164,7 +164,7 @@ Some Flipsky appears on Amazon but the range is thin and usually dearer. Buy dir
 
 | Item | Qty | Unit | Ext | Price | Note |
 |---|---:|---|---:|---|---|
-| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $447.84 | **verified** |  |
+| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $448.32 | **verified** |  |
 | Gong shipping to Idaho, ONE order, both foils | 1 | order | $268.63 | **verified** | quoted at checkout for 2 x XL Alu setups. PER ORDER, not per foil - ordering the two separately would roughly  |
 | Shipping - Divinycell, 6061 plate, VR20 | 1 | allow | $120.00 | estimate | STILL THE BIGGEST UNVERIFIED LINE - it wants three real carts to settle. Was $220 when it covered G10 sheet an |
 

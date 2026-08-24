@@ -805,11 +805,13 @@ def build():
     # conform to a stranded jacket and it turns pushing 6.5 mm cable through
     # The bung is a punched DISC and blender_board.py takes BUNG_L straight
     # off the stock thickness.
-    add("7  Module", "Neoprene sheet 3/8in 50A, wire bung", 1, "sheet",
-        18.00, EST, "3/8 in. Punch O26.0 discs and drill 3 x O5.8 in a row at "
-        "8.0 pitch. Drops into a O26.8 counterbore in the plate's WETTED face "
-        "and stands 0.7 mm PROUD - the Gong mast's own plate squeezes that "
-        "out as its four bolts pull it face to face with the board.  and drill 3 x O5.5 IN A ROW The row is the "
+    add("7  Module", "Neoprene sheet 3/4in, wire bung", 1, "sheet",
+        26.00, EST, "3/4 in, and NOT the 5/8 the arithmetic wants - 5/8 is not a "
+        "stock thickness and the board's plate is exactly 1/2, so a 1/2 in "
+        "disc finishes dead flush with nothing to squeeze. Punch O26.0 discs "
+        "and drill 3 x O5.8 in a row at 8.0 pitch. Fills the plate's straight "
+        "O26.8 bore, butts the epoxy liner, and hangs 6.35 mm below the "
+        "wetted face for the mast's own plate to squeeze out.  and drill 3 x O5.5 IN A ROW The row is the "
         "order the leads leave the mast in, so none has to be twisted. One sheet is a lifetime of bungs for both boards")
     # Derek's existing punch set stops at 1/2 in and the disc is 1-1/4 in.
     # A 1-3/8 in hole saw also gets there - its plug comes out about 2.5 mm
