@@ -5267,7 +5267,26 @@ def build():
         rep["bung_land_mm2"] = round(2 * _seg)
         rep["bung_face_mm2"] = round(_area)
         rep["bung_land_pct"] = round(100.0 * 2 * _seg / _area)
+        rep["bung_land_needed_pct"] = 60
         rep["bung_land_is_thin"] = 2 * _seg / _area < 0.6
+        # THE ONE MEASUREMENT THIS TURNS ON. MAST_SLOT_W is a guess, and the
+        # shape matters as much as the size: the bung only loses the land
+        # inside the hole's footprint, so a ROUND hole costs far less than a
+        # slot of the same width. Round is also the commoner shape for a mast
+        # plate's wire pass-through, which is why this probably resolves
+        # without a follower.
+        #   round   O14 -> 83%   O16 -> 73%   O18 -> 61%   O20 -> 48%
+        #   slot     10 -> 61%    12 -> 51%    14 -> 41%    16 -> 32%
+        rep["bung_land_what_to_measure"] = (
+            "the wire hole in the GONG MAST PLATE - shape and size. Round up "
+            "to O18, or a slot up to about 10 wide, and the mast plate has "
+            "enough land on the bung to squeeze it and nothing else is "
+            "needed. Wider than that and it needs a flange in a spotface")
+        # AND THE SEQUENCE, because the bung hangs proud: the plate starts
+        # BUNG_SQUEEZE off the board and gets pulled in. Start all four bolts
+        # by hand before torquing any of them or the plate rocks on the bung.
+        rep["bung_plate_starts_proud_mm"] = round(BUNG_SQUEEZE, 2)
+        rep["bung_close_force_per_bolt_N"] = round(_area * 1.0 / 4)
         rep["bung_follower_would_fix"] = (
             "a rigid disc between the bung and the mast plate, sized to the "
             "bore, spanning the slot - the follower out of any stuffing box. "
