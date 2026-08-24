@@ -939,48 +939,42 @@ CABLE_OD = 6.5                     # 8 AWG silicone, the fattest thing pulled
 # can take, so it has to converge over the run into the dense block. See
 # bung_converge_* in the report - it is a gentle move, but it is real.
 BUNG = True
-# CUT FROM 1/4 in 50A NEOPRENE SHEET, not bought as rod.
-# The only 1-1/4 in neoprene ROD on Amazon is 75A, which is wear-pad rubber -
-# too hard to conform to a stranded jacket and a fight to push 6.5 mm cable
-# through 5.5 mm holes. The sheet is 50A, already linked and already bought
-# for this exact job. So the sheet's thickness IS the bung's length: 12.7.
-# NEOPRENE, not the EPDM the module gasket uses, and the two are different on
-# purpose: that gasket seals by compression alone and is chosen for its
-# compression SET, this one gets a 3M 4200 fillet worked over it and is chosen
-# for what will BOND. 4200 is a polyurethane and EPDM is about the hardest
-# rubber to bond - non-polar, low surface energy. A fillet that does not wet
-# the bung leaves a capillary path along the interface it was meant to close.
-# 3/8 in, and the ceiling is the PLATE, not the foam. Derek is right that
-# butting the block means nothing above cares how thick this is - but the
-# counterbore FLOOR is what pushes the bung, so the bore cannot go all the
-# way through: at full plate depth there is no ledge left and the disc drops
-# out the bottom. What is left under the counterbore is an annulus of 6061
-# from the conduit bore out to BUNG_D, and it carries the whole squeeze load.
-# 3/8 in stock leaves BUNG_PLATE_FLOOR of it, and buys 8.5 mm of grip on each
-# lead instead of 5.75 - on a cable seal, length is the thing that seals.
+# --- NO COUNTERBORE, AND NO AXIAL SQUEEZE. Both were unbuildable. ----------
+# Derek, looking at the model: "the bung doesnt even extend past the alu
+# plate, so how does it get compressed?" It does not, and chasing that found
+# two failures stacked on each other.
+#
+# 1. NOTHING CAN COMPRESS IT. Every version of this said "bolting the plate
+#    up drives the counterbore floor into the bung". The plate is not bolted
+#    up. It is BONDED into its pocket at step 7 and the hull is laminated
+#    over it; the four M8s pull the MAST up to the PLATE, at step 23. By the
+#    time the bung goes in at step 18 the plate has been part of the board
+#    for fifteen steps. There is no travel anywhere in the assembly.
+#
+# 2. AND THE DISC COULD NOT GET IN THERE ANYWAY. The counterbore was O34 cut
+#    into the plate's top face, with the O26.8 conduit hole above it and
+#    below it. A pocket reachable only through O26.8 at both ends cannot be
+#    given a O31.75 disc. Not "hard" - impossible.
+#
+# So it is what the design said before any of this: a plug, interference fit
+# in the bore, pushed up from below with the leads already through it. The
+# bore is the plate's own O26.8 hole - machined 6061, which is a better
+# sealing wall than anything that had to be milled for it. The seal is radial
+# now, not axial: rubber to alu round the outside, rubber to jacket through
+# the middle, 4200 skimmed over the wetted face.
 BUNG_L = 9.525                     # 3/8 in sheet
-BUNG_ROD_D = 31.75                 # 1-1/4 in disc, arch punch or 1-3/8 hole saw
-# The pocket is deliberately SLOPPY on diameter, which reads wrong until you
-# do the volume: rubber is near enough incompressible, so a bung squeezed in a
-# bore it exactly fills cannot be squeezed at all - it just becomes a solid
-# spacer and the four M8s fight it for nothing. The clearance annulus IS the
-# relief volume, and it has to swallow the squeeze AND a hand-cut disc coming
-# out a millimetre over. See bung_squeeze_absorbable_mm in the report.
-BUNG_BORE_CLR = 2.25               # diametral - this is relief, not slop
-BUNG_D = BUNG_ROD_D + BUNG_BORE_CLR
-# The straight run above the plate is SHORT - bend_path eats it from the knee
-# down - so most of the bung lives in the alu, which is the better bore anyway:
-# a machined 6061 wall is a sealing surface, epoxy-skinned foam is not.
-# IT BUTTS THE FOAM, and nothing is bored into the foam any more. The dense
-# block sits straight on the plate's top face, so that face IS the foam's
-# underside - counterbore the plate, drop the bung in, and the block's own
-# underside is the stop. One machined feature instead of two, and no pocket
-# to bore up into H80 through a hole you cannot see into.
-# The squeeze still comes from the plate: it rises as its bolts pull it to
-# the hull, and the counterbore floor drives the bung into the foam.
-BUNG_SQUEEZE = 1.0                 # designed axial interference
-BUNG_IN_PLATE = BUNG_L - BUNG_SQUEEZE   # = the counterbore depth
-BUNG_POCKET = 0.0                  # nothing goes into the foam
+# Punched OVERSIZE for the bore it goes into - the interference IS the seal.
+# 28 mm is in Derek's punch set and gives 4.5% on diameter, a normal press
+# fit for 50A rubber with soapy water behind it.
+BUNG_ROD_D = 28.0
+# NEOPRENE, not the EPDM the module gasket uses, and the two differ on
+# purpose: that gasket seals by compression alone and is chosen for its
+# compression SET, this one gets a 3M 4200 fillet worked over it and is
+# chosen for what will BOND. 4200 is a polyurethane and EPDM is about the
+# hardest rubber to bond - non-polar, low surface energy. A fillet that does
+# not wet the bung leaves a capillary path along the interface it was meant
+# to close.
+BUNG_BORE = CONDUIT_D + 0.8        # the plate's conduit hole, unlined 6061
 BUNG_HOLE_D = 5.5                  # drilled UNDERSIZE for CABLE_OD - the seal
 # 1.5, not 2.0, and the half millimetre is bought back from the bore. A row
 # is wider than the round hole it feeds: at a 2.0 gap the outer lead leaves
@@ -5170,17 +5164,13 @@ def build():
     # 4200 fillet goes, not where the barrier is. The barrier belongs at the
     # bottom of the bore, in the alu, before water is inside the foam at all.
     if BUNG:
-        _bz_lo = plate_z1 - BUNG_IN_PLATE     # counterbore floor: THE LEDGE
-        _bz_hi = plate_z1                     # the dense block's underside
-        # ONE cut now, into the plate's top face. The block sits straight on
-        # that face, so the foam is its own stop and nothing has to be bored
-        # up into H80 through a hole you cannot see into.
-        _c = cyl("V2_BungPocket_MastPlate", cdx, 0.0, _bz_lo, plate_z1 + 0.5,
-                 BUNG_D, coll)
-        boolean(bpy.data.objects["V2_MastPlate_Alu"], _c)
-        _c.hide_set(True)
-        _c.hide_render = True
-        bung = cyl("V2_WireBung", cdx, 0.0, _bz_lo, _bz_hi, BUNG_ROD_D, coll,
+        # NO POCKET IS MACHINED. The bung goes into the plate's own conduit
+        # hole, flush with the wetted face, pushed up from below with the
+        # leads already through it. Drawn at the bore diameter because that
+        # is what a 28 mm disc becomes once it is in a 26.8 mm hole.
+        _bz_lo = plate_z0                     # the plate's wetted face
+        _bz_hi = plate_z0 + BUNG_L
+        bung = cyl("V2_WireBung", cdx, 0.0, _bz_lo, _bz_hi, BUNG_BORE, coll,
                    bom_mat("rubber"), seg=48)
         # THREE IN A ROW, ALONG THE CHORD - the order they leave the mast in.
         # An alu mast's cavity is only ~12-14 mm across, so this is the only
@@ -5193,8 +5183,24 @@ def build():
             _h.hide_set(True)
             _h.hide_render = True
 
-        rep["bung_rod_d_mm"] = BUNG_ROD_D
-        rep["bung_pocket_d_mm"] = BUNG_D
+        rep["bung_disc_d_mm"] = BUNG_ROD_D
+        rep["bung_bore_d_mm"] = round(BUNG_BORE, 2)
+        rep["bung_radial_interference_mm"] = round(BUNG_ROD_D - BUNG_BORE, 2)
+        rep["bung_radial_interference_pct"] = round(
+            100.0 * (BUNG_ROD_D - BUNG_BORE) / BUNG_BORE, 1)
+        rep["bung_seals_radially_not_axially"] = True
+        rep["bung_installs_from"] = (
+            "BELOW, up the plate's own bore, leads already threaded. Nothing "
+            "is machined for it and nothing compresses it - the plate is "
+            "bonded in at step 7 and cannot move at step 18")
+        # what holds it in against the water column below it
+        _grip = math.pi * BUNG_BORE * BUNG_L * 0.3 * 0.5   # p x A x mu
+        rep["bung_friction_hold_N"] = round(_grip)
+        rep["bung_water_push_N"] = round(
+            1.0e5 * 0.5 * math.pi / 4 * (BUNG_BORE / 1000.0) ** 2)  # 5 m head
+        rep["bung_hold_margin"] = round(
+            _grip / max(1.0, 1.0e5 * 0.5 * math.pi / 4
+                        * (BUNG_BORE / 1000.0) ** 2), 1)
         rep["bung_free_len_mm"] = round(BUNG_L, 1)
         rep["bung_installed_len_mm"] = round(_bz_hi - _bz_lo, 1)
         rep["bung_hole_d_mm"] = BUNG_HOLE_D
@@ -5202,7 +5208,7 @@ def build():
         rep["bung_pitch_mm"] = round(BUNG_PITCH, 2)
         rep["bung_wire_gap_mm"] = round(BUNG_PITCH - CABLE_OD, 2)
         rep["bung_wall_mm"] = round(
-            BUNG_ROD_D / 2 - (BUNG_PITCH + CABLE_OD / 2), 2)
+            BUNG_BORE / 2 - (BUNG_PITCH + CABLE_OD / 2), 2)
         rep["bung_web_between_holes_mm"] = round(BUNG_PITCH - BUNG_HOLE_D, 2)
         # --- WHAT THE ROW COSTS -------------------------------------------
         # A row is wider than the bore it feeds. The outer lead leaves the
@@ -5224,40 +5230,21 @@ def build():
         rep["bung_needs_bore_leadin"] = _out_r > _bore_r
         rep["bung_cable_interference_pct"] = round(
             100.0 * (CABLE_OD - BUNG_HOLE_D) / CABLE_OD, 1)
-        rep["bung_ledge_w_mm"] = round(
-            (BUNG_D - (CONDUIT_D + 2 * CLR)) / 2.0, 2)
-        # what is left of the plate under the counterbore, and what it carries
-        rep["bung_plate_floor_mm"] = round(G10_T - BUNG_IN_PLATE, 2)
-        rep["bung_plate_floor_MPa"] = round(
-            (math.pi / 4 * (BUNG_ROD_D ** 2 - 3 * BUNG_HOLE_D ** 2) * 1.0)
-            / (math.pi / 4 * (BUNG_D ** 2 - (CONDUIT_D + 2 * CLR) ** 2)), 2)
         # grip length per lead - on a cable seal this is what seals
-        rep["bung_grip_len_mm"] = round(BUNG_IN_PLATE, 2)
-        # ---- CAN IT ACTUALLY BE SQUEEZED ---------------------------------
-        # Rubber does not compress, it MOVES. Axial squeeze is only possible
-        # if there is somewhere for the displaced volume to go, and here the
-        # only somewhere is the clearance annulus round the bung - minus what
-        # the cables already stole by being forced through undersized holes.
-        _area = math.pi / 4 * (BUNG_ROD_D ** 2 - 3 * BUNG_HOLE_D ** 2)
-        _relief = math.pi / 4 * (BUNG_D ** 2 - BUNG_ROD_D ** 2) * BUNG_L
-        _taken = 3 * math.pi / 4 * (CABLE_OD ** 2 - BUNG_HOLE_D ** 2) * BUNG_L
-        rep["bung_squeeze_mm"] = round(BUNG_SQUEEZE, 2)
-        rep["bung_squeeze_absorbable_mm"] = round(
-            max(0.0, _relief - _taken) / _area, 2)
-        rep["bung_squeeze_fits"] = (
-            BUNG_SQUEEZE <= rep["bung_squeeze_absorbable_mm"] + 0.05)
-        # 50 Shore A at a few percent, against four M8s already carrying 6 kN
-        rep["bung_squeeze_force_N"] = round(_area * 1.0)
+        rep["bung_grip_len_mm"] = round(BUNG_L, 2)
+        rep["bung_plate_left_above_mm"] = round(G10_T - BUNG_L, 2)
+        # NO SQUEEZE BLOCK ANY MORE. There is no axial compression to check
+        # because there is nothing in the assembly that could apply it.
         rep["bung_removable"] = True
         rep["bung_note"] = (
-            "a %0.2f mm disc punched from the 1/4 in 50A sheet, three %0.1f mm "
-            "holes in a row at %0.1f mm pitch along the chord. Sits in a "
-            "%0.2f mm counterbore %0.2f mm deep in the alu plate and butts "
-            "straight against the dense block's underside - nothing is bored "
-            "into the foam. Bolting the plate up drives the counterbore floor "
-            "into it and squeezes it %0.1f mm against that face."
-            % (BUNG_ROD_D, BUNG_HOLE_D, BUNG_PITCH, BUNG_D, BUNG_IN_PLATE,
-               BUNG_SQUEEZE))
+            "a %0.1f mm disc punched from 3/8 in 50A neoprene, three %0.1f mm "
+            "holes in a row at %0.1f mm pitch along the chord. Pushed UP the "
+            "plate's own %0.1f mm bore from below with the leads already "
+            "through it, flush with the wetted face, and skimmed with 4200. "
+            "%0.1f mm of interference on the diameter is the outer seal; "
+            "nothing is machined for it and nothing compresses it."
+            % (BUNG_ROD_D, BUNG_HOLE_D, BUNG_PITCH, BUNG_BORE,
+               BUNG_ROD_D - BUNG_BORE))
 
     rep["conduit_od_mm"] = CONDUIT_D
     rep["conduit_bore_mm"] = bore

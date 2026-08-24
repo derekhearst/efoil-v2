@@ -563,28 +563,37 @@ the limit**, which is why the gap is 1.5 and not 2.
 
 | | |
 |---|---|
-| Disc | Ø31.75 × **9.53**, punched from the 3/8 in 50A sheet |
+| Disc | **Ø28** × 9.53, punched from the 3/8 in 50A neoprene |
 | Lead holes | 3 × Ø5.5 **in a row** at 8.0 mm pitch — 15% under the 6.5 mm lead |
-| Pocket | Ø34.0 × **8.53** deep, in the plate only — 4.17 mm of 6061 left under it |
-| Squeeze | **1.0 mm**, taken up as the plate is bolted face to face with the hull |
+| Bore | the plate's own **Ø26.8** conduit hole — nothing is machined for it |
+| Outer seal | **1.2 mm of interference on the diameter** (4.5%), pressed in |
 
 Punch the disc and drill the three holes in a row at 8.0 mm pitch, along the
 chord — the order the leads arrive in, so not one of them has to be twisted
 into place. Soap them through; 15% is meant to be a fight.
 
-Drop it into the plate's counterbore and bolt the plate on. **Nothing is
-bored into the foam** — the dense block sits straight on the plate's top
-face, so that face is the bung's stop. The counterbore floor rises with the
-plate as its bolts pull it to the hull and squeezes the bung 1.0 mm against
-the block's underside.
+**Thread the leads first, then push the whole thing up the bore from below.**
+It goes into the plate's own Ø26.8 conduit hole, flush with the wetted face.
+Nothing is machined for it and nothing compresses it.
 
-**How deep the counterbore can go is set by the plate, not the foam.** Butting
-the block means nothing above cares how thick the bung is — but the
-counterbore *floor* is what pushes it, so the bore cannot run all the way
-through: at full plate depth there is no ledge left and the disc drops out the
-bottom. 3/8 in stock leaves **4.17 mm of 6061** under the bore, carrying 2.1
-MPa against a 276 MPa yield, and buys **8.5 mm of grip on every lead** instead
-of 5.75. On a cable seal, length is the thing that seals.
+> **There is no axial squeeze, and there is no counterbore.** Earlier drafts
+> of this had a Ø34 pocket in the plate's top face with the bung squeezed into
+> it as the plate was "bolted up". Both halves were wrong. **The plate is
+> bonded into its pocket at step 7 and glassed over** — the four M8s pull the
+> *mast* up to the *plate* at step 23, not the plate up to the board. By the
+> time the bung goes in, the plate has been part of the board for fifteen
+> steps and nothing in the assembly can move. And a pocket reachable only
+> through Ø26.8 at both ends could never have been given a Ø31.75 disc anyway.
+>
+> So the seal is **radial**: 1.2 mm of interference against machined 6061 on
+> the outside, 15% against the jacket through the middle, 4200 over the face.
+> **Ream or bore that hole — do not leave it as a drilled one.** That wall is
+> now the outer seal.
+
+Friction holds it at about **120 N** against the **28 N** a 5 m water column
+pushes up under it — 4.3×. It comes out the way it went in: cut the fillet,
+pull the leads and the bung down together.
+
 Fillet 4200 over the underside. **4200 not 5200** — 5200 never comes out.
 
 > **Why the pocket is 2.25 mm bigger than the disc.** Rubber does not

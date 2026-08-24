@@ -402,26 +402,28 @@ def build(p):
     # Radial slop in Gong's own clearance hole - the entire positional budget
     # these four tapped holes get. Derived from the model so it tracks
     # MAST_CLEAR_D rather than being retyped here.
-    # The conduit and its BUNG COUNTERBORE. Neither was on this drawing, so
-    # the one part that has to be machined anyway was going to a shop with
-    # its most awkward feature missing. The counterbore floor is the ledge
-    # that squeezes the bung when the plate is pulled up to the hull.
+    # The conduit. A bung counterbore used to be drawn here too and it is
+    # gone - see the note. The bore is the only feature the bung needs.
     _cx = gl / 2 + p["CONDUIT_X_OFF"]
     d.circle(_cx, gw / 2, (p["CONDUIT_D"] + 0.8) / 2)
-    if p.get("BUNG"):
-        d.circle(_cx, gw / 2, p["BUNG_D"] / 2)
     _slop = (p["MAST_CLEAR_D"] - 8.0) / 2.0
     add("12_mast_plate", "6061-T651 aluminium", p["G10_T"], 1, d, gl, gw,
         f"1/2in 6061-T651, NOT 3/4in G10, and NOT bushed. "
         f"4 x M8 TAPPED {p['INSERT_L']:.0f} mm BLIND from the PAD FACE "
         f"(the wetted underside), leaving {p['INSERT_BLIND']:.1f} mm of solid "
         f"aluminium above so the plate stays watertight. Tap drill 6.8 mm. "
-        f"CONDUIT: O{p['CONDUIT_D'] + 0.8:.1f} through on centre, "
-        f"counterbored O{p['BUNG_D']:.2f} x {p['BUNG_IN_PLATE']:.1f} deep "
-        f"FROM THE TOP FACE (the dry side). That counterbore is not "
-        f"clearance - its floor is the ledge that pushes the wire bung up "
-        f"against the step in the foam as the plate is drawn face to face "
-        f"with the hull, so the depth is a real dimension, not a >= . "
+        f"CONDUIT: O{p['CONDUIT_D'] + 0.8:.1f} through on centre, PLAIN - no "
+        f"counterbore, no step. An earlier version put a O34 pocket in the "
+        f"top face for the wire bung to be squeezed in, and it was wrong "
+        f"twice over: nothing in this assembly can squeeze anything (the "
+        f"plate is BONDED in at step 7, and the four M8s pull the MAST up to "
+        f"the PLATE, not the plate up to the board), and a pocket reachable "
+        f"only through O{p['CONDUIT_D'] + 0.8:.1f} at both ends could never "
+        f"have been given a O31.75 disc anyway. The bung is a "
+        f"O{p['BUNG_ROD_D']:.0f} plug pressed UP this bore from below with "
+        f"the leads already through it - so the bore's FINISH matters: ream "
+        f"or bore it, do not leave it as a drilled hole, because that wall "
+        f"is now the outer seal. "
         f"POSITION COMES OFF THE REAL MAST, NOT OFF THIS DRAWING. The "
         f"{p['BOLT_SPACING_X']:.0f} x {p['BOLT_SPACING_Y']:.0f} here is "
         f"UNVERIFIED layout. Clamp the mast to the blank and spot all four "
