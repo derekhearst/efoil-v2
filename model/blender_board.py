@@ -4546,33 +4546,39 @@ def build():
     # crushed and pulled an insert out. This is the failure V2 is answering.
     rep["v1_ply_lid_crushed_in_service"] = True
     rep["hatch_no_foam_in_load_path"] = True
-    rep["hatch_pot_boss_d_mm"] = HATCH_POT_D
-    rep["hatch_csk_depth_mm"] = round(_csk_z, 2)
-    rep["hatch_csk_resin_wall_mm"] = round(
-        (HATCH_POT_D - HATCH_BOLT_HEAD_D) / 2.0, 2)
-    rep["hatch_seat_MPa_potted"] = round(
+    rep["module_pot_boss_d_mm"] = HATCH_POT_D   # the MODULE lid still pots
+    # ONLY IF THERE IS ONE. HATCH_BOLT_CSK went False when the hardpoint
+    # became a cast plug, and these kept reporting depths and wall thicknesses
+    # for a countersink that is not cut - three abandoned designs left keys
+    # behind describing geometry that does not exist.
+    if HATCH_BOLT_CSK:
+        rep["hatch_csk_depth_mm"] = round(_csk_z, 2)
+        rep["hatch_csk_resin_wall_mm"] = round(
+            (HATCH_POT_D - HATCH_BOLT_HEAD_D) / 2.0, 2)
+    rep["hatch_seat_MPa_bare_on_plug"] = round(
         _bolt_N / _seat(HATCH_BOLT_HEAD_D), 1)
-    rep["hatch_seat_margin_potted"] = round(
+    rep["hatch_seat_margin_bare_on_plug"] = round(
         EPOXY_COMP_MPA / (_bolt_N / _seat(HATCH_BOLT_HEAD_D)), 1)
     # The number that actually answers "is the lid strong enough": the torque
     # at which the head starts crushing its own boss. The spec has to be well
     # under it, because nobody torque-wrenches twelve bolts in a car park.
-    rep["hatch_torque_limit_Nm"] = round(
+    rep["hatch_torque_to_crush_plug_BARE_Nm"] = round(
         _seat(HATCH_BOLT_HEAD_D) * EPOXY_COMP_MPA
         * 0.2 * HATCH_BOLT_D / 1000.0, 2)
     rep["hatch_torque_spec_Nm"] = HATCH_TORQUE_NM
     # NOT hatch_torque_headroom - that name is already taken, by the margin
     # against tearing the captive nut out of the ASA, and quietly overwriting
     # it made the build FAIL on the boss's number under the nut's message.
-    rep["hatch_torque_to_crush_boss_headroom"] = round(
-        rep["hatch_torque_limit_Nm"] / HATCH_TORQUE_NM, 1)
+    rep["hatch_bare_head_torque_headroom"] = round(
+        rep["hatch_torque_to_crush_plug_BARE_Nm"] / HATCH_TORQUE_NM, 1)
     # the boss then hands the load to the BOTTOM skin and the rim's seal land
-    rep["hatch_boss_on_rim_MPa"] = round(_bolt_N / _seat(HATCH_POT_D), 1)
+    rep["hatch_plug_on_rim_MPa"] = round(_bolt_N / _seat(HATCH_SPREADER_D), 1)
     rep["hatch_heads_flush"] = bool(HATCH_BOLT_CSK)
     rep["hatch_heads_need_washers"] = not HATCH_BOLT_CSK
-    rep["hatch_csk_fits_boss"] = (
-        HATCH_POT_D - HATCH_BOLT_HEAD_D) / 2.0 >= 2.0
-    rep["hatch_csk_within_skin_and_core"] = _csk_z < LID_SKIN + LID_CORE
+    if HATCH_BOLT_CSK:
+        rep["hatch_csk_fits_boss"] = (
+            HATCH_POT_D - HATCH_BOLT_HEAD_D) / 2.0 >= 2.0
+        rep["hatch_csk_within_skin_and_core"] = _csk_z < LID_SKIN + LID_CORE
     # A countersunk length is measured OVER the head and a cap-head length
     # under it, and the head is now sunk into the lid by exactly the amount
     # the measurement moved - so the tip lands in the same place either way
