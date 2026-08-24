@@ -5880,6 +5880,19 @@ def build():
     # is that the vent is on the negative-y half and they are all positive)
     rep["vent_y_mm"] = round(vent_y, 1)
     rep["vent_clear_of_connectors"] = vent_y < 0.0
+    # HOW DEEP THE CAVITY CAN FLOOD BEFORE THE VENT IS THE WEAK POINT.
+    # This vent breathes the module into the CAVITY, not to atmosphere, so
+    # if barrier 1 ever lets go the membrane is the dry box's lowest-rated
+    # part sitting in standing water - and IP68 is an immersion rating, not a
+    # permanent-head one. Every millimetre it sits above the cavity floor is
+    # water the cavity can take first.
+    rep["vent_above_cavity_floor_mm"] = round(vent_z - FLOOR_Z, 1)
+    rep["vent_flood_note"] = (
+        "the module breathes into the CAVITY. A flooded cavity submerges the "
+        "membrane, and IP68 is an immersion rating not a permanent head. The "
+        "cavity can hold this much water before the vent becomes the module's "
+        "weak point - and the leak alarm's sensor sits on the module floor, "
+        "so it should find it long before that")
     rep["module_is_sealed"] = True
     # module_seal / gasket clearances are set where the gasket is built.
     rep["module_seal_to_insert_mm"] = round(
