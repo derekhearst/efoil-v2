@@ -940,6 +940,7 @@ CONDUIT_BEND_R = 60.0              # centreline bend radius at the knee
 # No knee height buys a bigger radius - a circular fillet needs equal tangents
 # and the vertical root is only ~20 mm long, so the short leg sets it.
 CABLE_OD = 6.5                     # 8 AWG silicone, the fattest thing pulled
+H80_COMP_MPA = 1.4                 # Divinycell H80 flatwise, the mast block
 
 # --- THE WIRE BUNG, and why the bore shrank to suit it ---------------------
 # The three phase leads leave the mast TOUCHING, in a line along the chord -
@@ -1022,7 +1023,40 @@ BUNG_FREE_D = 30.0                 # as punched - UNDER the bore
 # foam and finishes DEAD FLUSH with nothing to squeeze, and the next size up
 # is this one. See bung_land_pct - that, not the thickness, is the number
 # that decides whether this arrangement works at all.
-BUNG_L = 19.05                     # 3/4 in sheet
+BUNG_L = 9.525                     # 3/8 in sheet - the BLOCKER takes up the
+                                   # rest of the plate's bore now
+# --- THE BLOCKER, and why the bung needed one -----------------------------
+# Derek, looking at the model: "kinda looks like the bung isnt actually
+# stopped agiasnt the foam". It is not, and the reason is worse than a
+# drawing gap - THE LINER HAS NO GEOMETRY. The dense block is bored O30.8
+# clean through and the "O22 finished bore" whose end face was supposed to
+# back the bung existed only in arithmetic. Worse still, had it existed it
+# would have been a 365 mm2 ring carrying 1.72 MPa into H80 that gives up at
+# 1.4 - it would have crushed into the foam the first time the mast was
+# torqued. The stop was imaginary AND undersized.
+#
+# There is no shoulder anywhere in that conduit. It is one bore from the mast
+# plate to the cavity, so a stop has to be MADE, and the only thing with area
+# enough to react on is the dense block - which is CNC machined anyway, so
+# the counterbore that seats this is free.
+BLOCKER = True
+# O46, not the O40 I sized by hand - the flange bears from its own OD down to
+# the CONDUIT CHANNEL at O30.8, not down to a O24 bore, so the ring is 512 mm2
+# at O40 and that is only 1.1x on H80. O46 makes it 917 and 2.0x. The dense
+# block is 430 x 355; there is no shortage of room out there.
+BLOCKER_FLANGE_D = 46.0
+BLOCKER_FLANGE_T = 4.0             # sits in a counterbore in the block
+# 5.5, and every millimetre of it comes straight off the bung's grip on the
+# leads - the plate's bore is 12.7 and the two share it. 5.5 is what the
+# O-ring groove needs plus a wall each side of it, and it leaves the bung 7.2.
+BLOCKER_BODY_L = 5.5
+BLOCKER_BODY_D = 30.4              # slip fit in the plate's bore
+BLOCKER_WIRE_D = 8.0               # CLEARANCE, not a seal - the bung seals
+# ...and its O-ring, which is what replaces the 4200 Derek does not want in
+# the channel. A piston seal against the plate's machined bore, in series
+# with the bung rather than instead of it.
+ORING_CORD = 2.5
+ORING_SQUEEZE = 0.20               # radial, on the cord
 # 5.5, not 5.8. The hole interference is the mechanism that works WITHOUT any
 # axial squeeze at all - it is a grommet seal, and it does not care that 75%
 # of the bung's face has somewhere to escape to. 5.5 takes it from 10.8% on
@@ -1893,8 +1927,10 @@ G10_T = 12.7                       # 1/2" 6061-T651 mast plate
 INSERT_L = 10.0                    # tapped depth, blind from the pad face
 INSERT_OD = 6.0                    # M8 tapped hole, not a O20 bonded bore
 INSERT_BLIND = G10_T - INSERT_L
-BUNG_IN_PLATE = G10_T                       # it fills the bore, full depth
-BUNG_SQUEEZE = BUNG_L - G10_T               # ...and this much hangs below    # 2.7 mm solid alu above - stays watertight
+# The bung no longer fills the plate - the blocker takes the top of it.
+BUNG_IN_PLATE = G10_T - BLOCKER_BODY_L
+BUNG_SQUEEZE = BUNG_L - BUNG_IN_PLATE       # ...and this much hangs below
+ORING_GROOVE_D = (CONDUIT_D + 0.8) - 2 * ORING_CORD * (1 - ORING_SQUEEZE)    # 2.7 mm solid alu above - stays watertight
 
 # --- THE GONG MAST'S OWN PLATE, which was missing entirely -----------------
 # The mast does not bolt to the board. It bolts to ITS OWN plate, and that
@@ -5322,8 +5358,54 @@ def build():
         # channel steps down to O22. Drawn AS FITTED BEFORE THE MAST GOES ON,
         # so the BUNG_SQUEEZE hanging below the wetted face is visible - that
         # is the whole mechanism, and it was invisible while it sat flush.
+        # --- the blocker: a real stop, seated in the dense block ----------
+        if BLOCKER:
+            _cb = cyl("V2_DenseCounterbore_cut", cdx, 0.0, plate_z1 - 0.5,
+                      plate_z1 + BLOCKER_FLANGE_T, BLOCKER_FLANGE_D, coll)
+            boolean(dense, _cb)
+            _cb.hide_set(True)
+            _cb.hide_render = True
+            blk = cyl("V2_ConduitBlocker", cdx, 0.0,
+                      plate_z1 - BLOCKER_BODY_L, plate_z1, BLOCKER_BODY_D,
+                      coll, bom_mat("asa"), seg=40)
+            _fl = cyl("V2_BlockerFlange", cdx, 0.0, plate_z1,
+                      plate_z1 + BLOCKER_FLANGE_T, BLOCKER_FLANGE_D, coll,
+                      seg=40)
+            boolean(blk, _fl, op='UNION')
+            _fl.hide_set(True)
+            _fl.hide_render = True
+            # three CLEARANCE holes - this part does not seal on the wires
+            for _k in (-1, 0, 1):
+                _wh = cyl("V2_BlockerWire_cut_%d" % (_k + 1),
+                          cdx + _k * BUNG_PITCH, 0.0,
+                          plate_z1 - BLOCKER_BODY_L - 1.0,
+                          plate_z1 + BLOCKER_FLANGE_T + 1.0,
+                          BLOCKER_WIRE_D, coll, seg=20)
+                boolean(blk, _wh)
+                _wh.hide_set(True)
+                _wh.hide_render = True
+            # the O-ring groove: an annular cutter round the body
+            _gz0 = plate_z1 - BLOCKER_BODY_L + 1.2
+            _gz1 = _gz0 + ORING_CORD * 1.3
+            _ring = cyl("V2_ORingGroove_cut", cdx, 0.0, _gz0, _gz1,
+                        BLOCKER_BODY_D + 4.0, coll, seg=40)
+            _in = cyl("V2_ORingGrooveInner_cut", cdx, 0.0, _gz0 - 1.0,
+                      _gz1 + 1.0, ORING_GROOVE_D, coll, seg=40)
+            boolean(_ring, _in)
+            boolean(blk, _ring)
+            for _o in (_ring, _in):
+                _o.hide_set(True)
+                _o.hide_render = True
+            # ...and the O-ring sitting in it
+            _or = cyl("V2_BlockerORing", cdx, 0.0, _gz0, _gz0 + ORING_CORD,
+                      ORING_GROOVE_D + 2 * ORING_CORD, coll,
+                      bom_mat("seal"), seg=40)
+            boolean(_or, cyl("V2_BlockerORingBore_cut", cdx, 0.0,
+                             _gz0 - 1.0, _gz1 + 1.0, ORING_GROOVE_D, coll,
+                             seg=40))
+
         _bz_lo = plate_z0 - BUNG_SQUEEZE
-        _bz_hi = plate_z1
+        _bz_hi = plate_z1 - BLOCKER_BODY_L
         bung = cyl("V2_WireBung", cdx, 0.0, _bz_lo, _bz_hi, BUNG_FREE_D, coll,
                    bom_mat("rubber"), seg=48)
         # THREE IN A ROW, ALONG THE CHORD - the order they leave the mast in.
@@ -5395,8 +5477,15 @@ def build():
         # and the conduit, and everything inside that is open sky. Rubber
         # takes the cheap path, so whatever fraction is open is squeeze that
         # extrudes up the bore instead of arriving at the leads.
-        _above = math.pi / 4 * (BUNG_BORE ** 2
-                                - (CONDUIT_D - 2 * CONDUIT_WALL) ** 2)
+        # BACKED BY THE BLOCKER NOW, not by an epoxy step that was never
+        # modelled. The blocker's body covers the bung's whole face; the only
+        # thing still open is the ring of clearance round each lead in its
+        # O8 hole, which is 51 mm2 of the 636 the bung presents.
+        _above = (math.pi / 4 * BLOCKER_BODY_D ** 2
+                  - 3 * math.pi / 4 * (BLOCKER_WIRE_D ** 2 - CABLE_OD ** 2)
+                  if BLOCKER else
+                  math.pi / 4 * (BUNG_BORE ** 2
+                                 - (CONDUIT_D - 2 * CONDUIT_WALL) ** 2))
         _face = math.pi / 4 * BUNG_FREE_D ** 2
         rep["bung_backed_above_mm2"] = round(_above)
         rep["bung_backed_above_pct"] = round(100.0 * _above / _face)
@@ -5423,6 +5512,45 @@ def build():
                round(100.0 * (math.pi / 4 * (BUNG_BORE ** 2 - BUNG_FREE_D ** 2)
                               * G10_T) / (_face * BUNG_SQUEEZE)),
                round(100.0 - 100.0 * _above / _face)))
+        if BLOCKER:
+            _bf = math.pi / 4 * BLOCKER_FLANGE_D ** 2 - math.pi / 4 * (
+                CONDUIT_D + 2 * CLR) ** 2
+            rep["blocker_is"] = (
+                "printed ASA. O%.0f x %.1f flange seated in a counterbore in "
+                "the DENSE BLOCK, O%.1f body reaching %.1f mm down the "
+                "plate's bore, 3 x O%.0f CLEARANCE holes and an O-ring in a "
+                "groove round the body"
+                % (BLOCKER_FLANGE_D, BLOCKER_FLANGE_T, BLOCKER_BODY_D,
+                   BLOCKER_BODY_L, BLOCKER_WIRE_D))
+            rep["blocker_flange_bearing_mm2"] = round(_bf)
+            # the force is the bung's own compression, pushed straight
+            # through the blocker into the foam
+            _bfN = math.pi / 4 * (BUNG_FREE_D ** 2 - 3 * BUNG_HOLE_D ** 2)
+            rep["blocker_flange_MPa"] = round(_bfN / _bf, 2)
+            rep["blocker_flange_margin"] = round(
+                H80_COMP_MPA / max(0.01, _bfN / _bf), 1)
+            rep["blocker_seats_in"] = (
+                "a O%.0f x %.1f counterbore in the dense block's underside - "
+                "that block is CNC machined anyway, so the shoulder is free"
+                % (BLOCKER_FLANGE_D, BLOCKER_FLANGE_T))
+            rep["blocker_wire_clearance_mm"] = round(
+                (BLOCKER_WIRE_D - CABLE_OD) / 2, 2)
+            # the O-ring: a PISTON seal against the plate's machined bore,
+            # in series with the bung. This is what replaces the 4200 fillet.
+            rep["oring_cord_mm"] = ORING_CORD
+            rep["oring_groove_d_mm"] = round(ORING_GROOVE_D, 2)
+            rep["oring_squeeze_pct"] = round(100.0 * (
+                ORING_CORD - (BUNG_BORE - ORING_GROOVE_D) / 2) / ORING_CORD)
+            rep["oring_seals_against"] = (
+                "the plate's O%.1f machined bore - a piston seal, IN SERIES "
+                "with the bung and not instead of it. It is what lets the "
+                "4200 out of the channel" % BUNG_BORE)
+            rep["blocker_installed_at"] = (
+                "STEP 7, with the plate. Its O%.0f flange cannot pass the "
+                "O%.1f plate bore, so it is seated before the plate is bonded "
+                "in. The leads pull up through its O%.0f clearance holes at "
+                "step 18 and only the BUNG grips them"
+                % (BLOCKER_FLANGE_D, BUNG_BORE, BLOCKER_WIRE_D))
         rep["bung_land_needed_pct"] = 60
         rep["bung_land_is_thin"] = 2 * _seg / _area < 0.6
         # THE ONE MEASUREMENT THIS TURNS ON. MAST_SLOT_W is a guess, and the

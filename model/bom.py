@@ -853,13 +853,12 @@ def build():
     # conform to a stranded jacket and it turns pushing 6.5 mm cable through
     # The bung is a punched DISC and blender_board.py takes BUNG_L straight
     # off the stock thickness.
-    add("7  Module", "Neoprene sheet 3/4in, wire bung", 1, "sheet",
-        26.00, EST, "3/4 in, and NOT the 5/8 the arithmetic wants - 5/8 is not a "
-        "stock thickness and the board's plate is exactly 1/2, so a 1/2 in "
-        "disc finishes dead flush with nothing to squeeze. Punch O26.0 discs "
-        "and drill 3 x O5.8 in a row at 8.0 pitch. Fills the plate's straight "
-        "O26.8 bore, butts the epoxy liner, and hangs 6.35 mm below the "
-        "wetted face for the mast's own plate to squeeze out.  and drill 3 x O5.5 IN A ROW The row is the "
+    add("7  Module", "Neoprene sheet 3/8in, wire bung", 1, "sheet",
+        26.00, EST, "3/8 in - the BLOCKER takes the top of the plate's bore now, so "
+        "the bung only needs the bottom 7.2 of it. Punch O30.0 discs and "
+        "drill 3 x O5.5 in a row at 8.0 pitch. Butts the blocker, hangs "
+        "2.3 mm below the wetted face, and the mast's own plate squeezes "
+        "that out.  and drill 3 x O5.5 IN A ROW The row is the "
         "order the leads leave the mast in, so none has to be twisted. One sheet is a lifetime of bungs for both boards")
     # Derek's existing punch set stops at 1/2 in and the disc is 1-1/4 in.
     # A 1-3/8 in hole saw also gets there - its plug comes out about 2.5 mm
@@ -869,8 +868,32 @@ def build():
         "set", 32.99, EST, "the existing set stops at 1/2 in. Skip it if a "
         "1-3/8 in hole saw is already in the drawer - the plug it leaves is "
         "about 32 mm, which is the disc we want", tool=True, vendor="Amazon")
-    add("7  Module", "3M 4200 FC 3 oz tube, fillet over the bung", 1, "tube",
-        17.99, OK, "does both boards; 4200 NOT 5200 - 5200 never comes out",
+    # --- the blocker and its O-ring, which is what took the 4200 OUT of the
+    # conduit. Derek did not want a sealant fillet as a barrier and he was
+    # right to push: the bung was supposed to butt an epoxy liner step that
+    # HAS NO GEOMETRY - the dense block is bored clean through - and even had
+    # it existed it would have been a 365 mm2 ring carrying 1.72 MPa into H80
+    # that gives up at 1.4. The stop was imaginary and undersized at once.
+    # The blocker is a real one: printed ASA, O46 flange in a counterbore in
+    # the dense block (0.69 MPa, 2.0x), body down the plate's bore, and an
+    # O-ring against that machined bore as a second barrier in series.
+    # It takes the bung's backing from 30% to 95%, which is the difference
+    # between the squeeze arriving at the leads and extruding up the bore.
+    # NO NEW FILAMENT LINE. It is grams, off the rim ring's spool.
+    add("7  Module", "Printed ASA wire blocker", 0, "off", 0.00, OWNED,
+        "printed, grams off the rim ring spool. O46 x 4 flange, O30.4 x 5.5 "
+        "body, 3 x O8 CLEARANCE holes - it does NOT seal on the wires, the "
+        "bung does. Seat it at STEP 7 with the plate: the flange cannot pass "
+        "the O30.8 plate bore, so it goes in before the plate is bonded")
+    add("7  Module", 'O-ring 27 ID x 2.5 nitrile, blocker seal', 1, "pk", 8.99, EST,
+        "2 needed of 50. Sits in a groove round the blocker's body and "
+        "seals against the plate's O30.8 machined bore - a piston seal, IN "
+        "SERIES with the bung. 20% squeeze on the cord. This is what "
+        "replaces a 4200 fillet as the second barrier")
+    add("7  Module", "3M 4200 FC 3 oz tube, skim over the bung", 1, "tube",
+        17.99, OK, "does both boards; 4200 NOT 5200 - 5200 never comes out. "
+        "NOT A BARRIER any more - the blocker's O-ring is the second seal and "
+        "this is a skim over the bung's face, belt to that braces",
         vendor="Amazon")
     # NO LINE FOR THE MODULE LIFT HANDLE HERE. It is one of the three
     # kayak grab handles bought in 9b - that was the whole point of picking
