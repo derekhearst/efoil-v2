@@ -91,7 +91,7 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | Hollow punch set 1/8-1/2in + cutting mat | 0 | off | $0.00 | $0.00 | on hand | 7/32 in (5.556) is the size for M4 - the model sizes the gasket holes off it, not the other way round. Punch onto a mat: a hard bench rolls the edge on the first hit |
 | [Closed-cell sponge EPDM 1/8in, module lid gasket](https://www.amazon.com/dp/B07FWQM34V) | 1 | roll | $13.99 | $13.99 | verified | blank is 443 x 314 mm a board; the roll is 432 wide so it nests across, and 2032 long does both with room over |
 | [Gebildet PG11 gland, M18x1.5, 30 pk](https://www.amazon.com/dp/B0B8NJR62L) | 1 | pk | $9.99 | $9.99 | verified | your listing: M18x1.5 thread (matches the 18.5 hole) and 5-10 mm cable, against our 6.5 mm 8 AWG. 6 needed of 30 - one wire per gland; three in one gland deforms the insert into a clover and leaks between them |
-| [Neoprene sheet 1/4in 50A, wire bung](https://www.amazon.com/dp/B01N1923RT) | 1 | sheet | $14.00 | $14.00 | estimate | 1/4 in, not 1/2 - the bung lives entirely in the plate's counterbore now and butts the foam, so its length IS that depth. Punch O31.75 discs and drill 3 x O5.5 IN A ROW at 8.0 mm pitch, the order the leads leave the mast in - 15% interference, soap them through. One sheet is a lifetime of bungs for both boards |
+| [Neoprene sheet 3/8in 50A, wire bung](https://www.amazon.com/dp/B01LX83VS9) | 1 | sheet | $18.00 | $18.00 | estimate | The bung lives entirely in the plate's counterbore and butts the foam, so its length is that depth plus the squeeze - and the ceiling is the PLATE, because the counterbore floor is what pushes it. 3/8 leaves 4.2 mm of 6061 under the bore and buys 8.5 mm of grip on every lead. Punch O31.75 discs and drill 3 x O5.5 IN A ROW at 8.0 mm pitch, the order the leads leave the mast in - 15% interference, soap them through. One sheet is a lifetime of bungs for both boards |
 | [Hollow punch set 3/16-1-3/8in, for the O31.75 bung](https://www.amazon.com/dp/B07PQYRG9K) | 1 | set | $32.99 | $32.99 | estimate | the existing set stops at 1/2 in. Skip it if a 1-3/8 in hole saw is already in the drawer - the plug it leaves is about 32 mm, which is the disc we want |
 | [3M 4200 FC 3 oz tube, fillet over the bung](https://www.amazon.com/dp/B00MJ9K78A) | 1 | tube | $17.99 | $17.99 | verified | does both boards; 4200 NOT 5200 - 5200 never comes out |
 | [M12 IP68 membrane vent plug](https://www.amazon.com/dp/B0FXSNDGTV) | 2 | ea | $9.95 | $19.90 | verified | NOT optional on a sealed lithium box |
@@ -100,7 +100,7 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | [SP17 2-pin IP68 flange receptacle](https://www.amazon.com/dp/B0CDH5R8P4) | 2 | ea | $13.20 | $26.40 | verified | 67.2 V 5 A charge; O17 panel hole, 2 x M3 flange screws. $2.49, not the $11 this carried. CHECK THE CAP IS INCLUDED before ordering - on a board that gets submerged the cap is the part that does the sealing when nothing is plugged in |
 | [M3 heat-set insert kit, 361 pc](https://www.amazon.com/dp/B0G8JLX1HR) | 1 | kit | $13.98 | $13.98 | verified | covers the port flange (4 sets) and the nose cone. The kit's screws are PLAIN STEEL - buy M3 x 8 A4 separately for the flange, which lives in the wet cavity |
 | [M3 x 8 A4 stainless, 10 pk](https://www.amazon.com/dp/B07DVMFMJZ) | 1 | pk | $6.76 | $6.76 | verified | the kit's screws are not stainless and this joint is submerged |
-| **subtotal** | | | | **$438.88** | | |
+| **subtotal** | | | | **$442.88** | | |
 
 ## 9  Electrical
 
@@ -247,31 +247,31 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | Item | Qty | Unit | Unit $ | Ext $ | | Note |
 |---|---:|---|---:|---:|---|---|
 | Shipping - Divinycell, 6061 plate, VR20 | 1 | allow | $120.00 | $120.00 | estimate | STILL THE BIGGEST UNVERIFIED LINE - it wants three real carts to settle. Was $220 when it covered G10 sheet and hazmat epoxy, both of which are now out of the build entirely |
-| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $447.60 | $447.60 | verified |  |
-| **subtotal** | | | | **$567.60** | | |
+| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $447.84 | $447.84 | verified |  |
+| **subtotal** | | | | **$567.84** | | |
 
 ## Totals
 
 | | |
 |---|---:|
-| **Grand total, 2 boards** | **$7,907.52** |
-| Per board | $3,953.76 |
-| Of which verified | $7,296.13  (92%) |
-| Of which estimated | $611.39 |
+| **Grand total, 2 boards** | **$7,911.76** |
+| Per board | $3,955.88 |
+| Of which verified | $7,296.37  (92%) |
+| Of which estimated | $615.39 |
 | Linked to a real listing | 128 lines |
 | Priced but NOT linked | 1 lines, $12.00 |
-| Not linkable, but MEASURED (freight quotes) | 2 lines, $716.23 |
+| Not linkable, but MEASURED (freight quotes) | 2 lines, $716.47 |
 | Not linkable and still estimated | 1 lines, $120.00 |
 
 ## What is a board, and what is a shop
 
-Some of the total above is not the cost of a board at all - it is tools, jigs and templates that exist afterwards and do not repeat. Splitting them out is the difference between "a board costs $3,954" and "a board costs $3,519 and I now own a vacuum rig, a crimper and a full template set".
+Some of the total above is not the cost of a board at all - it is tools, jigs and templates that exist afterwards and do not repeat. Splitting them out is the difference between "a board costs $3,956" and "a board costs $3,521 and I now own a vacuum rig, a crimper and a full template set".
 
 | | |
 |---|---:|
 | One-time tooling (incl. its share of tax) | $869.36 |
-| **Marginal cost of a board** | **$3,519.08** |
-| Cost of the NEXT board after these 2 | $3,519.08 |
+| **Marginal cost of a board** | **$3,521.20** |
+| Cost of the NEXT board after these 2 | $3,521.20 |
 
 | One-time item | $ |
 |---|---:|

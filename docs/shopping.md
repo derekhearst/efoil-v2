@@ -6,17 +6,17 @@ Grouped by where you buy it rather than by what it does, because that is the ord
 
 | Supplier | Lines | $ |
 |---|---:|---:|
-| Amazon | 113 | $3,618.33 |
+| Amazon | 113 | $3,622.33 |
 | Gong | 1 | $1,404.00 |
 | Flipsky | 3 | $1,038.00 |
-| Not a purchase - tax and freight | 3 | $836.23 |
+| Not a purchase - tax and freight | 3 | $836.47 |
 | BatteryHookup | 2 | $297.50 |
 | Fiberglass Supply | 3 | $253.38 |
 | Home Depot / hardware | 4 | $169.16 |
 | Maker Shop Boise | 1 | $150.00 |
 | Speedy Metals | 1 | $88.92 |
 | Easy Composites | 1 | $52.00 |
-| **TOTAL** | | **$7,907.52** |
+| **TOTAL** | | **$7,911.76** |
 
 ## Amazon
 
@@ -83,6 +83,7 @@ https://www.amazon.com
 | [8 AWG marine ring lugs, 20 pk](https://www.amazon.com/dp/B0CWGXB4NB) | 2 | pk | $19.98 | **verified** | 28 needed; on M6 studs - nothing to solder |
 | [M12 IP68 membrane vent plug](https://www.amazon.com/dp/B0FXSNDGTV) | 2 | ea | $19.90 | **verified** | NOT optional on a sealed lithium box |
 | [Release wax / PVA for the cavity caul](https://www.amazon.com/dp/B0HB5VXRY1) | 1 | set | $19.90 | estimate |  |
+| [Neoprene sheet 3/8in 50A, wire bung](https://www.amazon.com/dp/B01LX83VS9) | 1 | sheet | $18.00 | estimate | The bung lives entirely in the plate's counterbore and butts the foam, so its length is that depth plus the sq |
 | [3M 4200 FC 3 oz tube, fillet over the bung](https://www.amazon.com/dp/B00MJ9K78A) | 1 | tube | $17.99 | **verified** | does both boards; 4200 NOT 5200 - 5200 never comes out |
 | [Thermometer / hygrometer, 2 pk](https://www.amazon.com/dp/B086PC5962) | 1 | pk | $17.99 | estimate | one in the shop, one by the part. Slow needs 60 F, fast needs 40-45, and below ~35 nothing cures at all |
 | [Chip brushes 2 in, 36 pk](https://www.amazon.com/dp/B078XJ2DCJ) | 1 | pk | $17.99 | **verified** | disposable, 2-4 a session across 6 sessions. The 12 pk at $7.19 is dearer per brush and runs out mid-build |
@@ -92,7 +93,6 @@ https://www.amazon.com
 | [Longboard PSA sandpaper 80 grit, 20 yd roll](https://www.amazon.com/dp/B0CQ7CVGK6) | 1 | roll | $15.99 | **verified** | 2-3/4 in, self-adhesive, fits the longboard above. 80 is the fairing grit - it cuts fair, it does not finish |
 | [Solid silicone cord, 1/8 in (3.175 mm) - the spare size](https://www.amazon.com/dp/B00QVB0KE8) | 1 | pc | $15.39 | **verified** | 10 ft piece, 70A. Fitted ONLY if the routed groove measures deep. Gives 24% squeeze at the nominal 2.4 depth a |
 | [16 AWG silicone, 6 colours x 5 ft](https://www.amazon.com/dp/B089CPH72F) | 1 | kit | $14.49 | **verified** | charge port and power button runs are short; one kit does both boards and the colours keep them straight |
-| [Neoprene sheet 1/4in 50A, wire bung](https://www.amazon.com/dp/B01N1923RT) | 1 | sheet | $14.00 | estimate | 1/4 in, not 1/2 - the bung lives entirely in the plate's counterbore now and butts the foam, so its length IS  |
 | [Silica gel, indicating, 50 g per module](https://www.amazon.com/dp/B0DSBCXHT3) | 1 | pk | $13.99 | estimate | ~40 g is a season at 50 breathing cycles; a token sachet is worth about six. Bake it dry when the indicator tu |
 | [Closed-cell sponge EPDM 1/8in, module lid gasket](https://www.amazon.com/dp/B07FWQM34V) | 1 | roll | $13.99 | **verified** | blank is 443 x 314 mm a board; the roll is 432 wide so it nests across, and 2032 long does both with room over |
 | [PVC pack wrap, 200 mm lay-flat](https://www.amazon.com/dp/B09SVFL33L) | 1 | roll | $13.99 | **verified** | wide enough to sleeve a 16S brick; one roll does both |
@@ -164,7 +164,7 @@ Some Flipsky appears on Amazon but the range is thin and usually dearer. Buy dir
 
 | Item | Qty | Unit | Ext | Price | Note |
 |---|---:|---|---:|---|---|
-| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $447.60 | **verified** |  |
+| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $447.84 | **verified** |  |
 | Gong shipping to Idaho, ONE order, both foils | 1 | order | $268.63 | **verified** | quoted at checkout for 2 x XL Alu setups. PER ORDER, not per foil - ordering the two separately would roughly  |
 | Shipping - Divinycell, 6061 plate, VR20 | 1 | allow | $120.00 | estimate | STILL THE BIGGEST UNVERIFIED LINE - it wants three real carts to settle. Was $220 when it covered G10 sheet an |
 

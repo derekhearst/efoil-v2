@@ -950,9 +950,15 @@ BUNG = True
 # for what will BOND. 4200 is a polyurethane and EPDM is about the hardest
 # rubber to bond - non-polar, low surface energy. A fillet that does not wet
 # the bung leaves a capillary path along the interface it was meant to close.
-BUNG_L = 6.35                      # 1/4 in sheet. Thinner: it now lives ONLY
-                                   # in the plate, so its length is a
-                                   # counterbore depth, not a stack of two.
+# 3/8 in, and the ceiling is the PLATE, not the foam. Derek is right that
+# butting the block means nothing above cares how thick this is - but the
+# counterbore FLOOR is what pushes the bung, so the bore cannot go all the
+# way through: at full plate depth there is no ledge left and the disc drops
+# out the bottom. What is left under the counterbore is an annulus of 6061
+# from the conduit bore out to BUNG_D, and it carries the whole squeeze load.
+# 3/8 in stock leaves BUNG_PLATE_FLOOR of it, and buys 8.5 mm of grip on each
+# lead instead of 5.75 - on a cable seal, length is the thing that seals.
+BUNG_L = 9.525                     # 3/8 in sheet
 BUNG_ROD_D = 31.75                 # 1-1/4 in disc, arch punch or 1-3/8 hole saw
 # The pocket is deliberately SLOPPY on diameter, which reads wrong until you
 # do the volume: rubber is near enough incompressible, so a bung squeezed in a
@@ -972,7 +978,7 @@ BUNG_D = BUNG_ROD_D + BUNG_BORE_CLR
 # to bore up into H80 through a hole you cannot see into.
 # The squeeze still comes from the plate: it rises as its bolts pull it to
 # the hull, and the counterbore floor drives the bung into the foam.
-BUNG_SQUEEZE = 0.6                 # designed axial interference
+BUNG_SQUEEZE = 1.0                 # designed axial interference
 BUNG_IN_PLATE = BUNG_L - BUNG_SQUEEZE   # = the counterbore depth
 BUNG_POCKET = 0.0                  # nothing goes into the foam
 BUNG_HOLE_D = 5.5                  # drilled UNDERSIZE for CABLE_OD - the seal
@@ -5220,6 +5226,13 @@ def build():
             100.0 * (CABLE_OD - BUNG_HOLE_D) / CABLE_OD, 1)
         rep["bung_ledge_w_mm"] = round(
             (BUNG_D - (CONDUIT_D + 2 * CLR)) / 2.0, 2)
+        # what is left of the plate under the counterbore, and what it carries
+        rep["bung_plate_floor_mm"] = round(G10_T - BUNG_IN_PLATE, 2)
+        rep["bung_plate_floor_MPa"] = round(
+            (math.pi / 4 * (BUNG_ROD_D ** 2 - 3 * BUNG_HOLE_D ** 2) * 1.0)
+            / (math.pi / 4 * (BUNG_D ** 2 - (CONDUIT_D + 2 * CLR) ** 2)), 2)
+        # grip length per lead - on a cable seal this is what seals
+        rep["bung_grip_len_mm"] = round(BUNG_IN_PLATE, 2)
         # ---- CAN IT ACTUALLY BE SQUEEZED ---------------------------------
         # Rubber does not compress, it MOVES. Axial squeeze is only possible
         # if there is somewhere for the displaced volume to go, and here the

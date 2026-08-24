@@ -534,7 +534,7 @@ that kill a BMS.
 
 **Blocks on:** steps 7, 17
 **Uses:** `Fish tape / pull cord for the mast conduit` ·
-`IP68 M25 inline housing, 5 pk` · `Neoprene sheet 1/4in 50A, wire bung` ·
+`IP68 M25 inline housing, 5 pk` · `Neoprene sheet 3/8in 50A, wire bung` ·
 `Hollow punch set 3/16-1-3/8in, for the O31.75 bung` ·
 `3M 4200 FC 3 oz tube, fillet over the bung`
 
@@ -563,10 +563,10 @@ the limit**, which is why the gap is 1.5 and not 2.
 
 | | |
 |---|---|
-| Disc | Ø31.75, punched from the 1/4 in 50A sheet — its thickness **is** the length, 6.35 |
+| Disc | Ø31.75 × **9.53**, punched from the 3/8 in 50A sheet |
 | Lead holes | 3 × Ø5.5 **in a row** at 8.0 mm pitch — 15% under the 6.5 mm lead |
-| Pocket | Ø34.0 × 5.75 deep, in the plate only — the foam's underside is the stop |
-| Squeeze | 0.6 mm, taken up as the plate is bolted face to face with the hull |
+| Pocket | Ø34.0 × **8.53** deep, in the plate only — 4.17 mm of 6061 left under it |
+| Squeeze | **1.0 mm**, taken up as the plate is bolted face to face with the hull |
 
 Punch the disc and drill the three holes in a row at 8.0 mm pitch, along the
 chord — the order the leads arrive in, so not one of them has to be twisted
@@ -575,8 +575,16 @@ into place. Soap them through; 15% is meant to be a fight.
 Drop it into the plate's counterbore and bolt the plate on. **Nothing is
 bored into the foam** — the dense block sits straight on the plate's top
 face, so that face is the bung's stop. The counterbore floor rises with the
-plate as its bolts pull it to the hull and squeezes the bung 0.6 mm against
+plate as its bolts pull it to the hull and squeezes the bung 1.0 mm against
 the block's underside.
+
+**How deep the counterbore can go is set by the plate, not the foam.** Butting
+the block means nothing above cares how thick the bung is — but the
+counterbore *floor* is what pushes it, so the bore cannot run all the way
+through: at full plate depth there is no ledge left and the disc drops out the
+bottom. 3/8 in stock leaves **4.17 mm of 6061** under the bore, carrying 2.1
+MPa against a 276 MPa yield, and buys **8.5 mm of grip on every lead** instead
+of 5.75. On a cable seal, length is the thing that seals.
 Fillet 4200 over the underside. **4200 not 5200** — 5200 never comes out.
 
 > **Why the pocket is 2.25 mm bigger than the disc.** Rubber does not
