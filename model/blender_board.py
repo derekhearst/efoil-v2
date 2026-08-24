@@ -1085,11 +1085,25 @@ BLOCKER_T = 4.0                    # printed ASA, bedded on 4200
 # bung's squeeze, and the 4200 bond up the side of this spigot is what
 # actually carries it.
 BLOCKER_SPIGOT_L = 12.0
-FOAM_BORE = 25.0                   # the dense block, NARROWER than the plate
+# 24.0, WAS 25.0, AND IT IS THE TIGHTER WIRE PITCH THAT PAID FOR IT. This
+# bore is what decides how much foam the blocker lands on: the ring it sits
+# on is everything between the plate's O30.8 and this, so every millimetre
+# off here is landing pad on. It could not come down before because the slit
+# has to pass the row of leads, and the row was 22.5 wide. At the 7.5 pitch
+# it is 21.5, so the slit comes down with it and the bore follows.
+#   ring    254 -> 293 mm2      foam stress   2.50 -> 2.17 MPa
+# It does NOT get the foam under H-80's 1.4 - that would need a O19 bore and
+# the leads do not fit through one - so the 4200 bond up the spigot is still
+# the load path and the ring is still the backup. It just makes the backup
+# better, which is the point: skimp the bond and this is what is left.
+FOAM_BORE = 24.0                   # the dense block, NARROWER than the plate
 # A SLIT, not three round holes. The leads arrive in a row, so a slot matches
 # them, prints without bridging, and lets them lie as they come. It is
 # CLEARANCE and seals nothing - the bung does that, one hole per lead.
-BLOCKER_SLIT_L = 23.0
+# 22.0, following the row down. Cable span is 2 x pitch + one OD = 21.5, so
+# this is span + 0.5, and it leaves the same 0.8 mm of spigot wall at each
+# end that the 23.0 slit had in the 24.6 spigot. Nothing got thinner.
+BLOCKER_SLIT_L = 22.0
 BLOCKER_SLIT_W = 7.0
 # 5.5, not 5.8. The hole interference is the mechanism that works WITHOUT any
 # axial squeeze at all - it is a grommet seal, and it does not care that 75%
@@ -1097,16 +1111,24 @@ BLOCKER_SLIT_W = 7.0
 # the lead to 15.4%, and the web between holes actually goes UP, 2.2 -> 2.5,
 # because the pitch did not move. Free, and it strengthens the half of this
 # joint that does not depend on the squeeze arriving.
-BUNG_HOLE_D = 5.5                  # drilled UNDERSIZE - the grommet seal                  # drilled UNDERSIZE for CABLE_OD - the seal
-# 1.5, not 2.0, and the half millimetre is bought back from the bore. A row
-# is wider than the round hole it feeds: at a 2.0 gap the outer lead leaves
-# the bung 11.75 mm off the axis against a bore that allows 11.0, so it has
-# to converge 0.75 mm over the 6 mm of straight above the plate - a 24 mm
-# effective radius against 4x cable OD, which is 26. Under the limit.
-# At 1.5 the convergence is 0.25 mm and the radius 72 mm, 2.8x. Still a
-# millimetre and a half of rubber round every lead, which is all the gap was
-# ever for - no capillary path where two jackets touch.
-BUNG_WIRE_GAP = 1.5                # rubber between adjacent cable ODs
+BUNG_HOLE_D = 5.5                  # drilled UNDERSIZE for CABLE_OD - the seal
+# 1.0, AND THIS ONE ENDS THE ARGUMENT RATHER THAN WINNING IT. A row is wider
+# than the round hole it feeds, so the outer lead has always had to converge
+# slightly on its way up into the O22 conduit, and every previous value was a
+# judgement about how much bend that was worth:
+#     gap 2.0 -> pitch 8.5 -> outer lead 11.75 off axis, bore allows 11.0
+#                -> converge 0.75, a 24 mm effective radius against a 26 mm
+#                   minimum for this cable. UNDER the limit.
+#     gap 1.5 -> pitch 8.0 -> 11.25 off axis -> converge 0.25, radius 72.
+#     gap 1.0 -> pitch 7.5 -> 10.75 off axis -> the lead is INSIDE the bore
+#                   before it leaves the bung. Converge zero. No bend at all.
+# The failure mode does not get smaller, it stops existing, and that is worth
+# more than the half millimetre of rubber it costs. What is left between two
+# jackets is 1.0 mm, which is all this gap was ever for - no capillary path
+# where two of them touch - and the web between the drilled holes is 2.0.
+# DO NOT go below 1.0 chasing bore: the web is rubber that has to seal
+# between two holes each stretched 15% by a cable, and thin webs tear.
+BUNG_WIRE_GAP = 1.0                # rubber between adjacent cable ODs
 BUNG_PITCH = CABLE_OD + BUNG_WIRE_GAP       # hole centres, in a row
 # BUNG_SQUEEZE and BUNG_IN_PLATE are derived from the plate thickness, down
 # at G10_T - the disc is simply longer than the hole it sits in.
@@ -5700,6 +5722,28 @@ def build():
                 "the bond is skimped the ring is what is left"
                 % (_ring, _F / _ring, H80_COMP_MPA, _bond, _bond * 2.0 / _F))
             rep["blocker_slit_mm"] = [BLOCKER_SLIT_L, BLOCKER_SLIT_W]
+            rep["conduit_foam_bore_mm"] = FOAM_BORE
+            rep["blocker_spigot_od_mm"] = round(FOAM_BORE - 0.4, 1)
+            # --- THREE CONSTANTS THAT ONLY WORK TOGETHER --------------------
+            # BUNG_PITCH, BLOCKER_SLIT_L and FOAM_BORE are now coupled and
+            # nothing enforced it. Tightening the pitch is what let the bore
+            # come down, the bore sets the spigot, and the spigot has to
+            # swallow the slit that passes the row the pitch defines. Change
+            # any one alone and the part still draws, still passes every
+            # existing check, and cannot be assembled - the leads foul the
+            # slit ends, or the spigot has no wall left at them.
+            rep["cable_row_span_mm"] = round(2 * BUNG_PITCH + CABLE_OD, 2)
+            rep["blocker_slit_vs_row_mm"] = round(
+                BLOCKER_SLIT_L - rep["cable_row_span_mm"], 2)
+            rep["blocker_spigot_wall_at_slit_mm"] = round(
+                ((FOAM_BORE - 0.4) - BLOCKER_SLIT_L) / 2.0, 2)
+            # ...and the rubber left between two jackets, which is the whole
+            # reason the gap exists: no capillary path where two of them
+            # touch. This is the number that stops someone squeezing the row
+            # tighter to buy bore, and it needs to be a check and not the
+            # comment on BUNG_WIRE_GAP that says exactly this.
+            rep["bung_rubber_between_jackets_mm"] = round(
+                BUNG_PITCH - CABLE_OD, 2)
             rep["blocker_no_alu_machining"] = True
             rep["blocker_installed_at"] = (
                 "STEP 7, from BELOW, before the plate goes on - its spigot "
@@ -7612,6 +7656,23 @@ def build():
             "boss, that is the wrong direction"
             % (ENC_WALL, rep["gland_thread_through_wall_mm"],
                BAY_GLAND_THREAD_L, BAY_GLAND_NUT_T))
+    if rep.get("blocker_slit_vs_row_mm", 9) < 0.3:
+        fails.append(
+            "the blocker's slit will not pass the leads: slit %.1f against a "
+            "row %.2f wide. Slit, bore and wire pitch move together"
+            % (BLOCKER_SLIT_L, rep["cable_row_span_mm"]))
+    if rep.get("blocker_spigot_wall_at_slit_mm", 9) < 0.8:
+        fails.append(
+            "the blocker's spigot has %.2f mm of wall left at the slit ends - "
+            "that is below the 0.8 the printed part has always had. Either "
+            "shorten the slit or open FOAM_BORE"
+            % rep["blocker_spigot_wall_at_slit_mm"])
+    if rep.get("bung_rubber_between_jackets_mm", 9) < 1.0:
+        fails.append(
+            "only %.2f mm of rubber between adjacent cable jackets in the "
+            "bung. Below 1.0 there is no reliable barrier where two of them "
+            "touch, which is the one thing this gap is for"
+            % rep["bung_rubber_between_jackets_mm"])
     if rep["gland_bore_clearance_mm"] <= 0:
         fails.append(
             "the gland bore is smaller than the gland thread: O%.2f will not "

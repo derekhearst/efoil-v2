@@ -859,19 +859,30 @@ def build():
     # The bung is a punched DISC and blender_board.py takes BUNG_L straight
     # off the stock thickness.
     add("7  Module", "Neoprene sheet 1/2in, wire bung", 1, "sheet",
-        26.00, EST, "1/2 in. The blocker takes 4 mm off the top of the plate's bore, "
-        "so the bung has 8.7 of it - and a 12.7 disc in an 8.7 space hangs "
-        "4.0 proud, which is the squeeze. Punch O30.0 discs and drill 3 x "
-        "O5.5 IN A ROW at 8.0 pitch. The mast's own plate squeezes it.  and drill 3 x O5.5 IN A ROW The row is the "
-        "order the leads leave the mast in, so none has to be twisted. One sheet is a lifetime of bungs for both boards")
+        26.00, EST,
+        "1/2 in. The blocker takes 4 mm off the top of the plate's bore, so "
+        "the bung has %.1f of it - and a %.1f disc in a %.1f space hangs %.1f "
+        "proud, which is the squeeze, and the mast's own plate is what "
+        "applies it. Punch O%.1f discs and drill 3 x O%.1f IN A ROW at %.1f "
+        "pitch. The row is the order the leads leave the mast in, so none has "
+        "to be twisted. One sheet is a lifetime of bungs for both boards"
+        % (R["bung_free_len_mm"] - R["bung_squeeze_mm"],
+           R["bung_free_len_mm"],
+           R["bung_free_len_mm"] - R["bung_squeeze_mm"],
+           R["bung_squeeze_mm"], R["bung_disc_d_mm"], R["bung_hole_d_mm"],
+           R["bung_pitch_mm"]))
     # Derek's existing punch set stops at 1/2 in and the disc is 1-1/4 in.
     # A 1-3/8 in hole saw also gets there - its plug comes out about 2.5 mm
     # under nominal, so ~32 mm, which is the size wanted - but a hole saw
     # grabs in rubber and an arch punch does not.
-    add("7  Module", "Hollow punch set 3/16-1-3/8in, for the O31.75 bung", 1,
-        "set", 32.99, EST, "the existing set stops at 1/2 in. Skip it if a "
-        "1-3/8 in hole saw is already in the drawer - the plug it leaves is "
-        "about 32 mm, which is the disc we want", tool=True, vendor="Amazon")
+    add("7  Module",
+        "Hollow punch set 3/16-1-3/8in, for the O%.0f bung" % R["bung_disc_d_mm"],
+        1, "set", 32.99, EST,
+        "the existing set stops at 1/2 in and the disc is O%.1f - the 1-3/16 "
+        "in punch is 30.16, near enough in rubber. This line used to say "
+        "'for the O31.75 bung', which was the disc diameter two designs ago "
+        "and would have had you reaching for the 1-1/4 punch"
+        % R["bung_disc_d_mm"], tool=True, vendor="Amazon")
     # --- the blocker, which is what took the 4200 out of the CHANNEL and
     # gave the bung a stop that exists. Derek did not want a sealant fillet as
     # a barrier, and he was right to push twice: the bung was supposed to butt

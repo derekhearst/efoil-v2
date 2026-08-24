@@ -104,7 +104,7 @@ LINKS = {
         ("B08BZJPJTK", 15.99, "BelMetric M5X25 Torx Button Flange ISO 7380-2 Machine Screw, TX-25 drive, stainless, 25 pcs"),
     "Neoprene sheet 1/2in, wire bung":
         ("B01LX83X9H", 16.00, "Rubber, Neoprene, 1/2 in Thick, 12 x 12 in"),
-    "Hollow punch set 3/16-1-3/8in, for the O31.75 bung":
+    "Hollow punch set 3/16-1-3/8in, for the O30 bung":
         ("B07PQYRG9K", 32.99, "ABN Hollow Punch Kit Leather Punches Tools Hole Punch Set Gasket Punch Set Gasket Cutter 3/16 to 1-3/8in (5-35mm)"),
     "EPS rigid foam 2in x 48in x 8ft (HD 202532856)":
         ("https://www.homedepot.com/p/Henry-2-in-x-48-in-x-8-ft-R-7-7-EPS-Rigid-Foam-Board-Insulation-320825/202532856", 27.68, "Henry 2 in x 48 in x 8 ft R-7.7 EPS Rigid Foam Board Insulation"),
@@ -325,7 +325,7 @@ LINK_VENDOR = {
     "Transfer screw set M3-M6": "Amazon",
     "M5 x 25 button head TORX TX25, 25 pk": "Amazon",
     "Neoprene sheet 1/2in, wire bung": "Amazon",
-    "Hollow punch set 3/16-1-3/8in, for the O31.75 bung": "Amazon",
+    "Hollow punch set 3/16-1-3/8in, for the O30 bung": "Amazon",
     "EPS rigid foam 2in x 48in x 8ft (HD 202532856)": "Home Depot / hardware",
     "FOCEAN EVA deck sheet 2400 x 600 x 5.8": "Amazon",
     "Fish tape / pull cord for the mast conduit": "Amazon",

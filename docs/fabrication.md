@@ -179,23 +179,23 @@ The CNC already cut the pockets. Bond the H-80 mast block and leash pad in,
 flush.
 
 > **Bed the wire blocker before the plate goes on.** A printed part: **Ø30.4 ×
-> 4 body** that fills the top of the plate's bore, a **Ø24.6 × 12 spigot** up
-> into the foam's, and a **23 × 7 slit** for the leads.
+> 4 body** that fills the top of the plate's bore, a **Ø23.6 × 12 spigot** up
+> into the foam's, and a **22 × 7 slit** for the leads.
 >
 > **This is what gives the wire bung a stop that exists.** The bung is squeezed
 > by the mast plate and something has to take that push. **Nothing is machined
 > into the alu for it** — the plate keeps its one straight Ø30.8 bore. The
-> dense block is simply **bored narrower, at Ø25**, and the ring of foam that
+> dense block is simply **bored narrower, at Ø24**, and the ring of foam that
 > leaves showing inside the plate's bore is what the blocker lands on. That is
 > the only change of diameter anywhere in this conduit.
 >
-> It backs the bung across **94%** of its face. Without it the bung pushes
+> It backs the bung across **95%** of its face. Without it the bung pushes
 > against an open bore and most of the squeeze extrudes up the channel.
 >
 > **Bed the spigot properly on 4200 — that bond is the load path, not the foam
-> ring.** The ring is 254 mm² at **2.5 MPa against H-80's 1.4**, so it would
-> crush in on its own; the bond up the side of the spigot is 927 mm² in shear
-> at **2.9×**. Skimp the bond and the ring is all that is left.
+> ring.** The ring is 293 mm² at **2.17 MPa against H-80's 1.4**, so it would
+> crush in on its own; the bond up the side of the spigot is 890 mm² in shear
+> at **2.8×**. Skimp the bond and the ring is all that is left.
 >
 > **The slit is clearance, not a seal** — a slot rather than three holes,
 > because the leads arrive in a row and a slot prints without bridging. The
@@ -672,7 +672,7 @@ that kill a BMS.
 **Blocks on:** steps 7, 17
 **Uses:** `Fish tape / pull cord for the mast conduit` ·
 `IP68 M25 inline housing, 5 pk` · `Neoprene sheet 1/2in, wire bung` ·
-`Hollow punch set 3/16-1-3/8in, for the O31.75 bung` ·
+`Hollow punch set 3/16-1-3/8in, for the O30 bung` ·
 `3M 4200 FC 3 oz tube, skim over the bung`
 
 Motor leads part **in the cavity**, one housing per phase — without that the
@@ -707,12 +707,17 @@ But it asks all three leads to twist through 90° in the few millimetres
 between the mast top and the bung, by hand, upside down, in 8 AWG silicone.
 Matching how they arrive is worth more than the packing.
 
-**What the row costs, stated rather than buried:** a row is wider than the
-round bore it feeds. The outer lead leaves the bung 11.25 mm off the axis
-against a bore that allows 11.0, so it converges 0.25 mm over the 6 mm of
-straight above the plate — a 72 mm effective radius against the 26 mm the
-cable wants. 2.8×, fine. At a 2.0 mm gap it would have been **24 mm, under
-the limit**, which is why the gap is 1.5 and not 2.
+**What the row used to cost, and no longer does:** a row is wider than the
+round bore it feeds, so the outer lead has always had to converge slightly on
+its way up. At a 2.0 mm wire gap it left the bung 11.75 mm off the axis
+against a bore that allows **11.0 mm** and had to bend into a 24 mm effective
+radius — under the 26 mm this cable wants. At 1.5 it was 11.25 and a 72 mm
+radius, 2.8×, fine.
+
+At the **7.5 mm pitch** the gap is 1.0 and the outer lead leaves the bung
+**10.75 mm** off the axis — *inside* the bore before it gets there. **It does
+not converge at all.** The failure mode is not smaller, it is gone, and that
+is what the half millimetre bought.
 
 **Where the compression comes from.** There are **two aluminium plates** at
 this joint. The board's hardpoint is bonded into the hull bottom at step 7 and
@@ -722,9 +727,11 @@ plate is the part that travels, and tightening draws it face to face with the
 bottom of the board. Anything standing proud of that face gets squeezed, with
 four M6s behind it. That is the only travel in the whole mast joint.
 
-1. Punch Ø30.0 discs from the 3/4 in sheet and drill 3 × Ø5.8 **in a row at
-   8.0 pitch**, along the chord — the order the leads leave the mast in, so
-   not one of them has to be twisted.
+1. Punch Ø30.0 discs from the 3/4 in sheet and drill 3 × **Ø5.5 in a row at
+   7.5 pitch**, along the chord — the order the leads leave the mast in, so
+   not one of them has to be twisted. The holes are drilled **undersize on
+   purpose**: 5.5 into a 6.5 lead is the 15.4% interference that *is* the
+   seal.
 2. Thread the leads through on the bench and soap them.
 3. Feed the bung up the plate's straight **Ø30.8 bore**. It butts the epoxy
    liner's end face where the foam channel steps down, and hangs **4.0 mm
@@ -737,10 +744,10 @@ four M6s behind it. That is the only travel in the whole mast joint.
 | | |
 |---|---|
 | Disc | **Ø30.0 × 12.7**, punched from 1/2 in neoprene |
-| Holes | 3 × **Ø5.5** in a row at 8.0 pitch — **15.4%** under the lead |
+| Holes | 3 × **Ø5.5** in a row at 7.5 pitch — **15.4%** under the lead |
 | Bore | the plate's own **Ø30.8**, one straight pass, no step |
-| Rubber wall | **3.75 mm at the ends of the row**, 11.75 at the sides |
-| Backed above | **94%**, by the blocker |
+| Rubber wall | **4.25 mm at the ends of the row**, 11.75 at the sides |
+| Backed above | **95%**, by the blocker |
 | Proud | **4.0 mm** below the wetted face |
 | Grip on the leads | **8.7 mm** at 15.4% interference |
 
@@ -774,8 +781,8 @@ four M6s behind it. That is the only travel in the whole mast joint.
 > own 143 mm² and the plate keeps **89% of the bung's face**. No follower, no
 > flange, no spotface.
 >
-> **Open the slot to 23.5 mm** while you are at it. The leads reach the bung's
-> holes at 8.0 pitch, which puts the outer two 11.25 mm off the axis against a
+> **Open the slot to 22.5 mm** while you are at it. The leads reach the bung's
+> holes at 7.5 pitch, which puts the outer two 10.75 mm off the axis against a
 > slot that reaches 10.2 — they would bear on its ends. Not a leak path, but a
 > chafe point on something that vibrates. It costs 2 points of land.
 
