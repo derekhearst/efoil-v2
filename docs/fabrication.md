@@ -157,8 +157,8 @@ vertical seam (1030 mm). Dowel pins keep the halves registered.
 
 **Blocks on:** step 6
 **Uses:** `Divinycell H-80 3/4in quarter sheet 24x48, mast block + leash pad` ·
-`6061-T651 1/2in x 12 x 18 - mast plates` · `M8 x 1.25 tap + 6.8 mm drill set` ·
-`M8 x 1.25 BOTTOMING tap, 4-flute` · `Transfer punch set, metric 1-13 mm`
+`6061-T651 1/2in x 12 x 18 - mast plates` · `M6 x 1.0 tap + 5.0 mm drill set` ·
+`M6 x 1.0 BOTTOMING tap, 4-flute` · `Transfer punch set, metric 1-13 mm`
 
 The CNC already cut the pockets. Bond the H-80 mast block and leash pad in,
 flush.
@@ -603,7 +603,7 @@ never moves again. **The Gong mast has its own plate**, with four *clearance*
 holes, and its bolts pass up through them into the tapped hardpoint — so that
 plate is the part that travels, and tightening draws it face to face with the
 bottom of the board. Anything standing proud of that face gets squeezed, with
-four M8s behind it. That is the only travel in the whole mast joint.
+four M6s behind it. That is the only travel in the whole mast joint.
 
 1. Punch Ø30.0 discs from the 3/4 in sheet and drill 3 × Ø5.8 **in a row at
    8.0 pitch**, along the chord — the order the leads leave the mast in, so
@@ -624,7 +624,7 @@ four M8s behind it. That is the only travel in the whole mast joint.
 | Bore | the plate's own **Ø30.8**, one straight pass, no step |
 | Rubber wall | **3.75 mm at the ends of the row**, 11.75 at the sides |
 | Proud | **6.35 mm** below the wetted face |
-| Force | 628 N, against four M8s already carrying 6.3 kN |
+| Force | 628 N, against four M6s already carrying 6.3 kN |
 
 > **Why it is round and not a rectangle.** A row of holes inside a circle is
 > fat where it needn't be and thin exactly where the outer two leads sit — at
@@ -653,7 +653,7 @@ Fillet 4200 over the underside. **4200 not 5200** — 5200 never comes out.
 
 > **Why the pocket is 2.25 mm bigger than the disc.** Rubber does not
 > compress, it *moves*. A bung squeezed in a bore it exactly fills cannot be
-> squeezed at all — it becomes a solid spacer and the four M8s fight it for
+> squeezed at all — it becomes a solid spacer and the four M6s fight it for
 > nothing. The clearance annulus is the only place the displaced rubber can
 > go, so it is relief, not slop, and it is sized to swallow the 1 mm squeeze
 > *plus* a hand-punched disc coming out a millimetre over.
@@ -730,7 +730,7 @@ the same two pads on the module and keep the bought handles for the rails.
 ### Step 23. Mount the foil and drivetrain
 
 **Blocks on:** steps 7, 22
-**Uses:** `M8 x 30 A4 mast bolts, 10 pk - spares` · `Ultra Tef-Gel, galvanic barrier` ·
+**Uses:** `M6 x 30 A4 mast bolts, 50 pk - spares` · `Ultra Tef-Gel, galvanic barrier` ·
 `M5 x 250 threaded rod, 4 pk (cut to ~171 mm)` · `M6 x 20 fender washer, 100 pk` ·
 `M5 nyloc nut 316, 150 pk` · `Loctite 242` · `Roll pin assortment M1.5-M6, 220 pc` ·
 `M8 nyloc nut 316, 30 pk - prop nut` · `M8 316 washer, prop nut` ·
@@ -738,6 +738,18 @@ the same two pads on the module and keep the bought handles for the rails.
 
 **Tef-Gel every mast bolt, every time.** Aluminium plate, A4 bolts, wet
 cavity — that is the whole galvanic mitigation and it is not optional.
+
+> **The mast screws are M6, and Gong supplies them.** The setup ships with
+> *7 × M6×30 mast screws, 4 M6 brass square nuts, 4 M6 cup washers and a T30
+> Torx key.* The square nuts are for a US-rail board and you will not use
+> them; the cup washers and the screws you will. **T30 Torx, not hex** — the
+> spares line is hex-drive A4, so keep Gong's key with the board.
+>
+> This model said M8 until it was checked against Gong's own contents list,
+> and the correction costs real margin: **the joint is 1.44× on the roll
+> case, not 2.63×.** M6 A4-70 has a 9.0 kN proof load against the 6.3 kN that
+> case demands. The 6061 thread is 46% stronger than the screw, so tapping
+> deeper buys nothing — the screw is the weak link and it is Gong's.
 
 **No gasket goes under the mast base**, and there is none in the BOM.
 

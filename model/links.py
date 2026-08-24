@@ -170,12 +170,12 @@ LINKS = {
         ("B0DDGRXHT7", 7.69, "uxcell 10Pcs M8 Flat Washer 316 Stainless 8.4 ID x 24 OD x 2mm"),
     "M8 nyloc nut 316, 30 pk - prop nut":
         ("B0BP2R3YHY", 8.99, "M8 Stainless Lock Nuts 30pcs 316 Hex Nylon Insert"),
-    "M8 x 1.25 BOTTOMING tap, 4-flute":
-        ("B00DLCTUDM", 8.78, "Drill America DWTB8X1.25 M8 x 1.25 HSS 4-Flute Bottoming Tap"),
-    "M8 x 1.25 tap + 6.8 mm drill set":
-        ("B0GD1YF5PL", 8.63, "M8 x 1.25 Tap and 6.8mm Drill Bit HSS Set"),
-    "M8 x 30 A4 mast bolts, 10 pk - spares":
-        ("B07HZKSP72", 10.82, "M8 x 30mm Button Head Screws ISO 7380 Marine Grade SS 10 Pack"),
+    "M6 x 1.0 BOTTOMING tap, 4-flute":
+        ("https://www.amazon.com/s?k=Drill+America+M6+x+1.0+HSS+4-Flute+Bottoming+Tap", 8.78, "Drill America M6 x 1.0 HSS 4-Flute Bottoming Tap - same family, pick the M6"),
+    "M6 x 1.0 tap + 5.0 mm drill set":
+        ("B0GSG4FGYW", 9.99, "M6 Tap and 5.0mm Drill Bit Kit, M6x1.0 HSS Metric Drill and Tap Set, 4Pcs"),
+    "M6 x 30 A4 mast bolts, 50 pk - spares":
+        ("B00BNCFV4Y", 10.82, "Metric DIN 912 M6X30 Socket Head Cap Screw Stainless Steel A4, 50 pcs"),
     "MDF 12 mm, 4 check gauges":
         ("https://www.homedepot.com/p/ProWood-1-2-in-x-2-ft-x-4-ft-Medium-Density-Fiberboard-Project-Panel-109097/202093821", 30.73, "ProWood 1/2 in x 2 ft x 4 ft MDF Project Panel"),
     "Maker Shop Boise Basic month":
@@ -352,9 +352,9 @@ LINK_VENDOR = {
     "M6 x 20 fender washer, 100 pk": "Amazon",
     "M8 316 washer, prop nut": "Amazon",
     "M8 nyloc nut 316, 30 pk - prop nut": "Amazon",
-    "M8 x 1.25 BOTTOMING tap, 4-flute": "Amazon",
-    "M8 x 1.25 tap + 6.8 mm drill set": "Amazon",
-    "M8 x 30 A4 mast bolts, 10 pk - spares": "Amazon",
+    "M6 x 1.0 BOTTOMING tap, 4-flute": "Amazon",
+    "M6 x 1.0 tap + 5.0 mm drill set": "Amazon",
+    "M6 x 30 A4 mast bolts, 50 pk - spares": "Amazon",
     "MDF 12 mm, 4 check gauges": "Home Depot / hardware",
     "Maker Shop Boise Basic month": "Maker Shop Boise",
     "Closed-cell sponge EPDM 1/8in, module lid gasket": "Amazon",

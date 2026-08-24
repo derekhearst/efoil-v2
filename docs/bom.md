@@ -129,10 +129,10 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 
 | Item | Qty | Unit | Unit $ | Ext $ | | Note |
 |---|---:|---|---:|---:|---|---|
-| [M8 x 1.25 tap + 6.8 mm drill set](https://www.amazon.com/dp/B0GD1YF5PL) | 1 | set | $8.63 | $8.63 | verified | 8 blind holes |
-| [M8 x 1.25 BOTTOMING tap, 4-flute](https://www.amazon.com/dp/B00DLCTUDM) | 1 | ea | $8.78 | $8.78 | verified | the one that actually matters - blind at 10 mm in a 12.7 plate, and the taper tap in the set above cannot reach the bottom |
+| [M6 x 1.0 tap + 5.0 mm drill set](https://www.amazon.com/dp/B0GSG4FGYW) | 1 | set | $9.99 | $9.99 | verified | 8 blind holes |
+| [M6 x 1.0 BOTTOMING tap, 4-flute](https://www.amazon.com/s?k=Drill+America+M6+x+1.0+HSS+4-Flute+Bottoming+Tap) | 1 | ea | $8.78 | $8.78 | verified | the one that actually matters - blind at 10 mm in a 12.7 plate, and the taper tap in the set above cannot reach the bottom |
 | [Ultra Tef-Gel, galvanic barrier](https://www.amazon.com/dp/B01606TCAG) | 1 | ea | $39.00 | $39.00 | verified | every mast bolt, every time it goes back in. DEARER than the $22 this was carried at - and do not reach for the small tube to save it: the 3cc syringe is $31.51, so it is 80% of the price for a fraction of the gel |
-| **subtotal** | | | | **$56.41** | | |
+| **subtotal** | | | | **$57.77** | | |
 
 ## 9b Small but essential
 
@@ -141,7 +141,7 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | Capacitor spot welder | 1 | ea | $0.00 | $0.00 | on hand | used on V1 |
 | [Transfer screw set M3-M6](https://www.amazon.com/dp/B01IUBRSLO) | 1 | set | $24.99 | $24.99 | estimate | RECOVERY, not method - the CNC cuts all 12 hatch holes in one setup and the pattern aligns as one rigid body. This is for the one hole that does not pick up: mark the real nut, drill it out of the resin boss, re-pot, re-drill. M5 hatch, M4 module lid, M6 handle strips |
 | [Transfer punch set, metric 1-13 mm](https://www.amazon.com/dp/B005379HJA) | 1 | set | $24.99 | $24.99 | estimate | the 9 mm punch is a slip fit in Gong's own clearance holes and marks true centre within a few hundredths. A 6.8 tap drill rattling in that same 9 mm hole does not - and the mast plate's whole positional budget is 0.25 mm |
-| [M8 x 30 A4 mast bolts, 10 pk - spares](https://www.amazon.com/dp/B07HZKSP72) | 1 | pk | $10.82 | $10.82 | verified | Gong supplies its own; these are spares. Only listing confirming marine A4/316; head is ISO 7380 button, not socket cap - check that suits the counterbore |
+| [M6 x 30 A4 mast bolts, 50 pk - spares](https://www.amazon.com/dp/B00BNCFV4Y) | 1 | pk | $10.82 | $10.82 | verified | Gong supplies its own; these are spares. Only listing confirming marine A4/316; head is ISO 7380 button, not socket cap - check that suits the counterbore |
 | [Silicone grease for the seal cord](https://www.amazon.com/dp/B0BN82MJVK) | 1 | tube | $9.99 | $9.99 | estimate | stops the cord bonding to the lid in storage |
 | [Cyanoacrylate for the cord splice](https://www.amazon.com/dp/B0DKP4TVSF) | 1 | ea | $5.39 | $5.39 | estimate |  |
 | [Water-ingress alarm, 2 pk](https://www.amazon.com/dp/B09DCMCB8D) | 1 | pk | $12.99 | $12.99 | verified | Geevon 100 dB pucks - the 2-pack covers BOTH boards. Put the SENSOR on the module floor in the lowest corner, not up on the pack - it is only useful where water collects |
@@ -247,20 +247,20 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | Item | Qty | Unit | Unit $ | Ext $ | | Note |
 |---|---:|---|---:|---:|---|---|
 | Shipping - Divinycell, 6061 plate, VR20 | 1 | allow | $120.00 | $120.00 | estimate | STILL THE BIGGEST UNVERIFIED LINE - it wants three real carts to settle. Was $220 when it covered G10 sheet and hazmat epoxy, both of which are now out of the build entirely |
-| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $447.60 | $447.60 | verified |  |
-| **subtotal** | | | | **$567.60** | | |
+| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $447.68 | $447.68 | verified |  |
+| **subtotal** | | | | **$567.68** | | |
 
 ## Totals
 
 | | |
 |---|---:|
-| **Grand total, 2 boards** | **$7,907.54** |
-| Per board | $3,953.77 |
-| Of which verified | $7,264.15  (92%) |
+| **Grand total, 2 boards** | **$7,908.98** |
+| Per board | $3,954.49 |
+| Of which verified | $7,265.59  (92%) |
 | Of which estimated | $643.39 |
 | Linked to a real listing | 129 lines |
 | Priced but NOT linked | 0 lines, $0.00 |
-| Not linkable, but MEASURED (freight quotes) | 2 lines, $716.23 |
+| Not linkable, but MEASURED (freight quotes) | 2 lines, $716.31 |
 | Not linkable and still estimated | 1 lines, $120.00 |
 
 ## What is a board, and what is a shop
@@ -269,7 +269,7 @@ Some of the total above is not the cost of a board at all - it is tools, jigs an
 
 | | |
 |---|---:|
-| One-time tooling (incl. its share of tax) | $869.36 |
+| One-time tooling (incl. its share of tax) | $870.80 |
 | **Marginal cost of a board** | **$3,519.09** |
 | Cost of the NEXT board after these 2 | $3,519.09 |
 
@@ -283,8 +283,8 @@ Some of the total above is not the cost of a board at all - it is tools, jigs an
 | Vacuum gauge, -30 inHg, 1/4 NPT, glycerin | $10.50 |
 | Hollow punch set 1/8-1/2in + cutting mat | $0.00 |
 | Hollow punch set 3/16-1-3/8in, for the O31.75 bung | $32.99 |
-| M8 x 1.25 tap + 6.8 mm drill set | $8.63 |
-| M8 x 1.25 BOTTOMING tap, 4-flute | $8.78 |
+| M6 x 1.0 tap + 5.0 mm drill set | $9.99 |
+| M6 x 1.0 BOTTOMING tap, 4-flute | $8.78 |
 | Transfer screw set M3-M6 | $24.99 |
 | Transfer punch set, metric 1-13 mm | $24.99 |
 | 1/4 in torque wrench, 10-50 in-lb | $25.97 |

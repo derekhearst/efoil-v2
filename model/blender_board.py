@@ -1749,10 +1749,12 @@ MOD_X0_TARGET = 444.0
 # it is not a manufacturing instruction.
 # THE GONG PLATE'S OWN CLEARANCE HOLE. This is the entire positional budget
 # for our four tapped holes, so it is a number to MEASURE, not assume.
-MAST_CLEAR_D = 9.0                 # UNVERIFIED - measure the real plate
+MAST_CLEAR_D = 7.0                 # UNVERIFIED - Derek HAS this plate,
+                                   # he cut its wire slot. Measure the four
+                                   # clearance holes; this budget lives on it.                 # UNVERIFIED - measure the real plate
 BOLT_SPACING_X = 165.0             # for layout only - SPOT THROUGH THE PLATE
 BOLT_SPACING_Y = 90.0              # US rails, 90 mm on centre
-BOLT_D = 8.0                       # M8, Gong's mast screws
+BOLT_D = 6.0                       # M6, Gong's mast screws - CONFIRMED
 G10_L, G10_W = 250.0, 175.0
 # How far the dense block stands proud of the plate. Split fore/aft from
 # side-to-side because they cost different things: 90 mm all round reached
@@ -1875,7 +1877,7 @@ G10_T = 12.7                       # 1/2" 6061-T651 mast plate
 # real engagement: 136 mm2 x 207 MPa = 28 kN, still 1.7x the bolt's own proof
 # load. The BOLT is the weak link either way, which is where you want it.
 INSERT_L = 10.0                    # tapped depth, blind from the pad face
-INSERT_OD = 8.0                    # M8 tapped hole, not a O20 bonded bore
+INSERT_OD = 6.0                    # M8 tapped hole, not a O20 bonded bore
 INSERT_BLIND = G10_T - INSERT_L
 BUNG_IN_PLATE = G10_T                       # it fills the bore, full depth
 BUNG_SQUEEZE = BUNG_L - G10_T               # ...and this much hangs below    # 2.7 mm solid alu above - stays watertight
@@ -5555,7 +5557,9 @@ def build():
     # clearance absorbs any error in position, angle and depth. None of that
     # is true here. These are BLIND TAPPED holes - the thread IS the fastener,
     # so every error goes straight into whether four bolts start at once.
-    _slop = (MAST_CLEAR_D - 8.0) / 2.0          # radial slop, one hole
+    # off BOLT_D, not a hardcoded 8.0 - that literal survived the M8 -> M6
+    # correction and turned the position budget NEGATIVE before it was caught.
+    _slop = (MAST_CLEAR_D - BOLT_D) / 2.0       # radial slop, one hole
     rep["mast_clear_hole_d_mm"] = MAST_CLEAR_D
     rep["mast_radial_slop_mm"] = round(_slop, 2)
     # Four holes must engage SIMULTANEOUSLY and their errors do not cancel -
@@ -6858,21 +6862,33 @@ def build():
     eff_L = INSERT_L - 1.0
     thread_area = math.pi * INSERT_OD * eff_L * THREAD_ENGAGE
     cap_thread = thread_area * ALU_TAU
-    BOLT_PROOF_N = 16500.0             # M8 A4-70, the bolt Gong supplies
+    # M6 A4-70, WHICH IS WHAT GONG ACTUALLY SUPPLIES. This said M8 and it was
+    # wrong. Gong's own contents list for the X-Over V3 setup reads: "1 V3 Alu
+    # Top Plate to attach the mast to the board, 1 T30 Torx key, 4 M6 brass
+    # square nuts, 4 M6 cup washers, 7 M6x30mm screws (mast screws)". Their
+    # V2 screw kit is M6x12/16/20/30/35/50 and contains no M8 at all.
+    # As = 20.1 mm2 for M6 against 36.6 for M8, so this is not a rounding
+    # error - it is 45% of the joint's assumed capacity.
+    BOLT_PROOF_N = 20.1 * 450.0        # M6 A4-70, the bolt Gong supplies
     cap = min(cap_thread, BOLT_PROOF_N)
     rep["mast_bolt_demand_N"] = round(demand)
     rep["mast_bolt_case"] = "roll" if t_roll > t_pitch else "pitch"
     rep["mast_bolt_cap_N"] = round(cap)
     rep["mast_bolt_margin"] = round(cap / demand, 2)
-    rep["mast_bolt_governed_by"] = ("M8 bolt proof load - the plate is no "
-                                    "longer the weak link"
-                                    if cap_thread > BOLT_PROOF_N
-                                    else "6061 thread shear")
+    rep["mast_bolt_governed_by"] = (
+        "the M6 BOLT's proof load - Gong's own screw, and now the weak link. "
+        "The 6061 thread is %.0f%% stronger than it and there is nothing to "
+        "be gained by tapping deeper" % (100 * cap_thread / BOLT_PROOF_N - 100)
+        if cap_thread > BOLT_PROOF_N else "6061 thread shear")
+    rep["mast_bolt_is"] = (
+        "M6 x 30, T30 TORX, supplied by Gong - 7 of them come in the setup "
+        "with 4 brass square nuts and 4 cup washers. NOT M8: this model said "
+        "M8 until it was checked against Gong's own contents list")
     rep["mast_thread_area_mm2"] = round(thread_area)
     rep["mast_thread_cap_N"] = round(cap_thread)
     # Past the bolt's own proof load, more bond area is wasted - the bolt is
     # Gong's M8 and is not ours to change.
-    BOLT_As, BOLT_PROOF = 36.6, 450.0        # M8 A4-70
+    BOLT_As, BOLT_PROOF = 20.1, 450.0        # M6 A4-70, Gong's own screw
     rep["mast_bolt_proof_N"] = round(BOLT_As * BOLT_PROOF)
     rep["mast_joint_vs_bolt"] = round(cap / (BOLT_As * BOLT_PROOF), 2)
     # and the plate has to get that into the foam without punching through

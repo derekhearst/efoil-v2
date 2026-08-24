@@ -934,10 +934,10 @@ def build():
     # about 4 mm before the bottom. Buying only the set would have left the
     # blind holes short of full engagement on the one joint that holds the
     # foil to the board.
-    add("8  Mast hardpoint", "M8 x 1.25 tap + 6.8 mm drill set", 1, "set",
+    add("8  Mast hardpoint", "M6 x 1.0 tap + 5.0 mm drill set", 1, "set",
         8.63, OK, str(M["mast_bushings"] * N) + " blind holes",
         vendor="Amazon", tool=True)
-    add("8  Mast hardpoint", "M8 x 1.25 BOTTOMING tap, 4-flute", 1, "ea",
+    add("8  Mast hardpoint", "M6 x 1.0 BOTTOMING tap, 4-flute", 1, "ea",
         8.78, OK, "the one that actually matters - blind at 10 mm in a 12.7 "
         "plate, and the taper tap in the set above cannot reach the bottom",
         vendor="Amazon", tool=True)
@@ -1114,7 +1114,7 @@ def build():
         "6.8 tap drill rattling in that same 9 mm hole does not - and the "
         "mast plate's whole positional budget is 0.25 mm", tool=True,
         vendor="Amazon")
-    add("9b Small but essential", "M8 x 30 A4 mast bolts, 10 pk - spares",
+    add("9b Small but essential", "M6 x 30 A4 mast bolts, 50 pk - spares",
         1, "pk", 10.82, OK, "Gong supplies its own; these are spares. Only "
         "listing confirming marine A4/316; head is ISO 7380 button, not "
         "socket cap - check that suits the counterbore")
