@@ -94,8 +94,8 @@ LINKS = {
         ("B01IUBRSLO", 24.99, "HHIP 3601-0516 28 Piece Transfer Screw Set, M3 X .5, M4 X .7, M5 X .8, M6 X 1"),
     "M5 x 25 A4 socket cap, 20 pk":
         ("B0CJFMMF58", 15.99, "M5 x 25mm Full Thread Cap Head Screws DIN 912 A4 Pack of 20"),
-    "Neoprene sheet 1/2in 50A, wire bung":
-        ("B01LX83X9H", 16.00, "Rubber, Neoprene, 1/2 in Thick, 12 x 12 in"),
+    "Neoprene sheet 1/4in 50A, wire bung":
+        ("B01N1923RT", 14.00, "Rubber Strip, Neoprene Rubber, Width 36 in, Length 12 in, Thickness 1/4 in, 50A"),
     "Hollow punch set 3/16-1-3/8in, for the O31.75 bung":
         ("B07PQYRG9K", 32.99, "ABN Hollow Punch Kit Leather Punches Tools Hole Punch Set Gasket Punch Set Gasket Cutter 3/16 to 1-3/8in (5-35mm)"),
     "EPS rigid foam 2in x 48in x 8ft (HD 202532856)":
@@ -312,7 +312,7 @@ LINK_VENDOR = {
     "Transfer punch set, metric 1-13 mm": "Amazon",
     "Transfer screw set M3-M6": "Amazon",
     "M5 x 25 A4 socket cap, 20 pk": "Amazon",
-    "Neoprene sheet 1/2in 50A, wire bung": "Amazon",
+    "Neoprene sheet 1/4in 50A, wire bung": "Amazon",
     "Hollow punch set 3/16-1-3/8in, for the O31.75 bung": "Amazon",
     "EPS rigid foam 2in x 48in x 8ft (HD 202532856)": "Home Depot / hardware",
     "FOCEAN EVA deck sheet 2400 x 600 x 5.8": "Amazon",

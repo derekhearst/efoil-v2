@@ -534,35 +534,49 @@ that kill a BMS.
 
 **Blocks on:** steps 7, 17
 **Uses:** `Fish tape / pull cord for the mast conduit` ·
-`IP68 M25 inline housing, 5 pk` · `Neoprene sheet 1/2in 50A, wire bung` ·
+`IP68 M25 inline housing, 5 pk` · `Neoprene sheet 1/4in 50A, wire bung` ·
 `Hollow punch set 3/16-1-3/8in, for the O31.75 bung` ·
 `3M 4200 FC 3 oz tube, fillet over the bung`
 
 Motor leads part **in the cavity**, one housing per phase — without that the
 mast is bolted on for life.
 
-**The bung's first job is not sealing, it is spreading.** The three phase
-leads come out of the mast *touching*, in a line along the chord — an alu
-mast's internal cavity is only about 12–14 mm across, so 6.5 mm leads cannot
-lie any other way in there. Three touching jackets are three capillary paths:
-sealant bridges the gaps between them instead of going round each lead. The
-bung pulls the line apart into a triangle with 2 mm of rubber between every
-pair, and *that* is what makes the seal possible.
+**The bung's first job is not sealing, it is spacing.** The three phase leads
+come out of the mast *touching*, in a line along the chord — an alu mast's
+internal cavity is only about 12–14 mm across, so 6.5 mm leads cannot lie any
+other way in there. Three touching jackets are three capillary paths: sealant
+bridges the gaps between them instead of going round each lead. The bung
+holds them **in that same line** with 1.5 mm of rubber between every pair,
+and *that* is what makes the seal possible.
+
+A triangle would pack smaller, and the bore was originally shrunk around one.
+But it asks all three leads to twist through 90° in the few millimetres
+between the mast top and the bung, by hand, upside down, in 8 AWG silicone.
+Matching how they arrive is worth more than the packing.
+
+**What the row costs, stated rather than buried:** a row is wider than the
+round bore it feeds. The outer lead leaves the bung 11.25 mm off the axis
+against a bore that allows 11.0, so it converges 0.25 mm over the 6 mm of
+straight above the plate — a 72 mm effective radius against the 26 mm the
+cable wants. 2.8×, fine. At a 2.0 mm gap it would have been **24 mm, under
+the limit**, which is why the gap is 1.5 and not 2.
 
 | | |
 |---|---|
-| Disc | Ø31.75, punched from the 1/2 in 50A sheet — its thickness **is** the length, 12.7 |
-| Lead holes | 3 × Ø5.5 on a Ø9.8 triangle — 15% under the 6.5 mm lead |
-| Pocket | Ø34.0: 7.0 mm counterbored into the plate, 4.7 mm bored up into the H-80 |
-| Squeeze | 1.0 mm, taken up as the plate is bolted face to face with the hull |
+| Disc | Ø31.75, punched from the 1/4 in 50A sheet — its thickness **is** the length, 6.35 |
+| Lead holes | 3 × Ø5.5 **in a row** at 8.0 mm pitch — 15% under the 6.5 mm lead |
+| Pocket | Ø34.0 × 5.75 deep, in the plate only — the foam's underside is the stop |
+| Squeeze | 0.6 mm, taken up as the plate is bolted face to face with the hull |
 
-Punch the disc, mark and drill the three holes — two on the chord line where
-the outer leads already sit, the third pushed to one side, so only one lead
-has to bend at all. Soap the leads through; 15% is meant to be a fight.
+Punch the disc and drill the three holes in a row at 8.0 mm pitch, along the
+chord — the order the leads arrive in, so not one of them has to be twisted
+into place. Soap them through; 15% is meant to be a fight.
 
-Feed it up the bore until it stops against the step at the top of the pocket,
-then bolt the plate on. The counterbore floor, 7 mm down in the plate, comes
-up behind the bung and squeezes it that last millimetre against the step.
+Drop it into the plate's counterbore and bolt the plate on. **Nothing is
+bored into the foam** — the dense block sits straight on the plate's top
+face, so that face is the bung's stop. The counterbore floor rises with the
+plate as its bolts pull it to the hull and squeezes the bung 0.6 mm against
+the block's underside.
 Fillet 4200 over the underside. **4200 not 5200** — 5200 never comes out.
 
 > **Why the pocket is 2.25 mm bigger than the disc.** Rubber does not
