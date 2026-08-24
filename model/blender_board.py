@@ -1837,8 +1837,11 @@ MAST_HEAD_L = 225.0                # UNVERIFIED - measure it
 MAST_HEAD_W = 130.0                # UNVERIFIED - measure it
 # The wire slot through it: the mast's internal cavity, opened out. The bung
 # has to be WIDER than this or there is nothing for the plate to push on.
-MAST_SLOT_W = 14.0                 # UNVERIFIED - measure it
-MAST_SLOT_L = 90.0                 # UNVERIFIED - measure it
+# MEASURED, and Derek cut it himself: a thin slot, just enough for the three
+# 8 AWG side by side. Nothing like the 14 x 90 that was assumed here, and the
+# difference decides the whole wire-bung arrangement - see bung_land_pct.
+MAST_SLOT_W = 7.0                  # one cable wide
+MAST_SLOT_L = 20.4                 # measured - 3 x 6.3 side by side, touching
 
 # --- leash plug and carry handle hardpoints ----------------------------
 # The deck laminate over EPS will not hold either of these on its own. Both
@@ -5262,9 +5265,28 @@ def build():
         # bung is. Whatever face is over the slot is not being compressed,
         # it is bulging into it.
         _r = BUNG_FREE_D / 2.0
-        _seg = (_r ** 2 * math.acos(min(1.0, _slot_hw / _r))
+        # The slot is a FINITE rectangle, not a strip running clean across -
+        # which is most of why the number came good. If it sits wholly inside
+        # the disc the lost area is just its own; only a slot long enough to
+        # run out of the disc costs the full chord.
+        if math.hypot(MAST_SLOT_L / 2.0, _slot_hw) <= _r:
+            _lost = MAST_SLOT_L * MAST_SLOT_W
+            rep["bung_slot_wholly_under_bung"] = True
+        else:
+            _lost = math.pi / 4 * BUNG_FREE_D ** 2 - 2 * (
+                _r ** 2 * math.acos(min(1.0, _slot_hw / _r))
                 - _slot_hw * math.sqrt(max(0.0, _r ** 2 - _slot_hw ** 2)))
+            rep["bung_slot_wholly_under_bung"] = False
+        _seg = (math.pi / 4 * BUNG_FREE_D ** 2 - _lost) / 2.0
         rep["bung_land_mm2"] = round(2 * _seg)
+        # ...and can the leads actually reach the bung's holes without
+        # bearing on the ends of the slot they came up through?
+        rep["bung_outer_lead_from_axis_mm"] = round(BUNG_PITCH + CABLE_OD / 2, 2)
+        rep["mast_slot_half_len_mm"] = round(MAST_SLOT_L / 2.0, 2)
+        rep["bung_leads_clear_slot_ends"] = (
+            BUNG_PITCH + CABLE_OD / 2 <= MAST_SLOT_L / 2.0)
+        rep["mast_slot_len_wanted_mm"] = round(
+            2 * (BUNG_PITCH + CABLE_OD / 2) + 1.0, 1)
         rep["bung_face_mm2"] = round(_area)
         rep["bung_land_pct"] = round(100.0 * 2 * _seg / _area)
         rep["bung_land_needed_pct"] = 60
@@ -5277,11 +5299,13 @@ def build():
         # without a follower.
         #   round   O14 -> 83%   O16 -> 73%   O18 -> 61%   O20 -> 48%
         #   slot     10 -> 61%    12 -> 51%    14 -> 41%    16 -> 32%
-        rep["bung_land_what_to_measure"] = (
-            "the wire hole in the GONG MAST PLATE - shape and size. Round up "
-            "to O18, or a slot up to about 10 wide, and the mast plate has "
-            "enough land on the bung to squeeze it and nothing else is "
-            "needed. Wider than that and it needs a flange in a spotface")
+        rep["bung_land_settled_by"] = (
+            "MEASURED: Derek's slot is %0.1f x %0.0f, cut just wide enough "
+            "for the three leads side by side. It sits wholly under the bung, "
+            "so it costs only its own %0.0f mm2 - the mast plate keeps %d%% "
+            "of the bung's face. No follower, no flange, no spotface"
+            % (MAST_SLOT_L, MAST_SLOT_W, MAST_SLOT_L * MAST_SLOT_W,
+               rep["bung_land_pct"]))
         # AND THE SEQUENCE, because the bung hangs proud: the plate starts
         # BUNG_SQUEEZE off the board and gets pulled in. Start all four bolts
         # by hand before torquing any of them or the plate rocks on the bung.
