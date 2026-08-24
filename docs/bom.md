@@ -68,7 +68,7 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | [Paste wax, releasing the groove filler](https://www.amazon.com/dp/B0GVCGHZFR) | 1 | ea | $16.99 | $16.99 | estimate | the filler must NOT bond - it comes back out after the glass goes over it |
 | [2.5 mm straight cutter - fallback](https://www.amazon.com/dp/B0GWSZ2KV2) | 1 | ea | $7.99 | $7.99 | estimate | only if you would rather cut the groove open than sand down to a proud filler strip. Undersize in a 4 mm groove on purpose |
 | [Silicone adhesive, bonding the cord into groove](https://www.amazon.com/dp/B0002UEN1U) | 1 | tube | $7.56 | $7.56 | estimate | a thin continuous bead under the cord. It cannot then migrate, lift out, or be pinched under the lid in a dark car park |
-| [M5 x 25 A4 socket cap, 20 pk](https://www.amazon.com/dp/B0CJFMMF58) | 2 | pk | $15.99 | $31.98 | verified | 24 needed. A4/316 - every cheaper listing is A2/304, which pits in salt water |
+| [M5 x 25 A4 button head ISO 7380](https://www.amazon.com/stores/MonsterBolts/MetricSocketButtonHead_MetricScrews/page/D0B6DFC1-A842-468C-AB09-96E7C71305B4) | 2 | pk | $15.99 | $31.98 | estimate | 24 needed. A4/316 - every cheaper listing is A2/304, which pits in salt water. CONFIRM THE LENGTH: the A4 button family is easy to find, M5x25 in it is not. Socket cap B0CJFMMF58 is the fallback |
 | [M6 penny washer O18 A4 DIN9021](https://www.amazon.com/dp/B0DB8RBY3N) | 1 | pk | $12.99 | $12.99 | estimate | 58 needed - TWO PER BOLT, one captive under the nut and one UNDER THE HEAD. M6 size on an M5 bolt: the 0.7 mm of slop is irrelevant on a washer and the 3 extra mm of OD is not |
 | [M5 A4 hex nut DIN934, 50 pk - CAPTIVE in the ring](https://www.amazon.com/dp/B084HLMN7B) | 1 | pk | $9.19 | $9.19 | verified | 34 needed. Dropped in at a print pause at Z=6.0; steel thread, so a hatch that comes off every ride never wears anything out |
 | [MDF 12 mm, 4 check gauges](https://www.homedepot.com/p/ProWood-1-2-in-x-2-ft-x-4-ft-Medium-Density-Fiberboard-Project-Panel-109097/202093821) | 1 | sheet | $30.73 | $30.73 | estimate | 3 station sections + the rocker/deck profile. Was a 14-template set at $70 - the router templates go with the CNC pass. The caul is an EPS offcut and the groove guide is fallback-only, so this sheet is now the whole MDF requirement |
@@ -256,8 +256,8 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 |---|---:|
 | **Grand total, 2 boards** | **$7,920.24** |
 | Per board | $3,960.12 |
-| Of which verified | $7,296.85  (92%) |
-| Of which estimated | $623.39 |
+| Of which verified | $7,264.87  (92%) |
+| Of which estimated | $655.37 |
 | Linked to a real listing | 128 lines |
 | Priced but NOT linked | 1 lines, $12.00 |
 | Not linkable, but MEASURED (freight quotes) | 2 lines, $716.95 |

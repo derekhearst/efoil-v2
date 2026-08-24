@@ -614,7 +614,15 @@ def build():
     # packs, and the A4/316 the salt water demands is several times the price
     # of the A2/304 those per-piece figures were really quoting. Every line
     # below is now (packs needed) x (real pack price).
-    # SOCKET CAP, proud, no washer, no countersink. The head bears on a G10
+    # BUTTON HEAD, proud, on a washer. Domed and 2.75 tall against a cap
+    # head's square-edged 5.0 - these twelve stand in the one bare band on
+    # the deck and it is a band you walk on barefoot. It also puts the whole
+    # stack BELOW the 5.8 mm deck pad beside it instead of 2.6 above.
+    # SOURCING IS THE WEAK PART OF THIS LINE: A4 button heads are easy, M5x25
+    # in A4 button is not a listing I could find in a sensible pack. Confirm
+    # the length at order. If it cannot be had, the A4 SOCKET CAP B0CJFMMF58
+    # is the fallback - identical in every number in this model, and it costs
+    # you nothing but the toe. The head bears on a G10
     # plug buried in the core, not on the panel: at 1200 N - the PRELOAD at
     # the 1.2 Nm spec, not the 182 N the cord needs - a bare cap head puts
     # ~2.7 MPa into H100 even after the skin spreads it, against a core that
@@ -623,10 +631,12 @@ def build():
     # A countersink would have hidden the head, but it needs 2.1 mm of solid
     # material under the top face and there is 1.0 mm of skin over the plug -
     # flush heads and a buried hardpoint do not combine. Caps it is.
-    add("6  Hatch and seal", "M5 x 25 A4 socket cap, 20 pk",
-        math.ceil(M["hatch_bolts"] * N / 20), "pk", 15.99, OK,
+    add("6  Hatch and seal", "M5 x 25 A4 button head ISO 7380",
+        math.ceil(M["hatch_bolts"] * N / 20), "pk", 15.99, EST,
         str(M["hatch_bolts"] * N) + " needed. A4/316 - every cheaper listing "
-        "is A2/304, which pits in salt water")
+        "is A2/304, which pits in salt water. CONFIRM THE LENGTH: the A4 "
+        "button family is easy to find, M5x25 in it is not. Socket cap "
+        "B0CJFMMF58 is the fallback")
     # NO LINE FOR THE LID HARDPOINTS. They are twelve O16 holes in the bare
     # core filled with thickened epoxy off the TotalBoat 5:1 kit already on
     # this list - poured while the core is still a flat sheet on the bench.

@@ -1388,7 +1388,11 @@ NUT_WASHER_D, NUT_WASHER_T = 18.0, 1.6
 # At 1.2 it is still 10.6 in-lb, inside the 10-50 in-lb wrench on the list.
 HATCH_TORQUE_NM = 1.2
 NUT_CLR = 0.25                     # per side; ASA prints tight
-NUT_Z = 6.0                        # cover between nut top face and seal face
+# 5.0, not 6.0. The washer moved to the other side of the nut (see below) and
+# it has to come out of somewhere - the stack under the seal face is now
+# NUT_Z + NUT_WASHER_T + NUT_T, and it has to leave an M5x25 fully engaged.
+# Pull-out goes 8.5x -> 7.1x, which is still a long way clear.
+NUT_Z = 5.0                        # cover between WASHER top face and seal face
 ASA_TAU = 30.0                     # MPa design shear
 # --- WHAT THE CORD ACTUALLY PUSHES BACK WITH ------------------------------
 # THIS WAS 6.0 AND IT WAS WRONG BY 5x. Worse, the model already knew: the bow
@@ -1463,7 +1467,7 @@ EPOXY_COMP_MPA = 50.0              # thickened laminating epoxy, conservative
 # 6.8. Same part as the one under the nut, so it is one line on the BOM and
 # one size in the drawer.
 HATCH_HEAD_WASHER_D = NUT_WASHER_D
-HATCH_HEAD_H = 5.0                 # M5 DIN 912 socket cap head height
+HATCH_HEAD_H = 2.75                # M5 ISO 7380 button head height
 # --- V1's plywood, for comparison ------------------------------------------
 # V1's lid AND its mast base plate were 3/4 in birch ply, so one set of
 # figures serves both. Flatwise (through-thickness) bearing is what a washer
@@ -1477,7 +1481,13 @@ PLY_FC_DRY, PLY_FC_WET = 6.0, 4.0  # MPa ultimate flatwise bearing
 # there is 1.0 mm of skin over the plug, so flush heads and a buried spreader
 # do not combine. Cap heads it is - which is what Derek asked for anyway.
 HATCH_BOLT_CSK = False
-HATCH_BOLT_HEAD_D = 8.5            # M5 socket cap, DIN 912 head dia
+# BUTTON HEAD, ISO 7380, not a socket cap. These twelve stand proud in the
+# one bare band on the deck, which is a band you walk on barefoot - a cap
+# head is a 5 mm cylinder with a square edge on it and it is a toe stubber.
+# A button is 2.75 and domed. It is the better fastener here anyway: wider
+# head, and the whole stack ends up BELOW the deck pad beside it instead of
+# 2.6 mm above.
+HATCH_BOLT_HEAD_D = 9.5            # M5 button head, ISO 7380
 HATCH_BOLT_CSK_ANG = 90.0          # included angle
 # TORX, not hex. This head finishes FLUSH WITH THE DECK on a board that gets
 # dragged up a beach, so the socket is a grit trap by design and it gets
@@ -4046,24 +4056,27 @@ def build():
             c.hide_render = True
         # Clearance hole from the seal face down to the nut pocket...
         boolean(rim, cyl(f"V2_HatchBoltHole_cut_{i}", bx_, by_,
-                         ledge_z + RIM_T - NUT_Z - 0.1,
+                         ledge_z + RIM_T - NUT_Z - NUT_WASHER_T - 0.1,
                          ledge_z + RIM_T + 1.0, HATCH_BOLT_D + 0.6, coll))
-        # ...the hex pocket the nut drops into at the print pause...
+        # ...the washer counterbore, DIRECTLY UNDER THE COVER, because that
+        # is the face the pull-out actually bears on. It was cut BELOW the
+        # nut, where nothing bears at all, while the pull-out sum three
+        # screens down used NUT_WASHER_D as the shear circle - the arithmetic
+        # and the geometry had been describing different parts. Derek found
+        # it by looking at the model.
+        _wz1 = ledge_z + RIM_T - NUT_Z
+        _wz0 = _wz1 - NUT_WASHER_T
+        boolean(rim, cyl(f"V2_NutWasherPkt_cut_{i}", bx_, by_, _wz0, _wz1,
+                         NUT_WASHER_D + 2 * NUT_CLR, coll))
+        # ...and the hex pocket the nut drops into at the print pause, under it
         boolean(rim, prism(f"V2_NutPocket_cut_{i}",
                            hex_poly(bx_, by_, NUT_AF / 2 + NUT_CLR),
-                           ledge_z + RIM_T - NUT_Z - NUT_T,
-                           ledge_z + RIM_T - NUT_Z, coll))
-        # ...and the washer counterbore ABOVE it, which is what the pull-out
-        # actually bears on.
-        boolean(rim, cyl(f"V2_NutWasherPkt_cut_{i}", bx_, by_,
-                         ledge_z + RIM_T - NUT_Z - NUT_T - NUT_WASHER_T,
-                         ledge_z + RIM_T - NUT_Z - NUT_T,
-                         NUT_WASHER_D + 2 * NUT_CLR, coll))
+                           _wz0 - NUT_T, _wz0, coll))
+        cyl(f"V2_HatchNutWasher_{i}", bx_, by_, _wz0, _wz1,
+            NUT_WASHER_D, coll, m_metal, seg=28)
         prism(f"V2_HatchNut_{i}", hex_poly(bx_, by_, NUT_AF / 2),
-              ledge_z + RIM_T - NUT_Z - NUT_T,
-              ledge_z + RIM_T - NUT_Z, coll, m_metal)
-        cyl(f"V2_HatchBolt_{i}", bx_, by_,
-            ledge_z + RIM_T - NUT_Z - NUT_T, ledge_z + RIM_T,
+              _wz0 - NUT_T, _wz0, coll, m_metal)
+        cyl(f"V2_HatchBolt_{i}", bx_, by_, _wz0 - NUT_T, ledge_z + RIM_T,
             HATCH_BOLT_D, coll, m_metal)
         # ...and what sits ON TOP of the lid, which was never drawn. The bolt
         # used to stop at the seal face, so the washer and the head - the only
@@ -4230,7 +4243,9 @@ def build():
     rep["hatch_preload_over_seal"] = round(
         (HATCH_TORQUE_NM / (0.2 * 0.005)) / (SEAL_N / len(hb)), 1)
     rep["hatch_bolt_len_mm"] = math.ceil(
-        (LID_T + NUT_Z + NUT_T) / 5.0) * 5
+        (LID_T + NUT_Z + NUT_WASHER_T + NUT_T) / 5.0) * 5
+    rep["hatch_bolt_len_needed_mm"] = round(
+        LID_T + NUT_Z + NUT_WASHER_T + NUT_T, 1)
     rep["hatch_bolts"] = len(hb)
     rep["bom_hatch_bolts"] = len(hb)
     # cord runs the groove centreline: a rounded rect inset CHAN_INSET from
@@ -4317,9 +4332,6 @@ def build():
         return math.pi / 4.0 * (d ** 2 - _hole ** 2)
     rep["hatch_bolt_preload_N"] = round(_bolt_N)
     rep["hatch_seat_load_is"] = "the applied preload, not the seal demand"
-    rep["hatch_head_style"] = (
-        "ISO 10642 flat head, TORX, FLUSH" if HATCH_BOLT_CSK
-        else "socket cap, proud")
     # THE SKIN SPREADS THE LOAD, and this used to give it no credit for that -
     # which is inconsistent, because the heel calculation twenty lines up
     # already models exactly this: a skin on an elastic foundation carries
@@ -4403,9 +4415,14 @@ def build():
     # The deck pad is the thing to compare against, not zero: the pad is
     # 5.8 mm of EVA and it stops short of the rim, so the heads are standing
     # in a bare band NEXT to it rather than out on their own.
+    rep["hatch_head_style"] = "M5 button head, ISO 7380 - domed, 2.75 tall"
     rep["hatch_hardware_proud_mm"] = round(NUT_WASHER_T + HATCH_HEAD_H, 1)
+    # against DECK_PAD_T, the 5.8 mm EVA next to it - NOT PAD_T, which is the
+    # bedding pad under the module and has nothing to do with this face.
     rep["hatch_hardware_vs_deck_pad_mm"] = round(
-        NUT_WASHER_T + HATCH_HEAD_H - PAD_T, 1)
+        NUT_WASHER_T + HATCH_HEAD_H - DECK_PAD_T, 1)
+    rep["hatch_hardware_below_pad"] = (
+        NUT_WASHER_T + HATCH_HEAD_H < DECK_PAD_T)
     rep["hatch_head_washer_required"] = (
         rep["hatch_head_seat_pct_of_epoxy"]["bare head"]
         > rep["hatch_epoxy_creep_threshold_pct"])

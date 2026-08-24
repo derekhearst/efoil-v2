@@ -92,8 +92,9 @@ LINKS = {
         ("B005379HJA", 24.99, "TP-03 1-13mm Metric Transfer Punch Set - 25 Pieces"),
     "Transfer screw set M3-M6":
         ("B01IUBRSLO", 24.99, "HHIP 3601-0516 28 Piece Transfer Screw Set, M3 X .5, M4 X .7, M5 X .8, M6 X 1"),
-    "M5 x 25 A4 socket cap, 20 pk":
-        ("B0CJFMMF58", 15.99, "M5 x 25mm Full Thread Cap Head Screws DIN 912 A4 Pack of 20"),
+    "M5 x 25 A4 button head ISO 7380":
+        ("https://www.amazon.com/stores/MonsterBolts/MetricSocketButtonHead_MetricScrews/page/D0B6DFC1-A842-468C-AB09-96E7C71305B4",
+         15.99, "MonsterBolts M5 Button Head Socket Cap Screws ISO 7380 Marine Grade Stainless - pick the 25 mm length"),
     "Neoprene sheet 3/4in, wire bung":
         ("B07Y5K1VHK", 26.00, "USA Sealing Neoprene Rubber Sheet, No Adhesive, 60A, 3/4in x 12in x 12in"),
     "Hollow punch set 3/16-1-3/8in, for the O31.75 bung":
@@ -311,7 +312,7 @@ LINK_VENDOR = {
     "E-glass 6 oz, 50in x 12ft, 2-pack": "Amazon",
     "Transfer punch set, metric 1-13 mm": "Amazon",
     "Transfer screw set M3-M6": "Amazon",
-    "M5 x 25 A4 socket cap, 20 pk": "Amazon",
+    "M5 x 25 A4 button head ISO 7380": "Amazon",
     "Neoprene sheet 3/4in, wire bung": "Amazon",
     "Hollow punch set 3/16-1-3/8in, for the O31.75 bung": "Amazon",
     "EPS rigid foam 2in x 48in x 8ft (HD 202532856)": "Home Depot / hardware",

@@ -338,7 +338,7 @@ fibre ends at the cavity ledge.
 `Solid silicone cord, 3 mm round - BOTH seals` ·
 `Silicone adhesive, bonding the cord into groove` ·
 `Cyanoacrylate for the cord splice` · `2.5 mm straight cutter - fallback` ·
-`M5 x 25 A4 socket cap, 20 pk` · `Transfer screw set M3-M6` ·
+`M5 x 25 A4 button head ISO 7380` · `Transfer screw set M3-M6` ·
 `Solid silicone cord, 1/8 in (3.175 mm) - the spare size`
 
 The ring went in at step 10a and has been glassed over since. Now sand the
@@ -411,7 +411,7 @@ plug with resin all round it. That is what buys you the freedom to place the
 core by hand.
 
 **A Ø18 penny washer goes under each head, and it is not decoration.** A bare
-M5 cap head on resin is 37 MPa — 75% of ultimate — and epoxy cold-flows under
+M5 button head on resin is 37 MPa — 75% of ultimate — and epoxy cold-flows under
 permanent preload. On the washer it is 6.8, or 14%. Same washer as the one
 captive under the nut, so it is one size in the drawer and two per bolt.
 
