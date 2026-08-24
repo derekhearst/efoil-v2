@@ -110,7 +110,13 @@ RAIL_APEX = 0.16                   # height of the widest point / thickness
 # in a crowned deck - at 2 mm of crown the lid stood ~1.4 mm proud at its
 # outboard edges. V1 ran a flat deck for the same reason ("simpler to build,
 # EVA pad provides grip") and it is the right call here too.
-DECK_CROWN = 0.0                   # centre to deck edge
+# ...AND THIS IS A RECORD OF THAT DECISION, NOT A KNOB. Nothing reads
+# DECK_CROWN. Setting it to 2.0 does not put 2 mm of crown on the deck; the
+# deck's shape comes from the section functions below. Kept because the
+# reasoning above is worth having where someone would look for it, and
+# renamed in spirit rather than in fact - if a crown is ever wanted, it has
+# to be built, not switched on.
+DECK_CROWN = 0.0                   # DEAD - the decision, not the control
 
 # Feature-aligned section sampling. Every station emits the same points in the
 # same roles - point k is always the same feature - so the loft quads cannot
@@ -126,7 +132,6 @@ N_STATIONS = 161
 # edge that wants to be sharp, for clean water release.
 SEC_BOT, SEC_RAIL_LO, SEC_RAIL_HI, SEC_DECK = 20, 18, 24, 20
 SEC_TOTAL = SEC_BOT + SEC_RAIL_LO + SEC_RAIL_HI + SEC_DECK
-RAIL_TUCK = 0.30                   # how far the rail leans out leaving the chine
 # The hard chine must NOT run to the bow. A sharp edge is what you want under
 # the tail and mid-section for clean water release, but carried forward it is
 # both wrong hydrodynamically and reads as a crease running all the way to the
@@ -369,13 +374,18 @@ PRINT_BED = 256.0                  # Bambu A1
 # lands G10-on-G10 around the whole perimeter and the squeeze is set by the
 # geometry, not by the wrench.
 #
-# It is routed AFTER the board is glassed, through the laminate into the ring,
-# off an MDF template (CNC part 14). That keeps the ring genuinely glassed in -
-# one continuous laminate across its face, no masking, no glass edge
-# terminating on the sealing surface - and costs no depth, which matters
-# because the lid recess cannot get deeper without the pack fouling the lid.
-# Same cord and the same groove as the MODULE seal (MOD_CORD_D / MOD_SEAL_*),
-# and deliberately so. Three reasons it went from O5-in-6x4 to O3-in-4x2.4:
+# It is OPENED after the board is glassed - opened, not routed. The groove is
+# PRINTED into the ring and filled with a strip printed CHAN_FILLER_PROUD
+# above the seal face, so the glass drapes over a ridge instead of a flat, and
+# sanding that face flat - which the seal land needs anyway - breaks through
+# to the filler and it picks out. See CHAN_FILLER_PROUD below. Part 14, the
+# MDF template, is the FALLBACK for anyone who would rather cut it; this
+# comment used to describe that route as the plan, which it stopped being.
+# Either way the ring stays genuinely glassed in - one continuous laminate
+# across its face, no masking, no glass edge terminating on the sealing
+# surface - and it costs no depth, which matters because the lid recess
+# cannot get deeper without the pack fouling the lid.
+# The cord is O3 in a 4 x 2.4 groove. Three reasons it went from O5-in-6x4:
 #
 #   1. 2.4 mm of depth fits inside ONE 3.175 mm ply of 1/8" G10, so the rim
 #      ring can be laminated up from 1/8" stock without the O-ring groove
@@ -540,11 +550,6 @@ MOD_GASKET_T = 3.0                 # uncompressed EPDM sponge sheet
 # inner lip so it cannot extrude into the box. 7 mm band, which is normal for
 # a flat gasket land.
 MOD_GASKET_OUT, MOD_GASKET_IN = 12.0, 19.0
-# A FLAT GASKET, not an O-ring cord. A printed flange holds +/-0.2 mm, which
-# is a third of an O3 cord's squeeze - the groove would be a lottery. A flat
-# gasket does not care about surface irregularity, which is exactly why V1
-# used one on both enclosures and why it is still sealing.
-MOD_SEAL_GASKET = True
 # 6.35, not 6.0 - same reason as LID_CORE. The BOM buys 1/4 in H-80 for this
 # and 1/4 in is 6.35; 6.0 was a round number nobody sells.
 ENC_LID_SKIN, ENC_LID_CORE = 1.0, 6.35
@@ -866,6 +871,8 @@ CHG_BOLT_PITCH = 22.0              # flange screw centres, M3
 BAY_GLAND_THREAD_D = 18.03
 BAY_GLAND_THREAD_L = 9.14
 BAY_GLAND_NUT_AF = 24.0            # spanner flats - this sets the spacing
+BAY_GLAND_NUT_T = 5.0              # lock nut thickness - what the wall has to
+                                   # leave thread for. See the check.
 BAY_GLAND_D = 18.5                 # module wall glands, PG11
 BAY_GLAND_N = 3                    # motor phases / charge / switch + sense
 # Button and port are panel-mount fittings through the module's aft wall,
@@ -1337,36 +1344,45 @@ MOD_GASKET_START = 0.0             # band inner edge, outboard from the wall
 # 12 mm washer reaches to 0.5 mm of the finished lid edge, and so does the
 # epoxy plug that has to back it, which the profile pass would have broken
 # into. At 8.0 both clear by 2.0.
-# It is free, which is the surprising part - the bolt is moving toward the
-# middle of a 15 mm land, so nothing gets tighter: insert edge material 3.7
-# -> 5.2, flange bending 0.24 -> 0.16 MPa on a shorter lever, insert-to-wall
-# and seal-to-insert both unchanged.
+# It costs very little, and less than it first looked: the bolt is moving
+# toward the middle of a 15 mm land, so insert edge material goes 3.7 -> 5.2
+# and flange bending 0.24 -> 0.16 MPa on a shorter lever. What it DOES spend
+# is the inboard side - insert-to-wall 5.7 -> 4.2. The first version of this
+# comment claimed that number was unchanged, which it appeared to be only
+# because it was being computed from MOD_BOLT_INSET, a parameter that has not
+# placed these bolts since MOD_FLANGE_OUT went True.
 MOD_BOLT_EDGE = 8.0                # insert centre to the flange's outer edge
 # nothing overhangs inboard any more, so the pack has the full interior
 MOD_FLANGE_IN = 0.0 if MOD_FLANGE_OUT else MOD_FLANGE_W
 MOD_FLANGE_LAND = ENC_WALL + MOD_FLANGE_W_OUT
-MOD_CORD_D = 3.0                   # O-ring cord for the module lid
-MOD_SEAL_W, MOD_SEAL_D = 4.0, 2.4  # groove: 74% fill at 20% squeeze
-# Routed into the ASSEMBLED flange ring, not machined into the four loose
-# rails. The ring is four bonded pieces, so a groove cut in the parts has to
-# line up across four joints to seal; cut after assembly it is one continuous
-# groove and the joints stop mattering.
-MOD_SEAL_AFTER_ASSEMBLY = True
-# A cord will not turn a sharp corner - it lifts out of the groove and bridges.
-# The module groove was drawn square, which for an O3 cord is unbuildable: a
-# 4 mm groove cut with a 4 mm cutter leaves a 2 mm inside radius against a
-# ~9 mm bend limit. R15 on the centreline clears it and still keeps the groove
-# 4 mm off the rail's inner edge all the way round.
-MOD_SEAL_R = 15.0                  # groove centreline corner radius
 CORD_BEND_F = 3.0                  # min bend radius as a multiple of cord dia
-# BOTH measured from the WALL face, i.e. outboard edge of the rail. The seal
-# must end up INBOARD of the bolt circle: the lid bolt holes are through-holes
-# opening onto a surface that is always wet, so whatever runs down a bolt has
-# to land on the WET side of the seal. These were the other way round - groove
-# at 4, bolts at 13 - which put every bolt penetration inside the sealed ring
-# and made the lid bolts a direct path into the box.
-MOD_SEAL_INSET = 14.0              # groove centreline, from the wall face
-MOD_BOLT_INSET = 6.5               # bolt circle, from the wall face
+# --- THE MODULE'S O-RING GROOVE IS GONE, AND SO ARE ITS SIX CONSTANTS. ----
+# MOD_CORD_D, MOD_SEAL_W, MOD_SEAL_D, MOD_SEAL_R, MOD_SEAL_INSET and
+# MOD_SEAL_AFTER_ASSEMBLY described a O3 cord in a 4 x 2.4 groove routed into
+# the assembled flange ring. Nothing has read any of them since the module
+# went to a full-face EPDM gasket - bom_mod_cord_mm is 0, no cord is bought -
+# but they read as live spec, and one of them carried a machining instruction
+# ("routed into the ASSEMBLED flange ring, not the four loose rails") for an
+# operation nobody performs. A dead constant in a repo whose one rule is that
+# everything downstream is generated is worse than a missing one: it is a
+# parameter that lies. Change it, re-run, and nothing moves.
+# The live spec is MOD_GASKET_* above.
+#
+# ONE THING FROM THAT BLOCK IS STILL TRUE AND IS KEPT HERE because it governs
+# the design that replaced it: a lid bolt hole is a through-hole opening onto
+# a surface that is always wet, so whatever runs down a bolt has to land on
+# the WET side of the seal. A grooved band answers that by sitting inboard of
+# the bolt circle. A FULL-FACE gasket answers it differently - it is pierced
+# by every bolt on purpose and seals the annulus around each one - which is
+# why seal_inboard_of_bolts short-circuits on MOD_GASKET_FULL_FACE and
+# module_seal_annulus_mm is the check that actually runs.
+#
+# MOD_BOLT_INSET survives, but read the warning on it.
+# It does NOT place the bolts - MOD_BOLT_EDGE does, whenever MOD_FLANGE_OUT
+# is True, which it is. This is the inward-flange bolt circle and it is only
+# consulted in that dead branch. Two published clearances were being computed
+# from it and sat frozen because of it.
+MOD_BOLT_INSET = 6.5               # INWARD-flange bolt circle - see above
 # The pack has to pass THROUGH the lid opening, which is the internal size less
 # a flange rail each side - not the internal size. At a 14 mm rail the opening
 # was 397 mm against a 397 mm pack: exactly zero, i.e. not buildable.
@@ -1402,6 +1418,13 @@ INSERT_TAU_MPA = 800.0 / (math.pi * 5.6 * 8.0)
 # it - and going from a 4 mm band to the full 15 mm land multiplies the area,
 # and therefore the clamp force, by nearly four. The bolts have it to give;
 # what to watch is heat-set insert pull-out in printed ASA. Reported below.
+# A FLAT GASKET, not an O-ring cord. A printed flange holds +/-0.2 mm, which
+# is a third of an O3 cord's squeeze - the groove would be a lottery. A flat
+# gasket does not care about surface irregularity, which is exactly why V1
+# used one on both enclosures and why it is still sealing.
+# (That reasoning used to sit on a flag called MOD_SEAL_GASKET which nothing
+# read. The decision was right and the switch that carried it was dead - so
+# the comment described the board while the constant described nothing.)
 MOD_GASKET_FULL_FACE = True
 MOD_GASKET_W_OUT = (MOD_FLANGE_LAND if MOD_GASKET_FULL_FACE
                     else ENC_WALL)     # else: exactly the wall top
@@ -1497,7 +1520,13 @@ HATCH_BOLT_PITCH = 152.0   # -> 12 bolts, 155 mm actual pitch
 #                        against the 910 N a bolt the seal actually needs.
 # It also matters more here than anywhere else on the board: THIS HATCH COMES
 # OFF EVERY RIDE. A steel thread does not care how many times.
-HATCH_INSERT_D, HATCH_INSERT_L = 6.4, 10.0   # kept: BOM/DXF still read these
+# HATCH_INSERT_D/L ARE GONE. 6.4 was the STI tap drill for the wire-thread
+# design and 10.0 that insert's length; the comment said "kept: BOM/DXF still
+# read these", and the BOM had stopped, but cnc_drawings.py had not - it was
+# drawing the rim's twelve holes at O6.4 and captioning them "M5 STI tapped
+# for stainless wire-thread inserts", three paragraphs above its own text
+# describing the captive nut. The ring is bored HATCH_BOLT_D + 0.6 with a
+# washer pocket and a hex pocket, and the drawing says so now.
 NUT_AF, NUT_T = 8.0, 4.0           # M5 A4 hex nut, across flats x thickness
 # ...ON A PENNY WASHER, dropped in at the same pause. This is what actually
 # sets how hard you can do the bolts up. The nut alone bears on its own
@@ -1837,7 +1866,7 @@ MOD_X0_TARGET = 444.0
 # for our four tapped holes, so it is a number to MEASURE, not assume.
 MAST_CLEAR_D = 7.0                 # UNVERIFIED - Derek HAS this plate,
                                    # he cut its wire slot. Measure the four
-                                   # clearance holes; this budget lives on it.                 # UNVERIFIED - measure the real plate
+                                   # clearance holes; this budget lives on it.
 BOLT_SPACING_X = 165.0             # for layout only - SPOT THROUGH THE PLATE
 BOLT_SPACING_Y = 90.0              # US rails, 90 mm on centre
 BOLT_D = 6.0                       # M6, Gong's mast screws - CONFIRMED
@@ -1856,7 +1885,6 @@ G10_L, G10_W = 250.0, 175.0
 # of the two to buy - 0.3 kg.
 DENSE_MARGIN_X = 90.0
 DENSE_MARGIN_Y = 90.0
-DENSE_MARGIN = DENSE_MARGIN_X      # kept for the report/legend
 # The block used to stop at the cavity floor - 29.5 mm tall in a 147 mm board,
 # only 9 mm of it above the mast plate, and then 118 mm of plain EPS between
 # the mast hardpoint and the deck skin.
@@ -2567,12 +2595,18 @@ def prism(name, poly, z0, z1, coll, mat=None):
 #   Foil Front Wing X-Over V2 - XL      Foil Stab X-Over V2 - 48 cm
 #   Foil Pro Alu V2 fuselage - Regular  Foil Alu Mast V2 - 85 cm
 #   Allvator V2 mast/fuselage connector + Top Plate Alu V2 + M6 screw kit
-# Everything below is off Gong's published technical sheets except the three
-# lines flagged ESTIMATED - Gong does not publish those. This block used to be
-# a stand-in "Allvator Veloce" and was wrong in every dimension; do not put
-# guessed numbers back in here, the performance model reads straight from it.
+# Everything below is off Gong's published technical sheets except the lines
+# flagged ESTIMATED - Gong does not publish those. This block used to be a
+# stand-in "Allvator Veloce" and was wrong in every dimension; do not put
+# guessed numbers back in here.
+# WHAT READS IT: mass, ride height, prop clearance, lift-out geometry and the
+# float sums. NOT a performance model - there isn't one. This comment used to
+# say "the performance model reads straight from it", which was a promise the
+# repo does not keep: there is no speed, drag, power or range figure anywhere
+# in report.json. FOIL_MAST_WET, the wetted fraction, sat here unread because
+# the only thing that would want it is that missing model. It is gone; if a
+# drag model ever lands, it comes back with a number somebody has checked.
 FOIL_MAST_H, FOIL_MAST_C, FOIL_MAST_T = 850.0, 120.0, 0.115   # 85 cm alu mast
-FOIL_MAST_WET = 0.62    # ESTIMATED fraction of mast submerged when flying
 FOIL_FUSE_L, FOIL_FUSE_D = 560.0, 32.0    # ESTIMATED - Pro Alu is "cut short"
 # X-Over V2 XL: span 95 cm, 1650 cm2, span^2/area 5.5, root chord and thickness
 # scaled off the published M (75 cm / 1000 cm2 / 17.4 cm chord / 2.0 cm thick).
@@ -6171,10 +6205,20 @@ def build():
         "so it should find it long before that")
     rep["module_is_sealed"] = True
     # module_seal / gasket clearances are set where the gasket is built.
+    #
+    # THESE TWO USED TO BE COMPUTED FROM MOD_BOLT_INSET, WHICH DOES NOT PLACE
+    # THE BOLTS. With MOD_FLANGE_OUT the ring is laid out from MOD_BOLT_EDGE,
+    # measured off the flange's OUTER edge; MOD_BOLT_INSET is the inward-flange
+    # parameter and is dead. So both numbers sat frozen at whatever the dead
+    # constant said, and they did not move when the bolt circle moved 1.5 mm
+    # this session - which I read as evidence the move cost nothing. It was
+    # evidence of nothing at all. A metric that cannot respond to the geometry
+    # it describes is worse than no metric: it answers, confidently, always.
+    _bolt_in = (MOD_FLANGE_LAND - MOD_BOLT_EDGE if MOD_FLANGE_OUT
+                else MOD_BOLT_INSET)
     rep["module_seal_to_insert_mm"] = round(
-        MOD_GASKET_OUT - (MOD_BOLT_INSET + MOD_INSERT_D / 2), 1)
-    rep["module_insert_to_wall_mm"] = round(
-        MOD_BOLT_INSET - MOD_INSERT_D / 2, 1)
+        MOD_GASKET_OUT - (_bolt_in + MOD_INSERT_D / 2), 1)
+    rep["module_insert_to_wall_mm"] = round(_bolt_in - MOD_INSERT_D / 2, 1)
     # The one that matters: distance from the SEALED interior, outward. The
     # seal has to be the smaller of the two on both lids, or a bolt hole opens
     # straight into the sealed volume.
@@ -6726,6 +6770,24 @@ def build():
     rep["glands_clear_pack"] = rep["gland_to_pack_mm"] > 0
     rep["glands_inside_strip"] = (
         g_mid + g_span / 2 + (BAY_GLAND_D + 7) / 2 < iy1)
+    # --- DOES THE GLAND ACTUALLY FIT THE WALL IT GOES THROUGH ---------------
+    # BAY_GLAND_THREAD_D and BAY_GLAND_THREAD_L were dead constants. The
+    # reasoning that needs them was written out in full where they are
+    # defined - "9.14 of thread minus a 4 mm wall leaves 5.14 for the lock
+    # nut, which is about what a PG11 nut is. Any more wall and the nut runs
+    # out of thread" - and then nothing computed it. A constraint that lives
+    # only in a comment is enforced by whoever last read the comment. Put a
+    # boss on this wall, or take ENC_WALL up for any other reason, and the
+    # gland silently stops being fittable.
+    # It is TIGHT: 0.14 mm spare. That is the whole reason it is worth a check
+    # rather than a note.
+    rep["gland_bore_clearance_mm"] = round(BAY_GLAND_D - BAY_GLAND_THREAD_D, 2)
+    rep["gland_thread_through_wall_mm"] = round(
+        BAY_GLAND_THREAD_L - ENC_WALL, 2)
+    rep["gland_nut_thread_spare_mm"] = round(
+        BAY_GLAND_THREAD_L - ENC_WALL - BAY_GLAND_NUT_T, 2)
+    rep["gland_nut_reaches_thread"] = (
+        BAY_GLAND_THREAD_L - ENC_WALL >= BAY_GLAND_NUT_T)
 
     # The button and the port were floating in the bay attached to nothing.
     # They mount on a G10 service panel bonded to the module's aft wall, so
@@ -7519,6 +7581,18 @@ def build():
     if not rep["core_halves_fit_bed"]:
         fails.append(f"a core half is longer than the bed: "
                      f"{rep['core_halves_mm']} vs {CNC_BED_X:.0f}")
+    if not rep["gland_nut_reaches_thread"]:
+        fails.append(
+            "the cable glands cannot be fitted: a %.1f mm wall leaves %.2f mm "
+            "of the PG11's %.2f mm thread proud, and the lock nut needs %.1f. "
+            "Thin the wall here or find a longer-bodied gland - do NOT add a "
+            "boss, that is the wrong direction"
+            % (ENC_WALL, rep["gland_thread_through_wall_mm"],
+               BAY_GLAND_THREAD_L, BAY_GLAND_NUT_T))
+    if rep["gland_bore_clearance_mm"] <= 0:
+        fails.append(
+            "the gland bore is smaller than the gland thread: O%.2f will not "
+            "pass O%.2f" % (BAY_GLAND_D, BAY_GLAND_THREAD_D))
     if not rep["pack_clears_flange"]:
         if PACK_DROP_IN:
             fails.append("the pack fouls the lid flange on the way down: "

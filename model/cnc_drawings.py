@@ -136,9 +136,20 @@ def build(p):
     hb = p["bolt_ring"](bi, ow - bi, bi, oh - bi, p["HATCH_BOLT_PITCH"],
                         r=R + RIM_W - bi)
     for (bx, by) in hb:
-        d.circle(bx, by, p["HATCH_INSERT_D"] / 2)
+        d.circle(bx, by, (p["HATCH_BOLT_D"] + 0.6) / 2)
+        d.circle(bx, by, (p["NUT_WASHER_D"] + 2 * p["NUT_CLR"]) / 2,
+                 layer="CHANNEL")
     add("01_rim_ring", "printed ASA (reference only)", p["RIM_T"], 1, d, ow, oh,
-        f"{len(hb)} x M5 STI tapped for stainless wire-thread inserts. "
+        f"{len(hb)} x CAPTIVE M{p['HATCH_BOLT_D']:.0f} NUT on a "
+        f"O{p['NUT_WASHER_D']:.0f} penny washer, printed around at a pause - "
+        f"the small circle is the O{p['HATCH_BOLT_D'] + 0.6:.1f} bolt "
+        f"through-hole, the large one the washer pocket. This line used to "
+        f"read 'M5 STI tapped for stainless wire-thread inserts' and drew the "
+        f"holes at O6.4, an STI tap drill - that was the FIRST of three "
+        f"designs (G10 + wire-thread, then printed ASA + heat-set, now "
+        f"printed ASA + captive nut) and the rest of this very note already "
+        f"described the third. The nut is STEEL and never wears, which is "
+        f"what a hatch opened every ride wants. "
         f"PRINT IT HOT AND PRINT THE NUT ZONE SOLID. What holds a captive nut "
         f"in is a plug of ASA {p['NUT_Z']:.0f} mm deep sheared out around the "
         f"washer, and that shear surface is a VERTICAL cylinder - with the "

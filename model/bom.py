@@ -6,6 +6,7 @@ from the design. Everything else carries a tag saying where the number is from.
 
 Usage:  python model/bom.py [n_boards]
 """
+import io
 import json
 import math
 import os
@@ -2070,6 +2071,28 @@ if __name__ == "__main__":
     print("  " + "MARGINAL per board".ljust(26) + "$" + format(marg, ">10,.2f")
           + "   <- what board 3 costs")
     print("  verified " + format(100 * ver / tot, ".0f") + "% of spend")
+    # --- AND PUBLISH THEM, because the README quotes every one of these ------
+    # "$3,917/board, 93% verified", "126 of 129 purchasable lines link to a
+    # real listing", "124 of 127 are claimed by a step" - all four were stale,
+    # and the guide checker could not see them because they are bom.py's
+    # numbers, not blender_board.py's. report.json is blender's contract; this
+    # is bom.py's, and check_build_guide.py reads both.
+    _spend = [r for r in rows if r["ext"] > 0]
+    _stats = {
+        "total": round(tot, 2),
+        "per_board": round(tot / N, 2),
+        "one_time_tooling": round(tl, 2),
+        "marginal_per_board": round(marg, 2),
+        "verified_pct_of_spend": round(100 * ver / tot),
+        "spend_lines": len(_spend),
+        "linked_spend_lines": sum(1 for r in _spend if r.get("url")),
+        "boards": N,
+    }
+    _sp = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                       "bom_stats.json")
+    with io.open(_sp, "w", encoding="utf-8", newline="\n") as _f:
+        json.dump(_stats, _f, indent=2, sort_keys=True)
+        _f.write("\n")
     if DRIFT:
         _d = sorted(DRIFT, key=lambda x: -abs((x[2] - x[1]) * x[3]))
         print("")

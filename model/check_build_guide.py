@@ -44,6 +44,13 @@ ROOT = os.path.dirname(HERE)
 GUIDE = os.path.join(ROOT, "docs", "fabrication.md")
 BOM = os.path.join(ROOT, "docs", "bom.md")
 REPORT = os.path.join(ROOT, "model", "report.json")
+BOMSTATS = os.path.join(ROOT, "model", "bom_stats.json")
+# README.md is checked too. It is the front door and the most-read file in the
+# repo, and it was carrying a mast plate "M8 tapped, 2.6x margin" months after
+# both halves of that were corrected everywhere else, plus a stale board mass,
+# displacement, cavity size, cost and line count. Nothing was watching it.
+PROSE = (os.path.join(ROOT, "docs", "fabrication.md"),
+         os.path.join(ROOT, "README.md"))
 
 # Bolded figures that are deliberately NOT model-derived. Each one needs a
 # reason, because "add it to the allowlist" is how a check like this dies.
@@ -153,6 +160,11 @@ def model_numbers():
                 add(m)
 
     walk(json.load(io.open(REPORT, encoding="utf-8")))
+    # bom.py's numbers are a second contract - the README quotes its cost,
+    # its verified percentage and its line counts, and blender_board.py has
+    # never known any of them.
+    if os.path.exists(BOMSTATS):
+        walk(json.load(io.open(BOMSTATS, encoding="utf-8")))
     return vals
 
 
@@ -161,19 +173,40 @@ def model_numbers():
 # goes stale when a bolt ring is regenerated.
 UNIT = r"(?:mm|MPa|Nm|kg|Wh|kN|N|A|V|%|x|×|in)(?![a-zA-Z])"
 CLAIM = re.compile(r"\*\*(\d+(?:\.\d+)?)\s*" + UNIT)
+# ...and BOLDED MONEY, separately, because a dollar sign is not a unit and the
+# pattern above walked straight past "**$3,917/board**" - which was $123 out
+# by the time anyone looked. Cost is the most-quoted number in the repo, so it
+# gets its own pattern rather than relying on someone writing a unit after it.
+MONEY = re.compile(r"\*\*\$([\d,]+(?:\.\d+)?)")
 
 
 def stale_numbers():
-    """Bolded figures in the guide that trace to nothing in the model."""
+    """Bolded figures in the prose that trace to nothing the scripts compute."""
     vals = model_numbers()
     out = []
-    text = io.open(GUIDE, encoding="utf-8").read()
-    for i, line in enumerate(text.split("\n"), 1):
-        for m in CLAIM.finditer(line):
-            n = round(float(m.group(1)), 2)
-            if n in vals or n in GENERIC or n in NOT_FROM_MODEL:
-                continue
-            out.append((i, m.group(0), line.strip()[:70]))
+    for path in PROSE:
+        short = os.path.basename(path)
+        for i, line in enumerate(
+                io.open(path, encoding="utf-8").read().split("\n"), 1):
+            for rx in (CLAIM, MONEY):
+                for m in rx.finditer(line):
+                    raw = m.group(1).replace(",", "")
+                    n = round(float(raw), 2)
+                    if n in vals or n in GENERIC or n in NOT_FROM_MODEL:
+                        continue
+                    # ROUNDING IS NOT STALENESS. Prose says "$4,040/board" and
+                    # "23.6 kg"; the scripts hold 4039.76 and 23.63. Demanding
+                    # an exact hit would push every honest round number into
+                    # NOT_FROM_MODEL, and an allowlist that fills up with
+                    # false positives stops being read. So a claim matches if
+                    # ANY known value rounds to it AT THE CLAIM'S OWN
+                    # PRECISION - "143.7" has to agree to a tenth, "4040" only
+                    # to the unit, which is exactly how much each one asserts.
+                    dp = len(raw.split(".")[1]) if "." in raw else 0
+                    if any(round(v, dp) == n for v in vals):
+                        continue
+                    out.append((f"{short}:{i}", m.group(0),
+                                line.strip()[:70]))
     return out
 
 
@@ -200,7 +233,7 @@ def main():
               f"REASON - an unreasoned allowlist is how a check like this "
               f"quietly stops checking:")
         for ln, tok, ctx in stale:
-            print(f"    line {ln}: {tok:12} |  {ctx}")
+            print(f"    {ln:26} {tok:12} |  {ctx}")
     if missing:
         print(f"\nERROR: {len(missing)} reference(s) match no BOM line:")
         for i, s in missing:

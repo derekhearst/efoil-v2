@@ -6,7 +6,7 @@ bill of materials. Change a parameter, re-run, and every downstream document
 follows.
 
 **V1 is built and riding.** V2 is the board this repo is about: a full model
-with `FAILS: ['none']` on every check, a BOM where 126 of 129 purchasable
+with `FAILS: ['none']` on every check, a BOM where 131 of 135 purchasable
 lines link to a real listing, and a machining plan that fits a specific
 router in a specific shop.
 
@@ -106,8 +106,10 @@ Four documents, three of them generated. Start with the build guide.
 | [shape-research.md](docs/shape-research.md) | Traced production boards and the shape law fitted from them |
 
 The build guide quotes BOM item names verbatim, and
-`python model/check_build_guide.py` verifies every one still exists. 124 of
-127 purchasable lines are claimed by a step; the rest are contingency tools.
+`python model/check_build_guide.py` verifies every one still exists - and
+now every bolded figure in this file and in the guide against `report.json`
+and `bom_stats.json`. 133 of 135 purchasable lines are claimed by a step; the
+rest are contingency tools.
 
 ---
 
@@ -116,21 +118,21 @@ The build guide quotes BOM item names verbatim, and
 | | V1 (built) | V2 (current model) |
 |---|---|---|
 | Dimensions | 1600 × 600 × 153 mm | 1400 × 560 × 143.7 mm |
-| Sealed displacement | 96.6 L | 78.1 L |
-| Board mass | 25–30 kg | 23.5 kg |
+| Sealed displacement | 96.6 L | 79.0 L |
+| Board mass | 25–30 kg | 23.6 kg |
 | Board reserve, alone | — | +55.4 kg |
-| With an 86 kg rider | — | **−31.4 kg — a sinker at rest** |
+| With an 86 kg rider | — | **-30.6 kg — a sinker at rest** |
 | Pack | 14S9P, 2,268 Wh | 16S8P, 2,304 Wh, 9.22 kg, 397 × 188 × 78 |
-| Cavity | 660 × 280 × 115 mm | 518 × 323 × 85 mm |
+| Cavity | 660 × 280 × 115 mm | 512 × 323 × 86 mm |
 | Electronics | 2 sealed boxes | 1 removable module: printed ASA walls on a 5052 floor, **outward** lid flange |
-| Mast plate | — | 6061-**T651**, 12.7 mm, M8 tapped, 2.6× margin |
+| Mast plate | — | 6061-**T651**, 12.7 mm, **M6** tapped, 1.44× margin |
 | Hatch | — | 12 × M5 into captive nuts printed into an ASA rim ring |
 | Core splits | — | vertical at 1030 mm (bed length), horizontal at 101.6 mm (gantry) |
 | Machining | — | 4 pieces, 5 setups, 1 flip, no cradle |
 | Deck pad | — | 3 pieces of 5.8 mm EVA, one sheet does both boards |
-| Cost | ~$3,900 spent | **$3,917/board**, 93% verified |
+| Cost | ~$3,900 spent | **$4,040/board**, 91% verified |
 
-The board is a **sinker** — 78.1 L will not float a rider standing still.
+The board is a **sinker** — 79.0 L will not float a rider standing still.
 That is a consequence of narrowing to 560 mm, but note it has moved twice:
 an earlier revision of this README claimed "+12.0 kg — it floats the rider"
 from when displacement was 114 L, and the pack-height correction has since
