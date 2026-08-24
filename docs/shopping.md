@@ -83,7 +83,7 @@ https://www.amazon.com
 | [8 AWG marine ring lugs, 20 pk](https://www.amazon.com/dp/B0CWGXB4NB) | 2 | pk | $19.98 | **verified** | 28 needed; on M6 studs - nothing to solder |
 | [M12 IP68 membrane vent plug](https://www.amazon.com/dp/B0FXSNDGTV) | 2 | ea | $19.90 | **verified** | NOT optional on a sealed lithium box |
 | [Release wax / PVA for the cavity caul](https://www.amazon.com/dp/B0HB5VXRY1) | 1 | set | $19.90 | estimate |  |
-| [Neoprene sheet 3/8in 50A, wire bung](https://www.amazon.com/dp/B01LX83VS9) | 1 | sheet | $18.00 | estimate | 3/8 in. Punch O30 discs and drill 3 x O6.16 in a row at 8.96 pitch - ALL OVERSIZE. Pressed into the plate's O2 |
+| [Neoprene sheet 3/8in 50A, wire bung](https://www.amazon.com/dp/B01LX83VS9) | 1 | sheet | $18.00 | estimate | 3/8 in. Punch O26.0 discs and drill 3 x O5.8 in a row at 8.0 pitch. Drops into a O26.8 counterbore in the plat |
 | [3M 4200 FC 3 oz tube, fillet over the bung](https://www.amazon.com/dp/B00MJ9K78A) | 1 | tube | $17.99 | **verified** | does both boards; 4200 NOT 5200 - 5200 never comes out |
 | [Thermometer / hygrometer, 2 pk](https://www.amazon.com/dp/B086PC5962) | 1 | pk | $17.99 | estimate | one in the shop, one by the part. Slow needs 60 F, fast needs 40-45, and below ~35 nothing cures at all |
 | [Chip brushes 2 in, 36 pk](https://www.amazon.com/dp/B078XJ2DCJ) | 1 | pk | $17.99 | **verified** | disposable, 2-4 a session across 6 sessions. The 12 pk at $7.19 is dearer per brush and runs out mid-build |

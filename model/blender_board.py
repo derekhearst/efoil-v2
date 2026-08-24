@@ -962,45 +962,37 @@ BUNG = True
 # sealing wall than anything that had to be milled for it. The seal is radial
 # now, not axial: rubber to alu round the outside, rubber to jacket through
 # the middle, 4200 skimmed over the wetted face.
-# --- THE BORE IS WHAT COMPRESSES IT ---------------------------------------
-# Derek: "it needs to be compressed tho, thats how the wires and seal
-# happens, if its just sititng there it doesnt work". Correct, and the 4.5%
-# press fit that was here was not enough to call a seal.
+# --- THE MAST HEAD IS WHAT COMPRESSES IT ----------------------------------
+# Derek, twice, and right twice: it has to be compressed, and it is the mast
+# plate against the board that does it. I had the wrong plate both times.
 #
-# His mechanism does not work though, and it is worth being exact about why:
-# the four M8s are tapped BLIND into the plate from its wetted underside and
-# pass up through the MAST's flange. Tightening them draws the plate DOWN
-# onto the mast, out of the board - so if anything they would RELIEVE a bung
-# sitting above the plate, not squeeze it. There is no force in this assembly
-# pushing the plate up into the board.
+# There are TWO aluminium plates at this joint and I kept collapsing them
+# into one. V2_MastPlate_Alu is the board's HARDPOINT - bonded into the hull
+# bottom at step 7, tapped M8 blind, and it never moves again. The other is
+# the GONG MAST'S OWN HEAD, which is not modelled at all, and THAT is the one
+# the four bolts pull face to face with the bottom of the board at step 23.
+# So there is real travel, and tens of kN behind it: whatever protrudes below
+# the board's wetted face gets squeezed as the mast comes up.
 #
-# There does not need to be. A plug pressed into an undersized bore is
-# compressed by the BORE, permanently, with no moving part anywhere - which
-# is how a cork, a freeze plug and a rubber stopper all work. Size the disc
-# properly and the assembly force IS the sealing force.
+# So this is an ordinary gland after all, and it wants ordinary gland
+# proportions - the disc UNDER the bore, not over it, because a plug that
+# already fills its bore cannot be compressed at all.
 #
-# And it does the cable seal for free, which is the good part. Rubber is
-# incompressible, so squeezing the disc from BUNG_FREE_D down to the bore
-# shrinks every hole in it by the same ratio. Drill them OVERSIZE and the
-# leads thread through an almost-clearance hole on the bench; pressing the
-# plug home is what closes them onto the jackets. Nothing has to be forced
-# through an undersized hole blind, up a bore, at the end of the build.
-BUNG_BORE = CONDUIT_D + 0.8        # the plate's conduit hole, unlined 6061
-BUNG_FREE_D = 30.0                 # as punched. 11.9% on diameter.
-BUNG_K = BUNG_BORE / BUNG_FREE_D   # radial scale, free -> installed
+#   plate bore   O22 straight through, matching the finished conduit
+#   counterbore  O26.8 from the WETTED face - the ledge at its top is the
+#                stop, and it is the "small offset ledge" from Derek's first
+#                description of this, just in the board's plate not the mast's
+#   disc         O26.0 free, so 0.8 mm of clearance is the relief volume
+#   protrudes    BUNG_SQUEEZE below the wetted face, and the mast head's two
+#                lands either side of its wire slot push on that
+BUNG_BORE = 26.8                   # counterbore in the plate, from below
+PLATE_CONDUIT_D = 22.0             # what runs through above it
+BUNG_FREE_D = 26.0                 # as punched - UNDER the bore
 BUNG_L = 9.525                     # 3/8 in sheet, as punched
-# ...and it lengthens as it is squeezed, because the volume has to go
-# somewhere and the bore is open at both ends. This is the number that has to
-# stay inside the plate.
-BUNG_L_FITTED = BUNG_L / BUNG_K ** 2
-# NEOPRENE, not the EPDM the module gasket uses, and the two differ on
-# purpose: that gasket seals by compression alone and is chosen for its
-# compression SET, this one gets a 3M 4200 fillet worked over it and is
-# chosen for what will BOND. 4200 is a polyurethane and EPDM is about the
-# hardest rubber to bond - non-polar, low surface energy. A fillet that does
-# not wet the bung leaves a capillary path along the interface it was meant
-# to close.
-BUNG_HOLE_D = 5.5                  # INSTALLED - what grips the jacket                  # drilled UNDERSIZE for CABLE_OD - the seal
+BUNG_SQUEEZE = 0.7                 # axial, applied by the mast head
+BUNG_IN_PLATE = BUNG_L - BUNG_SQUEEZE      # = counterbore depth
+BUNG_HOLE_D = 5.8                  # drilled. Closes onto the jacket as
+                                   # the squeeze pushes rubber inward.                  # drilled UNDERSIZE for CABLE_OD - the seal
 # 1.5, not 2.0, and the half millimetre is bought back from the bore. A row
 # is wider than the round hole it feeds: at a 2.0 gap the outer lead leaves
 # the bung 11.75 mm off the axis against a bore that allows 11.0, so it has
@@ -1010,12 +1002,7 @@ BUNG_HOLE_D = 5.5                  # INSTALLED - what grips the jacket          
 # millimetre and a half of rubber round every lead, which is all the gap was
 # ever for - no capillary path where two jackets touch.
 BUNG_WIRE_GAP = 1.5                # rubber between adjacent cable ODs
-BUNG_PITCH = CABLE_OD + BUNG_WIRE_GAP       # INSTALLED, hole centres in a row
-# WHAT TO ACTUALLY DRILL. Both derived, both bigger than the finished size,
-# because the press shrinks them. Drilling to the installed numbers would end
-# up a size and a half small and the leads would never go through.
-BUNG_HOLE_DRILL = BUNG_HOLE_D / BUNG_K
-BUNG_PITCH_DRILL = BUNG_PITCH / BUNG_K
+BUNG_PITCH = CABLE_OD + BUNG_WIRE_GAP       # hole centres, in a row
 
 # ------------------------------------------------------------ battery pack
 # BAK N21700CG-50, datasheet maxima: 21.4 dia x 70.75 long, 72 g, 18.0 Wh,
@@ -1818,6 +1805,25 @@ G10_T = 12.7                       # 1/2" 6061-T651 mast plate
 INSERT_L = 10.0                    # tapped depth, blind from the pad face
 INSERT_OD = 8.0                    # M8 tapped hole, not a O20 bonded bore
 INSERT_BLIND = G10_T - INSERT_L    # 2.7 mm solid alu above - stays watertight
+
+# --- THE GONG MAST'S OWN PLATE, which was missing entirely -----------------
+# The mast does not bolt to the board. It bolts to ITS OWN plate, and that
+# plate's four CLEARANCE holes pass bolts up into the tapped 6061 in the
+# board. So the mast plate is the part that MOVES: tightening draws it up
+# face to face with the hull bottom, and anything protruding below that face
+# gets squeezed. It is the only travel in the whole mast joint and the model
+# did not have it, which is why the wire bung spent six turns being
+# "compressed" by things that cannot move.
+# EVERY NUMBER HERE IS UNVERIFIED except the thickness, which is derived:
+# Gong's own M8x30 through this plate has to leave INSERT_L in the tap.
+MAST_HEAD = True
+MAST_HEAD_T = 30.0 - INSERT_L      # so Gong's M8x30 lands 10 mm in the tap
+MAST_HEAD_L = 225.0                # UNVERIFIED - measure it
+MAST_HEAD_W = 130.0                # UNVERIFIED - measure it
+# The wire slot through it: the mast's internal cavity, opened out. The bung
+# has to be WIDER than this or there is nothing for the plate to push on.
+MAST_SLOT_W = 14.0                 # UNVERIFIED - measure it
+MAST_SLOT_L = 90.0                 # UNVERIFIED - measure it
 
 # --- leash plug and carry handle hardpoints ----------------------------
 # The deck laminate over EPS will not hold either of these on its own. Both
@@ -5163,9 +5169,15 @@ def build():
     path, _r_used = bend_path(A, K, B, CONDUIT_BEND_R)
 
     # 1. the CHANNEL through hull, dense block and mast plate
-    for tgt in (hull, dense, bpy.data.objects["V2_MastPlate_Alu"]):
-        c = path_tube(f"V2_ConduitChan_{tgt.name}", path,
-                      CONDUIT_D + 2 * CLR, coll)
+    # The PLATE gets a different hole from the foam. The foam's channel is cut
+    # oversize and epoxy-lined down to a finished O22; the plate has no liner,
+    # so it is bored O22 directly - and then counterbored O26.8 from its
+    # WETTED face to take the bung. The step where those two meet is the stop
+    # the bung butts against.
+    for tgt, _d in ((hull, CONDUIT_D + 2 * CLR),
+                    (dense, CONDUIT_D + 2 * CLR),
+                    (bpy.data.objects["V2_MastPlate_Alu"], PLATE_CONDUIT_D)):
+        c = path_tube(f"V2_ConduitChan_{tgt.name}", path, _d, coll)
         boolean(tgt, c)
         c.hide_set(True)
         c.hide_render = True
@@ -5194,13 +5206,18 @@ def build():
     # 4200 fillet goes, not where the barrier is. The barrier belongs at the
     # bottom of the bore, in the alu, before water is inside the foam at all.
     if BUNG:
-        # NO POCKET IS MACHINED. The bung goes into the plate's own conduit
-        # hole, flush with the wetted face, pushed up from below with the
-        # leads already through it. Drawn at the bore diameter because that
-        # is what a 28 mm disc becomes once it is in a 26.8 mm hole.
-        _bz_lo = plate_z0                     # the plate's wetted face
-        _bz_hi = plate_z0 + BUNG_L_FITTED
-        bung = cyl("V2_WireBung", cdx, 0.0, _bz_lo, _bz_hi, BUNG_BORE, coll,
+        # the counterbore that takes it, cut from the WETTED face up
+        _cb = cyl("V2_BungCounterbore", cdx, 0.0, plate_z0 - 1.0,
+                  plate_z0 + BUNG_IN_PLATE, BUNG_BORE, coll)
+        boolean(bpy.data.objects["V2_MastPlate_Alu"], _cb)
+        _cb.hide_set(True)
+        _cb.hide_render = True
+        # ...and the bung, drawn AS FITTED BEFORE THE MAST GOES ON, so the
+        # BUNG_SQUEEZE it stands proud of the wetted face is visible. That is
+        # the whole mechanism and it was invisible while the bung sat flush.
+        _bz_lo = plate_z0 - BUNG_SQUEEZE
+        _bz_hi = plate_z0 + BUNG_IN_PLATE
+        bung = cyl("V2_WireBung", cdx, 0.0, _bz_lo, _bz_hi, BUNG_FREE_D, coll,
                    bom_mat("rubber"), seg=48)
         # THREE IN A ROW, ALONG THE CHORD - the order they leave the mast in.
         # An alu mast's cavity is only ~12-14 mm across, so this is the only
@@ -5213,26 +5230,35 @@ def build():
             _h.hide_set(True)
             _h.hide_render = True
 
+        # --- THE SQUEEZE, AND WHAT APPLIES IT ------------------------------
+        _area = math.pi / 4 * (BUNG_FREE_D ** 2 - 3 * BUNG_HOLE_D ** 2)
+        _relief = math.pi / 4 * (BUNG_BORE ** 2 - BUNG_FREE_D ** 2) * BUNG_L
+        rep["bung_compressed_by"] = (
+            "the GONG MAST'S HEAD, drawn up face to face with the board's "
+            "bottom by the four M8s at step 23. NOT the board's own hardpoint "
+            "plate - that is bonded in at step 7 and never moves")
+        rep["bung_proud_of_wetted_face_mm"] = BUNG_SQUEEZE
+        rep["bung_squeeze_mm"] = BUNG_SQUEEZE
+        rep["bung_squeeze_absorbable_mm"] = round(_relief / _area, 2)
+        rep["bung_squeeze_fits"] = BUNG_SQUEEZE <= _relief / _area + 0.02
+        rep["bung_squeeze_force_N"] = round(_area * 1.0)
+        # the mast head bears on the two lands either side of its wire slot -
+        # the bung is wider than the slot, which is what makes this work
+        _slot_hw = MAST_SLOT_W / 2.0
+        rep["bung_mast_slot_half_width_mm"] = _slot_hw
+        rep["bung_lands_on_mast_head_mm2"] = round(
+            2 * (math.pi / 4 * BUNG_FREE_D ** 2
+                 * (1 - 2 / math.pi * (math.asin(2 * _slot_hw / BUNG_FREE_D)
+                    + 2 * _slot_hw / BUNG_FREE_D
+                    * math.sqrt(1 - (2 * _slot_hw / BUNG_FREE_D) ** 2)))) / 2)
+        rep["bung_wider_than_mast_slot"] = BUNG_FREE_D / 2 > _slot_hw
         rep["bung_disc_d_mm"] = BUNG_FREE_D
         rep["bung_bore_d_mm"] = round(BUNG_BORE, 2)
-        rep["bung_radial_interference_mm"] = round(BUNG_FREE_D - BUNG_BORE, 2)
-        rep["bung_radial_interference_pct"] = round(
-            100.0 * (BUNG_FREE_D - BUNG_BORE) / BUNG_BORE, 1)
-        # AS PUNCHED / AS DRILLED vs AS FITTED. The shop needs the first pair.
-        rep["bung_as_punched_mm"] = {
-            "disc": BUNG_FREE_D, "thick": BUNG_L,
-            "hole": round(BUNG_HOLE_DRILL, 2),
-            "pitch": round(BUNG_PITCH_DRILL, 2)}
-        rep["bung_as_fitted_mm"] = {
-            "disc": round(BUNG_BORE, 2), "thick": round(BUNG_L_FITTED, 2),
-            "hole": BUNG_HOLE_D, "pitch": BUNG_PITCH}
-        rep["bung_fitted_fits_plate"] = BUNG_L_FITTED < G10_T
-        rep["bung_plate_left_over_mm"] = round(G10_T - BUNG_L_FITTED, 2)
-        # the leads go through the FREE disc, which is nearly clearance - the
-        # press is what closes it onto them
-        rep["bung_lead_interference_at_threading_pct"] = round(
-            100.0 * (CABLE_OD - BUNG_HOLE_DRILL) / CABLE_OD, 1)
-        rep["bung_lead_interference_fitted_pct"] = round(
+        rep["bung_bore_clearance_mm"] = round(BUNG_BORE - BUNG_FREE_D, 2)
+        rep["bung_counterbore_depth_mm"] = round(BUNG_IN_PLATE, 2)
+        rep["bung_plate_through_d_mm"] = PLATE_CONDUIT_D
+        rep["bung_plate_left_above_mm"] = round(G10_T - BUNG_IN_PLATE, 2)
+        rep["bung_lead_interference_pct"] = round(
             100.0 * (CABLE_OD - BUNG_HOLE_D) / CABLE_OD, 1)
         rep["bung_seals_radially_not_axially"] = True
         rep["bung_installs_from"] = (
@@ -5240,7 +5266,7 @@ def build():
             "is machined for it and nothing compresses it - the plate is "
             "bonded in at step 7 and cannot move at step 18")
         # what holds it in against the water column below it
-        _grip = math.pi * BUNG_BORE * BUNG_L_FITTED * 0.6 * 0.5   # p x A x mu
+        _grip = math.pi * BUNG_BORE * BUNG_IN_PLATE * 0.6 * 0.5   # p x A x mu
         rep["bung_friction_hold_N"] = round(_grip)
         rep["bung_water_push_N"] = round(
             1.0e5 * 0.5 * math.pi / 4 * (BUNG_BORE / 1000.0) ** 2)  # 5 m head
@@ -5277,21 +5303,19 @@ def build():
         rep["bung_cable_interference_pct"] = round(
             100.0 * (CABLE_OD - BUNG_HOLE_D) / CABLE_OD, 1)
         # grip length per lead - on a cable seal this is what seals
-        rep["bung_grip_len_mm"] = round(BUNG_L_FITTED, 2)
+        rep["bung_grip_len_mm"] = round(BUNG_IN_PLATE, 2)
         # NO SQUEEZE BLOCK ANY MORE. There is no axial compression to check
         # because there is nothing in the assembly that could apply it.
         rep["bung_removable"] = True
         rep["bung_note"] = (
-            "PUNCH %0.1f, DRILL %0.2f at %0.2f pitch - all oversize. Pressed "
-            "into the plate's %0.1f mm bore it becomes %0.1f thick with "
-            "%0.1f mm holes at %0.1f pitch, and THAT press is what seals it: "
-            "%0.0f%% on the disc against the 6061, and the leads go from "
-            "%0.0f%% interference on the bench to %0.0f%% once it is home."
-            % (BUNG_FREE_D, BUNG_HOLE_DRILL, BUNG_PITCH_DRILL, BUNG_BORE,
-               BUNG_L_FITTED, BUNG_HOLE_D, BUNG_PITCH,
-               100.0 * (BUNG_FREE_D - BUNG_BORE) / BUNG_BORE,
-               100.0 * (CABLE_OD - BUNG_HOLE_DRILL) / CABLE_OD,
-               100.0 * (CABLE_OD - BUNG_HOLE_D) / CABLE_OD))
+            "O%0.1f x %0.2f punched from 3/8 in 50A neoprene, three %0.1f mm "
+            "holes in a row at %0.1f pitch. Drops into a O%0.1f counterbore "
+            "%0.2f deep in the plate's WETTED face, butts the step where that "
+            "meets the O%0.0f through bore, and stands %0.1f mm proud. The "
+            "GONG MAST'S HEAD squeezes that %0.1f mm as the four M8s pull it "
+            "face to face with the board."
+            % (BUNG_FREE_D, BUNG_L, BUNG_HOLE_D, BUNG_PITCH, BUNG_BORE,
+               BUNG_IN_PLATE, PLATE_CONDUIT_D, BUNG_SQUEEZE, BUNG_SQUEEZE))
 
     rep["conduit_od_mm"] = CONDUIT_D
     rep["conduit_bore_mm"] = bore
@@ -5322,6 +5346,41 @@ def build():
         (z_end - CONDUIT_D / 2) - FLOOR_Z, 1)
     rep["conduit_clear_of_floor_fillet_mm"] = round(
         (z_end - CONDUIT_D / 2) - (FLOOR_Z + GLASS_R), 1)
+
+    # --- the mast's own plate, and the bolts that move it -----------------
+    if MAST_HEAD:
+        _hz1 = plate_z0                       # the board's wetted face
+        _hz0 = _hz1 - MAST_HEAD_T
+        head = box("V2_Mast_Head", MAST_X - MAST_HEAD_L / 2,
+                   MAST_X + MAST_HEAD_L / 2, -MAST_HEAD_W / 2,
+                   MAST_HEAD_W / 2, _hz0, _hz1, coll,
+                   bom_mat("alu_anod"))
+        # its wire slot - and the bung has to overhang this or the plate has
+        # nothing to bear on
+        _sl = box("V2_MastHeadSlot_cut", cdx - MAST_SLOT_L / 2,
+                  cdx + MAST_SLOT_L / 2, -MAST_SLOT_W / 2, MAST_SLOT_W / 2,
+                  _hz0 - 1.0, _hz1 + 1.0, coll)
+        boolean(head, _sl)
+        _sl.hide_set(True)
+        _sl.hide_render = True
+        # ...and the four CLEARANCE holes. Not tapped - the thread is in the
+        # board's plate; these just pass the bolt.
+        for _sx in (-1, 1):
+            for _sy in (-1, 1):
+                _ch = cyl(f"V2_MastHeadClear_cut_{_sx}{_sy}",
+                          MAST_X + _sx * BOLT_SPACING_X / 2,
+                          _sy * BOLT_SPACING_Y / 2, _hz0 - 1.0, _hz1 + 1.0,
+                          MAST_CLEAR_D, coll)
+                boolean(head, _ch)
+                _ch.hide_set(True)
+                _ch.hide_render = True
+        rep["mast_head_mm"] = [MAST_HEAD_L, MAST_HEAD_W, MAST_HEAD_T]
+        rep["mast_head_t_derived_from"] = (
+            "Gong's M8x30 through it must leave %.0f mm in the tap"
+            % INSERT_L)
+        rep["mast_head_slot_mm"] = [MAST_SLOT_L, MAST_SLOT_W]
+        rep["mast_head_is_the_moving_part"] = True
+        rep["mast_head_dims_unverified"] = True
 
     build_foil(coll, rep)
 

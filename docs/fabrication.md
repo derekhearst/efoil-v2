@@ -570,38 +570,41 @@ the limit**, which is why the gap is 1.5 and not 2.
 | Interference on the leads | 5.3% — threads by hand | **15.4%** |
 | Interference on the bore | — | **11.9%** against machined 6061 |
 
-**Everything is punched and drilled oversize, and the bore is what closes
-it.** Rubber is incompressible, so squeezing the disc from Ø30 down to the
-Ø26.8 bore shrinks every hole in it by the same ratio — and lengthens it from
-9.53 to 11.94, which is why the plate is 12.7.
+**Where the compression comes from.** There are **two aluminium plates** at
+this joint. The board's hardpoint is bonded into the hull bottom at step 7 and
+never moves again. **The Gong mast has its own plate**, with four *clearance*
+holes, and its bolts pass up through them into the tapped hardpoint — so that
+plate is the part that travels, and tightening draws it face to face with the
+bottom of the board.
 
-That ordering is the whole point. The leads thread through a **Ø6.16** hole
-on the bench — 5.3%, hand pressure — and it is **pressing the plug home that
-closes them to 15.4%**. Nothing has to be forced through an undersized hole
-blind, up a bore, at the end of the build.
+Anything standing proud of that face gets squeezed, with four M8s behind it.
+That is the only travel in the whole mast joint.
 
-1. Punch Ø30 discs from the 3/8 in sheet.
-2. Drill 3 × Ø6.16 **in a row at 8.96 pitch**, along the chord — the order
-   the leads leave the mast in, so not one of them has to be twisted.
-3. Thread the leads through on the bench.
-4. Soap it and press the whole assembly **up** the plate's bore until it is
-   flush with the wetted face. Skim 4200 over it.
+1. Punch Ø26.0 discs from the 3/8 in sheet and drill 3 × Ø5.8 **in a row at
+   8.0 pitch**, along the chord — the order the leads leave the mast in, so
+   not one of them has to be twisted.
+2. Thread the leads through on the bench and soap them.
+3. Drop the bung into the **Ø26.8 counterbore in the plate's wetted face**. It
+   butts the step where that meets the Ø22 through bore, and stands **0.7 mm
+   proud**.
+4. Bolt the mast on. Its plate squeezes that 0.7 mm out, and the rubber — with
+   nowhere else to go — closes onto the jackets and the bore wall.
 
-> **Where the compression comes from.** Not from the plate moving — it is
-> bonded into its pocket at step 7 and glassed over, and it cannot move at
-> step 18. Nor from the mast bolts: those are tapped **blind into the plate
-> from its underside** and pass up through the mast's flange, so tightening
-> them draws the plate *down* onto the mast. If anything they would relieve a
-> bung above the plate, not squeeze it.
->
-> It comes from **the bore**, permanently, with no moving part anywhere —
-> which is how a cork, a freeze plug and a rubber stopper all work. Size the
-> disc properly and the assembly force *is* the sealing force.
->
-> That makes the bore's finish structural. **Ream or bore it — do not leave
-> it as a drilled hole.**
+| | |
+|---|---|
+| Disc | Ø26.0 × 9.53, punched from 3/8 in 50A neoprene |
+| Holes | 3 × Ø5.8 in a row at 8.0 pitch — 10.8% under the lead |
+| Counterbore | Ø26.8 × **8.83 deep** in the wetted face |
+| Proud | **0.7 mm** — this is the seal, do not cut the counterbore deeper |
+| Squeeze absorbable | 0.70 mm — the 0.8 mm of bore clearance is the relief |
+| Force | 452 N, against four M8s already carrying 6.3 kN |
 
-Friction holds it at about **300 N** against the **28 N** a 5 m water column
+> **The bung has to be wider than the mast's wire slot**, or the plate has
+> nothing to push on. Ø26.0 against a ~14 mm slot leaves **185 mm²** of land
+> either side. Measure that slot on the real mast — it is unverified here,
+> like the plate itself.
+
+It also holds itself in at about **280 N** of friction against the **28 N** a 5 m water column
 pushes up under it — 10.7×. It comes out the way it went in: cut the fillet,
 pull the leads and the bung down together.
 
