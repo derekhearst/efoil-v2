@@ -1178,13 +1178,41 @@ FUSE_L, FUSE_W, FUSE_H = 123.0, 37.0, 40.0
 # for printed PETG (V1's enclosures were printed, which is where this came
 # from) and they are wrong here.
 MOD_BOLT_D = 4.0
-MOD_INSERT_L = 8.0                 # thread depth in the 9.525 rail
+# 12.7, not 8. Derek pulled a heat-set out of V1 while fixing it, so this is
+# a measured failure and not a margin exercise. LENGTH is the free axis and
+# DIAMETER is not: pull-out goes as pi x D x L, but D also has to fit the
+# flange land, and going M4 -> M6 (O5.6 -> O8.2 pilot) fails two checks
+# outright - 2.4 mm of ASA left outboard of the bore and the gasket band
+# running into it. Length just goes downward into a rail nobody was using.
+#   M4 x 8    O5.6    800 N   (was)
+#   M5 x 9.5  O6.4   1086 N   +36%, and starts crowding the land
+#   M6 x 12.7 O8.2   1860 N   +132%, but FAILS the land checks
+#   M4 x 12.7 O5.6   1270 N   +59%, same bolt, same pilot, same punch,
+#                             same board thickness, nothing fails
+MOD_INSERT_L = 12.7                # M4 x 12.7 heat-set - the LONG one
 MOD_BOLT_PITCH = 80.0              # target spacing; actual is evened out
+# --- AND A TORQUE, WHICH THIS LID HAS NEVER HAD ---------------------------
+# The longer insert is the smaller half of the fix. The reason one pulled out
+# of V1 is almost certainly that nothing ever said how tight was tight, and
+# an M4 is unforgiving about it: 2 Nm is barely a wrist and it is 2500 N,
+# double what even a 12.7 insert holds. 3 Nm is triple.
+#   0.5 Nm ->  625 N   2.0x on the insert, 4.1x on what the seal needs
+#   1.0 Nm -> 1250 N   1.0x - at the insert's limit
+#   2.0 Nm -> 2500 N   0.5x - this is how you pull one out
+# 0.5 Nm is below any torque wrench, so it is a FEEL spec and the guide says
+# so: shortest key you own, two fingers, stop as soon as it stops turning
+# easily. The seal is geometric - the lid lands on the flange - so there is
+# nothing to gain past that point and an insert to lose.
+MOD_TORQUE_NM = 0.5
 # The module is a SEALED box in its own right, so the flange rail has to carry
 # a seal groove as well as the lid inserts. 14 mm held the O5.6 insert and
 # nothing else. 20 mm fits both: groove at 4 mm in from the inner edge, insert
 # at 13 mm, 4.2 mm of G10 between them and 4.2 mm to the outer edge.
-MOD_FLANGE_W, MOD_FLANGE_H = 20.0, 9.525    # 3/8" stock
+# 14.5 deep, up from 9.525, purely to swallow the longer insert with 1.8 mm
+# of backing under it. It costs nothing: the rail hangs on the OUTSIDE of the
+# wall, so this grows down into a gap that was already there. Board thickness
+# does not move.
+MOD_FLANGE_W, MOD_FLANGE_H = 20.0, 14.5
 # THE FLANGE FACES OUTWARD. Derek's call, and it is the one change that
 # unlocks the 9.5 mm the pack was spending on assembly clearance: with
 # nothing overhanging inboard, the pack is simply lowered in, and int_h stops
@@ -1261,6 +1289,11 @@ PACK_THRU_CLR = 6.0
 # STI tap, install. So nothing here forecloses that; it just is not needed on
 # day one, and it saves an M4 STI tap and install tool.
 MOD_INSERT_D = 5.6                 # M4 x 8 heat-set printed pilot
+# Back-solved from the catalogue 800 N for an M4 x 8 in a 5.6 pilot, so the
+# whole family scales off one real number instead of a literal that could not
+# move. Well under bulk ASA shear on purpose - only part of the knurl
+# engages and the melt zone round it is the weakest material in the part.
+INSERT_TAU_MPA = 800.0 / (math.pi * 5.6 * 8.0)
 # FULL FACE, PUNCHED - V1's method, and V1's own export confirms it: its
 # battery gasket is 1 mm and full face, its ESC gasket 3 mm. One piece cut to
 # the whole ledge, holes punched where the bolts go through, no narrow band
@@ -5909,9 +5942,31 @@ def build():
         _F = MOD_GASKET_STRESS_MPA * _area
         rep["module_seal_clamp_N"] = round(_F)
         rep["module_seal_per_bolt_N"] = round(_F / max(1, len(mb)))
-        # M4 heat-set in printed ASA, conservative
+        # DERIVED, not the flat 800 N literal that used to sit here - that
+        # number could not respond to a longer or a fatter insert, which is
+        # exactly the change Derek asked for after one pulled out of V1.
+        # Pull-out is the knurl shearing a sleeve of ASA out of the boss, so
+        # it goes as pi x D x L. INSERT_TAU_MPA is back-solved from the
+        # catalogue figure for an M4 x 8 in a 5.6 pilot (800 N) and is far
+        # under bulk ASA shear on purpose: only part of the knurl engages,
+        # and the melt zone round it is the weakest material in the part.
+        _cap = math.pi * MOD_INSERT_D * MOD_INSERT_L * INSERT_TAU_MPA
+        rep["module_insert_cap_N"] = round(_cap)
         rep["module_insert_pullout_margin"] = round(
-            800.0 / max(1.0, _F / max(1, len(mb))), 1)
+            _cap / max(1.0, _F / max(1, len(mb))), 1)
+        rep["module_insert_spec"] = "M%.0f x %.1f, %.1f mm pilot" % (
+            MOD_BOLT_D, MOD_INSERT_L, MOD_INSERT_D)
+        rep["module_insert_backing_mm"] = round(MOD_FLANGE_H - MOD_INSERT_L, 2)
+        # ...and against the PRELOAD, which is the load that actually pulls
+        # inserts out. The seal demand is not the governing number here.
+        _mp = MOD_TORQUE_NM / (0.2 * MOD_BOLT_D / 1000.0)
+        rep["module_torque_nm"] = MOD_TORQUE_NM
+        rep["module_bolt_preload_N"] = round(_mp)
+        rep["module_insert_margin_at_torque"] = round(_cap / _mp, 1)
+        rep["module_preload_over_seal"] = round(
+            _mp / max(1.0, _F / max(1, len(mb))), 1)
+        rep["module_torque_to_pull_insert_nm"] = round(
+            _cap * 0.2 * MOD_BOLT_D / 1000.0, 2)
         # the bolt pulls on a flange root MOD_BOLT_EDGE out from the wall
         _lever = MOD_FLANGE_LAND - MOD_BOLT_EDGE - ENC_WALL
         _Z = MOD_BOLT_PITCH * MOD_FLANGE_H ** 2 / 6.0

@@ -709,7 +709,16 @@ def build():
     # so the insert melts into ASA the way it is meant to. This line went
     # heat-set (wrong - G10) -> tap set (right for G10) -> heat-set (right for
     # a printed flange). No tap, no STI kit, nothing to strip in a laminate.
-    add("7  Module", "M4 x 8 brass heat-set insert, 100 pc", 1, "pack", 12.00,
+    # THE LONG ONE, 12.7 not 8, and this is a measured failure: Derek pulled
+    # a heat-set out of V1 while fixing it. Length is the free axis - it goes
+    # DOWN into a flange rail nobody was using. Diameter is not: M4 -> M6
+    # takes the pilot O5.6 -> O8.2 and fails two land checks outright.
+    #   M4 x 8     800 N   (was)      M6 x 12.7  1860 N  but does not fit
+    #   M4 x 12.7 1270 N   +59%, same bolt, same pilot, same gasket punch
+    # AND THE TORQUE MATTERS MORE THAN THE INSERT DOES. This lid never had a
+    # spec, and an M4 is unforgiving: 2 Nm is barely a wrist and it is 2500 N,
+    # double what even the long insert holds. Spec is 0.5 Nm - see step 14.
+    add("7  Module", "M4 x 12.7 LONG brass heat-set insert, 50 pc", 1, "pack", 14.00,
         EST, str(M["mod_inserts"] * N) + " needed; 5.6 mm printed pilot")
     # The shell. V1 printed its battery enclosure in ASA for exactly this
     # reason - ASA creeps far less than PETG under sustained bolt load, which

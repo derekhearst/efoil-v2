@@ -81,7 +81,7 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | Epoxy wash coat, BOTH faces of the printed shell | 0 | off | $0.00 | $0.00 | on hand | off the laminating kit. Outside face first - that is the wet one. Keep it OFF the gasket flange and the insert faces; a soft film at a clamping surface undoes the seal geometry, which is V1's own warning about Flex Seal |
 | [M4 x 12 A4 socket cap DIN912, 10 pk](https://www.amazon.com/dp/B07DVPC7HT) | 4 | pk | $7.10 | $28.40 | verified | 36 needed. A4/316 again - the $0.09/ea listings are all A2/304 |
 | [M4 A4 washer, 316, 100 pk](https://www.amazon.com/dp/B0DZ5BVLP5) | 1 | pk | $6.79 | $6.79 | verified | 36 needed, under every lid bolt. NOTE the OD is 12 mm, not the 9 mm this line specced - the only 9 mm-OD listing is 304. Took the alloy over the diameter because this sits in the wet cavity; check 12 mm clears the lid pocket before ordering |
-| [M4 x 8 brass heat-set insert, 100 pc](https://www.amazon.com/dp/B0D9QHBG6G) | 1 | pack | $9.99 | $9.99 | estimate | 36 needed; 5.6 mm printed pilot |
+| [M4 x 12.7 LONG brass heat-set insert, 50 pc](https://www.amazon.com/dp/B07473ZV71) | 1 | pack | $14.00 | $14.00 | estimate | 36 needed; 5.6 mm printed pilot |
 | [ASA filament, printed rim ring](https://www.amazon.com/dp/B09DKPYYBP) | 2 | kg | $24.49 | $48.98 | verified | 6 dovetailed pieces/board at ~90% infill, 710 g of part each; PRINT SEAL FACE DOWN - the bed is flatter than any top surface |
 | [Acetone, solvent-welding the printed joints](https://www.homedepot.com/p/Klean-Strip-1-qt-Acetone-Thins-Fiberglass-Resins-Epoxy-and-Adhesives-QAC18/100144922) | 1 | qt | $11.48 | $11.48 | estimate | ASA dissolves in it like ABS - a brushed acetone/scrap slurry makes the joint one piece of plastic, not an adhesive line |
 | [ASA filament, printed module shell](https://www.amazon.com/dp/B09DKPYYBP) | 3 | kg | $24.49 | $73.47 | verified | 4 L-pieces/board, ~1.13 kg of part + supports and brim; largest piece 226 x 146 fits the A1 bed |
@@ -100,7 +100,7 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | [SP17 2-pin IP68 flange receptacle](https://www.amazon.com/dp/B0CDH5R8P4) | 2 | ea | $13.20 | $26.40 | verified | 67.2 V 5 A charge; O17 panel hole, 2 x M3 flange screws. $2.49, not the $11 this carried. CHECK THE CAP IS INCLUDED before ordering - on a board that gets submerged the cap is the part that does the sealing when nothing is plugged in |
 | [M3 heat-set insert kit, 361 pc](https://www.amazon.com/dp/B0G8JLX1HR) | 1 | kit | $13.98 | $13.98 | verified | covers the port flange (4 sets) and the nose cone. The kit's screws are PLAIN STEEL - buy M3 x 8 A4 separately for the flange, which lives in the wet cavity |
 | [M3 x 8 A4 stainless, 10 pk](https://www.amazon.com/dp/B07DVMFMJZ) | 1 | pk | $6.76 | $6.76 | verified | the kit's screws are not stainless and this joint is submerged |
-| **subtotal** | | | | **$450.88** | | |
+| **subtotal** | | | | **$454.89** | | |
 
 ## 9  Electrical
 
@@ -247,31 +247,31 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | Item | Qty | Unit | Unit $ | Ext $ | | Note |
 |---|---:|---|---:|---:|---|---|
 | Shipping - Divinycell, 6061 plate, VR20 | 1 | allow | $120.00 | $120.00 | estimate | STILL THE BIGGEST UNVERIFIED LINE - it wants three real carts to settle. Was $220 when it covered G10 sheet and hazmat epoxy, both of which are now out of the build entirely |
-| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $448.32 | $448.32 | verified |  |
-| **subtotal** | | | | **$568.32** | | |
+| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $448.56 | $448.56 | verified |  |
+| **subtotal** | | | | **$568.56** | | |
 
 ## Totals
 
 | | |
 |---|---:|
-| **Grand total, 2 boards** | **$7,920.24** |
-| Per board | $3,960.12 |
-| Of which verified | $7,264.87  (92%) |
-| Of which estimated | $655.37 |
+| **Grand total, 2 boards** | **$7,924.49** |
+| Per board | $3,962.24 |
+| Of which verified | $7,265.11  (92%) |
+| Of which estimated | $659.38 |
 | Linked to a real listing | 128 lines |
 | Priced but NOT linked | 1 lines, $12.00 |
-| Not linkable, but MEASURED (freight quotes) | 2 lines, $716.95 |
+| Not linkable, but MEASURED (freight quotes) | 2 lines, $717.19 |
 | Not linkable and still estimated | 1 lines, $120.00 |
 
 ## What is a board, and what is a shop
 
-Some of the total above is not the cost of a board at all - it is tools, jigs and templates that exist afterwards and do not repeat. Splitting them out is the difference between "a board costs $3,960" and "a board costs $3,525 and I now own a vacuum rig, a crimper and a full template set".
+Some of the total above is not the cost of a board at all - it is tools, jigs and templates that exist afterwards and do not repeat. Splitting them out is the difference between "a board costs $3,962" and "a board costs $3,528 and I now own a vacuum rig, a crimper and a full template set".
 
 | | |
 |---|---:|
 | One-time tooling (incl. its share of tax) | $869.36 |
-| **Marginal cost of a board** | **$3,525.44** |
-| Cost of the NEXT board after these 2 | $3,525.44 |
+| **Marginal cost of a board** | **$3,527.57** |
+| Cost of the NEXT board after these 2 | $3,527.57 |
 
 | One-time item | $ |
 |---|---:|

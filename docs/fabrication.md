@@ -432,11 +432,47 @@ did for the rest — the drill cuts both skins, and those are fresh fibre ends.
 **Uses:** `5052 1/8in x 12 x 24, 2-pack - module floors` ·
 `Sikaflex-292 marine structural PU` · `Sika Aktivator-PRO 250 ml + daubers` ·
 `2 mm glass beads or shim wire, bond-line control` ·
-`M4 x 8 brass heat-set insert, 100 pc` · `M6 x 12.7 brass heat-set insert, 50 pc` ·
+`M4 x 12.7 LONG brass heat-set insert, 50 pc` · `M6 x 12.7 brass heat-set insert, 50 pc` ·
 `Closed-cell sponge EPDM 1/8in, module lid gasket` · `Hollow punch set 1/8-1/2in + cutting mat` ·
 `Gebildet PG11 gland, M18x1.5, 30 pk` · `M12 IP68 membrane vent plug` ·
 `M12 IP68 momentary panel button` · `JST GH 1.25 mm pigtail pair, BMS switch` · `SP17 2-pin IP68 flange receptacle` ·
 `M3 heat-set insert kit, 361 pc` · `M3 x 8 A4 stainless, 10 pk`
+
+> **The 18 lid inserts, and the torque that goes with them.** Derek pulled a
+> heat-set out of V1 while fixing it, so this is a measured failure, not a
+> margin exercise — and the fix is two things, of which the insert is the
+> smaller.
+>
+> **Longer, not fatter.** Pull-out goes as π × D × L, but *diameter also has
+> to fit the flange land* and length doesn't — it just goes down into rail
+> that was doing nothing:
+>
+> | Insert | Pull-out | |
+> |---|---|---|
+> | M4 × 8 (V1's) | 800 N | |
+> | M5 × 9.5 | 1086 N | starts crowding the land |
+> | M6 × 12.7 | 1860 N | **fails two land checks** — 2.4 mm of ASA left outboard, gasket band running into the bore |
+> | **M4 × 12.7** | **1270 N** | same bolt, same Ø5.6 pilot, same gasket punch, same board thickness |
+>
+> The flange rail goes 9.5 → 14.5 mm deep to swallow it, with 1.8 mm of
+> backing under. That costs nothing: the rail hangs on the *outside* of the
+> wall, so it grows down into a gap that was already there.
+>
+> **And the torque matters more than the insert does.** This lid has never had
+> a spec, and an M4 is unforgiving about it:
+>
+> | | Preload | On the insert |
+> |---|---|---|
+> | 0.5 Nm | 625 N | **2.0×** |
+> | 1.0 Nm | 1250 N | 1.0× — at its limit |
+> | 2.0 Nm | 2500 N | 0.5× — **this is how you pull one out** |
+>
+> 2 Nm is barely a wrist on an M4. **Spec is 0.5 Nm**, which is below any
+> torque wrench, so it is a feel spec: shortest key you own, two fingers, stop
+> as soon as it stops turning easily. That is still **4.1× what the seal
+> actually needs** — the squeeze is geometric, the lid lands on the flange,
+> and there is nothing to gain past that point and an insert to lose.
+
 
 Acetone-weld the four printed L-pieces into a shell. Bond it to the 5052
 floor on a **2 mm controlled bond line** — glass beads set the gap, fillet

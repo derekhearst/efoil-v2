@@ -151,8 +151,8 @@ LINKS = {
         ("B0DZ5BVLP5", 6.79, "uxcell 100Pcs M4 Flat Washer 316 Stainless 4.3 ID x 12 OD"),
     "M4 x 12 A4 socket cap DIN912, 10 pk":
         ("B07DVPC7HT", 7.10, "M4 x 12mm Socket Head Screws DIN 912 Marine Grade SS 10 Pack"),
-    "M4 x 8 brass heat-set insert, 100 pc":
-        ("B0D9QHBG6G", 9.99, "uxcell 100pcs M4 Brass Heat Set Inserts M4x8mm OD 6mm"),
+    "M4 x 12.7 LONG brass heat-set insert, 50 pc":
+        ("B07473ZV71", 14.00, "initeq Qty 50 M4-0.7 Threaded Heat Set Inserts for 3D Printing (LONG)"),
     "M5 A4 hex nut DIN934, 50 pk - CAPTIVE in the ring":
         ("B084HLMN7B", 9.19, "M5 Hex Nuts DIN 934 Marine Grade Stainless 50 Pack"),
     "M5 nyloc nut 316, 150 pk":
@@ -341,7 +341,7 @@ LINK_VENDOR = {
     "M3 x 8 A4 stainless, 10 pk": "Amazon",
     "M4 A4 washer, 316, 100 pk": "Amazon",
     "M4 x 12 A4 socket cap DIN912, 10 pk": "Amazon",
-    "M4 x 8 brass heat-set insert, 100 pc": "Amazon",
+    "M4 x 12.7 LONG brass heat-set insert, 50 pc": "Amazon",
     "M5 A4 hex nut DIN934, 50 pk - CAPTIVE in the ring": "Amazon",
     "M5 nyloc nut 316, 150 pk": "Amazon",
     "M6 penny washer O18 A4 DIN9021": "Amazon",
