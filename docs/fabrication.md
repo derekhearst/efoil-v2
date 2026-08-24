@@ -338,7 +338,7 @@ fibre ends at the cavity ledge.
 `Solid silicone cord, 3 mm round - BOTH seals` ·
 `Silicone adhesive, bonding the cord into groove` ·
 `Cyanoacrylate for the cord splice` · `2.5 mm straight cutter - fallback` ·
-`M5 x 25 button head ISO 7380, 50 pk` · `Transfer screw set M3-M6` ·
+`M5 x 25 button head TORX TX25, 25 pk` · `Transfer screw set M3-M6` ·
 `Solid silicone cord, 1/8 in (3.175 mm) - the spare size`
 
 The ring went in at step 10a and has been glassed over since. Now sand the
@@ -415,9 +415,20 @@ M5 button head on resin is 37 MPa — 75% of ultimate — and epoxy cold-flows u
 permanent preload. On the washer it is 6.8, or 14%. Same washer as the one
 captive under the nut, so it is one size in the drawer and two per bolt.
 
-**No countersink.** The cone wants 2.1 mm of solid material under the top face
-and there is 1.0 mm of skin over the plug, so flush heads and a buried
-hardpoint do not combine. Cap heads, proud, on washers.
+**Button heads, proud, on washers — no countersink.** The head is domed and
+2.75 tall against a cap head's square-edged 5.0, and the whole stack finishes
+1.5 mm *below* the deck pad beside it. This is a band you walk on barefoot.
+
+**Torx, and this is the only joint on the board that gets it.** The hatch is
+the one thing opened *every ride*, in sand. A packed hex socket lets the key
+bottom early and the head rounds — and a rounded head here means drilling a
+bolt out of a lid you cannot easily replace. Torx tolerates a partly-seated
+driver, which is exactly that failure.
+
+The module lid (M4, inside the cavity, opened twice a year), the rail handles
+(fitted once) and the drivetrain all stay hex — each would only add a driver
+size for nothing. **Keep both Torx keys with the board: T30 is Gong's, for the
+mast. T25 is the hatch.**
 
 **If one hole still will not pick up**, that is what the transfer screws are
 for: mark the real nut, open that hole, and leave the other eleven alone. The

@@ -630,7 +630,25 @@ def build():
     #     stays A4/316. Nothing buried is being downgraded.
     # TEF-GEL THEM. Already on the list for the mast. 304 in an A4 nut is a
     # galling pair as much as a corrosion one, and this joint comes apart
-    # every ride. The head bears on a G10
+    # every ride.
+    #
+    # TORX, AND ONLY HERE. Once Gong turned out to ship T30 for the mast it is
+    # worth asking which other joints want it, and the answer is this one and
+    # nothing else. Torx does not cam out and it tolerates a partly-seated
+    # driver, which is the whole problem with a hex socket that has been
+    # dragged up a beach: sand packs the recess, the key bottoms early, and
+    # the head rounds. The hatch is the only joint on this board opened EVERY
+    # RIDE, in sand, and a rounded head there means drilling a bolt out of a
+    # lid that cannot easily be replaced.
+    # NOT the module lid (18 x M4, inside the cavity, opened twice a year,
+    # never sees sand), NOT the rail handles (fitted once), NOT the
+    # drivetrain. Each would only add a driver size for nothing.
+    # The listing is ISO 7380-2 - FLANGED button - so the head is a little
+    # wider and flatter than the plain button the model draws. That is free
+    # margin on the bare-head case and nothing else changes: the seat is
+    # limited by the O16 plug, not by the head.
+    # KEEP BOTH KEYS WITH THE BOARD: T30 is Gong's, for the mast. T25 is
+    # this. They are not interchangeable. The head bears on a G10
     # plug buried in the core, not on the panel: at 1200 N - the PRELOAD at
     # the 1.2 Nm spec, not the 182 N the cord needs - a bare cap head puts
     # ~2.7 MPa into H100 even after the skin spreads it, against a core that
@@ -639,9 +657,10 @@ def build():
     # A countersink would have hidden the head, but it needs 2.1 mm of solid
     # material under the top face and there is 1.0 mm of skin over the plug -
     # flush heads and a buried hardpoint do not combine. Caps it is.
-    add("6  Hatch and seal", "M5 x 25 button head ISO 7380, 50 pk",
+    add("6  Hatch and seal", "M5 x 25 button head TORX TX25, 25 pk",
         1, "pk", 15.99, EST,
-        str(M["hatch_bolts"] * N) + " needed of 50. ISO 7380 head is O9.5 x "
+        str(M["hatch_bolts"] * N) + " needed of 25. TX25 drive. ISO 7380-2 "
+        "flanged button; the model draws the plain O9.5 x "
         "2.75 high, which is what the model draws and what puts the whole "
         "stack 1.5 mm BELOW the deck pad. 304 not A4 - see the note above, "
         "it is a deliberate trade and the captive nut stays A4. Tef-Gel "

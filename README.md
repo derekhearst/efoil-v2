@@ -163,6 +163,17 @@ Ordered by what can actually stop the build.
    confirm it is the one you want.
 6. **V1's reed-switch kill system is still not installed.** Parts on hand.
    Required before any beginner rides that board.
+7. **Measure the Gong top plate's four clearance holes.** `MAST_CLEAR_D` is a
+   guess at 7.0 mm and it sets the *entire* positional budget for the four
+   tapped holes in our plate — at 7.0 that budget is 0.25 mm, which is what
+   makes it a machine-shop part rather than a drill-press one. A wider hole
+   relaxes it; a tighter one may make it unbuildable by hand at all. **Derek
+   has this plate** — he cut its wire slot.
+8. **Where the mast's wire slot sits relative to the chord.** `CONDUIT_X_OFF`
+   is 0, i.e. the conduit is assumed to be on the mast's centreline, and that
+   is unverified. If it is not, the conduit and the plate's Ø30.8 bore are in
+   the wrong place — and that bore is drilled and reamed into the one part
+   that has to go to a machine shop.
 
 ---
 

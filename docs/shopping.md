@@ -88,7 +88,7 @@ https://www.amazon.com
 | [Chip brushes 2 in, 36 pk](https://www.amazon.com/dp/B078XJ2DCJ) | 1 | pk | $17.99 | **verified** | disposable, 2-4 a session across 6 sessions. The 12 pk at $7.19 is dearer per brush and runs out mid-build |
 | [Laminating bubble roller kit, 4 pc](https://www.amazon.com/dp/B07FCLTHY6) | 1 | kit | $17.99 | **verified** |  |
 | [Paste wax, releasing the groove filler](https://www.amazon.com/dp/B0GVCGHZFR) | 1 | ea | $16.99 | estimate | the filler must NOT bond - it comes back out after the glass goes over it |
-| [M5 x 25 button head ISO 7380, 50 pk](https://www.amazon.com/dp/B07JQ6ZC6B) | 1 | pk | $15.99 | estimate | 24 needed of 50. ISO 7380 head is O9.5 x 2.75 high, which is what the model draws and what puts the whole stac |
+| [M5 x 25 button head TORX TX25, 25 pk](https://www.amazon.com/dp/B08BZJPJTK) | 1 | pk | $15.99 | estimate | 24 needed of 25. TX25 drive. ISO 7380-2 flanged button; the model draws the plain O9.5 x 2.75 high, which is w |
 | [Adjustable hand sanding block](https://www.amazon.com/dp/B0D4LNDYXD) | 1 | ea | $15.99 | **verified** | rails, nose, tail and anywhere the longboard will not reach |
 | [Longboard PSA sandpaper 80 grit, 20 yd roll](https://www.amazon.com/dp/B0CQ7CVGK6) | 1 | roll | $15.99 | **verified** | 2-3/4 in, self-adhesive, fits the longboard above. 80 is the fairing grit - it cuts fair, it does not finish |
 | [Solid silicone cord, 1/8 in (3.175 mm) - the spare size](https://www.amazon.com/dp/B00QVB0KE8) | 1 | pc | $15.39 | **verified** | 10 ft piece, 70A. Fitted ONLY if the routed groove measures deep. Gives 24% squeeze at the nominal 2.4 depth a |
