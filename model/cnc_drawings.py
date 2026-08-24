@@ -136,15 +136,25 @@ def build(p):
         f"hot, no draughts, 100% infill for at least {p['NUT_Z'] + 6:.0f} mm "
         f"around every nut pocket - that margin is a print-quality number, "
         f"not a geometry one. "
-        "ASSEMBLED REFERENCE ONLY - DO NOT CUT THIS OUTLINE. A one-piece G10 "
-        "ring needs a blank 3.7x its own material. Cut parts 01a and 01b and "
-        "bond them into this. Shown here to check the assembled ring against "
-        "the rebate and to carry the bolt pattern and CHANNEL reference. "
-        "Do NOT machine the CHANNEL groove at this stage: the ring is glassed "
-        "into the foam, so the groove is routed LAST, through the cured "
-        f"laminate into the ring, off template part 14 - {p['CHAN_W']:.0f} "
-        f"wide x {p['CHAN_D']:.1f} deep for an O{p['CORD_D']:.0f} cord "
-        "BONDED in. "
+        "ASSEMBLED REFERENCE ONLY - DO NOT CUT THIS OUTLINE, AND DO NOT CUT "
+        "IT FROM ANYTHING. This note used to say 'cut parts 01a and 01b and "
+        "bond them into this', which was an instruction to make two parts "
+        "THAT DO NOT EXIST - they were the G10 ring bars, and they went when "
+        "the ring became PRINTED. There is no sheet stock behind this "
+        "drawing. The ring is 6 dovetailed ASA pieces printed from the "
+        "V2_RimSeg_* solids in the .blend, and this outline is here only to "
+        "check the assembled ring against the rebate and to carry the bolt "
+        "pattern and CHANNEL reference. "
+        f"THE CHANNEL IS NOT MACHINED AT ALL, and not at this stage either: "
+        f"the groove is PRINTED into the ring "
+        f"{p['CHAN_D'] - p['RING_LAM']:.1f} deep and filled with a strip "
+        f"printed {p['CHAN_FILLER_PROUD']:.1f} PROUD of the seal face, so "
+        f"the glass drapes over a ridge you can see and feel. Sanding that "
+        f"face flat - which you have to do anyway, it is the seal land - "
+        f"breaks through to the filler and it picks out, leaving "
+        f"{p['CHAN_W']:.0f} wide x {p['CHAN_D']:.1f} deep finished for an "
+        f"O{p['CORD_D']:.0f} cord BONDED in. Part 14 is the routing template "
+        "for anyone who would rather cut it, and it is a FALLBACK. "
         f"Break the INNER top edge to R{p['RIM_CHAMFER']:.0f} - the laminate "
         "turns over it into the cavity. Leave the outer edge and the bottom "
         "face SQUARE.")
@@ -378,17 +388,50 @@ def build(p):
         f"positions carry whatever the bond-up drifted. O4.5 leaves 0.25 mm "
         f"radial and will bind. O5.0 leaves 0.5 mm, which the floor-as-master "
         f"bond sequence holds. "
-        f"EVERY HOLE MUST BE POTTED. This is a cored panel: at 646 N a bolt "
+        f"EVERY HOLE IS POTTED, AND THE PLUGS ARE CAST INTO THE CORE (11) "
+        f"BEFORE LAYUP - not pocketed into the finished panel afterwards. "
+        f"That was the instruction here and it is the same mistake the hatch "
+        f"lid was moved away from: 'drill through the top skin and core ONLY, "
+        f"leave the bottom skin' is a DEPTH-CONTROLLED cut into a bagged "
+        f"laminate whose thickness varies, and going 0.5 mm deep breaches the "
+        f"sealing face of the lid. Bore the bare core, fill, sand flush, then "
+        f"lay up - see 11. "
+        f"WHY IT NEEDS THEM AT ALL: this is a cored panel: at "
+        f"{p['MOD_TORQUE_NM'] / (0.2 * p['MOD_BOLT_D'] / 1000.0):.0f} N a bolt "
         f"an M4 washer puts ~15 MPa on the seat and H-80 crushes at 1.4, so "
-        f"bare holes lose seal squeeze the first time it is torqued. Drill "
-        f"O12 through the top skin and core ONLY, leave the bottom skin, "
-        f"fill with thickened epoxy, cure, then drill O5.0 through the lot. "
+        f"bare holes lose seal squeeze the first time it is torqued. "
         f"The washer then bears on solid epoxy - ~4.4x margin.")
 
     d = Dxf()
-    d.poly(rect(2.0, ext_l - 2.0, 2.0, ext_w - 2.0))
+    # OVERSIZE 6 ALL ROUND, like 03 - see the note. Drawn in the lid's own
+    # coordinates, so the core simply runs from -6 to ext+6 and the bolt
+    # positions do not move.
+    OS = 6.0
+    d.poly(rect(-OS, ext_l + OS, -OS, ext_w + OS))
+    for (bx, by) in mb:
+        d.circle(bx + ENC_WALL, by + ENC_WALL, 12.0 / 2)
     add("11_module_lid_core", "Divinycell H80", p["ENC_LID_CORE"], 1, d,
-        ext_l - 4, ext_w - 4, "Inset 2 mm for skin wrap")
+        ext_l + 2 * OS, ext_w + 2 * OS,
+        f"THE {len(mb)} CIRCLES ARE O12 THROUGH-HOLES THAT GET FILLED WITH "
+        f"THICKENED EPOXY, and they are done NOW, while this is a bare sheet "
+        f"on the bench: tape one face, pour, cure, sand BOTH faces flush, "
+        f"then lay the lid up over it. Exactly what 03 does for the hatch. "
+        f"The alternative - pocketing them into the finished panel - is a "
+        f"depth-controlled cut into a bagged laminate whose thickness varies, "
+        f"and 0.5 mm too deep breaches the lid's sealing face. "
+        f"OVERSIZE BY {OS:.0f} mm ALL ROUND, NOT INSET. This drawing used to "
+        f"say 'inset 2 mm for skin wrap', which is the same contradiction 03 "
+        f"already had and which was fixed there and never carried across: "
+        f"step 11a trims this lid TO NET PROFILE AFTER CURE, and machining to "
+        f"profile cuts the wrap off. You cannot do both. Machining wins here "
+        f"for the same reason it wins on the hatch - the profile and the "
+        f"{len(mb)} bolt holes want to be one setup, because their positions "
+        f"have to match a bonded-up printed ring - and step 12's neat-epoxy "
+        f"edge seal is what protects the exposed core. "
+        f"Edge distance still works out: the bolt circle lands "
+        f"{p['MOD_BOLT_INSET'] + ENC_WALL:.1f} mm from the FINISHED edge, so "
+        f"a O12 plug clears it by "
+        f"{p['MOD_BOLT_INSET'] + ENC_WALL - 6.0:.1f} mm.")
 
     # 6 - mast plate -------------------------------------------------------
     d = Dxf()

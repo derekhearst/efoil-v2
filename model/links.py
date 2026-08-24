@@ -11,6 +11,14 @@ LINKS = {
         ("B001J9I6D4", 66.05, "Freud 73-214 1/2in Dia O-Flute Up Spiral Bit 1/2in Shank"),
     "1/2 in ball nose, finishing pass":
         ("B00KZM3GSG", 41.95, "YONICO Carbide Ball Nose End Mill 1/2in Dia 1/2in Shank"),
+    "1/4 in composite bit - lid profiles":
+        ("B00IDEOSXU", 0, "Amana Tool 46094 CNC Solid Carbide Up-Spiral "
+         "Router Bit for Composite/Fiberglass/Phenolic ZrN 1/4 Dia x 3/4 x "
+         "1/4 Shank"),
+    "1/8 in composite bit - lid bolt holes":
+        ("B016PYQIZ0", 0, "Amana Tool 46091 CNC Solid Carbide Up-Spiral "
+         "Router Bit for Composite/Fiberglass/Phenolic ZrN 1/8 Dia x 1/2 x "
+         "1/8 Shank x 2 Inch Long"),
     "1/2 in spiral, 3 in cutting length - cavity wall":
         ("B0BTY16K5P", 82.99, "SpeTool Compression Spiral Router Bit 1/2in Shank 3in Cutting Length"),
     "1/4 in torque wrench, 10-50 in-lb":
@@ -276,6 +284,8 @@ LINK_VENDOR = {
     "1/2 in O-flute up-spiral, foam roughing": "Amazon",
     "1/2 in ball nose, finishing pass": "Amazon",
     "1/2 in spiral, 3 in cutting length - cavity wall": "Amazon",
+    "1/4 in composite bit - lid profiles": "Amazon",
+    "1/8 in composite bit - lid bolt holes": "Amazon",
     "1/4 in torque wrench, 10-50 in-lb": "Amazon",
     "16 AWG silicone, 6 colours x 5 ft": "Amazon",
     "1708 biax, 50in x 10 yd roll": "Amazon",

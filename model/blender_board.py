@@ -443,7 +443,15 @@ CHAN_INSET = 10.0                  # groove centreline outboard of the opening.
 # 1.25, up from 1.0 - one more 6 oz layer a side, Derek's call for hatch lid
 # crush margin. 1.89 -> 2.17 for 0.5 mm of board and 180 g. See CORE_COMP_MPA
 # below for why this is the lever and not the core grade.
-LID_SKIN, LID_CORE = 1.25, 12.0
+# ...and LID_CORE IS 12.7, NOT 12.0, BECAUSE 12.0 IS NOT A THING YOU CAN BUY.
+# The repo contradicted itself on this: bom.py says in its own words "no 1/2in
+# H-100 exists - only 1/8, 1/4 and 1in. Two 1/4in sheets bonded give 12.7 mm",
+# and the drawing said 12.0. Nobody can cut a 12.0 core out of two 6.35 mm
+# sheets. Whichever number was wrong, building to the one that is not on the
+# invoice puts the lid 0.7 mm proud of a recess machined for it - on the face
+# Derek walks on barefoot, where the whole flush budget is 1.5 mm.
+# The rule this settles: core thickness is STOCK, not a design variable.
+LID_SKIN, LID_CORE = 1.25, 12.7
 LID_CORE_GRADE = "H100 (2 x 1/4in bonded - no 1/2in H100 exists)"
 RIDER_MAX_KG, STEP_G = 95.3, 1.5   # heaviest rider, climbing-on dynamic factor     # hatch lid: glass / H80 / glass
 LID_T = LID_SKIN * 2 + LID_CORE
@@ -537,7 +545,9 @@ MOD_GASKET_OUT, MOD_GASKET_IN = 12.0, 19.0
 # gasket does not care about surface irregularity, which is exactly why V1
 # used one on both enclosures and why it is still sealing.
 MOD_SEAL_GASKET = True
-ENC_LID_SKIN, ENC_LID_CORE = 1.0, 6.0
+# 6.35, not 6.0 - same reason as LID_CORE. The BOM buys 1/4 in H-80 for this
+# and 1/4 in is 6.35; 6.0 was a round number nobody sells.
+ENC_LID_SKIN, ENC_LID_CORE = 1.0, 6.35
 ENC_LID_T = ENC_LID_SKIN * 2 + ENC_LID_CORE
 # Also +2 -> +5. Costs 3 mm of board thickness and buys headroom over the
 # tallest thing in the module.
@@ -2109,9 +2119,18 @@ CNC_BED_Z = 149.9                  # 5.9 in of CUTTER TRAVEL - see the check
 CNC_SUBSTACK_LAYERS = 2            # layers machined per half before bonding
 CUTTER_FLUTE_L = 31.8              # 1-1/4 in - the Freud 73-214's CUTTING
                                    # length, which is not its overall length.
-                                   # The BOM buys that bit for foam roughing,
-                                   # so this is the reach the plan actually
-                                   # has unless another cutter is bought.
+                                   # The BOM buys that bit for foam ROUGHING,
+                                   # and roughing does not need reach: Z-level
+                                   # passes clear the whole pocket at each
+                                   # level, so the shank travels through open
+                                   # air, never down a slot.
+# ...but the WALL FINISH does need reach, and this was reported as an
+# unsolved shortfall long after it had been solved and paid for. The BOM has
+# carried a 3 in cutting-length spiral for the cavity wall for some time, and
+# mach_cutter_reaches went on saying False against the roughing bit - so the
+# report said the plan could not be machined while the bit that machines it
+# sat in the shopping list. The check now asks the right tool.
+CUTTER_FINISH_FLUTE_L = 76.2       # 3 in - the deep-pocket wall-finish bit
 # The blank is stacked from 2 in construction EPS, not carved from a billet.
 # FOUR layers, not three. Three is 152.4 mm and the blank envelope is 163.8 -
 # the board is 153.8 thick and the rocker adds 10 on top of that, which the
@@ -5229,8 +5248,19 @@ def build():
     rep["mach_deepest_pocket_mm"] = round(_deep, 1)
     rep["mach_deepest_pocket_is"] = "cavity lower half, pocketed into *_Lower"
     rep["mach_cutter_flute_mm"] = CUTTER_FLUTE_L
-    rep["mach_cutter_reaches"] = _deep <= CUTTER_FLUTE_L
-    rep["mach_cutter_shortfall_mm"] = round(max(0.0, _deep - CUTTER_FLUTE_L), 1)
+    rep["mach_finish_cutter_flute_mm"] = CUTTER_FINISH_FLUTE_L
+    # THE ROUGHING BIT IS NOT THE ONE TO ASK. Roughing clears the pocket at
+    # every Z level, so its shank runs in open air and 31.8 mm of flute is
+    # plenty. The wall FINISH pass is the one that runs down a finished wall
+    # with the shank rubbing EPS above the cutting edge, and that is the bit
+    # the BOM buys 76.2 mm of flute for.
+    rep["mach_roughing_needs_reach"] = False
+    rep["mach_cutter_reaches"] = _deep <= CUTTER_FINISH_FLUTE_L
+    rep["mach_cutter_shortfall_mm"] = round(
+        max(0.0, _deep - CUTTER_FINISH_FLUTE_L), 1)
+    rep["mach_wall_finish_bit"] = (
+        f"1/2 in spiral, {CUTTER_FINISH_FLUTE_L:.1f} mm of flute, against a "
+        f"{_deep:.1f} mm wall - in the BOM. Rough with the Freud")
     rep["mach_upper_through_mm"] = round(rep["lid_top_z_mm"] - _split_z, 1)
     # Two shades on purpose. Butted, the halves are geometrically identical to
     # the hull, so in one colour the seam is a hairline you have to hunt for -

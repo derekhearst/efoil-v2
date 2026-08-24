@@ -6,17 +6,17 @@ Grouped by where you buy it rather than by what it does, because that is the ord
 
 | Supplier | Lines | $ |
 |---|---:|---:|
-| Amazon | 113 | $3,609.71 |
+| Amazon | 115 | $3,681.61 |
 | Gong | 1 | $1,404.00 |
 | Flipsky | 3 | $1,038.00 |
-| Not a purchase - tax and freight | 3 | $835.71 |
+| Not a purchase - tax and freight | 3 | $845.96 |
 | BatteryHookup | 2 | $297.50 |
 | Fiberglass Supply | 3 | $253.38 |
+| Maker Shop Boise | 2 | $249.00 |
 | Home Depot / hardware | 4 | $169.16 |
-| Maker Shop Boise | 1 | $150.00 |
 | Speedy Metals | 1 | $88.92 |
 | Easy Composites | 1 | $52.00 |
-| **TOTAL** | | **$7,898.38** |
+| **TOTAL** | | **$8,079.53** |
 
 ## Amazon
 
@@ -49,6 +49,7 @@ https://www.amazon.com
 | [Folding sawhorses, pair, 700 lb](https://www.amazon.com/dp/B0G4CH7SKB) | 1 | pair | $39.99 | **verified** | ~30 in high. Racks buy height for planing, and this core comes machined - so they buy nothing here |
 | [E-glass 6 oz, 50in x 12ft, 2-pack](https://www.amazon.com/dp/B0CQY5KX84) | 2 | pack | $39.98 | **verified** | your receipt |
 | [Sealant tape, 50 ft roll](https://www.amazon.com/dp/B0GF25BPN6) | 2 | roll | $39.98 | **verified** | 31 m of bag perimeter across the project. 2 x 50 ft at $19.99 replaced 4 x 25 ft at $12 - same tape, fewer joi |
+| [1/4 in composite bit - lid profiles](https://www.amazon.com/dp/B00IDEOSXU) | 1 | ea | $39.95 | estimate | Amana 46094, ZrN-coated solid carbide, ground for fibreglass and phenolic rather than wood. 19 mm of cutting h |
 | [Bag connector w/ ball valve, 1/4 in QD](https://www.amazon.com/dp/B0FSKGGL8H) | 2 | ea | $39.18 | **verified** | THE BALL VALVE IS THE POINT: shut it and the bag is isolated from the pump, so leak-down is a real measurement |
 | [Ultra Tef-Gel, galvanic barrier](https://www.amazon.com/dp/B01606TCAG) | 1 | ea | $39.00 | **verified** | every mast bolt, every time it goes back in. DEARER than the $22 this was carried at - and do not reach for th |
 | [3M 60923 organic vapour / acid gas P100, pair](https://www.amazon.com/dp/B00AEFCKKY) | 2 | pr | $35.98 | **verified** | $18.39/pr on Amazon against $31.49 at envirosafetyproducts. Cartridges EXPIRE - buy these near the layup, not  |
@@ -56,6 +57,7 @@ https://www.amazon.com
 | [Hollow punch set 3/16-1-3/8in, for the O31.75 bung](https://www.amazon.com/dp/B07PQYRG9K) | 1 | set | $32.99 | estimate | the existing set stops at 1/2 in. Skip it if a 1-3/8 in hole saw is already in the drawer - the plug it leaves |
 | [M12 IP68 momentary panel button](https://www.amazon.com/dp/B0FPQP7CP9) | 1 | ea | $32.65 | **verified** | 1 on hand; this line buys the second board's |
 | [IP68 M25 inline housing, 5 pk](https://www.amazon.com/dp/B0DPKM5HF7) | 2 | pk | $31.96 | **verified** | 3 per board, one per phase, 2 spare. M25 bodies take 4-14 mm cable against our 6.5 mm 8 AWG, so the size class |
+| [1/8 in composite bit - lid bolt holes](https://www.amazon.com/dp/B016PYQIZ0) | 1 | ea | $31.95 | estimate | Amana 46091, 1/8 dia on a 1/8 in SHANK - the shank size is the spec, not an accident: it clears a O5.0 hole, s |
 | [Coiled ankle leash](https://www.amazon.com/dp/B096VL3DHV) | 2 | ea | $29.98 | **verified** | you trust the remote failsafe; this is so the board stays with you |
 | [Kayak/board grab handle, 2 pk + screws](https://www.amazon.com/dp/B0FBW3XT5D) | 3 | pk | $29.97 | **verified** | 3 a board: 2 on the rails into the 6061 strip, 1 on the module. ONE HOLE PER STRAP END - so one bolt per pad,  |
 | [Sikaflex-292 marine structural PU](https://www.amazon.com/dp/B008F8VYMM) | 1 | tube | $28.99 | **verified** | ~6-8 MPa vs 4200's ~2. Fillet BOTH sides of the joint - on a flexible bond the fillets are what stop it peelin |
@@ -164,7 +166,7 @@ Some Flipsky appears on Amazon but the range is thin and usually dearer. Buy dir
 
 | Item | Qty | Unit | Ext | Price | Note |
 |---|---:|---|---:|---|---|
-| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $447.08 | **verified** |  |
+| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $457.33 | **verified** |  |
 | Gong shipping to Idaho, ONE order, both foils | 1 | order | $268.63 | **verified** | quoted at checkout for 2 x XL Alu setups. PER ORDER, not per foil - ordering the two separately would roughly  |
 | Shipping - Divinycell, 6061 plate, VR20 | 1 | allow | $120.00 | estimate | STILL THE BIGGEST UNVERIFIED LINE - it wants three real carts to settle. Was $220 when it covered G10 sheet an |
 
@@ -191,6 +193,15 @@ https://fiberglasssupply.com
 | [Divinycell H-100 1/4in quarter 21x42, hatch lid cores - 2 sheets bonded to 1/2in](https://fiberglasssupply.com/1-4-in-h-100-divinycell-quarter-sheet-21-x-42/) | 2 | sheet | $99.18 | **verified** | fiberglasssupply.com; no 1/2in H-100 is made |
 | [Divinycell H-80 1/4in quarter 24x48, module lid cores](https://fiberglasssupply.com/quarter-sheet-1-4-h-80-divinycell-plain-sheet/) | 1 | sheet | $53.94 | **verified** | L18-1070; nobody stands on this one |
 
+## Maker Shop Boise
+
+Unresolved - two emails unanswered. Phone (208) 254-6151, or the EPS core goes to a shaping service or gets hand-shaped.
+
+| Item | Qty | Unit | Ext | Price | Note |
+|---|---:|---|---:|---|---|
+| [Maker Shop Boise Basic month](https://www.makershopboise.com/membership) | 1 | month | $150.00 | **verified** | month-to-month; confirm it cancels cleanly. Only ONE part truly wants a CNC - the EPS core - but the pass cove |
+| Maker Shop day pass - post-layup lid session | 1 | day | $99.00 | **verified** | profile + all 29 holes a board, both lids, one setup. Separate from the Basic month on purpose: that month is  |
+
 ## Home Depot / hardware
 
 https://www.homedepot.com
@@ -201,14 +212,6 @@ https://www.homedepot.com
 | [MDF 12 mm, 4 check gauges](https://www.homedepot.com/p/ProWood-1-2-in-x-2-ft-x-4-ft-Medium-Density-Fiberboard-Project-Panel-109097/202093821) | 1 | sheet | $30.73 | estimate | 3 station sections + the rocker/deck profile. Was a 14-template set at $70 - the router templates go with the  |
 | [Sacrificial MDF, CNC spoilboard](https://www.homedepot.com/p/1-4-in-x-2-ft-x-4-ft-Medium-Density-Fiberboard-1508104/202089069) | 1 | sheet | $16.23 | estimate | buy it local, a 4x8 sheet does not travel well |
 | [Acetone, solvent-welding the printed joints](https://www.homedepot.com/p/Klean-Strip-1-qt-Acetone-Thins-Fiberglass-Resins-Epoxy-and-Adhesives-QAC18/100144922) | 1 | qt | $11.48 | estimate | ASA dissolves in it like ABS - a brushed acetone/scrap slurry makes the joint one piece of plastic, not an adh |
-
-## Maker Shop Boise
-
-Unresolved - two emails unanswered. Phone (208) 254-6151, or the EPS core goes to a shaping service or gets hand-shaped.
-
-| Item | Qty | Unit | Ext | Price | Note |
-|---|---:|---|---:|---|---|
-| [Maker Shop Boise Basic month](https://www.makershopboise.com/membership) | 1 | month | $150.00 | **verified** | month-to-month; confirm it cancels cleanly. Only ONE part truly wants a CNC - the EPS core - but the pass cove |
 
 ## Speedy Metals
 

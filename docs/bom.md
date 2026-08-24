@@ -210,8 +210,11 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | [1/2 in O-flute up-spiral, foam roughing](https://www.amazon.com/dp/B001J9I6D4) | 1 | ea | $66.05 | $66.05 | verified | Freud 73-214, 1/2 in shank. SINGLE flute for chip clearance - EPS chips are bulky and a 2- or 3-flute packs the gullets and starts melting the blank. ONLY if the makerspace does not supply tooling |
 | [1/2 in ball nose, finishing pass](https://www.amazon.com/dp/B00KZM3GSG) | 1 | ea | $41.95 | $41.95 | verified | 1/2 in shank. ONLY if the makerspace does not supply tooling |
 | [1/2 in spiral, 3 in cutting length - cavity wall](https://www.amazon.com/dp/B0BTY16K5P) | 1 | ea | $82.99 | $82.99 | verified | 76.2 mm of FLUTE - the only reach found that clears the 71.6 mm cavity wall in one pass. It is a COMPRESSION bit, which is not the ideal geometry for foam: if a plain upcut or a reduced-shank necked bit turns up at this reach, prefer it. Needed ONLY for the wall finish - rough with the Freud |
+| [1/4 in composite bit - lid profiles](https://www.amazon.com/dp/B00IDEOSXU) | 1 | ea | $39.95 | $39.95 | estimate | Amana 46094, ZrN-coated solid carbide, ground for fibreglass and phenolic rather than wood. 19 mm of cutting height against a 15.2 mm lid. PRICE NOT READ - Amazon blocked the page, so the listing is linked and the number is an estimate |
+| [1/8 in composite bit - lid bolt holes](https://www.amazon.com/dp/B016PYQIZ0) | 1 | ea | $31.95 | $31.95 | estimate | Amana 46091, 1/8 dia on a 1/8 in SHANK - the shank size is the spec, not an accident: it clears a O5.0 hole, so this bit can circle-mill all 29 holes a board through the full lid thickness. CHECK THE COLLET before the visit: the shop's router may only have 1/4 and 1/2, and a 1/8 in collet is a $15 part that is not worth discovering on the day. PRICE NOT READ |
+| Maker Shop day pass - post-layup lid session | 1 | day | $99.00 | $99.00 | verified | profile + all 29 holes a board, both lids, one setup. Separate from the Basic month on purpose: that month is spent by the time these panels are cured. If the calendar slips the other way and the layups land inside the 30 days, this line disappears |
 | [Rotary-tool router base + collets, if needed](https://www.amazon.com/dp/B0000DEZK4) | 1 | set | $24.63 | $24.63 | estimate | you have the tool; this is only if the base you have will not hold depth over the groove run |
-| **subtotal** | | | | **$308.75** | | |
+| **subtotal** | | | | **$479.65** | | |
 
 ## 10e Layup kit
 
@@ -248,29 +251,29 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | Item | Qty | Unit | Unit $ | Ext $ | | Note |
 |---|---:|---|---:|---:|---|---|
 | Shipping - Divinycell, 6061 plate, VR20 | 1 | allow | $120.00 | $120.00 | estimate | STILL THE BIGGEST UNVERIFIED LINE - it wants three real carts to settle. Was $220 when it covered G10 sheet and hazmat epoxy, both of which are now out of the build entirely |
-| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $447.08 | $447.08 | verified |  |
-| **subtotal** | | | | **$567.08** | | |
+| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $457.33 | $457.33 | verified |  |
+| **subtotal** | | | | **$577.33** | | |
 
 ## Totals
 
 | | |
 |---|---:|
-| **Grand total, 2 boards** | **$7,898.38** |
-| Per board | $3,949.19 |
-| Of which verified | $7,264.99  (92%) |
-| Of which estimated | $633.39 |
-| Linked to a real listing | 129 lines |
-| Priced but NOT linked | 0 lines, $0.00 |
-| Not linkable, but MEASURED (freight quotes) | 2 lines, $715.71 |
+| **Grand total, 2 boards** | **$8,079.53** |
+| Per board | $4,039.76 |
+| Of which verified | $7,374.24  (91%) |
+| Of which estimated | $705.29 |
+| Linked to a real listing | 131 lines |
+| Priced but NOT linked | 1 lines, $99.00 |
+| Not linkable, but MEASURED (freight quotes) | 2 lines, $725.96 |
 | Not linkable and still estimated | 1 lines, $120.00 |
 
 ## What is a board, and what is a shop
 
-Some of the total above is not the cost of a board at all - it is tools, jigs and templates that exist afterwards and do not repeat. Splitting them out is the difference between "a board costs $3,949" and "a board costs $3,514 and I now own a vacuum rig, a crimper and a full template set".
+Some of the total above is not the cost of a board at all - it is tools, jigs and templates that exist afterwards and do not repeat. Splitting them out is the difference between "a board costs $4,040" and "a board costs $3,514 and I now own a vacuum rig, a crimper and a full template set".
 
 | | |
 |---|---:|
-| One-time tooling (incl. its share of tax) | $870.80 |
+| One-time tooling (incl. its share of tax) | $1,051.95 |
 | **Marginal cost of a board** | **$3,513.79** |
 | Cost of the NEXT board after these 2 | $3,513.79 |
 
@@ -294,6 +297,9 @@ Some of the total above is not the cost of a board at all - it is tools, jigs an
 | 1/2 in O-flute up-spiral, foam roughing | $66.05 |
 | 1/2 in ball nose, finishing pass | $41.95 |
 | 1/2 in spiral, 3 in cutting length - cavity wall | $82.99 |
+| 1/4 in composite bit - lid profiles | $39.95 |
+| 1/8 in composite bit - lid bolt holes | $31.95 |
+| Maker Shop day pass - post-layup lid session | $99.00 |
 | Rotary-tool router base + collets, if needed | $24.63 |
 | Rosin paper roll, floor and bench | $27.95 |
 | Folding sawhorses, pair, 700 lb | $39.99 |

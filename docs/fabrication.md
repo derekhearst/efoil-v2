@@ -119,6 +119,7 @@ slabs, 101.6 mm each. Keep both faces flat; they are the machining datum.
 
 **Blocks on:** steps 2, 4
 **Uses:** `1/2 in O-flute up-spiral, foam roughing` · `1/2 in ball nose, finishing pass` ·
+`1/2 in spiral, 3 in cutting length - cavity wall` ·
 `3M Fastbond 1077 water-based, CNC hold-down` · `Sacrificial MDF, CNC spoilboard` ·
 `Dowel pins + drill, two-sided registration`
 
@@ -135,12 +136,20 @@ slabs, 101.6 mm each. Keep both faces flat; they are the machining datum.
 Every setup beds on a flat face, so **tape or vacuum down — never clamp from
 the edges**, there is only 24.8 mm a side.
 
-> **CUTTER REACH — settle this before you book.** The deepest pocket is the
-> cavity's lower half at **71.6 mm**. The O-flute above has a *cutting* length
-> of **31.8 mm** — that is flute, not overall — so it is **39.8 mm short and
-> cannot reach the floor.** Buy a long-reach ½ in spiral with 75 mm+ of
-> flute, or rough that pocket with the ball nose. Do not discover this with
-> the foam taped down.
+> **CUTTER REACH — two bits, and take both.** The deepest pocket is the
+> cavity's lower half at **71.6 mm**, and the Freud O-flute has a *cutting*
+> length of **31.8 mm** — that is flute, not overall.
+>
+> **That does not matter for roughing.** Z-level passes clear the whole
+> pocket at every level, so by the time the tool is 71.6 mm down its shank is
+> travelling through open air, not down a slot. The Freud roughs the lot.
+>
+> **It matters for the wall finish**, which is one pass down a finished wall
+> with 12.7 mm of smooth shank rubbing EPS above the cutting edge. Foam has
+> no strength to resist it but it does melt and glaze, and a glazed wall is a
+> bond surface you cannot wet out. That is what the **3 in spiral** is in the
+> BOM for: **76.2 mm of flute against 71.6 mm of wall.** It has been on the
+> list all along; earlier drafts of this box told you to go buy one.
 
 Water-based adhesive only. **Super 77 is solvent-based and dissolves EPS.**
 
@@ -325,7 +334,9 @@ corner is where the ring sits and where the seal ends up.
 **Uses:** `Divinycell H-100 1/4in quarter 21x42, hatch lid cores - 2 sheets bonded to 1/2in` ·
 `Divinycell H-80 1/4in quarter 24x48, module lid cores` ·
 `E-glass 6 oz, 50in x 12ft, 2-pack` · `TotalBoat 5:1 gallon kit, slow hardener` ·
-`Peel ply, 60in` · `Breather / bleeder cloth`
+`Peel ply, 60in` · `Breather / bleeder cloth` ·
+`1/4 in composite bit - lid profiles` · `1/8 in composite bit - lid bolt holes` ·
+`Maker Shop day pass - post-layup lid session`
 
 Both lids are flat sandwiches — glass / foam / glass — so they bag on the
 bench and **do not need the board**. Do them alongside a hull session while
@@ -335,9 +346,53 @@ The hatch lid core is **H-100**, and it is two ¼ in sheets bonded to ½ in
 because no ½ in H-100 is made. That grade is deliberate: you stand on this
 one. The module lid is H-80 — nobody stands on it.
 
-Trim to net profile after cure (parts 02, 03, 10, 11), and face the hatch
-lid's underside flat in the same setup — it has to bottom evenly on the seal
-land.
+**Both cores get their epoxy plugs first — hatch and module alike.** The
+hatch lid's are written up in detail under
+[step 13](#the-plugs-are-cast-into-the-bare-core-before-the-skins-go-on)
+(the operation belongs here, at layup — that write-up sits later in the
+document than the step that performs it) and the
+module lid's are the same operation at a smaller size: **17 × Ø12 through the
+bare H-80 sheet, tape one face, pour thickened epoxy, cure, sand both faces
+flush**, then lay up over it. The module lid used to say *drill Ø12 through
+the top skin and core only, leave the bottom skin* — that is a
+**depth-controlled cut into a bagged laminate**, whose thickness is whatever
+the bag gave you that day, and 0.5 mm too deep opens the face that seals the
+module. Same trap the hatch lid was pulled out of; it just took longer to
+find here.
+
+**Both cores are cut OVERSIZE — 6 mm all round — not inset.** Parts 03 and 11
+are bigger than the lids they go inside. The profile is machined through
+glass / core / glass in one pass after cure, so there is no skin wrapping the
+edge to preserve; [step 12](#step-12-seal-every-cut-edge)'s neat epoxy is
+what protects the exposed core. Cutting the core inset *and* machining to
+profile were mutually exclusive and the drawings asked for both.
+
+#### Trimming them needs a machine, a bit, and a second visit
+
+Trim to net profile after cure (parts 02 and 10 — their cores 03 and 11 are
+inside the sandwich by now), and face the hatch lid's underside flat in the
+same setup: it has to bottom evenly on the seal land.
+
+**This is the one operation in the build that cuts cured glass**, and none of
+the cutters bought for the core will do it. Foam bits are ground for foam;
+glass does not blunt a bit so much as sand it round, and there are **6.6 m of
+laminated edge** here across two boards. Two composite bits are on the list:
+
+| | |
+|---|---|
+| Profiles | **¼ in Amana 46094** — 19 mm of cutting height on a 15.2 mm lid |
+| All 29 holes a board | **⅛ in Amana 46091**, and *the ⅛ in shank is the spec* |
+
+Ø5.0 and Ø5.6 are smaller than the profile bit, so they cannot be
+circle-milled with it. A ⅛ in cutter on a ¼ in shank is no good either — the
+shank stops on the hole at 12.7 mm and the hatch lid is 15.2 thick. A ⅛ in
+shank is 3.175 and goes straight down a Ø5.0. **Check the shop has a ⅛ in
+collet before the day** — it is a $15 part and a wasted trip.
+
+**Budget a day pass for this.** The Basic month is spent on the cores, and
+the lids do not exist until these layups are cured — which is weeks later, by
+design ("let the layups follow the weather"). The foam cores go inside the
+month; the cured sandwiches come back afterwards.
 
 ### Step 12. Seal every cut edge
 
@@ -948,7 +1003,7 @@ offer the shape up to. **Uses:** `MDF 12 mm, 4 check gauges`
 | Risk | Mitigation |
 |---|---|
 | **Shop bans EPS** | Ask before buying a pass. Appendix C |
-| **Cutter cannot reach the cavity floor** | Known: 39.8 mm short. Buy long-reach or rough with the ball nose |
+| Shop will not run fibreglass on the CNC | Ask on the same call as the EPS one. Fallback: jigsaw the lid profiles to a line, and transfer-drill the holes off the ring |
 | Never having run a CNC | Test piece in scrap first; foam is unbreakable |
 | Flip registration wrong | Dowel pins; dry-run in air; check the mirror axis |
 | Blank too tall for the gantry | Solved by sequence — 101.6 mm halves, bonded after |

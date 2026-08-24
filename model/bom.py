@@ -1508,6 +1508,56 @@ def build():
         "ideal geometry for foam: if a plain upcut or a reduced-shank necked "
         "bit turns up at this reach, prefer it. Needed ONLY for the wall "
         "finish - rough with the Freud", tool=True, vendor="Amazon")
+    # ------------------------------------------------------- CUTTING GLASS
+    # NOTHING IN THIS BOM COULD CUT THE LIDS. Step 11a says "trim to net
+    # profile after cure" for both of them and step 11a's own tool list is
+    # foam bits, resin and peel ply. Every cutter above is bought for EPS:
+    # the Freud O-flute, the ball nose, the 3 in spiral. Glass is abrasive in
+    # a way foam is not - it does not blunt a bit so much as sand it round -
+    # and there are 6.6 m of laminated edge here across two boards, in 15.2
+    # and 8.4 mm sandwich. That is a bit's whole life.
+    #
+    # AND THE HOLES ARE THE HALF THAT MATTERS. The lid profile could be
+    # jigsawed and sanded to a line and nobody would know. The 12 + 17 bolt
+    # holes could not: the entire reason they are machined is Derek's - "i
+    # want the cnc to cut as many holes as possible cuz then if one or two
+    # holes get aligned the rest are too" - and that argument only pays if
+    # one setup drills all of them.
+    #
+    # O5.0 and O5.6 are SMALLER than the profile bit, so they cannot be
+    # circle-milled with it. A 1/8 in bit does both, and its 1/8 in SHANK is
+    # the point: 3.175 mm passes down a O5.0 hole, so the tool can reach
+    # through 15.2 mm of lid on a bit with 12.7 mm of flute. A 1/8 in cutter
+    # on a 1/4 in shank cannot - the shank stops on the hole at 12.7 and the
+    # hatch lid is 15.2 thick.
+    add("10d Shop consumables", "1/4 in composite bit - lid profiles", 1,
+        "ea", 39.95, EST,
+        "Amana 46094, ZrN-coated solid carbide, ground for fibreglass and "
+        "phenolic rather than wood. 19 mm of cutting height against a 15.2 mm "
+        "lid. PRICE NOT READ - Amazon blocked the page, so the listing is "
+        "linked and the number is an estimate", tool=True, vendor="Amazon")
+    add("10d Shop consumables", "1/8 in composite bit - lid bolt holes", 1,
+        "ea", 31.95, EST,
+        "Amana 46091, 1/8 dia on a 1/8 in SHANK - the shank size is the "
+        "spec, not an accident: it clears a O5.0 hole, so this bit can "
+        "circle-mill all 29 holes a board through the full lid thickness. "
+        "CHECK THE COLLET before the visit: the shop's router may only have "
+        "1/4 and 1/2, and a 1/8 in collet is a $15 part that is not worth "
+        "discovering on the day. PRICE NOT READ", tool=True, vendor="Amazon")
+    # ...AND THE MACHINE TIME TO USE THEM. The Basic month is written around
+    # the cores, and its own note says "cut everything inside the 30 days and
+    # let the layups follow the weather afterwards" - which cannot include
+    # the lids, because the lids DO NOT EXIST until after those layups. The
+    # foam cores (03, 11) go inside the month; the cured sandwiches come back
+    # weeks later and need the machine a second time.
+    add("10d Shop consumables", "Maker Shop day pass - post-layup lid session",
+        1, "day", 99.00, OK,
+        "profile + all 29 holes a board, both lids, one setup. Separate from "
+        "the Basic month on purpose: that month is spent by the time these "
+        "panels are cured. If the calendar slips the other way and the "
+        "layups land inside the 30 days, this line disappears",
+        tool=True, vendor="Maker Shop Boise")
+
     # NO ROUTER. Derek already owns a rotary tool with a router/plunge base -
     # a Dremel-class spinner - and for what is actually left to rout that is
     # the RIGHT tool, not a compromise:
