@@ -869,7 +869,16 @@ BAY_GLAND_N = 3                    # motor phases / charge / switch + sense
 # wall. Bore it with the rest of the CNC work and seal the walls with
 # thickened epoxy - the same hard, waterproof liner the tube would have been,
 # minus the part number. EPS takes epoxy fine; it is polyester that eats it.
-CONDUIT_D = 26.0                   # bore - sized by the BUNG, see BUNG_PITCH
+# 30, not 26. The bore is sized by the BUNG, and the bung by the ROW - and a
+# row of holes inside a CIRCLE is fat where it does not need to be and thin
+# exactly where the outer two leads sit. At O26 the rubber measured 9.75 mm
+# at the sides and 1.75 at the ends of the row: all of the material in the
+# wrong place. O30 puts 3.75 at the ends and costs 4 mm of hole in a plate
+# that has 65 mm of clearance to its nearest bolt.
+# It is the round SHAPE that is right, not the O26. A rectangular bore would
+# even the wall out, and it would also be milled instead of drilled and
+# reamed - and that bore's FINISH is the seal, with corners for leak paths.
+CONDUIT_D = 30.0                   # bore - sized by the BUNG, see BUNG_PITCH
 CONDUIT_WALL = 2.0                 # epoxy liner thickness, not a tube wall
 CONDUIT_X_OFF = 0.0                # from MAST_X, on the mast's chord centreline
 # The conduit does NOT rise vertically into the cavity. It leaves the mast
@@ -993,8 +1002,8 @@ BUNG = True
 # writing down: the board's plate is 12.7 thick, which is exactly 1/2 in. A
 # 1/2 in disc butts the foam and finishes DEAD FLUSH with the wetted face -
 # nothing to squeeze. The next size up is the design.
-BUNG_BORE = 26.8                   # the plate's own conduit bore
-BUNG_FREE_D = 26.0                 # as punched - UNDER the bore
+BUNG_BORE = 30.8                   # the plate's own conduit bore
+BUNG_FREE_D = 30.0                 # as punched - UNDER the bore
 # 3/4 in, and NOT the 5/8 that the arithmetic wants - 5/8 is not a stock
 # thickness. Neoprene sheet comes 1/8, 3/16, 1/4, 3/8, 1/2, 3/4, and the
 # board's plate is 12.7, which is exactly 1/2. So a 1/2 in disc butts the
@@ -5405,8 +5414,13 @@ def build():
         rep["bung_layout"] = "three in a row along the chord"
         rep["bung_pitch_mm"] = round(BUNG_PITCH, 2)
         rep["bung_wire_gap_mm"] = round(BUNG_PITCH - CABLE_OD, 2)
-        rep["bung_wall_mm"] = round(
-            BUNG_BORE / 2 - (BUNG_PITCH + CABLE_OD / 2), 2)
+        # AT THE ENDS OF THE ROW, which is the thin place and the one that
+        # matters - not the sides, where a circle has material to spare.
+        rep["bung_wall_at_row_ends_mm"] = round(
+            BUNG_FREE_D / 2 - (BUNG_PITCH + CABLE_OD / 2), 2)
+        rep["bung_wall_at_sides_mm"] = round(
+            BUNG_FREE_D / 2 - CABLE_OD / 2, 2)
+        rep["bung_wall_mm"] = rep["bung_wall_at_row_ends_mm"]
         rep["bung_web_between_holes_mm"] = round(BUNG_PITCH - BUNG_HOLE_D, 2)
         # --- WHAT THE ROW COSTS -------------------------------------------
         # A row is wider than the bore it feeds. The outer lead leaves the
@@ -5434,7 +5448,7 @@ def build():
         # because there is nothing in the assembly that could apply it.
         rep["bung_removable"] = True
         rep["bung_note"] = (
-            "O%0.1f x %0.3f punched from 5/8 in 50A neoprene, three %0.1f mm "
+            "O%0.1f x %0.3f punched from 3/4 in 50A neoprene, three %0.1f mm "
             "holes in a row at %0.1f pitch. Fills the plate's ONE STRAIGHT "
             "O%0.1f bore top to bottom, butts the epoxy liner's end face, and "
             "hangs %0.3f mm below the wetted face. The GONG MAST'S PLATE "

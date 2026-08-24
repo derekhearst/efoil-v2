@@ -597,48 +597,53 @@ straight above the plate — a 72 mm effective radius against the 26 mm the
 cable wants. 2.8×, fine. At a 2.0 mm gap it would have been **24 mm, under
 the limit**, which is why the gap is 1.5 and not 2.
 
-| | |
-|---|---|
-| | **As punched / drilled** | **As fitted** |
-|---|---|---|
-| Disc | **Ø30.0** × 9.53 | Ø26.8 × 11.94 |
-| Lead holes, in a row | Ø**6.16** at **8.96** pitch | Ø5.5 at 8.0 pitch |
-| Interference on the leads | 5.3% — threads by hand | **15.4%** |
-| Interference on the bore | — | **11.9%** against machined 6061 |
-
 **Where the compression comes from.** There are **two aluminium plates** at
 this joint. The board's hardpoint is bonded into the hull bottom at step 7 and
 never moves again. **The Gong mast has its own plate**, with four *clearance*
 holes, and its bolts pass up through them into the tapped hardpoint — so that
 plate is the part that travels, and tightening draws it face to face with the
-bottom of the board.
+bottom of the board. Anything standing proud of that face gets squeezed, with
+four M8s behind it. That is the only travel in the whole mast joint.
 
-Anything standing proud of that face gets squeezed, with four M8s behind it.
-That is the only travel in the whole mast joint.
-
-1. Punch Ø26.0 discs from the 3/8 in sheet and drill 3 × Ø5.8 **in a row at
+1. Punch Ø30.0 discs from the 3/4 in sheet and drill 3 × Ø5.8 **in a row at
    8.0 pitch**, along the chord — the order the leads leave the mast in, so
    not one of them has to be twisted.
 2. Thread the leads through on the bench and soap them.
-3. Drop the bung into the **Ø26.8 counterbore in the plate's wetted face**. It
-   butts the step where that meets the Ø22 through bore, and stands **0.7 mm
-   proud**.
-4. Bolt the mast on. Its plate squeezes that 0.7 mm out, and the rubber — with
-   nowhere else to go — closes onto the jackets and the bore wall.
+3. Feed the bung up the plate's straight **Ø30.8 bore**. It butts the epoxy
+   liner's end face where the foam channel steps down, and hangs **6.35 mm
+   proud** of the wetted face.
+4. Bolt the mast on. Its plate squeezes that 6.35 mm out, and the rubber —
+   with nowhere useful to go — closes onto the jackets and the bore wall.
+   **Start all four bolts by hand before torquing any of them**, or the plate
+   rocks on the bung. 113 N a bolt to close it.
 
 | | |
 |---|---|
-| Disc | Ø26.0 × 9.53, punched from 3/8 in 50A neoprene |
+| Disc | **Ø30.0 × 19.05**, punched from 3/4 in 50A neoprene |
 | Holes | 3 × Ø5.8 in a row at 8.0 pitch — 10.8% under the lead |
-| Counterbore | Ø26.8 × **8.83 deep** in the wetted face |
-| Proud | **0.7 mm** — this is the seal, do not cut the counterbore deeper |
-| Squeeze absorbable | 0.70 mm — the 0.8 mm of bore clearance is the relief |
-| Force | 452 N, against four M8s already carrying 6.3 kN |
+| Bore | the plate's own **Ø30.8**, one straight pass, no step |
+| Rubber wall | **3.75 mm at the ends of the row**, 11.75 at the sides |
+| Proud | **6.35 mm** below the wetted face |
+| Force | 628 N, against four M8s already carrying 6.3 kN |
+
+> **Why it is round and not a rectangle.** A row of holes inside a circle is
+> fat where it needn't be and thin exactly where the outer two leads sit — at
+> Ø26 that was 9.75 mm of rubber at the sides and **1.75 at the ends**. A
+> rectangular bore would even that out. It would also be **milled instead of
+> drilled and reamed**, and that bore's *finish is the seal*, with corners for
+> leak paths. Growing the circle to Ø30 fixes the same problem for 4 mm of
+> hole in a plate with 63 mm of clearance to its nearest bolt.
 
 > **The bung has to be wider than the mast's wire slot**, or the plate has
-> nothing to push on. Ø26.0 against a ~14 mm slot leaves **185 mm²** of land
-> either side. Measure that slot on the real mast — it is unverified here,
-> like the plate itself.
+> nothing to push on. Derek's slot is **20.4 × 7**, cut just wide enough for
+> the three leads, and it sits wholly under the bung — so it costs only its
+> own 143 mm² and the plate keeps **90% of the bung's face**. No follower, no
+> flange, no spotface.
+>
+> **Open the slot to 23.5 mm** while you are at it. The leads reach the bung's
+> holes at 8.0 pitch, which puts the outer two 11.15 mm off the axis against a
+> slot that reaches 10.2 — they would bear on its ends. Not a leak path, but a
+> chafe point on something that vibrates. It costs 2 points of land.
 
 It also holds itself in at about **280 N** of friction against the **28 N** a 5 m water column
 pushes up under it — 10.7×. It comes out the way it went in: cut the fillet,
