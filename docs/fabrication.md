@@ -163,20 +163,24 @@ vertical seam (1030 mm). Dowel pins keep the halves registered.
 The CNC already cut the pockets. Bond the H-80 mast block and leash pad in,
 flush.
 
-> **Bed the wire blocker before the plate goes on.** It cannot pass the Ø30.8
-> plate bore, so this is the only chance. A Ø37.6 × 10 printed disc, bedded on
-> 4200 into the Ø38 counterbore in the block's underside — cut with everything
-> else — with a **23 × 7 slit** for the leads.
+> **Bed the wire blocker before the plate goes on.** A printed part: **Ø30.4 ×
+> 4 body** that fills the top of the plate's bore, a **Ø24.6 × 12 spigot** up
+> into the foam's, and a **23 × 7 slit** for the leads.
 >
-> **This part is what gives the wire bung a stop that exists.** The bung is
-> squeezed by the mast plate and something has to take that push. **Nothing is
-> machined into the plate for it** — the plate keeps its one straight bore, and
-> the only change of diameter anywhere in this conduit is where the foam meets
-> the alu. The blocker lands on the plate's own flat top face: **389 mm² of
-> 6061 at 1.63 MPa against a 276 MPa yield.**
+> **This is what gives the wire bung a stop that exists.** The bung is squeezed
+> by the mast plate and something has to take that push. **Nothing is machined
+> into the alu for it** — the plate keeps its one straight Ø30.8 bore. The
+> dense block is simply **bored narrower, at Ø25**, and the ring of foam that
+> leaves showing inside the plate's bore is what the blocker lands on. That is
+> the only change of diameter anywhere in this conduit.
 >
-> It backs the bung across **97%** of its face. Without it the bung pushes
+> It backs the bung across **94%** of its face. Without it the bung pushes
 > against an open bore and most of the squeeze extrudes up the channel.
+>
+> **Bed the spigot properly on 4200 — that bond is the load path, not the foam
+> ring.** The ring is 254 mm² at **2.5 MPa against H-80's 1.4**, so it would
+> crush in on its own; the bond up the side of the spigot is 927 mm² in shear
+> at **2.9×**. Skimp the bond and the ring is all that is left.
 >
 > **The slit is clearance, not a seal** — a slot rather than three holes,
 > because the leads arrive in a row and a slot prints without bridging. The
@@ -600,7 +604,7 @@ that kill a BMS.
 
 **Blocks on:** steps 7, 17
 **Uses:** `Fish tape / pull cord for the mast conduit` ·
-`IP68 M25 inline housing, 5 pk` · `Neoprene sheet 3/4in, wire bung` ·
+`IP68 M25 inline housing, 5 pk` · `Neoprene sheet 1/2in, wire bung` ·
 `Hollow punch set 3/16-1-3/8in, for the O31.75 bung` ·
 `3M 4200 FC 3 oz tube, skim over the bung`
 
@@ -649,13 +653,13 @@ four M6s behind it. That is the only travel in the whole mast joint.
 
 | | |
 |---|---|
-| Disc | **Ø30.0 × 19.05**, punched from 3/4 in neoprene |
+| Disc | **Ø30.0 × 12.7**, punched from 1/2 in neoprene |
 | Holes | 3 × **Ø5.5** in a row at 8.0 pitch — **15.4%** under the lead |
 | Bore | the plate's own **Ø30.8**, one straight pass, no step |
 | Rubber wall | **3.75 mm at the ends of the row**, 11.75 at the sides |
-| Backed above | **97%**, by the blocker |
-| Proud | **6.35 mm** below the wetted face |
-| Grip on the leads | **12.7 mm**, the full plate, at 15.4% |
+| Backed above | **94%**, by the blocker |
+| Proud | **4.0 mm** below the wetted face |
+| Grip on the leads | **8.7 mm** at 15.4% interference |
 
 > **Why it is round and not a rectangle.** A row of holes inside a circle is
 > fat where it needn't be and thin exactly where the outer two leads sit — at

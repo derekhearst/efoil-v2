@@ -1023,11 +1023,11 @@ BUNG_FREE_D = 30.0                 # as punched - UNDER the bore
 # foam and finishes DEAD FLUSH with nothing to squeeze, and the next size up
 # is this one. See bung_land_pct - that, not the thickness, is the number
 # that decides whether this arrangement works at all.
-# 3/4 in. The blocker sits ABOVE the plate now rather than down its bore, so
-# the bung gets the whole 12.7 of it back - full grip on the leads AND a
-# proper stop over the top, which no earlier version had at the same time.
-# 1/2 in would finish dead flush with nothing to squeeze; 3/4 hangs 6.35 proud.
-BUNG_L = 19.05                     # 3/4 in sheet
+# 1/2 in. The blocker takes 4 mm off the top of the plate's bore, so the bung
+# has 8.7 of it - and a 12.7 disc in an 8.7 space hangs 4.0 proud, which is
+# the squeeze. The stock size that was useless when the bung filled the whole
+# plate is exactly right now.
+BUNG_L = 12.7                      # 1/2 in sheet
 # --- THE BLOCKER, and why the bung needed one -----------------------------
 # Derek, looking at the model: "kinda looks like the bung isnt actually
 # stopped agiasnt the foam". It is not, and the reason is worse than a
@@ -1043,21 +1043,26 @@ BUNG_L = 19.05                     # 3/4 in sheet
 # enough to react on is the dense block - which is CNC machined anyway, so
 # the counterbore that seats this is free.
 BLOCKER = True
-# IT SITS ON ALUMINIUM, not on foam - and NOTHING IS MACHINED INTO THE PLATE
-# TO MAKE THAT HAPPEN. Derek's fix, and it is the better one by a distance:
-# bore the DENSE BLOCK wider than the plate instead of flanging the blocker
-# wider than the block. The plate keeps its ONE STRAIGHT O30.8 bore; the only
-# change of diameter anywhere in this conduit is where the foam meets the
-# alu, and the plate's own flat top face is what the blocker lands on.
-# The O46 foam flange it replaces was carrying 0.69 MPa into H80 at 2.0x.
-# This lands on 6061 that yields at 276.
-#
-# It also kills the O-ring. The blocker beds into the foam counterbore on
-# 4200 - an adhesive use, not a wire seal - so the annulus round it is sealed
-# by the bond and there is nothing for a groove to do.
-BLOCKER_D = 37.6                   # slip fit in the foam counterbore
-BLOCKER_T = 10.0                   # printed ASA, bedded on 4200
-FOAM_CB_D = 38.0                   # counterbore in the dense block
+# THE DENSE BLOCK IS BORED NARROWER THAN THE PLATE, and that is the whole
+# trick - it is Derek's, and I had it inverted twice. The plate keeps its ONE
+# STRAIGHT bore; the foam above it is bored SMALLER; so the only change of
+# diameter anywhere in this conduit is at the foam-to-alu joint, and what it
+# leaves is the FOAM'S UNDERSIDE showing as a ring inside the plate's bore.
+# Nothing is machined into the alu. Nothing is flanged out into the block.
+# The printed part lives inside the plate's bore, lands up against that foam
+# ring, is bedded on 4200, and the bung butts its underside.
+BLOCKER_D = 30.4                   # slip fit INSIDE the plate's bore
+# 4 mm of body, not 10. Every millimetre of this sits INSIDE the plate's bore
+# and comes straight off the bung's grip on the leads - the two share 12.7.
+# 4 is plenty for a printed disc that is only transferring a push into a
+# spigot; the spigot is where the length that matters lives.
+BLOCKER_T = 4.0                    # printed ASA, bedded on 4200
+# ...and a spigot up into the foam's bore. This is not decoration: see
+# blocker_foam_MPa - the foam ring on its own is NOT enough to take the
+# bung's squeeze, and the 4200 bond up the side of this spigot is what
+# actually carries it.
+BLOCKER_SPIGOT_L = 12.0
+FOAM_BORE = 25.0                   # the dense block, NARROWER than the plate
 # A SLIT, not three round holes. The leads arrive in a row, so a slot matches
 # them, prints without bridging, and lets them lie as they come. It is
 # CLEARANCE and seals nothing - the bung does that, one hole per lead.
@@ -1934,8 +1939,7 @@ INSERT_L = 10.0                    # tapped depth, blind from the pad face
 INSERT_OD = 6.0                    # M8 tapped hole, not a O20 bonded bore
 INSERT_BLIND = G10_T - INSERT_L
 # The bung no longer fills the plate - the blocker takes the top of it.
-BUNG_IN_PLATE = G10_T                       # the blocker sits ABOVE the
-                                            # plate now, not down its bore
+BUNG_IN_PLATE = G10_T - BLOCKER_T           # the blocker takes the top
 BUNG_SQUEEZE = BUNG_L - BUNG_IN_PLATE       # ...and this much hangs below
 INSERT_BLIND = G10_T - INSERT_L     # 2.7 mm solid alu above - watertight
 
@@ -5329,9 +5333,15 @@ def build():
     path, _r_used = bend_path(A, K, B, CONDUIT_BEND_R)
 
     # 1. the CHANNEL through hull, dense block and mast plate
-    for tgt in (hull, dense, bpy.data.objects["V2_MastPlate_Alu"]):
-        c = path_tube(f"V2_ConduitChan_{tgt.name}", path,
-                      CONDUIT_D + 2 * CLR, coll)
+    # THE DENSE BLOCK GETS A NARROWER BORE THAN THE PLATE. That difference IS
+    # the blocker's stop - the foam's underside showing as a ring inside the
+    # plate's bore - and it is the only change of diameter anywhere in this
+    # conduit. Nothing is machined into the alu to make it.
+    for tgt, _d in ((hull, CONDUIT_D + 2 * CLR),
+                    (dense, FOAM_BORE),
+                    (bpy.data.objects["V2_MastPlate_Alu"],
+                     CONDUIT_D + 2 * CLR)):
+        c = path_tube(f"V2_ConduitChan_{tgt.name}", path, _d, coll)
         boolean(tgt, c)
         c.hide_set(True)
         c.hide_render = True
@@ -5365,30 +5375,31 @@ def build():
         # channel steps down to O22. Drawn AS FITTED BEFORE THE MAST GOES ON,
         # so the BUNG_SQUEEZE hanging below the wetted face is visible - that
         # is the whole mechanism, and it was invisible while it sat flush.
-        # --- the blocker: a disc on the plate's own top face ---------------
-        # The dense block is counterbored WIDER than the plate's conduit bore,
-        # so the plate's top face shows as an annulus of 6061 round the hole.
-        # That annulus is the stop. The blocker drops into the counterbore,
-        # beds on 4200, and the bung below butts its underside.
+        # --- the blocker: inside the plate's bore, landing on the foam -----
+        # The dense block's conduit is bored NARROWER than the plate, so the
+        # foam's underside shows as a ring inside the plate's bore. That ring
+        # is what the blocker lands on. No step is machined into the alu.
         if BLOCKER:
-            _cb = cyl("V2_DenseCounterbore_cut", cdx, 0.0, plate_z1 - 0.5,
-                      plate_z1 + BLOCKER_T + 1.0, FOAM_CB_D, coll)
-            boolean(dense, _cb)
-            _cb.hide_set(True)
-            _cb.hide_render = True
-            blk = cyl("V2_ConduitBlocker", cdx, 0.0, plate_z1,
-                      plate_z1 + BLOCKER_T, BLOCKER_D, coll,
+            blk = cyl("V2_ConduitBlocker", cdx, 0.0,
+                      plate_z1 - BLOCKER_T, plate_z1, BLOCKER_D, coll,
                       bom_mat("asa"), seg=40)
+            _sp = cyl("V2_BlockerSpigot", cdx, 0.0, plate_z1,
+                      plate_z1 + BLOCKER_SPIGOT_L, FOAM_BORE - 0.4, coll,
+                      seg=40)
+            boolean(blk, _sp, op='UNION')
+            _sp.hide_set(True)
+            _sp.hide_render = True
             _sl = box("V2_BlockerSlit_cut",
                       cdx - BLOCKER_SLIT_L / 2, cdx + BLOCKER_SLIT_L / 2,
                       -BLOCKER_SLIT_W / 2, BLOCKER_SLIT_W / 2,
-                      plate_z1 - 1.0, plate_z1 + BLOCKER_T + 1.0, coll)
+                      plate_z1 - BLOCKER_T - 1.0,
+                      plate_z1 + BLOCKER_SPIGOT_L + 1.0, coll)
             boolean(blk, _sl)
             _sl.hide_set(True)
             _sl.hide_render = True
 
         _bz_lo = plate_z0 - BUNG_SQUEEZE
-        _bz_hi = plate_z1
+        _bz_hi = plate_z1 - BLOCKER_T
         bung = cyl("V2_WireBung", cdx, 0.0, _bz_lo, _bz_hi, BUNG_FREE_D, coll,
                    bom_mat("rubber"), seg=48)
         # THREE IN A ROW, ALONG THE CHORD - the order they leave the mast in.
@@ -5466,7 +5477,7 @@ def build():
         # O8 hole, which is 51 mm2 of the 636 the bung presents.
         # The blocker covers the bung's whole face; the only thing still open
         # is what is left of the SLIT once the three leads are lying in it.
-        _above = (math.pi / 4 * BUNG_BORE ** 2
+        _above = (math.pi / 4 * BLOCKER_D ** 2
                   - (BLOCKER_SLIT_L * BLOCKER_SLIT_W
                      - 3 * math.pi / 4 * CABLE_OD ** 2)
                   if BLOCKER else
@@ -5499,40 +5510,42 @@ def build():
                               * G10_T) / (_face * BUNG_SQUEEZE)),
                round(100.0 - 100.0 * _above / _face)))
         if BLOCKER:
-            # IT LANDS ON THE PLATE'S OWN TOP FACE. Nothing is machined into
-            # the plate to make that ledge - the plate keeps one straight
-            # bore, and the ledge exists purely because the foam above it is
-            # counterbored WIDER. The only change of diameter in this whole
-            # conduit is at the foam-to-alu joint.
-            _shoulder = math.pi / 4 * (FOAM_CB_D ** 2 - BUNG_BORE ** 2)
-            _bfN = math.pi / 4 * (BUNG_FREE_D ** 2 - 3 * BUNG_HOLE_D ** 2)
+            # WHAT IT LANDS ON, and this is the number to look at hardest.
+            # The foam ring is what the plate's bore leaves showing of the
+            # dense block's underside, and on its own it is NOT enough - the
+            # bung's squeeze puts more into it than H80 will take. What
+            # actually carries the load is the 4200 bond up the side of the
+            # spigot, in shear.
+            _ring = math.pi / 4 * (BUNG_BORE ** 2 - FOAM_BORE ** 2)
+            _F = math.pi / 4 * (BUNG_FREE_D ** 2 - 3 * BUNG_HOLE_D ** 2)
+            _bond = math.pi * (FOAM_BORE - 0.4) * BLOCKER_SPIGOT_L
             rep["blocker_is"] = (
-                "printed ASA, O%.1f x %.0f, bedded on 4200 in a O%.0f "
-                "counterbore in the dense block. A %.0f x %.0f SLIT for the "
-                "leads - clearance, not a seal. It lands on the plate's own "
-                "flat top face; no step is machined into the alu"
-                % (BLOCKER_D, BLOCKER_T, FOAM_CB_D,
+                "printed ASA, O%.1f x %.0f inside the PLATE's bore with a "
+                "O%.1f x %.0f spigot up into the foam's, bedded on 4200. A "
+                "%.0f x %.0f SLIT for the leads - clearance, not a seal. "
+                "Nothing is machined into the alu: the dense block is simply "
+                "bored NARROWER, and the foam ring that leaves is the stop"
+                % (BLOCKER_D, BLOCKER_T, FOAM_BORE - 0.4, BLOCKER_SPIGOT_L,
                    BLOCKER_SLIT_L, BLOCKER_SLIT_W))
-            rep["blocker_lands_on"] = "6061, the plate's top face"
-            rep["blocker_shoulder_mm2"] = round(_shoulder)
-            rep["blocker_shoulder_MPa"] = round(_bfN / _shoulder, 2)
-            rep["blocker_shoulder_margin"] = round(
-                276.0 / (_bfN / _shoulder))
+            rep["blocker_foam_ring_mm2"] = round(_ring)
+            rep["blocker_foam_MPa"] = round(_F / _ring, 2)
+            rep["blocker_foam_alone_is_enough"] = (_F / _ring) <= H80_COMP_MPA
+            rep["blocker_bond_mm2"] = round(_bond)
+            rep["blocker_bond_cap_N"] = round(_bond * 2.0)   # 4200 ~2 MPa
+            rep["blocker_bond_margin"] = round(_bond * 2.0 / _F, 1)
+            rep["blocker_load_path"] = (
+                "the 4200 bond on the spigot, NOT the foam ring. The ring is "
+                "%.0f mm2 at %.2f MPa against H80's %.1f, so it would crush "
+                "in on its own; the bond is %.0f mm2 in shear at %.1fx. If "
+                "the bond is skimped the ring is what is left"
+                % (_ring, _F / _ring, H80_COMP_MPA, _bond, _bond * 2.0 / _F))
             rep["blocker_slit_mm"] = [BLOCKER_SLIT_L, BLOCKER_SLIT_W]
-            rep["blocker_slit_takes_the_row"] = (
-                BLOCKER_SLIT_L >= 2 * BUNG_PITCH + CABLE_OD
-                and BLOCKER_SLIT_W >= CABLE_OD)
             rep["blocker_no_alu_machining"] = True
-            rep["blocker_seals_by"] = (
-                "4200 round its rim into the foam counterbore - an adhesive "
-                "use, not a wire seal. There is no O-ring and nothing for one "
-                "to do: the annulus is bonded and the leads are sealed by the "
-                "bung, one hole per lead")
             rep["blocker_installed_at"] = (
-                "STEP 7, with the plate. Its O%.1f cannot pass the O%.1f "
-                "plate bore, so it is bedded before the plate goes on. The "
-                "leads pull up through its slit at step 18 and only the BUNG "
-                "grips them" % (BLOCKER_D, BUNG_BORE))
+                "STEP 7, from BELOW, before the plate goes on - its spigot "
+                "has to go up into the foam's bore and its body fills the "
+                "plate's. Leads pull up through the slit at step 18 and only "
+                "the BUNG grips them")
         rep["bung_land_needed_pct"] = 60
         rep["bung_land_is_thin"] = 2 * _seg / _area < 0.6
         # THE ONE MEASUREMENT THIS TURNS ON. MAST_SLOT_W is a guess, and the

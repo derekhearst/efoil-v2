@@ -853,12 +853,11 @@ def build():
     # conform to a stranded jacket and it turns pushing 6.5 mm cable through
     # The bung is a punched DISC and blender_board.py takes BUNG_L straight
     # off the stock thickness.
-    add("7  Module", "Neoprene sheet 3/4in, wire bung", 1, "sheet",
-        26.00, EST, "3/4 in. The blocker sits ABOVE the plate, so the bung gets the "
-        "whole 12.7 of its bore - full grip on the leads AND a stop over the "
-        "top, which no earlier version had at once. Punch O30.0 discs and "
-        "drill 3 x O5.5 IN A ROW at 8.0 pitch. Hangs 6.35 below the wetted "
-        "face and the mast's own plate squeezes that out.  and drill 3 x O5.5 IN A ROW The row is the "
+    add("7  Module", "Neoprene sheet 1/2in, wire bung", 1, "sheet",
+        26.00, EST, "1/2 in. The blocker takes 4 mm off the top of the plate's bore, "
+        "so the bung has 8.7 of it - and a 12.7 disc in an 8.7 space hangs "
+        "4.0 proud, which is the squeeze. Punch O30.0 discs and drill 3 x "
+        "O5.5 IN A ROW at 8.0 pitch. The mast's own plate squeezes it.  and drill 3 x O5.5 IN A ROW The row is the "
         "order the leads leave the mast in, so none has to be twisted. One sheet is a lifetime of bungs for both boards")
     # Derek's existing punch set stops at 1/2 in and the disc is 1-1/4 in.
     # A 1-3/8 in hole saw also gets there - its plug comes out about 2.5 mm
@@ -887,12 +886,14 @@ def build():
     # is bonded and there is nothing left for a groove to do.
     # NO NEW FILAMENT LINE. It is grams, off the rim ring's spool.
     add("7  Module", "Printed ASA wire blocker", 0, "off", 0.00, OWNED,
-        "printed, grams off the rim ring spool. O37.6 x 10 disc with a "
-        "23 x 7 SLIT - a slot, not three holes, because the leads arrive in a "
-        "row and a slot prints without bridging. The slit is CLEARANCE and "
-        "seals nothing; the bung does that, one hole per lead. Bed it on 4200 "
-        "in the O38 counterbore at STEP 7 - it cannot pass the O30.8 plate "
-        "bore, so it goes in before the plate does")
+        "printed, grams off the rim ring spool. O30.4 x 4 body inside the "
+        "PLATE's bore, O24.6 x 12 spigot up into the FOAM's, 23 x 7 SLIT for "
+        "the leads. The slit is CLEARANCE and seals nothing; the bung does "
+        "that, one hole per lead. BED THE SPIGOT PROPERLY ON 4200 - that bond "
+        "is the load path, not the foam ring it lands on: the ring is 254 mm2 "
+        "at 2.5 MPa against H80's 1.4 and would crush in on its own, while "
+        "the bond is 927 mm2 in shear at 2.9x. Goes in at STEP 7, from below, "
+        "before the plate")
     add("7  Module", "3M 4200 FC 3 oz tube, skim over the bung", 1, "tube",
         17.99, OK, "does both boards; 4200 NOT 5200 - 5200 never comes out. "
         "NOT A BARRIER in the channel any more - the blocker is bedded "

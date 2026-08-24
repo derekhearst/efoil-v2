@@ -6,17 +6,17 @@ Grouped by where you buy it rather than by what it does, because that is the ord
 
 | Supplier | Lines | $ |
 |---|---:|---:|
-| Amazon | 113 | $3,619.71 |
+| Amazon | 113 | $3,609.71 |
 | Gong | 1 | $1,404.00 |
 | Flipsky | 3 | $1,038.00 |
-| Not a purchase - tax and freight | 3 | $836.31 |
+| Not a purchase - tax and freight | 3 | $835.71 |
 | BatteryHookup | 2 | $297.50 |
 | Fiberglass Supply | 3 | $253.38 |
 | Home Depot / hardware | 4 | $169.16 |
 | Maker Shop Boise | 1 | $150.00 |
 | Speedy Metals | 1 | $88.92 |
 | Easy Composites | 1 | $52.00 |
-| **TOTAL** | | **$7,908.98** |
+| **TOTAL** | | **$7,898.38** |
 
 ## Amazon
 
@@ -66,7 +66,6 @@ https://www.amazon.com
 | [Rosin paper roll, floor and bench](https://www.amazon.com/dp/B0FXJDFW2B) | 1 | roll | $27.95 | estimate | absorbs instead of pooling. This is the actual upgrade over a tarp, and it is $24 |
 | [SP17 2-pin IP68 flange receptacle](https://www.amazon.com/dp/B0CDH5R8P4) | 2 | ea | $26.40 | **verified** | 67.2 V 5 A charge; O17 panel hole, 2 x M3 flange screws. $2.49, not the $11 this carried. CHECK THE CAP IS INC |
 | [3M Fastbond 1077 water-based, CNC hold-down](https://www.amazon.com/dp/B0GRSV587N) | 1 | ea | $26.02 | **verified** | WATER-BASED because the blank is EPS - solvent sprays like Super 77 eat polystyrene. Foam is taped/tacked down |
-| [Neoprene sheet 3/4in, wire bung](https://www.amazon.com/dp/B07Y5K1VHK) | 1 | sheet | $26.00 | estimate | 3/4 in. The blocker sits ABOVE the plate, so the bung gets the whole 12.7 of its bore - full grip on the leads |
 | [PETG filament 1 kg, mast clamp set](https://www.amazon.com/dp/B0D41Y3WWZ) | 2 | kg | $25.98 | **verified** | 4 STEP files; 0.6 nozzle, 5 perims, 40% infill |
 | [PETG for props, 4-5 spares per board](https://www.amazon.com/dp/B0D41Y3WWZ) | 2 | kg | $25.98 | **verified** | 0.4 nozzle, 100% infill; balance-check on a bolt, then epoxy-coat - V1 skipped the coat and layer lines cost d |
 | [1/4 in torque wrench, 10-50 in-lb](https://www.amazon.com/dp/B0D7PWP7YF) | 1 | ea | $25.97 | **verified** | 1.1-5.6 Nm. RANGE MATTERS: our hatch spec is 1.2 Nm = 10.6 in-lb, which is BELOW the 20 in-lb floor of the com |
@@ -88,6 +87,7 @@ https://www.amazon.com
 | [Chip brushes 2 in, 36 pk](https://www.amazon.com/dp/B078XJ2DCJ) | 1 | pk | $17.99 | **verified** | disposable, 2-4 a session across 6 sessions. The 12 pk at $7.19 is dearer per brush and runs out mid-build |
 | [Laminating bubble roller kit, 4 pc](https://www.amazon.com/dp/B07FCLTHY6) | 1 | kit | $17.99 | **verified** |  |
 | [Paste wax, releasing the groove filler](https://www.amazon.com/dp/B0GVCGHZFR) | 1 | ea | $16.99 | estimate | the filler must NOT bond - it comes back out after the glass goes over it |
+| [Neoprene sheet 1/2in, wire bung](https://www.amazon.com/dp/B01LX83X9H) | 1 | sheet | $16.00 | estimate | 1/2 in. The blocker takes 4 mm off the top of the plate's bore, so the bung has 8.7 of it - and a 12.7 disc in |
 | [M5 x 25 button head TORX TX25, 25 pk](https://www.amazon.com/dp/B08BZJPJTK) | 1 | pk | $15.99 | estimate | 24 needed of 25. TX25 drive. ISO 7380-2 flanged button; the model draws the plain O9.5 x 2.75 high, which is w |
 | [Adjustable hand sanding block](https://www.amazon.com/dp/B0D4LNDYXD) | 1 | ea | $15.99 | **verified** | rails, nose, tail and anywhere the longboard will not reach |
 | [Longboard PSA sandpaper 80 grit, 20 yd roll](https://www.amazon.com/dp/B0CQ7CVGK6) | 1 | roll | $15.99 | **verified** | 2-3/4 in, self-adhesive, fits the longboard above. 80 is the fairing grit - it cuts fair, it does not finish |
@@ -164,7 +164,7 @@ Some Flipsky appears on Amazon but the range is thin and usually dearer. Buy dir
 
 | Item | Qty | Unit | Ext | Price | Note |
 |---|---:|---|---:|---|---|
-| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $447.68 | **verified** |  |
+| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $447.08 | **verified** |  |
 | Gong shipping to Idaho, ONE order, both foils | 1 | order | $268.63 | **verified** | quoted at checkout for 2 x XL Alu setups. PER ORDER, not per foil - ordering the two separately would roughly  |
 | Shipping - Divinycell, 6061 plate, VR20 | 1 | allow | $120.00 | estimate | STILL THE BIGGEST UNVERIFIED LINE - it wants three real carts to settle. Was $220 when it covered G10 sheet an |
 
