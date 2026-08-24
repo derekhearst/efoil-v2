@@ -21,15 +21,26 @@ envelope of 166.8 against 153.7, handles on "110 mm centres" against 152.6,
 and four separate report strings still calling Gong's M6 screws M8 months
 after that was corrected everywhere a builder would look.
 
-So: every BOLDED number-with-a-unit in the guide has to appear somewhere in
-report.json, or be listed in NOT_FROM_MODEL below with a reason. Bolded, not
-every number - the bold is the author saying "this figure matters", which is
-exactly the set worth binding to the model. Prose arithmetic and worked
-examples stay free.
+So: every number-with-a-unit in the prose has to appear somewhere in
+report.json or bom_stats.json, or be listed in NOT_FROM_MODEL below with a
+reason. This started as bolded-only - the bold being the author saying "this
+figure matters" - and the unbolded sweep that followed found three more:
+a bung holding at "280 N against 28 N - 10.7x" that the model puts at
+253/37/6.8x, a lid seat table whose first two rows were 2.67 and 1.35 MPa
+against 1.92 and 2.06, and a README open question still telling you to go buy
+a cutter that has been in the BOM for months. Unbolded numbers are where the
+stale ones hide, precisely because nobody thought they mattered enough to
+bold.
+
+The cost of that reach is an allowlist, and the allowlist is the load-bearing
+part: V1 measurements, bought-part sizes, numbers quoted AS history, and
+worked arithmetic in comparison tables are all legitimately not ours. Each
+entry carries a reason. If you find yourself adding one without being able to
+write the reason, the number is probably stale.
 
 Reports three directions:
   - guide references a BOM line that no longer exists  -> ERROR
-  - guide bolds a number the model does not know       -> ERROR
+  - prose states a number the model does not know      -> ERROR
   - BOM line that no step consumes                     -> listed, not an error
     (plenty of lines are tools, freight or tax and belong to no single step)
 """
@@ -52,16 +63,47 @@ BOMSTATS = os.path.join(ROOT, "model", "bom_stats.json")
 PROSE = (os.path.join(ROOT, "docs", "fabrication.md"),
          os.path.join(ROOT, "README.md"))
 
-# Bolded figures that are deliberately NOT model-derived. Each one needs a
-# reason, because "add it to the allowlist" is how a check like this dies.
+# Figures that are deliberately NOT model-derived. Each one needs a reason,
+# because "add it to the allowlist" is how a check like this dies.
 NOT_FROM_MODEL = {
     67.2: "the charger's own nameplate - an external spec, not ours",
     58.8: "the WRONG charger, quoted so it can be recognised and avoided",
     3.65: "Li-ion cell full charge, a chemistry constant",
+    3.6: "Li-ion nominal cell voltage, same",
     2.5: "the fallback groove cutter's diameter, a bought size",
     1.5: "generic - ratios, clearances, hand measurements",
     0.5: "generic",
     1.3: "three-sheet shortfall, printed from blank_three_sheets_short_by_mm",
+    # --- bought parts. These are sizes somebody else chose. ---------------
+    1.25: "JST GH 1.25 mm - a connector SERIES NAME, not a measurement",
+    3.175: "1/8 in, the spare silicone cord size",
+    2438: "the EPS sheet's own 8 ft length",
+    1219: "the EPS sheet's own 4 ft width",
+    # --- the shop, not the board -----------------------------------------
+    110: "gantry clearance the split sequence needs - an ask of the shop, "
+         "not an output of the model",
+    1420: "EPS layer oversize cut - a build allowance, not a part dimension",
+    580: "the same, across",
+    171: "M5 rod cut length - a build instruction",
+    # --- V1. It is a built board; its numbers are MEASUREMENTS, and the
+    # README's whole left-hand column is there to be compared against. ----
+    1600: "V1 length, measured", 153: "V1 thickness, measured",
+    660: "V1 cavity length", 280: "V1 cavity width", 115: "V1 cavity depth",
+    2268: "V1 pack energy, 14S9P", 5.22: "V1 ply lid crush, measured",
+    # --- superseded numbers quoted AS history, on purpose -----------------
+    2.63: "the mast margin before the M6 correction - quoted to be corrected",
+    11.4: "three-sheet shortfall when the four-layer call was taken",
+    9.75: "rubber at the sides of the old O26 bung",
+    365: "the ring area of a foam stop that was never built",
+    1.72: "what that stop would have carried - reasoning about a non-part",
+    2.25: "pocket-vs-disc clearance from the counterbore era",
+    800: "V1's M4 x 8 insert, the catalogue figure the tau back-solve uses",
+    1086: "M5 x 9.5 insert option, not taken", 1860: "M6 x 12.7, not taken",
+    1250: "M4 preload at 1.0 Nm - worked arithmetic in a warning table",
+    2500: "M4 preload at 2.0 Nm, the pull-it-out case",
+    299: "shear strain in a bond line that is being argued AGAINST",
+    200: "PVC pack wrap lay-flat width - a bought size",
+    13.2: "kN of thread capacity, printed from mast_thread_cap_N in newtons",
 }
 # Small integers and round figures carry no information - they are counts,
 # ratios, page numbers and hand measurements, not model output.
@@ -155,9 +197,15 @@ def model_numbers():
         elif isinstance(v, (list, tuple)):
             for x in v:
                 walk(x)
-        elif isinstance(v, str):
-            for m in re.findall(r"-?\d+(?:\.\d+)?", v):
-                add(m)
+        # NOTE what is NOT here: digits scraped out of report STRINGS. That
+        # was the first version, and it made the known-set a soup - any claim
+        # matching any digit-sequence in any sentence anywhere passed. Turning
+        # it off cost four report keys, which is the right trade: the hatch
+        # lid's finished thickness, the seal groove depth, the flange depth
+        # and the wire bay length were all quoted in the guide and published
+        # only inside prose. They are real numbers and they are keys now. If
+        # this check ever demands another, publish it rather than loosening
+        # this back up.
 
     walk(json.load(io.open(REPORT, encoding="utf-8")))
     # bom.py's numbers are a second contract - the README quotes its cost,
@@ -168,11 +216,29 @@ def model_numbers():
     return vals
 
 
-# The multiplication sign counts as a unit: "**17 x O12 through the core**"
-# is a claim about a count, and a count is exactly the sort of thing that
-# goes stale when a bolt ring is regenerated.
-UNIT = r"(?:mm|MPa|Nm|kg|Wh|kN|N|A|V|%|x|×|in)(?![a-zA-Z])"
-CLAIM = re.compile(r"\*\*(\d+(?:\.\d+)?)\s*" + UNIT)
+# The multiplication sign counts as a unit for BOLDED claims: "**17 x O12
+# through the core**" is a claim about a count, and a count is exactly the
+# sort of thing that goes stale when a bolt ring is regenerated.
+#
+# It is left OUT of the unbolded pass, because there it matches every "1.79x"
+# margin in the file. A margin is arithmetic on two numbers this already
+# checks, so flagging it adds noise and catches nothing new.
+UNIT_BOLD = r"(?:mm|MPa|Nm|kg|Wh|kN|N|A|V|W|%|x|×|in)(?![a-zA-Z])"
+# A, V, W and `in` are OUT of the unbolded set. They are ordinary English
+# words or single letters, and they matched "6061 in a 12.7 plate" and
+# "20-200 in-lb" as though those were dimensions. Bolded text is deliberate
+# enough to keep them; running prose is not.
+UNIT_PLAIN = r"(?:mm|MPa|Nm|kN|kg|Wh|N|%)(?![a-zA-Z])"
+CLAIM = re.compile(r"\*\*(\d+(?:\.\d+)?)\s*" + UNIT_BOLD)
+# Unbolded, with commas allowed - "2,304 Wh" was being read as "304 Wh", which
+# is how a stale pack energy would have slipped through unnoticed.
+PLAIN = re.compile(r"(?<![\w.$-])(\d[\d,]*(?:\.\d+)?)\s*(" + UNIT_PLAIN + ")")
+# Prefix scales, so a claim in kN can be checked against a value in N. The
+# plate "carries 6.3 kN" against a modelled 6274 N: same number, and an
+# exact-match test would have called it stale forever.
+SCALE = {"kN": 1000.0}
+# ~~struck through~~ - superseded, and exempt. See stale_numbers().
+STRUCK = re.compile(r"~~.*?~~")
 # ...and BOLDED MONEY, separately, because a dollar sign is not a unit and the
 # pattern above walked straight past "**$3,917/board**" - which was $123 out
 # by the time anyone looked. Cost is the most-quoted number in the repo, so it
@@ -181,17 +247,25 @@ MONEY = re.compile(r"\*\*\$([\d,]+(?:\.\d+)?)")
 
 
 def stale_numbers():
-    """Bolded figures in the prose that trace to nothing the scripts compute."""
+    """Figures in the prose that trace to nothing the scripts compute."""
     vals = model_numbers()
     out = []
     for path in PROSE:
         short = os.path.basename(path)
         for i, line in enumerate(
                 io.open(path, encoding="utf-8").read().split("\n"), 1):
-            for rx in (CLAIM, MONEY):
+            # STRUCK-THROUGH TEXT IS EXEMPT, and this is the escape hatch to
+            # reach for instead of NOT_FROM_MODEL. ~~68 mm~~ is the author
+            # saying "this was true and is not" in markdown's own vocabulary,
+            # it renders as the reader seeing the same thing, and it is scoped
+            # to the one sentence - where an allowlist entry silently exempts
+            # that number everywhere in both files forever.
+            line = STRUCK.sub("", line)
+            for rx in (CLAIM, MONEY, PLAIN):
                 for m in rx.finditer(line):
-                    raw = m.group(1).replace(",", "")
-                    n = round(float(raw), 2)
+                    raw = m.group(1).rstrip(",")
+                    unit = m.group(2) if rx is PLAIN else ""
+                    n = round(float(raw.replace(",", "")), 2)
                     if n in vals or n in GENERIC or n in NOT_FROM_MODEL:
                         continue
                     # ROUNDING IS NOT STALENESS. Prose says "$4,040/board" and
@@ -202,8 +276,16 @@ def stale_numbers():
                     # ANY known value rounds to it AT THE CLAIM'S OWN
                     # PRECISION - "143.7" has to agree to a tenth, "4040" only
                     # to the unit, which is exactly how much each one asserts.
+                    #
+                    # The kN case goes through the SAME precision rule, not a
+                    # fixed one: "6.3 kN" against a modelled 6274 N is
+                    # 6.274 rounded to a tenth, which agrees. Rounding it to
+                    # two places instead gave 6.27 and reported the guide
+                    # stale against a number it had right.
                     dp = len(raw.split(".")[1]) if "." in raw else 0
-                    if any(round(v, dp) == n for v in vals):
+                    sc = SCALE.get(unit, 1.0)
+                    if any(round(v / sc, dp) == n or round(v, dp) == n
+                           for v in vals):
                         continue
                     out.append((f"{short}:{i}", m.group(0),
                                 line.strip()[:70]))
@@ -240,8 +322,8 @@ def main():
             print(f"    step {s}: {i}")
     if missing or stale:
         return 1
-    print("\nevery referenced line exists, and every bolded figure "
-          "traces to the model")
+    print("\nevery referenced line exists, and every numeric claim - bolded "
+          "or not - traces to the model")
     return 0
 
 

@@ -464,8 +464,9 @@ that:
 
 | Seat | Pressure | vs H100's 2.0 MPa |
 |---|---|---|
-| Bare M5 cap head | 2.67 MPa | fails |
-| Ø18 penny washer | 1.35 MPa | passes, 1.5× |
+| Bare M5 **button** head, Ø9.5 | 1.92 MPa | passes, 1.04× — the bolt actually specced, and it is *this* close |
+| Bare M5 socket cap, Ø8.5 | 2.06 MPa | **fails, 0.97×** — a narrower head is worse, and a cap head is what an earlier draft had |
+| Ø18 penny washer | 1.12 MPa | passes, 1.79× |
 | **On the epoxy plug, Ø18 washer** | **6.8 MPa vs epoxy's ~50** | **7.4×, and the foam carries none** |
 
 > **Why the lid needs a hardpoint at all.** It is glass / H100 foam / glass,
@@ -770,7 +771,7 @@ four M6s behind it. That is the only travel in the whole mast joint.
 > **The bung has to be wider than the mast's wire slot**, or the plate has
 > nothing to push on. Derek's slot is **20.4 × 7**, cut just wide enough for
 > the three leads, and it sits wholly under the bung — so it costs only its
-> own 143 mm² and the plate keeps **90% of the bung's face**. No follower, no
+> own 143 mm² and the plate keeps **89% of the bung's face**. No follower, no
 > flange, no spotface.
 >
 > **Open the slot to 23.5 mm** while you are at it. The leads reach the bung's
@@ -778,8 +779,8 @@ four M6s behind it. That is the only travel in the whole mast joint.
 > slot that reaches 10.2 — they would bear on its ends. Not a leak path, but a
 > chafe point on something that vibrates. It costs 2 points of land.
 
-It also holds itself in at about **280 N** of friction against the **28 N** a 5 m water column
-pushes up under it — 10.7×. It comes out the way it went in: cut the fillet,
+It also holds itself in at about **253 N** of friction against the **37 N** a 5 m
+water column pushes up under it — 6.8×. It comes out the way it went in: cut the fillet,
 pull the leads and the bung down together.
 
 Fillet 4200 over the underside. **4200 not 5200** — 5200 never comes out.
@@ -1097,7 +1098,7 @@ there is no reason to, and a 150 A fuse never protected a 16 AWG lead anyway:
 | | |
 |---|---|
 | **Stacked ring lugs on P+ / P−** *(recommended)* | 8 AWG under 16 AWG, star washer between. This is what the terminals are for — no new part, no new bay space |
-| **2-post busbar** | Only if you want separately torqued, labelled landings. The bay is 68 mm deep, so it costs room you do not have much of |
+| **2-post busbar** | Only if you want separately torqued, labelled landings. The bay is 75 mm deep, so it costs room you do not have much of |
 | ~~Dual-barrel lug~~ | **No.** One barrel crimped onto 8 AWG *and* 16 AWG compresses neither properly. That is the joint that fails a year later |
 
 ## Joint by joint

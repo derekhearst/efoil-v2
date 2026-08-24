@@ -3923,6 +3923,27 @@ def build():
     ext_l, ext_w, ext_h = L["ext_l"], L["ext_w"], L["ext_h"]
     int_l, int_w, int_h = L["int_l"], L["int_w"], L["int_h"]
     rep["board_thickness_mm"] = round(THICK, 1)
+    # ...AND THE OTHER TWO, WHICH THE REPORT DID NOT CARRY AT ALL. The board is
+    # 1400 x 560 and report.json did not say so anywhere - both numbers are
+    # quoted all over the README and the guide, and nothing could check them.
+    # Same for the cable it has to swallow and the pad it wears.
+    rep["board_length_mm"] = round(LENGTH, 1)
+    rep["board_width_mm"] = round(WIDTH * 2 if WIDTH < LENGTH / 4 else WIDTH, 1)
+    rep["board_mm"] = [round(LENGTH, 1), rep["board_width_mm"],
+                       round(THICK, 1)]
+    rep["deck_pad_thickness_mm"] = DECK_PAD_T
+    # ...and four more the report only ever carried INSIDE prose strings, so
+    # nothing could check the guide's use of them. The hatch lid's own
+    # finished thickness was one of them - the number the profile bit has to
+    # clear, quoted in the guide, published nowhere.
+    rep["hatch_lid_thickness_mm"] = round(LID_T, 1)
+    rep["module_lid_thickness_mm"] = round(ENC_LID_T, 2)
+    rep["hatch_groove_depth_mm"] = CHAN_D
+    rep["module_flange_depth_mm"] = MOD_FLANGE_H
+    rep["wire_bay_len_mm"] = WIRE_BAY_LEN
+    rep["cable_od_mm"] = CABLE_OD
+    rep["blank_three_sheets_mm"] = round(3 * EPS_SHEET_T, 1)
+    rep["mast_bolt_spacing_mm"] = [BOLT_SPACING_X, BOLT_SPACING_Y]
     rep["seal_plane_z_mm"] = round(ledge_z + RIM_T, 1)
     rep["cavity_floor_z_mm"] = FLOOR_Z
     rep["cavity_mm"] = f"{CAV_X1 - CAV_X0:.0f} x {CAV_WIDTH:.0f} x {cav_depth:.0f}"
@@ -5581,6 +5602,8 @@ def build():
         # which is most of why the number came good. If it sits wholly inside
         # the disc the lost area is just its own; only a slot long enough to
         # run out of the disc costs the full chord.
+        # the slot's own area, quoted in the guide and published nowhere
+        rep["bung_slot_area_mm2"] = round(MAST_SLOT_L * MAST_SLOT_W)
         if math.hypot(MAST_SLOT_L / 2.0, _slot_hw) <= _r:
             _lost = MAST_SLOT_L * MAST_SLOT_W
             rep["bung_slot_wholly_under_bung"] = True

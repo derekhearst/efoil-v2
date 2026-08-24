@@ -148,15 +148,17 @@ Ordered by what can actually stop the build.
 1. **Will the makerspace allow EPS on the CNC?** Unanswered. It is a
    woodworking shop with no published material policy, and this is the one
    that can stop the booking outright. Maker Shop Boise, (208) 254-6151.
-2. **Cutter reach.** The deepest pocket is the cavity's lower half at
-   **71.6 mm**. The O-flute in the BOM has a *cutting* length of 31.8 mm — it
-   is 39.8 mm short and physically cannot reach the floor. Buy a long-reach
-   ½ in spiral, or rough it with the ball nose.
-3. **Wire bay stops at 68 mm.** At 75 the rim segmentation checks collapse —
-   segment volumes sum to 50% of the ring and one reads 2 mm proud of the seal
-   face — while a per-segment dump shows all six correct and flush. Geometry
-   looks right, measurement does not, cause unresolved. 68 is the largest
-   value that stays green.
+2. ~~**Cutter reach.**~~ **Closed.** The deepest pocket is the cavity's lower
+   half at **71.6 mm** and the Freud O-flute cuts **31.8 mm**, which is where
+   this question came from — but roughing never needed the reach (Z-level
+   passes put the shank in open air) and the BOM has carried a **76.2 mm**
+   wall-finish spiral for the one pass that does. The check was asking the
+   roughing bit.
+3. ~~**Wire bay stops at 68 mm.**~~ **Closed — it is 75.** The check that
+   refused 75 was the in-build rim-segment volume test, the one later shown to
+   report 53% of a ring that measures 99.96% in the saved file. It was
+   measuring the booleans wrong, not the geometry. That test is demoted, and
+   the bay is the 75 mm Derek asked for in the first place.
 4. **Gong import duty.** Shipping is measured ($268.63 for two foils, from
    their checkout), but US customs is not. It arrives later as a courier
    invoice. Budget ~$210 if a 15% rate holds; the BOM carries it at zero so it
