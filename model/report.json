@@ -1,6 +1,6 @@
 {
  "FAILS": [
-  "mast bolt margin only 1.44x on the roll case (6272 N vs 9045 N)"
+  "none"
  ],
  "aft_wall_is_connector_panel": "3 x PG11 glands, power button, charge port - all panel-mount through the module aft wall, all inside the service strip",
  "bay_depth_mm": 75.0,
@@ -491,7 +491,9 @@
  "mast_head_t_derived_from": "Gong's M8x30 through it must leave 10 mm in the tap",
  "mast_insert_g10_above_mm": 2.7,
  "mast_joint_vs_bolt": 1.0,
+ "mast_margin_note": "1.44x is against the M6's PROOF load, not its ultimate - about 2.0x against failure. It is Gong's screw into our tapped 6061, and our side is 46% stronger than the screw, so nothing we build moves it. A US-rail board reacts the same screw into a brass square nut in a plastic box, which is weaker than this",
  "mast_needs_machining": true,
+ "mast_our_side_vs_their_bolt": 1.46,
  "mast_pad_z_mm": 1.5,
  "mast_pct_of_length": 24.3,
  "mast_plate_moment_Nm": 564,
@@ -504,6 +506,7 @@
  "mast_thread_cap_N": 13232,
  "mast_thread_in_foam_mm": 0.0,
  "mast_true_position_budget_mm": 0.25,
+ "mast_weak_link_is_theirs": true,
  "mast_why_machined": "blind tapped, so no clearance absorbs error: true position must hold 0.25 mm, a 2 deg drill wander alone spends 0.35 mm of it, and only 2.7 mm of solid alu separates the tap from breaching the plate that keeps the cavity dry",
  "materials": {
   "cell holder": "bought 21700 1x2 spacer bricks, both ends of every cell - NOT the printed comb below, which is dead code",

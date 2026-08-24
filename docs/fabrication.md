@@ -745,11 +745,20 @@ cavity — that is the whole galvanic mitigation and it is not optional.
 > them; the cup washers and the screws you will. **T30 Torx, not hex** — the
 > spares line is hex-drive A4, so keep Gong's key with the board.
 >
-> This model said M8 until it was checked against Gong's own contents list,
-> and the correction costs real margin: **the joint is 1.44× on the roll
-> case, not 2.63×.** M6 A4-70 has a 9.0 kN proof load against the 6.3 kN that
-> case demands. The 6061 thread is 46% stronger than the screw, so tapping
-> deeper buys nothing — the screw is the weak link and it is Gong's.
+> This model said M8 until it was checked against Gong's own contents list.
+> The correction costs real margin — **the joint is 1.44× on the roll case,
+> not 2.63×** — but not margin anyone here can buy back, and that is the
+> point. M6 A4-70 proofs at 9.0 kN against the 6.3 kN that case demands.
+>
+> **The screw is the weak link, and it is Gong's.** Our side of the joint is
+> 10 mm of tapped 6061 in a 12.7 plate at **13.2 kN — 46% stronger than the
+> screw going through it.** Their own system reacts that same screw into a
+> brass square nut floating in a US box, which is weaker than this. So V2's
+> mast joint is stronger than the boards Gong designed the fitting for, and
+> tapping deeper or fatter buys nothing.
+>
+> The 1.44× is also against **proof** load — the point permanent set begins —
+> not ultimate. Against actual failure it is around 2.0×.
 
 **No gasket goes under the mast base**, and there is none in the BOM.
 
