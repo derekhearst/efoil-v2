@@ -611,6 +611,22 @@ that kill a BMS.
 Motor leads part **in the cavity**, one housing per phase — without that the
 mast is bolted on for life.
 
+> **The conduit is two straight bores, and you drill the second one.** One
+> goes **straight up** from the mast plate, 32 mm of it. The other is drilled
+> **down from inside the cavity at 48°**, 43 mm of it, and they meet in the
+> foam at z=30 — **3.8 mm above the blocker's spigot**, so it does not break
+> into it.
+>
+> An earlier version of this drawing had a swept curve through the foam. That
+> was not a buildable part: this channel is cut **by hand at step 18**, into a
+> board that has been assembled since step 7, and no drill makes a radius
+> through a bonded-in block from either end.
+>
+> **The lead does not need a bend radius — it cuts the corner.** The bores are
+> Ø22 and the lead is 6.5, so it can arc through the junction at an effective
+> **116 mm radius, 4.5× what 8 AWG wants**. Ease the corner with a round file
+> anyway before you pull.
+
 **The bung's first job is not sealing, it is spacing.** The three phase leads
 come out of the mast *touching*, in a line along the chord — an alu mast's
 internal cavity is only about 12–14 mm across, so 6.5 mm leads cannot lie any

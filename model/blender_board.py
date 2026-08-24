@@ -932,7 +932,13 @@ CONDUIT_RISE_Z = 62.0              # height it pierces the cavity aft wall at
 # place to drag two 8 AWG cables plus the sensor trio through a 28 mm bore.
 # Rounding it costs nothing in the foam and turns the pull into one continuous
 # curve. Clamped by bend_path() to whatever the short vertical leg allows.
-CONDUIT_BEND_R = 60.0              # centreline bend radius at the knee
+# WHERE THE TWO STRAIGHT BORES MEET, which is the number that replaces the
+# bend radius. It has to clear the blocker's spigot underneath it, and the
+# higher it sits the shallower - and the harder to drill - the angled leg
+# gets. CONDUIT_BEND_R is gone with the curve; the cable's corner at the
+# junction is reported instead, because that is what a person eases with a
+# round file rather than something a radius makes go away.
+CONDUIT_MEET_Z = 30.0              # above the blocker, below the cavity
 # What actually limits the pull is the CABLE's bend radius, not the bore's.
 # Checking bend-vs-bore was the wrong metric and failed a geometry that is
 # fine: at 26.8 mm the knee is 1.0x the bore but 4.1x the cable, and this is a
@@ -5321,16 +5327,31 @@ def build():
     # even though the report claimed one.
     cdx = MAST_X + CONDUIT_X_OFF
     cd_z0 = bottom_z_at(cdx, 0.0)
-    z_knee = plate_z1 + 6.0
     x_end, z_end = CAV_X0, CONDUIT_RISE_Z
     bore = CONDUIT_D - 2 * CONDUIT_WALL
     CLR = 0.4                                  # bond gap round the tube
 
-    A = (cdx, 0.0, cd_z0 - 2.0)                # below the hull skin
-    K = (cdx, 0.0, z_knee)                     # knee, just above the plate
-    _ang = math.atan2(z_end - z_knee, max(1.0, x_end - cdx))
-    B = (x_end + 18.0, 0.0, z_end + 18.0 * math.tan(_ang))    # into the cavity
-    path, _r_used = bend_path(A, K, B, CONDUIT_BEND_R)
+    # --- TWO STRAIGHT BORES, NOT A SWEPT CURVE -----------------------------
+    # Derek: "lets alos just make the conduit straigth up and down and ill
+    # drill from the other side manually to bridge the hole, since we cant do
+    # the rounded anyway with cnc". He is right, and the curve was worse than
+    # awkward - it was UNBUILDABLE. This channel is cut at step 18, by hand,
+    # into a board that has been assembled since step 7. No drill makes a
+    # swept radius through a bonded-in foam block from either end. The model
+    # has been drawing a bore nobody could produce.
+    #
+    # So: one bore STRAIGHT UP from the mast plate, and a second drilled DOWN
+    # from inside the cavity to meet it. Two drill setups, both of them things
+    # a person can actually do, and they meet in the foam above the blocker.
+    A = (cdx, 0.0, cd_z0 - 2.0)                     # below the hull skin
+    MEET = (cdx, 0.0, CONDUIT_MEET_Z)               # where the two bores join
+    B = (x_end, 0.0, z_end)                         # out at the cavity wall
+    _ang = math.atan2(z_end - CONDUIT_MEET_Z, max(1.0, x_end - cdx))
+    # the vertical leg, run past the junction so the two overlap
+    path = [A, (cdx, 0.0, CONDUIT_MEET_Z + 6.0)]
+    # ...and the angled leg, run past the cavity wall so it breaks through
+    path2 = [MEET, (x_end + 14.0, 0.0, z_end + 14.0 * math.tan(_ang))]
+    _r_used = 0.0
 
     # 1. the CHANNEL through hull, dense block and mast plate
     # THE DENSE BLOCK GETS A NARROWER BORE THAN THE PLATE. That difference IS
@@ -5341,10 +5362,11 @@ def build():
                     (dense, FOAM_BORE),
                     (bpy.data.objects["V2_MastPlate_Alu"],
                      CONDUIT_D + 2 * CLR)):
-        c = path_tube(f"V2_ConduitChan_{tgt.name}", path, _d, coll)
-        boolean(tgt, c)
-        c.hide_set(True)
-        c.hide_render = True
+        for _leg, _pts in (("up", path), ("drilled", path2)):
+            c = path_tube(f"V2_ConduitChan_{_leg}_{tgt.name}", _pts, _d, coll)
+            boolean(tgt, c)
+            c.hide_set(True)
+            c.hide_render = True
 
     # 2. the TUBE itself, bored through, on the same curve
     # This is a HOLE, not a part. It was drawn as a solid G10 tube back when
@@ -5352,7 +5374,8 @@ def build():
     # now and the bore is already cut into the hull, the dense block and the
     # mast plate by the ConduitChan booleans. Kept as a hidden reference for
     # where the bore runs - visible, it reads as a G10 tube that we deleted.
-    cd = path_tube("V2_Conduit", path, CONDUIT_D, coll, bom_mat("void"))
+    cd = path_tube("V2_Conduit", path + path2, CONDUIT_D, coll,
+                   bom_mat("void"))
     cd.hide_set(True)
     cd.hide_render = True
     _bore_path = [(x, y, z) for x, y, z in path]
@@ -5363,7 +5386,31 @@ def build():
     boolean(cd, b)
     b.hide_set(True)
     b.hide_render = True
-    rep["conduit_bend_radius_mm"] = round(_r_used, 1)
+    # --- WHAT THE TWO BORES ARE, AND THE CORNER WHERE THEY MEET -----------
+    rep["conduit_is_two_straight_bores"] = True
+    rep["conduit_up_leg_mm"] = round(CONDUIT_MEET_Z - cd_z0 + 2.0, 1)
+    rep["conduit_drilled_leg_mm"] = round(
+        math.hypot(x_end - cdx, z_end - CONDUIT_MEET_Z), 1)
+    rep["conduit_drill_angle_deg"] = round(math.degrees(_ang), 1)
+    # the cable does not get a radius any more - it turns a CORNER, and this
+    # is the number to ease with a round file before pulling 8 AWG through it
+    rep["conduit_corner_deg"] = round(90.0 - math.degrees(_ang), 1)
+    rep["conduit_junction_z_mm"] = CONDUIT_MEET_Z
+    rep["conduit_junction_above_blocker_mm"] = round(
+        CONDUIT_MEET_Z - (plate_z1 + BLOCKER_SPIGOT_L), 1) if BLOCKER else 99.0
+    # How big a radius the lead can actually turn through the junction. It is
+    # not the bore's shape, it is how far off centre the lead may sit: the
+    # sagitta of its arc has to fit the clearance between lead and wall.
+    _c = (bore - CABLE_OD) / 2.0
+    rep["conduit_corner_radius_mm"] = round(
+        _c / max(1e-6, 1 - math.cos(math.radians((90 - math.degrees(_ang)) / 2))))
+    rep["conduit_corner_vs_cable_min"] = round(
+        rep["conduit_corner_radius_mm"] / (4 * CABLE_OD), 1)
+    rep["conduit_why_straight"] = (
+        "this channel is cut BY HAND at step 18 into a board assembled since "
+        "step 7. No drill makes a swept radius through a bonded-in foam block "
+        "from either end, so the curve the model used to draw was not a "
+        "buildable part. Two straight bores meeting in the foam are")
 
     # --- the wire bung, at the MAST end, not the cavity end ---------------
     # The old placeholder sat up at the cavity aft wall, which is where the
@@ -5631,7 +5678,7 @@ def build():
         rep["bung_bore_allows_mm"] = round(_bore_r, 2)
         rep["bung_converge_mm"] = round(max(0.0, _out_r - _bore_r), 2)
         # over the straight run above the plate, before the knee starts
-        _run = max(5.0, z_knee - plate_z1)
+        _run = max(5.0, CONDUIT_MEET_Z - plate_z1)
         rep["bung_converge_over_mm"] = round(_run, 1)
         rep["bung_converge_radius_mm"] = round(
             _run ** 2 / (2 * max(0.01, _out_r - _bore_r)))
@@ -5660,11 +5707,12 @@ def build():
     rep["bom_conduit_mm"] = round(sum(
         math.dist(path[i], path[i + 1]) for i in range(len(path) - 1)))
     rep["conduit_route"] = (
-        f"up through the mast plate, then {x_end - cdx:.0f} mm forward and "
-        f"{z_end - z_knee:.0f} mm up through foam, piercing the cavity aft "
-        "wall")
-    rep["conduit_angle_deg"] = round(math.degrees(math.atan2(
-        z_end - z_knee, max(1.0, x_end - cdx))), 1)
+        f"TWO STRAIGHT BORES. One straight up from the mast plate, "
+        f"{CONDUIT_MEET_Z - cd_z0 + 2.0:.0f} mm of it. One drilled down from "
+        f"inside the cavity at {math.degrees(_ang):.0f} deg, "
+        f"{math.hypot(x_end - cdx, z_end - CONDUIT_MEET_Z):.0f} mm of it. "
+        f"They meet in the foam at z={CONDUIT_MEET_Z:.0f}, above the blocker")
+    rep["conduit_angle_deg"] = round(math.degrees(_ang), 1)
     rep["conduit_clear_of_mast_inserts_mm"] = round(
         BOLT_SPACING_X / 2 - INSERT_OD / 2 - CONDUIT_D / 2, 1)
     rep["conduit_channel_cut"] = True
@@ -7314,10 +7362,21 @@ def build():
     if rep.get("handle_plate_proud_mm", -99) > -0.2:
         fails.append("handle G10 strip breaks the hull surface by "
                      + format(rep["handle_plate_proud_mm"], ".2f") + " mm")
-    if rep.get("conduit_bend_over_cable", 99) < 3.0:
-        fails.append("conduit knee bend is tighter than 3x the cable OD: "
-                     + format(rep.get("conduit_bend_over_cable", 0), ".1f")
-                     + "x - the 8 AWG will kink")
+    # THE CABLE ARCS THROUGH THE JUNCTION, it does not follow a bend radius.
+    # The old check gated on conduit_bend_over_cable, which was a property of
+    # a swept curve that no longer exists - with two straight bores it reads
+    # 0.0 and fires on nothing. What matters now is whether the bore is wide
+    # enough that the lead can cut the corner: the sagitta of its arc has to
+    # fit in the clearance between the lead and the bore wall.
+    if rep.get("conduit_corner_radius_mm", 999) < 4 * CABLE_OD:
+        fails.append(
+            "the lead cannot arc through the conduit junction: %.0f mm of "
+            "radius against the %.0f it wants"
+            % (rep.get("conduit_corner_radius_mm", 0), 4 * CABLE_OD))
+    if rep.get("conduit_junction_above_blocker_mm", 99) < 2.0:
+        fails.append(
+            "the drilled leg breaks into the blocker's spigot: only %.1f mm "
+            "above it" % rep.get("conduit_junction_above_blocker_mm", 0))
     if rep.get("conduit_clear_of_floor_fillet_mm", 99) < 3.0:
         fails.append("conduit pierces the cavity aft wall too low - its lower "
                      "edge is only "
