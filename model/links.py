@@ -92,9 +92,8 @@ LINKS = {
         ("B005379HJA", 24.99, "TP-03 1-13mm Metric Transfer Punch Set - 25 Pieces"),
     "Transfer screw set M3-M6":
         ("B01IUBRSLO", 24.99, "HHIP 3601-0516 28 Piece Transfer Screw Set, M3 X .5, M4 X .7, M5 X .8, M6 X 1"),
-    "M5 x 25 A4 button head ISO 7380":
-        ("https://www.amazon.com/stores/MonsterBolts/MetricSocketButtonHead_MetricScrews/page/D0B6DFC1-A842-468C-AB09-96E7C71305B4",
-         15.99, "MonsterBolts M5 Button Head Socket Cap Screws ISO 7380 Marine Grade Stainless - pick the 25 mm length"),
+    "M5 x 25 button head ISO 7380, 50 pk":
+        ("B07JQ6ZC6B", 15.99, "Fastenere Button Head Socket Cap Screws M5-0.80 x 25MM 50-Pack Stainless 18-8 ISO 7380 - head O9.5 x 2.75 high"),
     "Neoprene sheet 3/4in, wire bung":
         ("B07Y5K1VHK", 26.00, "USA Sealing Neoprene Rubber Sheet, No Adhesive, 60A, 3/4in x 12in x 12in"),
     "Hollow punch set 3/16-1-3/8in, for the O31.75 bung":
@@ -151,6 +150,8 @@ LINKS = {
         ("B0DZ5BVLP5", 6.79, "uxcell 100Pcs M4 Flat Washer 316 Stainless 4.3 ID x 12 OD"),
     "M4 x 12 A4 socket cap DIN912, 10 pk":
         ("B07DVPC7HT", 7.10, "M4 x 12mm Socket Head Screws DIN 912 Marine Grade SS 10 Pack"),
+    "M6 x 12.7 brass heat-set insert, 50 pc":
+        ("B077PGD6X2", 12.00, "initeq M6-1.0 Threaded Heat Set Inserts for 3D Printing, 50, LONG"),
     "M4 x 12.7 LONG brass heat-set insert, 50 pc":
         ("B07473ZV71", 14.00, "initeq Qty 50 M4-0.7 Threaded Heat Set Inserts for 3D Printing (LONG)"),
     "M5 A4 hex nut DIN934, 50 pk - CAPTIVE in the ring":
@@ -312,7 +313,7 @@ LINK_VENDOR = {
     "E-glass 6 oz, 50in x 12ft, 2-pack": "Amazon",
     "Transfer punch set, metric 1-13 mm": "Amazon",
     "Transfer screw set M3-M6": "Amazon",
-    "M5 x 25 A4 button head ISO 7380": "Amazon",
+    "M5 x 25 button head ISO 7380, 50 pk": "Amazon",
     "Neoprene sheet 3/4in, wire bung": "Amazon",
     "Hollow punch set 3/16-1-3/8in, for the O31.75 bung": "Amazon",
     "EPS rigid foam 2in x 48in x 8ft (HD 202532856)": "Home Depot / hardware",
@@ -341,6 +342,7 @@ LINK_VENDOR = {
     "M3 x 8 A4 stainless, 10 pk": "Amazon",
     "M4 A4 washer, 316, 100 pk": "Amazon",
     "M4 x 12 A4 socket cap DIN912, 10 pk": "Amazon",
+    "M6 x 12.7 brass heat-set insert, 50 pc": "Amazon",
     "M4 x 12.7 LONG brass heat-set insert, 50 pc": "Amazon",
     "M5 A4 hex nut DIN934, 50 pk - CAPTIVE in the ring": "Amazon",
     "M5 nyloc nut 316, 150 pk": "Amazon",

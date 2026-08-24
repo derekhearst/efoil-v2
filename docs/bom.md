@@ -68,11 +68,11 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | [Paste wax, releasing the groove filler](https://www.amazon.com/dp/B0GVCGHZFR) | 1 | ea | $16.99 | $16.99 | estimate | the filler must NOT bond - it comes back out after the glass goes over it |
 | [2.5 mm straight cutter - fallback](https://www.amazon.com/dp/B0GWSZ2KV2) | 1 | ea | $7.99 | $7.99 | estimate | only if you would rather cut the groove open than sand down to a proud filler strip. Undersize in a 4 mm groove on purpose |
 | [Silicone adhesive, bonding the cord into groove](https://www.amazon.com/dp/B0002UEN1U) | 1 | tube | $7.56 | $7.56 | estimate | a thin continuous bead under the cord. It cannot then migrate, lift out, or be pinched under the lid in a dark car park |
-| [M5 x 25 A4 button head ISO 7380](https://www.amazon.com/stores/MonsterBolts/MetricSocketButtonHead_MetricScrews/page/D0B6DFC1-A842-468C-AB09-96E7C71305B4) | 2 | pk | $15.99 | $31.98 | estimate | 24 needed. A4/316 - every cheaper listing is A2/304, which pits in salt water. CONFIRM THE LENGTH: the A4 button family is easy to find, M5x25 in it is not. Socket cap B0CJFMMF58 is the fallback |
+| [M5 x 25 button head ISO 7380, 50 pk](https://www.amazon.com/dp/B07JQ6ZC6B) | 1 | pk | $15.99 | $15.99 | estimate | 24 needed of 50. ISO 7380 head is O9.5 x 2.75 high, which is what the model draws and what puts the whole stack 1.5 mm BELOW the deck pad. 304 not A4 - see the note above, it is a deliberate trade and the captive nut stays A4. Tef-Gel every one. A4 SOCKET CAP B0CJFMMF58 is the fallback if the grade matters more than the toe |
 | [M6 penny washer O18 A4 DIN9021](https://www.amazon.com/dp/B0DB8RBY3N) | 1 | pk | $12.99 | $12.99 | estimate | 58 needed - TWO PER BOLT, one captive under the nut and one UNDER THE HEAD. M6 size on an M5 bolt: the 0.7 mm of slop is irrelevant on a washer and the 3 extra mm of OD is not |
 | [M5 A4 hex nut DIN934, 50 pk - CAPTIVE in the ring](https://www.amazon.com/dp/B084HLMN7B) | 1 | pk | $9.19 | $9.19 | verified | 34 needed. Dropped in at a print pause at Z=6.0; steel thread, so a hatch that comes off every ride never wears anything out |
 | [MDF 12 mm, 4 check gauges](https://www.homedepot.com/p/ProWood-1-2-in-x-2-ft-x-4-ft-Medium-Density-Fiberboard-Project-Panel-109097/202093821) | 1 | sheet | $30.73 | $30.73 | estimate | 3 station sections + the rocker/deck profile. Was a 14-template set at $70 - the router templates go with the CNC pass. The caul is an EPS offcut and the groove guide is fallback-only, so this sheet is now the whole MDF requirement |
-| **subtotal** | | | | **$168.00** | | |
+| **subtotal** | | | | **$152.01** | | |
 
 ## 7  Module
 
@@ -151,7 +151,7 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | [Kayak/board grab handle, 2 pk + screws](https://www.amazon.com/dp/B0FBW3XT5D) | 3 | pk | $9.99 | $29.97 | verified | 3 a board: 2 on the rails into the 6061 strip, 1 on the module. ONE HOLE PER STRAP END - so one bolt per pad, M6 on the rails and M5 on the module. Open the moulded hole out to suit; do not use the supplied self-tappers, everything here is threaded |
 | [M6 x 16 A4 button head, 10 pk](https://www.amazon.com/dp/B07DVRLQTK) | 1 | pk | $8.06 | $8.06 | verified | 12 needed - 2 per rail handle into the 6061 strip, 2 into the module pads. Fender washer under every one: the load lands on WEBBING, and a button head's edge is what tears it |
 | M6 washers for the rail handles | 0 | off | $0.00 | $0.00 | on hand | 8 off the M6 x 20 fender washer pack in section 10b, not a second purchase |
-| M6 x 12.7 brass heat-set insert, 50 pc | 1 | pk | $12.00 | $12.00 | estimate | 4 needed, module handle pads; 8.2 mm printed pilot, same as the model's cut. LOCTITE the bolts - the pedestal pivots on them every time the module is lifted |
+| [M6 x 12.7 brass heat-set insert, 50 pc](https://www.amazon.com/dp/B077PGD6X2) | 1 | pk | $12.00 | $12.00 | estimate | 4 needed, module handle pads; 8.2 mm printed pilot, same as the model's cut. LOCTITE the bolts - the pedestal pivots on them every time the module is lifted |
 | **subtotal** | | | | **$202.14** | | |
 
 ## 9c Pack wiring
@@ -247,31 +247,31 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | Item | Qty | Unit | Unit $ | Ext $ | | Note |
 |---|---:|---|---:|---:|---|---|
 | Shipping - Divinycell, 6061 plate, VR20 | 1 | allow | $120.00 | $120.00 | estimate | STILL THE BIGGEST UNVERIFIED LINE - it wants three real carts to settle. Was $220 when it covered G10 sheet and hazmat epoxy, both of which are now out of the build entirely |
-| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $448.56 | $448.56 | verified |  |
-| **subtotal** | | | | **$568.56** | | |
+| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $447.60 | $447.60 | verified |  |
+| **subtotal** | | | | **$567.60** | | |
 
 ## Totals
 
 | | |
 |---|---:|
-| **Grand total, 2 boards** | **$7,924.49** |
-| Per board | $3,962.24 |
-| Of which verified | $7,265.11  (92%) |
-| Of which estimated | $659.38 |
-| Linked to a real listing | 128 lines |
-| Priced but NOT linked | 1 lines, $12.00 |
-| Not linkable, but MEASURED (freight quotes) | 2 lines, $717.19 |
+| **Grand total, 2 boards** | **$7,907.54** |
+| Per board | $3,953.77 |
+| Of which verified | $7,264.15  (92%) |
+| Of which estimated | $643.39 |
+| Linked to a real listing | 129 lines |
+| Priced but NOT linked | 0 lines, $0.00 |
+| Not linkable, but MEASURED (freight quotes) | 2 lines, $716.23 |
 | Not linkable and still estimated | 1 lines, $120.00 |
 
 ## What is a board, and what is a shop
 
-Some of the total above is not the cost of a board at all - it is tools, jigs and templates that exist afterwards and do not repeat. Splitting them out is the difference between "a board costs $3,962" and "a board costs $3,528 and I now own a vacuum rig, a crimper and a full template set".
+Some of the total above is not the cost of a board at all - it is tools, jigs and templates that exist afterwards and do not repeat. Splitting them out is the difference between "a board costs $3,954" and "a board costs $3,519 and I now own a vacuum rig, a crimper and a full template set".
 
 | | |
 |---|---:|
 | One-time tooling (incl. its share of tax) | $869.36 |
-| **Marginal cost of a board** | **$3,527.57** |
-| Cost of the NEXT board after these 2 | $3,527.57 |
+| **Marginal cost of a board** | **$3,519.09** |
+| Cost of the NEXT board after these 2 | $3,519.09 |
 
 | One-time item | $ |
 |---|---:|

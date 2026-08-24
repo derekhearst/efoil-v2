@@ -6,17 +6,17 @@ Grouped by where you buy it rather than by what it does, because that is the ord
 
 | Supplier | Lines | $ |
 |---|---:|---:|
-| Amazon | 113 | $3,634.34 |
+| Amazon | 113 | $3,618.35 |
 | Gong | 1 | $1,404.00 |
 | Flipsky | 3 | $1,038.00 |
-| Not a purchase - tax and freight | 3 | $837.19 |
+| Not a purchase - tax and freight | 3 | $836.23 |
 | BatteryHookup | 2 | $297.50 |
 | Fiberglass Supply | 3 | $253.38 |
 | Home Depot / hardware | 4 | $169.16 |
 | Maker Shop Boise | 1 | $150.00 |
 | Speedy Metals | 1 | $88.92 |
 | Easy Composites | 1 | $52.00 |
-| **TOTAL** | | **$7,924.49** |
+| **TOTAL** | | **$7,907.54** |
 
 ## Amazon
 
@@ -55,7 +55,6 @@ https://www.amazon.com
 | [Solid silicone cord, 3 mm round - BOTH seals](https://www.amazon.com/dp/B096N67R2D) | 2 | pc | $35.18 | **verified** | 10 ft (3.05 m) pieces, 70A. Buy long - splice on a straight run, never a corner |
 | [Hollow punch set 3/16-1-3/8in, for the O31.75 bung](https://www.amazon.com/dp/B07PQYRG9K) | 1 | set | $32.99 | estimate | the existing set stops at 1/2 in. Skip it if a 1-3/8 in hole saw is already in the drawer - the plug it leaves |
 | [M12 IP68 momentary panel button](https://www.amazon.com/dp/B0FPQP7CP9) | 1 | ea | $32.65 | **verified** | 1 on hand; this line buys the second board's |
-| [M5 x 25 A4 button head ISO 7380](https://www.amazon.com/stores/MonsterBolts/MetricSocketButtonHead_MetricScrews/page/D0B6DFC1-A842-468C-AB09-96E7C71305B4) | 2 | pk | $31.98 | estimate | 24 needed. A4/316 - every cheaper listing is A2/304, which pits in salt water. CONFIRM THE LENGTH: the A4 butt |
 | [IP68 M25 inline housing, 5 pk](https://www.amazon.com/dp/B0DPKM5HF7) | 2 | pk | $31.96 | **verified** | 3 per board, one per phase, 2 spare. M25 bodies take 4-14 mm cable against our 6.5 mm 8 AWG, so the size class |
 | [Coiled ankle leash](https://www.amazon.com/dp/B096VL3DHV) | 2 | ea | $29.98 | **verified** | you trust the remote failsafe; this is so the board stays with you |
 | [Kayak/board grab handle, 2 pk + screws](https://www.amazon.com/dp/B0FBW3XT5D) | 3 | pk | $29.97 | **verified** | 3 a board: 2 on the rails into the 6061 strip, 1 on the module. ONE HOLE PER STRAP END - so one bolt per pad,  |
@@ -89,6 +88,7 @@ https://www.amazon.com
 | [Chip brushes 2 in, 36 pk](https://www.amazon.com/dp/B078XJ2DCJ) | 1 | pk | $17.99 | **verified** | disposable, 2-4 a session across 6 sessions. The 12 pk at $7.19 is dearer per brush and runs out mid-build |
 | [Laminating bubble roller kit, 4 pc](https://www.amazon.com/dp/B07FCLTHY6) | 1 | kit | $17.99 | **verified** |  |
 | [Paste wax, releasing the groove filler](https://www.amazon.com/dp/B0GVCGHZFR) | 1 | ea | $16.99 | estimate | the filler must NOT bond - it comes back out after the glass goes over it |
+| [M5 x 25 button head ISO 7380, 50 pk](https://www.amazon.com/dp/B07JQ6ZC6B) | 1 | pk | $15.99 | estimate | 24 needed of 50. ISO 7380 head is O9.5 x 2.75 high, which is what the model draws and what puts the whole stac |
 | [Adjustable hand sanding block](https://www.amazon.com/dp/B0D4LNDYXD) | 1 | ea | $15.99 | **verified** | rails, nose, tail and anywhere the longboard will not reach |
 | [Longboard PSA sandpaper 80 grit, 20 yd roll](https://www.amazon.com/dp/B0CQ7CVGK6) | 1 | roll | $15.99 | **verified** | 2-3/4 in, self-adhesive, fits the longboard above. 80 is the fairing grit - it cuts fair, it does not finish |
 | [Solid silicone cord, 1/8 in (3.175 mm) - the spare size](https://www.amazon.com/dp/B00QVB0KE8) | 1 | pc | $15.39 | **verified** | 10 ft piece, 70A. Fitted ONLY if the routed groove measures deep. Gives 24% squeeze at the nominal 2.4 depth a |
@@ -105,7 +105,7 @@ https://www.amazon.com
 | [5.5 mm gold bullets, 20 pair](https://www.amazon.com/dp/B096DJKR5Y) | 1 | pk | $12.99 | **verified** | 3 pair a board, so one pack covers both with spares. Motor pigtails arrive with their own |
 | [Roll pin assortment M1.5-M6, 220 pc](https://www.amazon.com/dp/B09MPWY8L4) | 1 | kit | $12.99 | **verified** | 4 needed. An ASSORTMENT on purpose: the note says MEASURE the shaft cross-hole rather than trust the 4 mm figu |
 | [Dowel pins + drill, two-sided registration](https://www.amazon.com/dp/B0GS2R3F5G) | 1 | set | $12.99 | estimate |  |
-| M6 x 12.7 brass heat-set insert, 50 pc | 1 | pk | $12.00 | estimate | 4 needed, module handle pads; 8.2 mm printed pilot, same as the model's cut. LOCTITE the bolts - the pedestal  |
+| [M6 x 12.7 brass heat-set insert, 50 pc](https://www.amazon.com/dp/B077PGD6X2) | 1 | pk | $12.00 | estimate | 4 needed, module handle pads; 8.2 mm printed pilot, same as the model's cut. LOCTITE the bolts - the pedestal  |
 | [Vacuum hose + hose clamps](https://www.amazon.com/dp/B0FH52FT4G) | 1 | set | $11.61 | estimate | 1/2 in tubing pump-to-bag plus clamps; the other half of what the deleted kit was actually carrying |
 | [M8 x 30 A4 mast bolts, 10 pk - spares](https://www.amazon.com/dp/B07HZKSP72) | 1 | pk | $10.82 | **verified** | Gong supplies its own; these are spares. Only listing confirming marine A4/316; head is ISO 7380 button, not s |
 | [Vacuum gauge, -30 inHg, 1/4 NPT, glycerin](https://www.amazon.com/dp/B00VQSOZFQ) | 1 | ea | $10.50 | **verified** | reads the BAG, not the pump - tee it in at the bag end. The regulator sets the level; this is how you know it  |
@@ -164,7 +164,7 @@ Some Flipsky appears on Amazon but the range is thin and usually dearer. Buy dir
 
 | Item | Qty | Unit | Ext | Price | Note |
 |---|---:|---|---:|---|---|
-| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $448.56 | **verified** |  |
+| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $447.60 | **verified** |  |
 | Gong shipping to Idaho, ONE order, both foils | 1 | order | $268.63 | **verified** | quoted at checkout for 2 x XL Alu setups. PER ORDER, not per foil - ordering the two separately would roughly  |
 | Shipping - Divinycell, 6061 plate, VR20 | 1 | allow | $120.00 | estimate | STILL THE BIGGEST UNVERIFIED LINE - it wants three real carts to settle. Was $220 when it covered G10 sheet an |
 

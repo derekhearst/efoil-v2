@@ -618,11 +618,19 @@ def build():
     # head's square-edged 5.0 - these twelve stand in the one bare band on
     # the deck and it is a band you walk on barefoot. It also puts the whole
     # stack BELOW the 5.8 mm deck pad beside it instead of 2.6 above.
-    # SOURCING IS THE WEAK PART OF THIS LINE: A4 button heads are easy, M5x25
-    # in A4 button is not a listing I could find in a sensible pack. Confirm
-    # the length at order. If it cannot be had, the A4 SOCKET CAP B0CJFMMF58
-    # is the fallback - identical in every number in this model, and it costs
-    # you nothing but the toe. The head bears on a G10
+    # 304, AND THAT IS A DELIBERATE DOWNGRADE FROM THIS LIST'S A4 RULE.
+    # M5x25 in an A4 button head does not exist on Amazon in any sane pack -
+    # A4 exists at x20 in a 2500-pack, 304 exists at x25 in 50. So the choice
+    # was the RIGHT GRADE with a square-edged 5 mm cap head, or the right
+    # HEAD SHAPE in 304, and the head shape wins here because:
+    #   - it is the one thing Derek asked for by feel, on a barefoot deck
+    #   - these are removable, rinsed, 50-to-a-pack consumables. Replace them
+    #     when they tea-stain; they are not structure.
+    #   - the PERMANENT fastener at this joint is the captive nut, and that
+    #     stays A4/316. Nothing buried is being downgraded.
+    # TEF-GEL THEM. Already on the list for the mast. 304 in an A4 nut is a
+    # galling pair as much as a corrosion one, and this joint comes apart
+    # every ride. The head bears on a G10
     # plug buried in the core, not on the panel: at 1200 N - the PRELOAD at
     # the 1.2 Nm spec, not the 182 N the cord needs - a bare cap head puts
     # ~2.7 MPa into H100 even after the skin spreads it, against a core that
@@ -631,12 +639,14 @@ def build():
     # A countersink would have hidden the head, but it needs 2.1 mm of solid
     # material under the top face and there is 1.0 mm of skin over the plug -
     # flush heads and a buried hardpoint do not combine. Caps it is.
-    add("6  Hatch and seal", "M5 x 25 A4 button head ISO 7380",
-        math.ceil(M["hatch_bolts"] * N / 20), "pk", 15.99, EST,
-        str(M["hatch_bolts"] * N) + " needed. A4/316 - every cheaper listing "
-        "is A2/304, which pits in salt water. CONFIRM THE LENGTH: the A4 "
-        "button family is easy to find, M5x25 in it is not. Socket cap "
-        "B0CJFMMF58 is the fallback")
+    add("6  Hatch and seal", "M5 x 25 button head ISO 7380, 50 pk",
+        1, "pk", 15.99, EST,
+        str(M["hatch_bolts"] * N) + " needed of 50. ISO 7380 head is O9.5 x "
+        "2.75 high, which is what the model draws and what puts the whole "
+        "stack 1.5 mm BELOW the deck pad. 304 not A4 - see the note above, "
+        "it is a deliberate trade and the captive nut stays A4. Tef-Gel "
+        "every one. A4 SOCKET CAP B0CJFMMF58 is the fallback if the grade "
+        "matters more than the toe")
     # NO LINE FOR THE LID HARDPOINTS. They are twelve O16 holes in the bare
     # core filled with thickened epoxy off the TotalBoat 5:1 kit already on
     # this list - poured while the core is still a flat sheet on the bench.
