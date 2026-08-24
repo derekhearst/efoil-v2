@@ -440,7 +440,10 @@ CHAN_INSET = 10.0                  # groove centreline outboard of the opening.
 # a heel-sized patch is: 1.01 MPa against H80's 1.4, a margin of only 1.4x on a
 # load case that happens every session. H100 takes that to 1.9x for 40 g,
 # where getting the same margin from thicker skins would cost 320 g.
-LID_SKIN, LID_CORE = 1.0, 12.0
+# 1.25, up from 1.0 - one more 6 oz layer a side, Derek's call for hatch lid
+# crush margin. 1.89 -> 2.17 for 0.5 mm of board and 180 g. See CORE_COMP_MPA
+# below for why this is the lever and not the core grade.
+LID_SKIN, LID_CORE = 1.25, 12.0
 LID_CORE_GRADE = "H100 (2 x 1/4in bonded - no 1/2in H100 exists)"
 RIDER_MAX_KG, STEP_G = 95.3, 1.5   # heaviest rider, climbing-on dynamic factor     # hatch lid: glass / H80 / glass
 LID_T = LID_SKIN * 2 + LID_CORE
@@ -1434,7 +1437,11 @@ NUT_CLR = 0.25                     # per side; ASA prints tight
 # it has to come out of somewhere - the stack under the seal face is now
 # NUT_Z + NUT_WASHER_T + NUT_T, and it has to leave an M5x25 fully engaged.
 # Pull-out goes 8.5x -> 7.1x, which is still a long way clear.
-NUT_Z = 5.0                        # cover between WASHER top face and seal face
+# 4.5, down from 5.0, and it is the extra glass layer that spent it: the lid
+# went 14.0 -> 14.5 and the bolt stack has to stay inside an M5x25. At 5.0
+# it needed 25.1 and rounded to a 30, which runs 2.8 mm out the bottom of the
+# rim ring. Pull-out 7.1x -> 6.4x, still a long way clear.
+NUT_Z = 4.5                        # cover between WASHER top face and seal face
 ASA_TAU = 30.0                     # MPa design shear
 # --- WHAT THE CORD ACTUALLY PUSHES BACK WITH ------------------------------
 # THIS WAS 6.0 AND IT WAS WRONG BY 5x. Worse, the model already knew: the bow
@@ -4322,6 +4329,17 @@ def build():
     # factor rather than its own constant, which is what let the two drift.
     E_GLASS, BOW_SF = 25000.0, 2.0            # MPa, and a safety factor
     E_SKIN_MPA = 25000.0
+    # Local crush does NOT scale with core depth, only with core GRADE and
+    # how far the skin spreads the load - so there are exactly two levers:
+    #   skin 1.00, H100   1.89   as was
+    #   skin 1.25, H100   2.17   Derek's call. +0.5 mm of board, +180 g
+    #   skin 1.75, H100   2.74   +1.5 mm of board, +515 g
+    #   skin 1.00, H130   2.68   +0 mm, +80 g - BETTER ON EVERY AXIS
+    # H130 wins on paper and loses at the checkout: Fiberglass Supply carries
+    # H-80 and H-100 only, and Bluewater's H130 starts at 3/4 in. Nobody
+    # stocks it at the 1/4 in this lid bonds up from. So the skin it is, and
+    # if a 1/4 in H130 ever turns up this is the trade to revisit - it buys
+    # more margin than the glass does and costs no board thickness at all.
     CORE_COMP_MPA, CORE_E_MPA = 2.0, 105.0    # Divinycell H100
     HEEL_MM = 25.0                            # heel-sized contact patch
     def bow(pitch, skin, core, land):
@@ -6888,8 +6906,46 @@ def build():
         (_m / (FOIL_MAST_H / 1000.0)) / all_up_N, 2)
     rep["v2_over_v1"] = round(cap / _cap, 1)
 
+    # --- WHAT THE PLATE'S FOOTPRINT IS ACTUALLY FOR -----------------------
+    # This was the only bearing number here and it is the WRONG CASE: it
+    # divides the whole rig's weight by the whole plate and gets 0.079 MPa
+    # against foam that takes 3.5, i.e. 44x, which reads as "the plate could
+    # be a third the size". It cannot. That sum has no moment in it at all.
+    #
+    # The load that sizes the FOOTPRINT is the mast PRYING. The same couple
+    # that pulls 6.3 kN out of a bolt has to go into the foam as bearing, and
+    # it does not arrive spread evenly - it arrives as a linear distribution
+    # rocking about the plate's centreline, so what matters is the footprint's
+    # SECTION MODULUS, not its area. Halve the width and you quarter it.
+    #
+    # THICKNESS is a separate question with a separate answer, and Derek has
+    # it right: 12.7 is set by the thread, not by any of this. M8 tapped
+    # INSERT_L deep blind, leaving INSERT_BLIND of solid alu above so the tap
+    # never breaches the plate that keeps the cavity dry. Nothing about the
+    # footprint would let it get thinner.
+    # The mast block is H80, not H200 - the legend says H80 3/4in stock and
+    # the old comment's "vs H200 at ~3.5" was quoting a grade this board does
+    # not use. H80 takes about 1.4 MPa flatwise, less than half of it.
+    DENSE_COMP_MPA = 1.4
+    _M = demand * (BOLT_SPACING_Y / 1000.0)          # N.m at the plate
+    _Z_y = G10_L * G10_W ** 2 / 6.0                  # mm3, rocking in roll
+    _Z_x = G10_W * G10_L ** 2 / 6.0                  # ...and in pitch
+    rep["mast_plate_moment_Nm"] = round(_M)
+    rep["plate_pry_bearing_MPa"] = round(_M * 1000.0 / _Z_y, 2)
+    rep["plate_pry_margin"] = round(DENSE_COMP_MPA / (_M * 1000.0 / _Z_y), 1)
     rep["plate_bearing_MPa"] = round(
-        all_up_N * g_design / (G10_L * G10_W), 3)   # vs H200 at ~3.5 MPa
+        all_up_N * g_design / (G10_L * G10_W), 3)   # static only - not the case
+    rep["plate_bearing_is_static_only"] = True
+    # ...and what a smaller plate would actually cost, since it looked free
+    rep["plate_pry_margin_if"] = {}
+    for _l, _w in ((250.0, 175.0), (225.0, 150.0), (200.0, 125.0)):
+        _z = _l * _w ** 2 / 6.0
+        rep["plate_pry_margin_if"]["%.0f x %.0f" % (_l, _w)] = {
+            "margin": round(DENSE_COMP_MPA / (_M * 1000.0 / _z), 1),
+            "kg each": round(_l * _w * G10_T * 2.70e-6, 2)}
+    rep["mast_plate_thickness_set_by"] = (
+        "the THREAD, not the footprint: M8 tapped %.0f blind with %.1f mm of "
+        "solid alu left above it" % (INSERT_L, INSERT_BLIND))
     rep["rider_kg"] = 86.0
     rep["net_float_kg"] = round(rep["sealed_displacement_L"] - 86.0 - board_kg, 1)
     # Reserve the BOARD alone has, and how deep the deck sits with the rider on
