@@ -12,12 +12,29 @@ mirroring generated state, drifting quietly, with nothing checking. That one
 was 7 palette keys out of 30 wrong before anyone noticed. Here the check is
 cheap, so there is no excuse for not running it.
 
-Reports both directions:
+It also checks the guide's NUMBERS, which drift the same way and cost more.
+A guide that quotes a torque, a squeeze or a bolt force the model no longer
+computes reads exactly as authoritative as one that is right. Found by hand
+in one sweep: a bung "6.35 mm proud" that is 4.0, "113 N a bolt" that is 159,
+a caul standing "100.1 mm" against a drawing that cuts it 85.8, a blank
+envelope of 166.8 against 153.7, handles on "110 mm centres" against 152.6,
+and four separate report strings still calling Gong's M6 screws M8 months
+after that was corrected everywhere a builder would look.
+
+So: every BOLDED number-with-a-unit in the guide has to appear somewhere in
+report.json, or be listed in NOT_FROM_MODEL below with a reason. Bolded, not
+every number - the bold is the author saying "this figure matters", which is
+exactly the set worth binding to the model. Prose arithmetic and worked
+examples stay free.
+
+Reports three directions:
   - guide references a BOM line that no longer exists  -> ERROR
+  - guide bolds a number the model does not know       -> ERROR
   - BOM line that no step consumes                     -> listed, not an error
     (plenty of lines are tools, freight or tax and belong to no single step)
 """
 import io
+import json
 import os
 import re
 import sys
@@ -26,6 +43,24 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
 GUIDE = os.path.join(ROOT, "docs", "fabrication.md")
 BOM = os.path.join(ROOT, "docs", "bom.md")
+REPORT = os.path.join(ROOT, "model", "report.json")
+
+# Bolded figures that are deliberately NOT model-derived. Each one needs a
+# reason, because "add it to the allowlist" is how a check like this dies.
+NOT_FROM_MODEL = {
+    67.2: "the charger's own nameplate - an external spec, not ours",
+    58.8: "the WRONG charger, quoted so it can be recognised and avoided",
+    3.65: "Li-ion cell full charge, a chemistry constant",
+    2.5: "the fallback groove cutter's diameter, a bought size",
+    1.5: "generic - ratios, clearances, hand measurements",
+    0.5: "generic",
+    1.3: "three-sheet shortfall, printed from blank_three_sheets_short_by_mm",
+}
+# Small integers and round figures carry no information - they are counts,
+# ratios, page numbers and hand measurements, not model output.
+GENERIC = set(range(0, 13)) | {
+    14, 15, 16, 18, 20, 24, 25, 30, 40, 45, 50, 60, 90, 100, 120, 180, 250,
+    300, 360, 500, 1000}
 
 # Lines that are not parts you pick up and use in a step.
 NOT_A_STEP_ITEM = ("sales tax", "shipping", "customs", "import duty")
@@ -92,8 +127,59 @@ def guide_refs():
     return refs
 
 
+def model_numbers():
+    """Every number the model knows, including ones embedded in its strings."""
+    vals = set()
+
+    def add(x):
+        try:
+            vals.add(round(float(x), 2))
+        except (TypeError, ValueError):
+            pass
+
+    def walk(v):
+        if isinstance(v, bool):
+            return
+        if isinstance(v, (int, float)):
+            add(v)
+        elif isinstance(v, dict):
+            for x in v.values():
+                walk(x)
+        elif isinstance(v, (list, tuple)):
+            for x in v:
+                walk(x)
+        elif isinstance(v, str):
+            for m in re.findall(r"-?\d+(?:\.\d+)?", v):
+                add(m)
+
+    walk(json.load(io.open(REPORT, encoding="utf-8")))
+    return vals
+
+
+# The multiplication sign counts as a unit: "**17 x O12 through the core**"
+# is a claim about a count, and a count is exactly the sort of thing that
+# goes stale when a bolt ring is regenerated.
+UNIT = r"(?:mm|MPa|Nm|kg|Wh|kN|N|A|V|%|x|×|in)(?![a-zA-Z])"
+CLAIM = re.compile(r"\*\*(\d+(?:\.\d+)?)\s*" + UNIT)
+
+
+def stale_numbers():
+    """Bolded figures in the guide that trace to nothing in the model."""
+    vals = model_numbers()
+    out = []
+    text = io.open(GUIDE, encoding="utf-8").read()
+    for i, line in enumerate(text.split("\n"), 1):
+        for m in CLAIM.finditer(line):
+            n = round(float(m.group(1)), 2)
+            if n in vals or n in GENERIC or n in NOT_FROM_MODEL:
+                continue
+            out.append((i, m.group(0), line.strip()[:70]))
+    return out
+
+
 def main():
     (items, spend), refs = bom_items(), guide_refs()
+    stale = stale_numbers()
     missing = [(i, s) for i, s in refs if i not in items]
     used = {i for i, _s in refs}
     orphan = sorted(i for i in spend - used
@@ -107,12 +193,22 @@ def main():
               f"consumables mostly, but worth a glance:")
         for i in orphan:
             print("   ", i[:66])
+    if stale:
+        print(f"\nERROR: {len(stale)} bolded figure(s) the model does not "
+              f"know. Either the guide has gone stale, or the number is "
+              f"genuinely not ours and belongs in NOT_FROM_MODEL WITH A "
+              f"REASON - an unreasoned allowlist is how a check like this "
+              f"quietly stops checking:")
+        for ln, tok, ctx in stale:
+            print(f"    line {ln}: {tok:12} |  {ctx}")
     if missing:
         print(f"\nERROR: {len(missing)} reference(s) match no BOM line:")
         for i, s in missing:
             print(f"    step {s}: {i}")
+    if missing or stale:
         return 1
-    print("\nevery referenced line exists")
+    print("\nevery referenced line exists, and every bolded figure "
+          "traces to the model")
     return 0
 
 

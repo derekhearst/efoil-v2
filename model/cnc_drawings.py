@@ -7,12 +7,25 @@ the drawings can never drift from the model. Rerun after any parameter change.
 
 Writes DXF per part into cnc/ plus cnc/cut-list.md.
 """
+import io
 import math
 import os
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(os.path.dirname(HERE), "cnc")
 MARKER = "# ------------------------------------------------------------------- scene"
+
+
+def load_report():
+    """report.json is the contract between the scripts - blender_board.py
+    writes it, everything else reads it. Anything this file would otherwise
+    have to RECOMPUTE from the parameter block belongs here instead: a second
+    implementation of the same geometry is a second chance to get it wrong,
+    and the module lid proved it by drawing 17 bolts where the model tapped
+    18, on an outline 22 mm too small in both axes."""
+    import json
+    with io.open(os.path.join(HERE, "report.json"), encoding="utf-8") as f:
+        return json.load(f)
 
 
 def load_params():
@@ -91,6 +104,7 @@ def rect(x0, x1, y0, y1):
 # ------------------------------------------------------------------ parts
 def build(p):
     os.makedirs(OUT, exist_ok=True)
+    R_ = load_report()
     L = p["derive_layout"]()
     parts = []
 
@@ -372,17 +386,24 @@ def build(p):
     # Bolt ring: still needed here even though the flange rails are printed,
     # because the LID is the one module part still cut on the machine and its
     # holes must match the printed flange's insert pattern.
-    fw = p["MOD_FLANGE_W"]
-    bi = p["MOD_BOLT_INSET"]
-    mb = p["bolt_ring"](bi, int_l - bi, bi, int_w - bi, p["MOD_BOLT_PITCH"])
+    # ...AND IT IS READ FROM THE MODEL, NOT REBUILT HERE. This used to call
+    # bolt_ring itself, on ix0 + MOD_BOLT_INSET with no corner radius - which
+    # is blender_board's ELSE branch, the INWARD-flange geometry that
+    # MOD_FLANGE_OUT turned into dead code. The result was 17 holes on a
+    # 421 x 292 outline against the model's 18 on 443 x 314: not a count one
+    # out, a different pattern on a different part, and 11's epoxy plugs
+    # inherited it. report.json is the contract; use it.
+    lid_l, lid_w = R_["module_lid_outline_mm"]
+    lid_r = R_["module_lid_corner_r_mm"]
+    mb = [tuple(xy) for xy in R_["module_bolt_xy_mm"]]
 
     # 5 - module lid -------------------------------------------------------
     d = Dxf()
-    d.poly(rect(0, ext_l, 0, ext_w))
+    d.poly(rrect(0, lid_l, 0, lid_w, lid_r))
     for (bx, by) in mb:
-        d.circle(bx + ENC_WALL, by + ENC_WALL, (p["MOD_BOLT_D"] + 1.0) / 2)
-    add("10_module_lid", f"glass/H80/glass {p['ENC_LID_T']:.0f}mm",
-        p["ENC_LID_T"], 1, d, ext_l, ext_w,
+        d.circle(bx, by, (p["MOD_BOLT_D"] + 1.0) / 2)
+    add("10_module_lid", f"glass/H80/glass {p['ENC_LID_T']:.1f}mm",
+        p["ENC_LID_T"], 1, d, lid_l, lid_w,
         f"{len(mb)} x O5.0 M4 clearance. O5.0 not O4.5: the rails are drilled "
         f"FLAT and then bonded up as a four-piece ring, so the ring's hole "
         f"positions carry whatever the bond-up drifted. O4.5 leaves 0.25 mm "
@@ -407,11 +428,11 @@ def build(p):
     # coordinates, so the core simply runs from -6 to ext+6 and the bolt
     # positions do not move.
     OS = 6.0
-    d.poly(rect(-OS, ext_l + OS, -OS, ext_w + OS))
+    d.poly(rrect(-OS, lid_l + OS, -OS, lid_w + OS, lid_r + OS))
     for (bx, by) in mb:
-        d.circle(bx + ENC_WALL, by + ENC_WALL, 12.0 / 2)
+        d.circle(bx, by, 12.0 / 2)
     add("11_module_lid_core", "Divinycell H80", p["ENC_LID_CORE"], 1, d,
-        ext_l + 2 * OS, ext_w + 2 * OS,
+        lid_l + 2 * OS, lid_w + 2 * OS,
         f"THE {len(mb)} CIRCLES ARE O12 THROUGH-HOLES THAT GET FILLED WITH "
         f"THICKENED EPOXY, and they are done NOW, while this is a bare sheet "
         f"on the bench: tape one face, pour, cure, sand BOTH faces flush, "
@@ -428,10 +449,14 @@ def build(p):
         f"{len(mb)} bolt holes want to be one setup, because their positions "
         f"have to match a bonded-up printed ring - and step 12's neat-epoxy "
         f"edge seal is what protects the exposed core. "
-        f"Edge distance still works out: the bolt circle lands "
-        f"{p['MOD_BOLT_INSET'] + ENC_WALL:.1f} mm from the FINISHED edge, so "
-        f"a O12 plug clears it by "
-        f"{p['MOD_BOLT_INSET'] + ENC_WALL - 6.0:.1f} mm.")
+        f"EDGE DISTANCE, and it is worth knowing what set it: the bolts sit "
+        f"{R_['module_bolt_edge_min_mm']:.1f} mm from the FINISHED edge, so "
+        f"a O12 plug reaches to within "
+        f"{R_['module_bolt_edge_min_mm'] - 6.0:.1f} mm of it - and so does "
+        f"the 12 mm washer that sits on top of it. Those two are the same "
+        f"constraint and they are why the bolt circle is where it is: one "
+        f"turn earlier it sat 1.5 mm further out, which left both of them "
+        f"0.5 mm from the edge with a profile pass still to come.")
 
     # 6 - mast plate -------------------------------------------------------
     d = Dxf()

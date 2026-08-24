@@ -1330,7 +1330,18 @@ MOD_FLANGE_W_OUT = 11.0
 # in compression, instead of bending a 9.5 mm cantilever. Narrower than the
 # old 7 mm band and better supported than it was.
 MOD_GASKET_START = 0.0             # band inner edge, outboard from the wall
-MOD_BOLT_EDGE = 6.5                # insert centre to the flange's outer edge
+# 8.0, WAS 6.5, AND THE WASHER IS WHAT SETTLED IT. bom.py buys a 12 mm-OD M4
+# washer for this lid - not 9, because the only 9 mm listing is A2/304 and
+# this sits where the cavity floods - and left an open question next to it:
+# "check 12 mm clears the lid pocket before ordering". Nobody did. At 6.5 a
+# 12 mm washer reaches to 0.5 mm of the finished lid edge, and so does the
+# epoxy plug that has to back it, which the profile pass would have broken
+# into. At 8.0 both clear by 2.0.
+# It is free, which is the surprising part - the bolt is moving toward the
+# middle of a 15 mm land, so nothing gets tighter: insert edge material 3.7
+# -> 5.2, flange bending 0.24 -> 0.16 MPa on a shorter lever, insert-to-wall
+# and seal-to-insert both unchanged.
+MOD_BOLT_EDGE = 8.0                # insert centre to the flange's outer edge
 # nothing overhangs inboard any more, so the pack has the full interior
 MOD_FLANGE_IN = 0.0 if MOD_FLANGE_OUT else MOD_FLANGE_W
 MOD_FLANGE_LAND = ENC_WALL + MOD_FLANGE_W_OUT
@@ -4951,7 +4962,7 @@ def build():
                 BOLT_D, coll, m_metal)
             if abs(bx - MAST_X) + INSERT_OD / 2 > G10_L / 2:
                 bolt_ok = False
-    rep["mast_fastening"] = (f"M8 TAPPED {INSERT_L:.0f} mm blind into a "
+    rep["mast_fastening"] = (f"M{BOLT_D:.0f} TAPPED {INSERT_L:.0f} mm blind into a "
                              f"{G10_T:.1f} mm 6061-T651 plate from the pad "
                              f"face - {INSERT_BLIND:.1f} mm of solid alu "
                              f"above. No bushings, no bonding, no lathe. "
@@ -5281,6 +5292,21 @@ def build():
     rep["blank_stack_mm"] = round(EPS_LAYERS * EPS_SHEET_T, 1)
     rep["blank_stack_covers"] = EPS_LAYERS * EPS_SHEET_T >= _need
     rep["blank_machined_away_mm"] = round(EPS_LAYERS * EPS_SHEET_T - _need, 1)
+    # HOW CLOSE THE FOURTH SHEET IS TO BEING UNNECESSARY, because this used to
+    # be settled arithmetic and quietly stopped being so. When the four-layer
+    # decision was taken the board was 153.8 thick and its envelope 163.8, so
+    # three sheets were 11.4 mm short and there was nothing to discuss. The
+    # board is thinner now and the same three sheets are within a couple of
+    # millimetres. It STILL does not fit - short is short, and the shortfall
+    # lands on the rocker where there is no material to borrow - but the
+    # decision is now a near miss rather than a rout, and the build guide was
+    # carrying a hardcoded 166.8 for the envelope that no longer existed.
+    # If the board ever loses another 2 mm of thickness, re-open this: a whole
+    # sheet a board, and an even 2+2 machining split, ride on it.
+    rep["blank_layers_needed"] = math.ceil(_need / EPS_SHEET_T)
+    rep["blank_three_sheets_short_by_mm"] = round(
+        _need - 3 * EPS_SHEET_T, 1)
+    rep["blank_fourth_sheet_still_needed"] = 3 * EPS_SHEET_T < _need
     rep["core_seam_x_mm"] = SEAM_X
     rep["core_halves_mm"] = (round(SEAM_X), round(LENGTH - SEAM_X))
     rep["core_halves_fit_bed"] = max(SEAM_X, LENGTH - SEAM_X) <= CNC_BED_X
@@ -5495,7 +5521,7 @@ def build():
         _relief = math.pi / 4 * (BUNG_BORE ** 2 - BUNG_FREE_D ** 2) * BUNG_L
         rep["bung_compressed_by"] = (
             "the GONG MAST'S HEAD, drawn up face to face with the board's "
-            "bottom by the four M8s at step 23. NOT the board's own hardpoint "
+            "bottom by the four M%.0fs at step 23. NOT the board's own hardpoint " % BOLT_D +
             "plate - that is bonded in at step 7 and never moves")
         rep["bung_proud_of_wetted_face_mm"] = BUNG_SQUEEZE
         rep["bung_squeeze_mm"] = BUNG_SQUEEZE
@@ -5727,10 +5753,10 @@ def build():
             "holes in a row at %0.1f pitch. Fills the plate's ONE STRAIGHT "
             "O%0.1f bore top to bottom, butts the epoxy liner's end face, and "
             "hangs %0.3f mm below the wetted face. The GONG MAST'S PLATE "
-            "squeezes that out - %0.0f%% - as the four M8s pull it face to "
+            "squeezes that out - %0.0f%% - as the four M%.0f bolts pull it face to "
             "face with the board."
             % (BUNG_FREE_D, BUNG_L, BUNG_HOLE_D, BUNG_PITCH, BUNG_BORE,
-               BUNG_SQUEEZE, 100.0 * BUNG_SQUEEZE / BUNG_L))
+               BUNG_SQUEEZE, 100.0 * BUNG_SQUEEZE / BUNG_L, BOLT_D))
 
     rep["conduit_od_mm"] = CONDUIT_D
     rep["conduit_bore_mm"] = bore
@@ -5792,8 +5818,8 @@ def build():
                 _ch.hide_render = True
         rep["mast_head_mm"] = [MAST_HEAD_L, MAST_HEAD_W, MAST_HEAD_T]
         rep["mast_head_t_derived_from"] = (
-            "Gong's M8x30 through it must leave %.0f mm in the tap"
-            % INSERT_L)
+            "Gong's M%.0fx30 through it must leave %.0f mm in the tap"
+            % (BOLT_D, INSERT_L))
         rep["mast_head_slot_mm"] = [MAST_SLOT_L, MAST_SLOT_W]
         rep["mast_head_is_the_moving_part"] = True
         rep["mast_head_dims_unverified"] = True
@@ -6359,6 +6385,29 @@ def build():
             _edges.append(min(_bx - fx0, fx1 - _bx, _by - fy0, fy1 - _by))
     rep["module_bolt_edge_min_mm"] = round(min(_edges), 2)
     rep["module_lid_bolts"] = len(mb)
+    # --- AND THE ACTUAL GEOMETRY, BECAUSE cnc_drawings.py WAS GUESSING IT ---
+    # The lid is the one module part still cut on a machine, and its holes
+    # have to match the printed flange's inserts. The drawing said exactly
+    # that in a comment and then rebuilt the ring itself from
+    # ix0 + MOD_BOLT_INSET with no corner radius - the ELSE branch above, the
+    # inward-flange geometry, which MOD_FLANGE_OUT has made dead code. It got
+    # 17 bolts on a 421 x 292 rectangle against the 18 this puts on a
+    # 443 x 314 one. Not a count that was one out: a different circle on a
+    # different outline, and part 11's epoxy plugs inherited it.
+    # Two implementations of one pattern, so publish the pattern. Everything
+    # below is in the LID'S OWN coordinates, origin at its outer corner.
+    rep["module_lid_outline_mm"] = [round(fx1 - fx0, 1), round(fy1 - fy0, 1)]
+    rep["module_lid_corner_r_mm"] = round(
+        MOD_CORNER_R + MOD_FLANGE_W_OUT if MOD_FLANGE_OUT else MOD_CORNER_R, 1)
+    rep["module_bolt_xy_mm"] = [[round(bx_ - fx0, 2), round(by_ - fy0, 2)]
+                                for bx_, by_ in mb]
+    # WHY THE LEAK TEST IS A VACUUM AND NOT A PRESSURE, in newtons. Step 15
+    # carried this as prose arithmetic on a lid size that was two geometries
+    # stale, which is a poor way to hold a safety number: it only had to be
+    # wrong in the reassuring direction once. 0.2 bar is the pressure someone
+    # reaches for with a bike pump and no thought.
+    rep["module_lid_burst_at_0p2bar_kN"] = round(
+        0.2e5 * (fx1 - fx0) * (fy1 - fy0) * 1e-6 / 1000.0, 1)
     # --- BOM COUNTS. bom.py used to hold its own hand-typed copies of these,
     # which is the same failure as fleet_cost: nothing breaks when they drift,
     # they just quietly bill for last month's board. Emitted here instead.
@@ -7223,8 +7272,8 @@ def build():
             "margin": round(DENSE_COMP_MPA / (_M * 1000.0 / _z), 1),
             "kg each": round(_l * _w * G10_T * 2.70e-6, 2)}
     rep["mast_plate_thickness_set_by"] = (
-        "the THREAD, not the footprint: M8 tapped %.0f blind with %.1f mm of "
-        "solid alu left above it" % (INSERT_L, INSERT_BLIND))
+        "the THREAD, not the footprint: M%.0f tapped %.0f blind with %.1f "
+        "mm of solid alu left above it" % (BOLT_D, INSERT_L, INSERT_BLIND))
     rep["rider_kg"] = 86.0
     rep["net_float_kg"] = round(rep["sealed_displacement_L"] - 86.0 - board_kg, 1)
     # Reserve the BOARD alone has, and how deep the deck sits with the rider on
@@ -7690,7 +7739,7 @@ def build():
                                 f"to the deck aft of the cavity, "
                                 f"{FLOOR_Z - FIT_FLOOR:.0f} mm slab under it, "
                                 "6061 plate let into its underside",
-        "mast plate": f"6061-T651 aluminium, {G10_T:.1f} mm, M8 tapped "
+        "mast plate": f"6061-T651 aluminium, {G10_T:.1f} mm, M{BOLT_D:.0f} tapped "
                       f"{INSERT_L:.0f} blind - no bushings",
         "hatch rim ring": f"PRINTED ASA, {RIM_T:.1f} mm, {RIM_SEG_N} pieces "
                           f"({RIM_JOINT}, dovetailed), no joint on a corner, "

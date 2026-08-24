@@ -733,7 +733,11 @@ def build():
         str(M["mod_inserts"] * N) + " needed, under every lid bolt. NOTE the "
         "OD is 12 mm, not the 9 mm this line specced - the only 9 mm-OD "
         "listing is 304. Took the alloy over the diameter because this sits "
-        "in the wet cavity; check 12 mm clears the lid pocket before ordering")
+        "where the cavity floods. CHECKED, and it did NOT clear: at the old "
+        "bolt circle a 12 mm washer reached to 0.5 mm of the lid edge, and so "
+        "did the epoxy plug backing it. The bolt circle moved inboard 1.5 mm "
+        "instead of the alloy moving down - see MOD_BOLT_EDGE. Both clear by "
+        "2.0 now, and every other flange number got better rather than worse")
     # Heat-set inserts are RIGHT again: the flange prints as part of the wall,
     # so the insert melts into ASA the way it is meant to. This line went
     # heat-set (wrong - G10) -> tap set (right for G10) -> heat-set (right for

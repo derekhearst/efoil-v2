@@ -112,8 +112,14 @@ Four sheets cover both boards. Cut layers oversize to ~1420 × 580 — two nest
 per 1219 × 2438 sheet. Glue **layers 1+2** and **layers 3+4** as separate
 slabs, 101.6 mm each. Keep both faces flat; they are the machining datum.
 
-> Four layers, not three. Three is 152.4 mm against a 166.8 mm envelope,
-> because the rocker adds ~10 mm the old three-sheet figure never counted.
+> **Four layers, not three — but only just, and that is worth knowing.**
+> Three sheets are 152.4 mm against a 153.7 mm envelope, so they miss by
+> **1.3 mm**, and the miss lands on the rocker where there is no material to
+> borrow. When this was decided the board was 153.8 thick and three sheets
+> were 11.4 mm short; the board has slimmed since and nobody re-checked. It
+> still points the same way. If it ever loses another 2 mm, re-open it — a
+> whole sheet a board and an even 2+2 machining split ride on this.
+> `blank_three_sheets_short_by_mm` tracks it now, so it cannot go stale again.
 
 ### Step 5. Machine the core — one booking, both boards
 
@@ -321,12 +327,17 @@ presses on *it*. Wax and PVA it properly; a caul bonded into a cured cavity
 is not recoverable.
 
 **The ring is in place for this**, so the caul is cut to fit around it: it
-drops inside the ring's inner edge and stands the **full 100.1 mm** from
-cavity floor to ledge. That height matters — the caul used to be specified at
-the *module's* height, 93.6 mm, which is a different measurement and 6.5 mm
-short. It stopped below the ledge, so the wall-to-ledge corner — concave,
-exactly where a bag bridges — got pressure from neither caul nor bag. That
-corner is where the ring sits and where the seal ends up.
+drops inside the ring's inner edge and stands the **full height from cavity
+floor to ledge** — board thickness less the lid, the ring and the floor. Take
+the number off part 13 in [cut-list.md](../cnc/cut-list.md) rather than from
+here; it moves whenever the lid stack or the ring does, and this paragraph
+used to carry a hard 100.1 that was two geometries out of date.
+
+That height is the point. The caul was once specified at the *module's*
+height, which is a different measurement and several millimetres short. It
+stopped below the ledge, so the wall-to-ledge corner — concave, exactly where
+a bag bridges — got pressure from neither caul nor bag. That corner is where
+the ring sits and where the seal ends up.
 
 ### Step 11a. Lay up the two lids
 
@@ -351,7 +362,7 @@ hatch lid's are written up in detail under
 [step 13](#the-plugs-are-cast-into-the-bare-core-before-the-skins-go-on)
 (the operation belongs here, at layup — that write-up sits later in the
 document than the step that performs it) and the
-module lid's are the same operation at a smaller size: **17 × Ø12 through the
+module lid's are the same operation at a smaller size: **18 × Ø12 through the
 bare H-80 sheet, tape one face, pour thickened epoxy, cure, sand both faces
 flush**, then lay up over it. The module lid used to say *drill Ø12 through
 the top skin and core only, leave the bottom skin* — that is a
@@ -607,8 +618,8 @@ test comes first and the vent goes in after. The two jobs are different:
 **Vacuum, not pressure.** Submerged, the module sees external pressure
 pushing the lid *onto* its gasket — vacuum inside reproduces that direction.
 Pressure inside tests the opposite and would fail a joint the board never
-loads that way. It is also unsafe: 0.2 bar across a 451 × 292 lid is about
-**2.6 kN**.
+loads that way. It is also unsafe: 0.2 bar across a 443 × 314 lid is about
+**2.8 kN**.
 
 **Prove it before the cells go in.** Seal it empty, pull 5 inHg, shut the
 ball valve, watch the gauge 30 minutes — porosity reads as a slow bleed. Then
@@ -715,12 +726,12 @@ four M6s behind it. That is the only travel in the whole mast joint.
    not one of them has to be twisted.
 2. Thread the leads through on the bench and soap them.
 3. Feed the bung up the plate's straight **Ø30.8 bore**. It butts the epoxy
-   liner's end face where the foam channel steps down, and hangs **6.35 mm
+   liner's end face where the foam channel steps down, and hangs **4.0 mm
    proud** of the wetted face.
-4. Bolt the mast on. Its plate squeezes that 6.35 mm out, and the rubber —
+4. Bolt the mast on. Its plate squeezes that 4.0 mm out, and the rubber —
    with nowhere useful to go — closes onto the jackets and the bore wall.
    **Start all four bolts by hand before torquing any of them**, or the plate
-   rocks on the bung. 113 N a bolt to close it.
+   rocks on the bung. 159 N a bolt to close it.
 
 | | |
 |---|---|
@@ -763,7 +774,7 @@ four M6s behind it. That is the only travel in the whole mast joint.
 > flange, no spotface.
 >
 > **Open the slot to 23.5 mm** while you are at it. The leads reach the bung's
-> holes at 8.0 pitch, which puts the outer two 11.15 mm off the axis against a
+> holes at 8.0 pitch, which puts the outer two 11.25 mm off the axis against a
 > slot that reaches 10.2 — they would bear on its ends. Not a leak path, but a
 > chafe point on something that vibrates. It costs 2 points of land.
 
@@ -838,7 +849,7 @@ suit rather than using the supplied screws anywhere: **M6** into the tapped
 are self-tappers, and a self-tapper in a brass insert is a stripped insert.
 
 **Measure the handle's tabs before you drill the module one.** The rail pair
-is on 110 mm centres and has room either side; the module's pads are on 70 mm
+is on 152.6 mm centres and has room either side; the module's pads are on 70 mm
 and cannot move — outboard of them is 5 mm of clearance to the gland nuts. If
 the bought handle's tabs are much wider than 70 mm, put a webbing loop through
 the same two pads on the module and keep the bought handles for the rails.
@@ -900,7 +911,7 @@ plate down metal to metal.
 
 And a gasket would cost something real. This is the highest-loaded joint on
 the board — an 850 mm lever with rider weight and foil lift at the end.
-Rubber under 4 × M8 creeps, the bolts lose preload, and the plate starts to
+Rubber under 4 × M6 creeps, the bolts lose preload, and the plate starts to
 rock. Compressible is the wrong property here in either material.
 
 **Measure** the prop shaft cross-hole rather than trusting the 4 mm figure;

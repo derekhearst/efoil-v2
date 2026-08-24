@@ -115,10 +115,10 @@ The build guide quotes BOM item names verbatim, and
 
 | | V1 (built) | V2 (current model) |
 |---|---|---|
-| Dimensions | 1600 × 600 × 153 mm | 1400 × 560 × 142 mm |
+| Dimensions | 1600 × 600 × 153 mm | 1400 × 560 × 143.7 mm |
 | Sealed displacement | 96.6 L | 78.1 L |
 | Board mass | 25–30 kg | 23.5 kg |
-| Board reserve, alone | — | +54.6 kg |
+| Board reserve, alone | — | +55.4 kg |
 | With an 86 kg rider | — | **−31.4 kg — a sinker at rest** |
 | Pack | 14S9P, 2,268 Wh | 16S8P, 2,304 Wh, 9.22 kg, 397 × 188 × 78 |
 | Cavity | 660 × 280 × 115 mm | 518 × 323 × 85 mm |
