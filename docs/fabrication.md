@@ -631,7 +631,7 @@ four M6s behind it. That is the only travel in the whole mast joint.
 | | |
 |---|---|
 | Disc | **Ø30.0 × 19.05**, punched from 3/4 in 50A neoprene |
-| Holes | 3 × Ø5.8 in a row at 8.0 pitch — 10.8% under the lead |
+| Holes | 3 × **Ø5.5** in a row at 8.0 pitch — **15.4%** under the lead |
 | Bore | the plate's own **Ø30.8**, one straight pass, no step |
 | Rubber wall | **3.75 mm at the ends of the row**, 11.75 at the sides |
 | Proud | **6.35 mm** below the wetted face |
@@ -644,6 +644,24 @@ four M6s behind it. That is the only travel in the whole mast joint.
 > drilled and reamed**, and that bore's *finish is the seal*, with corners for
 > leak paths. Growing the circle to Ø30 fixes the same problem for 4 mm of
 > hole in a plate with 63 mm of clearance to its nearest bolt.
+
+> **What actually seals here, in order — and the squeeze is not first.** Only
+> **52%** of the bung's face is backed from above: the epoxy liner's end face
+> covers the annulus between the plate's bore and the conduit, and everything
+> inside that is open sky. Rubber takes the cheap path, so a good part of the
+> squeeze extrudes up the bore rather than arriving at the leads.
+>
+> 1. **The Ø5.5 holes at 15.4% on the leads.** A grommet seal — it does not
+>    need the squeeze at all, and it is why the holes are drilled that tight.
+> 2. **The bung's OD closing onto the bore.** Takes only **11%** of the
+>    displaced volume, so it arrives whatever else happens.
+> 3. **The axial squeeze.** Real, but treat it as help rather than as the
+>    mechanism.
+> 4. **The 4200 fillet** over the lot.
+>
+> The conduit's epoxy liner is **4 mm, not 2**, and it is the bung that wants
+> it: it drops the finished bore to Ø22 and takes the backed fraction from 30%
+> to 52%. One more pass on a channel already being coated.
 
 > **The bung has to be wider than the mast's wire slot**, or the plate has
 > nothing to push on. Derek's slot is **20.4 × 7**, cut just wide enough for

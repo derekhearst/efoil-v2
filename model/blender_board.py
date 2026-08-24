@@ -882,7 +882,16 @@ BAY_GLAND_N = 3                    # motor phases / charge / switch + sense
 # even the wall out, and it would also be milled instead of drilled and
 # reamed - and that bore's FINISH is the seal, with corners for leak paths.
 CONDUIT_D = 30.0                   # bore - sized by the BUNG, see BUNG_PITCH
-CONDUIT_WALL = 2.0                 # epoxy liner thickness, not a tube wall
+# 4 mm of liner, not 2, and it is the WIRE BUNG that wants it rather than the
+# conduit. The liner's end face is what backs the bung when the mast plate
+# squeezes it, and at a 2 mm liner the finished bore is O26 - which leaves
+# 75% of the bung's face open straight up the conduit. Most of the squeeze
+# then extrudes 8 mm of rubber up the bore instead of pressurising the leads,
+# which are in that unsupported middle. Doubling the liner drops the bore to
+# O22 and takes the backed fraction 30% -> 52%.
+# It costs nothing: this channel is being epoxy-coated anyway, it is one more
+# pass, and the bore only ever has to pass three leads that span 22.3.
+CONDUIT_WALL = 4.0                 # epoxy liner thickness, not a tube wall
 CONDUIT_X_OFF = 0.0                # from MAST_X, on the mast's chord centreline
 # The conduit does NOT rise vertically into the cavity. It leaves the mast
 # plate, angles up and forward through solid foam, and pierces the cavity's
@@ -1014,8 +1023,13 @@ BUNG_FREE_D = 30.0                 # as punched - UNDER the bore
 # is this one. See bung_land_pct - that, not the thickness, is the number
 # that decides whether this arrangement works at all.
 BUNG_L = 19.05                     # 3/4 in sheet
-BUNG_HOLE_D = 5.8                  # drilled. Closes onto the jacket as
-                                   # the squeeze pushes rubber inward.                  # drilled UNDERSIZE for CABLE_OD - the seal
+# 5.5, not 5.8. The hole interference is the mechanism that works WITHOUT any
+# axial squeeze at all - it is a grommet seal, and it does not care that 75%
+# of the bung's face has somewhere to escape to. 5.5 takes it from 10.8% on
+# the lead to 15.4%, and the web between holes actually goes UP, 2.2 -> 2.5,
+# because the pitch did not move. Free, and it strengthens the half of this
+# joint that does not depend on the squeeze arriving.
+BUNG_HOLE_D = 5.5                  # drilled UNDERSIZE - the grommet seal                  # drilled UNDERSIZE for CABLE_OD - the seal
 # 1.5, not 2.0, and the half millimetre is bought back from the bore. A row
 # is wider than the round hole it feeds: at a 2.0 gap the outer lead leaves
 # the bung 11.75 mm off the axis against a bore that allows 11.0, so it has
@@ -5374,6 +5388,41 @@ def build():
             2 * (BUNG_PITCH + CABLE_OD / 2) + 1.0, 1)
         rep["bung_face_mm2"] = round(_area)
         rep["bung_land_pct"] = round(100.0 * 2 * _seg / _area)
+        # --- WHAT BACKS THE SQUEEZE, WHICH IS NOT THE SAME AS THE LAND -----
+        # The land is what the mast plate has to push ON. This is what the
+        # bung has to push AGAINST, and it is the weaker of the two: the
+        # liner's end face only covers the annulus between the plate's bore
+        # and the conduit, and everything inside that is open sky. Rubber
+        # takes the cheap path, so whatever fraction is open is squeeze that
+        # extrudes up the bore instead of arriving at the leads.
+        _above = math.pi / 4 * (BUNG_BORE ** 2
+                                - (CONDUIT_D - 2 * CONDUIT_WALL) ** 2)
+        _face = math.pi / 4 * BUNG_FREE_D ** 2
+        rep["bung_backed_above_mm2"] = round(_above)
+        rep["bung_backed_above_pct"] = round(100.0 * _above / _face)
+        rep["bung_open_above_pct"] = round(100.0 - 100.0 * _above / _face)
+        rep["bung_extrudes_up_bore_mm"] = round(
+            _face * BUNG_SQUEEZE
+            / (math.pi / 4 * (CONDUIT_D - 2 * CONDUIT_WALL) ** 2), 1)
+        # ...and how little of the displaced volume it takes to close the
+        # annulus round the bung, which is the seal that DOES arrive
+        rep["bung_annulus_fill_mm3"] = round(
+            math.pi / 4 * (BUNG_BORE ** 2 - BUNG_FREE_D ** 2) * G10_T)
+        rep["bung_annulus_pct_of_squeeze"] = round(
+            100.0 * (math.pi / 4 * (BUNG_BORE ** 2 - BUNG_FREE_D ** 2) * G10_T)
+            / (_face * BUNG_SQUEEZE))
+        rep["bung_seal_ranked"] = (
+            "1. the O%.1f holes at %.0f%% on the leads - a grommet seal, and "
+            "it does not need the squeeze at all. 2. the bung's OD closing "
+            "onto the bore, which takes only %d%% of the displaced volume so "
+            "it arrives whatever else happens. 3. the axial squeeze, of which "
+            "%d%% of the face has somewhere to escape to - treat it as help, "
+            "not as the mechanism. 4. the 4200 fillet over the lot"
+            % (BUNG_HOLE_D,
+               100.0 * (CABLE_OD - BUNG_HOLE_D) / CABLE_OD,
+               round(100.0 * (math.pi / 4 * (BUNG_BORE ** 2 - BUNG_FREE_D ** 2)
+                              * G10_T) / (_face * BUNG_SQUEEZE)),
+               round(100.0 - 100.0 * _above / _face)))
         rep["bung_land_needed_pct"] = 60
         rep["bung_land_is_thin"] = 2 * _seg / _area < 0.6
         # THE ONE MEASUREMENT THIS TURNS ON. MAST_SLOT_W is a guess, and the
