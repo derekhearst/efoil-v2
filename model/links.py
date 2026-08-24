@@ -94,10 +94,8 @@ LINKS = {
         ("B01IUBRSLO", 24.99, "HHIP 3601-0516 28 Piece Transfer Screw Set, M3 X .5, M4 X .7, M5 X .8, M6 X 1"),
     "M5 x 25 button head TORX TX25, 25 pk":
         ("B08BZJPJTK", 15.99, "BelMetric M5X25 Torx Button Flange ISO 7380-2 Machine Screw, TX-25 drive, stainless, 25 pcs"),
-    "O-ring 27 ID x 2.5 nitrile, blocker seal":
-        ("B008IBM6NM", 8.99, "uxcell Nitrile Rubber O-Rings 32mm OD 27mm ID 2.5mm Width, Pack of 50"),
-    "Neoprene sheet 3/8in, wire bung":
-        ("B01LX83VS9", 18.00, "Rubber, Neoprene, 3/8 in Thick, 12 x 12 in, 50A"),
+    "Neoprene sheet 3/4in, wire bung":
+        ("B07Y5K1VHK", 26.00, "USA Sealing Neoprene Rubber Sheet, No Adhesive, 60A, 3/4in x 12in x 12in"),
     "Hollow punch set 3/16-1-3/8in, for the O31.75 bung":
         ("B07PQYRG9K", 32.99, "ABN Hollow Punch Kit Leather Punches Tools Hole Punch Set Gasket Punch Set Gasket Cutter 3/16 to 1-3/8in (5-35mm)"),
     "EPS rigid foam 2in x 48in x 8ft (HD 202532856)":
@@ -316,8 +314,7 @@ LINK_VENDOR = {
     "Transfer punch set, metric 1-13 mm": "Amazon",
     "Transfer screw set M3-M6": "Amazon",
     "M5 x 25 button head TORX TX25, 25 pk": "Amazon",
-    "O-ring 27 ID x 2.5 nitrile, blocker seal": "Amazon",
-    "Neoprene sheet 3/8in, wire bung": "Amazon",
+    "Neoprene sheet 3/4in, wire bung": "Amazon",
     "Hollow punch set 3/16-1-3/8in, for the O31.75 bung": "Amazon",
     "EPS rigid foam 2in x 48in x 8ft (HD 202532856)": "Home Depot / hardware",
     "FOCEAN EVA deck sheet 2400 x 600 x 5.8": "Amazon",

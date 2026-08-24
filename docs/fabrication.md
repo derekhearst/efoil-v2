@@ -163,21 +163,24 @@ vertical seam (1030 mm). Dowel pins keep the halves registered.
 The CNC already cut the pockets. Bond the H-80 mast block and leash pad in,
 flush.
 
-> **Seat the wire blocker before the plate goes on.** Its Ø46 flange cannot
-> pass the Ø30.8 plate bore, so this is the only chance. It drops into the
-> Ø46 × 4 counterbore in the block's underside — cut with everything else —
-> with its Ø30.4 body hanging down into where the plate's bore will be, and
-> its O-ring already in the groove.
+> **Bed the wire blocker before the plate goes on.** It cannot pass the Ø30.8
+> plate bore, so this is the only chance. A Ø37.6 × 10 printed disc, bedded on
+> 4200 into the Ø38 counterbore in the block's underside — cut with everything
+> else — with a **23 × 7 slit** for the leads.
 >
-> **This part is why there is no sealant in the conduit.** The wire bung is
-> squeezed by the mast plate, and something has to take that push: the
-> blocker's flange spreads it over **917 mm² of H-80 at 0.69 MPa — 2.0×** —
-> and its body backs the bung across **95%** of its face. Without it the bung
-> is pushing against an open bore and most of the squeeze just extrudes up
-> the channel.
+> **This part is what gives the wire bung a stop that exists.** The bung is
+> squeezed by the mast plate and something has to take that push. **Nothing is
+> machined into the plate for it** — the plate keeps its one straight bore, and
+> the only change of diameter anywhere in this conduit is where the foam meets
+> the alu. The blocker lands on the plate's own flat top face: **389 mm² of
+> 6061 at 1.63 MPa against a 276 MPa yield.**
 >
-> Its three Ø8 holes are **clearance, not a seal**. The leads pull up through
-> them at step 18 and only the bung grips them.
+> It backs the bung across **97%** of its face. Without it the bung pushes
+> against an open bore and most of the squeeze extrudes up the channel.
+>
+> **The slit is clearance, not a seal** — a slot rather than three holes,
+> because the leads arrive in a row and a slot prints without bridging. The
+> leads pull up through it at step 18 and only the bung grips them.
 
 > **MACHINE THE MAST PLATE. Do not hand-drill it.** This guide used to say
 > the Gong plate was jig enough — clamp, spot through, drill, tap. That
@@ -597,10 +600,9 @@ that kill a BMS.
 
 **Blocks on:** steps 7, 17
 **Uses:** `Fish tape / pull cord for the mast conduit` ·
-`IP68 M25 inline housing, 5 pk` · `Neoprene sheet 3/8in, wire bung` ·
+`IP68 M25 inline housing, 5 pk` · `Neoprene sheet 3/4in, wire bung` ·
 `Hollow punch set 3/16-1-3/8in, for the O31.75 bung` ·
-`3M 4200 FC 3 oz tube, skim over the bung` ·
-`O-ring 27 ID x 2.5 nitrile, blocker seal`
+`3M 4200 FC 3 oz tube, skim over the bung`
 
 Motor leads part **in the cavity**, one housing per phase — without that the
 mast is bolted on for life.
@@ -647,13 +649,13 @@ four M6s behind it. That is the only travel in the whole mast joint.
 
 | | |
 |---|---|
-| Disc | **Ø30.0 × 9.53**, punched from 3/8 in 50A neoprene |
+| Disc | **Ø30.0 × 19.05**, punched from 3/4 in neoprene |
 | Holes | 3 × **Ø5.5** in a row at 8.0 pitch — **15.4%** under the lead |
 | Bore | the plate's own **Ø30.8**, one straight pass, no step |
 | Rubber wall | **3.75 mm at the ends of the row**, 11.75 at the sides |
-| Backed above | **95%**, by the blocker | 
-| Proud | **2.3 mm** below the wetted face |
-| Grip on the leads | 7.2 mm at **15.4%** interference |
+| Backed above | **97%**, by the blocker |
+| Proud | **6.35 mm** below the wetted face |
+| Grip on the leads | **12.7 mm**, the full plate, at 15.4% |
 
 > **Why it is round and not a rectangle.** A row of holes inside a circle is
 > fat where it needn't be and thin exactly where the outer two leads sit — at
@@ -670,10 +672,10 @@ four M6s behind it. That is the only travel in the whole mast joint.
 >    need the squeeze at all, which is why they are drilled that tight.
 > 2. **The bung's OD closing onto the plate's bore**, driven by the squeeze
 >    the blocker now makes possible: **95% backed** instead of 30%.
-> 3. **The blocker's O-ring** against that same machined bore — a piston seal,
->    *in series* with the bung and independent of it.
+> 3. **The blocker bedded on 4200** into the foam counterbore, which seals the
+>    annulus round it — an adhesive use, not a wire seal.
 >
-> The 4200 is a **skim over the bung's face**, not a barrier. That was the
+> Nothing in the *channel* is a sealant barrier. That was the
 > point of the blocker: an earlier version had the bung butting an epoxy liner
 > step that **has no geometry** — the dense block is bored clean through — and
 > had it existed it would have been a 365 mm² ring carrying 1.72 MPa into H-80
