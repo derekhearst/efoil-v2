@@ -806,13 +806,12 @@ def build():
     # The bung is a punched DISC and blender_board.py takes BUNG_L straight
     # off the stock thickness.
     add("7  Module", "Neoprene sheet 3/8in 50A, wire bung", 1, "sheet",
-        18.00, EST, "3/8 in for 9.5 mm of grip on every lead - on a cable seal "
-        "that length IS the seal. Punch O28 discs, OVERSIZE for the plate's "
-        "O26.8 bore: the 1.2 mm of interference is the outer seal, because "
-        "nothing in the assembly can compress it axially (the plate is bonded "
-        "in at step 7).  and drill 3 x O5.5 IN A ROW at 8.0 mm pitch, the "
-        "order the leads leave the mast in - 15% interference, soap them "
-        "through and thread them BEFORE the bung goes up the bore. One sheet is a lifetime of bungs for both boards")
+        18.00, EST, "3/8 in. Punch O30 discs and drill 3 x O6.16 in a row at "
+        "8.96 pitch - ALL OVERSIZE. Pressed into the plate's O26.8 bore the "
+        "disc closes to 26.8 x 11.94 and the holes to O5.5 at 8.0, so the "
+        "BORE is what compresses it and the leads thread through by hand "
+        "first at 5.3% and end up at 15.4%.  and drill 3 x O5.5 IN A ROW The row is the "
+        "order the leads leave the mast in, so none has to be twisted. One sheet is a lifetime of bungs for both boards")
     # Derek's existing punch set stops at 1/2 in and the disc is 1-1/4 in.
     # A 1-3/8 in hole saw also gets there - its plug comes out about 2.5 mm
     # under nominal, so ~32 mm, which is the size wanted - but a hole saw

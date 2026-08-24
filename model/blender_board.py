@@ -962,11 +962,37 @@ BUNG = True
 # sealing wall than anything that had to be milled for it. The seal is radial
 # now, not axial: rubber to alu round the outside, rubber to jacket through
 # the middle, 4200 skimmed over the wetted face.
-BUNG_L = 9.525                     # 3/8 in sheet
-# Punched OVERSIZE for the bore it goes into - the interference IS the seal.
-# 28 mm is in Derek's punch set and gives 4.5% on diameter, a normal press
-# fit for 50A rubber with soapy water behind it.
-BUNG_ROD_D = 28.0
+# --- THE BORE IS WHAT COMPRESSES IT ---------------------------------------
+# Derek: "it needs to be compressed tho, thats how the wires and seal
+# happens, if its just sititng there it doesnt work". Correct, and the 4.5%
+# press fit that was here was not enough to call a seal.
+#
+# His mechanism does not work though, and it is worth being exact about why:
+# the four M8s are tapped BLIND into the plate from its wetted underside and
+# pass up through the MAST's flange. Tightening them draws the plate DOWN
+# onto the mast, out of the board - so if anything they would RELIEVE a bung
+# sitting above the plate, not squeeze it. There is no force in this assembly
+# pushing the plate up into the board.
+#
+# There does not need to be. A plug pressed into an undersized bore is
+# compressed by the BORE, permanently, with no moving part anywhere - which
+# is how a cork, a freeze plug and a rubber stopper all work. Size the disc
+# properly and the assembly force IS the sealing force.
+#
+# And it does the cable seal for free, which is the good part. Rubber is
+# incompressible, so squeezing the disc from BUNG_FREE_D down to the bore
+# shrinks every hole in it by the same ratio. Drill them OVERSIZE and the
+# leads thread through an almost-clearance hole on the bench; pressing the
+# plug home is what closes them onto the jackets. Nothing has to be forced
+# through an undersized hole blind, up a bore, at the end of the build.
+BUNG_BORE = CONDUIT_D + 0.8        # the plate's conduit hole, unlined 6061
+BUNG_FREE_D = 30.0                 # as punched. 11.9% on diameter.
+BUNG_K = BUNG_BORE / BUNG_FREE_D   # radial scale, free -> installed
+BUNG_L = 9.525                     # 3/8 in sheet, as punched
+# ...and it lengthens as it is squeezed, because the volume has to go
+# somewhere and the bore is open at both ends. This is the number that has to
+# stay inside the plate.
+BUNG_L_FITTED = BUNG_L / BUNG_K ** 2
 # NEOPRENE, not the EPDM the module gasket uses, and the two differ on
 # purpose: that gasket seals by compression alone and is chosen for its
 # compression SET, this one gets a 3M 4200 fillet worked over it and is
@@ -974,8 +1000,7 @@ BUNG_ROD_D = 28.0
 # hardest rubber to bond - non-polar, low surface energy. A fillet that does
 # not wet the bung leaves a capillary path along the interface it was meant
 # to close.
-BUNG_BORE = CONDUIT_D + 0.8        # the plate's conduit hole, unlined 6061
-BUNG_HOLE_D = 5.5                  # drilled UNDERSIZE for CABLE_OD - the seal
+BUNG_HOLE_D = 5.5                  # INSTALLED - what grips the jacket                  # drilled UNDERSIZE for CABLE_OD - the seal
 # 1.5, not 2.0, and the half millimetre is bought back from the bore. A row
 # is wider than the round hole it feeds: at a 2.0 gap the outer lead leaves
 # the bung 11.75 mm off the axis against a bore that allows 11.0, so it has
@@ -985,7 +1010,12 @@ BUNG_HOLE_D = 5.5                  # drilled UNDERSIZE for CABLE_OD - the seal
 # millimetre and a half of rubber round every lead, which is all the gap was
 # ever for - no capillary path where two jackets touch.
 BUNG_WIRE_GAP = 1.5                # rubber between adjacent cable ODs
-BUNG_PITCH = CABLE_OD + BUNG_WIRE_GAP       # hole centres, in a row
+BUNG_PITCH = CABLE_OD + BUNG_WIRE_GAP       # INSTALLED, hole centres in a row
+# WHAT TO ACTUALLY DRILL. Both derived, both bigger than the finished size,
+# because the press shrinks them. Drilling to the installed numbers would end
+# up a size and a half small and the leads would never go through.
+BUNG_HOLE_DRILL = BUNG_HOLE_D / BUNG_K
+BUNG_PITCH_DRILL = BUNG_PITCH / BUNG_K
 
 # ------------------------------------------------------------ battery pack
 # BAK N21700CG-50, datasheet maxima: 21.4 dia x 70.75 long, 72 g, 18.0 Wh,
@@ -5169,7 +5199,7 @@ def build():
         # leads already through it. Drawn at the bore diameter because that
         # is what a 28 mm disc becomes once it is in a 26.8 mm hole.
         _bz_lo = plate_z0                     # the plate's wetted face
-        _bz_hi = plate_z0 + BUNG_L
+        _bz_hi = plate_z0 + BUNG_L_FITTED
         bung = cyl("V2_WireBung", cdx, 0.0, _bz_lo, _bz_hi, BUNG_BORE, coll,
                    bom_mat("rubber"), seg=48)
         # THREE IN A ROW, ALONG THE CHORD - the order they leave the mast in.
@@ -5183,18 +5213,34 @@ def build():
             _h.hide_set(True)
             _h.hide_render = True
 
-        rep["bung_disc_d_mm"] = BUNG_ROD_D
+        rep["bung_disc_d_mm"] = BUNG_FREE_D
         rep["bung_bore_d_mm"] = round(BUNG_BORE, 2)
-        rep["bung_radial_interference_mm"] = round(BUNG_ROD_D - BUNG_BORE, 2)
+        rep["bung_radial_interference_mm"] = round(BUNG_FREE_D - BUNG_BORE, 2)
         rep["bung_radial_interference_pct"] = round(
-            100.0 * (BUNG_ROD_D - BUNG_BORE) / BUNG_BORE, 1)
+            100.0 * (BUNG_FREE_D - BUNG_BORE) / BUNG_BORE, 1)
+        # AS PUNCHED / AS DRILLED vs AS FITTED. The shop needs the first pair.
+        rep["bung_as_punched_mm"] = {
+            "disc": BUNG_FREE_D, "thick": BUNG_L,
+            "hole": round(BUNG_HOLE_DRILL, 2),
+            "pitch": round(BUNG_PITCH_DRILL, 2)}
+        rep["bung_as_fitted_mm"] = {
+            "disc": round(BUNG_BORE, 2), "thick": round(BUNG_L_FITTED, 2),
+            "hole": BUNG_HOLE_D, "pitch": BUNG_PITCH}
+        rep["bung_fitted_fits_plate"] = BUNG_L_FITTED < G10_T
+        rep["bung_plate_left_over_mm"] = round(G10_T - BUNG_L_FITTED, 2)
+        # the leads go through the FREE disc, which is nearly clearance - the
+        # press is what closes it onto them
+        rep["bung_lead_interference_at_threading_pct"] = round(
+            100.0 * (CABLE_OD - BUNG_HOLE_DRILL) / CABLE_OD, 1)
+        rep["bung_lead_interference_fitted_pct"] = round(
+            100.0 * (CABLE_OD - BUNG_HOLE_D) / CABLE_OD, 1)
         rep["bung_seals_radially_not_axially"] = True
         rep["bung_installs_from"] = (
             "BELOW, up the plate's own bore, leads already threaded. Nothing "
             "is machined for it and nothing compresses it - the plate is "
             "bonded in at step 7 and cannot move at step 18")
         # what holds it in against the water column below it
-        _grip = math.pi * BUNG_BORE * BUNG_L * 0.3 * 0.5   # p x A x mu
+        _grip = math.pi * BUNG_BORE * BUNG_L_FITTED * 0.6 * 0.5   # p x A x mu
         rep["bung_friction_hold_N"] = round(_grip)
         rep["bung_water_push_N"] = round(
             1.0e5 * 0.5 * math.pi / 4 * (BUNG_BORE / 1000.0) ** 2)  # 5 m head
@@ -5231,20 +5277,21 @@ def build():
         rep["bung_cable_interference_pct"] = round(
             100.0 * (CABLE_OD - BUNG_HOLE_D) / CABLE_OD, 1)
         # grip length per lead - on a cable seal this is what seals
-        rep["bung_grip_len_mm"] = round(BUNG_L, 2)
-        rep["bung_plate_left_above_mm"] = round(G10_T - BUNG_L, 2)
+        rep["bung_grip_len_mm"] = round(BUNG_L_FITTED, 2)
         # NO SQUEEZE BLOCK ANY MORE. There is no axial compression to check
         # because there is nothing in the assembly that could apply it.
         rep["bung_removable"] = True
         rep["bung_note"] = (
-            "a %0.1f mm disc punched from 3/8 in 50A neoprene, three %0.1f mm "
-            "holes in a row at %0.1f mm pitch along the chord. Pushed UP the "
-            "plate's own %0.1f mm bore from below with the leads already "
-            "through it, flush with the wetted face, and skimmed with 4200. "
-            "%0.1f mm of interference on the diameter is the outer seal; "
-            "nothing is machined for it and nothing compresses it."
-            % (BUNG_ROD_D, BUNG_HOLE_D, BUNG_PITCH, BUNG_BORE,
-               BUNG_ROD_D - BUNG_BORE))
+            "PUNCH %0.1f, DRILL %0.2f at %0.2f pitch - all oversize. Pressed "
+            "into the plate's %0.1f mm bore it becomes %0.1f thick with "
+            "%0.1f mm holes at %0.1f pitch, and THAT press is what seals it: "
+            "%0.0f%% on the disc against the 6061, and the leads go from "
+            "%0.0f%% interference on the bench to %0.0f%% once it is home."
+            % (BUNG_FREE_D, BUNG_HOLE_DRILL, BUNG_PITCH_DRILL, BUNG_BORE,
+               BUNG_L_FITTED, BUNG_HOLE_D, BUNG_PITCH,
+               100.0 * (BUNG_FREE_D - BUNG_BORE) / BUNG_BORE,
+               100.0 * (CABLE_OD - BUNG_HOLE_DRILL) / CABLE_OD,
+               100.0 * (CABLE_OD - BUNG_HOLE_D) / CABLE_OD))
 
     rep["conduit_od_mm"] = CONDUIT_D
     rep["conduit_bore_mm"] = bore

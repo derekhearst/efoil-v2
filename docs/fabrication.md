@@ -563,35 +563,46 @@ the limit**, which is why the gap is 1.5 and not 2.
 
 | | |
 |---|---|
-| Disc | **Ø28** × 9.53, punched from the 3/8 in 50A neoprene |
-| Lead holes | 3 × Ø5.5 **in a row** at 8.0 mm pitch — 15% under the 6.5 mm lead |
-| Bore | the plate's own **Ø26.8** conduit hole — nothing is machined for it |
-| Outer seal | **1.2 mm of interference on the diameter** (4.5%), pressed in |
+| | **As punched / drilled** | **As fitted** |
+|---|---|---|
+| Disc | **Ø30.0** × 9.53 | Ø26.8 × 11.94 |
+| Lead holes, in a row | Ø**6.16** at **8.96** pitch | Ø5.5 at 8.0 pitch |
+| Interference on the leads | 5.3% — threads by hand | **15.4%** |
+| Interference on the bore | — | **11.9%** against machined 6061 |
 
-Punch the disc and drill the three holes in a row at 8.0 mm pitch, along the
-chord — the order the leads arrive in, so not one of them has to be twisted
-into place. Soap them through; 15% is meant to be a fight.
+**Everything is punched and drilled oversize, and the bore is what closes
+it.** Rubber is incompressible, so squeezing the disc from Ø30 down to the
+Ø26.8 bore shrinks every hole in it by the same ratio — and lengthens it from
+9.53 to 11.94, which is why the plate is 12.7.
 
-**Thread the leads first, then push the whole thing up the bore from below.**
-It goes into the plate's own Ø26.8 conduit hole, flush with the wetted face.
-Nothing is machined for it and nothing compresses it.
+That ordering is the whole point. The leads thread through a **Ø6.16** hole
+on the bench — 5.3%, hand pressure — and it is **pressing the plug home that
+closes them to 15.4%**. Nothing has to be forced through an undersized hole
+blind, up a bore, at the end of the build.
 
-> **There is no axial squeeze, and there is no counterbore.** Earlier drafts
-> of this had a Ø34 pocket in the plate's top face with the bung squeezed into
-> it as the plate was "bolted up". Both halves were wrong. **The plate is
-> bonded into its pocket at step 7 and glassed over** — the four M8s pull the
-> *mast* up to the *plate* at step 23, not the plate up to the board. By the
-> time the bung goes in, the plate has been part of the board for fifteen
-> steps and nothing in the assembly can move. And a pocket reachable only
-> through Ø26.8 at both ends could never have been given a Ø31.75 disc anyway.
+1. Punch Ø30 discs from the 3/8 in sheet.
+2. Drill 3 × Ø6.16 **in a row at 8.96 pitch**, along the chord — the order
+   the leads leave the mast in, so not one of them has to be twisted.
+3. Thread the leads through on the bench.
+4. Soap it and press the whole assembly **up** the plate's bore until it is
+   flush with the wetted face. Skim 4200 over it.
+
+> **Where the compression comes from.** Not from the plate moving — it is
+> bonded into its pocket at step 7 and glassed over, and it cannot move at
+> step 18. Nor from the mast bolts: those are tapped **blind into the plate
+> from its underside** and pass up through the mast's flange, so tightening
+> them draws the plate *down* onto the mast. If anything they would relieve a
+> bung above the plate, not squeeze it.
 >
-> So the seal is **radial**: 1.2 mm of interference against machined 6061 on
-> the outside, 15% against the jacket through the middle, 4200 over the face.
-> **Ream or bore that hole — do not leave it as a drilled one.** That wall is
-> now the outer seal.
+> It comes from **the bore**, permanently, with no moving part anywhere —
+> which is how a cork, a freeze plug and a rubber stopper all work. Size the
+> disc properly and the assembly force *is* the sealing force.
+>
+> That makes the bore's finish structural. **Ream or bore it — do not leave
+> it as a drilled hole.**
 
-Friction holds it at about **120 N** against the **28 N** a 5 m water column
-pushes up under it — 4.3×. It comes out the way it went in: cut the fillet,
+Friction holds it at about **300 N** against the **28 N** a 5 m water column
+pushes up under it — 10.7×. It comes out the way it went in: cut the fillet,
 pull the leads and the bung down together.
 
 Fillet 4200 over the underside. **4200 not 5200** — 5200 never comes out.
