@@ -6,17 +6,18 @@ Grouped by where you buy it rather than by what it does, because that is the ord
 
 | Supplier | Lines | $ |
 |---|---:|---:|
-| Amazon | 115 | $3,681.61 |
+| Amazon | 114 | $3,661.71 |
 | Gong | 1 | $1,404.00 |
 | Flipsky | 3 | $1,038.00 |
-| Not a purchase - tax and freight | 3 | $845.96 |
+| Not a purchase - tax and freight | 3 | $846.93 |
 | BatteryHookup | 2 | $297.50 |
 | Fiberglass Supply | 3 | $253.38 |
 | Maker Shop Boise | 2 | $249.00 |
 | Home Depot / hardware | 4 | $169.16 |
 | Speedy Metals | 1 | $88.92 |
 | Easy Composites | 1 | $52.00 |
-| **TOTAL** | | **$8,079.53** |
+| Branom / RS | 2 | $36.00 |
+| **TOTAL** | | **$8,096.60** |
 
 ## Amazon
 
@@ -82,7 +83,6 @@ https://www.amazon.com
 | [Cable ties, lacing, adhesive mounts](https://www.amazon.com/dp/B08RMS5H25) | 2 | set | $19.98 | estimate |  |
 | [M5 x 250 threaded rod, 4 pk (cut to ~171 mm)](https://www.amazon.com/dp/B0CMZR9L1Y) | 2 | pk | $19.98 | **verified** | a 4-pack is exactly one board's worth. Dry-assemble and mark before cutting |
 | [8 AWG marine ring lugs, 20 pk](https://www.amazon.com/dp/B0CWGXB4NB) | 2 | pk | $19.98 | **verified** | 28 needed; on M6 studs - nothing to solder |
-| [M12 IP68 membrane vent plug](https://www.amazon.com/dp/B0FXSNDGTV) | 2 | ea | $19.90 | **verified** | NOT optional on a sealed lithium box |
 | [Release wax / PVA for the cavity caul](https://www.amazon.com/dp/B0HB5VXRY1) | 1 | set | $19.90 | estimate |  |
 | [3M 4200 FC 3 oz tube, skim over the bung](https://www.amazon.com/dp/B00MJ9K78A) | 1 | tube | $17.99 | **verified** | does both boards; 4200 NOT 5200 - 5200 never comes out. NOT A BARRIER in the channel any more - the blocker is |
 | [Thermometer / hygrometer, 2 pk](https://www.amazon.com/dp/B086PC5962) | 1 | pk | $17.99 | estimate | one in the shop, one by the part. Slow needs 60 F, fast needs 40-45, and below ~35 nothing cures at all |
@@ -166,7 +166,7 @@ Some Flipsky appears on Amazon but the range is thin and usually dearer. Buy dir
 
 | Item | Qty | Unit | Ext | Price | Note |
 |---|---:|---|---:|---|---|
-| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $457.33 | **verified** |  |
+| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $458.30 | **verified** |  |
 | Gong shipping to Idaho, ONE order, both foils | 1 | order | $268.63 | **verified** | quoted at checkout for 2 x XL Alu setups. PER ORDER, not per foil - ordering the two separately would roughly  |
 | Shipping - Divinycell, 6061 plate, VR20 | 1 | allow | $120.00 | estimate | STILL THE BIGGEST UNVERIFIED LINE - it wants three real carts to settle. Was $220 when it covered G10 sheet an |
 
@@ -230,4 +230,11 @@ https://www.easycomposites.us
 | Item | Qty | Unit | Ext | Price | Note |
 |---|---:|---|---:|---|---|
 | [VR20 vacuum regulator](https://www.easycomposites.us/vacuum-regulator-for-vacuum-bagging) | 1 | ea | $52.00 | **verified** | one-time. Holds the bag at 5-10 inHg, which is the whole ball game: EPS crushes around 150 kPa and full vacuum |
+
+## Branom / RS
+
+| Item | Qty | Unit | Ext | Price | Note |
+|---|---:|---|---:|---|---|
+| [GORE PolyVent Stainless M12x1.5, module vent](https://www.branom.com/shop/6560-200-1-gore-screw-in-vent-port-black-pmf100320-m12-x-1-5-543016) | 2 | ea | $30.00 | estimate | PMF200444. NOT optional on a sealed lithium box - and see the note at the vent in blender_board.py for what it |
+| GORE counter nut M10510-008, brass | 2 | ea | $6.00 | estimate | nickel-plated brass, for the stainless PolyVent. The wall is 4 mm of printed ASA; a nut spreads the load the w |
 

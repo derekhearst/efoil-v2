@@ -926,8 +926,50 @@ def build():
     # in 9b - the module is ~14 kg in a
     # cavity with 12 mm of side clearance, so there is no getting a hand
     # beside it.
-    add("7  Module", "M12 IP68 membrane vent plug", N, "ea", 9.95, OK,
-        "NOT optional on a sealed lithium box")
+    # THE VENT IS NOW A RATED PART, and that is Derek's rule applied to the
+    # one fitting that was exempt from it: multiple layers, and nothing in
+    # the stack that is not itself rated. What was here was a $9.95 no-name
+    # "IP68 nylon breather" whose entire water claim was those four
+    # characters. IP68 with no stated depth and no duration is a marketing
+    # string, and this fitting is a deliberate hole in the last wall in front
+    # of the pack.
+    #
+    # GORE PolyVent, tested rather than asserted: IEC 60529 immersion at 2 m
+    # for 1 hour, IP69K to ISO 20653, salt fog to IEC 60068-2-11 and -52,
+    # UL 94 VTM-0 membrane, -40 to +125 C cycled, individually laser-marked
+    # for traceability. Against the 62 mm of head this cavity can ever put on
+    # it that is 32x, so it goes from the module's weakest opening to its
+    # strongest.
+    #
+    # STAINLESS 316L, not the polyamide, on a board that lives in salt water.
+    # It also takes a COUNTER NUT, which is what a 4 mm printed ASA wall
+    # wants - the same nut-on-thread the PG11 glands already use - instead of
+    # trusting a thread cut in the print.
+    #
+    # 1600 ml/min at 70 mbar. Gore size that for a 20 L enclosure and the
+    # module has ~3.3 L of free air once the pack is in, so it is 6x on their
+    # own sizing table. Their point, in their words: higher airflow -> faster
+    # equalisation -> lower stress on the seal.
+    #
+    # NOT ON AMAZON, deliberately. Amazon's "PMF100320" listings are 100-piece
+    # bags of clones described as "a good replacement for Gore-tex patches" -
+    # no traceability and none of the test data above, which is the entire
+    # reason for the change. Buy the real one from a distributor.
+    add("7  Module", "GORE PolyVent Stainless M12x1.5, module vent", N, "ea",
+        15.00, EST,
+        "PMF200444. NOT optional on a sealed lithium box - and see the note "
+        "at the vent in blender_board.py for what it does NOT do: at "
+        "1.6 L/min it is a BREATHER, not runaway relief, which wants about "
+        "12 L/min for one cell. Torque 0.9 +/- 0.3 Nm, 18 mm wrench, "
+        "silicone O-ring, 316L body. THREAD IS M12 x 1.5 - the part this "
+        "replaced was M12 x 0.75, so the printed boss changes with it",
+        vendor="Branom / RS", url="https://www.branom.com/shop/"
+        "6560-200-1-gore-screw-in-vent-port-black-pmf100320-m12-x-1-5-543016")
+    add("7  Module", "GORE counter nut M10510-008, brass", N, "ea", 3.00, EST,
+        "nickel-plated brass, for the stainless PolyVent. The wall is 4 mm of "
+        "printed ASA; a nut spreads the load the way the PG11 glands already "
+        "do rather than trusting a thread in the print",
+        vendor="Branom / RS")
     # You have one on the shelf. CHECK IT IS A SPARE and not the one fitted
     # to V1 - V1 leaves with Kev, button included.
     # APIELE M12: O12 hole, M12 x 0.75, head O17.5. NOT 22 mm - that was a

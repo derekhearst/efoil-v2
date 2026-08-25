@@ -95,13 +95,14 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | [Hollow punch set 3/16-1-3/8in, for the O30 bung](https://www.amazon.com/dp/B07PQYRG9K) | 1 | set | $32.99 | $32.99 | estimate | the existing set stops at 1/2 in and the disc is O30.0 - the 1-3/16 in punch is 30.16, near enough in rubber. This line used to say 'for the O31.75 bung', which was the disc diameter two designs ago and would have had you reaching for the 1-1/4 punch |
 | Printed ASA wire blocker | 0 | off | $0.00 | $0.00 | on hand | printed, grams off the rim ring spool. O30.4 x 4 body inside the PLATE's bore, O24.6 x 12 spigot up into the FOAM's, 23 x 7 SLIT for the leads. The slit is CLEARANCE and seals nothing; the bung does that, one hole per lead. BED THE SPIGOT PROPERLY ON 4200 - that bond is the load path, not the foam ring it lands on: the ring is 254 mm2 at 2.5 MPa against H80's 1.4 and would crush in on its own, while the bond is 927 mm2 in shear at 2.9x. Goes in at STEP 7, from below, before the plate |
 | [3M 4200 FC 3 oz tube, skim over the bung](https://www.amazon.com/dp/B00MJ9K78A) | 1 | tube | $17.99 | $17.99 | verified | does both boards; 4200 NOT 5200 - 5200 never comes out. NOT A BARRIER in the channel any more - the blocker is bedded on it and the bung's own holes seal the leads. This line is that bedding plus a skim over the bung's face |
-| [M12 IP68 membrane vent plug](https://www.amazon.com/dp/B0FXSNDGTV) | 2 | ea | $9.95 | $19.90 | verified | NOT optional on a sealed lithium box |
+| [GORE PolyVent Stainless M12x1.5, module vent](https://www.branom.com/shop/6560-200-1-gore-screw-in-vent-port-black-pmf100320-m12-x-1-5-543016) | 2 | ea | $15.00 | $30.00 | estimate | PMF200444. NOT optional on a sealed lithium box - and see the note at the vent in blender_board.py for what it does NOT do: at 1.6 L/min it is a BREATHER, not runaway relief, which wants about 12 L/min for one cell. Torque 0.9 +/- 0.3 Nm, 18 mm wrench, silicone O-ring, 316L body. THREAD IS M12 x 1.5 - the part this replaced was M12 x 0.75, so the printed boss changes with it |
+| GORE counter nut M10510-008, brass | 2 | ea | $3.00 | $6.00 | estimate | nickel-plated brass, for the stainless PolyVent. The wall is 4 mm of printed ASA; a nut spreads the load the way the PG11 glands already do rather than trusting a thread in the print |
 | [M12 IP68 momentary panel button](https://www.amazon.com/dp/B0FPQP7CP9) | 1 | ea | $32.65 | $32.65 | verified | 1 on hand; this line buys the second board's |
 | [JST GH 1.25 mm pigtail pair, BMS switch](https://www.amazon.com/dp/B07FP2FCYC) | 1 | pk | $5.99 | $5.99 | verified | connects the panel button to the BMS key-switch input. CHECK THE BOX FIRST - DALY ship a ready-made key switch with some units |
 | [SP17 2-pin IP68 flange socket + mating plug](https://www.amazon.com/dp/B0CDH5R8P4) | 2 | ea | $13.20 | $26.40 | verified | HangTon SP17. THE LISTING IS A PAIR - male cable plug AND female panel socket - which matters, because the charger arrives with whatever connector its own maker fitted and something has to go on the end of its lead. 10 A and 500 V on the 2-pin against our 67.2 V 5 A, takes up to 2 mm2 / 14 AWG so our 16 is comfortable, cable OD 6-10 mm, threaded coupling, brass contacts with gold plating, PA66 shell / PPS insert, -40 to +85 C, 500 mating cycles. PLUG IT IN BEFORE YOU POWER THE CHARGER: the port is dead whenever the BMS is off, and this board is already built that way round. THE SCREW CAP IS THE REASON THIS CONNECTOR IS HERE - CONFIRM IT IS IN THE BOX. Renhotec's SP17 page says sealing caps are AVAILABLE for both the cable and panel halves, which is not the same as included. This port is the lowest unrated opening into the module and it sits unmated every ride; if no cap ships, source one before the board does. FLANGE PITCH IS UNVERIFIED. The standard SP17 flange is a TWO-hole one - four is the EW-LP16 pattern, a different connector - and the 22 mm centres this model uses have never been found on a drawing. They go into a PRINTED wall, so order this early and measure it before the module shell prints at step 3 |
 | [M3 heat-set insert kit, 361 pc](https://www.amazon.com/dp/B0G8JLX1HR) | 1 | kit | $13.98 | $13.98 | verified | covers the port flange (4 sets, 2 a port on a 22 mm square) and the nose cone. The kit's screws are PLAIN STEEL - buy M3 x 8 A4 separately for the flange, which lives in the wet cavity |
 | [M3 x 8 A4 stainless, 10 pk](https://www.amazon.com/dp/B07DVMFMJZ) | 1 | pk | $6.76 | $6.76 | verified | 4 needed. The kit's screws are not stainless and this joint is submerged |
-| **subtotal** | | | | **$444.89** | | |
+| **subtotal** | | | | **$460.99** | | |
 
 ## 9  Electrical
 
@@ -251,31 +252,31 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | Item | Qty | Unit | Unit $ | Ext $ | | Note |
 |---|---:|---|---:|---:|---|---|
 | Shipping - Divinycell, 6061 plate, VR20 | 1 | allow | $120.00 | $120.00 | estimate | STILL THE BIGGEST UNVERIFIED LINE - it wants three real carts to settle. Was $220 when it covered G10 sheet and hazmat epoxy, both of which are now out of the build entirely |
-| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $457.33 | $457.33 | verified |  |
-| **subtotal** | | | | **$577.33** | | |
+| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $458.30 | $458.30 | verified |  |
+| **subtotal** | | | | **$578.30** | | |
 
 ## Totals
 
 | | |
 |---|---:|
-| **Grand total, 2 boards** | **$8,079.53** |
-| Per board | $4,039.76 |
-| Of which verified | $7,374.24  (91%) |
-| Of which estimated | $705.29 |
+| **Grand total, 2 boards** | **$8,096.60** |
+| Per board | $4,048.30 |
+| Of which verified | $7,355.31  (91%) |
+| Of which estimated | $741.29 |
 | Linked to a real listing | 131 lines |
-| Priced but NOT linked | 1 lines, $99.00 |
-| Not linkable, but MEASURED (freight quotes) | 2 lines, $725.96 |
+| Priced but NOT linked | 2 lines, $105.00 |
+| Not linkable, but MEASURED (freight quotes) | 2 lines, $726.93 |
 | Not linkable and still estimated | 1 lines, $120.00 |
 
 ## What is a board, and what is a shop
 
-Some of the total above is not the cost of a board at all - it is tools, jigs and templates that exist afterwards and do not repeat. Splitting them out is the difference between "a board costs $4,040" and "a board costs $3,514 and I now own a vacuum rig, a crimper and a full template set".
+Some of the total above is not the cost of a board at all - it is tools, jigs and templates that exist afterwards and do not repeat. Splitting them out is the difference between "a board costs $4,048" and "a board costs $3,522 and I now own a vacuum rig, a crimper and a full template set".
 
 | | |
 |---|---:|
 | One-time tooling (incl. its share of tax) | $1,051.95 |
-| **Marginal cost of a board** | **$3,513.79** |
-| Cost of the NEXT board after these 2 | $3,513.79 |
+| **Marginal cost of a board** | **$3,522.32** |
+| Cost of the NEXT board after these 2 | $3,522.32 |
 
 | One-time item | $ |
 |---|---:|

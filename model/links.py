@@ -146,8 +146,6 @@ LINKS = {
         ("B001AVC8ZI", 20.99, "Dura-Gold Gold PSA Longboard Sandpaper 150 Grit 20 Yard Roll 2-3/4in"),
     "Longboard PSA sandpaper 80 grit, 20 yd roll":
         ("B0CQ7CVGK6", 15.99, "PSA Sandpaper Roll 80 Grit 2-3/4in x 20 Yards Longboard"),
-    "M12 IP68 membrane vent plug":
-        ("B0FXSNDGTV", 9.95, "ANGSTROM M12 Waterproof Air Vent Plug IP68 Nylon Breather"),
     "M12 IP68 momentary panel button":
         ("B0FPQP7CP9", 32.65, "5Pcs 12mm Momentary Push Button Switch IP68 SPST NO 3A"),
     "M3 heat-set insert kit, 361 pc":
@@ -348,7 +346,6 @@ LINK_VENDOR = {
     "Loctite 242": "Amazon",
     "Longboard PSA sandpaper 120-180 grit, 20 yd roll": "Amazon",
     "Longboard PSA sandpaper 80 grit, 20 yd roll": "Amazon",
-    "M12 IP68 membrane vent plug": "Amazon",
     "M12 IP68 momentary panel button": "Amazon",
     "M3 heat-set insert kit, 361 pc": "Amazon",
     "M3 x 8 A4 stainless, 10 pk": "Amazon",

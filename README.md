@@ -130,7 +130,7 @@ rest are contingency tools.
 | Core splits | — | vertical at 1030 mm (bed length), horizontal at 101.6 mm (gantry) |
 | Machining | — | 4 pieces, 5 setups, 1 flip, no cradle |
 | Deck pad | — | 3 pieces of 5.8 mm EVA, one sheet does both boards |
-| Cost | ~$3,900 spent | **$4,040/board**, 91% verified |
+| Cost | ~$3,900 spent | **$4,048/board**, 91% verified |
 
 The board is a **sinker** — 79.0 L will not float a rider standing still.
 That is a consequence of narrowing to 560 mm, but note it has moved twice:
@@ -186,11 +186,23 @@ Ordered by what can actually stop the build.
    step 3. The cap matters just as much: it is the entire reason this
    connector was chosen over the LP16's nicer one-touch latch, and Renhotec
    list SP17 sealing caps as *available*, which is not *included*.
-10. **The module vent is the next barrier down.** Whatever the charge port
-    does, the vent membrane caps the module at **62.2 mm** of standing water
-    in the cavity — 1.8 mm above the port — and the model already calls it
-    the module's lowest-rated part in a flood. It breathes into the cavity,
-    and IP68 is an immersion rating, not a permanent head.
+10. ~~**The module vent is the next barrier down.**~~ **Closed for water.**
+    It was a $9.95 no-name "IP68 nylon breather", and IP68 with no stated
+    depth or duration is a marketing string, not a rating. Now a **GORE
+    PolyVent Stainless, M12 × 1.5, 316L** — tested to IEC 60529 at 2 m for
+    1 hour, IP69K to ISO 20653, salt fog, UL 94 VTM-0 membrane, laser-marked
+    for traceability. Against the **62.2 mm** of head this cavity can ever
+    put on it that is **32×**, so it goes from the module's weakest opening
+    to its strongest. Sized on Gore's own table: 1.6 L/min covers a 20 L
+    enclosure and the module has ~3.3 L of free air, 6× over.
+11. **Nothing on this board relieves a cell venting, and the vent is not it.**
+    This is the one genuinely open safety item. A breather membrane passes
+    **1.6 L/min**; one 21700 in thermal runaway makes 1–2 L of gas in
+    seconds, wanting roughly **12 L/min** — eight times the vent, for one
+    cell out of 128. The module is a bolted box with 18 × M4 on a hard-stop
+    joint, which will not lift to relieve. Runaway relief is a **burst path**
+    and this design does not have one. It was previously implied by a
+    comment crediting the vent with a job it cannot do.
 
 ---
 

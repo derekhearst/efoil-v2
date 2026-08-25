@@ -915,6 +915,20 @@ MOD_INSERT_D_M3 = 4.0              # M3 heat-set pilot in printed ASA
 BAY_GLAND_THREAD_D = 18.03
 BAY_GLAND_THREAD_L = 9.14
 BAY_GLAND_NUT_AF = 24.0            # spanner flats - this sets the spacing
+# --- the module vent, and what it is RATED for ----------------------------
+# GORE PolyVent screw-in, M12 x 1.5. Every number here is off the maker's
+# data sheet, and having them here at all is the point: the part this
+# replaced was a $9.95 "IP68 nylon breather" whose entire water claim was
+# those four characters. IP68 with no depth and no duration is a marketing
+# string, not a rating.
+VENT_THREAD = "M12 x 1.5"          # NOTE: the old APIELE was M12 x 0.75
+VENT_RATED_M = 2.0                 # IEC 60529 immersion depth, tested
+VENT_RATED_H = 1.0                 # ...for this long
+VENT_FLOW_L_MIN = 1.6              # at dp = 70 mbar, M12 standard PolyVent
+# What ONE 21700 puts out in thermal runaway: 1-2 L of gas in a few seconds.
+# Taken as 1 L in 5 s. It is an order-of-magnitude figure and it only has to
+# be right to a factor of two to make its point.
+CELL_VENT_L_MIN = 12.0
 BAY_GLAND_NUT_T = 5.0              # lock nut thickness - what the wall has to
                                    # leave thread for. See the check.
 BAY_GLAND_D = 18.5                 # module wall glands, PG11
@@ -6260,9 +6274,27 @@ def build():
         for v in rep["module_gasket_aged"].values())
 
     # A SEALED lithium box must be able to breathe, or it pumps its own seal
-    # every time the sun comes out - and if a cell ever vents, a closed box is
-    # a pressure vessel. A Gore-type membrane vent passes gas both ways and
-    # holds out water, and it is the one fitting that must NOT be omitted.
+    # every time the sun comes out. That is the job this fitting does and it
+    # does it well.
+    #
+    # WHAT IT DOES NOT DO, and this comment used to claim otherwise: relieve a
+    # CELL VENTING. "If a cell ever vents, a closed box is a pressure vessel"
+    # is true, and a breather membrane is not the answer to it - the M12
+    # PolyVent passes 1.6 L/min at 70 mbar, and one 21700 in runaway makes
+    # 1-2 L of gas in seconds, which wants about 12. Eight times the vent, for
+    # one cell out of 128. The membrane is a BREATHER; runaway relief is a
+    # burst path and this board does not have one. Written down as an open
+    # question rather than left implied by a part that cannot do it.
+    #
+    # DEREK'S RULE - multiple layers, and nothing in the stack that is not
+    # itself rated - is what changed the PART. It used to be a $9.95 no-name
+    # "IP68 nylon breather" whose only water claim was the two letters and a
+    # number. IP68 without a stated depth and duration is a marketing string.
+    # A GORE PolyVent screw-in is tested to IEC 60529 at 2 m for 1 hour, plus
+    # IP69K to ISO 20653, salt fog to IEC 60068-2-11 and -52, and UL 94 V-0
+    # cap, body and O-ring. Against the 62 mm of head this cavity can ever put
+    # on it, that is 32x - so it stops being the module's weakest opening and
+    # becomes the strongest one, which is the whole point of the change.
     # Two bugs here, both visible in the viewport once you look.
     #  1. WRONG WALL. The note said "aft wall" and the geometry put it at ex1,
     #     which is FORWARD. The aft wall is the one you can actually reach -
@@ -6293,10 +6325,25 @@ def build():
                   ex0 - 2.0, ex0 + ENC_WALL + 2.0, 12.0, coll))
     bpy.data.objects["V2_Mod_VentHole_cut"].hide_set(True)
     bpy.data.objects["V2_Mod_VentHole_cut"].hide_render = True
-    rep["module_vent"] = ("M12 Gore-type membrane vent THROUGH the AFT wall, "
-                          "between the handle's far pad and the conduit - "
-                          "IP68 to water, open to gas both ways. Axis along "
-                          "X, like every other fitting in that wall")
+    rep["module_vent"] = (
+        "GORE PolyVent screw-in, M12 x 1.5, THROUGH the AFT wall between the "
+        "handle's far pad and the conduit. Axis along X, like every other "
+        "fitting in that wall")
+    # --- AND WHAT IT IS RATED FOR, because the last one was not rated at all
+    rep["vent_rated_immersion_m"] = VENT_RATED_M
+    rep["vent_rated_hours"] = VENT_RATED_H
+    # computed here rather than read back, because vent_above_cavity_floor_mm
+    # is not set until further down and this block runs first
+    _vent_head = vent_z - FLOOR_Z
+    rep["cavity_max_head_on_vent_mm"] = round(_vent_head, 1)
+    rep["vent_head_margin"] = round(VENT_RATED_M * 1000.0 / _vent_head, 1)
+    rep["vent_airflow_L_min"] = VENT_FLOW_L_MIN
+    # ...and what it is NOT rated for. One 21700 in runaway makes 1-2 L of gas
+    # in a few seconds. This is the number that says a breather is not a
+    # relief device, and it belongs in the report rather than in a comment.
+    rep["vent_vs_one_cell_venting"] = round(
+        VENT_FLOW_L_MIN / CELL_VENT_L_MIN, 2)
+    rep["vent_is_not_runaway_relief"] = True
     # (the glands are built further down; the check that they miss each other
     # is that the vent is on the negative-y half and they are all positive)
     rep["vent_y_mm"] = round(vent_y, 1)
@@ -7759,6 +7806,14 @@ def build():
             "at its plate rating is not a connector with margin"
             % (CHG_RATED_A, CHARGER_A, rep["charge_port_current_margin"],
                rep["charge_hours_at_rating"]))
+    if rep["vent_head_margin"] < 2.0:
+        fails.append(
+            "the module vent is rated for %.1f m of immersion and the cavity "
+            "can put %.0f mm of head on it - only %.1fx. This fitting is a "
+            "hole in the last wall in front of the pack and it has to be the "
+            "strongest thing in that wall, not the weakest"
+            % (VENT_RATED_M, rep["cavity_max_head_on_vent_mm"],
+               rep["vent_head_margin"]))
     if rep["gland_bore_clearance_mm"] <= 0:
         fails.append(
             "the gland bore is smaller than the gland thread: O%.2f will not "
