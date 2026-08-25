@@ -399,6 +399,7 @@
  "hatch_holes_machined_in_one_setup": true,
  "hatch_lid_bow_mm": 0.034,
  "hatch_lid_clearance_radial_mm": 0.3,
+ "hatch_lid_relief_bar": 0.87,
  "hatch_lid_thickness_mm": 15.2,
  "hatch_max_spreader_d_mm": 17.0,
  "hatch_no_foam_in_load_path": true,
@@ -758,6 +759,7 @@
   443.2,
   314.4
  ],
+ "module_lid_relief_bar": 0.81,
  "module_lid_thickness_mm": 8.35,
  "module_lift_handle": "2 printed pads on the AFT wall at y +/-35, 12 mm proud, 1 x M5 heat-set each on the pad centreline - the strap end has one hole, so the pedestal pins and the bolt works in SHEAR. One pad per print piece, so only the handle crosses the seam. Aft because the module butts the forward cavity wall - this is the only reachable face",
  "module_mass_kg": 13.2,
@@ -941,6 +943,7 @@
  "ring_face_machining": "groove PRINTED 1.8 deep, plugged with a sacrificial filler, glassed over with the rest of the deck, then opened with a 2.5 mm cutter through ~0.6 of glass into the filler. Finished depth 2.4 = glass land to printed floor. Laminate stays CONTINUOUS and the land is glass, not ASA",
  "ring_groove_printed_mm": 1.8,
  "ring_lam_over_mm": 0.6,
+ "salt_water_position": "fresh primary, sea capable with maintenance. The buried mast plate is the deciding part: blind-tapped so threads cannot reach the foam, and the only wetted aluminium is at a joint that comes apart for transport",
  "seal_inboard_of_bolts": true,
  "seal_plane_z_mm": 128.5,
  "sealed_displacement_L": 78.99,

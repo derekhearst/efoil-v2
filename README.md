@@ -195,14 +195,25 @@ Ordered by what can actually stop the build.
     put on it that is **32×**, so it goes from the module's weakest opening
     to its strongest. Sized on Gore's own table: 1.6 L/min covers a 20 L
     enclosure and the module has ~3.3 L of free air, 6× over.
-11. **Nothing on this board relieves a cell venting, and the vent is not it.**
-    This is the one genuinely open safety item. A breather membrane passes
-    **1.6 L/min**; one 21700 in thermal runaway makes 1–2 L of gas in
-    seconds, wanting roughly **12 L/min** — eight times the vent, for one
-    cell out of 128. The module is a bolted box with 18 × M4 on a hard-stop
-    joint, which will not lift to relieve. Runaway relief is a **burst path**
-    and this design does not have one. It was previously implied by a
-    comment crediting the vent with a job it cannot do.
+11. ~~**Nothing relieves a cell venting.**~~ **Answered, and better than
+    feared.** The vent is still not relief — it passes **1.6 L/min** against
+    the ~12 a runaway cell wants — but the box was never a pressure vessel
+    either. Both lids are hard-stop bolted joints, and a bolted joint
+    separates, dumps and re-seats: the **module lets go at 0.81 bar**, the
+    **hatch at 0.87**. Both are ~7× the 0.11 bar a hot box makes going into
+    cold water, so neither opens in service, and both are far under anything
+    that stores dangerous energy. It will not be pretty, but it blows through
+    rather than building up. Which lid goes *first* is not knowable — 7%
+    apart on two numbers that each carry ±25% preload scatter — so the check
+    asserts a **ceiling** on both rather than an order it cannot measure.
+12. **Sea use: 3/8 in mast plate, or keep 1/2?** The M6 correction moved this
+    and nobody noticed. On M8, 1/2 in was the *thinnest* plate where Gong's
+    bolt became the weak link. On M6 that crossover drops to **3/8**, so 1/2
+    is now **1.46×** past it rather than at it. It stays for that margin —
+    at 3/8 our buried thread and their replaceable bolt fail at the same
+    load, and the one thing this joint must never do is fail on the side you
+    cannot reach. The price is **~375 g a board**, on a board that is already
+    a sinker.
 
 ---
 

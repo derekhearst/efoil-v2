@@ -921,6 +921,10 @@ BAY_GLAND_NUT_AF = 24.0            # spanner flats - this sets the spacing
 # replaced was a $9.95 "IP68 nylon breather" whose entire water claim was
 # those four characters. IP68 with no depth and no duration is a marketing
 # string, not a rating.
+# The most either bolted lid may hold before its joint separates. Both are
+# around 0.8, and the point of the ceiling is that neither becomes a vessel -
+# not that one beats the other, which is unmeasurable. See the check.
+RELIEF_CEILING_BAR = 1.0
 VENT_THREAD = "M12 x 1.5"          # NOTE: the old APIELE was M12 x 0.75
 VENT_RATED_M = 2.0                 # IEC 60529 immersion depth, tested
 VENT_RATED_H = 1.0                 # ...for this long
@@ -2033,20 +2037,54 @@ DENSE_RIB_T = 19.05                # 3/4in H80, same stock as the block
 #            CNC part at all.
 # THE RISK, stated plainly: this plate is laminated into the hull and can
 # never be inspected or replaced. Aluminium in wet foam with stainless bolts
-# through it is a galvanic cell. Fresh water only, and every bolt gets
-# Tef-Gel or equivalent at assembly - that is the whole mitigation.
-# 1/2 in is not overbuilt - it is the exact optimum, and both neighbours are
-# worse. Tapped M8 blind, leaving 2.7 mm of solid alu:
-#     1/4   thread  5.2 kN   0.82x at 1 g   - fails outright
-#     3/8   thread 11.4 kN   1.81x at 1 g, 1.48x at the core's own 1.22 g limit
-#     1/2   thread 17.6 kN   2.61x          <- the BOLT starts governing here
-#     5/8   thread 23.9 kN   2.61x          - identical, and 375 g heavier
-# 1/2 is the THINNEST plate at which the M8 bolt's own 16.5 kN proof load
-# becomes the weak link instead of our thread. Below it the plate is the weak
-# part; above it nothing improves, because the failure has already moved onto
-# Gong's bolt - which is exactly where you want it, on the part that is
-# replaceable and specified by someone else.
+# through it is a galvanic cell, and it is the ONE part on this board that
+# cannot be opened up and looked at. See SALT_WATER_POSITION below - this is
+# the part that decides the answer for the whole board.
+#
+# 1/2 in, AND THE TABLE BELOW USED TO BE AN M8 TABLE. Every figure in it was
+# computed for a thread this board does not have; the M6 correction reached
+# the checks and the drawings and never reached here. Redone on M6, tapped
+# blind with 2.7 mm of solid alu left above:
+#     plate  engage  thread cap  vs the M6's 9.0 kN proof  governed by
+#     1/4    3.65     4.8 kN      0.53                     OUR THREAD
+#     3/8    6.83     9.0 kN      1.00                     OUR THREAD
+#     1/2   10.00    13.2 kN      1.46                     their bolt
+#     5/8   13.18    17.4 kN      1.93                     their bolt
+#
+# AND THE CONCLUSION MOVED WITH THE NUMBERS. The old note said 1/2 in is "the
+# THINNEST plate at which the bolt becomes the weak link" - on M8 that was
+# true. On M6 the crossover is at 3/8, one size down, because a smaller bolt
+# gives up first. 1/2 in is no longer the crossover; it is 1.46x PAST it.
+# It stays anyway, and the reason is now a margin rather than an optimum: at
+# 3/8 our thread and Gong's bolt fail at the same load, which is a coin flip
+# over which one goes, and the one thing this joint must never do is fail on
+# OUR side - the buried, unreplaceable side. 1.46x buys that outright.
+# What it costs is ~375 g a board. On a board that is already a sinker that
+# is worth knowing, and it is Derek's to spend: README open question.
 G10_T = 12.7                       # 1/2" 6061-T651 mast plate
+# --- FRESH WATER NOW, SEA LATER, AND WHAT THAT ACTUALLY TURNS ON -----------
+# Derek: the board lives in fresh water, and it would be nice to take it to
+# the sea eventually. This is where that gets decided, because the mast plate
+# is the only aluminium on the board that is BURIED - laminated in at step 7
+# and never openable again.
+# The good news is that the design already keeps salt off the part of it that
+# matters. Its four holes are tapped BLIND with 2.7 mm of solid alu above
+# them, so nothing that gets into a thread can reach the foam side; the only
+# aluminium the water ever touches is the wetted pad face and the threads
+# themselves, and both of those are at a joint that comes apart every time
+# the mast does.
+# So sea use is a MAINTENANCE question here, not a design blocker:
+#   - Tef-Gel every bolt. Already required, already on the list.
+#   - Rinse the mast joint fresh after every salt session.
+#   - The joint is unbolted for transport anyway: inspect and re-Tef-Gel it
+#     rather than letting one assembly last a season.
+# What would make it a design problem is water reaching the BURIED faces,
+# and that is the conduit and the laminate - which is the whole waterproofing
+# story the rest of this file is about.
+SALT_WATER_POSITION = (
+    "fresh primary, sea capable with maintenance. The buried mast plate is "
+    "the deciding part: blind-tapped so threads cannot reach the foam, and "
+    "the only wetted aluminium is at a joint that comes apart for transport")
 # M8 in G10, BONDED stainless bushing - not a key-locking insert. Key-locking
 # inserts lock by driving four hardened keys down into the parent material,
 # which is a fine way to fasten aluminium and a good way to split a woven-glass
@@ -4625,6 +4663,12 @@ def build():
     def _seat(d):
         return math.pi / 4.0 * (d ** 2 - _hole ** 2)
     rep["hatch_bolt_preload_N"] = round(_bolt_N)
+    # ...and what THIS joint lets go at. See the module lid for why it
+    # matters: the module vents into the cavity, so this is the second stage
+    # of the only relief path a venting cell has, and it has to be the WEAKER
+    # of the two or the cavity becomes the pressure vessel instead.
+    rep["hatch_lid_relief_bar"] = round(
+        len(hb) * _bolt_N / ((CAV_X1 - CAV_X0) * CAV_WIDTH * 1e-6) / 1e5, 2)
     rep["hatch_seat_load_is"] = "the applied preload, not the seal demand"
     # THE SKIN SPREADS THE LOAD, and this used to give it no credit for that -
     # which is inconsistent, because the heel calculation twenty lines up
@@ -7028,6 +7072,25 @@ def build():
         "charge port" if btn_z < vent_z else "vent membrane")
     rep["cavity_flood_before_module_mm"] = round(
         min(btn_z, vent_z) - FLOOR_Z, 1)
+    # --- WHAT HAPPENS IF A CELL VENTS, in numbers rather than in dread -----
+    # "A closed box is a pressure vessel" was the phrase this model used, and
+    # it is not what this box is. Both lids are HARD-STOP BOLTED JOINTS, and a
+    # bolted joint does not hold pressure indefinitely - it separates when the
+    # gas load beats the clamp, dumps, and re-seats. That is an uncontrolled
+    # relief valve, but it is a relief valve, and it has a number.
+    #
+    # AND THE TWO STAGES ARE IN THE RIGHT ORDER, which is the part that
+    # actually matters and which nobody designed on purpose. The module vents
+    # into the CAVITY, so if the hatch were the STRONGER joint the gas would
+    # simply move the pressure vessel outboard by one wall. It is the weaker
+    # one, so the path runs all the way to atmosphere.
+    #
+    # Neither opens in service: both are around 7x the ~0.11 bar a hot box
+    # makes going into cold water, which is the load the vent exists to bleed.
+    _mod_relief = (rep["module_lid_bolts"] * rep["module_bolt_preload_N"]
+                   / (fx1 - fx0) / (fy1 - fy0) * 1e6)
+    rep["module_lid_relief_bar"] = round(_mod_relief / 1e5, 2)
+    rep["salt_water_position"] = SALT_WATER_POSITION
     rep["charge_port_bolts"] = CHG_BOLT_N
     rep["charge_port_bolt_pitch_mm"] = CHG_BOLT_PITCH
     rep["charge_port_panel_hole_mm"] = CHG_HOLE_D
@@ -7806,6 +7869,26 @@ def build():
             "at its plate rating is not a connector with margin"
             % (CHG_RATED_A, CHARGER_A, rep["charge_port_current_margin"],
                rep["charge_hours_at_rating"]))
+    # NOT A CHECK ON WHICH LID GOES FIRST. The first version of this asserted
+    # the outer joint must be the weaker one, which is the right instinct and
+    # an unmeasurable claim: module 0.81 bar against hatch 0.87 is a 7%
+    # ordering read off two numbers that both come from T = K*d*F with K
+    # assumed at 0.2, and K scatter on a dry fastener is +/-25% at best. The
+    # two ranges overlap almost completely. Tightening the threshold until it
+    # passed would have been tuning a number to hide that.
+    # What IS knowable, and what matters: neither joint can hold enough to be
+    # a pressure vessel. Both let go under a bar, an order of magnitude below
+    # anything that stores dangerous energy in a box this size, and about 7x
+    # the 0.11 bar a hot box makes going into cold water - so neither opens
+    # in service either.
+    for _lid, _k in (("module", "module_lid_relief_bar"),
+                     ("hatch", "hatch_lid_relief_bar")):
+        if rep.get(_k, 0) > RELIEF_CEILING_BAR:
+            fails.append(
+                "the %s lid holds %.2f bar before its joint separates, over "
+                "the %.1f ceiling. Past that this stops being a bolted joint "
+                "that dumps and starts being a vessel that stores"
+                % (_lid, rep[_k], RELIEF_CEILING_BAR))
     if rep["vent_head_margin"] < 2.0:
         fails.append(
             "the module vent is rated for %.1f m of immersion and the cavity "
