@@ -870,11 +870,28 @@ BTN_PANEL = 3.0                    # local panel thickness, 3.5 is the max
 # replaces.
 CHG_RATED_A = 10.0                 # EW-LP16 2-pin plate rating
 CHARGER_A = 5.0                    # the 67.2 V charger, and it holds it
-CHG_HOLE_D = 17.0                  # M16 body: 16.5 needed, 17.0 clears both
-CHG_W, CHG_L, CHG_H = 26.0, 40.0, 26.0     # flange across, overall, flange
-CHG_BODY_L = 20.0                  # behind the panel, INSIDE the module
-CHG_CAP_L = 16.0                   # mating face + screw cap, into the bay
-CHG_BOLT_PITCH = 22.0              # flange screw centres, M3
+# EVERY NUMBER BELOW IS OFF THE MAKER'S DRAWING NOW, not off a guess at what
+# an M16 flange looks like. Derek said the flange has four screws; it does,
+# and the EW-LP16P drawing settles the rest with it. What was here before was
+# carried over from the SP17 and wrong in four places:
+#     hole        17.0  ->  16.5 +0.20/0.00   (spec, not a round number)
+#     screws      2 at 22 pitch  ->  4 on a 20 x 20 SQUARE
+#     flange      26 x 26  ->  28.5 x 31.5
+#     body depth  20.0  ->  8.5 behind the panel
+# The body one is the surprise: this port reaches less than half as far into
+# the module as the model believed, so every clearance it was checked against
+# had 11.5 mm of slack nobody knew about.
+CHG_HOLE_D = 16.5                  # +0.20/0.00 - drawing, EW-LP16P
+CHG_W, CHG_H = 28.5, 31.5          # flange plate, across x up
+CHG_L = 40.0                       # overall into the bay, plug and cap
+CHG_BODY_L = 8.5                   # behind the panel, INSIDE the module
+CHG_CAP_L = 16.0                   # mating face + cap, into the bay
+CHG_BOLT_PITCH = 20.0              # 4 x M3 on a SQUARE of this side
+CHG_BOLT_N = 4
+# The drawing's own clearance hole is O3.2. Ours is not a clearance hole - the
+# screw threads into a heat-set insert in the ASA - so it is the insert's
+# pilot that gets cut here.
+MOD_INSERT_D_M3 = 4.0              # M3 heat-set pilot in printed ASA
 # CABLE GLANDS, PG11 off your chart: thread OD D1 = 18.03, thread length
 # L1 = 9.14, body L2 = 14.48, sealing nut L3 = 14.99, cable 6.35-10.16 (our
 # 8 AWG silicone is 6.5, comfortably inside).
@@ -6909,12 +6926,17 @@ def build():
     chg_cut = cyl_x("V2_ChargePortHole_cut", chg_y, btn_z,
                     ex0 - 2.0, ex0 + ENC_WALL + 2.0, CHG_HOLE_D, coll)
     boolean(aft_wall, chg_cut)
-    for sz in (-1, 1):
-        fb = cyl_x(f"V2_ChargePortBolt_cut{sz}", chg_y,
-                   btn_z + sz * CHG_BOLT_PITCH / 2,
-                   ex0 - 2.0, ex0 + ENC_WALL + 2.0, 3.2, coll)
-        boolean(aft_wall, fb)
-        fb.hide_set(True); fb.hide_render = True
+    # FOUR, on a square. This was two in a column at a 22 mm pitch - an SP17
+    # pattern that survived the change of connector, and it would have had a
+    # builder melting two inserts into a wall that needs four.
+    for sy in (-1, 1):
+        for sz in (-1, 1):
+            fb = cyl_x(f"V2_ChargePortBolt_cut{sy}{sz}",
+                       chg_y + sy * CHG_BOLT_PITCH / 2,
+                       btn_z + sz * CHG_BOLT_PITCH / 2,
+                       ex0 - 2.0, ex0 + ENC_WALL + 2.0, MOD_INSERT_D_M3, coll)
+            boolean(aft_wall, fb)
+            fb.hide_set(True); fb.hide_render = True
     # Drawn backwards, and that is why it looked enormous: the whole 40 mm
     # was projecting AFT into the service bay. On a panel receptacle the body
     # goes INSIDE the enclosure and only the mating face and its screw cap sit
@@ -6928,10 +6950,14 @@ def build():
     rep["button_panel_mm"] = BTN_PANEL
     rep["button_panel_within_spec"] = BTN_PANEL <= 3.5
     rep["charge_port"] = (
-        "EW-LP16 2-pin flange socket, IP68 mated, ONE-TOUCH push-lock rather "
+        "EW-LP16P 2-pin flange socket, ONE-TOUCH push-lock rather "
         "than a screw coupling - no thread to cross-thread with sandy hands, "
         "and %d mating cycles against the SP17's 500 on the one port that "
         "gets opened every ride" % 1900)
+    rep["charge_port_bolts"] = CHG_BOLT_N
+    rep["charge_port_bolt_pitch_mm"] = CHG_BOLT_PITCH
+    rep["charge_port_panel_hole_mm"] = CHG_HOLE_D
+    rep["charge_port_flange_mm"] = [CHG_W, CHG_H]
     rep["charge_port_rated_A"] = CHG_RATED_A
     rep["charge_current_A"] = CHARGER_A
     rep["charge_port_current_margin"] = round(CHG_RATED_A / CHARGER_A, 2)

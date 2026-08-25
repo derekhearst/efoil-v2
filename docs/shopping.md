@@ -100,7 +100,7 @@ https://www.amazon.com
 | [Closed-cell sponge EPDM 1/8in, module lid gasket](https://www.amazon.com/dp/B07FWQM34V) | 1 | roll | $13.99 | **verified** | blank is 443 x 314 mm a board; the roll is 432 wide so it nests across, and 2032 long does both with room over |
 | [PVC pack wrap, 200 mm lay-flat](https://www.amazon.com/dp/B09SVFL33L) | 1 | roll | $13.99 | **verified** | wide enough to sleeve a 16S brick; one roll does both |
 | [Adhesive-lined heat shrink 3:1, 400 pc kit](https://www.amazon.com/dp/B0BVVMCY86) | 1 | kit | $13.99 | **verified** | marine grade, glue-lined - plain heat shrink over a joint in a wet cavity is decoration |
-| [M3 heat-set insert kit, 361 pc](https://www.amazon.com/dp/B0G8JLX1HR) | 1 | kit | $13.98 | **verified** | covers the port flange (4 sets) and the nose cone. The kit's screws are PLAIN STEEL - buy M3 x 8 A4 separately |
+| [M3 heat-set insert kit, 361 pc](https://www.amazon.com/dp/B0G8JLX1HR) | 1 | kit | $13.98 | **verified** | covers the port flange (8 sets, 4 a port on a 20 mm square) and the nose cone. The kit's screws are PLAIN STEE |
 | [PL300 / Gorilla Glue, layer glue-up](https://www.amazon.com/dp/B0009XEGVC) | 2 | tube | $13.18 | estimate |  |
 | [M6 penny washer O18 A4 DIN9021](https://www.amazon.com/dp/B0DB8RBY3N) | 1 | pk | $12.99 | estimate | 58 needed - TWO PER BOLT, one captive under the nut and one UNDER THE HEAD. M6 size on an M5 bolt: the 0.7 mm  |
 | [Water-ingress alarm, 2 pk](https://www.amazon.com/dp/B09DCMCB8D) | 1 | pk | $12.99 | **verified** | Geevon 100 dB pucks - the 2-pack covers BOTH boards. Put the SENSOR on the module floor in the lowest corner,  |
@@ -136,7 +136,7 @@ https://www.amazon.com
 | [Leash plug 30 x 12.5, stainless pin, 2 pk](https://www.amazon.com/dp/B0C6XLK8L9) | 1 | pk | $6.99 | **verified** | the pack does both boards |
 | [Loctite 242](https://www.amazon.com/dp/B000I1RSNS) | 1 | ea | $6.98 | estimate | rod ends into the motor only - nyloc end does not need it |
 | [M4 A4 washer, 316, 100 pk](https://www.amazon.com/dp/B0DZ5BVLP5) | 1 | pk | $6.79 | **verified** | 36 needed, under every lid bolt. NOTE the OD is 12 mm, not the 9 mm this line specced - the only 9 mm-OD listi |
-| [M3 x 8 A4 stainless, 10 pk](https://www.amazon.com/dp/B07DVMFMJZ) | 1 | pk | $6.76 | **verified** | the kit's screws are not stainless and this joint is submerged |
+| [M3 x 8 A4 stainless, 10 pk](https://www.amazon.com/dp/B07DVMFMJZ) | 1 | pk | $6.76 | **verified** | 8 needed. The kit's screws are not stainless and this joint is submerged |
 | [JST GH 1.25 mm pigtail pair, BMS switch](https://www.amazon.com/dp/B07FP2FCYC) | 1 | pk | $5.99 | **verified** | connects the panel button to the BMS key-switch input. CHECK THE BOX FIRST - DALY ship a ready-made key switch |
 | [Cyanoacrylate for the cord splice](https://www.amazon.com/dp/B0DKP4TVSF) | 1 | ea | $5.39 | estimate |  |
 

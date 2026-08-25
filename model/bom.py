@@ -989,27 +989,44 @@ def build():
         "cable plug AND female panel socket - which matters, because the "
         "charger arrives with whatever connector its own maker fitted and "
         "something has to go on the end of its lead. "
-        "10 A / 500 V against our 67.2 V 5 A, 1.0-1.5 mm2 / 18-16 AWG which "
-        "is exactly the wire we run, cable OD 4-9 mm, solder termination, "
-        "gold-plated copper alloy, PBT UL94 V-0, silicone seal, -40 to +85 C, "
-        "salt-mist tested, IP68 mated, >=1900 mating cycles. "
+        "SPECS BELOW ARE OFF THE MAKER'S DATASHEET, not the listing copy, "
+        "and the two disagree twice - the listing says 500 V and IP68 2m/2H; "
+        "EW-LP16_Series_Datasheet.pdf says 400 V AC and 'IP67 (Option: IP68 "
+        "1m/2H)'. Neither matters at 67.2 V inside a hatch-covered cavity, "
+        "but take the lower one as what you bought. "
+        "10 A at <=45 K rise, 400 V AC, 2000 V withstand, <3 mOhm, "
+        "1.5 mm2 / 16 AWG - our exact wire - contacts 1.5 mm x 2, cable OD "
+        "7-9 mm power, solder termination, gold-plated copper alloy, PBT, "
+        "silicone seal, -40 to +85 C, salt spray 5% NaCl 48 h, "
+        ">=1900 mating cycles. "
         "PLUG IT IN BEFORE YOU POWER THE CHARGER - the maker prohibits mating "
         "under load, and this board is already built that way round: the port "
         "is dead whenever the BMS is off. "
-        "TWO THINGS TO CHECK ON ARRIVAL. A dust cap - IP68 is the MATED "
-        "rating and an unmated socket is not sealed, so if none ships, that "
-        "port sits open inside a cavity the leak alarm exists for. And the "
-        "FLANGE PATTERN: the model drills 2 x M3 at 22 mm centres into 4 mm "
-        "of printed ASA. Offer it up before committing the holes",
+        "MOUNTING IS OFF THE DRAWING: O16.5 +0.20/0.00 panel hole, 4 x M3 on "
+        "a 20.0 x 20.0 SQUARE, flange plate 28.5 x 31.5, body 8.5 behind the "
+        "panel. Ours go into heat-set inserts rather than through into nuts, "
+        "because the wall is 4 mm of printed ASA. "
+        "ONE THING LEFT TO CHECK ON ARRIVAL: a dust cap. IP68/IP67 is the "
+        "MATED rating and an unmated socket is not sealed, so if none ships, "
+        "that port sits open inside a cavity the leak alarm exists for",
         vendor="Amazon")
     # ONE 361-pc M3 kit covers this AND the nose cone in 10b, so it is
     # bought once here and shows as 0 there.
+    # FOUR per port, not two - the EW-LP16P flange has four holes on a 20 mm
+    # square, which is Derek's correction and the maker's drawing agrees.
+    # This count is read off the model rather than typed, so it cannot drift
+    # away from what the wall is actually bored for.
+    _chg_screws = R["charge_port_bolts"] * N
     add("7  Module", "M3 heat-set insert kit, 361 pc", 1, "kit", 13.98, OK,
-        "covers the port flange (" + str(2 * N) + " sets) and the nose cone. "
+        "covers the port flange (" + str(_chg_screws) + " sets, "
+        + str(R["charge_port_bolts"]) + " a port on a "
+        + format(R["charge_port_bolt_pitch_mm"], ".0f")
+        + " mm square) and the nose cone. "
         "The kit's screws are PLAIN STEEL - buy M3 x 8 A4 separately for the "
         "flange, which lives in the wet cavity")
     add("7  Module", "M3 x 8 A4 stainless, 10 pk", 1, "pk", 6.76, OK,
-        "the kit's screws are not stainless and this joint is submerged")
+        str(_chg_screws) + " needed. The kit's screws are not stainless and "
+        "this joint is submerged")
 
     # -------------------------------------------------- 8 mast hardpoint
     # The 316 bar, the lathe work and the DP460 are all GONE - $133 of parts
