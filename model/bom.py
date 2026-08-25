@@ -972,11 +972,21 @@ def build():
     # not, gold-plated contacts, 500 mating cycles. 5 A of charge current is
     # nothing to it. Flange-bolted rather than nut-on-thread, because the wall
     # is 4 mm of printed ASA.
-    add("7  Module", "SP17 2-pin IP68 flange receptacle", N, "ea",
-        2.49, OK, "67.2 V 5 A charge; O17 panel hole, 2 x M3 flange screws. "
-        "$2.49, not the $11 this carried. CHECK THE CAP IS INCLUDED before "
-        "ordering - on a board that gets submerged the cap is the part that "
-        "does the sealing when nothing is plugged in", vendor="Amazon")
+    add("7  Module", "SP17 2-pin IP68 flange receptacle + mating plug", N,
+        "ea", 13.20, OK,
+        "HangTon SP17. THE LISTING IS A PAIR - male cable plug AND female "
+        "panel socket - which matters, because the charger arrives with "
+        "whatever connector its own maker fitted and something has to go on "
+        "the end of its lead. Rated 10 A / 500 V against our 67.2 V 5 A, "
+        "takes 14-18 AWG (we run 16) and a 6-10 mm cable OD, solder "
+        "termination, gold-plated brass, O17 panel hole. "
+        "TWO THINGS TO CHECK ON ARRIVAL. The cap: on a board that gets "
+        "submerged, the screw cap is what seals this port when nothing is "
+        "plugged in, and not every SP17 listing ships one. And the FLANGE: "
+        "the model drills 2 x M3 at 22 mm centres, some SP17 sockets have a "
+        "4-hole flange and some are plain rear-mount. Offer it up before "
+        "committing the holes - they go into 4 mm of printed ASA", 
+        vendor="Amazon")
     # ONE 361-pc M3 kit covers this AND the nose cone in 10b, so it is
     # bought once here and shows as 0 there.
     add("7  Module", "M3 heat-set insert kit, 361 pc", 1, "kit", 13.98, OK,

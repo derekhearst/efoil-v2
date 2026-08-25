@@ -536,7 +536,7 @@ did for the rest — the drill cuts both skins, and those are fresh fibre ends.
 `M4 x 12.7 LONG brass heat-set insert, 50 pc` · `M6 x 12.7 brass heat-set insert, 50 pc` ·
 `Closed-cell sponge EPDM 1/8in, module lid gasket` · `Hollow punch set 1/8-1/2in + cutting mat` ·
 `Gebildet PG11 gland, M18x1.5, 30 pk` · `M12 IP68 membrane vent plug` ·
-`M12 IP68 momentary panel button` · `JST GH 1.25 mm pigtail pair, BMS switch` · `SP17 2-pin IP68 flange receptacle` ·
+`M12 IP68 momentary panel button` · `JST GH 1.25 mm pigtail pair, BMS switch` · `SP17 2-pin IP68 flange receptacle + mating plug` ·
 `M3 heat-set insert kit, 361 pc` · `M3 x 8 A4 stainless, 10 pk`
 
 > **The 18 lid inserts, and the torque that goes with them.** Derek pulled a
