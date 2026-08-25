@@ -293,6 +293,14 @@ def stale_numbers():
 
 
 def main():
+    # This tool READS UTF-8 prose and PRINTS the offending line back, so on a
+    # cp1252 console any finding containing an em-dash or a >= sign killed the
+    # run with a UnicodeEncodeError - the check crashing on the very text it
+    # exists to inspect, and exiting non-zero for the wrong reason.
+    try:
+        sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+    except (AttributeError, ValueError):
+        pass
     (items, spend), refs = bom_items(), guide_refs()
     stale = stale_numbers()
     missing = [(i, s) for i, s in refs if i not in items]

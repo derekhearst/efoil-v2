@@ -564,6 +564,7 @@
   130.0,
   20.0
  ],
+ "mast_head_needed_for_thinner_mm": 23.2,
  "mast_head_slot_mm": [
   20.4,
   7.0
@@ -578,6 +579,7 @@
  "mast_pct_of_length": 24.3,
  "mast_plate_moment_Nm": 565,
  "mast_plate_thickness_set_by": "the THREAD, not the footprint: M6 tapped 10 blind with 2.7 mm of solid alu left above it",
+ "mast_plate_thinner_option_mm": 9.5,
  "mast_pocket_depth_mm": 28.0,
  "mast_radial_slop_mm": 0.5,
  "mast_slot_half_len_mm": 10.2,

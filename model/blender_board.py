@@ -7091,6 +7091,14 @@ def build():
                    / (fx1 - fx0) / (fy1 - fy0) * 1e6)
     rep["module_lid_relief_bar"] = round(_mod_relief / 1e5, 2)
     rep["salt_water_position"] = SALT_WATER_POSITION
+    # --- WHAT A THINNER PLATE WOULD NEED, since it is an open question ------
+    # Not a proposal - a number to take to the caliper. The tap depth is not
+    # ours to choose: it is Gong's 30 mm screw minus their mast head. So the
+    # question "can the plate be 3/8" is really "is their head thick enough",
+    # and this is the threshold it has to clear.
+    rep["mast_plate_thinner_option_mm"] = 9.5
+    rep["mast_head_needed_for_thinner_mm"] = round(
+        30.0 - (9.525 - INSERT_BLIND), 1)
     rep["charge_port_bolts"] = CHG_BOLT_N
     rep["charge_port_bolt_pitch_mm"] = CHG_BOLT_PITCH
     rep["charge_port_panel_hole_mm"] = CHG_HOLE_D
