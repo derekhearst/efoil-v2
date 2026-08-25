@@ -206,14 +206,25 @@ Ordered by what can actually stop the build.
     rather than building up. Which lid goes *first* is not knowable — 7%
     apart on two numbers that each carry ±25% preload scatter — so the check
     asserts a **ceiling** on both rather than an order it cannot measure.
-12. **Sea use: 3/8 in mast plate, or keep 1/2?** The M6 correction moved this
-    and nobody noticed. On M8, 1/2 in was the *thinnest* plate where Gong's
-    bolt became the weak link. On M6 that crossover drops to **3/8**, so 1/2
-    is now **1.46×** past it rather than at it. It stays for that margin —
-    at 3/8 our buried thread and their replaceable bolt fail at the same
-    load, and the one thing this joint must never do is fail on the side you
-    cannot reach. The price is **~375 g a board**, on a board that is already
-    a sinker.
+12. **Mast plate weight: both routes are blocked, and by different checks.**
+    Derek is happy to trade the thread margin for the ~375 g. Tried, and the
+    model refused it twice:
+    - **Thinner (3/8 in)** → `FAILS: mast insert bore breaks into the cavity
+      floor: only −0.5 mm above it`. The tap depth is not ours to choose — it
+      is Gong's **M6 × 30 screw minus their mast head**, and the model
+      *assumes* a 20 mm head it has never measured, giving 10 mm of
+      engagement that a 9.5 mm plate cannot hold blind. 3/8 needs a head of
+      **≥ 23.2 mm**, or shorter screws — and shorter screws land near
+      0.9× thread-vs-bolt, which is our buried side failing *first*, not
+      together.
+    - **Smaller footprint (225 × 150)**, which saves the same weight without
+      touching the thread → `FAILS: mast hardpoint shear path is under 1 g
+      at 45° of bank: 0.91 g`. The footprint is not just prying; it is the
+      area that feeds the mast's couple into the skins.
+
+    So the plate is at its minimum on **both** axes and the 375 g is not
+    free. **What unblocks it: measure Gong's mast head thickness** — the same
+    trip to the caliper as questions 7 and 8.
 
 ---
 
