@@ -178,6 +178,19 @@ Ordered by what can actually stop the build.
    is unverified. If it is not, the conduit and the plate's Ø30.8 bore are in
    the wrong place — and that bore is drilled and reamed into the one part
    that has to go to a machine shop.
+9. **The charge port's flange pitch, and whether a screw cap ships with it.**
+   `CHG_BOLT_PITCH` is 22 mm on a two-hole SP17 flange, and no drawing has
+   ever been found for it — the four-on-a-20-mm-square pattern belongs to the
+   EW-LP16, a different connector. These holes go into a **printed** wall, so
+   order the connector early and measure it before the module shell prints at
+   step 3. The cap matters just as much: it is the entire reason this
+   connector was chosen over the LP16's nicer one-touch latch, and Renhotec
+   list SP17 sealing caps as *available*, which is not *included*.
+10. **The module vent is the next barrier down.** Whatever the charge port
+    does, the vent membrane caps the module at **62.2 mm** of standing water
+    in the cavity — 1.8 mm above the port — and the model already calls it
+    the module's lowest-rated part in a flood. It breathes into the cavity,
+    and IP68 is an immersion rating, not a permanent head.
 
 ---
 
