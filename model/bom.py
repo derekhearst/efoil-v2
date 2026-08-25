@@ -967,25 +967,40 @@ def build():
         "connects the panel button to the BMS key-switch input. CHECK THE "
         "BOX FIRST - DALY ship a ready-made key switch with some units",
         vendor="Amazon")
-    # SP17 2-pin flange receptacle. Chosen over an XT60-in-a-box because this
-    # port is unplugged and replugged EVERY RIDE: IP68 mated, screw cap when
-    # not, gold-plated contacts, 500 mating cycles. 5 A of charge current is
-    # nothing to it. Flange-bolted rather than nut-on-thread, because the wall
-    # is 4 mm of printed ASA.
-    add("7  Module", "SP17 2-pin IP68 flange receptacle + mating plug", N,
-        "ea", 13.20, OK,
-        "HangTon SP17. THE LISTING IS A PAIR - male cable plug AND female "
-        "panel socket - which matters, because the charger arrives with "
-        "whatever connector its own maker fitted and something has to go on "
-        "the end of its lead. Rated 10 A / 500 V against our 67.2 V 5 A, "
-        "takes 14-18 AWG (we run 16) and a 6-10 mm cable OD, solder "
-        "termination, gold-plated brass, O17 panel hole. "
-        "TWO THINGS TO CHECK ON ARRIVAL. The cap: on a board that gets "
-        "submerged, the screw cap is what seals this port when nothing is "
-        "plugged in, and not every SP17 listing ships one. And the FLANGE: "
-        "the model drills 2 x M3 at 22 mm centres, some SP17 sockets have a "
-        "4-hole flange and some are plain rear-mount. Offer it up before "
-        "committing the holes - they go into 4 mm of printed ASA", 
+    # EW-LP16 2-pin flange socket. Chosen over an XT60-in-a-box because this
+    # port is unplugged and replugged EVERY RIDE, and chosen over the SP17
+    # that used to be here because of how it couples: a ONE-TOUCH push-lock
+    # instead of a screw thread. There is nothing to cross-thread with sandy
+    # wet hands, it is one-handed, and it is good for >=1900 mating cycles
+    # against the SP17's 500 - on the one connector that gets opened every
+    # time the board goes out, that is the spec that matters.
+    #
+    # SIZE 16, NOT 12, AND THAT IS THE WHOLE CARE HERE. The LP12 is the same
+    # connector, $3 cheaper, and it fails this application on two numbers in
+    # its own spec table: rated 5 A against a 5 A charger, held for the ~7
+    # hours a full charge takes, and cable spec 0.5 mm2 / 20 AWG against the
+    # 16 AWG this board runs to the port. The LP16 is 10 A / 500 V and
+    # 1.0-1.5 mm2 / 18-16 AWG - 2x the current margin and our exact wire -
+    # and it still comes in 21 cents UNDER the SP17.
+    # Flange-mount rather than the thread variant, because the wall is 4 mm
+    # of printed ASA and a flange spreads its load.
+    add("7  Module", "EW-LP16 2-pin IP68 flange socket + mating plug", N, "ea", 12.99, OK,
+        "E-WeiChat EW-LP16, 2-pin FLANGE socket. THE LISTING IS A PAIR - male "
+        "cable plug AND female panel socket - which matters, because the "
+        "charger arrives with whatever connector its own maker fitted and "
+        "something has to go on the end of its lead. "
+        "10 A / 500 V against our 67.2 V 5 A, 1.0-1.5 mm2 / 18-16 AWG which "
+        "is exactly the wire we run, cable OD 4-9 mm, solder termination, "
+        "gold-plated copper alloy, PBT UL94 V-0, silicone seal, -40 to +85 C, "
+        "salt-mist tested, IP68 mated, >=1900 mating cycles. "
+        "PLUG IT IN BEFORE YOU POWER THE CHARGER - the maker prohibits mating "
+        "under load, and this board is already built that way round: the port "
+        "is dead whenever the BMS is off. "
+        "TWO THINGS TO CHECK ON ARRIVAL. A dust cap - IP68 is the MATED "
+        "rating and an unmated socket is not sealed, so if none ships, that "
+        "port sits open inside a cavity the leak alarm exists for. And the "
+        "FLANGE PATTERN: the model drills 2 x M3 at 22 mm centres into 4 mm "
+        "of printed ASA. Offer it up before committing the holes",
         vendor="Amazon")
     # ONE 361-pc M3 kit covers this AND the nose cone in 10b, so it is
     # bought once here and shows as 0 there.
@@ -1919,7 +1934,7 @@ VENDORS = [
         "tap ", "drill", "torque wrench", "thermometer", "beads", "shim")),
     ("Amazon", "https://www.amazon.com", (
         "asin", "amazon", "b0", "gebildet", "apiele", "vecotools", "morningro",
-        "cesfonjer", "sp17", "torrami", "suidi", "overture", "silica gel",
+        "cesfonjer", "ew-lp16", "torrami", "suidi", "overture", "silica gel",
         "totalboat", "totalfair", "wet edge",
         "heat-set", "penny washer", "hex nut", "socket cap", "thermal pad",
         "webbing", "leash", "carry handle", "asa filament", "petg", "nickel",

@@ -155,7 +155,11 @@
  "cg_ahead_of_col_mm": 84.4,
  "cg_ahead_of_col_target": "150-250 mm ahead (50-75 passive + ~150 eFoil pitch-up)",
  "cg_ahead_of_mast_mm": 315.5,
- "charge_port": "SP17 2-pin flange receptacle, IP68 mated, screw cap when not - 500 mating cycles, and this one gets opened every ride",
+ "charge_current_A": 5.0,
+ "charge_hours_at_rating": 6.9,
+ "charge_port": "EW-LP16 2-pin flange socket, IP68 mated, ONE-TOUCH push-lock rather than a screw coupling - no thread to cross-thread with sandy hands, and 1900 mating cycles against the SP17's 500 on the one port that gets opened every ride",
+ "charge_port_current_margin": 2.0,
+ "charge_port_rated_A": 10.0,
  "cnc_bed_mm": [
   1209.8,
   609.6,

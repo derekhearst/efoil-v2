@@ -852,10 +852,25 @@ BTN_HEAD_D = 17.5                  # what the head covers - the pocket limit
 BTN_D = BTN_HEAD_D                 # footprint for every clearance check
 BTN_H = 18.0                       # how far it stands into the bay
 BTN_PANEL = 3.0                    # local panel thickness, 3.5 is the max
-# CHARGE PORT, SP17 2-pin flange receptacle: 17 mm shell, IP68 mated, screw
-# cap when it is not, 500 mating cycles. Bolted through a 2-hole flange into
-# heat-set inserts rather than relying on a thread in a 4 mm printed wall.
-CHG_HOLE_D = 17.0
+# CHARGE PORT, EW-LP16 2-pin flange socket: M16 body through a 17 mm hole,
+# IP68 mated, ONE-TOUCH push-lock, >=1900 mating cycles. Bolted through a
+# 2-hole flange into heat-set inserts rather than relying on a thread in a
+# 4 mm printed wall.
+# --- the charge port, and what it is rated for -----------------------------
+# EW-LP16, and the size is the whole point of the choice. Derek picked this
+# connector FAMILY off the LP12 - one-touch push-lock instead of a screw
+# coupling, which is right for the one port on this board that gets opened
+# every ride and gets sand in it, and 1900 mating cycles against the SP17's
+# 500. But the LP12 is rated 5 A and takes 20 AWG, and this board charges at
+# 5 A through 16 AWG: it would have run at 100% of plate rating for the ~7
+# hours a full charge takes, on solder cups four gauge sizes too small.
+# The LP16 is the same connector one size up - 10 A, 500 V, 18-16 AWG, same
+# button, same 1900 cycles, $12.99 - and it is a FLANGE socket, which is what
+# a 4 mm printed ASA wall wants. It is also 21 cents cheaper than the SP17 it
+# replaces.
+CHG_RATED_A = 10.0                 # EW-LP16 2-pin plate rating
+CHARGER_A = 5.0                    # the 67.2 V charger, and it holds it
+CHG_HOLE_D = 17.0                  # M16 body: 16.5 needed, 17.0 clears both
 CHG_W, CHG_L, CHG_H = 26.0, 40.0, 26.0     # flange across, overall, flange
 CHG_BODY_L = 20.0                  # behind the panel, INSIDE the module
 CHG_CAP_L = 16.0                   # mating face + screw cap, into the bay
@@ -6889,7 +6904,7 @@ def build():
     boolean(aft_wall, btn_pkt)
     cyl_x("V2_PowerButton", btn_y, btn_z, ex0 - BTN_H + ENC_WALL,
           ex0 + ENC_WALL + 2.0, BTN_HEAD_D, coll, bom_mat("fuse"))
-    # PORT: SP17 flange receptacle - O17 shell hole plus two M3 flange screws
+    # PORT: EW-LP16 flange socket - O17 shell hole plus two M3 flange screws
     # into heat-set inserts, rather than trusting a thread in 4 mm of print.
     chg_cut = cyl_x("V2_ChargePortHole_cut", chg_y, btn_z,
                     ex0 - 2.0, ex0 + ENC_WALL + 2.0, CHG_HOLE_D, coll)
@@ -6912,9 +6927,20 @@ def build():
         c.hide_set(True); c.hide_render = True
     rep["button_panel_mm"] = BTN_PANEL
     rep["button_panel_within_spec"] = BTN_PANEL <= 3.5
-    rep["charge_port"] = ("SP17 2-pin flange receptacle, IP68 mated, screw cap "
-                          "when not - 500 mating cycles, and this one gets "
-                          "opened every ride")
+    rep["charge_port"] = (
+        "EW-LP16 2-pin flange socket, IP68 mated, ONE-TOUCH push-lock rather "
+        "than a screw coupling - no thread to cross-thread with sandy hands, "
+        "and %d mating cycles against the SP17's 500 on the one port that "
+        "gets opened every ride" % 1900)
+    rep["charge_port_rated_A"] = CHG_RATED_A
+    rep["charge_current_A"] = CHARGER_A
+    rep["charge_port_current_margin"] = round(CHG_RATED_A / CHARGER_A, 2)
+    # A CONNECTOR RUN AT ITS PLATE RATING IS NOT A CONNECTOR WITH MARGIN, and
+    # this one holds that current for the whole of a ~7 hour charge rather
+    # than in bursts. The LP12 would have sat at exactly 1.0 here, which is
+    # the number that sent this up a size.
+    rep["charge_hours_at_rating"] = round(
+        rep["pack"]["energy_Wh"] / (67.2 * CHARGER_A), 1)
 
     rep["aft_wall_is_connector_panel"] = (
         f"{BAY_GLAND_N} x PG11 glands, power button, charge port - all "
@@ -7673,6 +7699,13 @@ def build():
             "bung. Below 1.0 there is no reliable barrier where two of them "
             "touch, which is the one thing this gap is for"
             % rep["bung_rubber_between_jackets_mm"])
+    if rep["charge_port_current_margin"] < 1.5:
+        fails.append(
+            "the charge port is rated %.0f A and the charger delivers %.0f - "
+            "%.2fx, held for the %.1f hours a full charge takes. A connector "
+            "at its plate rating is not a connector with margin"
+            % (CHG_RATED_A, CHARGER_A, rep["charge_port_current_margin"],
+               rep["charge_hours_at_rating"]))
     if rep["gland_bore_clearance_mm"] <= 0:
         fails.append(
             "the gland bore is smaller than the gland thread: O%.2f will not "

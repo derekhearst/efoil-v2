@@ -98,10 +98,10 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | [M12 IP68 membrane vent plug](https://www.amazon.com/dp/B0FXSNDGTV) | 2 | ea | $9.95 | $19.90 | verified | NOT optional on a sealed lithium box |
 | [M12 IP68 momentary panel button](https://www.amazon.com/dp/B0FPQP7CP9) | 1 | ea | $32.65 | $32.65 | verified | 1 on hand; this line buys the second board's |
 | [JST GH 1.25 mm pigtail pair, BMS switch](https://www.amazon.com/dp/B07FP2FCYC) | 1 | pk | $5.99 | $5.99 | verified | connects the panel button to the BMS key-switch input. CHECK THE BOX FIRST - DALY ship a ready-made key switch with some units |
-| [SP17 2-pin IP68 flange receptacle + mating plug](https://www.amazon.com/dp/B0CDH5R8P4) | 2 | ea | $13.20 | $26.40 | verified | HangTon SP17. THE LISTING IS A PAIR - male cable plug AND female panel socket - which matters, because the charger arrives with whatever connector its own maker fitted and something has to go on the end of its lead. Rated 10 A / 500 V against our 67.2 V 5 A, takes 14-18 AWG (we run 16) and a 6-10 mm cable OD, solder termination, gold-plated brass, O17 panel hole. TWO THINGS TO CHECK ON ARRIVAL. The cap: on a board that gets submerged, the screw cap is what seals this port when nothing is plugged in, and not every SP17 listing ships one. And the FLANGE: the model drills 2 x M3 at 22 mm centres, some SP17 sockets have a 4-hole flange and some are plain rear-mount. Offer it up before committing the holes - they go into 4 mm of printed ASA |
+| [EW-LP16 2-pin IP68 flange socket + mating plug](https://www.amazon.com/dp/B0D1R4MZNY) | 2 | ea | $12.99 | $25.98 | verified | E-WeiChat EW-LP16, 2-pin FLANGE socket. THE LISTING IS A PAIR - male cable plug AND female panel socket - which matters, because the charger arrives with whatever connector its own maker fitted and something has to go on the end of its lead. 10 A / 500 V against our 67.2 V 5 A, 1.0-1.5 mm2 / 18-16 AWG which is exactly the wire we run, cable OD 4-9 mm, solder termination, gold-plated copper alloy, PBT UL94 V-0, silicone seal, -40 to +85 C, salt-mist tested, IP68 mated, >=1900 mating cycles. PLUG IT IN BEFORE YOU POWER THE CHARGER - the maker prohibits mating under load, and this board is already built that way round: the port is dead whenever the BMS is off. TWO THINGS TO CHECK ON ARRIVAL. A dust cap - IP68 is the MATED rating and an unmated socket is not sealed, so if none ships, that port sits open inside a cavity the leak alarm exists for. And the FLANGE PATTERN: the model drills 2 x M3 at 22 mm centres into 4 mm of printed ASA. Offer it up before committing the holes |
 | [M3 heat-set insert kit, 361 pc](https://www.amazon.com/dp/B0G8JLX1HR) | 1 | kit | $13.98 | $13.98 | verified | covers the port flange (4 sets) and the nose cone. The kit's screws are PLAIN STEEL - buy M3 x 8 A4 separately for the flange, which lives in the wet cavity |
 | [M3 x 8 A4 stainless, 10 pk](https://www.amazon.com/dp/B07DVMFMJZ) | 1 | pk | $6.76 | $6.76 | verified | the kit's screws are not stainless and this joint is submerged |
-| **subtotal** | | | | **$444.89** | | |
+| **subtotal** | | | | **$444.47** | | |
 
 ## 9  Electrical
 
@@ -251,20 +251,20 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | Item | Qty | Unit | Unit $ | Ext $ | | Note |
 |---|---:|---|---:|---:|---|---|
 | Shipping - Divinycell, 6061 plate, VR20 | 1 | allow | $120.00 | $120.00 | estimate | STILL THE BIGGEST UNVERIFIED LINE - it wants three real carts to settle. Was $220 when it covered G10 sheet and hazmat epoxy, both of which are now out of the build entirely |
-| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $457.33 | $457.33 | verified |  |
-| **subtotal** | | | | **$577.33** | | |
+| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $457.31 | $457.31 | verified |  |
+| **subtotal** | | | | **$577.31** | | |
 
 ## Totals
 
 | | |
 |---|---:|
-| **Grand total, 2 boards** | **$8,079.53** |
-| Per board | $4,039.76 |
-| Of which verified | $7,374.24  (91%) |
+| **Grand total, 2 boards** | **$8,079.09** |
+| Per board | $4,039.54 |
+| Of which verified | $7,373.80  (91%) |
 | Of which estimated | $705.29 |
 | Linked to a real listing | 131 lines |
 | Priced but NOT linked | 1 lines, $99.00 |
-| Not linkable, but MEASURED (freight quotes) | 2 lines, $725.96 |
+| Not linkable, but MEASURED (freight quotes) | 2 lines, $725.94 |
 | Not linkable and still estimated | 1 lines, $120.00 |
 
 ## What is a board, and what is a shop
@@ -274,8 +274,8 @@ Some of the total above is not the cost of a board at all - it is tools, jigs an
 | | |
 |---|---:|
 | One-time tooling (incl. its share of tax) | $1,051.95 |
-| **Marginal cost of a board** | **$3,513.79** |
-| Cost of the NEXT board after these 2 | $3,513.79 |
+| **Marginal cost of a board** | **$3,513.57** |
+| Cost of the NEXT board after these 2 | $3,513.57 |
 
 | One-time item | $ |
 |---|---:|
