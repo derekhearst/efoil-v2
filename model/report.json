@@ -142,6 +142,7 @@
  "cav_floor_fillet_R_mm": 10.0,
  "cav_laminate_mm": 1.5,
  "cavity_air_L": 14.21,
+ "cavity_flood_before_module_mm": 60.4,
  "cavity_floor_penetrations": 1,
  "cavity_floor_z_mm": 30.0,
  "cavity_mm": "512 x 323 x 86",
@@ -495,6 +496,7 @@
  "liftout_clear_x_mm": 90.5,
  "liftout_clear_y_mm": 31.0,
  "liftout_ok": true,
+ "lowest_module_penetration": "charge port",
  "mach_cutter_flute_mm": 31.8,
  "mach_cutter_reaches": true,
  "mach_cutter_shortfall_mm": 0.0,
@@ -888,6 +890,7 @@
    "margin": 3.2
   }
  },
+ "port_above_cavity_floor_mm": 60.4,
  "port_to_conduit_mm": 45.5,
  "port_to_pack_mm": 58.7,
  "print_joint_bond_area_mm2": 15552,

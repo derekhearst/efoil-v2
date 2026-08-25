@@ -6954,6 +6954,17 @@ def build():
         "than a screw coupling - no thread to cross-thread with sandy hands, "
         "and %d mating cycles against the SP17's 500 on the one port that "
         "gets opened every ride" % 1900)
+    # --- WHICH PENETRATION DOES RISING WATER REACH FIRST --------------------
+    # The module has two openings that are not rated for a standing head: the
+    # vent membrane, and the charge port whenever nothing is plugged into it -
+    # which is every ride. Both only matter if the cavity floods, and the
+    # useful question is not "are they sealed" but "which one is lower",
+    # because that is the one that decides how much water the cavity can take.
+    rep["port_above_cavity_floor_mm"] = round(btn_z - FLOOR_Z, 1)
+    rep["lowest_module_penetration"] = (
+        "charge port" if btn_z < vent_z else "vent membrane")
+    rep["cavity_flood_before_module_mm"] = round(
+        min(btn_z, vent_z) - FLOOR_Z, 1)
     rep["charge_port_bolts"] = CHG_BOLT_N
     rep["charge_port_bolt_pitch_mm"] = CHG_BOLT_PITCH
     rep["charge_port_panel_hole_mm"] = CHG_HOLE_D
