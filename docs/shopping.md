@@ -6,17 +6,17 @@ Grouped by where you buy it rather than by what it does, because that is the ord
 
 | Supplier | Lines | $ |
 |---|---:|---:|
-| Amazon | 115 | $3,681.19 |
+| Amazon | 115 | $3,681.61 |
 | Gong | 1 | $1,404.00 |
 | Flipsky | 3 | $1,038.00 |
-| Not a purchase - tax and freight | 3 | $845.94 |
+| Not a purchase - tax and freight | 3 | $845.96 |
 | BatteryHookup | 2 | $297.50 |
 | Fiberglass Supply | 3 | $253.38 |
 | Maker Shop Boise | 2 | $249.00 |
 | Home Depot / hardware | 4 | $169.16 |
 | Speedy Metals | 1 | $88.92 |
 | Easy Composites | 1 | $52.00 |
-| **TOTAL** | | **$8,079.09** |
+| **TOTAL** | | **$8,079.53** |
 
 ## Amazon
 
@@ -66,8 +66,8 @@ https://www.amazon.com
 | [M4 x 12 A4 socket cap DIN912, 10 pk](https://www.amazon.com/dp/B07DVPC7HT) | 4 | pk | $28.40 | **verified** | 36 needed. A4/316 again - the $0.09/ea listings are all A2/304 |
 | [TotalBoat 5:1 FAST hardener 6 oz, cold days](https://www.amazon.com/dp/B00HRHA59K) | 1 | ea | $27.99 | **verified** | min 40-45 F against slow's 60. In a cold shop this is the one that cures, and the cold gives the pot life back |
 | [Rosin paper roll, floor and bench](https://www.amazon.com/dp/B0FXJDFW2B) | 1 | roll | $27.95 | estimate | absorbs instead of pooling. This is the actual upgrade over a tarp, and it is $24 |
+| [SP17 2-pin IP68 flange socket + mating plug](https://www.amazon.com/dp/B0CDH5R8P4) | 2 | ea | $26.40 | **verified** | HangTon SP17. THE LISTING IS A PAIR - male cable plug AND female panel socket - which matters, because the cha |
 | [3M Fastbond 1077 water-based, CNC hold-down](https://www.amazon.com/dp/B0GRSV587N) | 1 | ea | $26.02 | **verified** | WATER-BASED because the blank is EPS - solvent sprays like Super 77 eat polystyrene. Foam is taped/tacked down |
-| [EW-LP16 2-pin IP68 flange socket + mating plug](https://www.amazon.com/dp/B0D1R4MZNY) | 2 | ea | $25.98 | **verified** | E-WeiChat EW-LP16, 2-pin FLANGE socket. THE LISTING IS A PAIR - male cable plug AND female panel socket - whic |
 | [PETG filament 1 kg, mast clamp set](https://www.amazon.com/dp/B0D41Y3WWZ) | 2 | kg | $25.98 | **verified** | 4 STEP files; 0.6 nozzle, 5 perims, 40% infill |
 | [PETG for props, 4-5 spares per board](https://www.amazon.com/dp/B0D41Y3WWZ) | 2 | kg | $25.98 | **verified** | 0.4 nozzle, 100% infill; balance-check on a bolt, then epoxy-coat - V1 skipped the coat and layer lines cost d |
 | [1/4 in torque wrench, 10-50 in-lb](https://www.amazon.com/dp/B0D7PWP7YF) | 1 | ea | $25.97 | **verified** | 1.1-5.6 Nm. RANGE MATTERS: our hatch spec is 1.2 Nm = 10.6 in-lb, which is BELOW the 20 in-lb floor of the com |
@@ -100,7 +100,7 @@ https://www.amazon.com
 | [Closed-cell sponge EPDM 1/8in, module lid gasket](https://www.amazon.com/dp/B07FWQM34V) | 1 | roll | $13.99 | **verified** | blank is 443 x 314 mm a board; the roll is 432 wide so it nests across, and 2032 long does both with room over |
 | [PVC pack wrap, 200 mm lay-flat](https://www.amazon.com/dp/B09SVFL33L) | 1 | roll | $13.99 | **verified** | wide enough to sleeve a 16S brick; one roll does both |
 | [Adhesive-lined heat shrink 3:1, 400 pc kit](https://www.amazon.com/dp/B0BVVMCY86) | 1 | kit | $13.99 | **verified** | marine grade, glue-lined - plain heat shrink over a joint in a wet cavity is decoration |
-| [M3 heat-set insert kit, 361 pc](https://www.amazon.com/dp/B0G8JLX1HR) | 1 | kit | $13.98 | **verified** | covers the port flange (8 sets, 4 a port on a 20 mm square) and the nose cone. The kit's screws are PLAIN STEE |
+| [M3 heat-set insert kit, 361 pc](https://www.amazon.com/dp/B0G8JLX1HR) | 1 | kit | $13.98 | **verified** | covers the port flange (4 sets, 2 a port on a 22 mm square) and the nose cone. The kit's screws are PLAIN STEE |
 | [PL300 / Gorilla Glue, layer glue-up](https://www.amazon.com/dp/B0009XEGVC) | 2 | tube | $13.18 | estimate |  |
 | [M6 penny washer O18 A4 DIN9021](https://www.amazon.com/dp/B0DB8RBY3N) | 1 | pk | $12.99 | estimate | 58 needed - TWO PER BOLT, one captive under the nut and one UNDER THE HEAD. M6 size on an M5 bolt: the 0.7 mm  |
 | [Water-ingress alarm, 2 pk](https://www.amazon.com/dp/B09DCMCB8D) | 1 | pk | $12.99 | **verified** | Geevon 100 dB pucks - the 2-pack covers BOTH boards. Put the SENSOR on the module floor in the lowest corner,  |
@@ -136,7 +136,7 @@ https://www.amazon.com
 | [Leash plug 30 x 12.5, stainless pin, 2 pk](https://www.amazon.com/dp/B0C6XLK8L9) | 1 | pk | $6.99 | **verified** | the pack does both boards |
 | [Loctite 242](https://www.amazon.com/dp/B000I1RSNS) | 1 | ea | $6.98 | estimate | rod ends into the motor only - nyloc end does not need it |
 | [M4 A4 washer, 316, 100 pk](https://www.amazon.com/dp/B0DZ5BVLP5) | 1 | pk | $6.79 | **verified** | 36 needed, under every lid bolt. NOTE the OD is 12 mm, not the 9 mm this line specced - the only 9 mm-OD listi |
-| [M3 x 8 A4 stainless, 10 pk](https://www.amazon.com/dp/B07DVMFMJZ) | 1 | pk | $6.76 | **verified** | 8 needed. The kit's screws are not stainless and this joint is submerged |
+| [M3 x 8 A4 stainless, 10 pk](https://www.amazon.com/dp/B07DVMFMJZ) | 1 | pk | $6.76 | **verified** | 4 needed. The kit's screws are not stainless and this joint is submerged |
 | [JST GH 1.25 mm pigtail pair, BMS switch](https://www.amazon.com/dp/B07FP2FCYC) | 1 | pk | $5.99 | **verified** | connects the panel button to the BMS key-switch input. CHECK THE BOX FIRST - DALY ship a ready-made key switch |
 | [Cyanoacrylate for the cord splice](https://www.amazon.com/dp/B0DKP4TVSF) | 1 | ea | $5.39 | estimate |  |
 
@@ -166,7 +166,7 @@ Some Flipsky appears on Amazon but the range is thin and usually dearer. Buy dir
 
 | Item | Qty | Unit | Ext | Price | Note |
 |---|---:|---|---:|---|---|
-| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $457.31 | **verified** |  |
+| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $457.33 | **verified** |  |
 | Gong shipping to Idaho, ONE order, both foils | 1 | order | $268.63 | **verified** | quoted at checkout for 2 x XL Alu setups. PER ORDER, not per foil - ordering the two separately would roughly  |
 | Shipping - Divinycell, 6061 plate, VR20 | 1 | allow | $120.00 | estimate | STILL THE BIGGEST UNVERIFIED LINE - it wants three real carts to settle. Was $220 when it covered G10 sheet an |
 

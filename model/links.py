@@ -219,11 +219,10 @@ LINKS = {
         ("B0FXJDFW2B", 27.95, "Floor Protection Natural Brown Rosin Paper 18in x 166 ft"),
     "Rotary-tool router base + collets, if needed":
         ("B0000DEZK4", 24.63, "Dremel 335-01 Plunge Router Attachment for Rotary Tool"),
-    "EW-LP16 2-pin IP68 flange socket + mating plug":
-        ("B0D1R4MZNY", 12.99, "E-WeiChat EW-LP16 Industrial Waterproof "
-         "Connector IP68 Quickly Plugging Aviation Connector "
-         "Anti-Interference Circular Connector Fast Release Electrical "
-         "Connector M16 2-9 Pin Flange Socket (2 Pin)"),
+    "SP17 2-pin IP68 flange socket + mating plug":
+        ("B0CDH5R8P4", 13.20, "HangTon SP17 2 Pin Waterproof Electrical "
+         "Connector, Male Female Cable Plug Panel Mount Socket, IP68 "
+         "Aviation Circular 10A 500V"),
     "Sacrificial MDF, CNC spoilboard":
         ("https://www.homedepot.com/p/1-4-in-x-2-ft-x-4-ft-Medium-Density-Fiberboard-1508104/202089069", 16.23, "1/4 in x 2 ft x 4 ft Medium Density Fiberboard"),
     "Sealant tape, 50 ft roll":
@@ -385,7 +384,7 @@ LINK_VENDOR = {
     "Roll pin assortment M1.5-M6, 220 pc": "Amazon",
     "Rosin paper roll, floor and bench": "Amazon",
     "Rotary-tool router base + collets, if needed": "Amazon",
-    "EW-LP16 2-pin IP68 flange socket + mating plug": "Amazon",
+    "SP17 2-pin IP68 flange socket + mating plug": "Amazon",
     "Sacrificial MDF, CNC spoilboard": "Home Depot / hardware",
     "Sealant tape, 50 ft roll": "Amazon",
     "Sika Aktivator-PRO 250 ml + daubers": "Amazon",

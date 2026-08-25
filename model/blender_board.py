@@ -870,24 +870,36 @@ BTN_PANEL = 3.0                    # local panel thickness, 3.5 is the max
 # replaces.
 CHG_RATED_A = 10.0                 # EW-LP16 2-pin plate rating
 CHARGER_A = 5.0                    # the 67.2 V charger, and it holds it
-# EVERY NUMBER BELOW IS OFF THE MAKER'S DRAWING NOW, not off a guess at what
-# an M16 flange looks like. Derek said the flange has four screws; it does,
-# and the EW-LP16P drawing settles the rest with it. What was here before was
-# carried over from the SP17 and wrong in four places:
-#     hole        17.0  ->  16.5 +0.20/0.00   (spec, not a round number)
-#     screws      2 at 22 pitch  ->  4 on a 20 x 20 SQUARE
-#     flange      26 x 26  ->  28.5 x 31.5
-#     body depth  20.0  ->  8.5 behind the panel
-# The body one is the surprise: this port reaches less than half as far into
-# the module as the model believed, so every clearance it was checked against
-# had 11.5 mm of slack nobody knew about.
-CHG_HOLE_D = 16.5                  # +0.20/0.00 - drawing, EW-LP16P
-CHG_W, CHG_H = 28.5, 31.5          # flange plate, across x up
+# BACK TO THE SP17, AND THE CAP IS THE WHOLE REASON. The EW-LP16's one-touch
+# coupling is the nicer mechanism for a port opened every ride and its 1900
+# mating cycles beat the SP17's 500 - but its cover is a press-fit bung on a
+# lanyard, and Derek called it: that is splash protection, not a seal.
+#
+# This port is the LOWEST unrated penetration into the module - 60.4 mm above
+# the cavity floor, 1.8 below the vent - and it is unmated every time the
+# board is ridden. A threaded cap compressing a gasket is a real barrier on
+# the last wall in front of the pack; a press-fit bung is not.
+#
+# The 1.8 mm is worth being honest about: on STILL water this trade moves the
+# limit from 60.4 to 62.2 and stops, because the vent is right behind it. The
+# case it actually buys is the one that happens - board inverted, any water
+# at all in the cavity - where height stops meaning anything and what matters
+# is whether the port is sealed. It is Derek's call and it is the right one.
+CHG_RATED_V = 500.0                # SP17 2/3-pin, threaded coupling
+CHG_CYCLES = 500                   # ...against the LP16's 1900. The cost.
+CHG_HOLE_D = 17.0                  # SP17 panel cutout
+CHG_W, CHG_H = 26.0, 26.0          # flange plate - UNVERIFIED, see below
 CHG_L = 40.0                       # overall into the bay, plug and cap
-CHG_BODY_L = 8.5                   # behind the panel, INSIDE the module
-CHG_CAP_L = 16.0                   # mating face + cap, into the bay
-CHG_BOLT_PITCH = 20.0              # 4 x M3 on a SQUARE of this side
-CHG_BOLT_N = 4
+CHG_BODY_L = 20.0                  # behind the panel, INSIDE the module
+CHG_CAP_L = 16.0                   # mating face + screw cap, into the bay
+# TWO HOLES, not four. Derek counted four on the LP16 and was right about
+# that part; the SP17's standard flange is a 2-HOLE one and this is a
+# different connector. THE PITCH IS NOT VERIFIED - 22.0 is what this model
+# has always said and no drawing has ever been found for it. It goes into a
+# PRINTED wall, so it is cheap to be right and expensive to be wrong: measure
+# the part before the module shell prints at step 3. README open question.
+CHG_BOLT_PITCH = 22.0              # UNVERIFIED - measure the real flange
+CHG_BOLT_N = 2
 # The drawing's own clearance hole is O3.2. Ours is not a clearance hole - the
 # screw threads into a heat-set insert in the ASA - so it is the insert's
 # pilot that gets cut here.
@@ -6926,17 +6938,16 @@ def build():
     chg_cut = cyl_x("V2_ChargePortHole_cut", chg_y, btn_z,
                     ex0 - 2.0, ex0 + ENC_WALL + 2.0, CHG_HOLE_D, coll)
     boolean(aft_wall, chg_cut)
-    # FOUR, on a square. This was two in a column at a 22 mm pitch - an SP17
-    # pattern that survived the change of connector, and it would have had a
-    # builder melting two inserts into a wall that needs four.
-    for sy in (-1, 1):
-        for sz in (-1, 1):
-            fb = cyl_x(f"V2_ChargePortBolt_cut{sy}{sz}",
-                       chg_y + sy * CHG_BOLT_PITCH / 2,
-                       btn_z + sz * CHG_BOLT_PITCH / 2,
-                       ex0 - 2.0, ex0 + ENC_WALL + 2.0, MOD_INSERT_D_M3, coll)
-            boolean(aft_wall, fb)
-            fb.hide_set(True); fb.hide_render = True
+    # TWO, in a column - the SP17's standard flange. It was briefly four on a
+    # square, which is the EW-LP16P pattern and correct for that connector;
+    # this is a different one. Driven off CHG_BOLT_N so the two cannot drift
+    # apart again, and the BOM's insert count reads the same number.
+    for sz in (-1, 1):
+        fb = cyl_x(f"V2_ChargePortBolt_cut{sz}", chg_y,
+                   btn_z + sz * CHG_BOLT_PITCH / 2,
+                   ex0 - 2.0, ex0 + ENC_WALL + 2.0, MOD_INSERT_D_M3, coll)
+        boolean(aft_wall, fb)
+        fb.hide_set(True); fb.hide_render = True
     # Drawn backwards, and that is why it looked enormous: the whole 40 mm
     # was projecting AFT into the service bay. On a panel receptacle the body
     # goes INSIDE the enclosure and only the mating face and its screw cap sit
@@ -6950,10 +6961,15 @@ def build():
     rep["button_panel_mm"] = BTN_PANEL
     rep["button_panel_within_spec"] = BTN_PANEL <= 3.5
     rep["charge_port"] = (
-        "EW-LP16P 2-pin flange socket, ONE-TOUCH push-lock rather "
-        "than a screw coupling - no thread to cross-thread with sandy hands, "
-        "and %d mating cycles against the SP17's 500 on the one port that "
-        "gets opened every ride" % 1900)
+        "SP17 2-pin flange socket, threaded coupling with a SCREW CAP - "
+        "chosen over the EW-LP16's nicer one-touch latch because the LP16's "
+        "cover is a press-fit bung, and this is the lowest unrated opening "
+        "into the module and it is unmated every ride")
+    rep["charge_port_cycles"] = CHG_CYCLES
+    # 500 cycles on a port opened every time the board goes out is the price
+    # of the screw cap, and it is worth stating in rides rather than in a
+    # catalogue number.
+    rep["charge_port_rides_to_wear_out"] = CHG_CYCLES
     # --- WHICH PENETRATION DOES RISING WATER REACH FIRST --------------------
     # The module has two openings that are not rated for a standing head: the
     # vent membrane, and the charge port whenever nothing is plugged into it -

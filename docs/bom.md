@@ -98,10 +98,10 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | [M12 IP68 membrane vent plug](https://www.amazon.com/dp/B0FXSNDGTV) | 2 | ea | $9.95 | $19.90 | verified | NOT optional on a sealed lithium box |
 | [M12 IP68 momentary panel button](https://www.amazon.com/dp/B0FPQP7CP9) | 1 | ea | $32.65 | $32.65 | verified | 1 on hand; this line buys the second board's |
 | [JST GH 1.25 mm pigtail pair, BMS switch](https://www.amazon.com/dp/B07FP2FCYC) | 1 | pk | $5.99 | $5.99 | verified | connects the panel button to the BMS key-switch input. CHECK THE BOX FIRST - DALY ship a ready-made key switch with some units |
-| [EW-LP16 2-pin IP68 flange socket + mating plug](https://www.amazon.com/dp/B0D1R4MZNY) | 2 | ea | $12.99 | $25.98 | verified | E-WeiChat EW-LP16, 2-pin FLANGE socket. THE LISTING IS A PAIR - male cable plug AND female panel socket - which matters, because the charger arrives with whatever connector its own maker fitted and something has to go on the end of its lead. SPECS BELOW ARE OFF THE MAKER'S DATASHEET, not the listing copy, and the two disagree twice - the listing says 500 V and IP68 2m/2H; EW-LP16_Series_Datasheet.pdf says 400 V AC and 'IP67 (Option: IP68 1m/2H)'. Neither matters at 67.2 V inside a hatch-covered cavity, but take the lower one as what you bought. 10 A at <=45 K rise, 400 V AC, 2000 V withstand, <3 mOhm, 1.5 mm2 / 16 AWG - our exact wire - contacts 1.5 mm x 2, cable OD 7-9 mm power, solder termination, gold-plated copper alloy, PBT, silicone seal, -40 to +85 C, salt spray 5% NaCl 48 h, >=1900 mating cycles. PLUG IT IN BEFORE YOU POWER THE CHARGER - the maker prohibits mating under load, and this board is already built that way round: the port is dead whenever the BMS is off. MOUNTING IS OFF THE DRAWING: O16.5 +0.20/0.00 panel hole, 4 x M3 on a 20.0 x 20.0 SQUARE, flange plate 28.5 x 31.5, body 8.5 behind the panel. Ours go into heat-set inserts rather than through into nuts, because the wall is 4 mm of printed ASA. ONE THING LEFT TO CHECK ON ARRIVAL: a dust cap. IP68/IP67 is the MATED rating and an unmated socket is not sealed, so if none ships, that port sits open inside a cavity the leak alarm exists for |
-| [M3 heat-set insert kit, 361 pc](https://www.amazon.com/dp/B0G8JLX1HR) | 1 | kit | $13.98 | $13.98 | verified | covers the port flange (8 sets, 4 a port on a 20 mm square) and the nose cone. The kit's screws are PLAIN STEEL - buy M3 x 8 A4 separately for the flange, which lives in the wet cavity |
-| [M3 x 8 A4 stainless, 10 pk](https://www.amazon.com/dp/B07DVMFMJZ) | 1 | pk | $6.76 | $6.76 | verified | 8 needed. The kit's screws are not stainless and this joint is submerged |
-| **subtotal** | | | | **$444.47** | | |
+| [SP17 2-pin IP68 flange socket + mating plug](https://www.amazon.com/dp/B0CDH5R8P4) | 2 | ea | $13.20 | $26.40 | verified | HangTon SP17. THE LISTING IS A PAIR - male cable plug AND female panel socket - which matters, because the charger arrives with whatever connector its own maker fitted and something has to go on the end of its lead. 10 A and 500 V on the 2-pin against our 67.2 V 5 A, takes up to 2 mm2 / 14 AWG so our 16 is comfortable, cable OD 6-10 mm, threaded coupling, brass contacts with gold plating, PA66 shell / PPS insert, -40 to +85 C, 500 mating cycles. PLUG IT IN BEFORE YOU POWER THE CHARGER: the port is dead whenever the BMS is off, and this board is already built that way round. THE SCREW CAP IS THE REASON THIS CONNECTOR IS HERE - CONFIRM IT IS IN THE BOX. Renhotec's SP17 page says sealing caps are AVAILABLE for both the cable and panel halves, which is not the same as included. This port is the lowest unrated opening into the module and it sits unmated every ride; if no cap ships, source one before the board does. FLANGE PITCH IS UNVERIFIED. The standard SP17 flange is a TWO-hole one - four is the EW-LP16 pattern, a different connector - and the 22 mm centres this model uses have never been found on a drawing. They go into a PRINTED wall, so order this early and measure it before the module shell prints at step 3 |
+| [M3 heat-set insert kit, 361 pc](https://www.amazon.com/dp/B0G8JLX1HR) | 1 | kit | $13.98 | $13.98 | verified | covers the port flange (4 sets, 2 a port on a 22 mm square) and the nose cone. The kit's screws are PLAIN STEEL - buy M3 x 8 A4 separately for the flange, which lives in the wet cavity |
+| [M3 x 8 A4 stainless, 10 pk](https://www.amazon.com/dp/B07DVMFMJZ) | 1 | pk | $6.76 | $6.76 | verified | 4 needed. The kit's screws are not stainless and this joint is submerged |
+| **subtotal** | | | | **$444.89** | | |
 
 ## 9  Electrical
 
@@ -251,20 +251,20 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | Item | Qty | Unit | Unit $ | Ext $ | | Note |
 |---|---:|---|---:|---:|---|---|
 | Shipping - Divinycell, 6061 plate, VR20 | 1 | allow | $120.00 | $120.00 | estimate | STILL THE BIGGEST UNVERIFIED LINE - it wants three real carts to settle. Was $220 when it covered G10 sheet and hazmat epoxy, both of which are now out of the build entirely |
-| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $457.31 | $457.31 | verified |  |
-| **subtotal** | | | | **$577.31** | | |
+| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $457.33 | $457.33 | verified |  |
+| **subtotal** | | | | **$577.33** | | |
 
 ## Totals
 
 | | |
 |---|---:|
-| **Grand total, 2 boards** | **$8,079.09** |
-| Per board | $4,039.54 |
-| Of which verified | $7,373.80  (91%) |
+| **Grand total, 2 boards** | **$8,079.53** |
+| Per board | $4,039.76 |
+| Of which verified | $7,374.24  (91%) |
 | Of which estimated | $705.29 |
 | Linked to a real listing | 131 lines |
 | Priced but NOT linked | 1 lines, $99.00 |
-| Not linkable, but MEASURED (freight quotes) | 2 lines, $725.94 |
+| Not linkable, but MEASURED (freight quotes) | 2 lines, $725.96 |
 | Not linkable and still estimated | 1 lines, $120.00 |
 
 ## What is a board, and what is a shop
@@ -274,8 +274,8 @@ Some of the total above is not the cost of a board at all - it is tools, jigs an
 | | |
 |---|---:|
 | One-time tooling (incl. its share of tax) | $1,051.95 |
-| **Marginal cost of a board** | **$3,513.57** |
-| Cost of the NEXT board after these 2 | $3,513.57 |
+| **Marginal cost of a board** | **$3,513.79** |
+| Cost of the NEXT board after these 2 | $3,513.79 |
 
 | One-time item | $ |
 |---|---:|
