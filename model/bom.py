@@ -1119,9 +1119,13 @@ def build():
     # 1.67xD, 1.42x the bolt and the 2.7 mm of blind alu that keeps the
     # cavity dry.
     add("8  Mast hardpoint", "M6 x 22 A4 countersunk DIN7991, mast screws", 2, "pk", 6.49, EST,
-        "8 needed, 4 a board, 5 to a pack. DIN7991 90 deg head to match "
-        "Gong's countersink - CHECK THE ANGLE against the real plate before "
-        "ordering, it is the one thing about their part still unmeasured. "
+        "8 needed, 4 a board, 5 to a pack. NO WASHERS - straight into their "
+        "countersink; the cup washers in Gong's kit are a conical seat for "
+        "mounting to a FLAT surface and belong to the US-box configuration, "
+        "and anything under the head would eat into the 10 mm of engagement. "
+        "DIN7991 90 deg head to match Gong's countersink - CHECK THE ANGLE "
+        "against the real plate before ordering, it is the one thing about "
+        "their part still unmeasured. "
         "A4-70 deliberately, not A4-80: our tapped 6061 is 1.42x this screw "
         "and the failure belongs on the part you can replace. "
         "TEF-GEL EVERY ONE - alu plate, stainless screw, wet joint",

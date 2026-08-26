@@ -107,7 +107,7 @@ https://www.amazon.com
 | [5.5 mm gold bullets, 20 pair](https://www.amazon.com/dp/B096DJKR5Y) | 1 | pk | $12.99 | **verified** | 3 pair a board, so one pack covers both with spares. Motor pigtails arrive with their own |
 | [Roll pin assortment M1.5-M6, 220 pc](https://www.amazon.com/dp/B09MPWY8L4) | 1 | kit | $12.99 | **verified** | 4 needed. An ASSORTMENT on purpose: the note says MEASURE the shaft cross-hole rather than trust the 4 mm figu |
 | [Dowel pins + drill, two-sided registration](https://www.amazon.com/dp/B0GS2R3F5G) | 1 | set | $12.99 | estimate |  |
-| [M6 x 22 A4 countersunk DIN7991, mast screws](https://www.amazon.com/dp/B01N3QSKHO) | 2 | pk | $12.98 | estimate | 8 needed, 4 a board, 5 to a pack. DIN7991 90 deg head to match Gong's countersink - CHECK THE ANGLE against th |
+| [M6 x 22 A4 countersunk DIN7991, mast screws](https://www.amazon.com/dp/B01N3QSKHO) | 2 | pk | $12.98 | estimate | 8 needed, 4 a board, 5 to a pack. NO WASHERS - straight into their countersink; the cup washers in Gong's kit  |
 | [M6 x 12.7 brass heat-set insert, 50 pc](https://www.amazon.com/dp/B077PGD6X2) | 1 | pk | $12.00 | estimate | 4 needed, module handle pads; 8.2 mm printed pilot, same as the model's cut. LOCTITE the bolts - the pedestal  |
 | [Vacuum hose + hose clamps](https://www.amazon.com/dp/B0FH52FT4G) | 1 | set | $11.61 | estimate | 1/2 in tubing pump-to-bag plus clamps; the other half of what the deleted kit was actually carrying |
 | [Vacuum gauge, -30 inHg, 1/4 NPT, glycerin](https://www.amazon.com/dp/B00VQSOZFQ) | 1 | ea | $10.50 | **verified** | reads the BAG, not the pump - tee it in at the bag end. The regulator sets the level; this is how you know it  |

@@ -8126,6 +8126,45 @@ def build():
         "washers are not in that sum either - measure the assembled stack"
         % (MAST_HEAD_T, rep["mast_head_min_before_bottoming_mm"], BOLT_D,
            rep["mast_head_max_before_we_are_weak_mm"]))
+    # --- IS THE PLATE OVERBUILT? Asked three times now, so: no, and here is
+    # the arithmetic rather than an opinion. It LOOKS like a lot of aluminium
+    # because it is, but its two dimensions are set by two unrelated
+    # constraints and both sit within ~15% of their floor.
+    #
+    # THICKNESS is two requirements stacked with nothing between them:
+    #   thread at 1.2x the bolt   8.2 mm of engagement
+    #   blind alu wall, hard      2.0 mm
+    #                             10.2 mm absolute floor
+    # ...except engagement comes in screw-length steps, and the only standard
+    # length that suits this joint is M6x22 giving 10.0. So the floor WITH
+    # REAL SCREWS is 12.0, against 12.7 in hand. The slack is 0.7 mm - about
+    # 62 g a board - and cashing it means 12 mm metric 6061 (odd stock beside
+    # 1/2 in) sitting exactly ON the 2.0 mm blind limit. Not worth it.
+    #
+    # FOOTPRINT is a different constraint entirely: not prying, but the area
+    # that feeds the mast's couple into the skins. 1.14 g against a 1.0 g
+    # floor, 14% over. 225 x 150 was tried and gives 0.91 - under.
+    rep["mast_plate_thickness_floor_mm"] = round(
+        rep["mast_bolt_proof_N"] * 1.2 / (rep["mast_thread_cap_N"] / INSERT_L)
+        + 2.0, 2)
+    rep["mast_plate_thickness_floor_real_screws_mm"] = round(INSERT_L + 2.0, 1)
+    rep["mast_plate_thickness_slack_mm"] = round(
+        G10_T - (INSERT_L + 2.0), 1)
+    rep["mast_plate_is_overbuilt"] = False
+    rep["mast_plate_sized_by"] = (
+        "THICKNESS by thread + barrier: %.1f mm of engagement (the M%.0fx22, "
+        "the only standard length that suits this joint) plus a 2.0 mm blind "
+        "wall = %.1f, against %.1f in hand. FOOTPRINT by the shear path into "
+        "the skins, not prying: %.2f g against a 1.0 g floor. Two unrelated "
+        "constraints, both within ~15%% of their limit"
+        % (INSERT_L, BOLT_D, INSERT_L + 2.0, G10_T,
+           rep.get("side_g_limit_with_ribs", 0)))
+    # Derek: no washers on the mast mount, bolts straight into the
+    # countersink. That closes the one loose end on their hardware - the cup
+    # washers in the kit are for mounting to a FLAT surface and belong to the
+    # US-box configuration, not to a countersunk plate. It also means nothing
+    # eats into the 10 mm of engagement.
+    rep["mast_uses_washers"] = False
     rep["mast_screw_length_rationale"] = (
         "Gong's M6x30 is their TOP PLATE -> BOARD screw, one of three lengths "
         "in the kit (35 mast-to-plate, 30 plate-to-board, 50 mast-to-fuse). "
