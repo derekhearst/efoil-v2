@@ -72,8 +72,8 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | [M5 x 25 button head TORX TX25, 25 pk](https://www.amazon.com/dp/B08BZJPJTK) | 1 | pk | $15.99 | $15.99 | estimate | 24 needed of 25. TX25 drive. ISO 7380-2 flanged button; the model draws the plain O9.5 x 2.75 high, which is what the model draws and what puts the whole stack 1.5 mm BELOW the deck pad. 304 not A4 - see the note above, it is a deliberate trade and the captive nut stays A4. Tef-Gel every one. A4 SOCKET CAP B0CJFMMF58 is the fallback if the grade matters more than the toe |
 | [M6 penny washer O18 A4 DIN9021](https://www.amazon.com/dp/B0DB8RBY3N) | 1 | pk | $12.99 | $12.99 | estimate | 58 needed - TWO PER BOLT, one captive under the nut and one UNDER THE HEAD. M6 size on an M5 bolt: the 0.7 mm of slop is irrelevant on a washer and the 3 extra mm of OD is not |
 | [M5 A4 hex nut DIN934, 50 pk - CAPTIVE in the ring](https://www.amazon.com/dp/B084HLMN7B) | 1 | pk | $9.19 | $9.19 | verified | 34 needed. Dropped in at a print pause at Z=6.0; steel thread, so a hatch that comes off every ride never wears anything out |
-| [MDF 12 mm 4x8 sheet, 4 gauges + the groove guide](https://www.homedepot.com/p/ULTRASTOCK-1-2-in-x-4-ft-x-8-ft-MDF-Panel-M31240849097000000A/202332602) | 1 | sheet | $32.00 | $32.00 | estimate | 3 station sections, the 1400 mm rocker/deck profile, and the groove guide. 0.67 m2 of parts in a 2.98 m2 sheet - bought for the LENGTH, not the area. Was a 14-template set at $70; the router templates went with the CNC pass and only the gauges are left, which check the machined core before it is glassed |
-| **subtotal** | | | | **$161.27** | | |
+| [MDF 12 mm 2x4 panel, the groove guide](https://www.homedepot.com/p/ProWood-1-2-in-x-2-ft-x-4-ft-Medium-Density-Fiberboard-Project-Panel-109097/202093821) | 1 | panel | $30.73 | $30.73 | verified | one part: the groove guide, 580 x 391. Was a 14-template set, then 4 check gauges as well - both deleted, and the panel shrank with them. templates.py checks what is left against the sheet |
+| **subtotal** | | | | **$160.00** | | |
 
 ## 7  Module
 
@@ -252,31 +252,31 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | Item | Qty | Unit | Unit $ | Ext $ | | Note |
 |---|---:|---|---:|---:|---|---|
 | Shipping - Divinycell, 6061 plate, VR20 | 1 | allow | $120.00 | $120.00 | estimate | STILL THE BIGGEST UNVERIFIED LINE - it wants three real carts to settle. Was $220 when it covered G10 sheet and hazmat epoxy, both of which are now out of the build entirely |
-| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $458.66 | $458.66 | verified |  |
-| **subtotal** | | | | **$578.66** | | |
+| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $458.58 | $458.58 | verified |  |
+| **subtotal** | | | | **$578.58** | | |
 
 ## Totals
 
 | | |
 |---|---:|
-| **Grand total, 2 boards** | **$8,102.99** |
-| Per board | $4,051.49 |
-| Of which verified | $7,344.85  (91%) |
-| Of which estimated | $758.14 |
+| **Grand total, 2 boards** | **$8,101.64** |
+| Per board | $4,050.82 |
+| Of which verified | $7,375.50  (91%) |
+| Of which estimated | $726.14 |
 | Linked to a real listing | 131 lines |
 | Priced but NOT linked | 2 lines, $105.00 |
-| Not linkable, but MEASURED (freight quotes) | 2 lines, $727.29 |
+| Not linkable, but MEASURED (freight quotes) | 2 lines, $727.21 |
 | Not linkable and still estimated | 1 lines, $120.00 |
 
 ## What is a board, and what is a shop
 
-Some of the total above is not the cost of a board at all - it is tools, jigs and templates that exist afterwards and do not repeat. Splitting them out is the difference between "a board costs $4,051" and "a board costs $3,526 and I now own a vacuum rig, a crimper and a full template set".
+Some of the total above is not the cost of a board at all - it is tools, jigs and templates that exist afterwards and do not repeat. Splitting them out is the difference between "a board costs $4,051" and "a board costs $3,525 and I now own a vacuum rig, a crimper and a full template set".
 
 | | |
 |---|---:|
 | One-time tooling (incl. its share of tax) | $1,051.95 |
-| **Marginal cost of a board** | **$3,525.52** |
-| Cost of the NEXT board after these 2 | $3,525.52 |
+| **Marginal cost of a board** | **$3,524.84** |
+| Cost of the NEXT board after these 2 | $3,524.84 |
 
 | One-time item | $ |
 |---|---:|

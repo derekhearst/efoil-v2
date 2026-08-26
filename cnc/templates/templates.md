@@ -12,10 +12,6 @@ Every template carries the centreline and station ticks on the `REG` layer. **`C
 
 | Template | Size mm | Kind | What it does |
 |---|---|---|---|
-| `T08_station_25` | 521 x 144 | GAUGE | section at x = 350 mm (25% of length). Shape gauge, not a router template. |
-| `T08_station_50` | 559 x 144 | GAUGE | section at x = 700 mm (50% of length). Shape gauge, not a router template. |
-| `T08_station_75` | 477 x 145 | GAUGE | section at x = 1050 mm (75% of length). Shape gauge, not a router template. |
-| `T09_rocker_and_deck` | 1400 x 154 | GAUGE | centreline profile. Solid is the hull bottom (rocker), CHANNEL is the deck. Cut as two separate gauges or one long one. |
 
 ## The one number that is not from the model
 

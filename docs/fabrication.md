@@ -1064,8 +1064,11 @@ The mast plate does not need a machine (step 7). For the core:
 3. **Another makerspace or a maker with a large-format router.**
 4. **Buy a shaped blank** and adapt the cavity by hand.
 
-The check gauges exist for exactly this case — station sections you can
-offer the shape up to. **Uses:** `MDF 12 mm 4x8 sheet, 4 gauges + the groove guide`
+If it comes to this, flip **`HAND_SHAPE = True`** in `model/templates.py`
+and it emits the full 21-template set again — outline, cavity, rim rebate,
+both mast pockets, handle and leash pads. The check gauges (`CHECK_GAUGES`)
+are the cheap end of the same family and come back with it. **Uses:**
+`MDF 12 mm 2x4 panel, the groove guide`
 
 ---
 

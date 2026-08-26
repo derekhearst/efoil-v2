@@ -742,21 +742,27 @@ def build():
     # if the machine falls through, and it is why they still exist.
     # The two MDF parts that are needed EITHER WAY are in the cut list, not
     # here: the cavity caul and the groove guide.
-    # A 4x8 SHEET, AND THE SIZE IS NOT PADDING. This line bought a 2 x 4 ft
-    # panel - 1220 x 610 - and T09_rocker_and_deck is 1400 mm long. The one
-    # gauge that checks the rocker across the whole board AND across the
-    # machining seam could not be cut from the sheet bought for it. Nothing
-    # was comparing the two; templates.py checks it now.
-    # It also has to carry 14_groove_guide, 580 x 391, which was left out
-    # entirely - this note used to say "the groove guide is fallback-only",
-    # written before the guide became the primary way the seal groove is cut.
-    add("6  Hatch and seal", "MDF 12 mm 4x8 sheet, 4 gauges + the groove guide", 1,
-        "sheet", 32.00, EST,
-        "3 station sections, the 1400 mm rocker/deck profile, and the groove "
-        "guide. 0.67 m2 of parts in a 2.98 m2 sheet - bought for the LENGTH, "
-        "not the area. Was a 14-template set at $70; the router templates "
-        "went with the CNC pass and only the gauges are left, which check "
-        "the machined core before it is glassed")
+    # ONE PART ON THIS SHEET NOW: 14_groove_guide, 580 x 391.
+    # The MDF line has been three different things in a day and the history is
+    # worth one paragraph, because each step deleted something real:
+    #   14 templates ($70)  -> the CNC cuts every feature they would guide
+    #    4 check gauges      -> Derek does not want them. They only ever
+    #                          caught SETUP error - the flip and the
+    #                          two-piece seam - and he is the one standing at
+    #                          the machine able to see a seam.
+    #    1 groove guide      -> what is left, and it is not optional: it is
+    #                          how the seal groove gets opened and how the 12
+    #                          bolt holes get found.
+    # And the SHEET SIZE follows the parts rather than the other way round.
+    # It was a 2 x 4 panel that could not fit the 1400 mm rocker gauge; it
+    # went 4 x 8 to hold it; with the gauges gone it is a 2 x 4 again, this
+    # time with the one part on it actually checked against it by
+    # templates.py. Flip CHECK_GAUGES back on and it prints 4 x 8 again.
+    add("6  Hatch and seal", "MDF 12 mm 2x4 panel, the groove guide", 1,
+        "panel", 30.73, OK,
+        "one part: the groove guide, 580 x 391. Was a 14-template set, then "
+        "4 check gauges as well - both deleted, and the panel shrank with "
+        "them. templates.py checks what is left against the sheet")
 
     # ---------------------------------------------------------- 7 module
     add("7  Module", "M4 x 12 A4 socket cap DIN912, 10 pk",

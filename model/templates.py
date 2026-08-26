@@ -48,11 +48,17 @@ GUIDE_OFF = 5.0
 #   14_groove_guide - opens the seal groove AFTER glassing, on a finished
 #                     board. That is a hand operation on both routes.
 #
-# T08/T09 are GAUGES, not templates. A handful is worth cutting even with a
-# CNC, to check the machined core before it gets glassed. Thirteen is
-# hand-shaping density.
+# T08/T09 are GAUGES, not templates - MDF sections you offer up to the
+# machined core to check it before it gets glassed. Derek does not want
+# them, and it is his call at the machine: they only ever caught SETUP
+# error, which is the flip and the two-piece seam, and he is the one
+# standing there able to see a seam.
+# CHECK_GAUGES = True brings them back. They are not deleted, because the
+# day the CNC falls through and HAND_SHAPE goes True they are the cheap end
+# of the same family.
 HAND_SHAPE = False                 # True -> full fallback set, 21 templates
-CHECK_STATIONS = (0.25, 0.50, 0.75)
+CHECK_GAUGES = False               # True -> 3 stations + rocker/deck gauge
+CHECK_STATIONS = (0.25, 0.50, 0.75) if CHECK_GAUGES else ()
 STATIONS = tuple(round(x / 1400.0, 4) for x in range(100, 1400, 100))
 
 PARTS = []
@@ -207,9 +213,10 @@ def build(p):
     d.poly(bot, close=False)
     d.poly(dk, layer="CHANNEL", close=False)
     reg_marks(d, 0, L, (p["SEAM_X"], p["MAST_X"]), 0)
-    add("T09_rocker_and_deck", d, L, max(q[1] for q in dk), "GAUGE",
-        "centreline profile. Solid is the hull bottom (rocker), CHANNEL is "
-        "the deck. Cut as two separate gauges or one long one.")
+    if HAND_SHAPE or CHECK_GAUGES:
+        add("T09_rocker_and_deck", d, L, max(q[1] for q in dk), "GAUGE",
+            "centreline profile. Solid is the hull bottom (rocker), CHANNEL "
+            "is the deck. Cut as two separate gauges or one long one.")
     return PARTS
 
 
@@ -254,7 +261,10 @@ if __name__ == "__main__":
     # The groove guide was missing from that line too: it is MDF, it is
     # 580 x 391, and the note beside the panel still called it "fallback
     # only" after it was promoted to the primary way the seal groove is cut.
-    MDF_SHEET = (2440.0, 1220.0)          # 4 x 8 ft, and it has to be
+    # 2 x 4 ft is enough again now the gauges are off. It was 4 x 8 ONLY
+    # because T09_rocker_and_deck is 1400 mm long and would not fit; with no
+    # gauges the sheet carries one part, 14_groove_guide at 580 x 391.
+    MDF_SHEET = (1220.0, 610.0) if not (HAND_SHAPE or CHECK_GAUGES)         else (2440.0, 1220.0)
     GUIDE = ("14_groove_guide", 580.0, 391.0)   # cut by cnc_drawings.py
     bad = []
     for nm, w, h in [(q["name"], q["w"], q["h"]) for q in parts] + [GUIDE]:
