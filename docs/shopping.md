@@ -6,10 +6,10 @@ Grouped by where you buy it rather than by what it does, because that is the ord
 
 | Supplier | Lines | $ |
 |---|---:|---:|
-| Amazon | 114 | $3,666.47 |
+| Amazon | 115 | $3,675.46 |
 | Gong | 1 | $1,404.00 |
 | Flipsky | 3 | $1,038.00 |
-| Not a purchase - tax and freight | 3 | $847.21 |
+| Not a purchase - tax and freight | 3 | $847.75 |
 | BatteryHookup | 2 | $297.50 |
 | Fiberglass Supply | 3 | $253.38 |
 | Maker Shop Boise | 2 | $249.00 |
@@ -17,7 +17,7 @@ Grouped by where you buy it rather than by what it does, because that is the ord
 | Speedy Metals | 1 | $88.92 |
 | Easy Composites | 1 | $52.00 |
 | Branom / RS | 2 | $36.00 |
-| **TOTAL** | | **$8,101.64** |
+| **TOTAL** | | **$8,111.17** |
 
 ## Amazon
 
@@ -119,6 +119,7 @@ https://www.amazon.com
 | [Plastic sheeting + masking tape, bench protection](https://www.amazon.com/dp/B0GF2BWRC6) | 1 | set | $9.99 | estimate |  |
 | [M6 x 20 fender washer, 100 pk](https://www.amazon.com/dp/B0DPMPJW4H) | 1 | pk | $9.49 | **verified** | 8 needed |
 | [M5 A4 hex nut DIN934, 50 pk - CAPTIVE in the ring](https://www.amazon.com/dp/B084HLMN7B) | 1 | pk | $9.19 | **verified** | 34 needed. Dropped in at a print pause at Z=6.0; steel thread, so a hatch that comes off every ride never wear |
+| [Black epoxy pigment, marking the lid plugs](https://www.amazon.com/dp/B09NYDCXBQ) | 1 | ea | $8.99 | estimate | a few drops in the plug epoxy for both lids - 30 plugs a board and a 50 ml bottle is a lifetime. Not decoratio |
 | [Dielectric grease, terminals](https://www.amazon.com/dp/B0D6R543V2) | 1 | tube | $8.99 | estimate |  |
 | [M5 nyloc nut 316, 150 pk](https://www.amazon.com/dp/B0BP2T6Z4Q) | 1 | pk | $8.99 | **verified** | a separate pack from the washers above - they do not come together |
 | [M8 nyloc nut 316, 30 pk - prop nut](https://www.amazon.com/dp/B0BP2R3YHY) | 1 | pk | $8.99 | **verified** | 2 needed. 316 not 304 - this one is permanently submerged. WASHER NOT INCLUDED, see below |
@@ -166,7 +167,7 @@ Some Flipsky appears on Amazon but the range is thin and usually dearer. Buy dir
 
 | Item | Qty | Unit | Ext | Price | Note |
 |---|---:|---|---:|---|---|
-| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $458.58 | **verified** |  |
+| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $459.12 | **verified** |  |
 | Gong shipping to Idaho, ONE order, both foils | 1 | order | $268.63 | **verified** | quoted at checkout for 2 x XL Alu setups. PER ORDER, not per foil - ordering the two separately would roughly  |
 | Shipping - Divinycell, 6061 plate, VR20 | 1 | allow | $120.00 | estimate | STILL THE BIGGEST UNVERIFIED LINE - it wants three real carts to settle. Was $220 when it covered G10 sheet an |
 
@@ -209,7 +210,7 @@ https://www.homedepot.com
 | Item | Qty | Unit | Ext | Price | Note |
 |---|---:|---|---:|---|---|
 | [EPS rigid foam 2in x 48in x 8ft (HD 202532856)](https://www.homedepot.com/p/Henry-2-in-x-48-in-x-8-ft-R-7-7-EPS-Rigid-Foam-Board-Insulation-320825/202532856) | 4 | sheet | $110.72 | **verified** | HD Meridian, 30 in stock, aisle 29 bay 020; $23.53 at 32+. EPS, not the XPS V1 used - deliberate, ~$90 cheaper |
-| [MDF 12 mm 2x4 panel, the groove guide](https://www.homedepot.com/p/ProWood-1-2-in-x-2-ft-x-4-ft-Medium-Density-Fiberboard-Project-Panel-109097/202093821) | 1 | panel | $30.73 | **verified** | one part: the groove guide, 580 x 391. Was a 14-template set, then 4 check gauges as well - both deleted, and  |
+| [MDF 12 mm 2x4 panel, both drill guides](https://www.homedepot.com/p/ProWood-1-2-in-x-2-ft-x-4-ft-Medium-Density-Fiberboard-Project-Panel-109097/202093821) | 1 | panel | $30.73 | **verified** | TWO parts: 14_groove_guide 580 x 391, and 16_module_lid_guide 443 x 314 - 0.37 m2 in a 0.74 m2 panel. Was a 14 |
 | [Sacrificial MDF, CNC spoilboard](https://www.homedepot.com/p/1-4-in-x-2-ft-x-4-ft-Medium-Density-Fiberboard-1508104/202089069) | 1 | sheet | $16.23 | estimate | buy it local, a 4x8 sheet does not travel well |
 | [Acetone, solvent-welding the printed joints](https://www.homedepot.com/p/Klean-Strip-1-qt-Acetone-Thins-Fiberglass-Resins-Epoxy-and-Adhesives-QAC18/100144922) | 1 | qt | $11.48 | estimate | ASA dissolves in it like ABS - a brushed acetone/scrap slurry makes the joint one piece of plastic, not an adh |
 

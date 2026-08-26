@@ -469,6 +469,50 @@ def build(p):
         f"turn earlier it sat 1.5 mm further out, which left both of them "
         f"0.5 mm from the edge with a profile pass still to come.")
 
+    # 16 - module lid drill guide -------------------------------------------
+    # Derek's, and it closes a real hole: the O12 epoxy plugs are cast into
+    # the CORE and then LAID OVER, so by the time the 18 holes get drilled
+    # nobody can see where the plugs are. The plan was "the CNC drills them in
+    # the same setup as the profile", which is true and does not help - the
+    # profile is machined AFTER layup, so it is referenced to the machine,
+    # while the plugs sit wherever the core landed inside the oversize blank.
+    # Plug-versus-profile error IS core placement error, and this lid only
+    # has 2.5 mm of it to give: a O12 plug round a O5.0 hole leaves 3.5 mm of
+    # resin, less a millimetre you want to keep.
+    #
+    # So: a guide that carries the pattern as a physical part, and PIGMENTED
+    # plugs so there is something to line it up on. Same move as the black
+    # wax in the rim ring - make the buried thing visible through a thin
+    # translucent skin, then register to what you can see instead of to
+    # nominal.
+    #
+    # IT ALSO DRILLS THE RAILS. The 18 insert pilots go into the printed
+    # flange while it is still FLAT, before the four-piece bond-up. Doing
+    # both off ONE physical guide is strictly better than both coming off the
+    # model independently, because it takes the bond-up drift out of the
+    # equation rather than absorbing it - which is what the O5.0 clearance
+    # (rather than O4.5) was there to do.
+    d = Dxf()
+    d.poly(rect(0, lid_l, 0, lid_w))
+    for (bx, by) in mb:
+        d.circle(bx, by, 5.0 / 2)
+    add("16_module_lid_guide", "MDF 12 mm", 12.0, 1, d, lid_l, lid_w,
+        f"{len(mb)} x O5.0 drill bushings on the module lid pattern, plus the "
+        f"lid outline to register on. DRILLS TWO THINGS off one part: the "
+        f"laminated lid (10), and the {len(mb)} heat-set pilots in the "
+        f"printed flange rails while they are still FLAT, before the "
+        f"four-piece bond-up. "
+        f"WHY IT EXISTS: the O12 epoxy plugs are cast into core 11 and then "
+        f"laid over, so when it is time to drill nobody can see them. The "
+        f"profile is machined after layup and is referenced to the machine, "
+        f"not to the core - so plug-vs-hole error is however far the core "
+        f"drifted inside the blank, and this lid only has 2.5 mm of that to "
+        f"give. PIGMENT THE PLUG EPOXY BLACK so they read through the 1 mm "
+        f"skin and register this guide on the plugs you can see, not on "
+        f"nominal. Same trick as the black wax in the rim ring. "
+        f"NOT interchangeable with template 14 - that is 12 holes on a "
+        f"580 x 391 ring, this is {len(mb)} on {lid_l:.0f} x {lid_w:.0f}.")
+
     # 6 - mast plate -------------------------------------------------------
     d = Dxf()
     gl, gw = p["G10_L"], p["G10_W"]

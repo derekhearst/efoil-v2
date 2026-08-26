@@ -536,13 +536,17 @@ sand** — no pocket milled to depth in a finished panel, no bolt hole filled in
 and re-drilled, and nothing to hunt for under a cured skin afterwards.
 
 1. **CNC the core** oversize, with twelve Ø16 through-holes.
-2. **Tape one face, fill them with thickened epoxy**, cure, and **sand both
-   faces flush.** A plug left proud prints through a 1 mm skin under vacuum
+2. **Tape one face, fill them with thickened epoxy — pigmented BLACK** —
+   cure, and **sand both faces flush.** A plug left proud prints through a 1 mm skin under vacuum
    and you get twelve bumps in the deck.
 3. **Lay up** glass / core / glass and bag it. The plugs are invisible now and
    it does not matter.
 4. **Machine the profile and drill all twelve Ø5.6**, one setup — straight
-   through skin / resin / skin.
+   through skin / resin / skin. **Pigment the plug epoxy black** when you
+   pour it at step 2: once the skins are on, nothing can see where the plugs
+   are, and the profile is machined *after* layup so it is referenced to the
+   machine and not to the core. Black plugs read through a 1 mm skin, so you
+   register on the plugs you can see instead of on nominal.
 
 Twelve holes bored in one setup are mutually accurate to the machine, so
 lining the lid up on the ring is a single **rigid-body fit**: get two to pick
@@ -1068,7 +1072,7 @@ If it comes to this, flip **`HAND_SHAPE = True`** in `model/templates.py`
 and it emits the full 21-template set again — outline, cavity, rim rebate,
 both mast pockets, handle and leash pads. The check gauges (`CHECK_GAUGES`)
 are the cheap end of the same family and come back with it. **Uses:**
-`MDF 12 mm 2x4 panel, the groove guide`
+`MDF 12 mm 2x4 panel, both drill guides`
 
 ---
 

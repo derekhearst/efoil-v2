@@ -67,13 +67,14 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | [Solid silicone cord, 3 mm round - BOTH seals](https://www.amazon.com/dp/B096N67R2D) | 2 | pc | $17.59 | $35.18 | verified | 10 ft (3.05 m) pieces, 70A. Buy long - splice on a straight run, never a corner |
 | [Paste wax, releasing the groove filler](https://www.amazon.com/dp/B0GVCGHZFR) | 1 | ea | $16.99 | $16.99 | estimate | the filler must NOT bond - it comes back out after the glass goes over it |
 | [2.5 mm straight cutter, opening the seal groove](https://www.amazon.com/dp/B0GWSZ2KV2) | 1 | ea | $7.99 | $7.99 | estimate | NOT a fallback any more. The groove filler prints FLUSH and this opens the groove, off template 14 located on the rebate wall. The scheme it replaces printed the filler 0.5 mm proud and sanded down to it - self-finding, but it ran a 0.5 mm step 1.8 m along the SEALING land, and glass bridges at the corners of a step. Undersize in a 4 mm groove on purpose: 0.75 mm of lateral slop each side before the cutter can touch the land |
+| [Black epoxy pigment, marking the lid plugs](https://www.amazon.com/dp/B09NYDCXBQ) | 1 | ea | $8.99 | $8.99 | estimate | a few drops in the plug epoxy for both lids - 30 plugs a board and a 50 ml bottle is a lifetime. Not decoration: it is what the drill guides register on |
 | [Black wax filler sticks, blocking + marking the bolt holes](https://www.amazon.com/dp/B0CCDL8XNV) | 1 | pk | $7.99 | $7.99 | estimate | 24 holes across both boards - one stick does the lot. Not a structural part; it is a plug and a marker |
 | [Silicone adhesive, bonding the cord into groove](https://www.amazon.com/dp/B0002UEN1U) | 1 | tube | $7.56 | $7.56 | estimate | a thin continuous bead under the cord. It cannot then migrate, lift out, or be pinched under the lid in a dark car park. THIS IS ALSO THE SPLICE ADHESIVE - butt the two cord ends in it rather than reaching for cyanoacrylate, which does not bond silicone. Done that way the splice is a few mm of pour-in-place silicone cast in the groove, not a glued butt joint |
 | [M5 x 25 button head TORX TX25, 25 pk](https://www.amazon.com/dp/B08BZJPJTK) | 1 | pk | $15.99 | $15.99 | estimate | 24 needed of 25. TX25 drive. ISO 7380-2 flanged button; the model draws the plain O9.5 x 2.75 high, which is what the model draws and what puts the whole stack 1.5 mm BELOW the deck pad. 304 not A4 - see the note above, it is a deliberate trade and the captive nut stays A4. Tef-Gel every one. A4 SOCKET CAP B0CJFMMF58 is the fallback if the grade matters more than the toe |
 | [M6 penny washer O18 A4 DIN9021](https://www.amazon.com/dp/B0DB8RBY3N) | 1 | pk | $12.99 | $12.99 | estimate | 58 needed - TWO PER BOLT, one captive under the nut and one UNDER THE HEAD. M6 size on an M5 bolt: the 0.7 mm of slop is irrelevant on a washer and the 3 extra mm of OD is not |
 | [M5 A4 hex nut DIN934, 50 pk - CAPTIVE in the ring](https://www.amazon.com/dp/B084HLMN7B) | 1 | pk | $9.19 | $9.19 | verified | 34 needed. Dropped in at a print pause at Z=6.0; steel thread, so a hatch that comes off every ride never wears anything out |
-| [MDF 12 mm 2x4 panel, the groove guide](https://www.homedepot.com/p/ProWood-1-2-in-x-2-ft-x-4-ft-Medium-Density-Fiberboard-Project-Panel-109097/202093821) | 1 | panel | $30.73 | $30.73 | verified | one part: the groove guide, 580 x 391. Was a 14-template set, then 4 check gauges as well - both deleted, and the panel shrank with them. templates.py checks what is left against the sheet |
-| **subtotal** | | | | **$160.00** | | |
+| [MDF 12 mm 2x4 panel, both drill guides](https://www.homedepot.com/p/ProWood-1-2-in-x-2-ft-x-4-ft-Medium-Density-Fiberboard-Project-Panel-109097/202093821) | 1 | panel | $30.73 | $30.73 | verified | TWO parts: 14_groove_guide 580 x 391, and 16_module_lid_guide 443 x 314 - 0.37 m2 in a 0.74 m2 panel. Was a 14-template set, then 4 check gauges as well; both deleted, and the module guide added back because the lid's epoxy plugs are invisible once the skins are on. templates.py checks every part against the sheet |
+| **subtotal** | | | | **$168.99** | | |
 
 ## 7  Module
 
@@ -252,31 +253,31 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | Item | Qty | Unit | Unit $ | Ext $ | | Note |
 |---|---:|---|---:|---:|---|---|
 | Shipping - Divinycell, 6061 plate, VR20 | 1 | allow | $120.00 | $120.00 | estimate | STILL THE BIGGEST UNVERIFIED LINE - it wants three real carts to settle. Was $220 when it covered G10 sheet and hazmat epoxy, both of which are now out of the build entirely |
-| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $458.58 | $458.58 | verified |  |
-| **subtotal** | | | | **$578.58** | | |
+| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $459.12 | $459.12 | verified |  |
+| **subtotal** | | | | **$579.12** | | |
 
 ## Totals
 
 | | |
 |---|---:|
-| **Grand total, 2 boards** | **$8,101.64** |
-| Per board | $4,050.82 |
-| Of which verified | $7,375.50  (91%) |
-| Of which estimated | $726.14 |
-| Linked to a real listing | 131 lines |
+| **Grand total, 2 boards** | **$8,111.17** |
+| Per board | $4,055.58 |
+| Of which verified | $7,376.04  (91%) |
+| Of which estimated | $735.13 |
+| Linked to a real listing | 132 lines |
 | Priced but NOT linked | 2 lines, $105.00 |
-| Not linkable, but MEASURED (freight quotes) | 2 lines, $727.21 |
+| Not linkable, but MEASURED (freight quotes) | 2 lines, $727.75 |
 | Not linkable and still estimated | 1 lines, $120.00 |
 
 ## What is a board, and what is a shop
 
-Some of the total above is not the cost of a board at all - it is tools, jigs and templates that exist afterwards and do not repeat. Splitting them out is the difference between "a board costs $4,051" and "a board costs $3,525 and I now own a vacuum rig, a crimper and a full template set".
+Some of the total above is not the cost of a board at all - it is tools, jigs and templates that exist afterwards and do not repeat. Splitting them out is the difference between "a board costs $4,056" and "a board costs $3,530 and I now own a vacuum rig, a crimper and a full template set".
 
 | | |
 |---|---:|
 | One-time tooling (incl. its share of tax) | $1,051.95 |
-| **Marginal cost of a board** | **$3,524.84** |
-| Cost of the NEXT board after these 2 | $3,524.84 |
+| **Marginal cost of a board** | **$3,529.61** |
+| Cost of the NEXT board after these 2 | $3,529.61 |
 
 | One-time item | $ |
 |---|---:|

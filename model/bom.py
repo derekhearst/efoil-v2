@@ -618,6 +618,21 @@ def build():
     # pick, and leaves no residue that matters inside a hole you then drill.
     # KEEP IT INSIDE THE HOLE and wipe the face before layup. Wax on the
     # sealing land is a release agent in a bond line, right under the washer.
+    # MAKES THE BURIED PLUGS VISIBLE, which is the whole reason the lid
+    # guides can be registered at all. The O12 and O16 epoxy plugs are cast
+    # into the CORES and then laid over, so by drilling time nobody can see
+    # them - and the profile is machined AFTER layup, referenced to the
+    # machine rather than to the core, so plug-vs-hole error is however far
+    # the core drifted inside the blank. The module lid has 2.5 mm of that to
+    # give and the hatch 4.2.
+    # A few drops in the thickened epoxy and the plugs read as black discs
+    # through a 1 mm translucent skin. Register the guides on the plugs you
+    # can SEE rather than on nominal, and the drift stops mattering.
+    # Same move as the black wax in the rim ring, one lamination later.
+    add("6  Hatch and seal", "Black epoxy pigment, marking the lid plugs", 1, "ea", 8.99, EST,
+        "a few drops in the plug epoxy for both lids - 30 plugs a board and "
+        "a 50 ml bottle is a lifetime. Not decoration: it is what the drill "
+        "guides register on", vendor="Amazon")
     add("6  Hatch and seal", "Black wax filler sticks, blocking + marking the bolt holes", 1, "pk", 7.99, EST,
         str(M["hatch_bolts"] * N) + " holes across both boards - one stick "
         "does the lot. Not a structural part; it is a plug and a marker",
@@ -750,19 +765,26 @@ def build():
     #                          caught SETUP error - the flip and the
     #                          two-piece seam - and he is the one standing at
     #                          the machine able to see a seam.
-    #    1 groove guide      -> what is left, and it is not optional: it is
-    #                          how the seal groove gets opened and how the 12
-    #                          bolt holes get found.
+    #    1 groove guide      -> not optional: it is how the seal groove gets
+    #                          opened and how the 12 ring holes get found.
+    #  + 1 module lid guide  -> ADDED BACK, and for a reason the deleted ones
+    #                          never had: the module lid's O12 epoxy plugs
+    #                          are cast into the core and then laid over, so
+    #                          by drilling time nobody can see them. This is
+    #                          not a convenience, it is the only way to put
+    #                          18 holes in the middle of 18 buried plugs.
     # And the SHEET SIZE follows the parts rather than the other way round.
     # It was a 2 x 4 panel that could not fit the 1400 mm rocker gauge; it
     # went 4 x 8 to hold it; with the gauges gone it is a 2 x 4 again, this
     # time with the one part on it actually checked against it by
     # templates.py. Flip CHECK_GAUGES back on and it prints 4 x 8 again.
-    add("6  Hatch and seal", "MDF 12 mm 2x4 panel, the groove guide", 1,
+    add("6  Hatch and seal", "MDF 12 mm 2x4 panel, both drill guides", 1,
         "panel", 30.73, OK,
-        "one part: the groove guide, 580 x 391. Was a 14-template set, then "
-        "4 check gauges as well - both deleted, and the panel shrank with "
-        "them. templates.py checks what is left against the sheet")
+        "TWO parts: 14_groove_guide 580 x 391, and 16_module_lid_guide "
+        "443 x 314 - 0.37 m2 in a 0.74 m2 panel. Was a 14-template set, then "
+        "4 check gauges as well; both deleted, and the module guide added "
+        "back because the lid's epoxy plugs are invisible once the skins are "
+        "on. templates.py checks every part against the sheet")
 
     # ---------------------------------------------------------- 7 module
     add("7  Module", "M4 x 12 A4 socket cap DIN912, 10 pk",

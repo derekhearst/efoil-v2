@@ -265,18 +265,22 @@ if __name__ == "__main__":
     # because T09_rocker_and_deck is 1400 mm long and would not fit; with no
     # gauges the sheet carries one part, 14_groove_guide at 580 x 391.
     MDF_SHEET = (1220.0, 610.0) if not (HAND_SHAPE or CHECK_GAUGES)         else (2440.0, 1220.0)
-    GUIDE = ("14_groove_guide", 580.0, 391.0)   # cut by cnc_drawings.py
+    # both cut by cnc_drawings.py, both from this sheet
+    GUIDES = [("14_groove_guide", 580.0, 391.0),
+              ("16_module_lid_guide", 443.0, 314.0)]
     bad = []
-    for nm, w, h in [(q["name"], q["w"], q["h"]) for q in parts] + [GUIDE]:
+    for nm, w, h in [(q["name"], q["w"], q["h"]) for q in parts] + GUIDES:
         L, W = MDF_SHEET
         if not ((w <= L and h <= W) or (w <= W and h <= L)):
             bad.append("%s (%.0f x %.0f)" % (nm, w, h))
-    area = sum(q["w"] * q["h"] for q in parts) + GUIDE[1] * GUIDE[2]
+    area = (sum(q["w"] * q["h"] for q in parts)
+            + sum(g[1] * g[2] for g in GUIDES))
     print("  MDF sheet %.0f x %.0f, parts use %.2f m2 of %.2f"
           % (MDF_SHEET[0], MDF_SHEET[1], area / 1e6,
              MDF_SHEET[0] * MDF_SHEET[1] / 1e6))
-    print("  + " + GUIDE[0] + " " + format(GUIDE[1], ".0f") + " x "
-          + format(GUIDE[2], ".0f") + " (cut with these, from the same sheet)")
+    for g in GUIDES:
+        print("  + " + g[0].ljust(24) + format(g[1], ">7.0f") + " x "
+              + format(g[2], "<7.0f") + "(same sheet)")
     if bad:
         print("  FAILS TO FIT THE SHEET: " + ", ".join(bad))
     print("wrote " + OUT)

@@ -71,6 +71,9 @@ LINKS = {
         ("B015NM0B8K", 13.95, "Breather Bleeder Cloth 1 Yard Elite Lab Vacuum Bagging"),
     "Cable ties, lacing, adhesive mounts":
         ("B08RMS5H25", 9.99, "140 Pack 3/4in Zip Tie Adhesive Mounts with Ties"),
+    "Black epoxy pigment, marking the lid plugs":
+        ("B09NYDCXBQ", 8.99, "HTVRONT Black Epoxy Pigment Paste, 1.76oz/50ml, "
+         "Higher Concentrated, For Resin Coloring"),
     "Black wax filler sticks, blocking + marking the bolt holes":
         ("B0CCDL8XNV", 7.99, "SEISSO Furniture Repair Crayon, 6 PCS Wood "
          "Filler Sticks, Scratch Repair Wax, Black"),
@@ -184,7 +187,7 @@ LINKS = {
         ("https://www.amazon.com/s?k=Drill+America+M6+x+1.0+HSS+4-Flute+Bottoming+Tap", 8.78, "Drill America M6 x 1.0 HSS 4-Flute Bottoming Tap - same family, pick the M6"),
     "M6 x 1.0 tap + 5.0 mm drill set":
         ("B0GSG4FGYW", 9.99, "M6 Tap and 5.0mm Drill Bit Kit, M6x1.0 HSS Metric Drill and Tap Set, 4Pcs"),
-    "MDF 12 mm 2x4 panel, the groove guide":
+    "MDF 12 mm 2x4 panel, both drill guides":
         ("https://www.homedepot.com/p/ProWood-1-2-in-x-2-ft-x-4-ft-Medium-Density-Fiberboard-Project-Panel-109097/202093821",
          30.73, "ProWood 1/2 in x 2 ft x 4 ft MDF Project Panel"),
     "Maker Shop Boise Basic month":
@@ -312,6 +315,7 @@ LINK_VENDOR = {
     "Bag connector w/ ball valve, 1/4 in QD": "Amazon",
     "Breather / bleeder cloth": "Amazon",
     "Cable ties, lacing, adhesive mounts": "Amazon",
+    "Black epoxy pigment, marking the lid plugs": "Amazon",
     "Black wax filler sticks, blocking + marking the bolt holes": "Amazon",
     "Charger 67.2 V 5 A, 16S  (NOT 58.8 V)": "Amazon",
     "Chip brushes 2 in, 36 pk": "Amazon",
@@ -367,7 +371,7 @@ LINK_VENDOR = {
     "M8 nyloc nut 316, 30 pk - prop nut": "Amazon",
     "M6 x 1.0 BOTTOMING tap, 4-flute": "Amazon",
     "M6 x 1.0 tap + 5.0 mm drill set": "Amazon",
-    "MDF 12 mm 2x4 panel, the groove guide": "Home Depot / hardware",
+    "MDF 12 mm 2x4 panel, both drill guides": "Home Depot / hardware",
     "Maker Shop Boise Basic month": "Maker Shop Boise",
     "Closed-cell sponge EPDM 1/8in, module lid gasket": "Amazon",
     "Nitrile gloves 6 mil, 100 pk": "Amazon",

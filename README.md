@@ -130,7 +130,7 @@ rest are contingency tools.
 | Core splits | — | vertical at 1030 mm (bed length), horizontal at 101.6 mm (gantry) |
 | Machining | — | 4 pieces, 5 setups, 1 flip, no cradle |
 | Deck pad | — | 3 pieces of 5.8 mm EVA, one sheet does both boards |
-| Cost | ~$3,900 spent | **$4,051/board**, 91% verified |
+| Cost | ~$3,900 spent | **$4,056/board**, 91% verified |
 
 The board is a **sinker** — 79.0 L will not float a rider standing still.
 That is a consequence of narrowing to 560 mm, but note it has moved twice:
