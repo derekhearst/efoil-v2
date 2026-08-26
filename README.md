@@ -130,7 +130,7 @@ rest are contingency tools.
 | Core splits | — | vertical at 1030 mm (bed length), horizontal at 101.6 mm (gantry) |
 | Machining | — | 4 pieces, 5 setups, 1 flip, no cradle |
 | Deck pad | — | 3 pieces of 5.8 mm EVA, one sheet does both boards |
-| Cost | ~$3,900 spent | **$4,048/board**, 91% verified |
+| Cost | ~$3,900 spent | **$4,049/board**, 91% verified |
 
 The board is a **sinker** — 79.0 L will not float a rider standing still.
 That is a consequence of narrowing to 560 mm, but note it has moved twice:
@@ -171,26 +171,22 @@ Ordered by what can actually stop the build.
    holes.** Two numbers, one part, and Derek already owns it (he cut its wire
    slot).
 
-   **7a — the THICKNESS, and this is the one that can hurt someone.**
-   `MAST_HEAD_T` is **assumed at 20.0 mm**. It used to call itself *derived*,
-   from `30 − INSERT_L` — our own tap depth — which is circular: the model
-   assumed the head is whatever makes its tap correct, so it could never
-   disagree with itself. Engagement is **30 mm of Gong's screw minus their
-   head**, and it is not ours to set. The safe window is only **3.2 mm
-   wide**, and the assumption sits on its **lower edge**:
+   **7a — the THICKNESS.** ~~Assumed at 20.0 mm.~~ **MEASURED: 12 mm, and
+   countersunk.** That answered a question the model could not ask itself —
+   `MAST_HEAD_T` had called itself *derived*, from `30 − INSERT_L`, which is
+   our own tap depth, so it could only ever agree with us. The real number
+   says **Gong's supplied M6 × 30 cannot be used**: a countersunk length is
+   measured over the head, so it protrudes 18 mm below their plate against
+   our 10 mm tap and **bottoms out by 8 mm** — torquing up tight with
+   near-zero clamp on the joint carrying the whole rig.
 
-   | their head | what happens |
-   |---|---|
-   | 18 mm | **screw bottoms — torques up feeling tight with no clamp** |
-   | **20.0** | 10 mm engaged, 2.11× — *the assumption, and the cliff edge* |
-   | 22 mm | 8 mm engaged, 1.69× |
-   | 23.2 mm | our buried thread becomes the weak link |
-   | 26 mm | 4 mm engaged, **0.84× — short of its own demand** |
-
-   Under 20 the M6 × 30 bottoms in a blind hole and the joint carrying the
-   whole rig has near-zero preload while reading correct on a torque wrench.
-   **Gong's four cup washers are not in that sum either** — measure the
-   assembled stack, not just the plate.
+   Not Gong's error. Those screws ship with **four M6 brass square nuts** —
+   track hardware for a US box, where the length is meant to run past a plate
+   and pick up a nut. We tap a plate instead, so their length was never ours.
+   The board now buys **M6 × 22 A4-70 countersunk (DIN7991)**: 10 mm engaged,
+   1.67 × D, 1.42× the bolt, 2.7 mm of blind alu. **The plate was right all
+   along — the screws were wrong.** Still unmeasured on their part: the
+   **countersink angle**, assumed 90°.
 
    **7b — the four clearance holes.** `MAST_CLEAR_D` is a guess at 7.0 mm and
    it sets the *entire* positional budget for our four tapped holes — at 7.0

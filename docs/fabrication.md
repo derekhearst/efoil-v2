@@ -871,7 +871,7 @@ the same two pads on the module and keep the bought handles for the rails.
 ### Step 23. Mount the foil and drivetrain
 
 **Blocks on:** steps 7, 22
-**Uses:** `M6 x 30 A4 mast bolts, 50 pk - spares` · `Ultra Tef-Gel, galvanic barrier` ·
+**Uses:** `M6 x 22 A4 countersunk DIN7991, mast screws` · `Ultra Tef-Gel, galvanic barrier` ·
 `M5 x 250 threaded rod, 4 pk (cut to ~171 mm)` · `M6 x 20 fender washer, 100 pk` ·
 `M5 nyloc nut 316, 150 pk` · `Loctite 242` · `Roll pin assortment M1.5-M6, 220 pc` ·
 `M8 nyloc nut 316, 30 pk - prop nut` · `M8 316 washer, prop nut` ·

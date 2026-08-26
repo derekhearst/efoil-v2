@@ -133,8 +133,9 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 |---|---:|---|---:|---:|---|---|
 | [M6 x 1.0 tap + 5.0 mm drill set](https://www.amazon.com/dp/B0GSG4FGYW) | 1 | set | $9.99 | $9.99 | verified | 8 blind holes |
 | [M6 x 1.0 BOTTOMING tap, 4-flute](https://www.amazon.com/s?k=Drill+America+M6+x+1.0+HSS+4-Flute+Bottoming+Tap) | 1 | ea | $8.78 | $8.78 | verified | the one that actually matters - blind at 10 mm in a 12.7 plate, and the taper tap in the set above cannot reach the bottom |
+| [M6 x 22 A4 countersunk DIN7991, mast screws](https://www.amazon.com/dp/B01N3QSKHO) | 2 | pk | $6.49 | $12.98 | estimate | 8 needed, 4 a board, 5 to a pack. DIN7991 90 deg head to match Gong's countersink - CHECK THE ANGLE against the real plate before ordering, it is the one thing about their part still unmeasured. A4-70 deliberately, not A4-80: our tapped 6061 is 1.42x this screw and the failure belongs on the part you can replace. TEF-GEL EVERY ONE - alu plate, stainless screw, wet joint |
 | [Ultra Tef-Gel, galvanic barrier](https://www.amazon.com/dp/B01606TCAG) | 1 | ea | $39.00 | $39.00 | verified | every mast bolt, every time it goes back in. DEARER than the $22 this was carried at - and do not reach for the small tube to save it: the 3cc syringe is $31.51, so it is 80% of the price for a fraction of the gel |
-| **subtotal** | | | | **$57.77** | | |
+| **subtotal** | | | | **$70.75** | | |
 
 ## 9b Small but essential
 
@@ -143,7 +144,6 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | Capacitor spot welder | 1 | ea | $0.00 | $0.00 | on hand | used on V1 |
 | [Transfer screw set M3-M6](https://www.amazon.com/dp/B01IUBRSLO) | 1 | set | $24.99 | $24.99 | estimate | RECOVERY, not method - the CNC cuts all 12 hatch holes in one setup and the pattern aligns as one rigid body. This is for the one hole that does not pick up: mark the real nut, drill it out of the resin boss, re-pot, re-drill. M5 hatch, M4 module lid, M6 handle strips |
 | [Transfer punch set, metric 1-13 mm](https://www.amazon.com/dp/B005379HJA) | 1 | set | $24.99 | $24.99 | estimate | the 9 mm punch is a slip fit in Gong's own clearance holes and marks true centre within a few hundredths. A 6.8 tap drill rattling in that same 9 mm hole does not - and the mast plate's whole positional budget is 0.25 mm |
-| [M6 x 30 A4 mast bolts, 50 pk - spares](https://www.amazon.com/dp/B00BNCFV4Y) | 1 | pk | $10.82 | $10.82 | verified | Gong supplies its own; these are spares. Only listing confirming marine A4/316; head is ISO 7380 button, not socket cap - check that suits the counterbore |
 | [Silicone grease for the seal cord](https://www.amazon.com/dp/B0BN82MJVK) | 1 | tube | $9.99 | $9.99 | estimate | stops the cord bonding to the lid in storage |
 | [Cyanoacrylate for the cord splice](https://www.amazon.com/dp/B0DKP4TVSF) | 1 | ea | $5.39 | $5.39 | estimate |  |
 | [Water-ingress alarm, 2 pk](https://www.amazon.com/dp/B09DCMCB8D) | 1 | pk | $12.99 | $12.99 | verified | Geevon 100 dB pucks - the 2-pack covers BOTH boards. Put the SENSOR on the module floor in the lowest corner, not up on the pack - it is only useful where water collects |
@@ -154,7 +154,7 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | [M6 x 16 A4 button head, 10 pk](https://www.amazon.com/dp/B07DVRLQTK) | 1 | pk | $8.06 | $8.06 | verified | 12 needed - 2 per rail handle into the 6061 strip, 2 into the module pads. Fender washer under every one: the load lands on WEBBING, and a button head's edge is what tears it |
 | M6 washers for the rail handles | 0 | off | $0.00 | $0.00 | on hand | 8 off the M6 x 20 fender washer pack in section 10b, not a second purchase |
 | [M6 x 12.7 brass heat-set insert, 50 pc](https://www.amazon.com/dp/B077PGD6X2) | 1 | pk | $12.00 | $12.00 | estimate | 4 needed, module handle pads; 8.2 mm printed pilot, same as the model's cut. LOCTITE the bolts - the pedestal pivots on them every time the module is lifted |
-| **subtotal** | | | | **$202.14** | | |
+| **subtotal** | | | | **$191.32** | | |
 
 ## 9c Pack wiring
 
@@ -252,31 +252,31 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | Item | Qty | Unit | Unit $ | Ext $ | | Note |
 |---|---:|---|---:|---:|---|---|
 | Shipping - Divinycell, 6061 plate, VR20 | 1 | allow | $120.00 | $120.00 | estimate | STILL THE BIGGEST UNVERIFIED LINE - it wants three real carts to settle. Was $220 when it covered G10 sheet and hazmat epoxy, both of which are now out of the build entirely |
-| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $458.30 | $458.30 | verified |  |
-| **subtotal** | | | | **$578.30** | | |
+| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $458.43 | $458.43 | verified |  |
+| **subtotal** | | | | **$578.43** | | |
 
 ## Totals
 
 | | |
 |---|---:|
-| **Grand total, 2 boards** | **$8,096.60** |
-| Per board | $4,048.30 |
-| Of which verified | $7,355.31  (91%) |
-| Of which estimated | $741.29 |
+| **Grand total, 2 boards** | **$8,098.89** |
+| Per board | $4,049.44 |
+| Of which verified | $7,344.62  (91%) |
+| Of which estimated | $754.27 |
 | Linked to a real listing | 131 lines |
 | Priced but NOT linked | 2 lines, $105.00 |
-| Not linkable, but MEASURED (freight quotes) | 2 lines, $726.93 |
+| Not linkable, but MEASURED (freight quotes) | 2 lines, $727.06 |
 | Not linkable and still estimated | 1 lines, $120.00 |
 
 ## What is a board, and what is a shop
 
-Some of the total above is not the cost of a board at all - it is tools, jigs and templates that exist afterwards and do not repeat. Splitting them out is the difference between "a board costs $4,048" and "a board costs $3,522 and I now own a vacuum rig, a crimper and a full template set".
+Some of the total above is not the cost of a board at all - it is tools, jigs and templates that exist afterwards and do not repeat. Splitting them out is the difference between "a board costs $4,049" and "a board costs $3,523 and I now own a vacuum rig, a crimper and a full template set".
 
 | | |
 |---|---:|
 | One-time tooling (incl. its share of tax) | $1,051.95 |
-| **Marginal cost of a board** | **$3,522.32** |
-| Cost of the NEXT board after these 2 | $3,522.32 |
+| **Marginal cost of a board** | **$3,523.47** |
+| Cost of the NEXT board after these 2 | $3,523.47 |
 
 | One-time item | $ |
 |---|---:|

@@ -564,7 +564,7 @@
  "mast_head_mm": [
   225.0,
   130.0,
-  20.0
+  12.0
  ],
  "mast_head_needed_for_thinner_mm": 23.2,
  "mast_head_slot_mm": [
@@ -572,7 +572,7 @@
   7.0
  ],
  "mast_head_t_is_assumed": true,
- "mast_head_t_note": "ASSUMED 20 mm. Not measured, and NOT derived - the old wording said derived, from 30 - INSERT_L, which is our own tap depth. Under 20.0 the M6x30 bottoms in the blind hole and never clamps; over 23.2 our buried thread becomes the weak link. Gong's 4 cup washers are not in that sum either - measure the assembled stack",
+ "mast_head_t_note": "ASSUMED 12 mm. Not measured, and NOT derived - the old wording said derived, from 30 - INSERT_L, which is our own tap depth. Under 20.0 the M6x30 bottoms in the blind hole and never clamps; over 23.2 our buried thread becomes the weak link. Gong's 4 cup washers are not in that sum either - measure the assembled stack",
  "mast_head_t_sensitivity": {
   "16": {
    "engaged_mm": 14.0,
@@ -607,7 +607,7 @@
  },
  "mast_insert_g10_above_mm": 2.7,
  "mast_joint_vs_bolt": 1.0,
- "mast_margin_note": "1.44x is against the M6's PROOF load, not its ultimate - about 2.0x against failure. It is Gong's screw into our tapped 6061, and our side is 46% stronger than the screw, so nothing we build moves it. A US-rail board reacts the same screw into a brass square nut in a plastic box, which is weaker than this",
+ "mast_margin_note": "1.44x is against the M6's PROOF load, not its ultimate - about 2.0x against failure. It is OUR M6x22 A4-70 into our tapped 6061, not Gong's screw: theirs is an M6x30 that ships with track square nuts and would bottom out 8 mm deep in this plate without ever clamping. Our side is 42% stronger than the screw, so the failure stays on the part you can replace",
  "mast_needs_machining": true,
  "mast_our_side_vs_their_bolt": 1.46,
  "mast_pad_z_mm": 1.5,

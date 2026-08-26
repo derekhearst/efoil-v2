@@ -2108,8 +2108,35 @@ SALT_WATER_POSITION = (
 # A bottoming tap still loses a thread or two at the base, so count ~9 mm of
 # real engagement: 136 mm2 x 207 MPa = 28 kN, still 1.7x the bolt's own proof
 # load. The BOLT is the weak link either way, which is where you want it.
+# 8.0, AND WE BUY THE SCREWS NOW. Derek measured Gong's top plate: 12 mm and
+# COUNTERSUNK. A countersunk length is measured over the head, so their
+# M6 x 30 protrudes 30 - 12 = 18 mm below it - against a 10 mm tap. It
+# BOTTOMS OUT BY 8 mm and cannot clamp. It would torque up feeling tight with
+# near-zero preload, on the joint carrying the whole rig.
+#
+# That is not Gong being wrong. Those screws ship with 4 M6 BRASS SQUARE
+# NUTS - track hardware, sized for a US box, where the length is supposed to
+# run past the plate and pick up a nut. We tap a plate instead, so their
+# length was never ours to use.
+#
+# Which dissolves the constraint that made all of this hard: engagement is
+# "30 minus their head" only while the screw is THEIRS. Buying our own makes
+# the length a design variable, and the window is narrow at both ends:
+#     M6x20  8.0 mm  1.33xD  1.14x the bolt - UNDER the 1.2 ordering check,
+#                            and 1.33xD is short of the 1.5-2xD that tapping
+#                            aluminium wants
+#     M6x22 10.0 mm  1.67xD  1.42x the bolt, 2.7 mm blind        <- this one
+#     M6x25 13.0 mm          breaks through the plate
+#     M6x16  4.0 mm          0.84x DEMAND. Does not hold the rig up.
+# So M6 x 22 A4-70 countersunk, DIN7991.
+#
+# AND THE HAPPY PART: 10 mm is exactly what this constant already said. The
+# plate was right the whole time - it was the SCREWS that were wrong, and the
+# model could not see it because MAST_HEAD_T was assumed from this very
+# number. One real measurement turned a circular assumption into a sourcing
+# change and left the geometry untouched.
 INSERT_L = 10.0                    # tapped depth, blind from the pad face
-INSERT_OD = 6.0                    # M8 tapped hole, not a O20 bonded bore
+INSERT_OD = 6.0                    # M6 tapped hole, not a O20 bonded bore
 INSERT_BLIND = G10_T - INSERT_L
 # The bung no longer fills the plate - the blocker takes the top of it.
 BUNG_IN_PLATE = G10_T - BLOCKER_T           # the blocker takes the top
@@ -2144,7 +2171,7 @@ INSERT_BLIND = G10_T - INSERT_L     # 2.7 mm solid alu above - watertight
 # they go under the screw head they add to the stack and take engagement with
 # them. Measure the assembled stack, not just the plate.
 MAST_HEAD = True
-MAST_HEAD_T = 20.0                 # ASSUMED, NOT DERIVED - measure it
+MAST_HEAD_T = 12.0                 # MEASURED by Derek. Countersunk.
 MAST_HEAD_L = 225.0                # UNVERIFIED - measure it
 MAST_HEAD_W = 130.0                # UNVERIFIED - measure it
 # The wire slot through it: the mast's internal cavity, opened out. The bung
@@ -8087,10 +8114,11 @@ def build():
            rep["mast_head_max_before_we_are_weak_mm"]))
     rep["mast_margin_note"] = (
         "1.44x is against the M6's PROOF load, not its ultimate - about 2.0x "
-        "against failure. It is Gong's screw into our tapped 6061, and our "
-        "side is 46% stronger than the screw, so nothing we build moves it. "
-        "A US-rail board reacts the same screw into a brass square nut in a "
-        "plastic box, which is weaker than this")
+        "against failure. It is OUR M6x22 A4-70 into our tapped 6061, not "
+        "Gong's screw: theirs is an M6x30 that ships with track square nuts "
+        "and would bottom out 8 mm deep in this plate without ever clamping. "
+        "Our side is 42% stronger than the screw, so the failure stays on the "
+        "part you can replace")
     if rep["mast_thread_cap_N"] < rep["mast_bolt_proof_N"] * 1.2:
         fails.append(
             f"our side of the mast joint ({rep['mast_thread_cap_N']} N) is "

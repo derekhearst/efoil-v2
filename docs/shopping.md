@@ -6,10 +6,10 @@ Grouped by where you buy it rather than by what it does, because that is the ord
 
 | Supplier | Lines | $ |
 |---|---:|---:|
-| Amazon | 114 | $3,661.71 |
+| Amazon | 114 | $3,663.87 |
 | Gong | 1 | $1,404.00 |
 | Flipsky | 3 | $1,038.00 |
-| Not a purchase - tax and freight | 3 | $846.93 |
+| Not a purchase - tax and freight | 3 | $847.06 |
 | BatteryHookup | 2 | $297.50 |
 | Fiberglass Supply | 3 | $253.38 |
 | Maker Shop Boise | 2 | $249.00 |
@@ -17,7 +17,7 @@ Grouped by where you buy it rather than by what it does, because that is the ord
 | Speedy Metals | 1 | $88.92 |
 | Easy Composites | 1 | $52.00 |
 | Branom / RS | 2 | $36.00 |
-| **TOTAL** | | **$8,096.60** |
+| **TOTAL** | | **$8,098.89** |
 
 ## Amazon
 
@@ -107,9 +107,9 @@ https://www.amazon.com
 | [5.5 mm gold bullets, 20 pair](https://www.amazon.com/dp/B096DJKR5Y) | 1 | pk | $12.99 | **verified** | 3 pair a board, so one pack covers both with spares. Motor pigtails arrive with their own |
 | [Roll pin assortment M1.5-M6, 220 pc](https://www.amazon.com/dp/B09MPWY8L4) | 1 | kit | $12.99 | **verified** | 4 needed. An ASSORTMENT on purpose: the note says MEASURE the shaft cross-hole rather than trust the 4 mm figu |
 | [Dowel pins + drill, two-sided registration](https://www.amazon.com/dp/B0GS2R3F5G) | 1 | set | $12.99 | estimate |  |
+| [M6 x 22 A4 countersunk DIN7991, mast screws](https://www.amazon.com/dp/B01N3QSKHO) | 2 | pk | $12.98 | estimate | 8 needed, 4 a board, 5 to a pack. DIN7991 90 deg head to match Gong's countersink - CHECK THE ANGLE against th |
 | [M6 x 12.7 brass heat-set insert, 50 pc](https://www.amazon.com/dp/B077PGD6X2) | 1 | pk | $12.00 | estimate | 4 needed, module handle pads; 8.2 mm printed pilot, same as the model's cut. LOCTITE the bolts - the pedestal  |
 | [Vacuum hose + hose clamps](https://www.amazon.com/dp/B0FH52FT4G) | 1 | set | $11.61 | estimate | 1/2 in tubing pump-to-bag plus clamps; the other half of what the deleted kit was actually carrying |
-| [M6 x 30 A4 mast bolts, 50 pk - spares](https://www.amazon.com/dp/B00BNCFV4Y) | 1 | pk | $10.82 | **verified** | Gong supplies its own; these are spares. Only listing confirming marine A4/316; head is ISO 7380 button, not s |
 | [Vacuum gauge, -30 inHg, 1/4 NPT, glycerin](https://www.amazon.com/dp/B00VQSOZFQ) | 1 | ea | $10.50 | **verified** | reads the BAG, not the pump - tee it in at the bag end. The regulator sets the level; this is how you know it  |
 | [Gebildet PG11 gland, M18x1.5, 30 pk](https://www.amazon.com/dp/B0B8NJR62L) | 1 | pk | $9.99 | **verified** | your listing: M18x1.5 thread (matches the 18.5 hole) and 5-10 mm cable, against our 6.5 mm 8 AWG. 6 needed of  |
 | [M6 x 1.0 tap + 5.0 mm drill set](https://www.amazon.com/dp/B0GSG4FGYW) | 1 | set | $9.99 | **verified** | 8 blind holes |
@@ -166,7 +166,7 @@ Some Flipsky appears on Amazon but the range is thin and usually dearer. Buy dir
 
 | Item | Qty | Unit | Ext | Price | Note |
 |---|---:|---|---:|---|---|
-| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $458.30 | **verified** |  |
+| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $458.43 | **verified** |  |
 | Gong shipping to Idaho, ONE order, both foils | 1 | order | $268.63 | **verified** | quoted at checkout for 2 x XL Alu setups. PER ORDER, not per foil - ordering the two separately would roughly  |
 | Shipping - Divinycell, 6061 plate, VR20 | 1 | allow | $120.00 | estimate | STILL THE BIGGEST UNVERIFIED LINE - it wants three real carts to settle. Was $220 when it covered G10 sheet an |
 

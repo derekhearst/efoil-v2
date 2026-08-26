@@ -156,6 +156,9 @@ LINKS = {
         ("B0DZ5BVLP5", 6.79, "uxcell 100Pcs M4 Flat Washer 316 Stainless 4.3 ID x 12 OD"),
     "M4 x 12 A4 socket cap DIN912, 10 pk":
         ("B07DVPC7HT", 7.10, "M4 x 12mm Socket Head Screws DIN 912 Marine Grade SS 10 Pack"),
+    "M6 x 22 A4 countersunk DIN7991, mast screws":
+        ("B01N3QSKHO", 6.49, "uxcell M6x22mm 316 Stainless Steel Countersunk "
+         "Flat Head Hex Socket Cap Screw Bolt 5pcs"),
     "M6 x 12.7 brass heat-set insert, 50 pc":
         ("B077PGD6X2", 12.00, "initeq M6-1.0 Threaded Heat Set Inserts for 3D Printing, 50, LONG"),
     "M4 x 12.7 LONG brass heat-set insert, 50 pc":
@@ -180,8 +183,6 @@ LINKS = {
         ("https://www.amazon.com/s?k=Drill+America+M6+x+1.0+HSS+4-Flute+Bottoming+Tap", 8.78, "Drill America M6 x 1.0 HSS 4-Flute Bottoming Tap - same family, pick the M6"),
     "M6 x 1.0 tap + 5.0 mm drill set":
         ("B0GSG4FGYW", 9.99, "M6 Tap and 5.0mm Drill Bit Kit, M6x1.0 HSS Metric Drill and Tap Set, 4Pcs"),
-    "M6 x 30 A4 mast bolts, 50 pk - spares":
-        ("B00BNCFV4Y", 10.82, "Metric DIN 912 M6X30 Socket Head Cap Screw Stainless Steel A4, 50 pcs"),
     "MDF 12 mm, 4 check gauges":
         ("https://www.homedepot.com/p/ProWood-1-2-in-x-2-ft-x-4-ft-Medium-Density-Fiberboard-Project-Panel-109097/202093821", 30.73, "ProWood 1/2 in x 2 ft x 4 ft MDF Project Panel"),
     "Maker Shop Boise Basic month":
@@ -351,6 +352,7 @@ LINK_VENDOR = {
     "M3 x 8 A4 stainless, 10 pk": "Amazon",
     "M4 A4 washer, 316, 100 pk": "Amazon",
     "M4 x 12 A4 socket cap DIN912, 10 pk": "Amazon",
+    "M6 x 22 A4 countersunk DIN7991, mast screws": "Amazon",
     "M6 x 12.7 brass heat-set insert, 50 pc": "Amazon",
     "M4 x 12.7 LONG brass heat-set insert, 50 pc": "Amazon",
     "M5 A4 hex nut DIN934, 50 pk - CAPTIVE in the ring": "Amazon",
@@ -363,7 +365,6 @@ LINK_VENDOR = {
     "M8 nyloc nut 316, 30 pk - prop nut": "Amazon",
     "M6 x 1.0 BOTTOMING tap, 4-flute": "Amazon",
     "M6 x 1.0 tap + 5.0 mm drill set": "Amazon",
-    "M6 x 30 A4 mast bolts, 50 pk - spares": "Amazon",
     "MDF 12 mm, 4 check gauges": "Home Depot / hardware",
     "Maker Shop Boise Basic month": "Maker Shop Boise",
     "Closed-cell sponge EPDM 1/8in, module lid gasket": "Amazon",

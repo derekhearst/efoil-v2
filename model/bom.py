@@ -1105,6 +1105,27 @@ def build():
     # part of the build: it printed into bom.md and shopping.md with a live
     # link and a price beside it, which is exactly how a part nobody decided
     # to buy ends up in a cart.
+    # WE BUY THE MAST SCREWS. Gong ship 7 x M6x30 with the setup and the model
+    # spent months treating those as the fastener for this joint. They are
+    # not: they come with 4 M6 BRASS SQUARE NUTS, which is track hardware for
+    # a US box, and the length is sized to run past a plate and pick up a nut.
+    # Derek measured their top plate - 12 mm, countersunk - and a countersunk
+    # length is measured OVER the head, so an M6x30 protrudes 18 mm below it
+    # against our 10 mm tap. It BOTTOMS OUT BY 8 mm: torques up feeling tight
+    # with near-zero clamp, on the joint carrying the whole rig.
+    # M6 x 22 is the one standard length that works. 20 gives 1.33xD of
+    # engagement in aluminium, under the 1.5-2xD rule and only 1.14x the
+    # bolt; 25 breaks through the plate; 16 is under DEMAND. 22 gives 10 mm,
+    # 1.67xD, 1.42x the bolt and the 2.7 mm of blind alu that keeps the
+    # cavity dry.
+    add("8  Mast hardpoint", "M6 x 22 A4 countersunk DIN7991, mast screws", 2, "pk", 6.49, EST,
+        "8 needed, 4 a board, 5 to a pack. DIN7991 90 deg head to match "
+        "Gong's countersink - CHECK THE ANGLE against the real plate before "
+        "ordering, it is the one thing about their part still unmeasured. "
+        "A4-70 deliberately, not A4-80: our tapped 6061 is 1.42x this screw "
+        "and the failure belongs on the part you can replace. "
+        "TEF-GEL EVERY ONE - alu plate, stainless screw, wet joint",
+        vendor="Amazon")
     add("8  Mast hardpoint", "Ultra Tef-Gel, galvanic barrier", 1, "ea",
         39.00, OK, "every mast bolt, every time it goes back in. DEARER than "
         "the $22 this was carried at - and do not reach for the small tube "
@@ -1262,10 +1283,13 @@ def build():
         "6.8 tap drill rattling in that same 9 mm hole does not - and the "
         "mast plate's whole positional budget is 0.25 mm", tool=True,
         vendor="Amazon")
-    add("9b Small but essential", "M6 x 30 A4 mast bolts, 50 pk - spares",
-        1, "pk", 10.82, OK, "Gong supplies its own; these are spares. Only "
-        "listing confirming marine A4/316; head is ISO 7380 button, not "
-        "socket cap - check that suits the counterbore")
+    # THE M6 x 30 SPARES LINE IS GONE. It bought 50 spares of Gong's own
+    # screw, on the belief that theirs was the fastener for this joint. It is
+    # not - see the M6 x 22 line in section 8. A 30 mm countersunk screw
+    # bottoms out 8 mm deep in a 12.7 plate tapped 10, so a bag of spares was
+    # 50 more of a part that cannot be used here. The real screws are bought
+    # in section 8 with the joint they belong to, and the pack of 5 covers
+    # both boards' 8 with one spare.
     add("9b Small but essential", "Silicone grease for the seal cord",
         1, "tube", 9.00, EST, "stops the cord bonding to the lid in storage")
     # SPLICE PLACEMENT, and it is not fussiness - V1's own build notes say
