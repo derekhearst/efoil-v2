@@ -417,6 +417,20 @@
  "hatch_preload_over_seal": 6.6,
  "hatch_print_face_down": "seal face",
  "hatch_print_pause_z_mm": 4.5,
+ "hatch_rim_budget_mm": {
+  "chamfer": 3.0,
+  "free inboard": 5.0,
+  "free outboard": 1.0,
+  "groove 1": [
+   8.0,
+   12.0
+  ],
+  "rim width": 34.0,
+  "washer": [
+   13.0,
+   31.0
+  ]
+ },
  "hatch_ring_bottom_below_lid_top_mm": 27.9,
  "hatch_seal": "O3 silicone cord BONDED into a 4 x 2.4 groove, 20% squeeze, hard stop",
  "hatch_seal_demand_per_bolt_N": 182,
@@ -439,6 +453,7 @@
  "hatch_seat_margin_bare_on_plug": 1.9,
  "hatch_seat_on_plug_MPa": 6.8,
  "hatch_seat_on_plug_margin": 7.4,
+ "hatch_second_cord_fits": false,
  "hatch_skin_spread_mm": 19.3,
  "hatch_spreader_d_needed_mm": 8.9,
  "hatch_stop_is_hard": true,

@@ -6498,6 +6498,36 @@ def build():
             MOD_FLANGE_W - MOD_GASKET_IN, 1)
         rep["module_bolt_from_interior_mm"] = round(
             MOD_FLANGE_W - MOD_BOLT_INSET, 1)
+    # --- COULD THE HATCH TAKE A SECOND CORD? Asked, so: not on this rim. ----
+    # The 34 mm is already spoken for, measured out from the cavity edge:
+    #     0.0 - 3.0    R3 chamfer, the laminate turns over it
+    #     8.0 - 12.0   groove 1
+    #    13.0 - 31.0   the O18 washer under each bolt
+    # which leaves 5.0 mm inboard and 1.0 outboard. A second O3 cord wants a
+    # 4 mm groove plus land either side - 8 to 9. A O2 in a 3 mm groove could
+    # be squeezed in, at 0.5 mm of land to the chamfer, and 0.5 mm of printed
+    # ASA between two filler strips that both have to be sanded through and
+    # picked out is not a thing anyone can make.
+    # A radial seal at the lid edge is out too: the gap is 0.3 mm and the
+    # groove would have to be cut into the cut edge of a glass/foam sandwich,
+    # which opens the core step 12 exists to seal.
+    #
+    # AND THE SECOND LAYER IS ALREADY THERE, one scale up. Two cords 5 mm
+    # apart in the same ring, formed by the same filler trick, sanded in the
+    # same pass and ageing on the same clock are CORRELATED - they fail
+    # together, which is most of what redundancy is supposed to prevent. The
+    # module's full-face EPDM gasket is a different seal, of a different type,
+    # in a different material, at a different joint. That is the uncorrelated
+    # one, and it is the layer that counts.
+    rep["hatch_rim_budget_mm"] = {
+        "rim width": RIM_W, "chamfer": RIM_CHAMFER,
+        "groove 1": [CHAN_INSET - CHAN_W / 2, CHAN_INSET + CHAN_W / 2],
+        "washer": [RIM_W - HATCH_BOLT_INSET - NUT_WASHER_D / 2,
+                   RIM_W - HATCH_BOLT_INSET + NUT_WASHER_D / 2],
+        "free inboard": round(CHAN_INSET - CHAN_W / 2 - RIM_CHAMFER, 1),
+        "free outboard": round(RIM_W - HATCH_BOLT_INSET - NUT_WASHER_D / 2
+                               - (CHAN_INSET + CHAN_W / 2), 1)}
+    rep["hatch_second_cord_fits"] = False
     rep["hatch_seal_from_interior_mm"] = round(CHAN_INSET, 1)
     rep["hatch_bolt_from_interior_mm"] = round(RIM_W - HATCH_BOLT_INSET, 1)
     # A FULL-FACE GASKET IS PIERCED BY ITS BOLTS ON PURPOSE, so "seal inboard
