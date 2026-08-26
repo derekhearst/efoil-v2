@@ -246,4 +246,27 @@ if __name__ == "__main__":
     for q in parts:
         print("  " + q["name"].ljust(26) + format(q["w"], ">7.0f") + " x "
               + format(q["h"], "<7.0f") + q["kind"])
+    # --- DO THESE ACTUALLY FIT THE SHEET THE BOM BUYS? ---------------------
+    # Nothing was asking. The BOM bought a 2 x 4 ft panel - 1220 x 610 - and
+    # T09 is 1400 mm long. The single most useful gauge, the one that checks
+    # the rocker across the whole board and across the machining seam, could
+    # not be cut from the sheet bought for it.
+    # The groove guide was missing from that line too: it is MDF, it is
+    # 580 x 391, and the note beside the panel still called it "fallback
+    # only" after it was promoted to the primary way the seal groove is cut.
+    MDF_SHEET = (2440.0, 1220.0)          # 4 x 8 ft, and it has to be
+    GUIDE = ("14_groove_guide", 580.0, 391.0)   # cut by cnc_drawings.py
+    bad = []
+    for nm, w, h in [(q["name"], q["w"], q["h"]) for q in parts] + [GUIDE]:
+        L, W = MDF_SHEET
+        if not ((w <= L and h <= W) or (w <= W and h <= L)):
+            bad.append("%s (%.0f x %.0f)" % (nm, w, h))
+    area = sum(q["w"] * q["h"] for q in parts) + GUIDE[1] * GUIDE[2]
+    print("  MDF sheet %.0f x %.0f, parts use %.2f m2 of %.2f"
+          % (MDF_SHEET[0], MDF_SHEET[1], area / 1e6,
+             MDF_SHEET[0] * MDF_SHEET[1] / 1e6))
+    print("  + " + GUIDE[0] + " " + format(GUIDE[1], ".0f") + " x "
+          + format(GUIDE[2], ".0f") + " (cut with these, from the same sheet)")
+    if bad:
+        print("  FAILS TO FIT THE SHEET: " + ", ".join(bad))
     print("wrote " + OUT)

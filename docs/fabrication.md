@@ -1065,7 +1065,7 @@ The mast plate does not need a machine (step 7). For the core:
 4. **Buy a shaped blank** and adapt the cavity by hand.
 
 The check gauges exist for exactly this case — station sections you can
-offer the shape up to. **Uses:** `MDF 12 mm, 4 check gauges`
+offer the shape up to. **Uses:** `MDF 12 mm 4x8 sheet, 4 gauges + the groove guide`
 
 ---
 

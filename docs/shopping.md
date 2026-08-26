@@ -9,15 +9,15 @@ Grouped by where you buy it rather than by what it does, because that is the ord
 | Amazon | 114 | $3,666.47 |
 | Gong | 1 | $1,404.00 |
 | Flipsky | 3 | $1,038.00 |
-| Not a purchase - tax and freight | 3 | $847.21 |
+| Not a purchase - tax and freight | 3 | $847.29 |
 | BatteryHookup | 2 | $297.50 |
 | Fiberglass Supply | 3 | $253.38 |
 | Maker Shop Boise | 2 | $249.00 |
-| Home Depot / hardware | 4 | $169.16 |
+| Home Depot / hardware | 4 | $170.43 |
 | Speedy Metals | 1 | $88.92 |
 | Easy Composites | 1 | $52.00 |
 | Branom / RS | 2 | $36.00 |
-| **TOTAL** | | **$8,101.64** |
+| **TOTAL** | | **$8,102.99** |
 
 ## Amazon
 
@@ -166,7 +166,7 @@ Some Flipsky appears on Amazon but the range is thin and usually dearer. Buy dir
 
 | Item | Qty | Unit | Ext | Price | Note |
 |---|---:|---|---:|---|---|
-| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $458.58 | **verified** |  |
+| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $458.66 | **verified** |  |
 | Gong shipping to Idaho, ONE order, both foils | 1 | order | $268.63 | **verified** | quoted at checkout for 2 x XL Alu setups. PER ORDER, not per foil - ordering the two separately would roughly  |
 | Shipping - Divinycell, 6061 plate, VR20 | 1 | allow | $120.00 | estimate | STILL THE BIGGEST UNVERIFIED LINE - it wants three real carts to settle. Was $220 when it covered G10 sheet an |
 
@@ -209,7 +209,7 @@ https://www.homedepot.com
 | Item | Qty | Unit | Ext | Price | Note |
 |---|---:|---|---:|---|---|
 | [EPS rigid foam 2in x 48in x 8ft (HD 202532856)](https://www.homedepot.com/p/Henry-2-in-x-48-in-x-8-ft-R-7-7-EPS-Rigid-Foam-Board-Insulation-320825/202532856) | 4 | sheet | $110.72 | **verified** | HD Meridian, 30 in stock, aisle 29 bay 020; $23.53 at 32+. EPS, not the XPS V1 used - deliberate, ~$90 cheaper |
-| [MDF 12 mm, 4 check gauges](https://www.homedepot.com/p/ProWood-1-2-in-x-2-ft-x-4-ft-Medium-Density-Fiberboard-Project-Panel-109097/202093821) | 1 | sheet | $30.73 | estimate | 3 station sections + the rocker/deck profile. Was a 14-template set at $70 - the router templates go with the  |
+| [MDF 12 mm 4x8 sheet, 4 gauges + the groove guide](https://www.homedepot.com/p/ULTRASTOCK-1-2-in-x-4-ft-x-8-ft-MDF-Panel-M31240849097000000A/202332602) | 1 | sheet | $32.00 | estimate | 3 station sections, the 1400 mm rocker/deck profile, and the groove guide. 0.67 m2 of parts in a 2.98 m2 sheet |
 | [Sacrificial MDF, CNC spoilboard](https://www.homedepot.com/p/1-4-in-x-2-ft-x-4-ft-Medium-Density-Fiberboard-1508104/202089069) | 1 | sheet | $16.23 | estimate | buy it local, a 4x8 sheet does not travel well |
 | [Acetone, solvent-welding the printed joints](https://www.homedepot.com/p/Klean-Strip-1-qt-Acetone-Thins-Fiberglass-Resins-Epoxy-and-Adhesives-QAC18/100144922) | 1 | qt | $11.48 | estimate | ASA dissolves in it like ABS - a brushed acetone/scrap slurry makes the joint one piece of plastic, not an adh |
 

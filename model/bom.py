@@ -742,11 +742,21 @@ def build():
     # if the machine falls through, and it is why they still exist.
     # The two MDF parts that are needed EITHER WAY are in the cut list, not
     # here: the cavity caul and the groove guide.
-    add("6  Hatch and seal", "MDF 12 mm, 4 check gauges", 1, "sheet", 22.00,
-        EST, "3 station sections + the rocker/deck profile. Was a 14-template "
-        "set at $70 - the router templates go with the CNC pass. The caul is "
-        "an EPS offcut and the groove guide is fallback-only, so this sheet "
-        "is now the whole MDF requirement")
+    # A 4x8 SHEET, AND THE SIZE IS NOT PADDING. This line bought a 2 x 4 ft
+    # panel - 1220 x 610 - and T09_rocker_and_deck is 1400 mm long. The one
+    # gauge that checks the rocker across the whole board AND across the
+    # machining seam could not be cut from the sheet bought for it. Nothing
+    # was comparing the two; templates.py checks it now.
+    # It also has to carry 14_groove_guide, 580 x 391, which was left out
+    # entirely - this note used to say "the groove guide is fallback-only",
+    # written before the guide became the primary way the seal groove is cut.
+    add("6  Hatch and seal", "MDF 12 mm 4x8 sheet, 4 gauges + the groove guide", 1,
+        "sheet", 32.00, EST,
+        "3 station sections, the 1400 mm rocker/deck profile, and the groove "
+        "guide. 0.67 m2 of parts in a 2.98 m2 sheet - bought for the LENGTH, "
+        "not the area. Was a 14-template set at $70; the router templates "
+        "went with the CNC pass and only the gauges are left, which check "
+        "the machined core before it is glassed")
 
     # ---------------------------------------------------------- 7 module
     add("7  Module", "M4 x 12 A4 socket cap DIN912, 10 pk",
