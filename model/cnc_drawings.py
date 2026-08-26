@@ -486,30 +486,40 @@ def build(p):
     # translucent skin, then register to what you can see instead of to
     # nominal.
     #
-    # IT ALSO DRILLS THE RAILS. The 18 insert pilots go into the printed
-    # flange while it is still FLAT, before the four-piece bond-up. Doing
-    # both off ONE physical guide is strictly better than both coming off the
-    # model independently, because it takes the bond-up drift out of the
-    # equation rather than absorbing it - which is what the O5.0 clearance
-    # (rather than O4.5) was there to do.
+    # IT DOES NOT DRILL THE RAILS. An earlier version of this note said it
+    # did, and that was wrong: the rails' 18 insert bores are MODELLED into
+    # the shell and printed, not drilled - see module_insert_bores. Derek's
+    # point, and it is the right way round. A drilled hole in a printed part
+    # cuts through whatever perimeters and infill happen to be there and
+    # leaves the insert sitting in shredded layers; a modelled bore gets
+    # printed perimeters wrapped round it and full wall thickness, which is
+    # what a heat-set is melting into. Same reasoning as the rim ring's
+    # "print the nut zone solid".
+    #
+    # WHAT IT DRILLS IS THE BARE CORE, before layup - see the note.
     d = Dxf()
     d.poly(rect(0, lid_l, 0, lid_w))
     for (bx, by) in mb:
         d.circle(bx, by, 5.0 / 2)
     add("16_module_lid_guide", "MDF 12 mm", 12.0, 1, d, lid_l, lid_w,
-        f"{len(mb)} x O5.0 drill bushings on the module lid pattern, plus the "
-        f"lid outline to register on. DRILLS TWO THINGS off one part: the "
-        f"laminated lid (10), and the {len(mb)} heat-set pilots in the "
-        f"printed flange rails while they are still FLAT, before the "
-        f"four-piece bond-up. "
-        f"WHY IT EXISTS: the O12 epoxy plugs are cast into core 11 and then "
-        f"laid over, so when it is time to drill nobody can see them. The "
-        f"profile is machined after layup and is referenced to the machine, "
-        f"not to the core - so plug-vs-hole error is however far the core "
-        f"drifted inside the blank, and this lid only has 2.5 mm of that to "
-        f"give. PIGMENT THE PLUG EPOXY BLACK so they read through the 1 mm "
-        f"skin and register this guide on the plugs you can see, not on "
-        f"nominal. Same trick as the black wax in the rim ring. "
+        f"{len(mb)} x O5.0 bushings on the module lid pattern. "
+        f"USE IT ON THE BARE CORE, BEFORE LAYUP. That is the whole point: "
+        f"drilling 18 holes dead-centre through 18 plugs you cannot see is a "
+        f"job nobody should be asked to do, and doing it while the cured "
+        f"plugs are sitting there as black discs in white foam is trivial. "
+        f"Order: bore O12, pour BLACK-pigmented epoxy, cure, sand flush, "
+        f"drill O5.0 through each plug with this guide, fill the holes with "
+        f"black wax, THEN lay up. Afterwards the wax reads through the 1 mm "
+        f"skin and all that is left is opening 1 mm of glass over a mark that "
+        f"is exactly the hole - not 8 mm of sandwich aimed at a guess. "
+        f"REGISTER THE PROFILE CUT ON THOSE MARKS TOO. The holes must line up "
+        f"with the rails' printed inserts; the profile only has to fit a "
+        f"recess with 1.5 mm of clearance. So put the tolerance where the "
+        f"slack is - cut the profile relative to the holes, not the holes "
+        f"relative to the profile. "
+        f"It does NOT drill the rails: those bores are MODELLED and printed, "
+        f"so the inserts melt into full printed walls instead of into cut "
+        f"infill. "
         f"NOT interchangeable with template 14 - that is 12 holes on a "
         f"580 x 391 ring, this is {len(mb)} on {lid_l:.0f} x {lid_w:.0f}.")
 

@@ -507,7 +507,10 @@
  },
  "lid_crush_margin": 2.2,
  "lid_deflection_mm": 0.69,
+ "lid_drift_absorbed_by": "nothing - it is designed out. Holes and profile are both cut relative to the plugs, so however far the core lands off inside the oversize blank, the finished lid is self-consistent",
  "lid_flush_error_mm": 0.39,
+ "lid_holes_drilled": "in the BARE CORE, before layup",
+ "lid_profile_registered_to": "the wax marks, not the blank edge",
  "lid_proud_at_edge_mm": 0.0,
  "lid_seat_area_gain": 4.64,
  "lid_seat_area_mm2": {

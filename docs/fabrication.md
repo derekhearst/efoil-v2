@@ -537,16 +537,25 @@ and re-drilled, and nothing to hunt for under a cured skin afterwards.
 
 1. **CNC the core** oversize, with twelve Ø16 through-holes.
 2. **Tape one face, fill them with thickened epoxy — pigmented BLACK** —
-   cure, and **sand both faces flush.** A plug left proud prints through a 1 mm skin under vacuum
-   and you get twelve bumps in the deck.
-3. **Lay up** glass / core / glass and bag it. The plugs are invisible now and
-   it does not matter.
-4. **Machine the profile and drill all twelve Ø5.6**, one setup — straight
-   through skin / resin / skin. **Pigment the plug epoxy black** when you
-   pour it at step 2: once the skins are on, nothing can see where the plugs
-   are, and the profile is machined *after* layup so it is referenced to the
-   machine and not to the core. Black plugs read through a 1 mm skin, so you
-   register on the plugs you can see instead of on nominal.
+   cure, and **sand both faces flush.** A plug left proud prints through a
+   1 mm skin under vacuum and you get twelve bumps in the deck.
+3. **Drill the twelve Ø5.6 NOW, through the bare plugs**, off template 14.
+   This is the step that used to happen last, and moving it here is the whole
+   trick: right now the cured plugs are black discs in white foam and putting
+   a hole dead-centre in each is trivial. After layup it is eight to fifteen
+   millimetres of sandwich aimed at something you cannot see.
+4. **Fill each hole with black wax**, both faces, so no resin gets in.
+5. **Lay up** glass / core / glass and bag it.
+6. **Machine the profile — registered on the wax marks, not on the blank
+   edge — then open 1 mm of skin over each one.** That is all the drilling
+   that is left.
+
+> **Why register the profile to the holes and not the other way round.** The
+> holes have to line up with twelve captive nuts. The profile only has to
+> drop into a recess with **1.5 mm** of side clearance. Put the tolerance
+> where the slack is: the core can drift inside the oversize blank all it
+> likes, and if both the profile and the holes are cut relative to the plugs,
+> nothing downstream ever knows.
 
 Twelve holes bored in one setup are mutually accurate to the machine, so
 lining the lid up on the ring is a single **rigid-body fit**: get two to pick

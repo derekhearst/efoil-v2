@@ -6584,6 +6584,25 @@ def build():
         "off the SAME bolt ring, so ring, lid and guide cannot disagree"
         % (len(hb), RING_LAM))
     rep["hatch_bolt_master_is_shared"] = True
+    # --- WHERE THE LID BOLT HOLES GET DRILLED, and it is not where it was --
+    # They used to be drilled last, through the finished sandwich, aimed at
+    # plugs nobody can see. Pigmenting the plugs made them visible but did
+    # not make the job easy - Derek: "even if the plug epoxy is visible I
+    # still have to drill all the holes in the epoxy perfectly". Right, and
+    # the answer is to drill them when it is easy instead.
+    # Bare cured plugs are black discs in white foam. Drill them THERE, wax
+    # the holes, lay up, and afterwards the wax marks are not an aiming point
+    # for a hole - they ARE the hole, under 1 mm of skin.
+    # And register the PROFILE on those marks too. The holes must line up
+    # with captive nuts; the profile only has to fit a recess with clearance.
+    # Cut both relative to the plugs and core drift stops existing as a
+    # tolerance anywhere downstream.
+    rep["lid_holes_drilled"] = "in the BARE CORE, before layup"
+    rep["lid_profile_registered_to"] = "the wax marks, not the blank edge"
+    rep["lid_drift_absorbed_by"] = (
+        "nothing - it is designed out. Holes and profile are both cut "
+        "relative to the plugs, so however far the core lands off inside the "
+        "oversize blank, the finished lid is self-consistent")
     rep["nothing_proud_of_seal_land"] = True
     rep["hatch_ring_glassed_over_mm"] = RING_LAM
     # --- WILL THE HATCH CORD STILL BE SEALING IN THREE YEARS ---------------
