@@ -2124,10 +2124,27 @@ INSERT_BLIND = G10_T - INSERT_L     # 2.7 mm solid alu above - watertight
 # gets squeezed. It is the only travel in the whole mast joint and the model
 # did not have it, which is why the wire bung spent six turns being
 # "compressed" by things that cannot move.
-# EVERY NUMBER HERE IS UNVERIFIED except the thickness, which is derived:
-# Gong's own M8x30 through this plate has to leave INSERT_L in the tap.
+# EVERY NUMBER HERE IS UNVERIFIED, THE THICKNESS MOST OF ALL - and it used to
+# be the one this block called safe. It said "derived: Gong's own M6x30
+# through this plate has to leave INSERT_L in the tap", and derived sounds
+# stronger than guessed. It is weaker. INSERT_L is OUR OWN chosen tap depth,
+# so the line read "the head is whatever thickness makes our tap correct".
+# Circular. The model could not disagree with itself, and a check that cannot
+# fail is not a check.
+#
+# WHY IT MATTERS MORE THAN THE 375 g IT IS USUALLY DISCUSSED WITH. Engagement
+# is 30 minus their head, and it is not ours to set. Both directions bite:
+#   head < 20  the M6x30 BOTTOMS in the blind hole and never clamps. It will
+#              torque up feeling tight with near-zero preload, on the joint
+#              that carries the whole rig. This is the dangerous one.
+#   head = 20  10 mm engaged, 2.11x on demand. What the model assumes.
+#   head > 23  our thread becomes the weak link - the buried side
+#   head > 27  under 1.0x. The joint is short of its own demand.
+# AND THE CUP WASHERS ARE NOT IN THAT SUM. Gong ship 4 M6 cup washers; if
+# they go under the screw head they add to the stack and take engagement with
+# them. Measure the assembled stack, not just the plate.
 MAST_HEAD = True
-MAST_HEAD_T = 30.0 - INSERT_L      # so Gong's M8x30 lands 10 mm in the tap
+MAST_HEAD_T = 20.0                 # ASSUMED, NOT DERIVED - measure it
 MAST_HEAD_L = 225.0                # UNVERIFIED - measure it
 MAST_HEAD_W = 130.0                # UNVERIFIED - measure it
 # The wire slot through it: the mast's internal cavity, opened out. The bung
@@ -6020,9 +6037,7 @@ def build():
                 _ch.hide_set(True)
                 _ch.hide_render = True
         rep["mast_head_mm"] = [MAST_HEAD_L, MAST_HEAD_W, MAST_HEAD_T]
-        rep["mast_head_t_derived_from"] = (
-            "Gong's M%.0fx30 through it must leave %.0f mm in the tap"
-            % (BOLT_D, INSERT_L))
+        rep["mast_head_t_is_assumed"] = True
         rep["mast_head_slot_mm"] = [MAST_SLOT_L, MAST_SLOT_W]
         rep["mast_head_is_the_moving_part"] = True
         rep["mast_head_dims_unverified"] = True
@@ -8030,6 +8045,46 @@ def build():
         rep["mast_thread_cap_N"] / rep["mast_bolt_proof_N"], 2)
     rep["mast_weak_link_is_theirs"] = (
         rep["mast_thread_cap_N"] > rep["mast_bolt_proof_N"])
+    # --- HOW MUCH OF THIS RESTS ON A NUMBER NOBODY HAS MEASURED ------------
+    # MAST_HEAD_T is ASSUMED at 20 mm (see the constant - it used to be
+    # "derived" from our own tap depth, which was circular). Engagement is
+    # 30 minus their head, so their part decides ours, and both directions
+    # bite. This is the sensitivity, published so the consequence does not
+    # have to be re-derived at the bench with the mast in your hands.
+    _cap10 = rep["mast_thread_cap_N"]
+    _bolt = rep["mast_bolt_proof_N"]
+    _dem = rep["mast_bolt_demand_N"]
+    # below this head thickness the screw is longer than the tap is deep
+    rep["mast_head_min_before_bottoming_mm"] = round(30.0 - INSERT_L, 1)
+    # above this, our thread gives up before Gong's screw does
+    rep["mast_head_max_before_we_are_weak_mm"] = round(
+        30.0 - INSERT_L * _bolt / _cap10, 1)
+    # NUMBERS, not sentences. An earlier version of this put the margins
+    # inside strings, which reads fine and is invisible to check_build_guide -
+    # the README quoted a 0.84x off this table and nothing could confirm it.
+    _sens = {}
+    for _h in (16.0, 18.0, 20.0, 22.0, 24.0, 26.0):
+        _eng = 30.0 - _h
+        if _eng > INSERT_L:
+            _sens["%.0f" % _h] = {
+                "engaged_mm": round(_eng, 1), "margin": None,
+                "verdict": "screw BOTTOMS - torques up tight with no clamp"}
+        else:
+            _c = _cap10 * _eng / INSERT_L
+            _sens["%.0f" % _h] = {
+                "engaged_mm": round(_eng, 1),
+                "margin": round(_c / _dem, 2),
+                "verdict": ("ok" if _c >= _bolt
+                            else "OUR buried thread is the weak link")}
+    rep["mast_head_t_sensitivity"] = _sens
+    rep["mast_head_t_note"] = (
+        "ASSUMED %.0f mm. Not measured, and NOT derived - the old wording "
+        "said derived, from 30 - INSERT_L, which is our own tap depth. "
+        "Under %.1f the M%.0fx30 bottoms in the blind hole and never clamps; "
+        "over %.1f our buried thread becomes the weak link. Gong's 4 cup "
+        "washers are not in that sum either - measure the assembled stack"
+        % (MAST_HEAD_T, rep["mast_head_min_before_bottoming_mm"], BOLT_D,
+           rep["mast_head_max_before_we_are_weak_mm"]))
     rep["mast_margin_note"] = (
         "1.44x is against the M6's PROOF load, not its ultimate - about 2.0x "
         "against failure. It is Gong's screw into our tapped 6061, and our "

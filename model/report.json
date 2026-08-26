@@ -559,6 +559,8 @@
  "mast_fastening": "M6 TAPPED 10 mm blind into a 12.7 mm 6061-T651 plate from the pad face - 2.7 mm of solid alu above. No bushings, no bonding, no lathe. Tef-Gel every bolt: alu + A4 in a wet cavity",
  "mast_head_dims_unverified": true,
  "mast_head_is_the_moving_part": true,
+ "mast_head_max_before_we_are_weak_mm": 23.2,
+ "mast_head_min_before_bottoming_mm": 20.0,
  "mast_head_mm": [
   225.0,
   130.0,
@@ -569,7 +571,40 @@
   20.4,
   7.0
  ],
- "mast_head_t_derived_from": "Gong's M6x30 through it must leave 10 mm in the tap",
+ "mast_head_t_is_assumed": true,
+ "mast_head_t_note": "ASSUMED 20 mm. Not measured, and NOT derived - the old wording said derived, from 30 - INSERT_L, which is our own tap depth. Under 20.0 the M6x30 bottoms in the blind hole and never clamps; over 23.2 our buried thread becomes the weak link. Gong's 4 cup washers are not in that sum either - measure the assembled stack",
+ "mast_head_t_sensitivity": {
+  "16": {
+   "engaged_mm": 14.0,
+   "margin": null,
+   "verdict": "screw BOTTOMS - torques up tight with no clamp"
+  },
+  "18": {
+   "engaged_mm": 12.0,
+   "margin": null,
+   "verdict": "screw BOTTOMS - torques up tight with no clamp"
+  },
+  "20": {
+   "engaged_mm": 10.0,
+   "margin": 2.11,
+   "verdict": "ok"
+  },
+  "22": {
+   "engaged_mm": 8.0,
+   "margin": 1.69,
+   "verdict": "ok"
+  },
+  "24": {
+   "engaged_mm": 6.0,
+   "margin": 1.27,
+   "verdict": "OUR buried thread is the weak link"
+  },
+  "26": {
+   "engaged_mm": 4.0,
+   "margin": 0.84,
+   "verdict": "OUR buried thread is the weak link"
+  }
+ },
  "mast_insert_g10_above_mm": 2.7,
  "mast_joint_vs_bolt": 1.0,
  "mast_margin_note": "1.44x is against the M6's PROOF load, not its ultimate - about 2.0x against failure. It is Gong's screw into our tapped 6061, and our side is 46% stronger than the screw, so nothing we build moves it. A US-rail board reacts the same screw into a brass square nut in a plastic box, which is weaker than this",

@@ -167,12 +167,36 @@ Ordered by what can actually stop the build.
    confirm it is the one you want.
 6. **V1's reed-switch kill system is still not installed.** Parts on hand.
    Required before any beginner rides that board.
-7. **Measure the Gong top plate's four clearance holes.** `MAST_CLEAR_D` is a
-   guess at 7.0 mm and it sets the *entire* positional budget for the four
-   tapped holes in our plate — at 7.0 that budget is 0.25 mm, which is what
-   makes it a machine-shop part rather than a drill-press one. A wider hole
-   relaxes it; a tighter one may make it unbuildable by hand at all. **Derek
-   has this plate** — he cut its wire slot.
+7. **Measure the Gong top plate — thickness first, then its four clearance
+   holes.** Two numbers, one part, and Derek already owns it (he cut its wire
+   slot).
+
+   **7a — the THICKNESS, and this is the one that can hurt someone.**
+   `MAST_HEAD_T` is **assumed at 20.0 mm**. It used to call itself *derived*,
+   from `30 − INSERT_L` — our own tap depth — which is circular: the model
+   assumed the head is whatever makes its tap correct, so it could never
+   disagree with itself. Engagement is **30 mm of Gong's screw minus their
+   head**, and it is not ours to set. The safe window is only **3.2 mm
+   wide**, and the assumption sits on its **lower edge**:
+
+   | their head | what happens |
+   |---|---|
+   | 18 mm | **screw bottoms — torques up feeling tight with no clamp** |
+   | **20.0** | 10 mm engaged, 2.11× — *the assumption, and the cliff edge* |
+   | 22 mm | 8 mm engaged, 1.69× |
+   | 23.2 mm | our buried thread becomes the weak link |
+   | 26 mm | 4 mm engaged, **0.84× — short of its own demand** |
+
+   Under 20 the M6 × 30 bottoms in a blind hole and the joint carrying the
+   whole rig has near-zero preload while reading correct on a torque wrench.
+   **Gong's four cup washers are not in that sum either** — measure the
+   assembled stack, not just the plate.
+
+   **7b — the four clearance holes.** `MAST_CLEAR_D` is a guess at 7.0 mm and
+   it sets the *entire* positional budget for our four tapped holes — at 7.0
+   that budget is 0.25 mm, which is what makes it a machine-shop part rather
+   than a drill-press one. A wider hole relaxes it; a tighter one may make it
+   unbuildable by hand at all.
 8. **Where the mast's wire slot sits relative to the chord.** `CONDUIT_X_OFF`
    is 0, i.e. the conduit is assumed to be on the mast's centreline, and that
    is unverified. If it is not, the conduit and the plate's Ø30.8 bore are in
