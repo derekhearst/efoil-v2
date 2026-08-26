@@ -430,10 +430,24 @@ fibre ends at the cavity ledge.
 `M5 x 25 button head TORX TX25, 25 pk` · `Transfer screw set M3-M6` ·
 `Solid silicone cord, 1/8 in (3.175 mm) - the spare size`
 
-The ring went in at step 10a and has been glassed over since. Now sand the
-ring face flat — it is the sealing land, so it has to be flat anyway — and
-the filler strip shows through as a line along the whole groove. Pick it out
-and the printed walls are the finished groove.
+The ring went in at step 10a and has been glassed over since — **the whole
+face, under 0.6 mm of laminate, bolt holes included.** Now sand the ring
+face flat. It is the sealing land, so it has to be flat anyway, and that one
+pass uncovers everything: the filler strip shows through as a line along the
+whole groove, and **twelve printed pips show through as twelve dots**, one
+over each buried nut. Pick them all out. The printed walls are the finished
+groove and the twelve holes are exactly where the model put them.
+
+> **The pips are why there is no hunting for the nuts.** Print them 0.5 mm
+> proud with the ring, the same as the groove filler. Without them all twelve
+> M5 nuts are buried under glass with nothing to aim at — and transfer screws
+> do not help, because a transfer screw has to be threaded *into* the nut to
+> mark anything, which is the one thing you cannot do yet.
+
+**This is a sanding job, not a routing one.** The 2.5 mm cutter on the Uses
+list is the fallback for anyone who would rather cut the groove open; the
+plan is to sand the land you have to flatten regardless and let the proud
+features find themselves.
 
 **Wet the opened groove with neat epoxy before the cord goes in.** Sanding or
 routing leaves cut glass ends in the seal itself, which is the same wick that

@@ -440,6 +440,20 @@ CHAN_CUTTER = 2.5
 # pick it out. No cutter following a template on a finished board at all.
 # Keep the guide template as the fallback for anyone who would rather cut it.
 CHAN_FILLER_PROUD = 0.5          # groove: 74% fill at 20% squeeze
+# ...AND THE SAME TRICK ON THE TWELVE BOLT HOLES, which had no plan at all.
+# The laminate runs across the ledge and OVER the ring face - that is the
+# whole point of glassing the ring in, and it is why the printed groove is
+# only 1.8 deep with the glass making up the 2.4. But it covers the bolt
+# holes too, under RING_LAM of glass, and nothing said how you find twelve
+# buried M5 nuts afterwards. The Uses list reaches for transfer screws, and
+# a transfer screw has to be screwed INTO the nut to mark anything - which
+# is the thing you cannot do yet.
+# So print a proud pip in each hole, exactly as the groove gets a proud
+# filler strip. Sanding the ring face flat - which has to happen anyway,
+# it is the sealing land - breaks through the groove line AND twelve dots in
+# the same pass, and both pick out. No measuring, no hunting, no template.
+CHAN_FILLER_PROUD = 0.5          # (same value, used for both)
+BOLT_PIP_PROUD = CHAN_FILLER_PROUD
 CHAN_INSET = 10.0                  # groove centreline outboard of the opening.
                                    # Seal inboard, bolts outboard - at 15 the
                                    # M5 heads landed on top of the channel.
@@ -6528,6 +6542,16 @@ def build():
         "free outboard": round(RIM_W - HATCH_BOLT_INSET - NUT_WASHER_D / 2
                                - (CHAN_INSET + CHAN_W / 2), 1)}
     rep["hatch_second_cord_fits"] = False
+    rep["hatch_bolt_holes_found_by"] = (
+        "PRINTED PIPS, %.1f mm proud, one per hole - the same trick the "
+        "groove filler uses. The ring is glassed OVER, so all %d nuts end up "
+        "under %.1f mm of laminate; sanding the seal land flat breaks through "
+        "the groove line and the %d dots in one pass and both pick out. "
+        "Before this there was no method here at all - the step reached for "
+        "transfer screws, which have to be threaded INTO the nut to mark "
+        "anything, and that is exactly what you cannot do through glass"
+        % (BOLT_PIP_PROUD, len(hb), RING_LAM, len(hb)))
+    rep["hatch_ring_glassed_over_mm"] = RING_LAM
     # --- WILL THE HATCH CORD STILL BE SEALING IN THREE YEARS ---------------
     # The module's gasket got an ageing model and this one did not, which is
     # backwards: the module lid is opened twice a year, this one every ride.
