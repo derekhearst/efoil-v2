@@ -73,8 +73,8 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | [M5 x 25 button head TORX TX25, 25 pk](https://www.amazon.com/dp/B08BZJPJTK) | 1 | pk | $15.99 | $15.99 | estimate | 24 needed of 25. TX25 drive. ISO 7380-2 flanged button; the model draws the plain O9.5 x 2.75 high, which is what the model draws and what puts the whole stack 1.5 mm BELOW the deck pad. 304 not A4 - see the note above, it is a deliberate trade and the captive nut stays A4. Tef-Gel every one. A4 SOCKET CAP B0CJFMMF58 is the fallback if the grade matters more than the toe |
 | [M6 penny washer O18 A4 DIN9021](https://www.amazon.com/dp/B0DB8RBY3N) | 1 | pk | $12.99 | $12.99 | estimate | 58 needed - TWO PER BOLT, one captive under the nut and one UNDER THE HEAD. M6 size on an M5 bolt: the 0.7 mm of slop is irrelevant on a washer and the 3 extra mm of OD is not |
 | [M5 A4 hex nut DIN934, 50 pk - CAPTIVE in the ring](https://www.amazon.com/dp/B084HLMN7B) | 1 | pk | $9.19 | $9.19 | verified | 34 needed. Dropped in at a print pause at Z=6.0; steel thread, so a hatch that comes off every ride never wears anything out |
-| [MDF 12 mm 2x4 panel, both drill guides](https://www.homedepot.com/p/ProWood-1-2-in-x-2-ft-x-4-ft-Medium-Density-Fiberboard-Project-Panel-109097/202093821) | 1 | panel | $30.73 | $30.73 | verified | TWO parts: 14_groove_guide 580 x 391, and 16_module_lid_guide 443 x 314 - 0.37 m2 in a 0.74 m2 panel. Was a 14-template set, then 4 check gauges as well; both deleted, and the module guide added back because the lid's epoxy plugs are invisible once the skins are on. templates.py checks every part against the sheet |
-| **subtotal** | | | | **$168.99** | | |
+| [MDF 12 mm 4x8 sheet, three lid/ring guides](https://www.homedepot.com/p/ULTRASTOCK-1-2-in-x-4-ft-x-8-ft-MDF-Panel-M31240849097000000A/202332602) | 1 | sheet | $50.00 | $50.00 | estimate | THREE parts, and the sheet is sized by LAYOUT not area: 14_groove_guide 580 x 391, 17_hatch_lid_master 577 x 388, 16_module_lid_guide 443 x 314. That is 0.59 m2 - 80% of a 2x4 panel by area, and it will not nest on one: the two big ones take a 391 mm band across the width and leave a 219 mm strip the third cannot use. templates.py shelf-packs them now rather than checking each part alone |
+| **subtotal** | | | | **$188.26** | | |
 
 ## 7  Module
 
@@ -253,31 +253,31 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | Item | Qty | Unit | Unit $ | Ext $ | | Note |
 |---|---:|---|---:|---:|---|---|
 | Shipping - Divinycell, 6061 plate, VR20 | 1 | allow | $120.00 | $120.00 | estimate | STILL THE BIGGEST UNVERIFIED LINE - it wants three real carts to settle. Was $220 when it covered G10 sheet and hazmat epoxy, both of which are now out of the build entirely |
-| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $459.12 | $459.12 | verified |  |
-| **subtotal** | | | | **$579.12** | | |
+| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $460.28 | $460.28 | verified |  |
+| **subtotal** | | | | **$580.28** | | |
 
 ## Totals
 
 | | |
 |---|---:|
-| **Grand total, 2 boards** | **$8,111.17** |
-| Per board | $4,055.58 |
-| Of which verified | $7,376.04  (91%) |
-| Of which estimated | $735.13 |
+| **Grand total, 2 boards** | **$8,131.60** |
+| Per board | $4,065.80 |
+| Of which verified | $7,346.47  (90%) |
+| Of which estimated | $785.13 |
 | Linked to a real listing | 132 lines |
 | Priced but NOT linked | 2 lines, $105.00 |
-| Not linkable, but MEASURED (freight quotes) | 2 lines, $727.75 |
+| Not linkable, but MEASURED (freight quotes) | 2 lines, $728.91 |
 | Not linkable and still estimated | 1 lines, $120.00 |
 
 ## What is a board, and what is a shop
 
-Some of the total above is not the cost of a board at all - it is tools, jigs and templates that exist afterwards and do not repeat. Splitting them out is the difference between "a board costs $4,056" and "a board costs $3,530 and I now own a vacuum rig, a crimper and a full template set".
+Some of the total above is not the cost of a board at all - it is tools, jigs and templates that exist afterwards and do not repeat. Splitting them out is the difference between "a board costs $4,066" and "a board costs $3,540 and I now own a vacuum rig, a crimper and a full template set".
 
 | | |
 |---|---:|
 | One-time tooling (incl. its share of tax) | $1,051.95 |
-| **Marginal cost of a board** | **$3,529.61** |
-| Cost of the NEXT board after these 2 | $3,529.61 |
+| **Marginal cost of a board** | **$3,539.82** |
+| Cost of the NEXT board after these 2 | $3,539.82 |
 
 | One-time item | $ |
 |---|---:|

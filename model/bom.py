@@ -767,24 +767,30 @@ def build():
     #                          the machine able to see a seam.
     #    1 groove guide      -> not optional: it is how the seal groove gets
     #                          opened and how the 12 ring holes get found.
-    #  + 1 module lid guide  -> ADDED BACK, and for a reason the deleted ones
-    #                          never had: the module lid's O12 epoxy plugs
-    #                          are cast into the core and then laid over, so
-    #                          by drilling time nobody can see them. This is
-    #                          not a convenience, it is the only way to put
-    #                          18 holes in the middle of 18 buried plugs.
+    #  + 2 lid masters       -> ADDED BACK, for a reason the deleted ones
+    #                          never had. Those guided features the CNC could
+    #                          cut anyway; these carry a lid's EXACT FINISHED
+    #                          PROFILE and its bolt holes on ONE physical
+    #                          part. Drill the bare plugs off it before
+    #                          layup, then trim the laminate to it after -
+    #                          so holes and outline cannot disagree, and
+    #                          alignment stops being a tolerance.
     # And the SHEET SIZE follows the parts rather than the other way round.
     # It was a 2 x 4 panel that could not fit the 1400 mm rocker gauge; it
-    # went 4 x 8 to hold it; with the gauges gone it is a 2 x 4 again, this
-    # time with the one part on it actually checked against it by
-    # templates.py. Flip CHECK_GAUGES back on and it prints 4 x 8 again.
-    add("6  Hatch and seal", "MDF 12 mm 2x4 panel, both drill guides", 1,
-        "panel", 30.73, OK,
-        "TWO parts: 14_groove_guide 580 x 391, and 16_module_lid_guide "
-        "443 x 314 - 0.37 m2 in a 0.74 m2 panel. Was a 14-template set, then "
-        "4 check gauges as well; both deleted, and the module guide added "
-        "back because the lid's epoxy plugs are invisible once the skins are "
-        "on. templates.py checks every part against the sheet")
+    # went 4 x 8 to hold it; with the gauges gone it was a 2 x 4 again; and
+    # the two lid masters take it back to 4 x 8 - this time on LAYOUT, not
+    # area. templates.py shelf-packs the set rather than checking each part
+    # against the sheet alone, which is what let 0.59 m2 in a 0.74 m2 panel
+    # look fine when it does not nest.
+    add("6  Hatch and seal", "MDF 12 mm 4x8 sheet, three lid/ring guides", 1,
+        "sheet", 50.00, EST,
+        "THREE parts, and the sheet is sized by LAYOUT not area: "
+        "14_groove_guide 580 x 391, 17_hatch_lid_master 577 x 388, "
+        "16_module_lid_guide 443 x 314. That is 0.59 m2 - 80% of a 2x4 panel "
+        "by area, and it will not nest on one: the two big ones take a "
+        "391 mm band across the width and leave a 219 mm strip the third "
+        "cannot use. templates.py shelf-packs them now rather than checking "
+        "each part alone")
 
     # ---------------------------------------------------------- 7 module
     add("7  Module", "M4 x 12 A4 socket cap DIN912, 10 pk",

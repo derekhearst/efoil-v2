@@ -1081,7 +1081,7 @@ If it comes to this, flip **`HAND_SHAPE = True`** in `model/templates.py`
 and it emits the full 21-template set again — outline, cavity, rim rebate,
 both mast pockets, handle and leash pads. The check gauges (`CHECK_GAUGES`)
 are the cheap end of the same family and come back with it. **Uses:**
-`MDF 12 mm 2x4 panel, both drill guides`
+`MDF 12 mm 4x8 sheet, three lid/ring guides`
 
 ---
 

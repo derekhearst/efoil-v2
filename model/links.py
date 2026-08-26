@@ -187,9 +187,9 @@ LINKS = {
         ("https://www.amazon.com/s?k=Drill+America+M6+x+1.0+HSS+4-Flute+Bottoming+Tap", 8.78, "Drill America M6 x 1.0 HSS 4-Flute Bottoming Tap - same family, pick the M6"),
     "M6 x 1.0 tap + 5.0 mm drill set":
         ("B0GSG4FGYW", 9.99, "M6 Tap and 5.0mm Drill Bit Kit, M6x1.0 HSS Metric Drill and Tap Set, 4Pcs"),
-    "MDF 12 mm 2x4 panel, both drill guides":
-        ("https://www.homedepot.com/p/ProWood-1-2-in-x-2-ft-x-4-ft-Medium-Density-Fiberboard-Project-Panel-109097/202093821",
-         30.73, "ProWood 1/2 in x 2 ft x 4 ft MDF Project Panel"),
+    "MDF 12 mm 4x8 sheet, three lid/ring guides":
+        ("https://www.homedepot.com/p/ULTRASTOCK-1-2-in-x-4-ft-x-8-ft-MDF-Panel-M31240849097000000A/202332602",
+         0, "ULTRASTOCK 1/2 in x 4 ft x 8 ft MDF Panel"),
     "Maker Shop Boise Basic month":
         ("https://www.makershopboise.com/membership", 150.00, "Maker Shop Boise Membership - Basic"),
     "Closed-cell sponge EPDM 1/8in, module lid gasket":
@@ -371,7 +371,7 @@ LINK_VENDOR = {
     "M8 nyloc nut 316, 30 pk - prop nut": "Amazon",
     "M6 x 1.0 BOTTOMING tap, 4-flute": "Amazon",
     "M6 x 1.0 tap + 5.0 mm drill set": "Amazon",
-    "MDF 12 mm 2x4 panel, both drill guides": "Home Depot / hardware",
+    "MDF 12 mm 4x8 sheet, three lid/ring guides": "Home Depot / hardware",
     "Maker Shop Boise Basic month": "Maker Shop Boise",
     "Closed-cell sponge EPDM 1/8in, module lid gasket": "Amazon",
     "Nitrile gloves 6 mil, 100 pk": "Amazon",

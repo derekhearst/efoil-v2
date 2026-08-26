@@ -264,15 +264,45 @@ if __name__ == "__main__":
     # 2 x 4 ft is enough again now the gauges are off. It was 4 x 8 ONLY
     # because T09_rocker_and_deck is 1400 mm long and would not fit; with no
     # gauges the sheet carries one part, 14_groove_guide at 580 x 391.
-    MDF_SHEET = (1220.0, 610.0) if not (HAND_SHAPE or CHECK_GAUGES)         else (2440.0, 1220.0)
+    # 4 x 8. It was a 2 x 4 while there were two guides; the third takes the
+    # set past what a 2 x 4 can LAY OUT, not past what it can hold by area.
+    MDF_SHEET = (2440.0, 1220.0)
     # both cut by cnc_drawings.py, both from this sheet
     GUIDES = [("14_groove_guide", 580.0, 391.0),
-              ("16_module_lid_guide", 443.0, 314.0)]
+              ("16_module_lid_guide", 443.0, 314.0),
+              ("17_hatch_lid_master", 577.0, 388.0)]
+    # PER-PART FIT IS NOT ENOUGH, and this bit almost immediately: three
+    # guides came to 0.59 m2 in a 0.74 m2 panel - 80% and "fine" by area -
+    # while two of them are ~580 wide, so they eat a 391 mm band across the
+    # sheet and leave a 219 mm strip that the third (314 tall) cannot use.
+    # Area is not layout. Shelf-pack them instead.
+    def _nests(items, L, W):
+        rest = sorted(items, key=lambda q: -max(q[1], q[2]))
+        y = 0.0
+        while rest:
+            x, h, put = 0.0, 0.0, False
+            for q in list(rest):
+                for w, d in ((q[1], q[2]), (q[2], q[1])):
+                    if x + w <= L and y + d <= W:
+                        x += w
+                        h = max(h, d)
+                        rest.remove(q)
+                        put = True
+                        break
+            if not put:
+                return False
+            y += h
+        return True
+
     bad = []
-    for nm, w, h in [(q["name"], q["w"], q["h"]) for q in parts] + GUIDES:
+    items = [(q["name"], q["w"], q["h"]) for q in parts] + GUIDES
+    for nm, w, h in items:
         L, W = MDF_SHEET
         if not ((w <= L and h <= W) or (w <= W and h <= L)):
-            bad.append("%s (%.0f x %.0f)" % (nm, w, h))
+            bad.append("%s (%.0f x %.0f) - too big for the sheet" % (nm, w, h))
+    if not bad and not _nests(items, *MDF_SHEET):
+        bad.append("they do not NEST - every part fits alone, the set does "
+                   "not fit together")
     area = (sum(q["w"] * q["h"] for q in parts)
             + sum(g[1] * g[2] for g in GUIDES))
     print("  MDF sheet %.0f x %.0f, parts use %.2f m2 of %.2f"

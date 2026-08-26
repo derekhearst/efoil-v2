@@ -498,7 +498,10 @@ def build(p):
     #
     # WHAT IT DRILLS IS THE BARE CORE, before layup - see the note.
     d = Dxf()
-    d.poly(rect(0, lid_l, 0, lid_w))
+    # THE TRUE PROFILE, rounded corners and all - not the plain rectangle
+    # this was drawn as when it only had to carry a hole pattern. Derek wants
+    # to trim the lid against it, so it has to BE the lid.
+    d.poly(rrect(0, lid_l, 0, lid_w, lid_r))
     for (bx, by) in mb:
         d.circle(bx, by, 5.0 / 2)
     add("16_module_lid_guide", "MDF 12 mm", 12.0, 1, d, lid_l, lid_w,
@@ -517,11 +520,39 @@ def build(p):
         f"recess with 1.5 mm of clearance. So put the tolerance where the "
         f"slack is - cut the profile relative to the holes, not the holes "
         f"relative to the profile. "
+        f"IT IS THE LID'S EXACT FINISHED PROFILE, so it is also the thing you "
+        f"trim the laminate against - bearing-guided flush cutter, bearing on "
+        f"the MDF. Holes and outline then come off ONE physical part and "
+        f"alignment stops being a tolerance at all. "
         f"It does NOT drill the rails: those bores are MODELLED and printed, "
         f"so the inserts melt into full printed walls instead of into cut "
         f"infill. "
         f"NOT interchangeable with template 14 - that is 12 holes on a "
         f"580 x 391 ring, this is {len(mb)} on {lid_l:.0f} x {lid_w:.0f}.")
+
+    # 17 - hatch lid master --------------------------------------------------
+    # The same part for the big lid, and it did not exist: template 14 is the
+    # RING - 580 x 391 with the groove path - while the lid finishes at
+    # 577 x 388. Close enough to be confusing and not close enough to trim
+    # against.
+    d = Dxf()
+    d.poly(rrect(0, lw, 0, lh, R + RIM_W - 1.5))
+    for (bx, by) in hb:
+        d.circle(bx - 1.5, by - 1.5, (p["HATCH_BOLT_D"] + 0.6) / 2)
+    add("17_hatch_lid_master", "MDF 12 mm", 12.0, 1, d, lw, lh,
+        f"THE LID'S EXACT FINISHED PROFILE plus its {len(hb)} holes - one "
+        f"physical part carrying both, which is what makes the alignment "
+        f"exact instead of merely close. "
+        f"Two jobs. On the BARE CORE, before layup: drill the {len(hb)} x "
+        f"O{p['HATCH_BOLT_D'] + 0.6:.1f} through the cured black plugs, which "
+        f"is easy while they are still visible. After layup: register on the "
+        f"wax marks and trim the laminate to this outline with a "
+        f"bearing-guided flush cutter, bearing riding the MDF. "
+        f"Cut from the same numbers as 02_hatch_lid and 14_groove_guide, so "
+        f"master, lid, ring and captive nuts are one pattern in four places. "
+        f"NOTE it is NOT template 14: that one is the RING at "
+        f"{ow:.0f} x {oh:.0f} and carries the seal groove. This is the LID at "
+        f"{lw:.0f} x {lh:.0f}. Label them.")
 
     # 6 - mast plate -------------------------------------------------------
     d = Dxf()
