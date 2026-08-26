@@ -67,7 +67,7 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | [Solid silicone cord, 3 mm round - BOTH seals](https://www.amazon.com/dp/B096N67R2D) | 2 | pc | $17.59 | $35.18 | verified | 10 ft (3.05 m) pieces, 70A. Buy long - splice on a straight run, never a corner |
 | [Paste wax, releasing the groove filler](https://www.amazon.com/dp/B0GVCGHZFR) | 1 | ea | $16.99 | $16.99 | estimate | the filler must NOT bond - it comes back out after the glass goes over it |
 | [2.5 mm straight cutter - fallback](https://www.amazon.com/dp/B0GWSZ2KV2) | 1 | ea | $7.99 | $7.99 | estimate | only if you would rather cut the groove open than sand down to a proud filler strip. Undersize in a 4 mm groove on purpose |
-| [Silicone adhesive, bonding the cord into groove](https://www.amazon.com/dp/B0002UEN1U) | 1 | tube | $7.56 | $7.56 | estimate | a thin continuous bead under the cord. It cannot then migrate, lift out, or be pinched under the lid in a dark car park |
+| [Silicone adhesive, bonding the cord into groove](https://www.amazon.com/dp/B0002UEN1U) | 1 | tube | $7.56 | $7.56 | estimate | a thin continuous bead under the cord. It cannot then migrate, lift out, or be pinched under the lid in a dark car park. THIS IS ALSO THE SPLICE ADHESIVE - butt the two cord ends in it rather than reaching for cyanoacrylate, which does not bond silicone. Done that way the splice is a few mm of pour-in-place silicone cast in the groove, not a glued butt joint |
 | [M5 x 25 button head TORX TX25, 25 pk](https://www.amazon.com/dp/B08BZJPJTK) | 1 | pk | $15.99 | $15.99 | estimate | 24 needed of 25. TX25 drive. ISO 7380-2 flanged button; the model draws the plain O9.5 x 2.75 high, which is what the model draws and what puts the whole stack 1.5 mm BELOW the deck pad. 304 not A4 - see the note above, it is a deliberate trade and the captive nut stays A4. Tef-Gel every one. A4 SOCKET CAP B0CJFMMF58 is the fallback if the grade matters more than the toe |
 | [M6 penny washer O18 A4 DIN9021](https://www.amazon.com/dp/B0DB8RBY3N) | 1 | pk | $12.99 | $12.99 | estimate | 58 needed - TWO PER BOLT, one captive under the nut and one UNDER THE HEAD. M6 size on an M5 bolt: the 0.7 mm of slop is irrelevant on a washer and the 3 extra mm of OD is not |
 | [M5 A4 hex nut DIN934, 50 pk - CAPTIVE in the ring](https://www.amazon.com/dp/B084HLMN7B) | 1 | pk | $9.19 | $9.19 | verified | 34 needed. Dropped in at a print pause at Z=6.0; steel thread, so a hatch that comes off every ride never wears anything out |
@@ -145,7 +145,6 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | [Transfer screw set M3-M6](https://www.amazon.com/dp/B01IUBRSLO) | 1 | set | $24.99 | $24.99 | estimate | RECOVERY, not method - the CNC cuts all 12 hatch holes in one setup and the pattern aligns as one rigid body. This is for the one hole that does not pick up: mark the real nut, drill it out of the resin boss, re-pot, re-drill. M5 hatch, M4 module lid, M6 handle strips |
 | [Transfer punch set, metric 1-13 mm](https://www.amazon.com/dp/B005379HJA) | 1 | set | $24.99 | $24.99 | estimate | the 9 mm punch is a slip fit in Gong's own clearance holes and marks true centre within a few hundredths. A 6.8 tap drill rattling in that same 9 mm hole does not - and the mast plate's whole positional budget is 0.25 mm |
 | [Silicone grease for the seal cord](https://www.amazon.com/dp/B0BN82MJVK) | 1 | tube | $9.99 | $9.99 | estimate | stops the cord bonding to the lid in storage |
-| [Cyanoacrylate for the cord splice](https://www.amazon.com/dp/B0DKP4TVSF) | 1 | ea | $5.39 | $5.39 | estimate |  |
 | [Water-ingress alarm, 2 pk](https://www.amazon.com/dp/B09DCMCB8D) | 1 | pk | $12.99 | $12.99 | verified | Geevon 100 dB pucks - the 2-pack covers BOTH boards. Put the SENSOR on the module floor in the lowest corner, not up on the pack - it is only useful where water collects |
 | [1/4 in torque wrench, 10-50 in-lb](https://www.amazon.com/dp/B0D7PWP7YF) | 1 | ea | $25.97 | $25.97 | verified | 1.1-5.6 Nm. RANGE MATTERS: our hatch spec is 1.2 Nm = 10.6 in-lb, which is BELOW the 20 in-lb floor of the common 20-200 in-lb wrenches - they cannot read our number at all. CALIBRATION TOOL - set the drill clutch with it, then use the clutch. The hatch is captive nuts in ASA against a hard stop; past the stop more torque only loads the nut pockets |
 | [Coiled ankle leash](https://www.amazon.com/dp/B096VL3DHV) | 2 | ea | $14.99 | $29.98 | verified | you trust the remote failsafe; this is so the board stays with you |
@@ -154,7 +153,7 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | [M6 x 16 A4 button head, 10 pk](https://www.amazon.com/dp/B07DVRLQTK) | 1 | pk | $8.06 | $8.06 | verified | 12 needed - 2 per rail handle into the 6061 strip, 2 into the module pads. Fender washer under every one: the load lands on WEBBING, and a button head's edge is what tears it |
 | M6 washers for the rail handles | 0 | off | $0.00 | $0.00 | on hand | 8 off the M6 x 20 fender washer pack in section 10b, not a second purchase |
 | [M6 x 12.7 brass heat-set insert, 50 pc](https://www.amazon.com/dp/B077PGD6X2) | 1 | pk | $12.00 | $12.00 | estimate | 4 needed, module handle pads; 8.2 mm printed pilot, same as the model's cut. LOCTITE the bolts - the pedestal pivots on them every time the module is lifted |
-| **subtotal** | | | | **$191.32** | | |
+| **subtotal** | | | | **$185.93** | | |
 
 ## 9c Pack wiring
 
@@ -252,31 +251,31 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | Item | Qty | Unit | Unit $ | Ext $ | | Note |
 |---|---:|---|---:|---:|---|---|
 | Shipping - Divinycell, 6061 plate, VR20 | 1 | allow | $120.00 | $120.00 | estimate | STILL THE BIGGEST UNVERIFIED LINE - it wants three real carts to settle. Was $220 when it covered G10 sheet and hazmat epoxy, both of which are now out of the build entirely |
-| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $458.43 | $458.43 | verified |  |
-| **subtotal** | | | | **$578.43** | | |
+| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $458.10 | $458.10 | verified |  |
+| **subtotal** | | | | **$578.10** | | |
 
 ## Totals
 
 | | |
 |---|---:|
-| **Grand total, 2 boards** | **$8,098.89** |
-| Per board | $4,049.44 |
-| Of which verified | $7,344.62  (91%) |
-| Of which estimated | $754.27 |
-| Linked to a real listing | 131 lines |
+| **Grand total, 2 boards** | **$8,093.17** |
+| Per board | $4,046.58 |
+| Of which verified | $7,344.29  (91%) |
+| Of which estimated | $748.88 |
+| Linked to a real listing | 130 lines |
 | Priced but NOT linked | 2 lines, $105.00 |
-| Not linkable, but MEASURED (freight quotes) | 2 lines, $727.06 |
+| Not linkable, but MEASURED (freight quotes) | 2 lines, $726.73 |
 | Not linkable and still estimated | 1 lines, $120.00 |
 
 ## What is a board, and what is a shop
 
-Some of the total above is not the cost of a board at all - it is tools, jigs and templates that exist afterwards and do not repeat. Splitting them out is the difference between "a board costs $4,049" and "a board costs $3,523 and I now own a vacuum rig, a crimper and a full template set".
+Some of the total above is not the cost of a board at all - it is tools, jigs and templates that exist afterwards and do not repeat. Splitting them out is the difference between "a board costs $4,047" and "a board costs $3,521 and I now own a vacuum rig, a crimper and a full template set".
 
 | | |
 |---|---:|
 | One-time tooling (incl. its share of tax) | $1,051.95 |
-| **Marginal cost of a board** | **$3,523.47** |
-| Cost of the NEXT board after these 2 | $3,523.47 |
+| **Marginal cost of a board** | **$3,520.61** |
+| Cost of the NEXT board after these 2 | $3,520.61 |
 
 | One-time item | $ |
 |---|---:|

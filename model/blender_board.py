@@ -6528,6 +6528,24 @@ def build():
         "free outboard": round(RIM_W - HATCH_BOLT_INSET - NUT_WASHER_D / 2
                                - (CHAN_INSET + CHAN_W / 2), 1)}
     rep["hatch_second_cord_fits"] = False
+    # --- WILL THE HATCH CORD STILL BE SEALING IN THREE YEARS ---------------
+    # The module's gasket got an ageing model and this one did not, which is
+    # backwards: the module lid is opened twice a year, this one every ride.
+    # Same physics as module_gasket_aged - a HARD-STOP joint cannot close up
+    # to follow a compression set, so the loss shows as squeeze falling away.
+    # Silicone (VMQ) is the best of the elastomers here, 10-20% of deflection
+    # at the temperatures a board sees, and that is a large part of why the
+    # hatch is silicone and the module is EPDM.
+    _defl = CORD_D - CHAN_D                       # 0.6 mm on a O3 cord
+    rep["hatch_squeeze_pct"] = round(100.0 * _defl / CORD_D)
+    rep["hatch_groove_fill_pct"] = round(
+        100.0 * (math.pi / 4 * CORD_D ** 2) / (CHAN_W * CHAN_D))
+    rep["hatch_cord_set_pct"] = {"silicone VMQ": 20}
+    _free = CORD_D - 0.20 * _defl                 # free height after set
+    _res = _free - CHAN_D                         # squeeze left
+    rep["hatch_cord_aged"] = {
+        "residual squeeze %": round(100.0 * _res / _free, 1),
+        "of the 10% floor": round((100.0 * _res / _free) / 10.0, 2)}
     rep["hatch_seal_from_interior_mm"] = round(CHAN_INSET, 1)
     rep["hatch_bolt_from_interior_mm"] = round(RIM_W - HATCH_BOLT_INSET, 1)
     # A FULL-FACE GASKET IS PIERCED BY ITS BOLTS ON PURPOSE, so "seal inboard
@@ -7983,6 +8001,19 @@ def build():
                 "the %.1f ceiling. Past that this stops being a bolted joint "
                 "that dumps and starts being a vessel that stores"
                 % (_lid, rep[_k], RELIEF_CEILING_BAR))
+    if rep["hatch_cord_aged"]["residual squeeze %"] < 10.0:
+        fails.append(
+            "the hatch cord ages out: %.1f%% squeeze left after a 20%% "
+            "compression set, under the 10%% a face seal needs. This is a "
+            "hard-stop joint - the gap cannot close to follow the set, so it "
+            "shows up as contact stress falling away and the first anyone "
+            "knows is water inside"
+            % rep["hatch_cord_aged"]["residual squeeze %"])
+    if rep["hatch_groove_fill_pct"] > 90:
+        fails.append(
+            "the hatch groove is %d%% full - over about 90 the cord has "
+            "nowhere to go when it is squeezed and it extrudes over the land"
+            % rep["hatch_groove_fill_pct"])
     if rep["vent_head_margin"] < 2.0:
         fails.append(
             "the module vent is rated for %.1f m of immersion and the cavity "

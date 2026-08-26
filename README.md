@@ -130,7 +130,7 @@ rest are contingency tools.
 | Core splits | — | vertical at 1030 mm (bed length), horizontal at 101.6 mm (gantry) |
 | Machining | — | 4 pieces, 5 setups, 1 flip, no cradle |
 | Deck pad | — | 3 pieces of 5.8 mm EVA, one sheet does both boards |
-| Cost | ~$3,900 spent | **$4,049/board**, 91% verified |
+| Cost | ~$3,900 spent | **$4,047/board**, 91% verified |
 
 The board is a **sinker** — 79.0 L will not float a rider standing still.
 That is a consequence of narrowing to 560 mm, but note it has moved twice:
@@ -163,10 +163,13 @@ Ordered by what can actually stop the build.
    their checkout), but US customs is not. It arrives later as a courier
    invoice. Budget ~$210 if a 15% rate holds; the BOM carries it at zero so it
    is never mistaken for a verified figure.
-5. **Sinker at rest** — see above. A design characteristic, not a defect, but
-   confirm it is the one you want.
-6. **V1's reed-switch kill system is still not installed.** Parts on hand.
-   Required before any beginner rides that board.
+5. ~~**Sinker at rest.**~~ **Closed — accepted.** 79 L will not float a
+   rider standing still, and that is the board Derek wants.
+6. ~~**V1's reed-switch kill system.**~~ **Closed — not doing it.** Derek's
+   call on his own board. Worth recording what the item actually said: it was
+   scoped *"required before any beginner rides that board"*, so it is about
+   lending V1 out rather than about riding it himself. If someone else ever
+   takes it out, this reopens.
 7. **Measure the Gong top plate — thickness first, then its four clearance
    holes.** Two numbers, one part, and Derek already owns it (he cut its wire
    slot).

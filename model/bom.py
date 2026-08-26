@@ -604,7 +604,11 @@ def build():
     add("6  Hatch and seal", "Silicone adhesive, bonding the cord into groove",
         1, "tube", 12.00, EST,
         "a thin continuous bead under the cord. It cannot then migrate, lift "
-        "out, or be pinched under the lid in a dark car park")
+        "out, or be pinched under the lid in a dark car park. THIS IS ALSO "
+        "THE SPLICE ADHESIVE - butt the two cord ends in it rather than "
+        "reaching for cyanoacrylate, which does not bond silicone. Done that "
+        "way the splice is a few mm of pour-in-place silicone cast in the "
+        "groove, not a glued butt joint")
     # M5 x 25, not x 16. The bolt has to cross the 14 mm lid, then 6 mm of
     # ring above the nut, then 4 through the nut = 24. A 16 would have stood
     # 8 mm short of the thread it is supposed to reach - it would not have
@@ -1296,13 +1300,25 @@ def build():
     # both boards' 8 with one spare.
     add("9b Small but essential", "Silicone grease for the seal cord",
         1, "tube", 9.00, EST, "stops the cord bonding to the lid in storage")
+    # NO CYANOACRYLATE. There was a line here for it and it was the wrong
+    # chemistry for the one joint on this board that must not leak: CA does
+    # not bond silicone. Silicone is a low-surface-energy material and plain
+    # CA gives a weak, brittle joint on it - the O-ring trade splices silicone
+    # with a primer-activated CA or by hot vulcanising, never with the bottle
+    # off the shelf.
+    # And nothing needs buying, because the right material is already two
+    # sections up. The cord is bedded on a continuous bead of RTV SILICONE;
+    # butt the two ends with the SAME adhesive and the splice stops being a
+    # glued joint at all - it becomes a few millimetres of pour-in-place
+    # silicone, cast in the groove, bonded to the cord on both sides and to
+    # the groove underneath. One material, no low-energy bonding problem, one
+    # less tube in the box.
+    #
     # SPLICE PLACEMENT, and it is not fussiness - V1's own build notes say
     # "do NOT cut and butt-joint at corners (corner joints leak)". Put it at
     # the MIDPOINT OF A LONG STRAIGHT RUN, and also clear of the six printed
     # ring joints: a cord splice sitting on top of a ring joint stacks two
     # discontinuities in the same place.
-    add("9b Small but essential", "Cyanoacrylate for the cord splice",
-        1, "ea", 6.00, EST)
     add("9b Small but essential", "Water-ingress alarm, 2 pk", 1, "pk",
         12.99, OK, "Geevon 100 dB pucks - the 2-pack covers BOTH boards. Put "
         "the SENSOR on the module floor in the lowest corner, not up on the "

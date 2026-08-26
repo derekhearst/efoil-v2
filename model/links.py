@@ -80,8 +80,6 @@ LINKS = {
     "Leash plug 30 x 12.5, stainless pin, 2 pk":
         ("B0C6XLK8L9", 6.99, "E-outstanding Surf Leash Plug 2PCS 30x12.5mm "
                              "Surfboard Longboard Leash Plug Round Board Cup"),
-    "Cyanoacrylate for the cord splice":
-        ("B0DKP4TVSF", 5.39, "Thin CA Glue 20g Cyanoacrylate Super Glue with 3 Droppers"),
     "DALY Smart BMS Li-ion 16S 60V 150A":
         ("https://www.amazon.com/dp/B0CXXFQT9S", 147.70, "DALY Smart BMS 16S 60V 150A Li-ion WiFi Bluetooth CAN RS485"),
     "Dielectric grease, terminals":
@@ -314,7 +312,6 @@ LINK_VENDOR = {
     "Chip brushes 2 in, 36 pk": "Amazon",
     "Coiled ankle leash": "Amazon",
     "Leash plug 30 x 12.5, stainless pin, 2 pk": "Amazon",
-    "Cyanoacrylate for the cord splice": "Amazon",
     "DALY Smart BMS Li-ion 16S 60V 150A": "Amazon",
     "Dielectric grease, terminals": "Amazon",
     "Divinycell H-100 1/4in quarter 21x42, hatch lid cores - 2 sheets bonded to 1/2in": "Fiberglass Supply",

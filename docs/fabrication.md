@@ -426,7 +426,7 @@ fibre ends at the cavity ledge.
 `Paste wax, releasing the groove filler` ·
 `Solid silicone cord, 3 mm round - BOTH seals` ·
 `Silicone adhesive, bonding the cord into groove` ·
-`Cyanoacrylate for the cord splice` · `2.5 mm straight cutter - fallback` ·
+`2.5 mm straight cutter - fallback` ·
 `M5 x 25 button head TORX TX25, 25 pk` · `Transfer screw set M3-M6` ·
 `Solid silicone cord, 1/8 in (3.175 mm) - the spare size`
 

@@ -376,7 +376,14 @@
  "hatch_buried_washer_MPa": 1.19,
  "hatch_buried_washer_note": "FITS, at O17.0 - the most the 10.5 mm edge distance allows - landing at 1.19 MPa against the core's 2.0. But it spreads into FOAM, it is buried at layup so a bad hole cannot be recovered, and it cannot be countersunk: the cone wants 0.0 mm of solid material and the skin over it is 1.2",
  "hatch_buried_washer_works": true,
+ "hatch_cord_aged": {
+  "of the 10% floor": 1.67,
+  "residual squeeze %": 16.7
+ },
  "hatch_cord_min_bend_R": 9.0,
+ "hatch_cord_set_pct": {
+  "silicone VMQ": 20
+ },
  "hatch_core_limit_MPa": 2.0,
  "hatch_epoxy_creep_threshold_pct": 25,
  "hatch_fastening": "M5 through the lid into a CAPTIVE M5 NUT printed into the ASA ring. PRINT SEAL FACE DOWN - the bed gives a flatter, smoother seal land than any top surface will, and the 4 x 2.4 groove then only has to bridge 4 mm, which ASA does without support. Pause at print Z = 4.5 mm, drop 12 M5 nuts into their pockets, resume. Steel thread, so the hatch can come off every ride for ever without wearing anything",
@@ -456,6 +463,7 @@
  "hatch_second_cord_fits": false,
  "hatch_skin_spread_mm": 19.3,
  "hatch_spreader_d_needed_mm": 8.9,
+ "hatch_squeeze_pct": 20,
  "hatch_stop_is_hard": true,
  "hatch_torque_headroom": 6.4,
  "hatch_torque_nm": 1.2,
