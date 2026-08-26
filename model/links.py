@@ -29,7 +29,7 @@ LINKS = {
         ("B07RJWHPKG", 79.95, "Fiberglass 1708 Biaxial Mat Cloth 50in x 360in 10 Yard"),
     "2 mm glass beads or shim wire, bond-line control":
         ("B0FVSHYP99", 7.19, "uxcell 2000Pcs 2mm Solid Round Clear Glass Beads"),
-    "2.5 mm straight cutter - fallback":
+    "2.5 mm straight cutter, opening the seal groove":
         ("B0GWSZ2KV2", 7.99, "Straight Router Bit 1/8in Shank 2.5x22mm Carbide 2 Flute"),
     "21700 cell holder, 1x2 brick, 50 pk":
         ("B092PSRGZ6", 9.99, "Heyiarbeit 50Pcs 2 x Cell 21700 Battery Holder Bracket Cell Spacer"),
@@ -289,7 +289,7 @@ LINK_VENDOR = {
     "16 AWG silicone, 6 colours x 5 ft": "Amazon",
     "1708 biax, 50in x 10 yd roll": "Amazon",
     "2 mm glass beads or shim wire, bond-line control": "Amazon",
-    "2.5 mm straight cutter - fallback": "Amazon",
+    "2.5 mm straight cutter, opening the seal groove": "Amazon",
     "21700 cell holder, 1x2 brick, 50 pk": "Amazon",
     "3M 4200 FC 3 oz tube, skim over the bung": "Amazon",
     "3M 60923 organic vapour / acid gas P100, pair": "Amazon",

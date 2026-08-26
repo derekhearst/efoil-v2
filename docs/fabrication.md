@@ -426,28 +426,42 @@ fibre ends at the cavity ledge.
 `Paste wax, releasing the groove filler` ·
 `Solid silicone cord, 3 mm round - BOTH seals` ·
 `Silicone adhesive, bonding the cord into groove` ·
-`2.5 mm straight cutter - fallback` ·
+`2.5 mm straight cutter, opening the seal groove` ·
 `M5 x 25 button head TORX TX25, 25 pk` · `Transfer screw set M3-M6` ·
 `Solid silicone cord, 1/8 in (3.175 mm) - the spare size`
 
 The ring went in at step 10a and has been glassed over since — **the whole
-face, under 0.6 mm of laminate, bolt holes included.** Now sand the ring
-face flat. It is the sealing land, so it has to be flat anyway, and that one
-pass uncovers everything: the filler strip shows through as a line along the
-whole groove, and **twelve printed pips show through as twelve dots**, one
-over each buried nut. Pick them all out. The printed walls are the finished
-groove and the twelve holes are exactly where the model put them.
+face, under 0.6 mm of laminate, bolt holes included.** Two different jobs
+to open it again, and they are deliberately not the same job.
 
-> **The pips are why there is no hunting for the nuts.** Print them 0.5 mm
-> proud with the ring, the same as the groove filler. Without them all twelve
-> M5 nuts are buried under glass with nothing to aim at — and transfer screws
-> do not help, because a transfer screw has to be threaded *into* the nut to
-> mark anything, which is the one thing you cannot do yet.
+**The groove is ROUTED, off template 14.** The filler strip prints **flush**,
+so the laminate over the seal land is flat — no step for the glass to bridge
+at. Locate the template on the **rebate wall**: 34 mm of CNC ledge with a
+vertical wall running the whole perimeter, true by construction and
+continuous round the corners where a straight fence could not follow. A
+**2.5 mm cutter in the 4 mm groove** leaves **0.75 mm** of lateral slop each
+side before it can reach the land. Set the depth to just break into the
+filler — you will feel it go soft — then pick the filler out and the
+**printed walls are the finished groove**.
 
-**This is a sanding job, not a routing one.** The 2.5 mm cutter on the Uses
-list is the fallback for anyone who would rather cut the groove open; the
-plan is to sand the land you have to flatten regardless and let the proud
-features find themselves.
+> **Why flush and not proud.** An earlier scheme printed the filler 0.5 mm
+> proud so the glass draped over a ridge you could sand down to. Self-finding
+> and no template — but it ran a 0.5 mm step **1.8 m along the sealing land**,
+> and glass bridges at the two inside corners of a step. That seeds a pair of
+> void-prone lines either side of the groove, in the one band of laminate the
+> cord has to land on, and sanding back to the ring face lands about *at*
+> those corners rather than safely past them.
+
+**The twelve bolt holes are the exception — those pips stay proud**, and sand
+through. They sit on the **bolt** land at 22 mm, ten millimetres outboard of
+the groove, where a bridged shoulder round a 6 mm dot costs nothing. Without
+them all twelve captive M5 nuts are buried with nothing to aim at, and
+transfer screws do not help — a transfer screw has to be threaded *into* the
+nut to mark anything. The template cannot do it either: it references the
+rebate, so it carries whatever the ring drifted when it was seated, and a
+groove can be a millimetre out and still seal where a bolt hole cannot.
+
+**Flush where it seals, proud where it only has to be found.**
 
 **Wet the opened groove with neat epoxy before the cord goes in.** Sanding or
 routing leaves cut glass ends in the seal itself, which is the same wick that

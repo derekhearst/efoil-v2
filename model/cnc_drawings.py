@@ -605,16 +605,20 @@ def build(p):
                  RIM_W - gi - GUIDE_OFF, oh - RIM_W + gi + GUIDE_OFF,
                  R + gi + GUIDE_OFF))
     d.poly(rrect(0, ow, 0, oh, R + RIM_W), layer="CHANNEL")
-    add("14_groove_guide", "MDF 12 mm - FALLBACK ONLY", 12.0, 1, d, ow, oh,
-        f"PROBABLY NOT NEEDED. Print the filler strip "
-        f"{p['CHAN_FILLER_PROUD']:.1f} mm PROUD of the ring face and the glass "
-        f"drapes over a {p['CHAN_W']:.0f} mm ridge you can see and feel. Then "
-        f"the job is just SANDING THE RING FACE FLAT - which that face needs "
-        f"anyway, since it is the seal land and the lid has to bottom evenly "
-        f"on it. The ridge sands through first, the filler shows as a line "
-        f"along the whole groove, and you pick it out. No cutter, no guide, "
-        f"no template on a finished board. "
-        f"Cut this only if you would rather route it. "
+    add("14_groove_guide", "MDF 12 mm", 12.0, 1, d, ow, oh,
+        f"CUT THIS - it is the plan, not the fallback, and it used to say the "
+        f"opposite. The old scheme printed the groove filler 0.5 mm PROUD so "
+        f"the glass draped over a ridge you could sand down to. Self-finding, "
+        f"and it put a 0.5 mm step running 1.8 m along the SEALING LAND: "
+        f"glass over a step bridges at the two inside corners, so it seeded a "
+        f"pair of void-prone lines either side of the groove, in the one band "
+        f"of laminate the cord has to land on - and sanding back to the ring "
+        f"face lands about AT those corners rather than safely past them. "
+        f"The filler is FLUSH now and this template opens the groove. "
+        f"LOCATE IT OFF THE REBATE WALL, which is {p['RIM_W']:.0f} mm of CNC "
+        f"ledge with a vertical wall running the whole perimeter - true by "
+        f"construction, and continuous round the corners where a straight "
+        f"fence could not follow. "
         f"Opens the seal groove AFTER glassing. Use a "
         f"{p['CHAN_CUTTER']:.1f} mm cutter in the {p['CHAN_W']:.0f} mm groove "
         f"- {(p['CHAN_W']-p['CHAN_CUTTER'])/2:.2f} mm of lateral slop each "

@@ -429,18 +429,36 @@ CHAN_D_PRINT = CHAN_D - RING_LAM   # ...so this much is printed into the ASA
 # Use a 2.5 mm cutter in the 4 mm groove: 0.75 mm of lateral slop each side
 # before it can touch the land. Break through, then pick the filler out.
 CHAN_CUTTER = 2.5
-# ...although you may not need a cutter or a guide at all. PRINT THE FILLER
-# STRIP PROUD of the ring face by CHAN_FILLER_PROUD. The glass then drapes
-# over a 4 mm ridge instead of a flat face, and that ridge is a line you can
-# see and feel through the laminate.
-# Which turns the whole operation into SANDING THE RING FACE FLAT - which is
-# something you want to do anyway, because that face is the seal land and it
-# has to be flat for the lid to bottom evenly on it. The ridge sands through
-# first, the filler shows up as a 4 mm line along the whole groove, and you
-# pick it out. No cutter following a template on a finished board at all.
-# Keep the guide template as the fallback for anyone who would rather cut it.
-CHAN_FILLER_PROUD = 0.5          # groove: 74% fill at 20% squeeze
-# ...AND THE SAME TRICK ON THE TWELVE BOLT HOLES, which had no plan at all.
+# THE FILLER IS FLUSH, NOT PROUD, AND DEREK IS RIGHT ABOUT WHY. The previous
+# scheme printed it 0.5 mm PROUD so the glass draped over a ridge you could
+# see and feel, turning the job into sanding the face flat until the line
+# showed. Self-finding, and it read well.
+#
+# What it ignored is WHERE that ridge is. It runs 1.8 m along the SEALING
+# LAND, and glass over a 0.5 mm step bridges at the two inside corners where
+# the step meets the face - so the scheme put a pair of void-prone lines
+# either side of the groove, in the one band of laminate the cord has to
+# land on. Sanding back to the ring face lands right about at those corners
+# rather than safely past them. A step under a laminate that has to seal is
+# a bad trade for the convenience of finding it easily.
+#
+# Flush, and the groove is ROUTED off the template - CNC part 14, which
+# already exists and was marked "fallback only". It locates off the REBATE
+# WALL: 27.9 mm of CNC-cut vertical wall running the whole perimeter, true
+# by construction and continuous round the corners where a straight fence
+# could not follow. The 2.5 mm cutter in a 4 mm groove leaves 0.75 mm of
+# lateral slop each side before it can touch the land.
+CHAN_FILLER_PROUD = 0.0          # FLUSH - see above
+# ...BUT THE TWELVE BOLT PIPS STAY PROUD, and that is not inconsistent - it
+# is the same reasoning applied to a different place. The pips sit on the
+# BOLT land at 22 mm, ten millimetres outboard of the groove and nowhere
+# near where the cord seals, so a bridged shoulder round a 6 mm dot costs
+# nothing. And they solve a problem routing does not: the ring is glassed
+# OVER, so all twelve captive M5 nuts end up under laminate, and a template
+# located off the rebate carries whatever the ring drifted when it was
+# seated. A pip is ON the ring - zero drift, by construction. Groove
+# position can be a millimetre out and still seal; a bolt hole cannot.
+#     flush where it seals, proud where it only has to be found.
 # The laminate runs across the ledge and OVER the ring face - that is the
 # whole point of glassing the ring in, and it is why the printed groove is
 # only 1.8 deep with the glass making up the 2.4. But it covers the bolt
@@ -452,8 +470,7 @@ CHAN_FILLER_PROUD = 0.5          # groove: 74% fill at 20% squeeze
 # filler strip. Sanding the ring face flat - which has to happen anyway,
 # it is the sealing land - breaks through the groove line AND twelve dots in
 # the same pass, and both pick out. No measuring, no hunting, no template.
-CHAN_FILLER_PROUD = 0.5          # (same value, used for both)
-BOLT_PIP_PROUD = CHAN_FILLER_PROUD
+BOLT_PIP_PROUD = 0.5             # on the BOLT land, not the seal land
 CHAN_INSET = 10.0                  # groove centreline outboard of the opening.
                                    # Seal inboard, bolts outboard - at 15 the
                                    # M5 heads landed on top of the channel.
@@ -6543,8 +6560,12 @@ def build():
                                - (CHAN_INSET + CHAN_W / 2), 1)}
     rep["hatch_second_cord_fits"] = False
     rep["hatch_bolt_holes_found_by"] = (
-        "PRINTED PIPS, %.1f mm proud, one per hole - the same trick the "
-        "groove filler uses. The ring is glassed OVER, so all %d nuts end up "
+        "PRINTED PIPS, %.1f mm proud, one per hole. The groove filler is "
+        "FLUSH and gets routed off template 14; these are the exception, "
+        "because they sit on the BOLT land 10 mm outboard of the seal where "
+        "a bridged shoulder costs nothing, and because a template carries "
+        "whatever the ring drifted when it was seated while a pip is ON the "
+        "ring. The ring is glassed OVER, so all %d nuts end up "
         "under %.1f mm of laminate; sanding the seal land flat breaks through "
         "the groove line and the %d dots in one pass and both pick out. "
         "Before this there was no method here at all - the step reached for "

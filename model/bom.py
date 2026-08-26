@@ -598,9 +598,15 @@ def build():
     # PROUD turns this from routing-a-groove into sanding-the-ring-face-flat -
     # which that face needs regardless, because it is the seal land. The ridge
     # sands through first and the filler shows up as a line to pick out.
-    add("6  Hatch and seal", "2.5 mm straight cutter - fallback", 1, "ea",
-        14.00, EST, "only if you would rather cut the groove open than sand "
-        "down to a proud filler strip. Undersize in a 4 mm groove on purpose")
+    add("6  Hatch and seal", "2.5 mm straight cutter, opening the seal groove", 1, "ea",
+        14.00, EST,
+        "NOT a fallback any more. The groove filler prints FLUSH and this "
+        "opens the groove, off template 14 located on the rebate wall. The "
+        "scheme it replaces printed the filler 0.5 mm proud and sanded down "
+        "to it - self-finding, but it ran a 0.5 mm step 1.8 m along the "
+        "SEALING land, and glass bridges at the corners of a step. Undersize "
+        "in a 4 mm groove on purpose: 0.75 mm of lateral slop each side "
+        "before the cutter can touch the land")
     add("6  Hatch and seal", "Silicone adhesive, bonding the cord into groove",
         1, "tube", 12.00, EST,
         "a thin continuous bead under the cord. It cannot then migrate, lift "

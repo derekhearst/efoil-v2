@@ -127,7 +127,7 @@ https://www.amazon.com
 | [M6 x 1.0 BOTTOMING tap, 4-flute](https://www.amazon.com/s?k=Drill+America+M6+x+1.0+HSS+4-Flute+Bottoming+Tap) | 1 | ea | $8.78 | **verified** | the one that actually matters - blind at 10 mm in a 12.7 plate, and the taper tap in the set above cannot reac |
 | [Kapton tape, pack insulation](https://www.amazon.com/dp/B006ZFQNT6) | 1 | roll | $8.25 | estimate |  |
 | [M6 x 16 A4 button head, 10 pk](https://www.amazon.com/dp/B07DVRLQTK) | 1 | pk | $8.06 | **verified** | 12 needed - 2 per rail handle into the 6061 strip, 2 into the module pads. Fender washer under every one: the  |
-| [2.5 mm straight cutter - fallback](https://www.amazon.com/dp/B0GWSZ2KV2) | 1 | ea | $7.99 | estimate | only if you would rather cut the groove open than sand down to a proud filler strip. Undersize in a 4 mm groov |
+| [2.5 mm straight cutter, opening the seal groove](https://www.amazon.com/dp/B0GWSZ2KV2) | 1 | ea | $7.99 | estimate | NOT a fallback any more. The groove filler prints FLUSH and this opens the groove, off template 14 located on  |
 | [M8 316 washer, prop nut](https://www.amazon.com/dp/B0DDGRXHT7) | 1 | pk | $7.69 | **verified** | only 2 needed; sold in 10s |
 | [Inline 10 A fuse + holder, charge lead](https://www.amazon.com/dp/B0F2YXV41Q) | 1 | pk | $7.59 | **verified** | at SPLIT A on the charge positive. The ANL is sized for the motor and cannot protect 16 AWG |
 | [Silicone adhesive, bonding the cord into groove](https://www.amazon.com/dp/B0002UEN1U) | 1 | tube | $7.56 | estimate | a thin continuous bead under the cord. It cannot then migrate, lift out, or be pinched under the lid in a dark |

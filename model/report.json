@@ -361,7 +361,7 @@
  "hatch_bare_head_torque_headroom": 1.9,
  "hatch_bolt_bottoms_out": true,
  "hatch_bolt_from_interior_mm": 22.0,
- "hatch_bolt_holes_found_by": "PRINTED PIPS, 0.5 mm proud, one per hole - the same trick the groove filler uses. The ring is glassed OVER, so all 12 nuts end up under 0.6 mm of laminate; sanding the seal land flat breaks through the groove line and the 12 dots in one pass and both pick out. Before this there was no method here at all - the step reached for transfer screws, which have to be threaded INTO the nut to mark anything, and that is exactly what you cannot do through glass",
+ "hatch_bolt_holes_found_by": "PRINTED PIPS, 0.5 mm proud, one per hole. The groove filler is FLUSH and gets routed off template 14; these are the exception, because they sit on the BOLT land 10 mm outboard of the seal where a bridged shoulder costs nothing, and because a template carries whatever the ring drifted when it was seated while a pip is ON the ring. The ring is glassed OVER, so all 12 nuts end up under 0.6 mm of laminate; sanding the seal land flat breaks through the groove line and the 12 dots in one pass and both pick out. Before this there was no method here at all - the step reached for transfer screws, which have to be threaded INTO the nut to mark anything, and that is exactly what you cannot do through glass",
  "hatch_bolt_len_mm": 30,
  "hatch_bolt_len_needed_mm": 25.3,
  "hatch_bolt_pitch_mm": 153.8,
