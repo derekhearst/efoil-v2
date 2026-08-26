@@ -71,6 +71,9 @@ LINKS = {
         ("B015NM0B8K", 13.95, "Breather Bleeder Cloth 1 Yard Elite Lab Vacuum Bagging"),
     "Cable ties, lacing, adhesive mounts":
         ("B08RMS5H25", 9.99, "140 Pack 3/4in Zip Tie Adhesive Mounts with Ties"),
+    "Black wax filler sticks, blocking + marking the bolt holes":
+        ("B0CCDL8XNV", 7.99, "SEISSO Furniture Repair Crayon, 6 PCS Wood "
+         "Filler Sticks, Scratch Repair Wax, Black"),
     "Charger 67.2 V 5 A, 16S  (NOT 58.8 V)":
         ("B0DK6FTB1P", 45.99, "67.2V 5A Fast Charger for 16S 60V Li-ion, C13 3-Pin IEC"),
     "Chip brushes 2 in, 36 pk":
@@ -308,6 +311,7 @@ LINK_VENDOR = {
     "Bag connector w/ ball valve, 1/4 in QD": "Amazon",
     "Breather / bleeder cloth": "Amazon",
     "Cable ties, lacing, adhesive mounts": "Amazon",
+    "Black wax filler sticks, blocking + marking the bolt holes": "Amazon",
     "Charger 67.2 V 5 A, 16S  (NOT 58.8 V)": "Amazon",
     "Chip brushes 2 in, 36 pk": "Amazon",
     "Coiled ankle leash": "Amazon",

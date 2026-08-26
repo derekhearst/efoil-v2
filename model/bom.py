@@ -607,6 +607,21 @@ def build():
         "SEALING land, and glass bridges at the corners of a step. Undersize "
         "in a 4 mm groove on purpose: 0.75 mm of lateral slop each side "
         "before the cutter can touch the land")
+    # BLOCKS THE BOLT HOLES AND MARKS THEM, one job doing two things. The 12
+    # holes have to be plugged during layup or resin fills the nut pockets,
+    # and until now nothing did it - the ring was glassed over with twelve
+    # open holes under it and no stated way to find them again.
+    # BLACK on purpose: a thin wet-out laminate is translucent, and black
+    # under it reads as a dark spot well enough to line template 14 up on.
+    # Furniture repair wax is exactly the right material - soft enough to
+    # press into a O5.6 hole cold, holds shape under the bag, digs out with a
+    # pick, and leaves no residue that matters inside a hole you then drill.
+    # KEEP IT INSIDE THE HOLE and wipe the face before layup. Wax on the
+    # sealing land is a release agent in a bond line, right under the washer.
+    add("6  Hatch and seal", "Black wax filler sticks, blocking + marking the bolt holes", 1, "pk", 7.99, EST,
+        str(M["hatch_bolts"] * N) + " holes across both boards - one stick "
+        "does the lot. Not a structural part; it is a plug and a marker",
+        vendor="Amazon")
     add("6  Hatch and seal", "Silicone adhesive, bonding the cord into groove",
         1, "tube", 12.00, EST,
         "a thin continuous bead under the cord. It cannot then migrate, lift "

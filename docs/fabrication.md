@@ -298,12 +298,16 @@ nothing.
 
 **Blocks on:** steps 3, 7
 **Uses:** `Acetone, solvent-welding the printed joints` ·
-`Paste wax, releasing the groove filler`
+`Paste wax, releasing the groove filler` ·
+`Black wax filler sticks, blocking + marking the bolt holes`
 
 **The ring is glassed IN, not bonded on afterwards.** Acetone-weld the six
 printed segments into one ring — a brushed acetone/ASA slurry makes it one
 piece of plastic, not an adhesive line — then seat it on its ledge with the
-printed filler strip **waxed** into the seal groove.
+printed filler strip **waxed** into the seal groove — and **press black wax
+into all twelve bolt holes** before it goes down. That is not optional: resin
+in a captive-nut pocket ruins it, and the black is what you line the template
+up on at step 13. Keep the wax *inside* the holes and wipe the face.
 
 It stays there through the cavity layup. The laminate runs up the cavity
 wall, across the ledge and over the ring in one continuous piece, which is
@@ -452,25 +456,36 @@ filler — you will feel it go soft — then pick the filler out and the
 > cord has to land on, and sanding back to the ring face lands about *at*
 > those corners rather than safely past them.
 
-**The twelve bolt holes are marked by DIMPLES, 0.5 mm deep — recessed, never
-proud.** The glass bridges each dip and leaves a resin lens you can see and
-feel; drill it out and you are into the ring's own bolt hole. Without some
-mark, all twelve captive M5 nuts are buried with nothing to aim at, and
-transfer screws do not help — a transfer screw has to be threaded *into* the
-nut to mark anything.
+**The twelve bolt holes are found with the same template, backed up by
+coloured wax.** The holes have to be blocked during layup regardless — resin
+in a nut pocket ruins it — so the wax that blocks them also marks them: it
+reads through the thin laminate afterwards, well enough to line the template
+up on. Align it on the two or three that show clearly and the rest are right
+by construction, then drill through the bushings.
 
-> **Nothing on this face is ever proud, and here is what that rule is worth.**
-> Raised pips were the obvious way to find the holes, and they fail twice.
-> A 0.5 mm pip that survives to assembly holds the lid **0.5 mm off the ring
-> face** — the cord stands only 0.6 proud of its groove, so squeeze goes from
-> 20% to **3%**, under the 10% floor, and the seal is dead. And even sanded
-> away, the glass that bridged around it leaves a **void at r = 3–5 mm** —
-> inside the Ø18 washer, in the crush path, under the most loaded hardware on
-> the board.
+> **Template and lid come off one master.** The 12 circles in part 14 are the
+> same bolt ring that cuts `02_hatch_lid`, and the same one that places the
+> ring's captive nuts. There is no second set of numbers anywhere to
+> disagree — the guide, the lid and the nuts are one pattern expressed three
+> times.
 >
-> The failure modes settle it. A dimple that does not show clearly costs you
-> a hunt with the template. A pip that does not sand away costs you a seal,
-> and you find out when there is water inside.
+> The two halves cover each other. The **template is exact** but references
+> the rebate, so it carries whatever the ring drifted when it was seated. The
+> **wax marks are on the ring** and cannot drift, but are only semi-visible.
+> Neither alone is enough; together they are.
+
+> **Nothing is printed on this face — not proud, not recessed.** Raised pips
+> were the obvious way to find the holes and they fail twice. One surviving to
+> assembly holds the lid **0.5 mm off the ring face**: the cord stands only
+> 0.6 proud of its groove, so squeeze goes 20% → **3%**, under the 10% floor,
+> and the seal is dead. And even sanded away, the glass that bridged around it
+> leaves a **void at r = 3–5 mm** — inside the Ø18 washer, in the crush path.
+> Recessed dimples fix both, but a dimple is still a feature cut into the one
+> face whose whole job is to be flat and continuous.
+>
+> **Keep the wax inside the hole and wipe the face before layup.** Wax on the
+> sealing land is a release agent in a bond line, under the washer — the same
+> mistake as the pip, arriving a different way.
 
 **Wet the opened groove with neat epoxy before the cord goes in.** Sanding or
 routing leaves cut glass ends in the seal itself, which is the same wick that

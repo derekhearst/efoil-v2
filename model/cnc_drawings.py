@@ -605,6 +605,14 @@ def build(p):
                  RIM_W - gi - GUIDE_OFF, oh - RIM_W + gi + GUIDE_OFF,
                  R + gi + GUIDE_OFF))
     d.poly(rrect(0, ow, 0, oh, R + RIM_W), layer="CHANNEL")
+    # ...AND THE TWELVE BOLT POSITIONS, which is Derek's, and it is the right
+    # shape for this. hb is the SAME bolt ring that cuts 02_hatch_lid, so the
+    # lid, this template and the ring's own nut pockets all come off one
+    # master by construction - there is no second set of numbers anywhere to
+    # disagree. Drilled 5.0 here for a drill bushing; the ring's own hole is
+    # already there under the glass.
+    for (bx, by) in hb:
+        d.circle(bx, by, 5.0 / 2, layer="CUT")
     add("14_groove_guide", "MDF 12 mm", 12.0, 1, d, ow, oh,
         f"CUT THIS - it is the plan, not the fallback, and it used to say the "
         f"opposite. The old scheme printed the groove filler 0.5 mm PROUD so "
@@ -614,7 +622,19 @@ def build(p):
         f"pair of void-prone lines either side of the groove, in the one band "
         f"of laminate the cord has to land on - and sanding back to the ring "
         f"face lands about AT those corners rather than safely past them. "
-        f"The filler is FLUSH now and this template opens the groove. "
+        f"The filler is FLUSH now and this template opens the groove - AND "
+        f"FINDS THE {len(hb)} BOLT HOLES, which is the other half of what it "
+        f"is for. Those {len(hb)} circles are the same bolt ring that cuts "
+        f"02_hatch_lid, so the lid, this template and the ring's captive nuts "
+        f"all come off ONE master and cannot disagree. The holes are blocked "
+        f"during layup with COLOURED WAX, which keeps resin out of the nut "
+        f"pockets and shows through the thin laminate afterwards - line the "
+        f"template up on the two or three you can see clearly and the rest "
+        f"are right by construction. "
+        f"NO PRINTED MARKS ON THE RING FACE, proud or recessed: this face is "
+        f"the sealing land and the one rule it has is that nothing stands on "
+        f"it. Keep the wax INSIDE the hole and wipe the face before layup - "
+        f"wax on the land is a bond-line contaminant under the washer. "
         f"LOCATE IT OFF THE REBATE WALL, which is {p['RIM_W']:.0f} mm of CNC "
         f"ledge with a vertical wall running the whole perimeter - true by "
         f"construction, and continuous round the corners where a straight "

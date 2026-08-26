@@ -6,10 +6,10 @@ Grouped by where you buy it rather than by what it does, because that is the ord
 
 | Supplier | Lines | $ |
 |---|---:|---:|
-| Amazon | 113 | $3,658.48 |
+| Amazon | 114 | $3,666.47 |
 | Gong | 1 | $1,404.00 |
 | Flipsky | 3 | $1,038.00 |
-| Not a purchase - tax and freight | 3 | $846.73 |
+| Not a purchase - tax and freight | 3 | $847.21 |
 | BatteryHookup | 2 | $297.50 |
 | Fiberglass Supply | 3 | $253.38 |
 | Maker Shop Boise | 2 | $249.00 |
@@ -17,7 +17,7 @@ Grouped by where you buy it rather than by what it does, because that is the ord
 | Speedy Metals | 1 | $88.92 |
 | Easy Composites | 1 | $52.00 |
 | Branom / RS | 2 | $36.00 |
-| **TOTAL** | | **$8,093.17** |
+| **TOTAL** | | **$8,101.64** |
 
 ## Amazon
 
@@ -128,6 +128,7 @@ https://www.amazon.com
 | [Kapton tape, pack insulation](https://www.amazon.com/dp/B006ZFQNT6) | 1 | roll | $8.25 | estimate |  |
 | [M6 x 16 A4 button head, 10 pk](https://www.amazon.com/dp/B07DVRLQTK) | 1 | pk | $8.06 | **verified** | 12 needed - 2 per rail handle into the 6061 strip, 2 into the module pads. Fender washer under every one: the  |
 | [2.5 mm straight cutter, opening the seal groove](https://www.amazon.com/dp/B0GWSZ2KV2) | 1 | ea | $7.99 | estimate | NOT a fallback any more. The groove filler prints FLUSH and this opens the groove, off template 14 located on  |
+| [Black wax filler sticks, blocking + marking the bolt holes](https://www.amazon.com/dp/B0CCDL8XNV) | 1 | pk | $7.99 | estimate | 24 holes across both boards - one stick does the lot. Not a structural part; it is a plug and a marker |
 | [M8 316 washer, prop nut](https://www.amazon.com/dp/B0DDGRXHT7) | 1 | pk | $7.69 | **verified** | only 2 needed; sold in 10s |
 | [Inline 10 A fuse + holder, charge lead](https://www.amazon.com/dp/B0F2YXV41Q) | 1 | pk | $7.59 | **verified** | at SPLIT A on the charge positive. The ANL is sized for the motor and cannot protect 16 AWG |
 | [Silicone adhesive, bonding the cord into groove](https://www.amazon.com/dp/B0002UEN1U) | 1 | tube | $7.56 | estimate | a thin continuous bead under the cord. It cannot then migrate, lift out, or be pinched under the lid in a dark |
@@ -165,7 +166,7 @@ Some Flipsky appears on Amazon but the range is thin and usually dearer. Buy dir
 
 | Item | Qty | Unit | Ext | Price | Note |
 |---|---:|---|---:|---|---|
-| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $458.10 | **verified** |  |
+| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $458.58 | **verified** |  |
 | Gong shipping to Idaho, ONE order, both foils | 1 | order | $268.63 | **verified** | quoted at checkout for 2 x XL Alu setups. PER ORDER, not per foil - ordering the two separately would roughly  |
 | Shipping - Divinycell, 6061 plate, VR20 | 1 | allow | $120.00 | estimate | STILL THE BIGGEST UNVERIFIED LINE - it wants three real carts to settle. Was $220 when it covered G10 sheet an |
 
