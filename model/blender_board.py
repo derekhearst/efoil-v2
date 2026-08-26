@@ -2114,10 +2114,24 @@ SALT_WATER_POSITION = (
 # BOTTOMS OUT BY 8 mm and cannot clamp. It would torque up feeling tight with
 # near-zero preload, on the joint carrying the whole rig.
 #
-# That is not Gong being wrong. Those screws ship with 4 M6 BRASS SQUARE
-# NUTS - track hardware, sized for a US box, where the length is supposed to
-# run past the plate and pick up a nut. We tap a plate instead, so their
-# length was never ours to use.
+# That is not Gong being wrong, and WHY the screw is 30 mm is worth having
+# written down, because it is the thing that makes dropping length safe
+# rather than merely convenient. Gong's own kit is three different lengths
+# for three different joints:
+#     mast -> top plate      3 x M6 x 35
+#     top plate -> BOARD     4 x M6 x 30   <- the ones in question
+#     mast -> fuselage       3 x M6 x 50
+# The 30 is specifically the board screw, and the joint it is designed for is
+# a US BOX: through their 12 mm plate, through the board's bottom skin, down
+# a track channel whose depth varies board to board, and finally into a SQUARE
+# NUT that is only 3.2-5.0 mm thick. 30 mm has to cover all of that on ANY
+# board. It is a FIT RANGE, not a strength requirement.
+#
+# So what does their screw actually get to bite on, in the application it was
+# made for? About 4 mm of BRASS. Ours gets 10 mm of 6061-T651, which is both
+# 2.5x the length and the stronger material - roughly 3x the thread capacity
+# of the joint Gong sized this screw for. Dropping to 22 mm does not give up
+# margin against their design intent; it has three times as much.
 #
 # Which dissolves the constraint that made all of this hard: engagement is
 # "30 minus their head" only while the screw is THEIRS. Buying our own makes
@@ -8112,6 +8126,15 @@ def build():
         "washers are not in that sum either - measure the assembled stack"
         % (MAST_HEAD_T, rep["mast_head_min_before_bottoming_mm"], BOLT_D,
            rep["mast_head_max_before_we_are_weak_mm"]))
+    rep["mast_screw_length_rationale"] = (
+        "Gong's M6x30 is their TOP PLATE -> BOARD screw, one of three lengths "
+        "in the kit (35 mast-to-plate, 30 plate-to-board, 50 mast-to-fuse). "
+        "It is sized for a US BOX: 12 mm of their plate, then a board skin, "
+        "then a track channel of varying depth, then a square nut only "
+        "3.2-5.0 mm thick. The 30 is a FIT RANGE across boards, not a "
+        "strength number - in its own application it engages about 4 mm of "
+        "BRASS. Our M6x22 engages 10 mm of 6061-T651, ~3x that thread "
+        "capacity, so shortening it gives up nothing Gong ever designed in")
     rep["mast_margin_note"] = (
         "1.44x is against the M6's PROOF load, not its ultimate - about 2.0x "
         "against failure. It is OUR M6x22 A4-70 into our tapped 6061, not "

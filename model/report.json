@@ -617,6 +617,7 @@
  "mast_plate_thinner_option_mm": 9.5,
  "mast_pocket_depth_mm": 28.0,
  "mast_radial_slop_mm": 0.5,
+ "mast_screw_length_rationale": "Gong's M6x30 is their TOP PLATE -> BOARD screw, one of three lengths in the kit (35 mast-to-plate, 30 plate-to-board, 50 mast-to-fuse). It is sized for a US BOX: 12 mm of their plate, then a board skin, then a track channel of varying depth, then a square nut only 3.2-5.0 mm thick. The 30 is a FIT RANGE across boards, not a strength number - in its own application it engages about 4 mm of BRASS. Our M6x22 engages 10 mm of 6061-T651, ~3x that thread capacity, so shortening it gives up nothing Gong ever designed in",
  "mast_slot_half_len_mm": 10.2,
  "mast_slot_len_wanted_mm": 22.5,
  "mast_thread_area_mm2": 102,
