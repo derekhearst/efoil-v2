@@ -449,16 +449,29 @@ CHAN_CUTTER = 2.5
 # could not follow. The 2.5 mm cutter in a 4 mm groove leaves 0.75 mm of
 # lateral slop each side before it can touch the land.
 CHAN_FILLER_PROUD = 0.0          # FLUSH - see above
-# ...BUT THE TWELVE BOLT PIPS STAY PROUD, and that is not inconsistent - it
-# is the same reasoning applied to a different place. The pips sit on the
-# BOLT land at 22 mm, ten millimetres outboard of the groove and nowhere
-# near where the cord seals, so a bridged shoulder round a 6 mm dot costs
-# nothing. And they solve a problem routing does not: the ring is glassed
-# OVER, so all twelve captive M5 nuts end up under laminate, and a template
-# located off the rebate carries whatever the ring drifted when it was
-# seated. A pip is ON the ring - zero drift, by construction. Groove
-# position can be a millimetre out and still seal; a bolt hole cannot.
-#     flush where it seals, proud where it only has to be found.
+# ...AND THE TWELVE BOLT MARKS ARE RECESSED, NOT PROUD. I proposed proud
+# pips and Derek asked whether raised bolt holes would interfere with the
+# seal. They would, twice over, and the second way is the one I had missed:
+#
+#   1. A 0.5 mm pip that survives to assembly holds the lid 0.5 mm off the
+#      ring face. The cord stands 0.6 proud of its groove, so squeeze goes
+#      from 20% to 3% - under the 10% floor. The seal is simply dead. The
+#      pips were only ever safe BECAUSE they sand away, which makes the
+#      whole seal depend on a sanding operation going far enough.
+#   2. What sanding does NOT remove: glass draped over a 0.5 mm step bridges
+#      for ~2 mm around it, and the O18 washer bears out to r=9. So every
+#      pip seeded a void at r=3-5 mm - inside the washer footprint, in the
+#      crush path, under the most loaded hardware on the board.
+#
+# So invert it. A DIMPLE 0.5 mm DEEP does the same job with none of that:
+# the laminate over it stays flat, so there is no lifted step to bridge and
+# nothing under the washer; the glass spans the dip and leaves a resin lens
+# you can see and feel; and the lens is inside the hole you are about to
+# drill out anyway.
+# THE FAILURE MODES ARE THE ARGUMENT. A dimple that does not show clearly
+# costs you a hunt with the template. A pip that does not sand away costs
+# you a seal, and you find out when there is water inside.
+BOLT_DIMPLE_DEEP = 0.5           # RECESSED into the ring face, never proud
 # The laminate runs across the ledge and OVER the ring face - that is the
 # whole point of glassing the ring in, and it is why the printed groove is
 # only 1.8 deep with the glass making up the 2.4. But it covers the bolt
@@ -470,7 +483,6 @@ CHAN_FILLER_PROUD = 0.0          # FLUSH - see above
 # filler strip. Sanding the ring face flat - which has to happen anyway,
 # it is the sealing land - breaks through the groove line AND twelve dots in
 # the same pass, and both pick out. No measuring, no hunting, no template.
-BOLT_PIP_PROUD = 0.5             # on the BOLT land, not the seal land
 CHAN_INSET = 10.0                  # groove centreline outboard of the opening.
                                    # Seal inboard, bolts outboard - at 15 the
                                    # M5 heads landed on top of the channel.
@@ -6560,18 +6572,19 @@ def build():
                                - (CHAN_INSET + CHAN_W / 2), 1)}
     rep["hatch_second_cord_fits"] = False
     rep["hatch_bolt_holes_found_by"] = (
-        "PRINTED PIPS, %.1f mm proud, one per hole. The groove filler is "
-        "FLUSH and gets routed off template 14; these are the exception, "
-        "because they sit on the BOLT land 10 mm outboard of the seal where "
-        "a bridged shoulder costs nothing, and because a template carries "
-        "whatever the ring drifted when it was seated while a pip is ON the "
-        "ring. The ring is glassed OVER, so all %d nuts end up "
-        "under %.1f mm of laminate; sanding the seal land flat breaks through "
-        "the groove line and the %d dots in one pass and both pick out. "
-        "Before this there was no method here at all - the step reached for "
+        "PRINTED DIMPLES, %.1f mm DEEP - recessed, never proud. The ring is "
+        "glassed OVER, so all %d captive nuts end up under %.1f mm of "
+        "laminate and there was no method here at all: the step reached for "
         "transfer screws, which have to be threaded INTO the nut to mark "
-        "anything, and that is exactly what you cannot do through glass"
-        % (BOLT_PIP_PROUD, len(hb), RING_LAM, len(hb)))
+        "anything, which is exactly what you cannot do through glass. The "
+        "glass bridges each dip and leaves a resin lens you can see and "
+        "feel, and the lens is inside the hole you drill out anyway. "
+        "NOT proud pips, which was the first proposal: a pip surviving to "
+        "assembly holds the lid off the face and takes cord squeeze from "
+        "20%% to 3%%, and even sanded away it leaves a bridged void at "
+        "r=3-5 mm - inside the O%.0f washer, in the crush path"
+        % (BOLT_DIMPLE_DEEP, len(hb), RING_LAM, NUT_WASHER_D))
+    rep["nothing_proud_of_seal_land"] = True
     rep["hatch_ring_glassed_over_mm"] = RING_LAM
     # --- WILL THE HATCH CORD STILL BE SEALING IN THREE YEARS ---------------
     # The module's gasket got an ageing model and this one did not, which is

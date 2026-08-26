@@ -452,16 +452,25 @@ filler — you will feel it go soft — then pick the filler out and the
 > cord has to land on, and sanding back to the ring face lands about *at*
 > those corners rather than safely past them.
 
-**The twelve bolt holes are the exception — those pips stay proud**, and sand
-through. They sit on the **bolt** land at 22 mm, ten millimetres outboard of
-the groove, where a bridged shoulder round a 6 mm dot costs nothing. Without
-them all twelve captive M5 nuts are buried with nothing to aim at, and
+**The twelve bolt holes are marked by DIMPLES, 0.5 mm deep — recessed, never
+proud.** The glass bridges each dip and leaves a resin lens you can see and
+feel; drill it out and you are into the ring's own bolt hole. Without some
+mark, all twelve captive M5 nuts are buried with nothing to aim at, and
 transfer screws do not help — a transfer screw has to be threaded *into* the
-nut to mark anything. The template cannot do it either: it references the
-rebate, so it carries whatever the ring drifted when it was seated, and a
-groove can be a millimetre out and still seal where a bolt hole cannot.
+nut to mark anything.
 
-**Flush where it seals, proud where it only has to be found.**
+> **Nothing on this face is ever proud, and here is what that rule is worth.**
+> Raised pips were the obvious way to find the holes, and they fail twice.
+> A 0.5 mm pip that survives to assembly holds the lid **0.5 mm off the ring
+> face** — the cord stands only 0.6 proud of its groove, so squeeze goes from
+> 20% to **3%**, under the 10% floor, and the seal is dead. And even sanded
+> away, the glass that bridged around it leaves a **void at r = 3–5 mm** —
+> inside the Ø18 washer, in the crush path, under the most loaded hardware on
+> the board.
+>
+> The failure modes settle it. A dimple that does not show clearly costs you
+> a hunt with the template. A pip that does not sand away costs you a seal,
+> and you find out when there is water inside.
 
 **Wet the opened groove with neat epoxy before the cord goes in.** Sanding or
 routing leaves cut glass ends in the seal itself, which is the same wick that
