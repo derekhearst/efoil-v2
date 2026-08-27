@@ -1,10 +1,10 @@
 {
   "boards": 2,
-  "linked_spend_lines": 134,
+  "linked_spend_lines": 133,
   "marginal_per_board": 3539.82,
-  "one_time_tooling": 1043.46,
-  "per_board": 4061.55,
+  "one_time_tooling": 1027.95,
+  "per_board": 4053.8,
   "spend_lines": 138,
-  "total": 8123.11,
+  "total": 8107.59,
   "verified_pct_of_spend": 89
 }

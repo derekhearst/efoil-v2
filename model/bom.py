@@ -1790,24 +1790,27 @@ def build():
         "not the 6 mm the lids are bagged oversize by - jigsaw or bandsaw "
         "close to the master, then trim", tool=True, vendor="Amazon")
 
-    # NO ROUTER. Derek already owns a rotary tool with a router/plunge base -
-    # a Dremel-class spinner - and for what is actually left to rout that is
-    # the RIGHT tool, not a compromise:
-    #   - opening the seal groove is a 2.5 mm cutter taking 0.6 mm of glass
-    #     off a filler strip. Light, shallow, and needing control rather than
-    #     power. A 1.25 HP router is the wrong end of the tool for it.
-    #   - everything else that used to want a router is gone. The rebate and
-    #     the strip pockets are CNC'd into the foam; the module shell and rim
-    #     ring print; the floor, mast plate and handle strips are aluminium
-    #     and are bandsaw-and-drill work.
-    #   - flush-trimming the laminate overhang is a sanding block job.
-    # That is $229 of router and 1/4in carbide that this build does not need.
-    # If the rotary tool's base cannot hold depth on a 590 mm run, THAT is
-    # when to buy a trim router - not before.
-    add("10d Shop consumables", "Rotary-tool router base + collets, if needed",
-        1, "set", 35.00, EST,
-        "you have the tool; this is only if the base you have will not hold "
-        "depth over the groove run", tool=True)
+    # THE ROTARY TOOL DOES NOT DO THE GROOVE EITHER, and that is a change.
+    # This block used to say "NO ROUTER - Derek already owns a rotary tool
+    # with a router/plunge base", and budgeted $35 for a base "if needed".
+    # He owns a RYOBI TVM01: 12 V, 1/8 in collet, and its three attachments
+    # are a cutting guide, a 45 degree platform and a mower-blade jig. There
+    # is no router or plunge base for it, so there was nothing to put a guide
+    # bushing on and the $35 line was buying a part that does not exist.
+    #
+    # It does not matter, because the P601 bought two lines up covers this
+    # job as well: 2.5 mm cutter, 0.6 mm deep, following template 14. Micro
+    # depth adjustment is exactly what a 0.6 mm cut through glass into a
+    # filler strip wants, and one tool now does the groove AND the lid
+    # profiles instead of neither being properly equipped.
+    # The 2.5 mm cutter is a 1/8 in shank in a 1/4 in collet, so it needs a
+    # REDUCER SLEEVE - a $10 part, and worth having in the box before the
+    # day rather than discovering on it.
+    add("10d Shop consumables", "1/4 to 1/8 in collet reducer, for the "
+        "2.5 mm groove cutter", 1, "ea", 9.99, EST,
+        "the P601 is a 1/4 in collet and the groove cutter is a 1/8 in "
+        "shank. Cheap, and the alternative is a bit that will not chuck",
+        tool=True, vendor="Amazon")
 
 
     # ------------------------------------------- 10e layup, the actual doing

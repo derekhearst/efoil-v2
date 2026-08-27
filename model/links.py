@@ -225,8 +225,6 @@ LINKS = {
         ("B09MPWY8L4", 12.99, "220pcs Roll Pin Set Stainless Slotted Spring Pin M1.5-M6"),
     "Rosin paper roll, floor and bench":
         ("B0FXJDFW2B", 27.95, "Floor Protection Natural Brown Rosin Paper 18in x 166 ft"),
-    "Rotary-tool router base + collets, if needed":
-        ("B0000DEZK4", 24.63, "Dremel 335-01 Plunge Router Attachment for Rotary Tool"),
     "SP17 2-pin IP68 flange socket + mating plug":
         ("B0CDH5R8P4", 13.20, "HangTon SP17 2 Pin Waterproof Electrical "
          "Connector, Male Female Cable Plug Panel Mount Socket, IP68 "
@@ -393,7 +391,6 @@ LINK_VENDOR = {
     "Release wax / PVA for the cavity caul": "Amazon",
     "Roll pin assortment M1.5-M6, 220 pc": "Amazon",
     "Rosin paper roll, floor and bench": "Amazon",
-    "Rotary-tool router base + collets, if needed": "Amazon",
     "SP17 2-pin IP68 flange socket + mating plug": "Amazon",
     "Sacrificial MDF, CNC spoilboard": "Home Depot / hardware",
     "Sealant tape, 50 ft roll": "Amazon",
