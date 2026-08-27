@@ -510,10 +510,12 @@
  "lid_drift_absorbed_by": "nothing - it is designed out. Holes and profile are both cut relative to the plugs, so however far the core lands off inside the oversize blank, the finished lid is self-consistent",
  "lid_fallback": "MDF masters 16 and 17 - drill the bare core, flush-trim at home. Cut anyway off the same wood visit, for the day the shop will not run cured glass or the layup misses the CNC month",
  "lid_flush_error_mm": 0.39,
- "lid_holes_drilled": "CNC, with the profile, one setup a lid - registered by touching off on TWO black plugs for origin and rotation",
+ "lid_holes_drilled": "BY HAND, through masters 16/17 dropped onto the finished profile. Not on the machine: the CNC cuts the profile only",
+ "lid_master_is_180_ambiguous": true,
  "lid_pigment_is_load_bearing": "without it there is nothing to touch off on and the machine cuts a perfect pattern in the wrong place - first sign a bolt breaking out the side of its plug",
  "lid_profile_registered_to": "two pigmented plugs, not the blank edge",
  "lid_proud_at_edge_mm": 0.0,
+ "lid_registration_chain": "profile -> plugs (CNC touch-off on two), master -> profile (it IS the profile), therefore holes -> plugs. Nobody ever aims at something they cannot see, and the machine only does the part it is better at than a person",
  "lid_seat_area_gain": 4.64,
  "lid_seat_area_mm2": {
   "V1 bare ply, washer bears direct": 230,

@@ -350,7 +350,7 @@ the ring sits and where the seal ends up.
 `Divinycell H-80 1/4in quarter 24x48, module lid cores` ·
 `E-glass 6 oz, 50in x 12ft, 2-pack` · `TotalBoat 5:1 gallon kit, slow hardener` ·
 `Peel ply, 60in` · `Breather / bleeder cloth` ·
-`1/4 in composite bit - lid profiles` · `1/8 in composite bit - lid bolt holes` ·
+`1/4 in composite bit - lid profiles` · `Carbide-tipped drills 5.0 + 5.6 mm, the lid bolt holes` ·
 `Ryobi ONE+ P601 trim router, tool only` ·
 `Compression flush-trim bit, 1/4 in shank, lid masters`
 
@@ -574,21 +574,32 @@ and re-drilled, and nothing to hunt for under a cured skin afterwards.
    1 mm skin under vacuum and you get twelve bumps in the deck.
 3. **Lay up** glass / core / glass and bag it. The plugs are invisible now —
    except that they are black, and read through a 1 mm skin.
-4. **Machine the profile and drill all twelve Ø5.6, one setup — registered on
-   two of the plugs.** Touch off on one plug for the origin and a second for
-   rotation, and every cut afterwards is referenced to where the plugs
-   actually are.
+4. **CNC the profile only, registered on two of the plugs.** Touch off on one
+   plug for the origin and a second for rotation. No holes on the machine.
+5. **Drop master 17 onto the finished profile, clamp, and drill the twelve
+   Ø5.6 through its bushings.** The master *is* the profile, so it
+   self-locates — and because the profile was cut off the plugs, its holes
+   are already over them.
 
-> **Why register to the plugs and not the blank edge.** The holes have to
-> land inside twelve buried plugs *and* line up with twelve captive nuts. The
-> profile only has to drop into a recess with **1.5 mm** of side clearance.
-> Put the tolerance where the slack is: the core can drift inside the
-> oversize blank all it likes, and if both the profile and the holes come off
-> the plugs, nothing downstream ever knows.
+> **The chain closes on itself, which is the point.** The profile is
+> registered to the plugs; the master is registered to the profile;
+> therefore the holes are registered to the plugs — without anyone having to
+> aim at something they cannot see. The machine does the job it is better at
+> and you do the thirty holes through a bushing, which a second CNC setup
+> with tiny bits in abrasive glass buys nothing over.
 >
 > **Without the pigment there is nothing to touch off on** — the machine
-> would cut a perfect pattern in the wrong place, and the first sign would be
+> would cut a perfect profile in the wrong place, and the first sign would be
 > a bolt breaking out the side of its plug.
+>
+> **Mark which way round the master goes.** A rounded rectangle drops onto
+> its own profile equally well at 180°, and the bolt pattern will not tell
+> you. One witness mark on the master and one on the lid, made before the
+> master ever leaves the sheet.
+>
+> **Back the exit face with scrap.** Carbide-tipped drills, not HSS — glass
+> does not blunt a drill so much as sand it round, and there are 58 holes
+> across both boards.
 
 Twelve holes bored in one setup are mutually accurate to the machine, so
 lining the lid up on the ring is a single **rigid-body fit**: get two to pick

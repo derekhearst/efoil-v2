@@ -213,11 +213,11 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | [1/2 in ball nose, finishing pass](https://www.amazon.com/dp/B00KZM3GSG) | 1 | ea | $41.95 | $41.95 | verified | 1/2 in shank. ONLY if the makerspace does not supply tooling |
 | [1/2 in spiral, 3 in cutting length - cavity wall](https://www.amazon.com/dp/B0BTY16K5P) | 1 | ea | $82.99 | $82.99 | verified | 76.2 mm of FLUTE - the only reach found that clears the 71.6 mm cavity wall in one pass. It is a COMPRESSION bit, which is not the ideal geometry for foam: if a plain upcut or a reduced-shank necked bit turns up at this reach, prefer it. Needed ONLY for the wall finish - rough with the Freud |
 | [1/4 in composite bit - lid profiles](https://www.amazon.com/dp/B00IDEOSXU) | 1 | ea | $39.95 | $39.95 | estimate | Amana 46094, ZrN-coated solid carbide, ground for fibreglass and phenolic rather than wood. 19 mm of cutting height against a 15.2 mm lid. PRICE NOT READ - Amazon blocked the page, so the listing is linked and the number is an estimate |
-| [1/8 in composite bit - lid bolt holes](https://www.amazon.com/dp/B016PYQIZ0) | 1 | ea | $31.95 | $31.95 | estimate | Amana 46091, 1/8 dia on a 1/8 in SHANK - the shank size is the spec, not an accident: it clears a O5.0 hole, so this bit can circle-mill all 29 holes a board through the full lid thickness. CHECK THE COLLET before the visit: the shop's router may only have 1/4 and 1/2, and a 1/8 in collet is a $15 part that is not worth discovering on the day. PRICE NOT READ |
+| Carbide-tipped drills 5.0 + 5.6 mm, the lid bolt holes | 1 | pair | $18.00 | $18.00 | estimate | 58 holes across both boards through cured laminate. Carbide-tipped, not HSS: glass does not blunt a drill so much as sand it round. Back the exit face with scrap so the bottom skin does not splinter |
 | [Ryobi ONE+ P601 trim router, tool only](https://www.homedepot.com/p/RYOBI-ONE-18V-Cordless-Fixed-Base-Trim-Router-Tool-Only-with-Tool-Free-Depth-Adjustment-P601/206955202) | 1 | ea | $69.00 | $69.00 | estimate | Derek already has ONE+ batteries, which is most of why this is the cheap answer. 1/4 in collet, 29,000 rpm, micro depth adjustment. Replaces a $99 CNC day pass with a tool that stays in the shop - and removes the lids' dependency on open question 1, which is whether the makerspace will have fibreglass on its machines at all |
 | [Compression flush-trim bit, 1/4 in shank, lid masters](https://www.amazon.com/dp/B0GDDXH1YH) | 1 | ea | $21.99 | $21.99 | estimate | SHARPRO, bottom bearing, 31.75 mm of cutting length against a 15.2 mm lid - one pass. COMPRESSION on purpose: up-cut at the tip and down-cut above, so both skins of the sandwich are pulled INTO the laminate and neither one splinters at the edge. ROUGH-CUT FIRST. A flush bit takes the last millimetre or two off, not the 6 mm the lids are bagged oversize by - jigsaw or bandsaw close to the master, then trim |
 | 1/4 to 1/8 in collet reducer, for the 2.5 mm groove cutter | 1 | ea | $9.99 | $9.99 | estimate | the P601 is a 1/4 in collet and the groove cutter is a 1/8 in shank. Cheap, and the alternative is a bit that will not chuck |
-| **subtotal** | | | | **$457.00** | | |
+| **subtotal** | | | | **$443.05** | | |
 
 ## 10e Layup kit
 
@@ -254,29 +254,29 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | Item | Qty | Unit | Unit $ | Ext $ | | Note |
 |---|---:|---|---:|---:|---|---|
 | Shipping - Divinycell, 6061 plate, VR20 | 1 | allow | $120.00 | $120.00 | estimate | STILL THE BIGGEST UNVERIFIED LINE - it wants three real carts to settle. Was $220 when it covered G10 sheet and hazmat epoxy, both of which are now out of the build entirely |
-| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $458.92 | $458.92 | verified |  |
-| **subtotal** | | | | **$578.92** | | |
+| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $458.08 | $458.08 | verified |  |
+| **subtotal** | | | | **$578.08** | | |
 
 ## Totals
 
 | | |
 |---|---:|
-| **Grand total, 2 boards** | **$8,107.59** |
-| Per board | $4,053.79 |
-| Of which verified | $7,246.11  (89%) |
-| Of which estimated | $861.48 |
-| Linked to a real listing | 133 lines |
-| Priced but NOT linked | 2 lines, $15.99 |
-| Not linkable, but MEASURED (freight quotes) | 2 lines, $727.55 |
+| **Grand total, 2 boards** | **$8,092.80** |
+| Per board | $4,046.40 |
+| Of which verified | $7,245.27  (90%) |
+| Of which estimated | $847.53 |
+| Linked to a real listing | 132 lines |
+| Priced but NOT linked | 3 lines, $33.99 |
+| Not linkable, but MEASURED (freight quotes) | 2 lines, $726.71 |
 | Not linkable and still estimated | 1 lines, $120.00 |
 
 ## What is a board, and what is a shop
 
-Some of the total above is not the cost of a board at all - it is tools, jigs and templates that exist afterwards and do not repeat. Splitting them out is the difference between "a board costs $4,054" and "a board costs $3,540 and I now own a vacuum rig, a crimper and a full template set".
+Some of the total above is not the cost of a board at all - it is tools, jigs and templates that exist afterwards and do not repeat. Splitting them out is the difference between "a board costs $4,046" and "a board costs $3,540 and I now own a vacuum rig, a crimper and a full template set".
 
 | | |
 |---|---:|
-| One-time tooling (incl. its share of tax) | $1,027.95 |
+| One-time tooling (incl. its share of tax) | $1,013.16 |
 | **Marginal cost of a board** | **$3,539.82** |
 | Cost of the NEXT board after these 2 | $3,539.82 |
 
@@ -301,7 +301,7 @@ Some of the total above is not the cost of a board at all - it is tools, jigs an
 | 1/2 in ball nose, finishing pass | $41.95 |
 | 1/2 in spiral, 3 in cutting length - cavity wall | $82.99 |
 | 1/4 in composite bit - lid profiles | $39.95 |
-| 1/8 in composite bit - lid bolt holes | $31.95 |
+| Carbide-tipped drills 5.0 + 5.6 mm, the lid bolt holes | $18.00 |
 | Ryobi ONE+ P601 trim router, tool only | $69.00 |
 | Compression flush-trim bit, 1/4 in shank, lid masters | $21.99 |
 | 1/4 to 1/8 in collet reducer, for the 2.5 mm groove cutter | $9.99 |

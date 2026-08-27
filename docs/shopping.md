@@ -6,10 +6,10 @@ Grouped by where you buy it rather than by what it does, because that is the ord
 
 | Supplier | Lines | $ |
 |---|---:|---:|
-| Amazon | 116 | $3,682.81 |
+| Amazon | 116 | $3,668.86 |
 | Gong | 1 | $1,404.00 |
 | Flipsky | 3 | $1,038.00 |
-| Not a purchase - tax and freight | 3 | $847.55 |
+| Not a purchase - tax and freight | 3 | $846.71 |
 | BatteryHookup | 2 | $297.50 |
 | Fiberglass Supply | 3 | $253.38 |
 | Home Depot / hardware | 4 | $188.43 |
@@ -18,7 +18,7 @@ Grouped by where you buy it rather than by what it does, because that is the ord
 | Home Depot | 1 | $69.00 |
 | Easy Composites | 1 | $52.00 |
 | Branom / RS | 2 | $36.00 |
-| **TOTAL** | | **$8,107.59** |
+| **TOTAL** | | **$8,092.80** |
 
 ## Amazon
 
@@ -59,7 +59,6 @@ https://www.amazon.com
 | [Hollow punch set 3/16-1-3/8in, for the O30 bung](https://www.amazon.com/dp/B07PQYRG9K) | 1 | set | $32.99 | estimate | the existing set stops at 1/2 in and the disc is O30.0 - the 1-3/16 in punch is 30.16, near enough in rubber.  |
 | [M12 IP68 momentary panel button](https://www.amazon.com/dp/B0FPQP7CP9) | 1 | ea | $32.65 | **verified** | 1 on hand; this line buys the second board's |
 | [IP68 M25 inline housing, 5 pk](https://www.amazon.com/dp/B0DPKM5HF7) | 2 | pk | $31.96 | **verified** | 3 per board, one per phase, 2 spare. M25 bodies take 4-14 mm cable against our 6.5 mm 8 AWG, so the size class |
-| [1/8 in composite bit - lid bolt holes](https://www.amazon.com/dp/B016PYQIZ0) | 1 | ea | $31.95 | estimate | Amana 46091, 1/8 dia on a 1/8 in SHANK - the shank size is the spec, not an accident: it clears a O5.0 hole, s |
 | [Coiled ankle leash](https://www.amazon.com/dp/B096VL3DHV) | 2 | ea | $29.98 | **verified** | you trust the remote failsafe; this is so the board stays with you |
 | [Kayak/board grab handle, 2 pk + screws](https://www.amazon.com/dp/B0FBW3XT5D) | 3 | pk | $29.97 | **verified** | 3 a board: 2 on the rails into the 6061 strip, 1 on the module. ONE HOLE PER STRAP END - so one bolt per pad,  |
 | [Sikaflex-292 marine structural PU](https://www.amazon.com/dp/B008F8VYMM) | 1 | tube | $28.99 | **verified** | ~6-8 MPa vs 4200's ~2. Fillet BOTH sides of the joint - on a flexible bond the fillets are what stop it peelin |
@@ -85,6 +84,7 @@ https://www.amazon.com
 | [M5 x 250 threaded rod, 4 pk (cut to ~171 mm)](https://www.amazon.com/dp/B0CMZR9L1Y) | 2 | pk | $19.98 | **verified** | a 4-pack is exactly one board's worth. Dry-assemble and mark before cutting |
 | [8 AWG marine ring lugs, 20 pk](https://www.amazon.com/dp/B0CWGXB4NB) | 2 | pk | $19.98 | **verified** | 28 needed; on M6 studs - nothing to solder |
 | [Release wax / PVA for the cavity caul](https://www.amazon.com/dp/B0HB5VXRY1) | 1 | set | $19.90 | estimate |  |
+| Carbide-tipped drills 5.0 + 5.6 mm, the lid bolt holes | 1 | pair | $18.00 | estimate | 58 holes across both boards through cured laminate. Carbide-tipped, not HSS: glass does not blunt a drill so m |
 | [3M 4200 FC 3 oz tube, skim over the bung](https://www.amazon.com/dp/B00MJ9K78A) | 1 | tube | $17.99 | **verified** | does both boards; 4200 NOT 5200 - 5200 never comes out. NOT A BARRIER in the channel any more - the blocker is |
 | [Thermometer / hygrometer, 2 pk](https://www.amazon.com/dp/B086PC5962) | 1 | pk | $17.99 | estimate | one in the shop, one by the part. Slow needs 60 F, fast needs 40-45, and below ~35 nothing cures at all |
 | [Chip brushes 2 in, 36 pk](https://www.amazon.com/dp/B078XJ2DCJ) | 1 | pk | $17.99 | **verified** | disposable, 2-4 a session across 6 sessions. The 12 pk at $7.19 is dearer per brush and runs out mid-build |
@@ -169,7 +169,7 @@ Some Flipsky appears on Amazon but the range is thin and usually dearer. Buy dir
 
 | Item | Qty | Unit | Ext | Price | Note |
 |---|---:|---|---:|---|---|
-| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $458.92 | **verified** |  |
+| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $458.08 | **verified** |  |
 | Gong shipping to Idaho, ONE order, both foils | 1 | order | $268.63 | **verified** | quoted at checkout for 2 x XL Alu setups. PER ORDER, not per foil - ordering the two separately would roughly  |
 | Shipping - Divinycell, 6061 plate, VR20 | 1 | allow | $120.00 | estimate | STILL THE BIGGEST UNVERIFIED LINE - it wants three real carts to settle. Was $220 when it covered G10 sheet an |
 

@@ -1756,14 +1756,24 @@ def build():
         "phenolic rather than wood. 19 mm of cutting height against a 15.2 mm "
         "lid. PRICE NOT READ - Amazon blocked the page, so the listing is "
         "linked and the number is an estimate", tool=True, vendor="Amazon")
-    add("10d Shop consumables", "1/8 in composite bit - lid bolt holes", 1,
-        "ea", 31.95, EST,
-        "Amana 46091, 1/8 dia on a 1/8 in SHANK - the shank size is the "
-        "spec, not an accident: it clears a O5.0 hole, so this bit can "
-        "circle-mill all 29 holes a board through the full lid thickness. "
-        "CHECK THE COLLET before the visit: the shop's router may only have "
-        "1/4 and 1/2, and a 1/8 in collet is a $15 part that is not worth "
-        "discovering on the day. PRICE NOT READ", tool=True, vendor="Amazon")
+    # NO SMALL COMPOSITE BIT, because the CNC no longer drills the holes.
+    # There was a 1/8 in cutter here to circle-mill the O5.0 and O5.6, with a
+    # note about checking the shop had a 1/8 in collet. Both go: Derek drills
+    # the holes at home through the MDF masters, which is the better division
+    # of labour anyway - the machine does the profile, where it is better than
+    # a person, and the person does thirty holes through a bushing, where a
+    # second CNC setup with tiny bits in abrasive glass buys nothing.
+    #
+    # What it does need is drills that survive GLASS. 30 holes a board
+    # through 15.2 and 8.4 mm of glass/foam/glass will round the edge off
+    # plain HSS long before the last one - carbide-tipped, and the two sizes
+    # are the hatch's O5.6 and the module's O5.0.
+    add("10d Shop consumables", "Carbide-tipped drills 5.0 + 5.6 mm, the lid bolt holes", 1,
+        "pair", 18.00, EST,
+        "58 holes across both boards through cured laminate. Carbide-tipped, "
+        "not HSS: glass does not blunt a drill so much as sand it round. "
+        "Back the exit face with scrap so the bottom skin does not "
+        "splinter", tool=True, vendor="Amazon")
     # ...AND NO MACHINE TIME FOR THE LIDS AT ALL ANY MORE. There was a $99
     # day pass here for a post-layup session to profile the lids and drill
     # their holes. Both jobs left the CNC on the same day:

@@ -6598,9 +6598,15 @@ def build():
     # Cut both relative to the plugs and core drift stops existing as a
     # tolerance anywhere downstream.
     rep["lid_holes_drilled"] = (
-        "CNC, with the profile, one setup a lid - registered by touching off "
-        "on TWO black plugs for origin and rotation")
+        "BY HAND, through masters 16/17 dropped onto the finished profile. "
+        "Not on the machine: the CNC cuts the profile only")
     rep["lid_profile_registered_to"] = "two pigmented plugs, not the blank edge"
+    rep["lid_registration_chain"] = (
+        "profile -> plugs (CNC touch-off on two), master -> profile (it IS "
+        "the profile), therefore holes -> plugs. Nobody ever aims at "
+        "something they cannot see, and the machine only does the part it is "
+        "better at than a person")
+    rep["lid_master_is_180_ambiguous"] = True
     rep["lid_drift_absorbed_by"] = (
         "nothing - it is designed out. Holes and profile are both cut "
         "relative to the plugs, so however far the core lands off inside the "
