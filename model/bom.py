@@ -1754,19 +1754,41 @@ def build():
         "CHECK THE COLLET before the visit: the shop's router may only have "
         "1/4 and 1/2, and a 1/8 in collet is a $15 part that is not worth "
         "discovering on the day. PRICE NOT READ", tool=True, vendor="Amazon")
-    # ...AND THE MACHINE TIME TO USE THEM. The Basic month is written around
-    # the cores, and its own note says "cut everything inside the 30 days and
-    # let the layups follow the weather afterwards" - which cannot include
-    # the lids, because the lids DO NOT EXIST until after those layups. The
-    # foam cores (03, 11) go inside the month; the cured sandwiches come back
-    # weeks later and need the machine a second time.
-    add("10d Shop consumables", "Maker Shop day pass - post-layup lid session",
-        1, "day", 99.00, OK,
-        "profile + all 29 holes a board, both lids, one setup. Separate from "
-        "the Basic month on purpose: that month is spent by the time these "
-        "panels are cured. If the calendar slips the other way and the "
-        "layups land inside the 30 days, this line disappears",
-        tool=True, vendor="Maker Shop Boise")
+    # ...AND NO MACHINE TIME FOR THE LIDS AT ALL ANY MORE. There was a $99
+    # day pass here for a post-layup session to profile the lids and drill
+    # their holes. Both jobs left the CNC on the same day:
+    #   the HOLES are drilled in the BARE CORE now, off the masters, while
+    #   the black plugs are still visible - which is the easy version of a
+    #   job that was never going to be easy through a finished sandwich.
+    #   the PROFILE is flush-trimmed against those same masters with a
+    #   bearing-guided bit, which is what a master IS for.
+    # So the lids need no CNC, and the pass goes.
+    #
+    # A ROTARY TOOL WILL NOT DO IT, and Derek asked the right question. His
+    # Ryobi rotary tool is the correct tool for the SEAL GROOVE - 0.6 mm of
+    # glass off a filler strip, which wants control not power, and it is why
+    # the "no router" decision below still stands for that job. This is a
+    # different job: 6.9 m of glass/foam sandwich edge across both boards,
+    # and the hatch lid is 15.2 mm thick. That is a 1/4 in collet and real
+    # torque, not a 1/8 in collet at 0.1 HP.
+    add("10d Shop consumables", "Ryobi ONE+ P601 trim router, tool only", 1,
+        "ea", 69.00, EST,
+        "Derek already has ONE+ batteries, which is most of why this is the "
+        "cheap answer. 1/4 in collet, 29,000 rpm, micro depth adjustment. "
+        "Replaces a $99 CNC day pass with a tool that stays in the shop - "
+        "and removes the lids' dependency on open question 1, which is "
+        "whether the makerspace will have fibreglass on its machines at all",
+        tool=True, vendor="Home Depot")
+    add("10d Shop consumables",
+        "Compression flush-trim bit, 1/4 in shank, lid masters", 1, "ea",
+        21.99, EST,
+        "SHARPRO, bottom bearing, 31.75 mm of cutting length against a "
+        "15.2 mm lid - one pass. COMPRESSION on purpose: up-cut at the tip "
+        "and down-cut above, so both skins of the sandwich are pulled INTO "
+        "the laminate and neither one splinters at the edge. "
+        "ROUGH-CUT FIRST. A flush bit takes the last millimetre or two off, "
+        "not the 6 mm the lids are bagged oversize by - jigsaw or bandsaw "
+        "close to the master, then trim", tool=True, vendor="Amazon")
 
     # NO ROUTER. Derek already owns a rotary tool with a router/plunge base -
     # a Dremel-class spinner - and for what is actually left to rout that is

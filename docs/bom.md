@@ -214,9 +214,10 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | [1/2 in spiral, 3 in cutting length - cavity wall](https://www.amazon.com/dp/B0BTY16K5P) | 1 | ea | $82.99 | $82.99 | verified | 76.2 mm of FLUTE - the only reach found that clears the 71.6 mm cavity wall in one pass. It is a COMPRESSION bit, which is not the ideal geometry for foam: if a plain upcut or a reduced-shank necked bit turns up at this reach, prefer it. Needed ONLY for the wall finish - rough with the Freud |
 | [1/4 in composite bit - lid profiles](https://www.amazon.com/dp/B00IDEOSXU) | 1 | ea | $39.95 | $39.95 | estimate | Amana 46094, ZrN-coated solid carbide, ground for fibreglass and phenolic rather than wood. 19 mm of cutting height against a 15.2 mm lid. PRICE NOT READ - Amazon blocked the page, so the listing is linked and the number is an estimate |
 | [1/8 in composite bit - lid bolt holes](https://www.amazon.com/dp/B016PYQIZ0) | 1 | ea | $31.95 | $31.95 | estimate | Amana 46091, 1/8 dia on a 1/8 in SHANK - the shank size is the spec, not an accident: it clears a O5.0 hole, so this bit can circle-mill all 29 holes a board through the full lid thickness. CHECK THE COLLET before the visit: the shop's router may only have 1/4 and 1/2, and a 1/8 in collet is a $15 part that is not worth discovering on the day. PRICE NOT READ |
-| Maker Shop day pass - post-layup lid session | 1 | day | $99.00 | $99.00 | verified | profile + all 29 holes a board, both lids, one setup. Separate from the Basic month on purpose: that month is spent by the time these panels are cured. If the calendar slips the other way and the layups land inside the 30 days, this line disappears |
+| [Ryobi ONE+ P601 trim router, tool only](https://www.homedepot.com/p/RYOBI-ONE-18V-Cordless-Fixed-Base-Trim-Router-Tool-Only-with-Tool-Free-Depth-Adjustment-P601/206955202) | 1 | ea | $69.00 | $69.00 | estimate | Derek already has ONE+ batteries, which is most of why this is the cheap answer. 1/4 in collet, 29,000 rpm, micro depth adjustment. Replaces a $99 CNC day pass with a tool that stays in the shop - and removes the lids' dependency on open question 1, which is whether the makerspace will have fibreglass on its machines at all |
+| [Compression flush-trim bit, 1/4 in shank, lid masters](https://www.amazon.com/dp/B0GDDXH1YH) | 1 | ea | $21.99 | $21.99 | estimate | SHARPRO, bottom bearing, 31.75 mm of cutting length against a 15.2 mm lid - one pass. COMPRESSION on purpose: up-cut at the tip and down-cut above, so both skins of the sandwich are pulled INTO the laminate and neither one splinters at the edge. ROUGH-CUT FIRST. A flush bit takes the last millimetre or two off, not the 6 mm the lids are bagged oversize by - jigsaw or bandsaw close to the master, then trim |
 | [Rotary-tool router base + collets, if needed](https://www.amazon.com/dp/B0000DEZK4) | 1 | set | $24.63 | $24.63 | estimate | you have the tool; this is only if the base you have will not hold depth over the groove run |
-| **subtotal** | | | | **$479.65** | | |
+| **subtotal** | | | | **$471.64** | | |
 
 ## 10e Layup kit
 
@@ -253,29 +254,29 @@ Sheet counts come from the live cut list and fastener counts from the model, so 
 | Item | Qty | Unit | Unit $ | Ext $ | | Note |
 |---|---:|---|---:|---:|---|---|
 | Shipping - Divinycell, 6061 plate, VR20 | 1 | allow | $120.00 | $120.00 | estimate | STILL THE BIGGEST UNVERIFIED LINE - it wants three real carts to settle. Was $220 when it covered G10 sheet and hazmat epoxy, both of which are now out of the build entirely |
-| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $460.28 | $460.28 | verified |  |
-| **subtotal** | | | | **$580.28** | | |
+| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $459.80 | $459.80 | verified |  |
+| **subtotal** | | | | **$579.80** | | |
 
 ## Totals
 
 | | |
 |---|---:|
-| **Grand total, 2 boards** | **$8,131.60** |
-| Per board | $4,065.80 |
-| Of which verified | $7,346.47  (90%) |
-| Of which estimated | $785.13 |
-| Linked to a real listing | 132 lines |
-| Priced but NOT linked | 2 lines, $105.00 |
-| Not linkable, but MEASURED (freight quotes) | 2 lines, $728.91 |
+| **Grand total, 2 boards** | **$8,123.11** |
+| Per board | $4,061.55 |
+| Of which verified | $7,246.99  (89%) |
+| Of which estimated | $876.12 |
+| Linked to a real listing | 134 lines |
+| Priced but NOT linked | 1 lines, $6.00 |
+| Not linkable, but MEASURED (freight quotes) | 2 lines, $728.43 |
 | Not linkable and still estimated | 1 lines, $120.00 |
 
 ## What is a board, and what is a shop
 
-Some of the total above is not the cost of a board at all - it is tools, jigs and templates that exist afterwards and do not repeat. Splitting them out is the difference between "a board costs $4,066" and "a board costs $3,540 and I now own a vacuum rig, a crimper and a full template set".
+Some of the total above is not the cost of a board at all - it is tools, jigs and templates that exist afterwards and do not repeat. Splitting them out is the difference between "a board costs $4,062" and "a board costs $3,540 and I now own a vacuum rig, a crimper and a full template set".
 
 | | |
 |---|---:|
-| One-time tooling (incl. its share of tax) | $1,051.95 |
+| One-time tooling (incl. its share of tax) | $1,043.46 |
 | **Marginal cost of a board** | **$3,539.82** |
 | Cost of the NEXT board after these 2 | $3,539.82 |
 
@@ -301,7 +302,8 @@ Some of the total above is not the cost of a board at all - it is tools, jigs an
 | 1/2 in spiral, 3 in cutting length - cavity wall | $82.99 |
 | 1/4 in composite bit - lid profiles | $39.95 |
 | 1/8 in composite bit - lid bolt holes | $31.95 |
-| Maker Shop day pass - post-layup lid session | $99.00 |
+| Ryobi ONE+ P601 trim router, tool only | $69.00 |
+| Compression flush-trim bit, 1/4 in shank, lid masters | $21.99 |
 | Rotary-tool router base + collets, if needed | $24.63 |
 | Rosin paper roll, floor and bench | $27.95 |
 | Folding sawhorses, pair, 700 lb | $39.99 |

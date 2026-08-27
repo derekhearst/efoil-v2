@@ -71,6 +71,10 @@ LINKS = {
         ("B015NM0B8K", 13.95, "Breather Bleeder Cloth 1 Yard Elite Lab Vacuum Bagging"),
     "Cable ties, lacing, adhesive mounts":
         ("B08RMS5H25", 9.99, "140 Pack 3/4in Zip Tie Adhesive Mounts with Ties"),
+    "Compression flush-trim bit, 1/4 in shank, lid masters":
+        ("B0GDDXH1YH", 21.99, "SHARPRO Compression Flush Trim Router Bit 1/4 Inch Shank, Bottom Bearing, 1-1/4 in CL, 3 in OVL"),
+    "Ryobi ONE+ P601 trim router, tool only":
+        ("https://www.homedepot.com/p/RYOBI-ONE-18V-Cordless-Fixed-Base-Trim-Router-Tool-Only-with-Tool-Free-Depth-Adjustment-P601/206955202", 69.00, "RYOBI ONE+ 18V Cordless Fixed Base Trim Router, tool only"),
     "Black epoxy pigment, marking the lid plugs":
         ("B09NYDCXBQ", 8.99, "HTVRONT Black Epoxy Pigment Paste, 1.76oz/50ml, "
          "Higher Concentrated, For Resin Coloring"),
@@ -315,6 +319,8 @@ LINK_VENDOR = {
     "Bag connector w/ ball valve, 1/4 in QD": "Amazon",
     "Breather / bleeder cloth": "Amazon",
     "Cable ties, lacing, adhesive mounts": "Amazon",
+    "Compression flush-trim bit, 1/4 in shank, lid masters": "Amazon",
+    "Ryobi ONE+ P601 trim router, tool only": "Home Depot / hardware",
     "Black epoxy pigment, marking the lid plugs": "Amazon",
     "Black wax filler sticks, blocking + marking the bolt holes": "Amazon",
     "Charger 67.2 V 5 A, 16S  (NOT 58.8 V)": "Amazon",

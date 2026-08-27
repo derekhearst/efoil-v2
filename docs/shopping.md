@@ -6,18 +6,19 @@ Grouped by where you buy it rather than by what it does, because that is the ord
 
 | Supplier | Lines | $ |
 |---|---:|---:|
-| Amazon | 115 | $3,675.46 |
+| Amazon | 116 | $3,697.45 |
 | Gong | 1 | $1,404.00 |
 | Flipsky | 3 | $1,038.00 |
-| Not a purchase - tax and freight | 3 | $848.91 |
+| Not a purchase - tax and freight | 3 | $848.43 |
 | BatteryHookup | 2 | $297.50 |
 | Fiberglass Supply | 3 | $253.38 |
-| Maker Shop Boise | 2 | $249.00 |
 | Home Depot / hardware | 4 | $188.43 |
+| Maker Shop Boise | 1 | $150.00 |
 | Speedy Metals | 1 | $88.92 |
+| Home Depot | 1 | $69.00 |
 | Easy Composites | 1 | $52.00 |
 | Branom / RS | 2 | $36.00 |
-| **TOTAL** | | **$8,131.60** |
+| **TOTAL** | | **$8,123.11** |
 
 ## Amazon
 
@@ -77,6 +78,7 @@ https://www.amazon.com
 | [Rotary-tool router base + collets, if needed](https://www.amazon.com/dp/B0000DEZK4) | 1 | set | $24.63 | estimate | you have the tool; this is only if the base you have will not hold depth over the groove run |
 | [Test cap + tubing, module leak test](https://www.amazon.com/dp/B0DPWRP6FR) | 1 | set | $22.99 | estimate | PROVE THE MODULE BEFORE THE CELLS GO IN, and prove it the way the failure actually happens: run one of the kit |
 | [8 AWG silicone, 10 ft red + 10 ft black](https://www.amazon.com/dp/B0BYJRDT19) | 1 | pk | $21.99 | **verified** | one pack covers BOTH boards - the longest run in the module is the 278 mm ESC-to-fuse, so 10 ft a side is alre |
+| [Compression flush-trim bit, 1/4 in shank, lid masters](https://www.amazon.com/dp/B0GDDXH1YH) | 1 | ea | $21.99 | estimate | SHARPRO, bottom bearing, 31.75 mm of cutting length against a 15.2 mm lid - one pass. COMPRESSION on purpose:  |
 | [Longboard PSA sandpaper 120-180 grit, 20 yd roll](https://www.amazon.com/dp/B001AVC8ZI) | 1 | roll | $20.99 | **verified** | after 80 has the shape right |
 | [Flex longboard sander, 16-1/2 x 2-3/4](https://www.amazon.com/dp/B0CPR1CGQV) | 1 | ea | $19.99 | **verified** | adjustable radius, hook-and-loop + PSA |
 | [ANL 150 A fuse + holder](https://www.amazon.com/dp/B0B6ZHJR7D) | 2 | ea | $19.98 | **verified** | in the NEGATIVE leg, between BMS P- and the ESC - that is where V1 ran it and it is the node the charge negati |
@@ -167,7 +169,7 @@ Some Flipsky appears on Amazon but the range is thin and usually dearer. Buy dir
 
 | Item | Qty | Unit | Ext | Price | Note |
 |---|---:|---|---:|---|---|
-| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $460.28 | **verified** |  |
+| Idaho sales tax, 6% (Ada County, no local) | 1 | allow | $459.80 | **verified** |  |
 | Gong shipping to Idaho, ONE order, both foils | 1 | order | $268.63 | **verified** | quoted at checkout for 2 x XL Alu setups. PER ORDER, not per foil - ordering the two separately would roughly  |
 | Shipping - Divinycell, 6061 plate, VR20 | 1 | allow | $120.00 | estimate | STILL THE BIGGEST UNVERIFIED LINE - it wants three real carts to settle. Was $220 when it covered G10 sheet an |
 
@@ -194,15 +196,6 @@ https://fiberglasssupply.com
 | [Divinycell H-100 1/4in quarter 21x42, hatch lid cores - 2 sheets bonded to 1/2in](https://fiberglasssupply.com/1-4-in-h-100-divinycell-quarter-sheet-21-x-42/) | 2 | sheet | $99.18 | **verified** | fiberglasssupply.com; no 1/2in H-100 is made |
 | [Divinycell H-80 1/4in quarter 24x48, module lid cores](https://fiberglasssupply.com/quarter-sheet-1-4-h-80-divinycell-plain-sheet/) | 1 | sheet | $53.94 | **verified** | L18-1070; nobody stands on this one |
 
-## Maker Shop Boise
-
-Unresolved - two emails unanswered. Phone (208) 254-6151, or the EPS core goes to a shaping service or gets hand-shaped.
-
-| Item | Qty | Unit | Ext | Price | Note |
-|---|---:|---|---:|---|---|
-| [Maker Shop Boise Basic month](https://www.makershopboise.com/membership) | 1 | month | $150.00 | **verified** | month-to-month; confirm it cancels cleanly. Only ONE part truly wants a CNC - the EPS core - but the pass cove |
-| Maker Shop day pass - post-layup lid session | 1 | day | $99.00 | **verified** | profile + all 29 holes a board, both lids, one setup. Separate from the Basic month on purpose: that month is  |
-
 ## Home Depot / hardware
 
 https://www.homedepot.com
@@ -214,6 +207,14 @@ https://www.homedepot.com
 | [Sacrificial MDF, CNC spoilboard](https://www.homedepot.com/p/1-4-in-x-2-ft-x-4-ft-Medium-Density-Fiberboard-1508104/202089069) | 1 | sheet | $16.23 | estimate | buy it local, a 4x8 sheet does not travel well |
 | [Acetone, solvent-welding the printed joints](https://www.homedepot.com/p/Klean-Strip-1-qt-Acetone-Thins-Fiberglass-Resins-Epoxy-and-Adhesives-QAC18/100144922) | 1 | qt | $11.48 | estimate | ASA dissolves in it like ABS - a brushed acetone/scrap slurry makes the joint one piece of plastic, not an adh |
 
+## Maker Shop Boise
+
+Unresolved - two emails unanswered. Phone (208) 254-6151, or the EPS core goes to a shaping service or gets hand-shaped.
+
+| Item | Qty | Unit | Ext | Price | Note |
+|---|---:|---|---:|---|---|
+| [Maker Shop Boise Basic month](https://www.makershopboise.com/membership) | 1 | month | $150.00 | **verified** | month-to-month; confirm it cancels cleanly. Only ONE part truly wants a CNC - the EPS core - but the pass cove |
+
 ## Speedy Metals
 
 https://www.speedymetals.com/p-2411-12-6061-t651-aluminum-plate.aspx
@@ -223,6 +224,12 @@ https://www.speedymetals.com/p-2411-12-6061-t651-aluminum-plate.aspx
 | Item | Qty | Unit | Ext | Price | Note |
 |---|---:|---|---:|---|---|
 | [6061-T651 1/2in x 12 x 18 - mast plates](https://www.speedymetals.com/pc-2411-8360-12-6061-t651-aluminum-plate.aspx) | 1 | sheet | $88.92 | **verified** | speedymetals.com 61p.5; both plates nest, 2 x 6.89in of 18, 4.2 spare. Saw-cut edge, +/-1/4in - profile it you |
+
+## Home Depot
+
+| Item | Qty | Unit | Ext | Price | Note |
+|---|---:|---|---:|---|---|
+| [Ryobi ONE+ P601 trim router, tool only](https://www.homedepot.com/p/RYOBI-ONE-18V-Cordless-Fixed-Base-Trim-Router-Tool-Only-with-Tool-Free-Depth-Adjustment-P601/206955202) | 1 | ea | $69.00 | estimate | Derek already has ONE+ batteries, which is most of why this is the cheap answer. 1/4 in collet, 29,000 rpm, mi |
 
 ## Easy Composites
 

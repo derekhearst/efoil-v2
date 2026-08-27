@@ -351,7 +351,8 @@ the ring sits and where the seal ends up.
 `E-glass 6 oz, 50in x 12ft, 2-pack` · `TotalBoat 5:1 gallon kit, slow hardener` ·
 `Peel ply, 60in` · `Breather / bleeder cloth` ·
 `1/4 in composite bit - lid profiles` · `1/8 in composite bit - lid bolt holes` ·
-`Maker Shop day pass - post-layup lid session`
+`Ryobi ONE+ P601 trim router, tool only` ·
+`Compression flush-trim bit, 1/4 in shank, lid masters`
 
 Both lids are flat sandwiches — glass / foam / glass — so they bag on the
 bench and **do not need the board**. Do them alongside a hull session while
@@ -404,10 +405,21 @@ shank stops on the hole at 12.7 mm and the hatch lid is 15.2 thick. A ⅛ in
 shank is 3.175 and goes straight down a Ø5.0. **Check the shop has a ⅛ in
 collet before the day** — it is a $15 part and a wasted trip.
 
-**Budget a day pass for this.** The Basic month is spent on the cores, and
-the lids do not exist until these layups are cured — which is weeks later, by
-design ("let the layups follow the weather"). The foam cores go inside the
-month; the cured sandwiches come back afterwards.
+**No CNC for the lids at all.** Both jobs left the machine: the holes are
+drilled in the **bare core** off the masters while the black plugs are still
+visible, and the profile is **flush-trimmed against those same masters** with
+a bearing-guided compression bit. That is what a master is for.
+
+> **Rough-cut before you trim.** A flush bit takes the last millimetre or two
+> off, not the 6 mm the cores are bagged oversize by. Jigsaw or bandsaw close
+> to the master first.
+>
+> **The rotary tool will not do this one.** It is right for the seal groove —
+> 0.6 mm of glass off a filler strip, which wants control, not power. This is
+> **6.9 m** of glass/foam sandwich edge across both boards and the hatch lid
+> is **15.2 mm** thick: a ¼ in collet and real torque. The compression
+> geometry matters too — up-cut at the tip, down-cut above, so both skins get
+> pulled *into* the laminate and neither splinters at the edge.
 
 ### Step 12. Seal every cut edge
 
