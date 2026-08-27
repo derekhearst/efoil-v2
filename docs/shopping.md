@@ -213,7 +213,7 @@ Unresolved - two emails unanswered. Phone (208) 254-6151, or the EPS core goes t
 
 | Item | Qty | Unit | Ext | Price | Note |
 |---|---:|---|---:|---|---|
-| [Maker Shop Boise Basic month](https://www.makershopboise.com/membership) | 1 | month | $150.00 | **verified** | month-to-month, and the plan is to cancel at the end of it. EVERYTHING MACHINED HAPPENS BEFORE LAYUP now, so i |
+| [Maker Shop Boise Basic month](https://www.makershopboise.com/membership) | 1 | month | $150.00 | **verified** | month-to-month, and the plan is to cancel at the end of it. TWO VISITS, and the second one is the scheduling r |
 
 ## Speedy Metals
 

@@ -6597,12 +6597,22 @@ def build():
     # with captive nuts; the profile only has to fit a recess with clearance.
     # Cut both relative to the plugs and core drift stops existing as a
     # tolerance anywhere downstream.
-    rep["lid_holes_drilled"] = "in the BARE CORE, before layup"
-    rep["lid_profile_registered_to"] = "the wax marks, not the blank edge"
+    rep["lid_holes_drilled"] = (
+        "CNC, with the profile, one setup a lid - registered by touching off "
+        "on TWO black plugs for origin and rotation")
+    rep["lid_profile_registered_to"] = "two pigmented plugs, not the blank edge"
     rep["lid_drift_absorbed_by"] = (
         "nothing - it is designed out. Holes and profile are both cut "
         "relative to the plugs, so however far the core lands off inside the "
         "oversize blank, the finished lid is self-consistent")
+    rep["lid_pigment_is_load_bearing"] = (
+        "without it there is nothing to touch off on and the machine cuts a "
+        "perfect pattern in the wrong place - first sign a bolt breaking out "
+        "the side of its plug")
+    rep["lid_fallback"] = (
+        "MDF masters 16 and 17 - drill the bare core, flush-trim at home. "
+        "Cut anyway off the same wood visit, for the day the shop will not "
+        "run cured glass or the layup misses the CNC month")
     rep["nothing_proud_of_seal_land"] = True
     rep["hatch_ring_glassed_over_mm"] = RING_LAM
     # --- WILL THE HATCH CORD STILL BE SEALING IN THREE YEARS ---------------

@@ -145,32 +145,40 @@ to argue with.
 
 Ordered by what can actually stop the build.
 
-1. **Will the makerspace allow EPS on the CNC?** Unanswered. It is a
+1. **Will the makerspace allow EPS — and cured fibreglass — on the CNC?**
+   Unanswered, and it is now two materials on one phone call. It is a
    woodworking shop with no published material policy, and this is the one
    that can stop the booking outright. Maker Shop Boise, (208) 254-6151.
-2. ~~**Cutter reach.**~~ **Closed.** The deepest pocket is the cavity's lower
+   EPS gates the core; **glass gates machining the two laminated lids**, and
+   if the answer there is no, the MDF masters do them at home instead.
+2. **Can the lids be laid up inside the CNC month?** The lids are machined on
+   a *second* visit, which means the vacuum rig has to be working about three
+   weeks earlier than the build order otherwise needs it. Eight visits are
+   allowed in the month, so the visit is not the problem — the schedule is.
+   If it slips: a **$99 day pass**, or the masters.
+3. ~~**Cutter reach.**~~ **Closed.** The deepest pocket is the cavity's lower
    half at **71.6 mm** and the Freud O-flute cuts **31.8 mm**, which is where
    this question came from — but roughing never needed the reach (Z-level
    passes put the shank in open air) and the BOM has carried a **76.2 mm**
    wall-finish spiral for the one pass that does. The check was asking the
    roughing bit.
-3. ~~**Wire bay stops at 68 mm.**~~ **Closed — it is 75.** The check that
+4. ~~**Wire bay stops at 68 mm.**~~ **Closed — it is 75.** The check that
    refused 75 was the in-build rim-segment volume test, the one later shown to
    report 53% of a ring that measures 99.96% in the saved file. It was
    measuring the booleans wrong, not the geometry. That test is demoted, and
    the bay is the 75 mm Derek asked for in the first place.
-4. **Gong import duty.** Shipping is measured ($268.63 for two foils, from
+5. **Gong import duty.** Shipping is measured ($268.63 for two foils, from
    their checkout), but US customs is not. It arrives later as a courier
    invoice. Budget ~$210 if a 15% rate holds; the BOM carries it at zero so it
    is never mistaken for a verified figure.
-5. ~~**Sinker at rest.**~~ **Closed — accepted.** 79 L will not float a
+6. ~~**Sinker at rest.**~~ **Closed — accepted.** 79 L will not float a
    rider standing still, and that is the board Derek wants.
-6. ~~**V1's reed-switch kill system.**~~ **Closed — not doing it.** Derek's
+7. ~~**V1's reed-switch kill system.**~~ **Closed — not doing it.** Derek's
    call on his own board. Worth recording what the item actually said: it was
    scoped *"required before any beginner rides that board"*, so it is about
    lending V1 out rather than about riding it himself. If someone else ever
    takes it out, this reopens.
-7. **Measure the Gong top plate — thickness first, then its four clearance
+8. **Measure the Gong top plate — thickness first, then its four clearance
    holes.** Two numbers, one part, and Derek already owns it (he cut its wire
    slot).
 
@@ -196,12 +204,12 @@ Ordered by what can actually stop the build.
    that budget is 0.25 mm, which is what makes it a machine-shop part rather
    than a drill-press one. A wider hole relaxes it; a tighter one may make it
    unbuildable by hand at all.
-8. **Where the mast's wire slot sits relative to the chord.** `CONDUIT_X_OFF`
+9. **Where the mast's wire slot sits relative to the chord.** `CONDUIT_X_OFF`
    is 0, i.e. the conduit is assumed to be on the mast's centreline, and that
    is unverified. If it is not, the conduit and the plate's Ø30.8 bore are in
    the wrong place — and that bore is drilled and reamed into the one part
    that has to go to a machine shop.
-9. **`GUIDE_OFF` — the seal groove template's bushing offset.** Template 14's
+10. **`GUIDE_OFF` — the seal groove template's bushing offset.** Template 14's
    path is drawn **5.0 mm** outboard of the groove, which is
    `(bushing OD − cutter OD) / 2` for a bushing nobody has measured. It is
    the one number on that part that comes from the *tool* rather than the
@@ -209,7 +217,7 @@ Ordered by what can actually stop the build.
    the sealing land, on the joint that must not leak. **Measure it on the
    P601 before the template is cut.** It cannot come off the rotary tool: the
    TVM01 has no router base to mount a bushing to.
-10. **The charge port's flange pitch, and whether a screw cap ships with it.**
+11. **The charge port's flange pitch, and whether a screw cap ships with it.**
    `CHG_BOLT_PITCH` is 22 mm on a two-hole SP17 flange, and no drawing has
    ever been found for it — the four-on-a-20-mm-square pattern belongs to the
    EW-LP16, a different connector. These holes go into a **printed** wall, so
@@ -217,7 +225,7 @@ Ordered by what can actually stop the build.
    step 3. The cap matters just as much: it is the entire reason this
    connector was chosen over the LP16's nicer one-touch latch, and Renhotec
    list SP17 sealing caps as *available*, which is not *included*.
-11. ~~**The module vent is the next barrier down.**~~ **Closed for water.**
+12. ~~**The module vent is the next barrier down.**~~ **Closed for water.**
     It was a $9.95 no-name "IP68 nylon breather", and IP68 with no stated
     depth or duration is a marketing string, not a rating. Now a **GORE
     PolyVent Stainless, M12 × 1.5, 316L** — tested to IEC 60529 at 2 m for
@@ -226,7 +234,7 @@ Ordered by what can actually stop the build.
     put on it that is **32×**, so it goes from the module's weakest opening
     to its strongest. Sized on Gore's own table: 1.6 L/min covers a 20 L
     enclosure and the module has ~3.3 L of free air, 6× over.
-12. ~~**Nothing relieves a cell venting.**~~ **Answered, and better than
+13. ~~**Nothing relieves a cell venting.**~~ **Answered, and better than
     feared.** The vent is still not relief — it passes **1.6 L/min** against
     the ~12 a runaway cell wants — but the box was never a pressure vessel
     either. Both lids are hard-stop bolted joints, and a bolted joint
@@ -237,7 +245,7 @@ Ordered by what can actually stop the build.
     rather than building up. Which lid goes *first* is not knowable — 7%
     apart on two numbers that each carry ±25% preload scatter — so the check
     asserts a **ceiling** on both rather than an order it cannot measure.
-13. ~~**Mast plate weight.**~~ **Closed — it is not overbuilt.** Asked three
+14. ~~**Mast plate weight.**~~ **Closed — it is not overbuilt.** Asked three
     times, so here is the arithmetic rather than an opinion. It *looks* like
     a lot of aluminium because it is, but the two dimensions are set by two
     unrelated constraints and both sit within ~15% of their floor:

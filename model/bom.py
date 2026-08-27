@@ -190,13 +190,15 @@ def build():
     add("1  Core and shaping", "Maker Shop Boise Basic month",
         1, "month", 150.00, OK,
         "month-to-month, and the plan is to cancel at the end of it. "
-        "EVERYTHING MACHINED HAPPENS BEFORE LAYUP now, so it all fits one "
-        "month: the EPS core, both Divinycell lid cores, and the three MDF "
-        "guides. The lids themselves no longer need the machine at all - "
-        "their holes are drilled in the bare core off the masters and their "
-        "profiles are flush-trimmed at home - so there is no second visit "
-        "weeks later and no reason to pay $250 for a punch pass that does "
-        "not expire", tool=True)
+        "TWO VISITS, and the second one is the scheduling risk. First: EPS "
+        "core, both Divinycell lid cores, three MDF guides. Second: both "
+        "laminated lids, profile and holes in one setup each. The month "
+        "allows 8 visits so two is easy - what is NOT easy is that the "
+        "second one needs the LIDS LAID UP, which means the vacuum rig has "
+        "to be working three weeks earlier than the build order otherwise "
+        "wants it. If that slips, a $99 day pass buys the second visit "
+        "later, or the MDF masters do the lids at home. A $250 punch pass "
+        "still is not worth it", tool=True)
 
     # ---------------------------------------------------- 2 G10: NONE
     # There is no G10 on this board any more. It went in three steps:

@@ -506,7 +506,12 @@ def build(p):
         d.circle(bx, by, 5.0 / 2)
     add("16_module_lid_guide", "MDF 12 mm", 12.0, 1, d, lid_l, lid_w,
         f"{len(mb)} x O5.0 bushings on the module lid pattern. "
-        f"USE IT ON THE BARE CORE, BEFORE LAYUP. That is the whole point: "
+        f"FALLBACK NOW, NOT THE PLAN - and still cut, because it is cheap "
+        f"insurance off the same wood visit. The plan is to CNC lid 10 "
+        f"profile-and-holes in one setup, registered by touching off on two "
+        f"of the black plugs. This part is what you use if the shop will not "
+        f"run cured glass on its router, or if the layup misses the CNC "
+        f"month: "
         f"drilling 18 holes dead-centre through 18 plugs you cannot see is a "
         f"job nobody should be asked to do, and doing it while the cured "
         f"plugs are sitting there as black discs in white foam is trivial. "
@@ -541,9 +546,14 @@ def build(p):
         d.circle(bx - 1.5, by - 1.5, (p["HATCH_BOLT_D"] + 0.6) / 2)
     add("17_hatch_lid_master", "MDF 12 mm", 12.0, 1, d, lw, lh,
         f"THE LID'S EXACT FINISHED PROFILE plus its {len(hb)} holes - one "
-        f"physical part carrying both, which is what makes the alignment "
-        f"exact instead of merely close. "
-        f"Two jobs. On the BARE CORE, before layup: drill the {len(hb)} x "
+        f"physical part carrying both. "
+        f"FALLBACK NOW, NOT THE PLAN, and cut anyway: the plan is to CNC "
+        f"02 profile-and-holes in one setup registered on two black plugs, "
+        f"and this is what you reach for if the shop will not run cured "
+        f"glass or the layup misses the month. It costs a wood cut on a "
+        f"visit already being made. "
+        f"Two jobs if it comes to that. On the BARE CORE, before layup: "
+        f"drill the {len(hb)} x "
         f"O{p['HATCH_BOLT_D'] + 0.6:.1f} through the cured black plugs, which "
         f"is easy while they are still visible. After layup: register on the "
         f"wax marks and trim the laminate to this outline with a "

@@ -405,10 +405,30 @@ shank stops on the hole at 12.7 mm and the hatch lid is 15.2 thick. A ⅛ in
 shank is 3.175 and goes straight down a Ø5.0. **Check the shop has a ⅛ in
 collet before the day** — it is a $15 part and a wasted trip.
 
-**No CNC for the lids at all.** Both jobs left the machine: the holes are
-drilled in the **bare core** off the masters while the black plugs are still
-visible, and the profile is **flush-trimmed against those same masters** with
-a bearing-guided compression bit. That is what a master is for.
+**CNC both lids — profile and holes, one setup each.** That is the better
+answer and the pigment is what makes it possible: register the panel by
+touching off on **two visible plugs**, which gives the machine an origin and
+a rotation, and everything it cuts afterwards is referenced to the plugs
+rather than to the blank edge. Core drift stops existing as a tolerance, and
+the machine holds the rest of the pattern far better than a hand-guided bit.
+
+> **This has to land inside the CNC month, which is a scheduling
+> requirement and not an obvious one.** The order is: cut the cores on the
+> first visit → pour and cure the plugs → **get the vacuum rig up (steps 8–9)
+> and lay the lids up** → come back for a second visit. The Basic month gives
+> 8 visits in 30 days, so two is easy; what is *not* easy is having the bag
+> and pump working three weeks earlier than the build order otherwise needs
+> them. Plan for it, or budget a **$99 day pass** for a later visit.
+>
+> **And it is the fibreglass half of the phone call.** Machining the lids
+> means running cured glass laminate on their router — same conversation as
+> the EPS question, and it should happen in the same call.
+
+**The MDF masters are cut anyway, and stay as the fallback.** They come off
+the same first CNC visit in wood, which nobody objects to. If the shop turns
+out not to allow glass, or the calendar slips past the month, the holes get
+drilled in the bare core off the masters and the profile flush-trimmed at
+home with the P601 — see the note on parts 16 and 17.
 
 > **Rough-cut before you trim.** A flush bit takes the last millimetre or two
 > off, not the 6 mm the cores are bagged oversize by. Jigsaw or bandsaw close
@@ -552,23 +572,23 @@ and re-drilled, and nothing to hunt for under a cured skin afterwards.
 2. **Tape one face, fill them with thickened epoxy — pigmented BLACK** —
    cure, and **sand both faces flush.** A plug left proud prints through a
    1 mm skin under vacuum and you get twelve bumps in the deck.
-3. **Drill the twelve Ø5.6 NOW, through the bare plugs**, off template 14.
-   This is the step that used to happen last, and moving it here is the whole
-   trick: right now the cured plugs are black discs in white foam and putting
-   a hole dead-centre in each is trivial. After layup it is eight to fifteen
-   millimetres of sandwich aimed at something you cannot see.
-4. **Fill each hole with black wax**, both faces, so no resin gets in.
-5. **Lay up** glass / core / glass and bag it.
-6. **Machine the profile — registered on the wax marks, not on the blank
-   edge — then open 1 mm of skin over each one.** That is all the drilling
-   that is left.
+3. **Lay up** glass / core / glass and bag it. The plugs are invisible now —
+   except that they are black, and read through a 1 mm skin.
+4. **Machine the profile and drill all twelve Ø5.6, one setup — registered on
+   two of the plugs.** Touch off on one plug for the origin and a second for
+   rotation, and every cut afterwards is referenced to where the plugs
+   actually are.
 
-> **Why register the profile to the holes and not the other way round.** The
-> holes have to line up with twelve captive nuts. The profile only has to
-> drop into a recess with **1.5 mm** of side clearance. Put the tolerance
-> where the slack is: the core can drift inside the oversize blank all it
-> likes, and if both the profile and the holes are cut relative to the plugs,
-> nothing downstream ever knows.
+> **Why register to the plugs and not the blank edge.** The holes have to
+> land inside twelve buried plugs *and* line up with twelve captive nuts. The
+> profile only has to drop into a recess with **1.5 mm** of side clearance.
+> Put the tolerance where the slack is: the core can drift inside the
+> oversize blank all it likes, and if both the profile and the holes come off
+> the plugs, nothing downstream ever knows.
+>
+> **Without the pigment there is nothing to touch off on** — the machine
+> would cut a perfect pattern in the wrong place, and the first sign would be
+> a bolt breaking out the side of its plug.
 
 Twelve holes bored in one setup are mutually accurate to the machine, so
 lining the lid up on the ring is a single **rigid-body fit**: get two to pick
