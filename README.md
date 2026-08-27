@@ -201,7 +201,15 @@ Ordered by what can actually stop the build.
    is unverified. If it is not, the conduit and the plate's Ø30.8 bore are in
    the wrong place — and that bore is drilled and reamed into the one part
    that has to go to a machine shop.
-9. **The charge port's flange pitch, and whether a screw cap ships with it.**
+9. **`GUIDE_OFF` — the seal groove template's bushing offset.** Template 14's
+   path is drawn **5.0 mm** outboard of the groove, which is
+   `(bushing OD − cutter OD) / 2` for a bushing nobody has measured. It is
+   the one number on that part that comes from the *tool* rather than the
+   design, and if it is wrong the groove lands off by exactly the error — in
+   the sealing land, on the joint that must not leak. **Measure it on the
+   P601 before the template is cut.** It cannot come off the rotary tool: the
+   TVM01 has no router base to mount a bushing to.
+10. **The charge port's flange pitch, and whether a screw cap ships with it.**
    `CHG_BOLT_PITCH` is 22 mm on a two-hole SP17 flange, and no drawing has
    ever been found for it — the four-on-a-20-mm-square pattern belongs to the
    EW-LP16, a different connector. These holes go into a **printed** wall, so
@@ -209,7 +217,7 @@ Ordered by what can actually stop the build.
    step 3. The cap matters just as much: it is the entire reason this
    connector was chosen over the LP16's nicer one-touch latch, and Renhotec
    list SP17 sealing caps as *available*, which is not *included*.
-10. ~~**The module vent is the next barrier down.**~~ **Closed for water.**
+11. ~~**The module vent is the next barrier down.**~~ **Closed for water.**
     It was a $9.95 no-name "IP68 nylon breather", and IP68 with no stated
     depth or duration is a marketing string, not a rating. Now a **GORE
     PolyVent Stainless, M12 × 1.5, 316L** — tested to IEC 60529 at 2 m for
@@ -218,7 +226,7 @@ Ordered by what can actually stop the build.
     put on it that is **32×**, so it goes from the module's weakest opening
     to its strongest. Sized on Gore's own table: 1.6 L/min covers a 20 L
     enclosure and the module has ~3.3 L of free air, 6× over.
-11. ~~**Nothing relieves a cell venting.**~~ **Answered, and better than
+12. ~~**Nothing relieves a cell venting.**~~ **Answered, and better than
     feared.** The vent is still not relief — it passes **1.6 L/min** against
     the ~12 a runaway cell wants — but the box was never a pressure vessel
     either. Both lids are hard-stop bolted joints, and a bolted joint
@@ -229,7 +237,7 @@ Ordered by what can actually stop the build.
     rather than building up. Which lid goes *first* is not knowable — 7%
     apart on two numbers that each carry ±25% preload scatter — so the check
     asserts a **ceiling** on both rather than an order it cannot measure.
-12. ~~**Mast plate weight.**~~ **Closed — it is not overbuilt.** Asked three
+13. ~~**Mast plate weight.**~~ **Closed — it is not overbuilt.** Asked three
     times, so here is the arithmetic rather than an opinion. It *looks* like
     a lot of aluminium because it is, but the two dimensions are set by two
     unrelated constraints and both sit within ~15% of their floor:

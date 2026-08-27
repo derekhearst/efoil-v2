@@ -183,12 +183,20 @@ def build():
     # Basic month beats the 5-day punch if both cores get cut inside one
     # month. Their page says month-to-month, so it should cancel cleanly -
     # worth confirming when you ask about the bed size.
+    # DEREK'S CALL: take the month and cancel at the end of it. That is the
+    # cheap option and the machine work now fits it easily - a 5-day punch is
+    # $250 against this $150, and what the punch buys is no expiry, which
+    # stopped mattering when the lids left the CNC.
     add("1  Core and shaping", "Maker Shop Boise Basic month",
         1, "month", 150.00, OK,
-        "month-to-month; confirm it cancels cleanly. Only ONE part truly "
-        "wants a CNC - the EPS core - but the pass covers the lids and the "
-        "MDF gauges too, so cut everything inside the 30 days and let the "
-        "layups follow the weather afterwards", tool=True)
+        "month-to-month, and the plan is to cancel at the end of it. "
+        "EVERYTHING MACHINED HAPPENS BEFORE LAYUP now, so it all fits one "
+        "month: the EPS core, both Divinycell lid cores, and the three MDF "
+        "guides. The lids themselves no longer need the machine at all - "
+        "their holes are drilled in the bare core off the masters and their "
+        "profiles are flush-trimmed at home - so there is no second visit "
+        "weeks later and no reason to pay $250 for a punch pass that does "
+        "not expire", tool=True)
 
     # ---------------------------------------------------- 2 G10: NONE
     # There is no G10 on this board any more. It went in three steps:

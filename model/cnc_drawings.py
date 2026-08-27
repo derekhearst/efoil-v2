@@ -683,7 +683,13 @@ def build(p):
     # UNDERSIZED cutter. Miss by half a millimetre and you are still inside
     # the groove; the printed walls below define the finished geometry, not
     # the cutter.
-    GUIDE_OFF = 5.0     # (guide bushing OD - cutter OD) / 2 - CHECK your router
+    # (guide bushing OD - cutter OD) / 2. MEASURE IT ON THE P601 BEFORE THIS
+    # TEMPLATE IS CUT - it is the one number on the part that comes from the
+    # tool rather than from the design, and if it is wrong the groove lands
+    # in the wrong place by exactly the error. 5.0 is a placeholder.
+    # It cannot come off the rotary tool: the TVM01 has no router base, so
+    # nothing to mount a bushing to. The P601 is the tool for this now.
+    GUIDE_OFF = 5.0     # PLACEHOLDER - measure the real bushing
     d = Dxf()
     gi = p["CHAN_INSET"]
     d.poly(rrect(RIM_W - gi - GUIDE_OFF, ow - RIM_W + gi + GUIDE_OFF,
