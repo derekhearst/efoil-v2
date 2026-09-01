@@ -2827,6 +2827,12 @@ def prism(name, poly, z0, z1, coll, mat=None):
 # the only thing that would want it is that missing model. It is gone; if a
 # drag model ever lands, it comes back with a number somebody has checked.
 FOIL_MAST_H, FOIL_MAST_C, FOIL_MAST_T = 850.0, 120.0, 0.115   # 85 cm alu mast
+# Mast axis to the front wing's quarter chord. This was TWO separate literals
+# of 200.0 in two different functions - the mast-joint pitch load and the
+# trim calculation - which is the duplicate-constant pattern this repo has
+# spent a week hunting. One number now. UNMEASURED: Gong publish nothing,
+# and 30 mm of error here moves the trim answer by exactly 30 mm.
+FOIL_D = 200.0
 FOIL_FUSE_L, FOIL_FUSE_D = 560.0, 32.0    # ESTIMATED - Pro Alu is "cut short"
 # X-Over V2 XL: span 95 cm, 1650 cm2, span^2/area 5.5, root chord and thickness
 # scaled off the published M (75 cm / 1000 cm2 / 17.4 cm chord / 2.0 cm thick).
@@ -7300,6 +7306,26 @@ def build():
     rep["charge_port_bolt_pitch_mm"] = CHG_BOLT_PITCH
     rep["charge_port_panel_hole_mm"] = CHG_HOLE_D
     rep["charge_port_flange_mm"] = [CHG_W, CHG_H]
+    # --- THE PACK LEADS, which nothing had sized against the current -------
+    # 8 AWG carries the full 92 A pack current inside a sealed box. Nothing
+    # here had compared the two; the BMS says 150 A, the ANL fuse says 150 A,
+    # and the wire between them was just "8 AWG" with no number. So: 8 AWG is
+    # ~2.06 mOhm/m, the in-module run pack -> BMS -> ESC is ~0.6 m of
+    # conductor, and the heat is I^2 R. It comes out small - and it is
+    # V1-proven at the same gauge and current - but small should be a number,
+    # not an assumption, on a heat source inside the box the ESC already has
+    # to share.
+    _r_8awg = 2.06e-3                       # ohm per metre
+    _run_m = 0.6                            # in-module conductor, both legs
+    rep["pack_lead_heat_W"] = round(
+        rep["pack"]["pack_A"] ** 2 * _r_8awg * _run_m, 1)
+    rep["pack_lead_note"] = (
+        "8 AWG at %.0f A over ~%.1f m in the module dissipates ~%.0f W - "
+        "about a tenth of what the ESC does at cruise. Fine, and V1 ran the "
+        "same gauge at the same current. The 150 A ANL and 150 A BMS both "
+        "sit ABOVE what this wire is happy with continuously, so the wire is "
+        "the weakest link in that chain: the fuse protects the pack, not "
+        "the wire" % (rep["pack"]["pack_A"], _run_m, rep["pack_lead_heat_W"]))
     rep["charge_port_rated_A"] = CHG_RATED_A
     rep["charge_current_A"] = CHARGER_A
     rep["charge_port_current_margin"] = round(CHG_RATED_A / CHARGER_A, 2)
@@ -7310,6 +7336,25 @@ def build():
     rep["charge_hours_at_rating"] = round(
         rep["pack"]["energy_Wh"] / (67.2 * CHARGER_A), 1)
 
+    # --- THE VX3 RECEIVER, which the BOM buys and nothing places -------------
+    # V1 put it "inside the ESC enclosure" and that was the whole plan. V2 has
+    # one module, and nothing in the model or the guide says where the
+    # receiver goes, or where its antenna routes. It matters more here than
+    # it looks: this box has an ALUMINIUM floor (RF-opaque, fine, that is the
+    # water side) and a 128-cell pack with nickel strip across the top of it
+    # (RF-opaque, and NOT fine if the receiver ends up beside or under it).
+    # The walls are ASA and the lids are glass over foam - all transparent at
+    # 2.4 GHz - so the receiver wants to be HIGH in the module, above the ESC
+    # where there is headroom, with the antenna lying against the underside
+    # of the lid and nowhere near the pack. Not modelled as geometry, because
+    # I would be inventing its dimensions; recorded as a placement rule and a
+    # README question instead.
+    rep["vx3_receiver_placed"] = False
+    rep["vx3_receiver_rule"] = (
+        "high in the module, above the ESC (%.0f mm of headroom there), "
+        "antenna along the underside of the lid, clear of the pack. Floor is "
+        "aluminium and the pack is a nickel-strip slab: both are RF-opaque. "
+        "Walls and lid are not" % rep.get("esc_headroom_mm", 0))
     rep["aft_wall_is_connector_panel"] = (
         f"{BAY_GLAND_N} x PG11 glands, power button, charge port - all "
         f"panel-mount through the module aft wall, all inside the service strip")
@@ -7673,8 +7718,7 @@ def build():
     g_design = 3.0                      # impact / hard landing factor
     # pitch: the wing is FOIL_D ahead of the mast axis, so a lift spike is a
     # nose-up moment about the ACROSS-board axis, reacted on the 165 mm spacing
-    _foil_d = 200.0                     # mast axis -> front wing 1/4 chord
-    m_pitch = all_up_N * g_design * (_foil_d / 1000.0)
+    m_pitch = all_up_N * g_design * (FOIL_D / 1000.0)
     t_pitch = m_pitch / (2.0 * BOLT_SPACING_X / 1000.0)
     # roll: a 1 g side load at the foil, reacted on the 90 mm spacing. This is
     # the governing case and it is not close - the bolt pattern is 1.8x wider
@@ -7848,11 +7892,34 @@ def build():
     # ahead of it. FOIL_D is mast axis -> front wing quarter chord: MEASURE IT
     # on the actual Allvator, Gong publishes nothing. 30 mm of error here moves
     # the answer 30 mm.
-    FOIL_D = 200.0
     col = MAST_X + FOIL_D
     rep["front_wing_col_mm"] = round(col, 1)
     rep["cg_ahead_of_col_mm"] = round(comb - col, 1)
     rep["cg_ahead_of_col_target"] = "150-250 mm ahead (50-75 passive + ~150 eFoil pitch-up)"
+    # --- AND SAY WHETHER IT HITS. It did not, and nothing said so: the target
+    # band sat in the report one line under a number 66 mm short of its low
+    # end, and the two were never compared. That is the worst kind of check -
+    # it looks like one.
+    # NOT a FAIL, deliberately. Both inputs are admitted guesses (FOIL_D is
+    # unmeasured, STANCE_AHEAD is one forum post) and failing the build on
+    # guessed inputs is theatre. But a miss has to be REPORTED as a miss.
+    # What it means if it holds: the combined CG sits ~66 mm further aft than
+    # an eFoil wants, which reads as a nose-up board that has to be held down
+    # by standing further forward than the deck pad assumes. The levers, in
+    # order of cheapness: STANCE_AHEAD (free - it is where you stand), MAST_X
+    # (moves the machined pocket), FOIL_D (Gong's, measure it first).
+    _lo, _hi = 150.0, 250.0
+    _cg = comb - col
+    rep["cg_ahead_of_col_in_band"] = bool(_lo <= _cg <= _hi)
+    rep["cg_ahead_of_col_miss_mm"] = round(
+        0.0 if _lo <= _cg <= _hi else (_lo - _cg if _cg < _lo else _cg - _hi), 1)
+    rep["cg_trim_note"] = (
+        "combined CG is %.0f mm ahead of the front wing's centre of lift "
+        "against a 150-250 target - %.0f mm SHORT. Board would trim nose-up. "
+        "Both inputs are guesses (FOIL_D, STANCE_AHEAD), so this is a "
+        "flagged miss and not a FAIL: measure FOIL_D on the real Allvator "
+        "before moving anything machined" % (_cg, _lo - _cg)
+        if _cg < _lo else "in band")
     rep["front_foot_to_nose_mm"] = round(
         LENGTH - (MAST_X + STANCE_AHEAD + STANCE), 1)
 
@@ -8319,6 +8386,23 @@ def build():
     # US-box configuration, not to a countersunk plate. It also means nothing
     # eats into the 10 mm of engagement.
     rep["mast_uses_washers"] = False
+    # --- A TORQUE, because there was none. Every other bolted joint on this
+    # board carries a spec; the four holding the foil on did not, and they
+    # are the ones that come apart for transport and go back together on a
+    # beach. Derived, not guessed: target ~65% of the M6 A4-70's proof load
+    # through T = K d F, with K = 0.15 because every one of these is
+    # Tef-Gelled (lubricated - a dry-fastener 0.2 would over-tension by a
+    # third). Lands at the top of the 10-50 in-lb wrench already bought.
+    _F_target = 0.65 * rep["mast_bolt_proof_N"]
+    rep["mast_bolt_torque_Nm"] = round(0.15 * (BOLT_D / 1000.0) * _F_target, 1)
+    rep["mast_bolt_torque_inlb"] = round(rep["mast_bolt_torque_Nm"] * 8.851, 0)
+    rep["mast_bolt_preload_N"] = round(_F_target)
+    rep["mast_bolt_torque_note"] = (
+        "%.1f Nm (%.0f in-lb) with Tef-Gel on the thread - K = 0.15, "
+        "lubricated. Do NOT use a dry-thread figure, it over-tensions a "
+        "greased bolt by about a third. Re-torque every time the mast goes "
+        "back on, and check them before the first ride after any transport"
+        % (rep["mast_bolt_torque_Nm"], rep["mast_bolt_torque_inlb"]))
     rep["mast_screw_length_rationale"] = (
         "Gong's M6x30 is their TOP PLATE -> BOARD screw, one of three lengths "
         "in the kit (35 mast-to-plate, 30 plate-to-board, 50 mast-to-fuse). "

@@ -260,6 +260,23 @@ Ordered by what can actually stop the build.
       under.
 
     Both weight routes tried and refused. The plate stays 1/2 in × 250 × 175.
+15. **The board trims nose-up on paper, and nothing was saying so.** The
+    combined rider-plus-rig CG sits **84 mm** ahead of the front wing's
+    centre of lift against a target band of 150–250 — **66 mm short**. The
+    target was printed in the report one line under the number and the two
+    were never compared. Not a build FAIL, deliberately: both inputs are
+    admitted guesses (`FOIL_D` = 200 is unmeasured, `STANCE_AHEAD` = 20 is one
+    forum post). But a miss is a miss. Levers, cheapest first: stance (free),
+    `MAST_X` (moves the machined pocket), `FOIL_D` (measure it on the real
+    Allvator before touching anything machined). `FOIL_D` was also two
+    separate literals in two functions — one constant now.
+16. **The VX3 receiver is bought and not placed.** V1 put it "inside the ESC
+    enclosure"; V2 says nothing. It matters more than it looks: the module
+    floor is aluminium and the pack is a slab of nickel strip, both opaque at
+    2.4 GHz. Rule recorded — high in the module above the ESC (**42 mm** of
+    headroom), antenna along the underside of the lid, nowhere near the pack.
+    The walls and both lids are RF-transparent. Not modelled as geometry
+    because its dimensions would be invented.
 
 ---
 

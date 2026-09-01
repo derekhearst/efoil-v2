@@ -178,6 +178,26 @@ vertical seam (1030 mm). Dowel pins keep the halves registered.
 The CNC already cut the pockets. Bond the H-80 mast block and leash pad in,
 flush.
 
+**Then bond the 6061 plate into its pocket — and prep it first, because
+epoxy does not grip bare aluminium.** This step had no instruction for the
+plate at all, on the one part of the board that is buried, unreplaceable,
+and sitting in wet foam for the rest of its life. The recipe is the one the
+module floor already uses:
+
+1. **Abrade every bonded face with 80 grit** — fresh, bright metal, no
+   gloss left. Aluminium's oxide skin is what epoxy fails on.
+2. **Solvent wipe** with acetone on a clean rag, and keep wiping until the
+   rag comes up clean. Do not touch the faces with bare hands afterwards.
+3. **Bond within the hour.** A fresh abrade oxidises fast; a plate prepped
+   yesterday is a plate that needs prepping again.
+4. Bed it in **thickened epoxy**, full contact, no voids — this is the
+   pocket the mast's whole load goes into. Weight it flat and let it cure
+   before the laminate goes over it.
+
+> The four tapped holes stay **blind** through all of this. Nothing gets into
+> them, nothing gets tapped until step 23, and the 2.7 mm of solid alu above
+> them is what keeps the cavity dry.
+
 > **Bed the wire blocker before the plate goes on.** A printed part: **Ø30.4 ×
 > 4 body** that fills the top of the plate's bore, a **Ø23.6 × 12 spigot** up
 > into the foam's, and a **22 × 7 slit** for the leads.
@@ -527,6 +547,13 @@ flooded V1. Silicone adhesive does not stop a wick; epoxy does.
 Bond the cord in on a thin continuous bead. Splice on a straight run, never a
 corner.
 
+> **Replacing it later is destructive, and worth knowing now.** A bonded
+> cord comes out by cutting it, then cleaning the groove back to bare walls
+> with a plastic scraper and acetone — RTV will not bond to old RTV. Keep the
+> spare cord and the silicone adhesive with the board. On a joint opened every
+> ride, the day the cord needs replacing is not a day you want to be
+> discovering how.
+
 **Measure the finished groove before choosing cord.** Nominal is 2.4 mm deep,
 which the 3 mm cord squeezes 20%. If it routs deep the 3 mm only reaches 10%
 and you want the 1/8 in spare instead — that is what it is for. Guessing the
@@ -756,6 +783,13 @@ answer at a glance. Silicone dabs stop the BMS walking; V1 needed them.
 
 ### Step 17. Wire the module
 
+**Place the VX3 receiver before anything else goes in, because it is the one
+part with a line-of-sight requirement.** Nothing in V2 had said where it
+lives. High in the module, above the ESC, antenna lying along the underside
+of the lid and *nowhere near the pack* — the floor is aluminium and the pack
+is a slab of nickel strip, and both are opaque at 2.4 GHz. The walls and
+both lids are not.
+
 **Blocks on:** steps 15, 16
 **Uses:** `8 AWG silicone, 10 ft red + 10 ft black` · `16 AWG silicone, 6 colours x 5 ft` ·
 `ANL 150 A fuse + holder` · `Inline 10 A fuse + holder, charge lead` ·
@@ -980,6 +1014,13 @@ the same two pads on the module and keep the bought handles for the rails.
 ### Step 23. Mount the foil and drivetrain
 
 **Blocks on:** steps 7, 22
+**Torque the four mast screws to 5.3 Nm (47 in-lb), Tef-Gel on every
+thread — and re-torque every time the mast goes back on.** There was no spec
+for this joint at all; every other bolt on the board had one. It is derived
+(~65% of the M6 A4-70's proof load through K = 0.15, *lubricated*), and it
+sits at the top of the 10–50 in-lb wrench already on the list. Do not use a
+dry-thread figure — it over-tensions a greased bolt by about a third.
+
 **Uses:** `M6 x 22 A4 countersunk DIN7991, mast screws` · `Ultra Tef-Gel, galvanic barrier` ·
 `M5 x 250 threaded rod, 4 pk (cut to ~171 mm)` · `M6 x 20 fender washer, 100 pk` ·
 `M5 nyloc nut 316, 150 pk` · `Loctite 242` · `Roll pin assortment M1.5-M6, 220 pc` ·
