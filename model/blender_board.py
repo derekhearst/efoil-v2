@@ -8393,8 +8393,16 @@ def build():
     # through T = K d F, with K = 0.15 because every one of these is
     # Tef-Gelled (lubricated - a dry-fastener 0.2 would over-tension by a
     # third). Lands at the top of the 10-50 in-lb wrench already bought.
-    _F_target = 0.65 * rep["mast_bolt_proof_N"]
-    rep["mast_bolt_torque_Nm"] = round(0.15 * (BOLT_D / 1000.0) * _F_target, 1)
+    # 65% of proof and K = 0.15 are DESIGN CHOICES the torque derives from,
+    # so they are published - the guide quotes the 65%, and a figure the
+    # guide quotes has to trace to the model or the checker rightly objects.
+    MAST_PRELOAD_PCT_OF_PROOF = 65
+    MAST_K_LUBRICATED = 0.15
+    rep["mast_bolt_preload_pct_of_proof"] = MAST_PRELOAD_PCT_OF_PROOF
+    rep["mast_bolt_K_lubricated"] = MAST_K_LUBRICATED
+    _F_target = MAST_PRELOAD_PCT_OF_PROOF / 100.0 * rep["mast_bolt_proof_N"]
+    rep["mast_bolt_torque_Nm"] = round(
+        MAST_K_LUBRICATED * (BOLT_D / 1000.0) * _F_target, 1)
     rep["mast_bolt_torque_inlb"] = round(rep["mast_bolt_torque_Nm"] * 8.851, 0)
     rep["mast_bolt_preload_N"] = round(_F_target)
     rep["mast_bolt_torque_note"] = (
