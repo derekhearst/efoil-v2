@@ -270,13 +270,13 @@ Ordered by what can actually stop the build.
     `MAST_X` (moves the machined pocket), `FOIL_D` (measure it on the real
     Allvator before touching anything machined). `FOIL_D` was also two
     separate literals in two functions — one constant now.
-16. **The VX3 receiver is bought and not placed.** V1 put it "inside the ESC
-    enclosure"; V2 says nothing. It matters more than it looks: the module
-    floor is aluminium and the pack is a slab of nickel strip, both opaque at
-    2.4 GHz. Rule recorded — high in the module above the ESC (**42 mm** of
-    headroom), antenna along the underside of the lid, nowhere near the pack.
-    The walls and both lids are RF-transparent. Not modelled as geometry
-    because its dimensions would be invented.
+16. ~~**The VX3 receiver is bought and not placed.**~~ **Closed — V1 answers
+    it.** I had written an RF placement rule (floor is aluminium, pack is
+    nickel strip, keep it high and clear). Derek's evidence beats the theory:
+    V1 ran this receiver inside an enclosure with a **bolted aluminium lid**,
+    under a plywood hatch, and it worked. V2's ASA walls and glass/foam lids
+    are more transparent than that, not less. It is tiny; it goes wherever it
+    is out of the way of the wiring.
 
 ---
 

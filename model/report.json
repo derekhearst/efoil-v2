@@ -1098,8 +1098,8 @@
  "vent_to_handle_pad_mm": 36.3,
  "vent_vs_one_cell_venting": 0.13,
  "vent_y_mm": -61.3,
+ "vx3_receiver_note": "anywhere out of the way inside the module. V1 evidence: worked inside a bolted-aluminium-lid enclosure under a plywood hatch. V2's ASA walls and glass/foam lids are more transparent than that, so there is no placement constraint to model",
  "vx3_receiver_placed": false,
- "vx3_receiver_rule": "high in the module, above the ESC (0 mm of headroom there), antenna along the underside of the lid, clear of the pack. Floor is aluminium and the pack is a nickel-strip slab: both are RF-opaque. Walls and lid are not",
  "waterplane_m2": 0.464,
  "wire_bay_len_mm": 75.0,
  "wire_raceway_w_mm": 22.0

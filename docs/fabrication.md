@@ -783,12 +783,10 @@ answer at a glance. Silicone dabs stop the BMS walking; V1 needed them.
 
 ### Step 17. Wire the module
 
-**Place the VX3 receiver before anything else goes in, because it is the one
-part with a line-of-sight requirement.** Nothing in V2 had said where it
-lives. High in the module, above the ESC, antenna lying along the underside
-of the lid and *nowhere near the pack* — the floor is aluminium and the pack
-is a slab of nickel strip, and both are opaque at 2.4 GHz. The walls and
-both lids are not.
+**The VX3 receiver goes wherever it is out of the way.** V1 ran it inside an
+enclosure with a bolted *aluminium* lid, under a plywood hatch, and it worked
+— so V2's ASA walls and glass/foam lids are no obstacle at all. It is tiny.
+Tuck it clear of the wiring and forget about it.
 
 **Blocks on:** steps 15, 16
 **Uses:** `8 AWG silicone, 10 ft red + 10 ft black` · `16 AWG silicone, 6 colours x 5 ft` ·

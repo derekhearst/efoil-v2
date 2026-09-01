@@ -7336,25 +7336,22 @@ def build():
     rep["charge_hours_at_rating"] = round(
         rep["pack"]["energy_Wh"] / (67.2 * CHARGER_A), 1)
 
-    # --- THE VX3 RECEIVER, which the BOM buys and nothing places -------------
-    # V1 put it "inside the ESC enclosure" and that was the whole plan. V2 has
-    # one module, and nothing in the model or the guide says where the
-    # receiver goes, or where its antenna routes. It matters more here than
-    # it looks: this box has an ALUMINIUM floor (RF-opaque, fine, that is the
-    # water side) and a 128-cell pack with nickel strip across the top of it
-    # (RF-opaque, and NOT fine if the receiver ends up beside or under it).
-    # The walls are ASA and the lids are glass over foam - all transparent at
-    # 2.4 GHz - so the receiver wants to be HIGH in the module, above the ESC
-    # where there is headroom, with the antenna lying against the underside
-    # of the lid and nowhere near the pack. Not modelled as geometry, because
-    # I would be inventing its dimensions; recorded as a placement rule and a
-    # README question instead.
+    # --- THE VX3 RECEIVER, which the BOM buys and nothing placed -------------
+    # I first wrote a placement RULE here - high in the module, antenna along
+    # the lid, clear of the pack, because the floor is aluminium and the pack
+    # is nickel strip and both are RF-opaque as sheets. Derek's answer beat
+    # the theory: V1 ran this receiver INSIDE an enclosure with a bolted
+    # ALUMINIUM top lid, under a 3/4 in plywood hatch, and it worked. A
+    # bolted, gasketed lid is not a Faraday cage, and the receiver is tiny.
+    # V2's ASA walls and glass/foam lids are easier than that, not harder.
+    # So: not a constraint. Put it wherever it is out of the way of the
+    # wiring, and it is not modelled because there is nothing to protect.
     rep["vx3_receiver_placed"] = False
-    rep["vx3_receiver_rule"] = (
-        "high in the module, above the ESC (%.0f mm of headroom there), "
-        "antenna along the underside of the lid, clear of the pack. Floor is "
-        "aluminium and the pack is a nickel-strip slab: both are RF-opaque. "
-        "Walls and lid are not" % rep.get("esc_headroom_mm", 0))
+    rep["vx3_receiver_note"] = (
+        "anywhere out of the way inside the module. V1 evidence: worked "
+        "inside a bolted-aluminium-lid enclosure under a plywood hatch. V2's "
+        "ASA walls and glass/foam lids are more transparent than that, so "
+        "there is no placement constraint to model")
     rep["aft_wall_is_connector_panel"] = (
         f"{BAY_GLAND_N} x PG11 glands, power button, charge port - all "
         f"panel-mount through the module aft wall, all inside the service strip")
